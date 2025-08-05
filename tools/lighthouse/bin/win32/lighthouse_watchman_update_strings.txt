@@ -69,7 +69,7 @@
 --via-dongle
 -t1?Ks
 -tA?Ks
--tQ?t
+-tQ?8
 . Retrying...
 .00cfg
 .?AU_Crt_new_delete@std@@
@@ -475,7 +475,7 @@ IVRCameraComponent_003
 IVRCompositorPluginProvider_001
 IVRDriverDirectModeComponent_009
 IVRDriverManager_001
-IVRIPCResourceManagerClient_001
+IVRIPCResourceManagerClient_002
 IVRResources_001
 IVRSettings_003
 IVRVirtualDisplay_002
@@ -665,7 +665,6 @@ WideCharToMultiByte
 WriteFile
 Wrote image to tempfile %s\n\n
 XsBI
-Y.VH
 Zjz\v
 [h1R
 \FileVersion
@@ -751,7 +750,7 @@ bad cast
 bad conversion
 bootloader
 buffer error
-c:\buildslave\steamvr_rel_hotfix_win32\build\src\lighthouse_watchman_update\Retail\win32\2017\lighthouse_watchman_update.pdb
+c:\buildslave\steamvr_rel_win32\build\src\lighthouse_watchman_update\Retail\win32\2017\lighthouse_watchman_update.pdb
 calloc
 dQy/
 data error

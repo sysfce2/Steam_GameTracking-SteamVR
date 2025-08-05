@@ -48,8 +48,6 @@
 !g_pSharedResourceNamespaceServer
 !m_dashboardStartedEvent.Check()
 !m_prismStartupEvent.Check()
-!sFind.empty()
-!sString.empty()
 " because it is missing required fields: 
 " conflicts with the existing symbol "
 " does not.
@@ -159,6 +157,7 @@ $\n k_EProtoServiceTypeSteamMessages
 %04X
 %08lx
 %3.1f
+%Y-%m-%d-%p_%I_%M_%S
 %a %b %d %H:%M:%S %Y
 %a %b %d %Y %H:%M:%S.%%03u
 %a, %d %b %Y %H:%M:%S GMT
@@ -208,7 +207,9 @@ $\n k_EProtoServiceTypeSteamMessages
 %s - No root object when parsing manifest file\n
 %s - Unable to read app config from \n
 %s - Unable to read manifest. Removing that file for the next startup\n
+%s begin_ctx=%llu
 %s contains one or more NaNs. Discarding pose for %u from %s
+%s end_ctx=%llu
 %s parameter out of range
 %s.gz
 %s: %p port=%d
@@ -570,10 +571,10 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AV<lambda_bd1a83319b220d7e34be44617ed4547e>@@
 .?AV<lambda_ce3fbf3c947ad2e658381da75700eeba>@@
 .?AV<lambda_cec0a822e624efbc14f454d954ffa5d1>@@
-.?AV<lambda_d1112e822f5ee38cbf54224532a6fefc>@@
 .?AV<lambda_d4ea458dafa46560c4bdc7db4653ba2d>@@
 .?AV<lambda_d8999f150ee7b7e4efc727f6848c8d54>@@
 .?AV<lambda_d9c8d5500ac3dfddb02459f8a53a1949>@@
+.?AV<lambda_da04ffe45169aef5731a304f055ad461>@@
 .?AV<lambda_dcd68f11e779e636b3af35198369d081>@@
 .?AV<lambda_e8ce496b76c74e3642517b6b1e5cdb64>@@
 .?AV<lambda_f4f5e2f072afd4a5de41e85075878c7c>@@
@@ -617,10 +618,12 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AV?$ComponentAdapterBaseWithParent@VIVRVirtualDisplay@vr@@$1?k_pchVirtualDisplayComponentPrefix@@3PADA$01VCVRVirtualDisplayComponent_Latest@@VCVRVirtualDisplayComponent_001@@@@
 .?AV?$DriverInputInterfaceRegistration@VCVRDriverInput_001@@@@
 .?AV?$DriverInputInterfaceRegistration@VCVRDriverInput_002@@@@
+.?AV?$DriverInputInterfaceRegistration@VCVRDriverInput_003@@@@
 .?AV?$DriverSettingsInterfaceRegistration@VCVRSettings_001@@@@
 .?AV?$DriverSettingsInterfaceRegistration@VCVRSettings_002@@@@
 .?AV?$IOBufferInterfaceRegistration@VCVRIOBuffer_001@@@@
 .?AV?$IOBufferInterfaceRegistration@VCVRIOBuffer_002@@@@
+.?AV?$IPCResourceManagerClientInterfaceRegistration@VCVRIPCResourceManagerClient_001@@@@
 .?AV?$ServerDriverHostInterfaceRegistration@VCVRServerDriverHost_004@@@@
 .?AV?$ServerDriverHostInterfaceRegistration@VCVRServerDriverHost_005@@@@
 .?AV?$TrackedDeviceAdapterBaseNoParent@VITrackedDeviceServerDriver_004@@VCVRTrackedDevice_004@@@@
@@ -632,7 +635,7 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AV?$_Binder@U_Unforced@std@@P8CVRInputServer@@EAAXAEBVValue@Json@@@ZPEAV3@AEBU?$_Ph@$00@2@@std@@
 .?AV?$_Binder@U_Unforced@std@@P8CVRMailbox@@EAAXAEBVValue@Json@@@ZPEAV3@AEBU?$_Ph@$00@2@@std@@
 .?AV?$_Func_base@PEAXPEBD@std@@
-.?AV?$_Func_base@UResult_t@?A0x531250b2@@AEBU12@@std@@
+.?AV?$_Func_base@UResult_t@?A0x94e1095d@@AEBU12@@std@@
 .?AV?$_Func_base@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV12@PEAX@std@@
 .?AV?$_Func_base@VValue@Json@@PEBE@std@@
 .?AV?$_Func_base@X$$QEAUBindingFileOption_t@@_N@std@@
@@ -669,7 +672,7 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AV?$_Func_impl_no_alloc@P6A_NPEA_KPEAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV12@PEAX@Z_NPEA_KPEAV12@AEBV12@PEAX@std@@
 .?AV?$_Func_impl_no_alloc@P6A_NPEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0PEBUImage@tinygltf@@_NPEBUFsCallbacks@4@PEBUURICallbacks@4@PEAV12@PEAX@Z_NPEBV12@PEBV12@PEBU34@_NPEBU54@PEBU64@PEAV12@PEAX@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_0c2a13b62c82ef1ff1722fa6492bade4>@@_NAEBUHmdVector3_t@vr@@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_0f567b11c7f2708910c0fe8399d9ba5e>@@UResult_t@?A0x531250b2@@AEBU23@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_0f567b11c7f2708910c0fe8399d9ba5e>@@UResult_t@?A0x94e1095d@@AEBU23@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_11d26080b3820719662302cdf688baf3>@@XAEBVValue@Json@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1a546cd75712cd813bcecece4aff05b0>@@XV?$shared_ptr@VCVRClientContext@@@std@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_2d4b9bd805c205933c366a2a96e134e0>@@XW4ELogLevel@@PEBDPEAX@std@@
@@ -683,7 +686,7 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AV?$_Func_impl_no_alloc@V<lambda_69d7cfdb26c0e9f64e7ad3a53e04b1be>@@XAEBVValue@Json@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_7207bd48646ee98f0ccd3edd2a23475f>@@_NAEBUHmdVector3_t@vr@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_7279be59127ec4c7605f4ea650037eca>@@XAEBVCSteamVR_AudioSettings_RegisterForSettings_Request@@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_7ae16b2637cba7bd77168fd784026ad4>@@UResult_t@?A0x531250b2@@AEBU23@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_7ae16b2637cba7bd77168fd784026ad4>@@UResult_t@?A0x94e1095d@@AEBU23@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_819d6e727c32014dc6eae969efe567db>@@_NGGG@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_86ef558310816f2df58623fa9115c944>@@XV?$shared_ptr@VCVRClientContext@@@std@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_97a9cdda7ab58672ccc551d0827e40cc>@@VValue@Json@@PEBE@std@@
@@ -695,10 +698,10 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AV?$_Func_impl_no_alloc@V<lambda_bd1a83319b220d7e34be44617ed4547e>@@X$$QEAUBindingFileOption_t@@_N@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_ce3fbf3c947ad2e658381da75700eeba>@@X$$V@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_cec0a822e624efbc14f454d954ffa5d1>@@_NAEBUHmdVector3_t@vr@@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_d1112e822f5ee38cbf54224532a6fefc>@@XW4ELogLevel@@PEBDPEAX@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_d4ea458dafa46560c4bdc7db4653ba2d>@@UResult_t@?A0x531250b2@@AEBU23@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_d4ea458dafa46560c4bdc7db4653ba2d>@@UResult_t@?A0x94e1095d@@AEBU23@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_d8999f150ee7b7e4efc727f6848c8d54>@@_NAEBUHmdVector3_t@vr@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_d9c8d5500ac3dfddb02459f8a53a1949>@@X$$QEAUBindingFileOption_t@@_N@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_da04ffe45169aef5731a304f055ad461>@@XW4ELogLevel@@PEBDPEAX@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_dcd68f11e779e636b3af35198369d081>@@XAEBVValue@Json@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_e8ce496b76c74e3642517b6b1e5cdb64>@@VValue@Json@@PEBE@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_f4f5e2f072afd4a5de41e85075878c7c>@@X$$QEAUBindingFileOption_t@@_N@std@@
@@ -708,8 +711,8 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AV?$_Iosb@H@std@@
 .?AV?$_LaunchPad@V?$unique_ptr@V?$tuple@P8CPoseExtrapolator@@EAAXXZPEAV1@@std@@U?$default_delete@V?$tuple@P8CPoseExtrapolator@@EAAXXZPEAV1@@std@@@2@@std@@@std@@
 .?AV?$_LaunchPad@V?$unique_ptr@V?$tuple@P8CRemotePerfStats@@EAAXXZPEAV1@@std@@U?$default_delete@V?$tuple@P8CRemotePerfStats@@EAAXXZPEAV1@@std@@@2@@std@@@std@@
-.?AV?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_190a6bbd3df9ee1d969edd84cc3d229a>@@@std@@U?$default_delete@V?$tuple@V<lambda_190a6bbd3df9ee1d969edd84cc3d229a>@@@std@@@2@@std@@@std@@
 .?AV?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_4847441ab6a0e6d5cb10f69b19ba34ab>@@@std@@U?$default_delete@V?$tuple@V<lambda_4847441ab6a0e6d5cb10f69b19ba34ab>@@@std@@@2@@std@@@std@@
+.?AV?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_848be8f9a8f0f693e744ef05976b2633>@@@std@@U?$default_delete@V?$tuple@V<lambda_848be8f9a8f0f693e744ef05976b2633>@@@std@@@2@@std@@@std@@
 .?AV?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_c11b31c47c43c3dd7dbf5bef5b1ecc9c>@@@std@@U?$default_delete@V?$tuple@V<lambda_c11b31c47c43c3dd7dbf5bef5b1ecc9c>@@@std@@@2@@std@@@std@@
 .?AV?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_fa3245fa43628abed5f7a06d18aa6cb6>@@V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@std@@U?$default_delete@V?$tuple@V<lambda_fa3245fa43628abed5f7a06d18aa6cb6>@@V?$vector@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@std@@@2@@std@@@std@@
 .?AV?$_Node_class@DV?$regex_traits@D@std@@@std@@
@@ -796,6 +799,7 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AVCSimulatedTriggerPull@@
 .?AVCSingletonCriticalSection@@
 .?AVCSteamSteamVRPrivate001@@
+.?AVCSteamSteamVRPrivate002@@
 .?AVCSteamVR_AudioSettings_ChangeSettings_Request@@
 .?AVCSteamVR_AudioSettings_RegisterForSettings_Request@@
 .?AVCSteamVR_AudioSettings_Settings@@
@@ -850,6 +854,7 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AVCVRDriverInputLatest@@
 .?AVCVRDriverInput_001@@
 .?AVCVRDriverInput_002@@
+.?AVCVRDriverInput_003@@
 .?AVCVRDriverSettingsLatest@@
 .?AVCVRDriverSpatialAnchorsLatest@@
 .?AVCVRIOBuffer@@
@@ -857,6 +862,7 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AVCVRIOBuffer_002@@
 .?AVCVRIPCResourceManager@@
 .?AVCVRIPCResourceManagerBase@@
+.?AVCVRIPCResourceManagerClient_001@@
 .?AVCVRInputContext@@
 .?AVCVRInputServer@@
 .?AVCVRInputWorkshopCallback_InputContextDelegate@@
@@ -1137,6 +1143,7 @@ $\n k_EProtoServiceTypeSteamMessages
 .?AVIServerTrackedDeviceProvider@vr@@
 .?AVISharedMem@IPC@@
 .?AVISteamSteamVRPrivate001@@
+.?AVISteamSteamVRPrivate002@@
 .?AVISteamWorkerThreadCallback@@
 .?AVISyncObject@IPC@@
 .?AVITrackedDeviceServerDriver@vr@@
@@ -1479,6 +1486,7 @@ $\n k_EProtoServiceTypeSteamMessages
 /input/trigger/value
 /input_profile
 /interaction_profiles/
+/interaction_profiles/ext/hand_interaction_ext
 /interaction_profiles/hp/mixed_reality_controller
 /interaction_profiles/htc/vive_controller
 /interaction_profiles/htc/vive_cosmos_controller
@@ -1510,10 +1518,13 @@ $\n k_EProtoServiceTypeSteamMessages
 /path_handles.json
 /pose/
 /pose/grip
+/pose/handgrip
 /pose/openxr_aim
 /pose/openxr_grip
 /pose/openxr_handmodel
 /pose/openxr_handmodel_r
+/pose/openxr_pinch
+/pose/openxr_poke
 /pose/raw
 /pose/tip
 /progress
@@ -1615,20 +1626,20 @@ $\n k_EProtoServiceTypeSteamMessages
 0 width
 0-pixel image
 00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899
-00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899 
 00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899"
 0123456789ABCDEF
 0123456789abcdef
-0J3@
-0g7@
-0tw(
+0A8@
+0D4@
+0J8@
+0q1@
 1.2.5
 1/2/4/8/16-bit only
 11 4 22 44 44 22 444444
 11eU%
 127.0.0.1
 127.0.0.1:
-14:30:00
+19:16:09
 1A26b
 1\f514
 1e+9999
@@ -1648,13 +1659,17 @@ $\n k_EProtoServiceTypeSteamMessages
 7\n\tenum_type
 7^d[L
 7~8A
+809@
+8I9@
+8N8@
+8R9@
+8T8@
 8\n\textension
 8c8f13b1-60eb-4b6a-a433-de86104115ac
 8d8f13b1-60eb-4b6a-a433-de86104115ac
 8e8f13b1-60eb-4b6a-a433-de86104115ac
-8f7@
 8giP9giP9giP9giP9
-8w7@
+8m7@
 9\n\noneof_decl
 9a&g
 : Protocol message serialized to a size different from what was originally expected.  Perhaps it was modified by another thread during serialization?
@@ -1759,6 +1774,7 @@ $\n k_EProtoServiceTypeSteamMessages
 ?_Xregex_error@std@@YAXW4error_type@regex_constants@1@@Z
 ?always_noconv@codecvt_base@std@@QEBA_NXZ
 ?clear@?$basic_ios@_WU?$char_traits@_W@std@@@std@@QEAAXH_N@Z
+?ffffff
 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 ?getline@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@PEAD_J@Z
 ?getloc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEBA?AVlocale@2@XZ
@@ -1895,6 +1911,7 @@ Attempt to register second handler for message type %s\n
 Attempted to read payload of %d bytes from pipe but failed\n
 Attempting to start home app %s\n
 AudioDeviceChangeNotice (noting refresh): %d, device = %s\n
+Aug  1 2025
 Auto launch dashboard %s has not started after %u checks. Giving up waiting.\n
 Autobinding role for device path: %s
 AutosaveURL
@@ -2375,6 +2392,8 @@ Could not activate pending device %s: %s\n
 Could not check status of auto launch dashboard %s: %s\n
 Could not create an instance of 
 Could not create interface in driver %s from %s.\n
+Could not find 'input_source' in controller type '%s' input profile when fixing autoremapping.
+Could not find controller type '%s' when fixing autoremapping.
 Could not find factor function in driver %s from %s.\n
 Could not find field named "
 Could not find field type.
@@ -2419,7 +2438,6 @@ D3DKMTQueryAdapterInfo
 D7q/;M
 DELEGATE 
 DISABLED
-DJ3@
 DXGI VSync Thread ended\n
 DXGI VSync Thread started\n
 DXGI thread failed to get SDL display index. This will happen if you are not on a direct mode display.\n
@@ -2489,6 +2507,7 @@ DuplicateHandle
 EProtoExecutionSite
 EProtoServiceType
 ERROR
+ERROR: Failed to open log file %s, attempting timestamped filename\n
 ETrackedControllerRole_%d
 EVRSceneApplicationState_None
 EVRSceneApplicationState_Quitting
@@ -2569,7 +2588,7 @@ Extensions to non-lite types can only be declared in non-lite files.  Note that 
 ExternalHub
 Extra non-whitespace after JSON value.
 FATAL
-FATAL: Failed to open log file %s\n
+FATAL: Failed to open log file %s, failing out!\n
 FORMAT=32-bit_rle_rgbe
 FS callback[s] not set\n
 F\n\foptimize_for
@@ -2808,6 +2827,7 @@ H$6t
 H*0"ZOW
 HAPTICDEBUG %s:%d sec: %f\t freq: %f\t amp: %f\n
 HEAD
+HH9@
 HMD Not Known (202)
 HMD already in use by another application (205)
 HMD detected over USB, but Monitor may be mirrored instead of extended (212)
@@ -2828,6 +2848,8 @@ HMD found, but unable to init ZLib (1106)
 HMD found, but unable to request config (1102)
 HMDManufacturer
 HMDModel
+HMDSerialNumber
+HS9@
 HTTP Version Not Supported
 HTTP parse, %lu bytes
 HTTP/
@@ -2842,10 +2864,11 @@ HTTP/1.1 301 Moved\r\nLocation: %.*s/\r\nContent-Length: 0\r\n\r\n
 HTTP/1.1 302 OK\r\nLocation: /%s\r\n\r\n
 HTTP_REQUEST %s
 HTTP_REQUEST Static Content %s
+HU8@
 Hang the server for the specified number of seconds (default 3600)
 HasField
-Hd7@
 Hex and octal numbers must be integers.
+Hm7@
 Hmd DriverId is invalid (125)
 Hmd DriverId is our of bounds (211)
 Hmd Not Found (108)
@@ -2960,13 +2983,16 @@ IVRDriverInput_
 IVRDriverInput_001
 IVRDriverInput_002
 IVRDriverInput_003
+IVRDriverInput_004
 IVRDriverLog_001
 IVRDriverManager_001
 IVRDriverSpatialAnchors_001
 IVRExtendedDisplay_001
 IVRIOBuffer_001
 IVRIOBuffer_002
+IVRIPCResourceManagerClient_
 IVRIPCResourceManagerClient_001
+IVRIPCResourceManagerClient_002
 IVRInputInternal_002
 IVRInput_010
 IVRMCStore_001
@@ -2992,7 +3018,7 @@ IVRSettings_001
 IVRSettings_002
 IVRSettings_003
 IVRSystemLayerInternal_XXX
-IVRSystem_022
+IVRSystem_023
 IVRTrackedCameraInternal_XXX
 IVRVirtualDisplay_
 IVRVirtualDisplay_001
@@ -3131,7 +3157,6 @@ JFIF
 JSON Chunk end does not aligned to a 4-byte boundary.
 JSON parse error
 JSON string too short.\n
-Jun  4 2025
 KERNEL32.dll
 KHR_audio
 KHR_lights_punctual
@@ -3207,6 +3232,7 @@ Lost master process %u due to pipe corruption. Quitting all in %g seconds if it 
 Lost master process %u due to restart hint. Quitting all in %g seconds if it doesn't reconnect. \n
 Lost master process %u for an unknown reason. Quitting all immediately. \n
 Low Power Watchdog Not Supported (129)
+Lw+T
 LwH'
 M8MF
 MAT2
@@ -3243,7 +3269,6 @@ Mailbox %s isn't registered, but is receiving unhandled message notifications
 Mailbox %s received message %s, which it didn't have a handler for\n
 Mailbox group %s is longer than the %u limit.\n
 Mailbox name %s is longer than the %u limit.\n
-Main Thread
 MainThrd
 MapViewOfFile
 Material has extension MSFT_lod, but does not reference other materials via their ids.\n
@@ -3386,14 +3411,17 @@ Out of thread local storage!\n
 OutputDebugStringA
 OutputDebugStringW
 Overwriting default binding file from web: %s\n
+P29@
 PCI\VEN_%x&DEV_%x&SUBSYS_%x&REV_%x
 PC_%08llx
+PG9@
 PICT
 PID_
-PJ3@
+PK9@
 PLACEHOLDER_VALUE
 PNG\r\n
 POST
+PR6@
 PRISM_AcquireDisplay
 PRISM_ClientDisconnected
 PRISM_CreateDisplayFactory
@@ -3431,7 +3459,6 @@ Path not found
 Path_Exists( absFilePath )
 Payload Too Large
 Payment Required
-Pc7@
 Pe6^
 PeekNamedPipe
 PerformApplicationPrelaunchCheck
@@ -3658,6 +3685,7 @@ Prop_SecondsFromPhotonsToVblank_Float
 Prop_SecondsFromVsyncToPhotons_Float
 Prop_SerialNumber_String
 Prop_StatusDisplayTransform_Matrix34
+Prop_SteamRemoteClientID_Uint64
 Prop_SupportedButtons_Uint64
 Prop_SupportsRoomViewDepthProjection_Bool
 Prop_TrackingFirmwareVersion_String
@@ -3678,8 +3706,6 @@ Protocol Buffer reflection usage error:\n  Method      : google::protobuf::Refle
 Protocol message serialized itself in invalid fashion.
 Protocol message was modified concurrently during serialization.
 Proxy Authentication Required
-Ps7@
-Ptw(
 QkkXa
 Qkkbal
 Query failed
@@ -3702,9 +3728,7 @@ Quitting parent process %u because a quit was requested for its child %u.\n
 R1h58
 RGBG
 RPCRT4.dll
-RSDS
-R\npp
-R\vpp
+RSDS|
 RaiseException
 Range
 Reached an unintended state: CPPTYPE_MESSAGE
@@ -3757,6 +3781,7 @@ ReleaseMutex
 Releasing ref on rendermodel %s. New ref count %d\n
 Releasing ref on texture %s (id %zu). New ref count %d\n
 Reload all overlays
+RemoteClientID
 RemoveLast
 Removing resource map '%s' for process %d.
 Render model %s has %d vertices. Only 65k are supported\n
@@ -3766,7 +3791,10 @@ Render model from %s contained more than one shape. We only support one.\n
 Render model from %s contained no shapes\n
 RenderModel::Load
 RendermodelManager: 'components' json entry must be key/value map\n
+RendermodelManager: Both grip and aim are at 0, couldn't guess which direction is outwards for poke/pinch creation.\n
 RendermodelManager: Failed GetOriginalComponentPath(%llu, %s, %s) \n
+RendermodelManager: Failed to create openxr_pinch because no 'openxr_aim' or 'tip' pose was found.\n
+RendermodelManager: Failed to create openxr_pinch because no 'openxr_grip' or 'grip' pose was found.\n
 RendermodelManager: Finished setting up render model template: %s.\n
 RendermodelManager: Model info file %s was empty.\n
 RendermodelManager: Reading data for: '%s' from '%s'\n
@@ -4030,7 +4058,9 @@ SteamNetworkingSockets012
 SteamNetworkingUtils004
 SteamParties002
 SteamSteamVRPrivate001
+SteamSteamVRPrivate002
 SteamStreaming
+SteamStreamingVRTransitionInvite
 SteamUser023
 SteamUtils010
 SteamVR Service
@@ -4069,6 +4099,7 @@ Thread failed to initialize 2\n
 Thread watchdog timed out %s
 Thread watchdog with a small timout %f. Timeouts should usually be multiple seconds.
 Thread(0x%p/0x%p/0x%x)
+ThreadWatchdog
 Timed out waiting for %s to load
 Timeout waiting for service to stop
 Timeout while waiting for message of type %d on pipe %s\n
@@ -4501,6 +4532,7 @@ VREvent_ScreenshotTriggered
 VREvent_ScrollDiscrete
 VREvent_ScrollSmooth
 VREvent_SeatedZeroPoseReset
+VREvent_SetTrackingRecordingPath
 VREvent_ShowDevTools
 VREvent_ShowKeyboard
 VREvent_ShowRenderModels
@@ -4524,6 +4556,8 @@ VREvent_TrackedDeviceUpdated
 VREvent_TrackedDeviceUserInteractionEnded
 VREvent_TrackedDeviceUserInteractionStarted
 VREvent_TrackersSectionSettingChanged
+VREvent_TrackingRecordingStarted
+VREvent_TrackingRecordingStopped
 VREvent_UserInterfaceSectionSettingChanged
 VREvent_VendorSpecific_Reserved_Start+%d
 VREvent_WatchdogWakeUpRequested
@@ -5095,6 +5129,7 @@ Windows ME
 Windows NT
 Windows Vista
 Windows XP
+WorkshopLoadFromURLComplete failed for binding from %s:\n
 WorkshopLoadFromURLComplete for binding from %s, when we asked for:\n
 WorkshopSaveType_Autosave
 WorkshopSaveType_Developer
@@ -5108,12 +5143,22 @@ WorkshopSelectConfig for BindingOutOfDate for %s(%s) when we don't have a bindin
 WriteFile
 Wrote chaperone data to %s\n
 X-Frame-Options: sameorigin\r\nContent-Security-Policy: default-src 'self'
+X19@
+X89@
+XB9@
+XF9@
+XO8@
+XT9@
+XV9@
 XXXX PNG chunk not known
+Xm7@
 XsBI
 YUY2
 Zjz\v
 [%x:%x:%x:%x:%x:%x:%x:%x]
 [AnimSkeleton] Failed to load GLTF file: %s
+[CSteamInfo] RunSteamFrame
+[CSteamWorker] CSteamWorkerRunFrame
 [Console] 
 [Controller Setup] Adding controller type %s\n
 [Controller Setup] AssignActiveIndicatorForInput failed. Input %s specified %s as its input_activity_path, but that component doesn't exist\n
@@ -5299,6 +5344,7 @@ Zjz\v
 [Remapping] Binding remapped and checking for others from:\n\t%s  to:  %s.\n\t%s  to:  %s.\n
 [Remapping] Completed remapping from controller type: %s to controller type: %s.\n
 [Remapping] Component remapped from:\n\t%s  to:  %s.\n\t%s  to:  %s.\n
+[Remapping] Did not find suitable replacement for pose '%s' on controller type '%s'
 [Remapping] Ending search for more multiples of path::mode: %s::%s\n
 [Remapping] HandleRemappedBinding failed. Unknown remapping_mode for component: %s. remapping_mode: %s.\n
 [Remapping] LoadAutomapTemplates failed. Could not find remapping templates json at input/remapping_templates.json\n
@@ -5327,6 +5373,7 @@ Zjz\v
 [Remapping] RemapChord failed. 'inputs' member in chord does not exist or is not an array.
 [Remapping] RemapChord failed. Input element in chord has odd number of elements. Should be 2, instead is %u
 [Remapping] RemapParameters failed. No parameter_mode named: '%s'.\n
+[Remapping] Replacing pose '%s' with '%s' on controller type '%s'
 [Remapping] Setting up device remapping for controller type: %s.\n
 [Remapping] Skipped remapping of chord with path::input: %s::%s\n
 [Remapping] Skipped remapping of path::mode: %s::%s\n
@@ -5368,12 +5415,6 @@ Zjz\v
 [Web_Settings] Schema does not exist at '%s' \n
 [Web_Settings] Schema is empty\n
 [Workshop] Aborting delete of binding %s because Steam isn't available\n
-[Workshop] AddLocalFileToResults failed. Could not get action manifest for %s when querying bindings\n
-[Workshop] AddLocalFileToResults failed. Error '%s' reading developer binding '%s'\n
-[Workshop] AddLocalFileToResults failed. Unable to get file path for developer binding URL %s\n
-[Workshop] Binding list query for %s(%s) failed to load action manifest\n
-[Workshop] Binding list query for %s(%s) failed\n
-[Workshop] Binding list query for %s(%s) finished with %d results\n
 [Workshop] Binding upload failed for some other reason %s\n
 [Workshop] Binding upload failed with Limit Exceeded\n
 [Workshop] Cannot save binding to workshop because we don't have an action manifest for app: %s\n
@@ -5381,19 +5422,13 @@ Zjz\v
 [Workshop] CreateBindingItem failed. Binding upload failed with Limit Exceeded\n
 [Workshop] CreateBindingItem failed. Failing to create binding %s for app %s controller %s because Steam is not available\n
 [Workshop] CreateBindingItem failed. Failing to create binding %s for app %s controller %s. Error: %s\n
+[Workshop] CreateBindingItem failed. SteamAPI call invalid.\n
 [Workshop] Delete. Path: %s\n
-[Workshop] Discarding %s (%s) binding query result because its category %s doesn't match the manifest's category %s\n
 [Workshop] Failed to fetch published file ID %llu for delete\n
-[Workshop] Failed to get action manifest for app %s.\n
-[Workshop] Failed to parse action binding config %s: %s\n
-[Workshop] Failed to parse json content of document for: %s. Path: %s.\n
-[Workshop] Failed to read action binding config for %s. Path: %s\n
 [Workshop] Failed with '%s' asking Steam to start playtime tracking for %s\n
 [Workshop] Failed with '%s' asking Steam to stop playtime tracking for %s\n
 [Workshop] Giving up retrying to start playtime tracking for %s\n
 [Workshop] Giving up retrying to stop playtime tracking for %s\n
-[Workshop] Got an extra OnDownloadItemResult when we weren't expecting one: %d file%llu\n
-[Workshop] Got an extra OnQueryComplete when we weren't expecting one\n
 [Workshop] IO Failure asking Steam to start playtime tracking for %s\n
 [Workshop] IO Failure asking Steam to stop playtime tracking for %s\n
 [Workshop] Load complete for: %s\n
@@ -5401,35 +5436,54 @@ Zjz\v
 [Workshop] Load failed for: %s.\n
 [Workshop] Load. ControllerType: %s. App: %s. Path: %s\n
 [Workshop] Marking published file ID %llu as deleted.\n
-[Workshop] OnQueryComplete_Current failed. %s: %s %s\n
-[Workshop] OnQueryCompleted failed. Fetching published file ID %llu for delete\n
-[Workshop] OnQueryCompleted_Dev failed. %s: %s %s\n
-[Workshop] OnQueryCompleted_Personal failed. %s: %s %s\n
-[Workshop] OnQueryCompleted_Public failed. %s: %s %s\n
 [Workshop] Published file ID %llu is already marked as deleted.\n
 [Workshop] Published file ID %llu is an autosave, which we don't delete.\n
 [Workshop] Query. ControllerType: %s. App: %s\n
-[Workshop] ReadImports failed. Failed to parse binding import %s\n
-[Workshop] ReadImports failed. Failed to parse import file %s: %s\n
-[Workshop] ReadImports failed. Getting action manifest for %s\n
-[Workshop] ReadImports failed. Unable to read import file %s\n
 [Workshop] Save with task. Type: %d. App: %s\n
 [Workshop] Save without task. Type: %d. App: %s\n
 [Workshop] Select. ControllerType: %s. App: %s. Path: %s. Reason %d.\n
 [Workshop] SelectBindingConfig failed. File is for app "%s" and we're setting the config for "%s"\n
 [Workshop] SelectBindingConfig file is for app "%s" and we're setting the config for "%s"\n
 [Workshop] Start playtime: %s\n
-[Workshop] Steam gave us a bogus folder for file ID %llu: %s\n
 [Workshop] Stop playtime: %s\n
 [Workshop] Successfully loaded binding file '%s' for app '%s'.\n
 [Workshop] Update Subscription. ControllerType: %s. App: %s. New Path: %s. Category %d.\n
-[Workshop] UpdateBindingAutosave failed. Binding upload failed for some other reason: %s\n
-[Workshop] UpdateBindingAutosave failed. Binding upload failed with Limit Exceeded\n
-[Workshop] UpdateBindingAutosave failed. Call to DownloadItem failed for autosave for %s\n
 [Workshop] UpdateBindingAutosave failed. Failing to update autosave for app %s controller %s because Steam is not available\n
 [Workshop] Updating item failed. ID: %llu.\n
 [Workshop] Updating item success. ID: %llu.\n
 [Workshop] User does not own published file ID %llu.\n
+[Workshop] [Autosave] Failed to create item. SteamAPI available: %d, IO Failure: %d, Callback Result: %d\n
+[Workshop] [Autosave] Failed to update. API Call Invalid\n
+[Workshop] [Autosave] Failed. Binding upload failed for some other reason: %s\n
+[Workshop] [Autosave] Failed. Binding upload failed with Limit Exceeded\n
+[Workshop] [Autosave] Failed. Call to DownloadItem failed for autosave for %s\n
+[Workshop] [Load] Failed to download fileid: '%llu'\n
+[Workshop] [Load] Failed to get action manifest for app %s.\n
+[Workshop] [Load] Failed to parse action binding config %s: %s\n
+[Workshop] [Load] Failed to parse json content of document for: %s. Path: %s.\n
+[Workshop] [Load] Failed to read action binding config for %s. Path: %s\n
+[Workshop] [Load] Got an extra OnDownloadItemResult when we weren't expecting one: %d file%llu\n
+[Workshop] [Load] Got an extra OnQueryComplete when we weren't expecting one\n
+[Workshop] [Load] OnQueryCompleted failed. Fetching published file ID %llu for delete\n
+[Workshop] [Load] Steam gave us a bogus folder for file ID %llu: %s\n
+[Workshop] [Load] The result of downloading the item was a failure: state: '%d' fileid:%'llu'\n
+[Workshop] [Load] Tried to load url that was not a file path and turned out to now be a workshop url. url: '%s'\n
+[Workshop] [Load] Tried to load url that was not a file path while steam is not available or the user is not logged in. url: '%s'\n
+[Workshop] [Query] AddLocalFileToResults failed. Could not get action manifest for %s when querying bindings\n
+[Workshop] [Query] AddLocalFileToResults failed. Error '%s' reading developer binding '%s'\n
+[Workshop] [Query] AddLocalFileToResults failed. Unable to get file path for developer binding URL %s\n
+[Workshop] [Query] Binding list query for %s(%s) failed to load action manifest\n
+[Workshop] [Query] Binding list query for %s(%s) failed\n
+[Workshop] [Query] Binding list query for %s(%s) finished with %d results\n
+[Workshop] [Query] Discarding %s (%s) binding query result because its category %s doesn't match the manifest's category %s\n
+[Workshop] [Query] OnQueryComplete_Current failed. %s: %s %s\n
+[Workshop] [Query] OnQueryCompleted_Dev failed. %s: %s %s\n
+[Workshop] [Query] OnQueryCompleted_Personal failed. %s: %s %s\n
+[Workshop] [Query] OnQueryCompleted_Public failed. %s: %s %s\n
+[Workshop] [Query] ReadImports failed. Failed to parse binding import %s\n
+[Workshop] [Query] ReadImports failed. Failed to parse import file %s: %s\n
+[Workshop] [Query] ReadImports failed. Getting action manifest for %s\n
+[Workshop] [Query] ReadImports failed. Unable to read import file %s\n
 [Workshop] [Remapping] Failed to auto-remap binding file from %s to %s. Error: %s.\n
 [Workshop] [Remapping] Successfully auto-remapped binding file from %s to %s.\n
 [h1R
@@ -5451,7 +5505,6 @@ Zjz\v
 \U%08x
 \b\d+\b\s*$
 \fUk#pb
-\fptw(
 \mfpmp.exe
 \n    Actual    : 
 \n    Field type: 
@@ -5847,43 +5900,43 @@ byteOffset
 byteStride
 bytes
 bytes=
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\generated_proto_x64\steammessages_unified_base.steamclient.pb.cc
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\generated_proto_x64\vr_messages.pb.cc
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\generated_proto_x64\vrshared_audiosettings.pb.cc
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\generated_proto_x64\vrshared_base.pb.cc
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\generated_proto_x64\vrshared_vrmessages.pb.cc
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\actionbindingconfig.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\animation\animresourcemanager.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\blockqueue.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\drivermanager.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\openvrtools.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\propertymanager.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\remoteperfstats.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\rendermodelmanager.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrmailbox.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrmailboxserver.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrserviceclient.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrsystem.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\ipcpipe.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\logbuffer.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\sharedresourcenamespace.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\strtools_public.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\threadtools.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\threadwatchdog.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\vrcrash.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\vripcsharedstate.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\thirdparty\mongoose\mongoose.c
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\thirdparty\protobuf-2.6.1\src\google\protobuf\repeated_field.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrserver\Retail\win64\2017\vrserver.pdb
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrserver\appinfomanager.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrserver\vrinputserver.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrserver\vrserver.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrserver\webinterface\web_input.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrserver\webinterface\web_mailbox.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrserver\webinterface\web_server_thread.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrserver\webinterface\web_steam.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrserver\webinterface\web_steam.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrserver\webinterface\web_steam_audiosettings.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\generated_proto_x64\steammessages_unified_base.steamclient.pb.cc
+c:\buildslave\steamvr_rel_win64\build\src\common\generated_proto_x64\vr_messages.pb.cc
+c:\buildslave\steamvr_rel_win64\build\src\common\generated_proto_x64\vrshared_audiosettings.pb.cc
+c:\buildslave\steamvr_rel_win64\build\src\common\generated_proto_x64\vrshared_base.pb.cc
+c:\buildslave\steamvr_rel_win64\build\src\common\generated_proto_x64\vrshared_vrmessages.pb.cc
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\actionbindingconfig.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\animation\animresourcemanager.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\blockqueue.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\drivermanager.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\openvrtools.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\propertymanager.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\remoteperfstats.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\rendermodelmanager.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrmailbox.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrmailboxserver.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrserviceclient.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrsystem.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\ipcpipe.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\logbuffer.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\sharedresourcenamespace.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\strtools_public.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\threadtools.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\threadwatchdog.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\vrcrash.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\vripcsharedstate.cpp
+c:\buildslave\steamvr_rel_win64\build\src\thirdparty\mongoose\mongoose.c
+c:\buildslave\steamvr_rel_win64\build\src\thirdparty\protobuf-2.6.1\src\google\protobuf\repeated_field.h
+c:\buildslave\steamvr_rel_win64\build\src\vrserver\Retail\win64\2017\vrserver.pdb
+c:\buildslave\steamvr_rel_win64\build\src\vrserver\appinfomanager.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrserver\vrinputserver.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrserver\vrserver.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrserver\webinterface\web_input.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrserver\webinterface\web_mailbox.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrserver\webinterface\web_server_thread.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrserver\webinterface\web_steam.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrserver\webinterface\web_steam.h
+c:\buildslave\steamvr_rel_win64\build\src\vrserver\webinterface\web_steam_audiosettings.cpp
 cache_path
 calloc
 camera
@@ -5955,6 +6008,7 @@ const unsigned int __cdecl CAnimResource::MyTypeID(void)
 const unsigned int __cdecl CBoneMaskResource::MyTypeID(void)
 const unsigned int __cdecl CKeyframedDataResource::MyTypeID(void)
 const unsigned int __cdecl Reflection::Object::MyTypeID(void)
+constant
 container
 container_handle
 containers
@@ -5992,7 +6046,6 @@ current_transforms_without_controller
 current_user_persona_name
 czech
 dQy/
-dU3@
 da_dk
 danish
 dashboard
@@ -6181,6 +6234,7 @@ false:4\n\vdescription
 false:<\n
 fclose
 feof
+ffffff
 fflush
 fgetc
 fgetpos
@@ -6282,10 +6336,14 @@ grip_limit_transforms
 group
 guid
 gzip
-h02@
-hJ3@
+h18@
+hC9@
+hF8@
+hG8@
 hPU3
+hR6@
 half_thresholds
+hand_interaction_ext
 hand_priority
 hand_right_poses.glb
 handle
@@ -6305,6 +6363,7 @@ hidden
 hide_callout
 hlvr/mailbox
 hlvr/webui
+hm7@
 hmdAllowsClientToControlTextureIndex
 hmd_presence
 hmd_settings_key
@@ -6319,6 +6378,7 @@ https:
 https://
 hu_hu
 hungarian
+hy2@
 i91k
 i]Wb
 iauds
@@ -6366,10 +6426,12 @@ innerConeAngle
 input
 input/default_holographic_controller_remapping.json
 input/default_hpmotioncontroller_remapping.json
+input/default_pico_controller_profile.json
 input/default_pico_controller_remapping.json
 input/default_vive_cosmos_controller_remapping.json
 input/generic_controller.png
 input/generic_hmd.png
+input/hand_interaction_ext.json
 input/khr_generic_controller.json
 input/khr_simple_controller.json
 input/remapping_templates.json
@@ -6479,6 +6541,7 @@ is_internal
 is_self_identified
 is_steam_available
 is_steamvr_main
+is_stub
 is_template
 isalnum
 isalpha
@@ -6832,6 +6895,7 @@ no longer available
 no preset dict
 no settings available
 no_click
+no_ready_ext
 no_standard_descriptor_accessor
 no_touch
 noapp
@@ -6866,6 +6930,8 @@ object separator
 occlusionTexture
 oculus_touch
 off_haptic_amplitude
+offset_position
+offset_rotation
 ole32.dll
 on/x
 on/y
@@ -6878,6 +6944,10 @@ openvr.component.vrserver
 openvr.tool.steamvr_environments
 openvrpaths.vrpath
 openxr
+openxr_aim
+openxr_grip
+openxr_pinch
+openxr_poke
 optional
 optional member 'simulated_actions' is not an array
 options
@@ -6900,9 +6970,11 @@ overlays
 override_throttling
 overwrite.vrsettings
 owned
-p16@
+p28@
+p39@
 pBegin == pEnd
 pEnd > pBegin
+pM9@
 pMGConnect != nullptr
 pNewResource
 pNewResource->Load( absFilePath )
@@ -6961,6 +7033,7 @@ pose.vAngularVelocity
 pose.vPosition
 pose.vVelocity
 pose_component
+pose_offset
 pose_path
 poses
 position
@@ -6971,7 +7044,6 @@ positional
 positive_int_value
 power
 powf
-pq7@
 precision
 prediction
 prediction parameter out of range
@@ -6999,14 +7071,13 @@ property_number
 proximity
 pt_br
 pt_pt
-ptw(
-pu7@
 public
 public_dependency
 publishedfileid
 pull
 punct
 putchar
+py6@
 py_generic_services
 qMFCreateMediaType failed hr = 0x%08x\n
 qsort
@@ -7019,6 +7090,7 @@ rand_s
 range
 read past buffer
 read_conn
+ready_ext
 realloc
 reason
 reboothmd
@@ -7226,6 +7298,7 @@ starts_theater_mode
 startup
 startup_reason
 state
+static_bool
 statusicons
 steam
 steam.app
@@ -7306,7 +7379,7 @@ systemreport_
 systemreport_*.html
 systemreport_template.html
 systemui_dashboard
-tJ3@
+tD4@
 tRNS after IDAT
 tRNS before PLTE
 tRNS with alpha
@@ -7566,10 +7639,16 @@ wrong version
 ws handshake error
 wss:
 x-steamvr-secret
+x29@
+x38@
+x49@
+x59@
+x99@
 x_path
 xdigit
+xm7@
 xmag
-xn7@
+xx2@
 y9*O
 y_path
 yfov

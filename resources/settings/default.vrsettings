@@ -200,7 +200,6 @@
         "enableDashboard": true,
         "allowCurvature": true,
         "allowExitVR": true,
-        "allowLegacyQuickLaunch": true,
         "allowPlacementDuringRecenter": false,
         "arcadeMode": false,
         "cefMaxFrameRate": 120.0,
@@ -210,6 +209,7 @@
         "webUI": true,
         "useNewDesktop": true,
         "enableWindowView": true,
+        "expectSteam": false,
         "scaleSliderMin": 0.75,
         "scaleSliderMax": 1.5,
         "showPowerOptions": true,
@@ -276,8 +276,7 @@
         "overlayFilteringEnabled": true,
         "overlayFilteringMinCutoff": 1,
         "overlayFilteringBeta": 5,
-        "overlayFilteringDerivCutoff": 5,
-        "hapticVibrationAmplitude" : 1.0
+        "overlayFilteringDerivCutoff": 5
     },
     "version": "1",
     "jsonid": "vrsettings"

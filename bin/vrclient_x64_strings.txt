@@ -38,8 +38,6 @@
 !m_pParent1
 !m_pParent2
 !m_stackFreeResources.empty()
-!sFind.empty()
-!sString.empty()
 !std::isnan( flSystemTimeInSeconds )
 " because it is missing required fields: 
 " does not.
@@ -79,8 +77,8 @@
 $3br
 $tI(knN
 %&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz
-%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x
 %LocalAppData%
+%Y-%m-%d-%p_%I_%M_%S
 %a %b %d %H:%M:%S %Y
 %a %b %d %Y %H:%M:%S.%%03u
 %d drivers initialized for watchdog mode.\n
@@ -458,9 +456,9 @@ $tI(knN
 .?AV<lambda_b4bb3ccaa58babf72cd0ad9aeee44f48>@@
 .?AV<lambda_baf9a13ae88e0e395bddf77b7a139e01>@@
 .?AV<lambda_cec0a822e624efbc14f454d954ffa5d1>@@
-.?AV<lambda_d1112e822f5ee38cbf54224532a6fefc>@@
 .?AV<lambda_d4103c8e33b4176fc4fc67aa595b6930>@@
 .?AV<lambda_d8999f150ee7b7e4efc727f6848c8d54>@@
+.?AV<lambda_da04ffe45169aef5731a304f055ad461>@@
 .?AV<lambda_ddfa7c035eae8da5c041d2f3e2b85a28>@@
 .?AV<lambda_e0c476e382b8c6d6bc44d302313eca83>@@
 .?AV<lambda_ee980cc98c94f910494c409ed0b46757>@@
@@ -583,8 +581,10 @@ $tI(knN
 .?AV?$HmdInterfaceRegistration@VCVRSystem_019@@@@
 .?AV?$HmdInterfaceRegistration@VCVRSystem_020@@@@
 .?AV?$HmdInterfaceRegistration@VCVRSystem_021@@@@
+.?AV?$HmdInterfaceRegistration@VCVRSystem_022@@@@
 .?AV?$IOBufferInterfaceRegistration@VCVRIOBuffer_001@@@@
 .?AV?$IOBufferInterfaceRegistration@VCVRIOBuffer_002@@@@
+.?AV?$IPCResourceManagerClientInterfaceRegistration@VCVRIPCResourceManagerClient_001@@@@
 .?AV?$InputInterfaceRegistration@VCVRInput_001@@@@
 .?AV?$InputInterfaceRegistration@VCVRInput_002@@@@
 .?AV?$InputInterfaceRegistration@VCVRInput_003@@@@
@@ -730,14 +730,14 @@ $tI(knN
 .?AV?$_Func_impl_no_alloc@V<lambda_b4bb3ccaa58babf72cd0ad9aeee44f48>@@_NAEBUHmdVector3_t@vr@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_baf9a13ae88e0e395bddf77b7a139e01>@@_NPEBUXrActiveActionSetPrioritiesEXT@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_cec0a822e624efbc14f454d954ffa5d1>@@_NAEBUHmdVector3_t@vr@@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_d1112e822f5ee38cbf54224532a6fefc>@@XW4ELogLevel@@PEBDPEAX@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_d4103c8e33b4176fc4fc67aa595b6930>@@_NPEBUXrInteractionProfileAnalogThresholdVALVE@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_d8999f150ee7b7e4efc727f6848c8d54>@@_NAEBUHmdVector3_t@vr@@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_da04ffe45169aef5731a304f055ad461>@@XW4ELogLevel@@PEBDPEAX@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_ddfa7c035eae8da5c041d2f3e2b85a28>@@W4XrResult@@PEAUXrAction_T@@_KPEAUXrActionStatePose@@PEA_K@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_e0c476e382b8c6d6bc44d302313eca83>@@_NPEBUXrInteractionProfileDpadBindingEXT@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_ee980cc98c94f910494c409ed0b46757>@@W4XrResult@@PEAUXrAction_T@@_KPEAUXrActionStateVector2f@@PEA_K@std@@
 .?AV?$_Iosb@H@std@@
-.?AV?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_190a6bbd3df9ee1d969edd84cc3d229a>@@@std@@U?$default_delete@V?$tuple@V<lambda_190a6bbd3df9ee1d969edd84cc3d229a>@@@std@@@2@@std@@@std@@
+.?AV?$_LaunchPad@V?$unique_ptr@V?$tuple@V<lambda_848be8f9a8f0f693e744ef05976b2633>@@@std@@U?$default_delete@V?$tuple@V<lambda_848be8f9a8f0f693e744ef05976b2633>@@@std@@@2@@std@@@std@@
 .?AV?$_Node_class@DV?$regex_traits@D@std@@@std@@
 .?AV?$_Node_str@D@std@@
 .?AV?$_Ref_count_obj@UInputConfig_t@@@std@@
@@ -804,6 +804,7 @@ $tI(knN
 .?AVCInputFilter_JoystickSettings@@
 .?AVCInputFilter_Pose_Component@@
 .?AVCInputFilter_Pose_Constant@@
+.?AVCInputFilter_Pose_Offset@@
 .?AVCInputFilter_RadialMenu@@
 .?AVCInputFilter_RadialMenuBase@@
 .?AVCInputFilter_Scalar_Constant@@
@@ -814,6 +815,7 @@ $tI(knN
 .?AVCInputFilter_Scalar_ScaleAndOffset@@
 .?AVCInputFilter_Scalar_TrackpadScroll_Discrete@@
 .?AVCInputFilter_Scalar_TrackpadScroll_Smooth@@
+.?AVCInputFilter_Static_Boolean@@
 .?AVCInputFilter_TriggerHaptic@@
 .?AVCInputFilter_XRDPad@@
 .?AVCKeyframedDataResource@@
@@ -933,6 +935,7 @@ $tI(knN
 .?AVCVRIOBuffer_001@@
 .?AVCVRIOBuffer_002@@
 .?AVCVRIPCResourceManagerBase@@
+.?AVCVRIPCResourceManagerClient_001@@
 .?AVCVRInputLatest@@
 .?AVCVRInput_001@@
 .?AVCVRInput_002@@
@@ -1241,6 +1244,7 @@ $tI(knN
 .?AVCVRSystem_019@@
 .?AVCVRSystem_020@@
 .?AVCVRSystem_021@@
+.?AVCVRSystem_022@@
 .?AVCVRTrackedCamera@vr@@
 .?AVCVRTrackedCamera_002@@
 .?AVCVRTrackedCamera_003@@
@@ -1540,6 +1544,7 @@ $tI(knN
 /grip/pose
 /haptic
 /icon
+/input
 /input/
 /input/a
 /input/aim
@@ -1570,6 +1575,8 @@ $tI(knN
 /input/menu/click
 /input/palm_ext
 /input/palm_ext/pose
+/input/pinch_ext/pose
+/input/poke_ext/pose
 /input/squeeze
 /input/squeeze/click
 /input/system
@@ -1586,6 +1593,7 @@ $tI(knN
 /input_debugger_pid
 /input_profile
 /interaction_profiles/ext/eye_gaze_interaction
+/interaction_profiles/ext/hand_interaction_ext
 /interaction_profiles/google/daydream_controller
 /interaction_profiles/hp/mixed_reality_controller
 /interaction_profiles/htc/vive_controller
@@ -1614,6 +1622,10 @@ $tI(knN
 /pose/openxr_grip
 /pose/openxr_handmodel
 /pose/openxr_handmodel_r
+/pose/openxr_pinch
+/pose/openxr_pinch_r
+/pose/openxr_poke
+/pose/openxr_poke_r
 /pose/raw
 /pose/tip
 /progress
@@ -1689,12 +1701,13 @@ $tI(knN
 /user/gamepad/output/haptic_left_trigger
 /user/gamepad/output/haptic_right
 /user/gamepad/output/haptic_right_trigger
-/user/hand/
 /user/hand/left
 /user/hand/left is %X\n
 /user/hand/left/input/a/click
 /user/hand/left/input/a/touch
 /user/hand/left/input/aim/pose
+/user/hand/left/input/aim_activate_ext/ready_ext
+/user/hand/left/input/aim_activate_ext/value
 /user/hand/left/input/b/click
 /user/hand/left/input/b/touch
 /user/hand/left/input/back/click
@@ -1702,12 +1715,18 @@ $tI(knN
 /user/hand/left/input/dpad_left/click
 /user/hand/left/input/dpad_right/click
 /user/hand/left/input/dpad_up/click
+/user/hand/left/input/grasp_ext/ready_ext
+/user/hand/left/input/grasp_ext/value
 /user/hand/left/input/grip/click
 /user/hand/left/input/grip/pose
 /user/hand/left/input/grip/value
 /user/hand/left/input/joystick/click
 /user/hand/left/input/menu/click
 /user/hand/left/input/palm_ext/pose
+/user/hand/left/input/pinch_ext/pose
+/user/hand/left/input/pinch_ext/ready_ext
+/user/hand/left/input/pinch_ext/value
+/user/hand/left/input/poke_ext/pose
 /user/hand/left/input/primary/click
 /user/hand/left/input/secondary/click
 /user/hand/left/input/select/click
@@ -1754,16 +1773,24 @@ $tI(knN
 /user/hand/right/input/a/click
 /user/hand/right/input/a/touch
 /user/hand/right/input/aim/pose
+/user/hand/right/input/aim_activate_ext/ready_ext
+/user/hand/right/input/aim_activate_ext/value
 /user/hand/right/input/b
 /user/hand/right/input/b/click
 /user/hand/right/input/b/touch
 /user/hand/right/input/back/click
+/user/hand/right/input/grasp_ext/ready_ext
+/user/hand/right/input/grasp_ext/value
 /user/hand/right/input/grip/click
 /user/hand/right/input/grip/pose
 /user/hand/right/input/grip/value
 /user/hand/right/input/joystick/click
 /user/hand/right/input/menu/click
 /user/hand/right/input/palm_ext/pose
+/user/hand/right/input/pinch_ext/pose
+/user/hand/right/input/pinch_ext/ready_ext
+/user/hand/right/input/pinch_ext/value
+/user/hand/right/input/poke_ext/pose
 /user/hand/right/input/primary/click
 /user/hand/right/input/secondary/click
 /user/hand/right/input/select/click
@@ -1853,8 +1880,9 @@ $tI(knN
 0 width
 0-pixel image
 00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899
-00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899X]=
+000102030405060708091011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798998
 0123456789ABCDEF
+0Z-3
 0\tFAJ
 1.0.3.16
 1/2/4/8/16-bit only
@@ -1952,6 +1980,7 @@ $tI(knN
 ?_Xregex_error@std@@YAXW4error_type@regex_constants@1@@Z
 ?always_noconv@codecvt_base@std@@QEBA_NXZ
 ?cout@std@@3V?$basic_ostream@DU?$char_traits@D@std@@@1@A
+?ffffff
 ?flush@?$basic_ostream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@XZ
 ?getline@?$basic_istream@DU?$char_traits@D@std@@@std@@QEAAAEAV12@PEAD_J@Z
 ?getloc@?$basic_streambuf@DU?$char_traits@D@std@@@std@@QEBA?AVlocale@2@XZ
@@ -2636,9 +2665,8 @@ DXT3
 DXT4
 DXT5
 Deactivation threshold of %f will be set to the minimum allowed value %f in filter %s.
-Debug markers: disabled, missing entrypoints\n
-Debug markers: disabled, missing extension support. Is the Renderdoc layer enabled?\n
-Debug markers: enabled\n
+Debug utils: disabled, missing entrypoints
+Debug utils: enabled
 DebugMessengerCallback
 DeleteCriticalSection
 DeleteFileW
@@ -2681,6 +2709,7 @@ Duplicate key: '
 DuplicateHandle
 ERROR
 ERROR: Failed to dup handle!\n
+ERROR: Failed to open log file %s, attempting timestamped filename\n
 ERROR: Not using DXGI1.1 (will cause flickering)!\n
 ERROR_DEVICE_LOST
 ERROR_EXTENSION_NOT_PRESENT
@@ -2765,7 +2794,7 @@ Extra non-whitespace after JSON value.
 FACET_VULKAN_VALIDATION
 FALSE
 FATAL
-FATAL: Failed to open log file %s\n
+FATAL: Failed to open log file %s, failing out!\n
 FORMAT=32-bit_rle_rgbe
 FS callback[s] not set\n
 Facet
@@ -2866,10 +2895,6 @@ Failed to init web server shared state\n
 Failed to initialize AMD LiquidVR Vulkan support.\n
 Failed to initialize logging\n
 Failed to load compute shader %s! (size=%d)\n
-Failed to load extension: CmdDebugMarkerBeginEXT\n
-Failed to load extension: CmdDebugMarkerEndEXT\n
-Failed to load extension: CmdDebugMarkerInsertEXT\n
-Failed to load extension: DebugMarkerSetObjectNameEXT\n
 Failed to load extension: GetBufferMemoryRequirements2KHR\n
 Failed to load extension: GetImageMemoryRequirements2KHR\n
 Failed to load external 'uri' for image[
@@ -3026,6 +3051,7 @@ FnTable:IVRSystem_018
 FnTable:IVRSystem_019
 FnTable:IVRSystem_020
 FnTable:IVRSystem_021
+FnTable:IVRSystem_022
 FnTable:IVRTrackedCamera_002
 FnTable:IVRTrackedCamera_003
 FnTable:IVRTrackedCamera_004
@@ -3270,6 +3296,7 @@ IVRHmdDistortPresent_001
 IVRIOBuffer_001
 IVRIOBuffer_002
 IVRIPCResourceManagerClient_001
+IVRIPCResourceManagerClient_002
 IVRInputInternal_002
 IVRInput_001
 IVRInput_002
@@ -3399,6 +3426,7 @@ IVRSystem_019
 IVRSystem_020
 IVRSystem_021
 IVRSystem_022
+IVRSystem_023
 IVRTrackedCameraInternal_XXX
 IVRTrackedCamera_
 IVRTrackedCamera_002
@@ -3480,7 +3508,7 @@ Invalid input type %s for controller (%s)\n
 Invalid magic.
 Invalid max zone %f. Ignoring it.\n
 Invalid output hand 
-Invalid overlay index %d in handle %llx\n
+Invalid overlay index for handle %llx\n
 Invalid response to connect message. Connect failed\n
 Invalid target queue mode during image transition: %d\n
 Invalid texture bounds( %f, %f, %f, %f ) from application\n
@@ -3655,6 +3683,7 @@ PS_SAMPLESCENE
 PS_SAMPLESCENE0
 PS_STENCIL
 PS_main
+PZ-3
 P\r0t
 Parse error in system resource manifest %s.\n
 Parse failed for JSON message in mailbox %s: %s\n
@@ -3867,6 +3896,7 @@ Prop_SecondsFromPhotonsToVblank_Float
 Prop_SecondsFromVsyncToPhotons_Float
 Prop_SerialNumber_String
 Prop_StatusDisplayTransform_Matrix34
+Prop_SteamRemoteClientID_Uint64
 Prop_SupportedButtons_Uint64
 Prop_SupportsRoomViewDepthProjection_Bool
 Prop_TrackingFirmwareVersion_String
@@ -3950,7 +3980,10 @@ RenderEnd
 RenderModel::Load
 RenderStart
 RendermodelManager: 'components' json entry must be key/value map\n
+RendermodelManager: Both grip and aim are at 0, couldn't guess which direction is outwards for poke/pinch creation.\n
 RendermodelManager: Failed GetOriginalComponentPath(%llu, %s, %s) \n
+RendermodelManager: Failed to create openxr_pinch because no 'openxr_aim' or 'tip' pose was found.\n
+RendermodelManager: Failed to create openxr_pinch because no 'openxr_grip' or 'grip' pose was found.\n
 RendermodelManager: Finished setting up render model template: %s.\n
 RendermodelManager: Model info file %s was empty.\n
 RendermodelManager: Reading data for: '%s' from '%s'\n
@@ -3972,6 +4005,7 @@ Returning HmdNotFound because the client-side presence check failed.\n
 Right_
 Ring Buffer Wrapped!\n
 RootNode
+RpcStringFreeA
 RtlCaptureContext
 RtlGetNtVersionNumbers
 RtlLookupFunctionEntry
@@ -4165,6 +4199,7 @@ Thread failed to initialize 1\n
 Thread failed to initialize 2\n
 Thread watchdog timed out %s
 Thread watchdog with a small timout %f. Timeouts should usually be multiple seconds.
+ThreadWatchdog
 Timed out waiting for a good app key\n
 Timed out waiting for gpu to be finished for fence %ls.\n
 Timed out waiting for reply of type %s from %s\n
@@ -4223,6 +4258,7 @@ Unable to coerce vector2 action to input source that does not support vector2: %
 Unable to connect to Oculus Runtime (1000)
 Unable to connect to Oculus Runtime, possible bad install (1114)
 Unable to convert event in PoseOverlayEvent\n
+Unable to convert option value %s\n
 Unable to convert param value %s\n
 Unable to create %s\n
 Unable to create click handler for complex button %s, %s\n
@@ -4356,6 +4392,7 @@ User Canceled Init (116)
 User Config Directory Invalid (107)
 Using physical device: %s
 UuidFromStringA
+UuidToStringA
 VALVE_runtime_is_steamvr
 VCRUNTIME140.dll
 VEC2
@@ -4367,7 +4404,6 @@ VK ERROR %s %llu:%d: %s\n
 VK INFO %s %llu:%d: %s\n
 VK PERF %s %llu:%d: %s\n
 VK WARNING %s %llu:%d: %s\n
-VK_EXT_debug_marker
 VK_EXT_debug_report
 VK_EXT_debug_utils
 VK_EXT_global_priority
@@ -4384,6 +4420,7 @@ VK_KHR_get_memory_requirements2
 VK_KHR_get_physical_device_properties2
 VK_KHR_present_id
 VK_KHR_surface
+VK_KHR_timeline_semaphore
 VK_KHR_win32_keyed_mutex
 VK_KHR_win32_surface
 VK_LAYER_GOOGLE_threading
@@ -4604,6 +4641,7 @@ VREvent_ScrollDiscrete
 VREvent_ScrollSmooth
 VREvent_SeatedZeroPoseReset
 VREvent_SeatedZeroPoseReset: Sending XR_TYPE_EVENT_DATA_REFERENCE_SPACE_CHANGE_PENDING for XR_REFERENCE_SPACE_TYPE_LOCAL.
+VREvent_SetTrackingRecordingPath
 VREvent_ShowDevTools
 VREvent_ShowKeyboard
 VREvent_ShowRenderModels
@@ -4629,6 +4667,8 @@ VREvent_TrackedDeviceUpdated
 VREvent_TrackedDeviceUserInteractionEnded
 VREvent_TrackedDeviceUserInteractionStarted
 VREvent_TrackersSectionSettingChanged
+VREvent_TrackingRecordingStarted
+VREvent_TrackingRecordingStopped
 VREvent_UserInterfaceSectionSettingChanged
 VREvent_VendorSpecific_Reserved_Start+%d
 VREvent_WatchdogWakeUpRequested
@@ -5065,6 +5105,7 @@ XR_ENVIRONMENT_DEPTH_NOT_AVAILABLE_META
 XR_ERROR_ACTIONSETS_ALREADY_ATTACHED
 XR_ERROR_ACTIONSET_NOT_ATTACHED
 XR_ERROR_ACTION_TYPE_MISMATCH
+XR_ERROR_ANCHOR_NOT_SUPPORTED_FOR_ENTITY_BD
 XR_ERROR_ANDROID_THREAD_SETTINGS_FAILURE_KHR
 XR_ERROR_ANDROID_THREAD_SETTINGS_ID_INVALID_KHR
 XR_ERROR_API_LAYER_NOT_PRESENT
@@ -5140,6 +5181,7 @@ XR_ERROR_RENDER_MODEL_KEY_INVALID_FB
 XR_ERROR_REPROJECTION_MODE_UNSUPPORTED_MSFT
 XR_ERROR_RUNTIME_FAILURE
 XR_ERROR_RUNTIME_UNAVAILABLE
+XR_ERROR_SCENE_CAPTURE_FAILURE_BD
 XR_ERROR_SCENE_COMPONENT_ID_INVALID_MSFT
 XR_ERROR_SCENE_COMPONENT_TYPE_MISMATCH_MSFT
 XR_ERROR_SCENE_COMPUTE_CONSISTENCY_MISMATCH_MSFT
@@ -5170,6 +5212,22 @@ XR_ERROR_SPATIAL_ANCHORS_PERMISSION_DENIED_ML
 XR_ERROR_SPATIAL_ANCHORS_SPACE_NOT_LOCATABLE_ML
 XR_ERROR_SPATIAL_ANCHOR_NAME_INVALID_MSFT
 XR_ERROR_SPATIAL_ANCHOR_NAME_NOT_FOUND_MSFT
+XR_ERROR_SPATIAL_ANCHOR_NOT_FOUND_BD
+XR_ERROR_SPATIAL_ANCHOR_SHARING_AUTHENTICATION_FAILURE_BD
+XR_ERROR_SPATIAL_ANCHOR_SHARING_LOCALIZATION_FAIL_BD
+XR_ERROR_SPATIAL_ANCHOR_SHARING_MAP_INSUFFICIENT_BD
+XR_ERROR_SPATIAL_ANCHOR_SHARING_NETWORK_FAILURE_BD
+XR_ERROR_SPATIAL_ANCHOR_SHARING_NETWORK_TIMEOUT_BD
+XR_ERROR_SPATIAL_BUFFER_ID_INVALID_EXT
+XR_ERROR_SPATIAL_CAPABILITY_CONFIGURATION_INVALID_EXT
+XR_ERROR_SPATIAL_CAPABILITY_UNSUPPORTED_EXT
+XR_ERROR_SPATIAL_COMPONENT_NOT_ENABLED_EXT
+XR_ERROR_SPATIAL_COMPONENT_UNSUPPORTED_FOR_CAPABILITY_EXT
+XR_ERROR_SPATIAL_ENTITY_ID_INVALID_BD
+XR_ERROR_SPATIAL_ENTITY_ID_INVALID_EXT
+XR_ERROR_SPATIAL_PERSISTENCE_SCOPE_INCOMPATIBLE_EXT
+XR_ERROR_SPATIAL_PERSISTENCE_SCOPE_UNSUPPORTED_EXT
+XR_ERROR_SPATIAL_SENSING_SERVICE_UNAVAILABLE_BD
 XR_ERROR_SWAPCHAIN_FORMAT_UNSUPPORTED
 XR_ERROR_SWAPCHAIN_RECT_INVALID
 XR_ERROR_SYSTEM_INVALID
@@ -5184,10 +5242,12 @@ XR_ERROR_WORLD_MESH_DETECTOR_PERMISSION_DENIED_ML
 XR_ERROR_WORLD_MESH_DETECTOR_SPACE_NOT_LOCATABLE_ML
 XR_EVENT_UNAVAILABLE
 XR_EXT_active_action_set_priority
+XR_EXT_battery_state_display
 XR_EXT_conformance_automation
 XR_EXT_dpad_binding
 XR_EXT_eye_gaze_interaction
 XR_EXT_frame_composition_report
+XR_EXT_hand_interaction
 XR_EXT_hand_joints_motion_range
 XR_EXT_hand_tracking
 XR_EXT_hand_tracking_data_source
@@ -5213,6 +5273,7 @@ XR_KHR_D3D11_enable
 XR_KHR_D3D12_enable
 XR_KHR_binding_modification
 XR_KHR_composition_layer_depth
+XR_KHR_generic_controller
 XR_KHR_opengl_enable
 XR_KHR_visibility_mask
 XR_KHR_vulkan_enable
@@ -5252,8 +5313,10 @@ XR_TYPE_ACTION_STATE_GET_INFO
 XR_TYPE_ACTION_STATE_POSE
 XR_TYPE_ACTION_STATE_VECTOR2F
 XR_TYPE_ACTIVE_ACTION_SET_PRIORITIES_EXT
+XR_TYPE_ANCHOR_SPACE_CREATE_INFO_BD
 XR_TYPE_ANDROID_SURFACE_SWAPCHAIN_CREATE_INFO_FB
 XR_TYPE_API_LAYER_PROPERTIES
+XR_TYPE_BATTERY_STATE_DISPLAY_EXT
 XR_TYPE_BINDING_MODIFICATIONS_KHR
 XR_TYPE_BODY_JOINTS_LOCATE_INFO_BD
 XR_TYPE_BODY_JOINTS_LOCATE_INFO_FB
@@ -5299,6 +5362,10 @@ XR_TYPE_CONTROLLER_MODEL_PROPERTIES_MSFT
 XR_TYPE_CONTROLLER_MODEL_STATE_MSFT
 XR_TYPE_COORDINATE_SPACE_CREATE_INFO_ML
 XR_TYPE_CREATE_SPATIAL_ANCHORS_COMPLETION_ML
+XR_TYPE_CREATE_SPATIAL_CONTEXT_COMPLETION_EXT
+XR_TYPE_CREATE_SPATIAL_DISCOVERY_SNAPSHOT_COMPLETION_EXT
+XR_TYPE_CREATE_SPATIAL_DISCOVERY_SNAPSHOT_COMPLETION_INFO_EXT
+XR_TYPE_CREATE_SPATIAL_PERSISTENCE_CONTEXT_COMPLETION_EXT
 XR_TYPE_DEBUG_UTILS_LABEL_EXT
 XR_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT
 XR_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT
@@ -5331,6 +5398,8 @@ XR_TYPE_EVENT_DATA_PASSTHROUGH_STATE_CHANGED_FB
 XR_TYPE_EVENT_DATA_PERF_SETTINGS_EXT
 XR_TYPE_EVENT_DATA_REFERENCE_SPACE_CHANGE_PENDING
 XR_TYPE_EVENT_DATA_SCENE_CAPTURE_COMPLETE_FB
+XR_TYPE_EVENT_DATA_SENSE_DATA_PROVIDER_STATE_CHANGED_BD
+XR_TYPE_EVENT_DATA_SENSE_DATA_UPDATED_BD
 XR_TYPE_EVENT_DATA_SESSION_STATE_CHANGED
 XR_TYPE_EVENT_DATA_SHARE_SPACES_COMPLETE_META
 XR_TYPE_EVENT_DATA_SPACE_ERASE_COMPLETE_FB
@@ -5341,6 +5410,7 @@ XR_TYPE_EVENT_DATA_SPACE_SAVE_COMPLETE_FB
 XR_TYPE_EVENT_DATA_SPACE_SET_STATUS_COMPLETE_FB
 XR_TYPE_EVENT_DATA_SPACE_SHARE_COMPLETE_FB
 XR_TYPE_EVENT_DATA_SPATIAL_ANCHOR_CREATE_COMPLETE_FB
+XR_TYPE_EVENT_DATA_SPATIAL_DISCOVERY_RECOMMENDED_EXT
 XR_TYPE_EVENT_DATA_START_COLOCATION_ADVERTISEMENT_COMPLETE_META
 XR_TYPE_EVENT_DATA_START_COLOCATION_DISCOVERY_COMPLETE_META
 XR_TYPE_EVENT_DATA_STOP_COLOCATION_ADVERTISEMENT_COMPLETE_META
@@ -5391,6 +5461,7 @@ XR_TYPE_FUTURE_CANCEL_INFO_EXT
 XR_TYPE_FUTURE_COMPLETION_EXT
 XR_TYPE_FUTURE_POLL_INFO_EXT
 XR_TYPE_FUTURE_POLL_RESULT_EXT
+XR_TYPE_FUTURE_POLL_RESULT_PROGRESS_BD
 XR_TYPE_GEOMETRY_INSTANCE_CREATE_INFO_FB
 XR_TYPE_GEOMETRY_INSTANCE_TRANSFORM_FB
 XR_TYPE_GLOBAL_DIMMER_FRAME_END_INFO_ML
@@ -5476,12 +5547,15 @@ XR_TYPE_PASSTHROUGH_PREFERENCES_META
 XR_TYPE_PASSTHROUGH_STYLE_FB
 XR_TYPE_PERFORMANCE_METRICS_COUNTER_META
 XR_TYPE_PERFORMANCE_METRICS_STATE_META
+XR_TYPE_PERSIST_SPATIAL_ENTITY_COMPLETION_EXT
 XR_TYPE_PLANE_DETECTOR_BEGIN_INFO_EXT
 XR_TYPE_PLANE_DETECTOR_CREATE_INFO_EXT
 XR_TYPE_PLANE_DETECTOR_GET_INFO_EXT
 XR_TYPE_PLANE_DETECTOR_LOCATIONS_EXT
 XR_TYPE_PLANE_DETECTOR_LOCATION_EXT
 XR_TYPE_PLANE_DETECTOR_POLYGON_BUFFER_EXT
+XR_TYPE_QUERIED_SENSE_DATA_BD
+XR_TYPE_QUERIED_SENSE_DATA_GET_INFO_BD
 XR_TYPE_RECOMMENDED_LAYER_RESOLUTION_GET_INFO_META
 XR_TYPE_RECOMMENDED_LAYER_RESOLUTION_META
 XR_TYPE_REFERENCE_SPACE_CREATE_INFO
@@ -5502,6 +5576,7 @@ XR_TYPE_RENDER_MODEL_SPACE_CREATE_INFO_EXT
 XR_TYPE_RENDER_MODEL_STATE_EXT
 XR_TYPE_RENDER_MODEL_STATE_GET_INFO_EXT
 XR_TYPE_ROOM_LAYOUT_FB
+XR_TYPE_SCENE_CAPTURE_INFO_BD
 XR_TYPE_SCENE_CAPTURE_REQUEST_INFO_FB
 XR_TYPE_SCENE_COMPONENTS_GET_INFO_MSFT
 XR_TYPE_SCENE_COMPONENTS_LOCATE_INFO_MSFT
@@ -5532,13 +5607,24 @@ XR_TYPE_SECONDARY_VIEW_CONFIGURATION_STATE_MSFT
 XR_TYPE_SECONDARY_VIEW_CONFIGURATION_SWAPCHAIN_CREATE_INFO_MSFT
 XR_TYPE_SEMANTIC_LABELS_FB
 XR_TYPE_SEMANTIC_LABELS_SUPPORT_INFO_FB
+XR_TYPE_SENSE_DATA_FILTER_PLANE_ORIENTATION_BD
+XR_TYPE_SENSE_DATA_FILTER_SEMANTIC_BD
+XR_TYPE_SENSE_DATA_FILTER_UUID_BD
+XR_TYPE_SENSE_DATA_PROVIDER_CREATE_INFO_BD
+XR_TYPE_SENSE_DATA_PROVIDER_CREATE_INFO_SPATIAL_MESH_BD
+XR_TYPE_SENSE_DATA_PROVIDER_START_INFO_BD
+XR_TYPE_SENSE_DATA_QUERY_COMPLETION_BD
+XR_TYPE_SENSE_DATA_QUERY_INFO_BD
 XR_TYPE_SERIALIZED_SCENE_FRAGMENT_DATA_GET_INFO_MSFT
 XR_TYPE_SESSION_ACTION_SETS_ATTACH_INFO
 XR_TYPE_SESSION_BEGIN_INFO
 XR_TYPE_SESSION_CREATE_INFO
 XR_TYPE_SESSION_CREATE_INFO_OVERLAY_EXTX
+XR_TYPE_SHARED_SPATIAL_ANCHOR_DOWNLOAD_INFO_BD
 XR_TYPE_SHARE_SPACES_INFO_META
 XR_TYPE_SHARE_SPACES_RECIPIENT_GROUPS_META
+XR_TYPE_SIMULTANEOUS_HANDS_AND_CONTROLLERS_TRACKING_PAUSE_INFO_META
+XR_TYPE_SIMULTANEOUS_HANDS_AND_CONTROLLERS_TRACKING_RESUME_INFO_META
 XR_TYPE_SPACES_LOCATE_INFO
 XR_TYPE_SPACE_COMPONENT_FILTER_INFO_FB
 XR_TYPE_SPACE_COMPONENT_STATUS_FB
@@ -5574,19 +5660,67 @@ XR_TYPE_SPATIAL_ANCHORS_QUERY_INFO_RADIUS_ML
 XR_TYPE_SPATIAL_ANCHORS_UPDATE_EXPIRATION_COMPLETION_DETAILS_ML
 XR_TYPE_SPATIAL_ANCHORS_UPDATE_EXPIRATION_COMPLETION_ML
 XR_TYPE_SPATIAL_ANCHORS_UPDATE_EXPIRATION_INFO_ML
+XR_TYPE_SPATIAL_ANCHOR_CREATE_COMPLETION_BD
+XR_TYPE_SPATIAL_ANCHOR_CREATE_INFO_BD
+XR_TYPE_SPATIAL_ANCHOR_CREATE_INFO_EXT
 XR_TYPE_SPATIAL_ANCHOR_CREATE_INFO_FB
 XR_TYPE_SPATIAL_ANCHOR_CREATE_INFO_HTC
 XR_TYPE_SPATIAL_ANCHOR_CREATE_INFO_MSFT
 XR_TYPE_SPATIAL_ANCHOR_FROM_PERSISTED_ANCHOR_CREATE_INFO_MSFT
 XR_TYPE_SPATIAL_ANCHOR_PERSISTENCE_INFO_MSFT
+XR_TYPE_SPATIAL_ANCHOR_PERSIST_INFO_BD
+XR_TYPE_SPATIAL_ANCHOR_SHARE_INFO_BD
 XR_TYPE_SPATIAL_ANCHOR_SPACE_CREATE_INFO_MSFT
 XR_TYPE_SPATIAL_ANCHOR_STATE_ML
+XR_TYPE_SPATIAL_ANCHOR_UNPERSIST_INFO_BD
+XR_TYPE_SPATIAL_BUFFER_GET_INFO_EXT
+XR_TYPE_SPATIAL_CAPABILITY_COMPONENT_TYPES_EXT
+XR_TYPE_SPATIAL_CAPABILITY_CONFIGURATION_ANCHOR_EXT
+XR_TYPE_SPATIAL_CAPABILITY_CONFIGURATION_APRIL_TAG_EXT
+XR_TYPE_SPATIAL_CAPABILITY_CONFIGURATION_ARUCO_MARKER_EXT
+XR_TYPE_SPATIAL_CAPABILITY_CONFIGURATION_MICRO_QR_CODE_EXT
+XR_TYPE_SPATIAL_CAPABILITY_CONFIGURATION_PLANE_TRACKING_EXT
+XR_TYPE_SPATIAL_CAPABILITY_CONFIGURATION_QR_CODE_EXT
+XR_TYPE_SPATIAL_COMPONENT_ANCHOR_LIST_EXT
+XR_TYPE_SPATIAL_COMPONENT_BOUNDED_2D_LIST_EXT
+XR_TYPE_SPATIAL_COMPONENT_BOUNDED_3D_LIST_EXT
+XR_TYPE_SPATIAL_COMPONENT_DATA_QUERY_CONDITION_EXT
+XR_TYPE_SPATIAL_COMPONENT_DATA_QUERY_RESULT_EXT
+XR_TYPE_SPATIAL_COMPONENT_MARKER_LIST_EXT
+XR_TYPE_SPATIAL_COMPONENT_MESH_2D_LIST_EXT
+XR_TYPE_SPATIAL_COMPONENT_MESH_3D_LIST_EXT
+XR_TYPE_SPATIAL_COMPONENT_PARENT_LIST_EXT
+XR_TYPE_SPATIAL_COMPONENT_PERSISTENCE_LIST_EXT
+XR_TYPE_SPATIAL_COMPONENT_PLANE_ALIGNMENT_LIST_EXT
+XR_TYPE_SPATIAL_COMPONENT_PLANE_SEMANTIC_LABEL_LIST_EXT
+XR_TYPE_SPATIAL_COMPONENT_POLYGON_2D_LIST_EXT
+XR_TYPE_SPATIAL_CONTEXT_CREATE_INFO_EXT
+XR_TYPE_SPATIAL_CONTEXT_PERSISTENCE_CONFIG_EXT
+XR_TYPE_SPATIAL_DISCOVERY_PERSISTENCE_UUID_FILTER_EXT
+XR_TYPE_SPATIAL_DISCOVERY_SNAPSHOT_CREATE_INFO_EXT
+XR_TYPE_SPATIAL_ENTITY_ANCHOR_CREATE_INFO_BD
+XR_TYPE_SPATIAL_ENTITY_COMPONENT_DATA_BOUNDING_BOX_2D_BD
+XR_TYPE_SPATIAL_ENTITY_COMPONENT_DATA_BOUNDING_BOX_3D_BD
+XR_TYPE_SPATIAL_ENTITY_COMPONENT_DATA_LOCATION_BD
+XR_TYPE_SPATIAL_ENTITY_COMPONENT_DATA_PLANE_ORIENTATION_BD
+XR_TYPE_SPATIAL_ENTITY_COMPONENT_DATA_POLYGON_BD
+XR_TYPE_SPATIAL_ENTITY_COMPONENT_DATA_SEMANTIC_BD
+XR_TYPE_SPATIAL_ENTITY_COMPONENT_DATA_TRIANGLE_MESH_BD
+XR_TYPE_SPATIAL_ENTITY_COMPONENT_GET_INFO_BD
+XR_TYPE_SPATIAL_ENTITY_FROM_ID_CREATE_INFO_EXT
+XR_TYPE_SPATIAL_ENTITY_LOCATION_GET_INFO_BD
+XR_TYPE_SPATIAL_ENTITY_PERSIST_INFO_EXT
+XR_TYPE_SPATIAL_ENTITY_STATE_BD
+XR_TYPE_SPATIAL_ENTITY_UNPERSIST_INFO_EXT
+XR_TYPE_SPATIAL_FILTER_TRACKING_STATE_EXT
 XR_TYPE_SPATIAL_GRAPH_NODE_BINDING_PROPERTIES_GET_INFO_MSFT
 XR_TYPE_SPATIAL_GRAPH_NODE_BINDING_PROPERTIES_MSFT
 XR_TYPE_SPATIAL_GRAPH_NODE_SPACE_CREATE_INFO_MSFT
 XR_TYPE_SPATIAL_GRAPH_STATIC_NODE_BINDING_CREATE_INFO_MSFT
-XR_TYPE_STATIONARY_REFERENCE_SPACE_ID_GET_INFO_EXT
-XR_TYPE_STATIONARY_REFERENCE_SPACE_ID_RESULT_EXT
+XR_TYPE_SPATIAL_MARKER_SIZE_EXT
+XR_TYPE_SPATIAL_MARKER_STATIC_OPTIMIZATION_EXT
+XR_TYPE_SPATIAL_PERSISTENCE_CONTEXT_CREATE_INFO_EXT
+XR_TYPE_SPATIAL_UPDATE_SNAPSHOT_CREATE_INFO_EXT
 XR_TYPE_SWAPCHAIN_CREATE_INFO
 XR_TYPE_SWAPCHAIN_CREATE_INFO_FOVEATION_FB
 XR_TYPE_SWAPCHAIN_IMAGE_ACQUIRE_INFO
@@ -5632,15 +5766,24 @@ XR_TYPE_SYSTEM_PASSTHROUGH_PROPERTIES2_FB
 XR_TYPE_SYSTEM_PASSTHROUGH_PROPERTIES_FB
 XR_TYPE_SYSTEM_PLANE_DETECTION_PROPERTIES_EXT
 XR_TYPE_SYSTEM_PROPERTIES
+XR_TYPE_SYSTEM_PROPERTIES_BODY_TRACKING_FULL_BODY_META
 XR_TYPE_SYSTEM_RENDER_MODEL_PROPERTIES_FB
+XR_TYPE_SYSTEM_SIMULTANEOUS_HANDS_AND_CONTROLLERS_PROPERTIES_META
 XR_TYPE_SYSTEM_SPACE_WARP_PROPERTIES_FB
+XR_TYPE_SYSTEM_SPATIAL_ANCHOR_PROPERTIES_BD
+XR_TYPE_SYSTEM_SPATIAL_ANCHOR_SHARING_PROPERTIES_BD
 XR_TYPE_SYSTEM_SPATIAL_ENTITY_GROUP_SHARING_PROPERTIES_META
 XR_TYPE_SYSTEM_SPATIAL_ENTITY_PROPERTIES_FB
 XR_TYPE_SYSTEM_SPATIAL_ENTITY_SHARING_PROPERTIES_META
+XR_TYPE_SYSTEM_SPATIAL_MESH_PROPERTIES_BD
+XR_TYPE_SYSTEM_SPATIAL_PLANE_PROPERTIES_BD
+XR_TYPE_SYSTEM_SPATIAL_SCENE_PROPERTIES_BD
+XR_TYPE_SYSTEM_SPATIAL_SENSING_PROPERTIES_BD
 XR_TYPE_SYSTEM_USER_PRESENCE_PROPERTIES_EXT
 XR_TYPE_SYSTEM_VIRTUAL_KEYBOARD_PROPERTIES_META
 XR_TYPE_TRIANGLE_MESH_CREATE_INFO_FB
 XR_TYPE_UNKNOWN
+XR_TYPE_UNPERSIST_SPATIAL_ENTITY_COMPLETION_EXT
 XR_TYPE_USER_CALIBRATION_ENABLE_EVENTS_INFO_ML
 XR_TYPE_VIEW
 XR_TYPE_VIEW_CONFIGURATION_DEPTH_RANGE_EXT
@@ -5698,7 +5841,6 @@ XrProto:suspended
 XrQueryPerformanceMetricsCounterMETA was passed a counter struct with the wrong type member.
 XrQueryPerformanceMetricsCounterMETA was passed a null counter pointer.
 YUY2
-ZA<a`
 Zjz\v
 ZvFailed to create fence %ls.\n
 [%s] Begin Frame Timing: %d
@@ -5820,6 +5962,9 @@ ZvFailed to create fence %ls.\n
 [Input] Failed to JSON parse action binding config\n
 [Input] Failed to find device container %llx. Waiting some more.\n
 [Input] Failed to get config binding from server. [app: %s]\n
+[Input] Failed to initialize pose offset filter.
+[Input] Failed to initialize pose offset. Could not read position because %s.
+[Input] Failed to initialize pose offset. Could not read rotation because %s.
 [Input] Failed to load binding file. We'll wait and try again when CRC or load count changes( computed CRC=%u, old CRC=%u, shared CRC=%u, load count=%u, shared load count=%u [app: %s]\n
 [Input] Failed to load input profile for controller type: %s\n
 [Input] Failed to load input profile for simulated controller type: %s\n
@@ -5970,6 +6115,9 @@ ZvFailed to create fence %ls.\n
 [Input] Loaded input profile for simulated hmd type: %s\n
 [Input] No controllers detected. Not waiting for config.\n
 [Input] Opening Binding UI. App: %s. Error: %s\n
+[Input] Pose position and rotation offset were 0. Ignoring.
+[Input] Pose position offset value has been clamped from '%f' to '%f'.
+[Input] Pose rotation offset value has been clamped from '%f' to '%f'.
 [Input] Previous frame overflowed per-device vector by %u actions (to %u total) Bumping up the high water mark.\n
 [Input] SetActionManifestPath failed waiting for a response from the server. Path: '%s'\n
 [Input] SetActionManifestPath failed. Input is disabled. Path: '%s'\n
@@ -5987,6 +6135,7 @@ ZvFailed to create fence %ls.\n
 [Input] Unexpected error %s when trying to read input value %s (%llX)\n
 [Input] Unknown action %s when loading binding file\n
 [Input] Unknown action set %s when loading binding file\n
+[Input] Unsupported device role in device_offsets: '%s' 
 [Input] UpdateActionState cannot execute because we don't have a config yet.\n
 [Input] Wanted to store %u global priority inputs, but only had space for %u\n
 [KeyFramedDataResource] Failed to load GLTF file: %s
@@ -6021,14 +6170,19 @@ ZvFailed to create fence %ls.\n
 [Tutorial] Adding tutorial action set %s twice!\n
 [Tutorial] Failed to generate action set handle for per-input tutorial action set\n
 [Tutorial] Found input path with unexpected prefix: %s\n
+[UUID] Failed to convert UUID to string: %i
 [UUID] Failed to convert string to UUID %i
 [UUID] Failed to generate UUID
 [VirtualDisplay] Present took to long!
 [Warning] Invalid Interaction Profile suggested: %s:\n
 [json.exception.
 [libprotobuf %s %s:%d] %s\n
+[vrclient] CLegacyInput::RunInputFrame
+[vrclient] CVRInputLatest::UpdateActionState
 [xrRenderModel] %s: nodePropertyCount was not equal to animatableNodeCount (was %i, expected %llu)
 [xrRenderModel] Asset was not loaded in memory when trying to retrieve data
+[xrRenderModel] Attempted to enumerate, but has not sycned actions yet
+[xrRenderModel] Attempted to enumerate, but session was not running
 [xrRenderModel] Attempted to enumerate, but there aren't any attached action sets
 [xrRenderModel] Component was not a render model component: %s. Skipping.
 [xrRenderModel] Could not find backing asset for model
@@ -6059,6 +6213,7 @@ ZvFailed to create fence %ls.\n
 [xrRenderModel] renderModelIdCountOutput was nullptr
 [xrRenderModel] session is not running
 \fUk#pb
+\fpZ-3
 \mfpmp.exe
 \nbad png sig
 \t%s::%llx.\n
@@ -6177,6 +6332,7 @@ _wstat64i32
 `scenes' does not contain an JSON object.
 `skins' does not contain an JSON object.
 `textures' does not contain an JSON object.
+a value in the array could not be converted to a number
 abort
 accessor[
 accessors
@@ -6247,6 +6403,7 @@ attributes
 audio
 autoLaunchSteamVROnButtonPress
 axis
+bCounting should only ever come from the resource manager - use CreateGPUCountingSemaphore instead
 bGraphicsCmd || m_eState == State_t::VulkanComputeTransitioned
 bGraphicsCmd || m_eState == State_t::VulkanGraphicsTransitioned
 bGraphicsCmd || pCmdBuf->QueueFamilyIndex() == nComputeFamilyIndex
@@ -6338,71 +6495,71 @@ button_toggle
 byteLength
 byteOffset
 byteStride
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\generated_proto_x64\vr_messages.pb.cc
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\actionbindingconfig.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\animation\animresourcemanager.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\blockqueue.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\drivermanager.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\openvrtools.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\openxr_utils.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\propertymanager.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\rendermodelmanager.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrclient.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrkeyboard.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrmailbox.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrrenderer\d3d11renderer.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrrenderer\ivrrenderer.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrrenderer\vulkanrenderer.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrsystem.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrsystemlayersharedstate.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vulkan.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\logbuffer.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\sharedresourcenamespace.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\strtools_public.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\threadwatchdog.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\vripcsharedstate.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\include\facet\vkalloc.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\include\facet\vkresource.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\include\facet\vkresourcepool.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\include\facet\vktimelinepoint.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\compositionclient.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\facetutils.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vkalloc.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vkcommand.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vkdevice.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vkinterop_d3d11.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vkresource.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vksync.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vkutils.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\thirdparty\protobuf-2.6.1\src\google\protobuf\repeated_field.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\Retail\win64\2017\vrclient_x64.pdb
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\hmdlatest.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\ixrbinding.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_common.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_common.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_compositor_openvr.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_compositor_prism.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_conformance.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_device.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_entrypoints.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_graphics_d3d11_direct.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_graphics_d3d11_openvr.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_graphics_d3d12_openvr.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_graphics_gl_openvr.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_graphics_prism.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_graphics_vulkan_openvr.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_hand_tracker.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_input.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_interaction_profiles.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_render_model.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_session.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_session.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\openxr_space.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\skeletalinpututils.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\vrclientcore.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\vrcompositorclient.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\vrcompositorsharedtextures.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrclient\vrmailboxclient.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\generated_proto_x64\vr_messages.pb.cc
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\actionbindingconfig.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\animation\animresourcemanager.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\blockqueue.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\drivermanager.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\openvrtools.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\openxr_utils.h
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\propertymanager.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\rendermodelmanager.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrclient.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrkeyboard.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrmailbox.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrrenderer\d3d11renderer.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrrenderer\ivrrenderer.h
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrrenderer\vulkanrenderer.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrsystem.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrsystemlayersharedstate.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vulkan.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\logbuffer.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\sharedresourcenamespace.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\strtools_public.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\threadwatchdog.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\vripcsharedstate.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\include\facet\vkalloc.h
+c:\buildslave\steamvr_rel_win64\build\src\facet\include\facet\vkresource.h
+c:\buildslave\steamvr_rel_win64\build\src\facet\include\facet\vkresourcepool.h
+c:\buildslave\steamvr_rel_win64\build\src\facet\include\facet\vktimelinepoint.h
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\compositionclient.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\facetutils.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\vkalloc.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\vkcommand.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\vkdevice.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\vkinterop_d3d11.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\vkresource.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\vksync.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\vkutils.cpp
+c:\buildslave\steamvr_rel_win64\build\src\thirdparty\protobuf-2.6.1\src\google\protobuf\repeated_field.h
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\Retail\win64\2017\vrclient_x64.pdb
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\hmdlatest.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\ixrbinding.h
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_common.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_common.h
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_compositor_openvr.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_compositor_prism.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_conformance.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_device.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_entrypoints.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_graphics_d3d11_direct.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_graphics_d3d11_openvr.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_graphics_d3d12_openvr.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_graphics_gl_openvr.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_graphics_prism.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_graphics_vulkan_openvr.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_hand_tracker.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_input.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_interaction_profiles.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_render_model.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_session.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_session.h
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\openxr_space.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\skeletalinpututils.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrclientcore.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorclient.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorsharedtextures.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrmailboxclient.cpp
 c:\fake_app_container_config_path
 camera
 cameraEdgeEnhancement
@@ -6460,6 +6617,7 @@ const unsigned int __cdecl CAnimResource::MyTypeID(void)
 const unsigned int __cdecl CBoneMaskResource::MyTypeID(void)
 const unsigned int __cdecl CKeyframedDataResource::MyTypeID(void)
 const unsigned int __cdecl Reflection::Object::MyTypeID(void)
+constant
 container: set %s to %s\n
 controller_axis
 controller_axis_component
@@ -6472,6 +6630,7 @@ controller_settings
 controller_type
 copyright
 corrupt
+cosf
 count
 create
 cs_cz
@@ -6510,6 +6669,7 @@ developerModes
 device implements %s, but this runtime doesn't have an adapter for that version\n
 deviceContainer
 devicePath
+device_offsets
 device_path
 digit
 directory
@@ -6613,7 +6773,7 @@ expected marker
 expecting another \u token to begin the second half of a unicode surrogate pair
 exponent
 exponent_%s
-ext1
+ext2
 ext_eye_gaze_interaction
 extensions
 extensionsRequired
@@ -6692,6 +6852,7 @@ false
 false literal
 fclose
 feof
+ffffff
 fflush
 fgetc
 fgetpos
@@ -6749,6 +6910,7 @@ glBlitFramebuffer
 glCheckFramebufferStatus
 glCopyImageSubData
 glDebugMessageCallback
+glDebugMessageInsert
 glDeleteFramebuffers
 glDeleteRenderbuffers
 glDeleteTextures
@@ -6784,11 +6946,12 @@ grab_value_and_force
 graph
 greek
 green
+grip
 gripLimitData
+hand_interaction_ext
 hand_right_poses.glb
 hangInit
 haptic
-hapticVibrationAmplitude
 haptic_amplitude
 haptic_delay
 haptic_duration
@@ -6971,6 +7134,7 @@ ldexp
 left
 leftThumbstickRotation
 left_
+left_hand
 leftright
 legacy
 legacy_axis
@@ -7159,6 +7323,8 @@ off_haptic_amplitude
 off_haptic_duration
 off_haptic_frequency
 offset
+offset_position
+offset_rotation
 old_pid
 ole32.dll
 on/x
@@ -7172,6 +7338,10 @@ openvr.tool.steamvr_media_player
 openvr:
 openvrpaths.vrpath
 openxr
+openxr_aim
+openxr_grip
+openxr_pinch
+openxr_poke
 openxr_quadlayer_
 optional
 optional member 'simulated_actions' is not an array
@@ -7230,7 +7400,7 @@ pTextureHandle != nullptr
 pTimeline
 pTimeline != nullptr
 pTimeline->m_nRefCount > 0
-p\r0\fP!o
+pZ-3
 page
 parameter must be a string or number / number array.\n
 parameters
@@ -7256,6 +7426,7 @@ portuguese
 pose
 pose_component
 pose_constant
+pose_offset
 pose_path
 poses
 position
@@ -7290,11 +7461,13 @@ progress_icon
 pt_br
 pt_pt
 pull
+punNextEvent
 punct
 qsort
 radial_menu
 range
 read past buffer
+ready_ext
 realloc
 reason
 reboothmd
@@ -7322,7 +7495,9 @@ rift
 right
 rightThumbstickRotation
 right_
+right_hand
 ro_ro
+role
 rolloffFactor
 romanian
 rotate
@@ -7782,6 +7957,7 @@ startup
 startup_reason
 startupshutdown_settings
 state
+static_bool
 statusicons
 steam.app.
 steam.exe
@@ -7956,8 +8132,10 @@ texture_handle
 textures
 th_th
 thai
+the array does not have 3 elements
 the sparse object of this accessor doesn't have indices
 the sparse object of this accessor doesn't have values
+the value is not an array
 thumbnail
 thumbstick
 thumbstick/
@@ -8568,6 +8746,7 @@ vkGetEncodedVideoSessionParametersKHR
 vkGetEventStatus
 vkGetFenceFdKHR
 vkGetFenceStatus
+vkGetFenceStatus: %d
 vkGetFenceWin32HandleKHR
 vkGetFramebufferTilePropertiesQCOM
 vkGetGeneratedCommandsMemoryRequirementsNV
@@ -8709,6 +8888,7 @@ vkQueueSetPerformanceConfigurationINTEL
 vkQueueSubmit
 vkQueueSubmit2
 vkQueueSubmit2KHR
+vkQueueSubmit: %d
 vkQueueWaitIdle
 vkRegisterDeviceEventEXT
 vkRegisterDisplayEventEXT
@@ -8966,6 +9146,7 @@ xrStringToPath
 xrStructureTypeToString
 xrSuggestInteractionProfileBindings
 xrSyncActions
+xrSyncActions - %u prior
 xrUpdateSwapchainFB
 xrWaitFrame
 xrWaitFrame has been waiting for 5 seconds for the previous frame to xrBeginFrame

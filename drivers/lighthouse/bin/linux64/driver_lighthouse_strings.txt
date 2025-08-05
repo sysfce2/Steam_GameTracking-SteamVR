@@ -178,8 +178,6 @@
 !proxy
 !ret
 !rightSyncIsRealAsItGets
-!sFind.empty()
-!sString.empty()
 !std::isnan( flSystemTimeInSeconds )
 !width || !height
 " because it is missing required fields: 
@@ -277,6 +275,7 @@ $3br
 %04X
 %F-%H-%M-%S
 %Y-%m-%d %I:%M:%S %p
+%Y-%m-%d-%p_%I_%M_%S
 %a %b %d %H:%M:%S %Y
 %a %b %d %Y %H:%M:%S.%%06u
 %d bits of actual data (counting padding)\r\n
@@ -868,6 +867,7 @@ $3br
 0123456789
 0123456789ABCDEF
 0123456789abcdef
+02:16:52
 0x%08llx
 1.2.5
 1/2/4/8/16-bit only
@@ -946,7 +946,6 @@ $3br
 20CVkCommandBufferPool
 20IVRAudioNotification
 20IVRVirtualDisplay001
-21:19:35
 21CServerDriverHost_002
 21CServerDriverHost_003
 21IVRCameraComponent001
@@ -1183,6 +1182,7 @@ Attempted to write %zd bytes and ended up writing 0. Closing the pipe\n
 Attempting HID Open %s: %s\n
 Audio
 AudioBridge
+Aug  2 2025
 August
 AuthenticAMD
 Available samples not sufficient for booting (%s)\n
@@ -1700,6 +1700,8 @@ CCompositorPluginProvider_Latest::GetInterfaceVersions()
 CCompositorPluginProvider_Latest::GetSourceVersion()
 CCompositorPluginProvider_Latest::Init(vr::IVRDriverContext*)
 CCompositorPluginProvider_Latest::~CCompositorPluginProvider_Latest()
+CConditionalScopedEventDuration::CConditionalScopedEventDuration(char const*, ...)
+CConditionalScopedEventDuration::~CConditionalScopedEventDuration()
 CCountedMutexWithLogCache::Log(char const*, ...)
 CCountedMutexWithLogCache::Log(char const*, ...) (.cold)
 CDampedFloat::Update(float, float, float)
@@ -2633,8 +2635,8 @@ CSWTCH.141
 CSWTCH.142
 CSWTCH.16
 CSWTCH.162
-CSWTCH.1921
-CSWTCH.212
+CSWTCH.1924
+CSWTCH.216
 CSWTCH.221
 CSWTCH.23
 CSWTCH.876
@@ -3876,6 +3878,7 @@ ERROR: Expected 1 float args, fPitchDegrees'
 ERROR: Expected 2 float args, '
 ERROR: Expected 2 float args, fClockingAngleDegrees (left), fClockingAngleDegrees (right)
 ERROR: Expected 2 float args, fDegreesLeft fDegreesRight'
+ERROR: Failed to open log file %s, attempting timestamped filename\n
 ERROR: GetEdidId (%d)\n
 ERROR: GetVideoConfig (%d)\n
 ERROR: No display or device\n
@@ -4055,7 +4058,7 @@ Eye Displays must be adjacent: left (%d, %d), right (%d, %d)\nUse Screen Resolut
 EyeFromName(char const*)
 FACET_VULKAN_VALIDATION
 FATAL
-FATAL: Failed to open log file %s\n
+FATAL: Failed to open log file %s, failing out!\n
 FORMAT=32-bit_rle_rgbe
 FPGA susp: 
 FS Callbacks must be completely defined. At least one callback is null.
@@ -4509,6 +4512,7 @@ HTC Vive Developer Edition
 HTC Vive Pro
 HTC-VIVE
 HWID Signature not found
+HandAnimEvaluator
 Handle != NULL
 HasField
 HashToBase64(unsigned long)
@@ -4639,12 +4643,12 @@ IVRDriverDirectInternal_XXX
 IVRDriverDirectModeComponent_
 IVRDriverDirectModeComponent_009
 IVRDriverInputInternal_XXX
-IVRDriverInput_003
+IVRDriverInput_004
 IVRDriverLog_001
 IVRDriverManager_001
 IVRExtendedDisplay_001
 IVRIOBuffer_002
-IVRIPCResourceManagerClient_001
+IVRIPCResourceManagerClient_002
 IVRInputInternal_002
 IVRInput_010
 IVRMCStore_001
@@ -4666,7 +4670,7 @@ IVRSettingsInternal_001
 IVRSettings_001
 IVRSettings_003
 IVRSystemLayerInternal_XXX
-IVRSystem_022
+IVRSystem_023
 IVRTrackedCameraInternal_XXX
 IVRVirtualDisplay001_Version
 IVRVirtualDisplay_
@@ -5291,8 +5295,9 @@ Json::valueToString(unsigned long long)
 Json::writeString(Json::StreamWriter::Factory const&, Json::Value const&)
 Json::writeString(Json::StreamWriter::Factory const&, Json::Value const&) (.cold)
 JsonValueToBoolOrDefault(Json::Value const&, bool)
+JsonValueToHMDVector3(Json::Value const&, vr::HmdVector3_t&, std::string*)
+JsonValueToHMDVector3(Json::Value const&, vr::HmdVector3_t&, std::string*) (.cold)
 July
-Jun  4 2025
 June
 KHR_audio
 KHR_lights_punctual
@@ -5930,6 +5935,8 @@ Path_FindParentSubDirectoryRecursively(std::string const&, std::string const&)
 Path_FindParentSubDirectoryRecursively(std::string const&, std::string const&) (.cold)
 Path_FixSlashes(std::string const&, char)
 Path_FixSlashes(std::string const&, char) (.cold)
+Path_GetExecutableName()
+Path_GetExecutableName() (.cold)
 Path_GetExecutablePath()
 Path_GetExtension(std::string const&)
 Path_GetSlash()
@@ -6199,6 +6206,7 @@ Prop_SecondsFromPhotonsToVblank_Float
 Prop_SecondsFromVsyncToPhotons_Float
 Prop_SerialNumber_String
 Prop_StatusDisplayTransform_Matrix34
+Prop_SteamRemoteClientID_Uint64
 Prop_SupportedButtons_Uint64
 Prop_SupportsRoomViewDepthProjection_Bool
 Prop_TrackingFirmwareVersion_String
@@ -6736,6 +6744,7 @@ Thread(0x%p/0x%p/0x%x)
 ThreadCloseProcess
 ThreadGetCurrentHandle
 ThreadGetCurrentId
+ThreadGetCurrentId::s_selftid
 ThreadGetCurrentProcessHandle
 ThreadGetCurrentProcessId
 ThreadGetCurrentRunningRef
@@ -6744,6 +6753,7 @@ ThreadGetProcessExitCode
 ThreadGetProcessListInfo
 ThreadGetProcessParentID
 ThreadGetProcessPriority
+ThreadImplOneTimeInit
 ThreadInMainThread
 ThreadInitSchedulerForRtkit()::sInitMutex
 ThreadInitSchedulerForRtkit()::sbThreadSchedInitialized
@@ -6778,10 +6788,12 @@ ThreadSetProcessPriority
 ThreadShellExecute
 ThreadShellExecute::bInstalledSignalHandler
 ThreadSleep
+ThreadSpinWaitForValue
 ThreadSuspendSignal(int)
 ThreadTerminate
 ThreadTerminateProcessCode
 ThreadWaitForProcessExit
+ThreadWatchdog
 ThreadYield()
 Thursday
 Time: 
@@ -7298,6 +7310,7 @@ VREvent_ScreenshotTriggered
 VREvent_ScrollDiscrete
 VREvent_ScrollSmooth
 VREvent_SeatedZeroPoseReset
+VREvent_SetTrackingRecordingPath
 VREvent_ShowDevTools
 VREvent_ShowKeyboard
 VREvent_ShowRenderModels
@@ -7321,6 +7334,8 @@ VREvent_TrackedDeviceUpdated
 VREvent_TrackedDeviceUserInteractionEnded
 VREvent_TrackedDeviceUserInteractionStarted
 VREvent_TrackersSectionSettingChanged
+VREvent_TrackingRecordingStarted
+VREvent_TrackingRecordingStopped
 VREvent_UserInterfaceSectionSettingChanged
 VREvent_VendorSpecific_Reserved_Start+%d
 VREvent_WatchdogWakeUpRequested
@@ -8648,6 +8663,7 @@ _txnal_sso_string_c_str(void const*)
 `scenes' does not contain an JSON object.
 `skins' does not contain an JSON object.
 `textures' does not contain an JSON object.
+a value in the array could not be converted to a number
 abort
 acc_bias
 acc_scale
@@ -9803,6 +9819,7 @@ g_VRLog
 g_VRPathHelpers
 g_VRPropertyHelpers
 g_VRSettingHelper
+g_bNoCacheThreadIds
 g_bSetSuspendHandlers
 g_bSuspendResumeAck
 g_bTestMode
@@ -13162,6 +13179,75 @@ math::Vec3T<float>::truncate_length(float) const
 math::Vec3T<float>::try_normalize()
 math::Vec3T<float>::xy() const
 math::Vec3T<float>::zero()
+math::Vec4T<double>::Vec4T()
+math::Vec4T<double>::Vec4T(double, double, double, double)
+math::Vec4T<double>::Vec4T(math::Vec3T<double> const&, double)
+math::Vec4T<double>::as_array()
+math::Vec4T<double>::as_array() const
+math::Vec4T<double>::dot(math::Vec3T<double> const&, double) const
+math::Vec4T<double>::dot(math::Vec4T<double> const&) const
+math::Vec4T<double>::from_json(Json::Value const&, unsigned int)
+math::Vec4T<double>::is_zero() const
+math::Vec4T<double>::operator*=(double)
+math::Vec4T<double>::operator+=(double)
+math::Vec4T<double>::operator+=(math::Vec4T<double> const&)
+math::Vec4T<double>::operator-=(double)
+math::Vec4T<double>::operator-=(math::Vec4T<double> const&)
+math::Vec4T<double>::operator/=(double)
+math::Vec4T<double>::operator=(math::Vec4T<double> const&)
+math::Vec4T<double>::operator[](int)
+math::Vec4T<double>::operator[](int) const
+math::Vec4T<double>::origin()
+math::Vec4T<double>::size()
+math::Vec4T<double>::to_json(Json::Value*, unsigned int) const
+math::Vec4T<double>::xyz() const
+math::Vec4T<double>::zero()
+math::Vec4T<float>::Vec4T()
+math::Vec4T<float>::Vec4T(float, float, float, float)
+math::Vec4T<float>::Vec4T(math::Vec3T<float> const&, float)
+math::Vec4T<float>::as_array()
+math::Vec4T<float>::as_array() const
+math::Vec4T<float>::dot(math::Vec3T<float> const&, float) const
+math::Vec4T<float>::dot(math::Vec4T<float> const&) const
+math::Vec4T<float>::from_json(Json::Value const&, unsigned int)
+math::Vec4T<float>::is_zero() const
+math::Vec4T<float>::operator*=(float)
+math::Vec4T<float>::operator+=(float)
+math::Vec4T<float>::operator+=(math::Vec4T<float> const&)
+math::Vec4T<float>::operator-=(float)
+math::Vec4T<float>::operator-=(math::Vec4T<float> const&)
+math::Vec4T<float>::operator/=(float)
+math::Vec4T<float>::operator=(math::Vec4T<float> const&)
+math::Vec4T<float>::operator[](int)
+math::Vec4T<float>::operator[](int) const
+math::Vec4T<float>::origin()
+math::Vec4T<float>::size()
+math::Vec4T<float>::to_json(Json::Value*, unsigned int) const
+math::Vec4T<float>::xyz() const
+math::Vec4T<float>::zero()
+math::Vec4T<int>::Vec4T()
+math::Vec4T<int>::Vec4T(int, int, int, int)
+math::Vec4T<int>::Vec4T(math::Vec3T<int> const&, int)
+math::Vec4T<int>::as_array()
+math::Vec4T<int>::as_array() const
+math::Vec4T<int>::dot(math::Vec3T<int> const&, int) const
+math::Vec4T<int>::dot(math::Vec4T<int> const&) const
+math::Vec4T<int>::from_json(Json::Value const&, unsigned int)
+math::Vec4T<int>::is_zero() const
+math::Vec4T<int>::operator*=(int)
+math::Vec4T<int>::operator+=(int)
+math::Vec4T<int>::operator+=(math::Vec4T<int> const&)
+math::Vec4T<int>::operator-=(int)
+math::Vec4T<int>::operator-=(math::Vec4T<int> const&)
+math::Vec4T<int>::operator/=(int)
+math::Vec4T<int>::operator=(math::Vec4T<int> const&)
+math::Vec4T<int>::operator[](int)
+math::Vec4T<int>::operator[](int) const
+math::Vec4T<int>::origin()
+math::Vec4T<int>::size()
+math::Vec4T<int>::to_json(Json::Value*, unsigned int) const
+math::Vec4T<int>::xyz() const
+math::Vec4T<int>::zero()
 matrix
 max value > 255
 maxDistance
@@ -13518,7 +13604,9 @@ non-virtual thunk to vortex::CLighthouseDirect::GetFirmwareVersion(std::string*)
 non-virtual thunk to vortex::CLighthouseDirect::GetHardwareRevision(std::string*)
 non-virtual thunk to vortex::CLighthouseDirect::GetTrackingState(vortex::TrackingState*)
 non-virtual thunk to vortex::CLighthouseDirect::Start()
+non-virtual thunk to vortex::CLighthouseDirect::StartTrackingRecording(std::string const&)
 non-virtual thunk to vortex::CLighthouseDirect::Stop()
+non-virtual thunk to vortex::CLighthouseDirect::StopTrackingRecording()
 non-virtual thunk to vortex::CLighthouseDirect::WarnTriggerHapticPulse()
 non-virtual thunk to vortex::CLighthouseDirect::~CLighthouseDirect()
 non-virtual thunk to vortex::CLighthouseIMUThread::GetPeripheralApplicationVersion(unsigned int*)
@@ -13650,7 +13738,6 @@ outofmem
 output
 output buffer limit
 output specified is NULL
-output_path
 output_type
 overwrite.vrsettings
 pClient
@@ -13803,7 +13890,6 @@ read_encoded_value_with_base.cold
 readdir
 readlink
 realloc
-record
 recorded
 recorder
 recorder + 
@@ -14001,6 +14087,7 @@ standard_subs
 start
 start tracking from base
 start_pairing
+start_tracking_recording
 startup
 static const uint32_t CAnimResource::MyTypeID()
 static const uint32_t CBoneMaskResource::MyTypeID()
@@ -17798,9 +17885,10 @@ steamvr
 steamvr.vrsettings
 stmute
 stmuteb
+stof
 stoi
 stop_pairing
-stoprecord
+stop_tracking_recording
 str_to_edid_pid(std::string const&)
 str_to_edid_pid(std::string const&) (.cold)
 str_to_edid_vid(std::string const&)
@@ -17891,9 +17979,11 @@ text/plain
 textures
 th_th
 thai
+the array does not have 3 elements
 the global scope
 the sparse object of this accessor doesn't have indices
 the sparse object of this accessor doesn't have values
+the value is not an array
 this
 throw
 throw 
@@ -20429,6 +20519,7 @@ void ceres::QuaternionProduct<ceres::Jet<double, 7>>(ceres::Jet<double, 7> const
 void ceres::QuaternionToAngleAxis<ceres::Jet<double, 49>>(ceres::Jet<double, 49> const*, ceres::Jet<double, 49>*)
 void ceres::UnitQuaternionRotatePoint<ceres::Jet<double, 49>>(ceres::Jet<double, 49> const*, ceres::Jet<double, 49> const*, ceres::Jet<double, 49>*)
 void ceres::UnitQuaternionRotatePoint<ceres::Jet<double, 7>>(ceres::Jet<double, 7> const*, ceres::Jet<double, 7> const*, ceres::Jet<double, 7>*)
+void ceres::UnitQuaternionRotatePoint<double>(double const*, double const*, double*)
 void ceres::internal::Make1stOrderPerturbation<ceres::Jet<double, 49>, double, 49>(int, double const*, ceres::Jet<double, 49>*)
 void ceres::internal::Take1stOrderPart<ceres::Jet<double, 49>, double, 0, 49>(int, ceres::Jet<double, 49> const*, double*)
 void google::protobuf::DescriptorBuilder::AllocateOptions<google::protobuf::Descriptor>(google::protobuf::Descriptor::OptionsType const&, google::protobuf::Descriptor*)
@@ -21332,7 +21423,10 @@ vortex::CLighthouseDirect::SetInitialProcessCovariance()
 vortex::CLighthouseDirect::SetTrackRefFromHead(CTrackedDeviceConfig const*)
 vortex::CLighthouseDirect::ShowBootstrapProgress(unsigned int)
 vortex::CLighthouseDirect::Start()
+vortex::CLighthouseDirect::StartTrackingRecording(std::string const&)
+vortex::CLighthouseDirect::StartTrackingRecording(std::string const&) (.cold)
 vortex::CLighthouseDirect::Stop()
+vortex::CLighthouseDirect::StopTrackingRecording()
 vortex::CLighthouseDirect::SwapPrimaryAndAlternateBase(unsigned int)
 vortex::CLighthouseDirect::SwapPrimaryAndAlternateBase(unsigned int) (.cold)
 vortex::CLighthouseDirect::TransformTiltByPose(math::PoseT<float> const&, float, vortex::LighthouseBaseTilt_t const&)
@@ -22145,6 +22239,8 @@ vortex::ILighthouseTrackedDeviceServerDriver::RunFrame()
 vortex::ILighthouseTrackedDeviceServerDriver::ShouldBlockStandby()
 vortex::IPoseTracker::DebugRequest(char const*, char*, unsigned int)
 vortex::IPoseTracker::RunFrame()
+vortex::IPoseTracker::StartTrackingRecording(std::string const&)
+vortex::IPoseTracker::StopTrackingRecording()
 vortex::LighthouseBaseTargetPose_t::FromJson(Json::Value const&)
 vortex::LighthouseBaseTargetPose_t::FromJson(Json::Value const&) (.cold)
 vortex::LighthouseBaseTargetPose_t::ToJson() const

@@ -12,8 +12,6 @@
  throw
  transaction_safe
  volatile
-!sFind.empty()
-!sString.empty()
 %02X
 %06d
 %4.4X:%4.4X\n
@@ -627,7 +625,7 @@ CSOBChannel::OnBLEEvent_GATTC_WriteResponse(ble_gattc_evt_t const*) (.cold)
 CSOBChannel::SendSOBChannelCommand(int)
 CSWTCH.107
 CSWTCH.157
-CSWTCH.212
+CSWTCH.216
 CScan::CScan()
 CScan::CScan() (.cold)
 CScan::DoScanContext(std::string const&, std::vector<std::string, std::allocator<std::string>> const&, EScanCompletionQualifier_t, float, std::vector<basestation_scan_t, std::allocator<basestation_scan_t>>*)
@@ -1389,6 +1387,8 @@ Json::valueToString(unsigned long long)
 Json::writeString(Json::StreamWriter::Factory const&, Json::Value const&)
 Json::writeString(Json::StreamWriter::Factory const&, Json::Value const&) (.cold)
 JsonValueToBoolOrDefault(Json::Value const&, bool)
+JsonValueToHMDVector3(Json::Value const&, vr::HmdVector3_t&, std::string*)
+JsonValueToHMDVector3(Json::Value const&, vr::HmdVector3_t&, std::string*) (.cold)
 July
 June
 LC_ADDRESS
@@ -1615,6 +1615,8 @@ Path_FindParentSubDirectoryRecursively(std::string const&, std::string const&)
 Path_FindParentSubDirectoryRecursively(std::string const&, std::string const&) (.cold)
 Path_FixSlashes(std::string const&, char)
 Path_FixSlashes(std::string const&, char) (.cold)
+Path_GetExecutableName()
+Path_GetExecutableName() (.cold)
 Path_GetExecutablePath()
 Path_GetExtension(std::string const&)
 Path_GetSlash()
@@ -1918,6 +1920,7 @@ Thread(0x%p/0x%p/0x%x)
 ThreadCloseProcess
 ThreadGetCurrentHandle
 ThreadGetCurrentId
+ThreadGetCurrentId::s_selftid
 ThreadGetCurrentProcessHandle
 ThreadGetCurrentProcessId
 ThreadGetCurrentRunningRef
@@ -1926,6 +1929,7 @@ ThreadGetProcessExitCode
 ThreadGetProcessListInfo
 ThreadGetProcessParentID
 ThreadGetProcessPriority
+ThreadImplOneTimeInit
 ThreadInMainThread
 ThreadInitSchedulerForRtkit()::sInitMutex
 ThreadInitSchedulerForRtkit()::sbThreadSchedInitialized
@@ -1960,6 +1964,7 @@ ThreadSetProcessPriority
 ThreadShellExecute
 ThreadShellExecute::bInstalledSignalHandler
 ThreadSleep
+ThreadSpinWaitForValue
 ThreadSuspendSignal(int)
 ThreadTerminate
 ThreadTerminateProcessCode
@@ -2325,6 +2330,7 @@ _txnal_cow_string_c_str(void const*)
 _txnal_logic_error_get_msg(void*)
 _txnal_runtime_error_get_msg(void*)
 _txnal_sso_string_c_str(void const*)
+a value in the array could not be converted to a number
 abort
 add_fdes
 additional six characters expected to parse unicode surrogate pair.
@@ -2658,6 +2664,7 @@ g_ConnectionParameters
 g_NRFSerLib
 g_SuspendResumeLock
 g_ThreadMainThreadID
+g_bNoCacheThreadIds
 g_bSetSuspendHandlers
 g_bSuspendResumeAck
 g_mutex
@@ -6198,6 +6205,7 @@ stderr
 stdin
 stdout
 steamrt
+stof
 stoul
 strcasecmp
 strcat
@@ -6223,6 +6231,7 @@ strnicmp(char const*, char const*, unsigned long)
 strpbrk
 strstr
 strtod
+strtof
 strtol
 strtold_l
 strtoul
@@ -6241,6 +6250,8 @@ terminate called after throwing an instance of '
 terminate called recursively\n
 terminate called without an active exception\n
 terminator.9276
+the array does not have 3 elements
+the value is not an array
 this
 three
 throw

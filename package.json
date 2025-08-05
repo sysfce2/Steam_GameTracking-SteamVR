@@ -5,6 +5,6 @@
     "prettier": "biome format --max-diagnostics=0 --log-kind=compact --diagnostic-level=error"
   },
   "dependencies": {
-    "@biomejs/biome": "^1.9.4"
+    "@biomejs/biome": "^2.0.0"
   }
 }

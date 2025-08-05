@@ -9,8 +9,6 @@
  throw
  transaction_safe
  volatile
-!sFind.empty()
-!sString.empty()
 %d.%d.%d.%d
 %d.%d.%d.%d:%u
 %llu
@@ -860,6 +858,8 @@ Path_FindParentSubDirectoryRecursively(std::string const&, std::string const&)
 Path_FindParentSubDirectoryRecursively(std::string const&, std::string const&) (.cold)
 Path_FixSlashes(std::string const&, char)
 Path_FixSlashes(std::string const&, char) (.cold)
+Path_GetExecutableName()
+Path_GetExecutableName() (.cold)
 Path_GetExecutablePath()
 Path_GetExtension(std::string const&)
 Path_GetSlash()

@@ -8,8 +8,6 @@
  throw
  transaction_safe
  volatile
-!sFind.empty()
-!sString.empty()
 %d.%d.%d.%d
 %d.%d.%d.%d:%u
 %llu
@@ -107,7 +105,6 @@
 *NSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIwLb0EEE
 *NSt13__facet_shims12_GLOBAL__N_115moneypunct_shimIwLb1EEE
 *Z13InitDriverLogPN2vr12IVRDriverLogEEUl9ELogLevelPKcPvE_
-,4G0]
 -+xX0123456789abcdef0123456789ABCDEF
 -+xX0123456789abcdefABCDEF
 -0123456789
@@ -208,7 +205,7 @@ IVRDisplayComponent_003
 IVRDriverDirectModeComponent_009
 IVRDriverLog_001
 IVRDriverManager_001
-IVRIPCResourceManagerClient_001
+IVRIPCResourceManagerClient_002
 IVRProperties_001
 IVRResources_001
 IVRServerDriverHost_006
@@ -1005,7 +1002,6 @@ frame_heapsort
 fread
 free
 fseeko64
-ftZ#
 ftello64
 fwrite
 g_serverDriverNull
@@ -1094,6 +1090,7 @@ iostream
 iostream error
 java Class for 
 java resource 
+kb\n&n
 ld-linux-x86-64.so.2
 libc.so.6
 libpthread.so.0

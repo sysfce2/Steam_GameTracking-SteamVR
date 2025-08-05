@@ -166,8 +166,6 @@
 !proxy
 !ret
 !rightSyncIsRealAsItGets
-!sFind.empty()
-!sString.empty()
 !width || !height
 " because it is missing required fields: 
 " conflicts with the existing symbol "
@@ -265,6 +263,7 @@ $3br
 %04X
 %F-%H-%M-%S
 %Y-%m-%d %I:%M:%S %p
+%Y-%m-%d-%p_%I_%M_%S
 %a %b %d %H:%M:%S %Y
 %a %b %d %Y %H:%M:%S.%%06u
 %d bits of actual data (counting padding)\r\n
@@ -527,11 +526,8 @@ $3br
 ./obj_driver_lighthouse_linux32/release/driver_lighthouse.so
 .L10
 .L100
-.L1000
-.L1001
 .L1003
 .L1004
-.L1005
 .L1006
 .L1007
 .L1008
@@ -549,10 +545,11 @@ $3br
 .L1019
 .L102
 .L1020
+.L1021
+.L1022
 .L1023
-.L1028
+.L1026
 .L103
-.L1030
 .L10306
 .L10307
 .L10309
@@ -561,7 +558,6 @@ $3br
 .L10311
 .L10312
 .L10313
-.L1032
 .L10326
 .L1033
 .L1034
@@ -604,19 +600,22 @@ $3br
 .L1047
 .L10478
 .L1048
+.L1049
 .L105
 .L1050
+.L1051
 .L1053
-.L1054
 .L1056
 .L1057
-.L1058
+.L1059
 .L106
 .L1060
+.L1061
 .L10625
 .L10627
 .L10628
 .L10629
+.L1063
 .L10630
 .L10631
 .L10632
@@ -624,10 +623,8 @@ $3br
 .L10634
 .L10635
 .L107
-.L1072
 .L1074
 .L1075
-.L1076
 .L1077
 .L1078
 .L1079
@@ -643,7 +640,10 @@ $3br
 .L1088
 .L1089
 .L109
+.L1090
 .L1091
+.L1092
+.L1094
 .L1095
 .L11
 .L110
@@ -1395,15 +1395,17 @@ $3br
 .L2841
 .L2842
 .L2843
+.L2849
 .L285
+.L2851
+.L2852
+.L2853
 .L2854
 .L2856
 .L2857
 .L2858
 .L2859
 .L286
-.L2860
-.L2861
 .L2862
 .L2863
 .L2864
@@ -1578,15 +1580,15 @@ $3br
 .L339
 .L34
 .L340
+.L3408
 .L341
-.L3417
-.L3419
+.L3410
+.L3411
+.L3412
+.L3413
+.L3414
+.L3418
 .L342
-.L3420
-.L3421
-.L3422
-.L3423
-.L3427
 .L343
 .L344
 .L345
@@ -1652,11 +1654,9 @@ $3br
 .L390
 .L391
 .L392
-.L393
 .L3936
 .L3938
 .L3939
-.L394
 .L3940
 .L3941
 .L3942
@@ -1664,11 +1664,12 @@ $3br
 .L3944
 .L3945
 .L3946
+.L395
 .L396
-.L397
 .L398
 .L399
 .L40
+.L400
 .L401
 .L403
 .L404
@@ -1740,12 +1741,12 @@ $3br
 .L4459
 .L446
 .L4460
+.L447
 .L448
 .L449
 .L45
 .L450
 .L451
-.L452
 .L453
 .L454
 .L455
@@ -2025,9 +2026,9 @@ $3br
 .L61
 .L610
 .L611
-.L612
+.L613
+.L614
 .L615
-.L616
 .L617
 .L618
 .L619
@@ -2045,6 +2046,7 @@ $3br
 .L63
 .L630
 .L631
+.L633
 .L637
 .L638
 .L639
@@ -2262,85 +2264,85 @@ $3br
 .L798
 .L799
 .L7990
+.L7998
 .L80
 .L800
-.L8007
-.L8009
+.L8000
+.L8001
+.L8003
+.L8004
 .L801
-.L8010
-.L8012
-.L8013
 .L802
 .L803
+.L8036
+.L8038
+.L8039
 .L804
-.L8045
-.L8047
-.L8048
-.L8049
+.L8040
+.L8041
+.L8042
 .L805
-.L8050
-.L8051
 .L806
 .L807
+.L8074
+.L8076
+.L8077
+.L8079
 .L808
-.L8083
-.L8085
-.L8086
-.L8088
-.L8089
+.L8080
 .L809
 .L81
 .L810
 .L811
+.L8112
+.L8114
+.L8115
+.L8116
+.L8117
+.L8118
 .L812
-.L8121
-.L8123
-.L8124
-.L8125
-.L8126
-.L8127
 .L813
 .L814
 .L815
-.L8159
+.L8150
+.L8152
+.L8153
+.L8155
+.L8156
 .L816
-.L8161
-.L8162
-.L8164
-.L8165
 .L817
 .L818
+.L8188
 .L819
-.L8197
-.L8199
+.L8190
+.L8191
+.L8192
+.L8193
+.L8194
 .L82
 .L820
-.L8200
-.L8201
-.L8202
-.L8203
 .L821
 .L822
 .L823
+.L8234
+.L8236
+.L8237
+.L8239
 .L824
-.L8243
-.L8245
-.L8246
-.L8248
-.L8249
+.L8240
 .L825
 .L826
 .L827
 .L828
+.L8288
 .L829
-.L8297
-.L8299
+.L8290
+.L8291
+.L8292
+.L8293
+.L8294
 .L83
 .L830
-.L8300
-.L8301
-.L8302
-.L8303
 .L831
 .L832
 .L833
@@ -2349,6 +2351,7 @@ $3br
 .L836
 .L837
 .L838
+.L839
 .L84
 .L840
 .L841
@@ -2367,49 +2370,32 @@ $3br
 .L853
 .L854
 .L855
-.L856
-.L857
-.L858
-.L859
 .L86
-.L860
-.L861
-.L862
-.L8627
-.L8629
-.L863
-.L8630
-.L8631
-.L8632
-.L8633
-.L864
-.L865
+.L8601
+.L8603
+.L8604
+.L8605
+.L8606
+.L8607
 .L866
 .L867
-.L868
 .L869
-.L8690
-.L8692
-.L8693
-.L8694
-.L8695
-.L8696
 .L87
+.L870
 .L871
+.L8715
+.L8717
+.L8718
+.L8719
 .L872
+.L8720
+.L8721
 .L873
-.L8736
-.L8738
-.L8739
-.L8740
-.L8741
-.L8742
-.L8765
-.L8767
-.L8768
-.L8769
-.L8770
-.L8771
+.L874
+.L875
+.L876
+.L877
+.L878
 .L879
 .L88
 .L880
@@ -2420,6 +2406,7 @@ $3br
 .L8817
 .L8818
 .L8819
+.L882
 .L8820
 .L8829
 .L884
@@ -2433,9 +2420,15 @@ $3br
 .L8859
 .L886
 .L8868
-.L887
 .L89
+.L892
+.L893
+.L894
+.L897
+.L898
+.L899
 .L90
+.L900
 .L908
 .L91
 .L911
@@ -2460,9 +2453,7 @@ $3br
 .L9237
 .L9238
 .L924
-.L925
 .L926
-.L927
 .L9270
 .L9271
 .L9273
@@ -2471,7 +2462,6 @@ $3br
 .L9276
 .L9277
 .L928
-.L929
 .L9293
 .L93
 .L930
@@ -2489,24 +2479,36 @@ $3br
 .L9359
 .L936
 .L937
+.L9375
+.L9377
+.L9378
+.L9379
 .L938
+.L9380
+.L9381
 .L939
 .L94
 .L940
+.L941
 .L942
+.L9428
+.L943
+.L9430
+.L9431
+.L9432
+.L9433
+.L9434
 .L945
-.L946
 .L948
+.L9481
+.L9483
+.L9484
+.L9485
+.L9486
+.L9487
 .L949
-.L9490
-.L9492
-.L9493
-.L9494
-.L9495
-.L9496
 .L9499
 .L95
-.L950
 .L9500
 .L9502
 .L9503
@@ -2517,31 +2519,31 @@ $3br
 .L9515
 .L952
 .L953
-.L9543
-.L9545
-.L9546
-.L9547
-.L9548
-.L9549
+.L9534
+.L9536
+.L9537
+.L9538
+.L9539
+.L954
+.L9540
 .L955
+.L956
 .L9576
 .L9577
 .L9579
+.L958
 .L9580
 .L9581
 .L9582
 .L9583
-.L959
+.L9587
+.L9589
+.L9590
+.L9591
 .L9592
-.L9596
-.L9598
-.L9599
+.L9593
 .L96
-.L9600
-.L9601
-.L9602
 .L9609
-.L961
 .L9610
 .L9612
 .L9613
@@ -2550,17 +2552,19 @@ $3br
 .L9616
 .L962
 .L9625
-.L963
 .L964
-.L9649
+.L9640
+.L9642
+.L9643
+.L9644
+.L9645
+.L9646
 .L965
-.L9651
-.L9652
-.L9653
-.L9654
-.L9655
+.L966
 .L967
+.L968
 .L97
+.L970
 .L9718
 .L9719
 .L9721
@@ -2742,6 +2746,7 @@ $3br
 0123456789
 0123456789ABCDEF
 0123456789abcdef
+02:16:47
 0x%08llx
 1.2.5
 1/2/4/8/16-bit only
@@ -2810,7 +2815,6 @@ $3br
 20CVRTrackedDevice_004
 20IVRAudioNotification
 20IVRVirtualDisplay001
-21:19:19
 21CServerDriverHost_002
 21CServerDriverHost_003
 21IVRCameraComponent001
@@ -3037,6 +3041,7 @@ Attempted to write %zd bytes and ended up writing 0. Closing the pipe\n
 Attempting HID Open %s: %s\n
 Audio
 AudioBridge
+Aug  2 2025
 August
 AuthenticAMD
 Available samples not sufficient for booting (%s)\n
@@ -3535,6 +3540,8 @@ CCompositorPluginProvider_Latest::GetInterfaceVersions()
 CCompositorPluginProvider_Latest::GetSourceVersion()
 CCompositorPluginProvider_Latest::Init(vr::IVRDriverContext*)
 CCompositorPluginProvider_Latest::~CCompositorPluginProvider_Latest()
+CConditionalScopedEventDuration::CConditionalScopedEventDuration(char const*, ...)
+CConditionalScopedEventDuration::~CConditionalScopedEventDuration()
 CCountedMutexWithLogCache::Log(char const*, ...)
 CCountedMutexWithLogCache::Log(char const*, ...) (.cold)
 CDampedFloat::Update(float, float, float)
@@ -4439,8 +4446,8 @@ CSWTCH.139
 CSWTCH.142
 CSWTCH.146
 CSWTCH.161
-CSWTCH.2110
-CSWTCH.214
+CSWTCH.2113
+CSWTCH.218
 CSWTCH.224
 CSWTCH.925
 CScopedEventDuration::CScopedEventDuration(char const*, ...)
@@ -5446,6 +5453,7 @@ ERROR: Expected 1 float args, fPitchDegrees'
 ERROR: Expected 2 float args, '
 ERROR: Expected 2 float args, fClockingAngleDegrees (left), fClockingAngleDegrees (right)
 ERROR: Expected 2 float args, fDegreesLeft fDegreesRight'
+ERROR: Failed to open log file %s, attempting timestamped filename\n
 ERROR: GetEdidId (%d)\n
 ERROR: GetVideoConfig (%d)\n
 ERROR: No display or device\n
@@ -5621,7 +5629,7 @@ Extra non-whitespace after JSON value.
 Eye Displays must be adjacent: left (%d, %d), right (%d, %d)\nUse Screen Resolution control panel to fix
 EyeFromName(char const*)
 FATAL
-FATAL: Failed to open log file %s\n
+FATAL: Failed to open log file %s, failing out!\n
 FORMAT=32-bit_rle_rgbe
 FPGA susp: 
 FS Callbacks must be completely defined. At least one callback is null.
@@ -6062,6 +6070,7 @@ HTC Vive Developer Edition
 HTC Vive Pro
 HTC-VIVE
 HWID Signature not found
+HandAnimEvaluator
 Handle != NULL
 HasField
 HashToBase64(unsigned long long)
@@ -6192,12 +6201,12 @@ IVRDriverDirectInternal_XXX
 IVRDriverDirectModeComponent_
 IVRDriverDirectModeComponent_009
 IVRDriverInputInternal_XXX
-IVRDriverInput_003
+IVRDriverInput_004
 IVRDriverLog_001
 IVRDriverManager_001
 IVRExtendedDisplay_001
 IVRIOBuffer_002
-IVRIPCResourceManagerClient_001
+IVRIPCResourceManagerClient_002
 IVRInputInternal_002
 IVRInput_010
 IVRMCStore_001
@@ -6219,7 +6228,7 @@ IVRSettingsInternal_001
 IVRSettings_001
 IVRSettings_003
 IVRSystemLayerInternal_XXX
-IVRSystem_022
+IVRSystem_023
 IVRTrackedCameraInternal_XXX
 IVRVirtualDisplay001_Version
 IVRVirtualDisplay_
@@ -6836,8 +6845,9 @@ Json::valueToString(unsigned long long)
 Json::writeString(Json::StreamWriter::Factory const&, Json::Value const&)
 Json::writeString(Json::StreamWriter::Factory const&, Json::Value const&) (.cold)
 JsonValueToBoolOrDefault(Json::Value const&, bool)
+JsonValueToHMDVector3(Json::Value const&, vr::HmdVector3_t&, std::string*)
+JsonValueToHMDVector3(Json::Value const&, vr::HmdVector3_t&, std::string*) (.cold)
 July
-Jun  4 2025
 June
 KHR_audio
 KHR_lights_punctual
@@ -7461,6 +7471,8 @@ Path_FindParentSubDirectoryRecursively(std::string const&, std::string const&)
 Path_FindParentSubDirectoryRecursively(std::string const&, std::string const&) (.cold)
 Path_FixSlashes(std::string const&, char)
 Path_FixSlashes(std::string const&, char) (.cold)
+Path_GetExecutableName()
+Path_GetExecutableName() (.cold)
 Path_GetExecutablePath()
 Path_GetExtension(std::string const&)
 Path_GetSlash()
@@ -7717,6 +7729,7 @@ Prop_SecondsFromPhotonsToVblank_Float
 Prop_SecondsFromVsyncToPhotons_Float
 Prop_SerialNumber_String
 Prop_StatusDisplayTransform_Matrix34
+Prop_SteamRemoteClientID_Uint64
 Prop_SupportedButtons_Uint64
 Prop_SupportsRoomViewDepthProjection_Bool
 Prop_TrackingFirmwareVersion_String
@@ -8229,6 +8242,7 @@ Thread(0x%p/0x%p/0x%x)
 ThreadCloseProcess
 ThreadGetCurrentHandle
 ThreadGetCurrentId
+ThreadGetCurrentId::s_selftid
 ThreadGetCurrentProcessHandle
 ThreadGetCurrentProcessId
 ThreadGetCurrentRunningRef
@@ -8237,6 +8251,7 @@ ThreadGetProcessExitCode
 ThreadGetProcessListInfo
 ThreadGetProcessParentID
 ThreadGetProcessPriority
+ThreadImplOneTimeInit
 ThreadInMainThread
 ThreadInitSchedulerForRtkit()::sInitMutex
 ThreadInitSchedulerForRtkit()::sbThreadSchedInitialized
@@ -8271,10 +8286,12 @@ ThreadSetProcessPriority
 ThreadShellExecute
 ThreadShellExecute::bInstalledSignalHandler
 ThreadSleep
+ThreadSpinWaitForValue
 ThreadSuspendSignal(int)
 ThreadTerminate
 ThreadTerminateProcessCode
 ThreadWaitForProcessExit
+ThreadWatchdog
 ThreadYield()
 Thursday
 Time: 
@@ -8769,6 +8786,7 @@ VREvent_ScreenshotTriggered
 VREvent_ScrollDiscrete
 VREvent_ScrollSmooth
 VREvent_SeatedZeroPoseReset
+VREvent_SetTrackingRecordingPath
 VREvent_ShowDevTools
 VREvent_ShowKeyboard
 VREvent_ShowRenderModels
@@ -8792,6 +8810,8 @@ VREvent_TrackedDeviceUpdated
 VREvent_TrackedDeviceUserInteractionEnded
 VREvent_TrackedDeviceUserInteractionStarted
 VREvent_TrackersSectionSettingChanged
+VREvent_TrackingRecordingStarted
+VREvent_TrackingRecordingStopped
 VREvent_UserInterfaceSectionSettingChanged
 VREvent_VendorSpecific_Reserved_Start+%d
 VREvent_WatchdogWakeUpRequested
@@ -10116,6 +10136,7 @@ _txnal_sso_string_c_str(void const*)
 `scenes' does not contain an JSON object.
 `skins' does not contain an JSON object.
 `textures' does not contain an JSON object.
+a value in the array could not be converted to a number
 abort
 acc_bias
 acc_scale
@@ -11072,6 +11093,7 @@ g_VRLog
 g_VRPathHelpers
 g_VRPropertyHelpers
 g_VRSettingHelper
+g_bNoCacheThreadIds
 g_bSetSuspendHandlers
 g_bSuspendResumeAck
 g_bTestMode
@@ -14398,6 +14420,75 @@ math::Vec3T<float>::truncate_length(float) const
 math::Vec3T<float>::try_normalize()
 math::Vec3T<float>::xy() const
 math::Vec3T<float>::zero()
+math::Vec4T<double>::Vec4T()
+math::Vec4T<double>::Vec4T(double, double, double, double)
+math::Vec4T<double>::Vec4T(math::Vec3T<double> const&, double)
+math::Vec4T<double>::as_array()
+math::Vec4T<double>::as_array() const
+math::Vec4T<double>::dot(math::Vec3T<double> const&, double) const
+math::Vec4T<double>::dot(math::Vec4T<double> const&) const
+math::Vec4T<double>::from_json(Json::Value const&, unsigned int)
+math::Vec4T<double>::is_zero() const
+math::Vec4T<double>::operator*=(double)
+math::Vec4T<double>::operator+=(double)
+math::Vec4T<double>::operator+=(math::Vec4T<double> const&)
+math::Vec4T<double>::operator-=(double)
+math::Vec4T<double>::operator-=(math::Vec4T<double> const&)
+math::Vec4T<double>::operator/=(double)
+math::Vec4T<double>::operator=(math::Vec4T<double> const&)
+math::Vec4T<double>::operator[](int)
+math::Vec4T<double>::operator[](int) const
+math::Vec4T<double>::origin()
+math::Vec4T<double>::size()
+math::Vec4T<double>::to_json(Json::Value*, unsigned int) const
+math::Vec4T<double>::xyz() const
+math::Vec4T<double>::zero()
+math::Vec4T<float>::Vec4T()
+math::Vec4T<float>::Vec4T(float, float, float, float)
+math::Vec4T<float>::Vec4T(math::Vec3T<float> const&, float)
+math::Vec4T<float>::as_array()
+math::Vec4T<float>::as_array() const
+math::Vec4T<float>::dot(math::Vec3T<float> const&, float) const
+math::Vec4T<float>::dot(math::Vec4T<float> const&) const
+math::Vec4T<float>::from_json(Json::Value const&, unsigned int)
+math::Vec4T<float>::is_zero() const
+math::Vec4T<float>::operator*=(float)
+math::Vec4T<float>::operator+=(float)
+math::Vec4T<float>::operator+=(math::Vec4T<float> const&)
+math::Vec4T<float>::operator-=(float)
+math::Vec4T<float>::operator-=(math::Vec4T<float> const&)
+math::Vec4T<float>::operator/=(float)
+math::Vec4T<float>::operator=(math::Vec4T<float> const&)
+math::Vec4T<float>::operator[](int)
+math::Vec4T<float>::operator[](int) const
+math::Vec4T<float>::origin()
+math::Vec4T<float>::size()
+math::Vec4T<float>::to_json(Json::Value*, unsigned int) const
+math::Vec4T<float>::xyz() const
+math::Vec4T<float>::zero()
+math::Vec4T<int>::Vec4T()
+math::Vec4T<int>::Vec4T(int, int, int, int)
+math::Vec4T<int>::Vec4T(math::Vec3T<int> const&, int)
+math::Vec4T<int>::as_array()
+math::Vec4T<int>::as_array() const
+math::Vec4T<int>::dot(math::Vec3T<int> const&, int) const
+math::Vec4T<int>::dot(math::Vec4T<int> const&) const
+math::Vec4T<int>::from_json(Json::Value const&, unsigned int)
+math::Vec4T<int>::is_zero() const
+math::Vec4T<int>::operator*=(int)
+math::Vec4T<int>::operator+=(int)
+math::Vec4T<int>::operator+=(math::Vec4T<int> const&)
+math::Vec4T<int>::operator-=(int)
+math::Vec4T<int>::operator-=(math::Vec4T<int> const&)
+math::Vec4T<int>::operator/=(int)
+math::Vec4T<int>::operator=(math::Vec4T<int> const&)
+math::Vec4T<int>::operator[](int)
+math::Vec4T<int>::operator[](int) const
+math::Vec4T<int>::origin()
+math::Vec4T<int>::size()
+math::Vec4T<int>::to_json(Json::Value*, unsigned int) const
+math::Vec4T<int>::xyz() const
+math::Vec4T<int>::zero()
 matrix
 max value > 255
 maxDistance
@@ -14751,7 +14842,9 @@ non-virtual thunk to vortex::CLighthouseDirect::GetFirmwareVersion(std::string*)
 non-virtual thunk to vortex::CLighthouseDirect::GetHardwareRevision(std::string*)
 non-virtual thunk to vortex::CLighthouseDirect::GetTrackingState(vortex::TrackingState*)
 non-virtual thunk to vortex::CLighthouseDirect::Start()
+non-virtual thunk to vortex::CLighthouseDirect::StartTrackingRecording(std::string const&)
 non-virtual thunk to vortex::CLighthouseDirect::Stop()
+non-virtual thunk to vortex::CLighthouseDirect::StopTrackingRecording()
 non-virtual thunk to vortex::CLighthouseDirect::WarnTriggerHapticPulse()
 non-virtual thunk to vortex::CLighthouseDirect::~CLighthouseDirect()
 non-virtual thunk to vortex::CLighthouseIMUThread::GetPeripheralApplicationVersion(unsigned int*)
@@ -14882,7 +14975,6 @@ outofmem
 output
 output buffer limit
 output specified is NULL
-output_path
 output_type
 overwrite.vrsettings
 pData
@@ -15018,7 +15110,6 @@ read_encoded_value_with_base.cold
 readdir
 readlink
 realloc
-record
 recorded
 recorder
 recorder + 
@@ -15205,6 +15296,7 @@ standard_subs
 start
 start tracking from base
 start_pairing
+start_tracking_recording
 startup
 static const uint32_t CAnimResource::MyTypeID()
 static const uint32_t CBoneMaskResource::MyTypeID()
@@ -18942,9 +19034,10 @@ steamvr
 steamvr.vrsettings
 stmute
 stmuteb
+stof
 stoi
 stop_pairing
-stoprecord
+stop_tracking_recording
 str_to_edid_pid(std::string const&)
 str_to_edid_pid(std::string const&) (.cold)
 str_to_edid_vid(std::string const&)
@@ -19034,9 +19127,11 @@ text/plain
 textures
 th_th
 thai
+the array does not have 3 elements
 the global scope
 the sparse object of this accessor doesn't have indices
 the sparse object of this accessor doesn't have values
+the value is not an array
 this
 throw
 throw 
@@ -21747,8 +21842,11 @@ vortex::CLighthouseDirect::SetInitialProcessCovariance()
 vortex::CLighthouseDirect::SetTrackRefFromHead(CTrackedDeviceConfig const*)
 vortex::CLighthouseDirect::ShowBootstrapProgress(unsigned int)
 vortex::CLighthouseDirect::Start()
+vortex::CLighthouseDirect::StartTrackingRecording(std::string const&)
+vortex::CLighthouseDirect::StartTrackingRecording(std::string const&) (.cold)
 vortex::CLighthouseDirect::State_s::operator=(vortex::CLighthouseDirect::State_s const&)
 vortex::CLighthouseDirect::Stop()
+vortex::CLighthouseDirect::StopTrackingRecording()
 vortex::CLighthouseDirect::SwapPrimaryAndAlternateBase(unsigned int)
 vortex::CLighthouseDirect::SwapPrimaryAndAlternateBase(unsigned int) (.cold)
 vortex::CLighthouseDirect::TransformTiltByPose(math::PoseT<float> const&, float, vortex::LighthouseBaseTilt_t const&)
@@ -22561,6 +22659,8 @@ vortex::ILighthouseTrackedDeviceServerDriver::RunFrame()
 vortex::ILighthouseTrackedDeviceServerDriver::ShouldBlockStandby()
 vortex::IPoseTracker::DebugRequest(char const*, char*, unsigned int)
 vortex::IPoseTracker::RunFrame()
+vortex::IPoseTracker::StartTrackingRecording(std::string const&)
+vortex::IPoseTracker::StopTrackingRecording()
 vortex::LighthouseBaseTargetPose_t::FromJson(Json::Value const&)
 vortex::LighthouseBaseTargetPose_t::FromJson(Json::Value const&) (.cold)
 vortex::LighthouseBaseTargetPose_t::ToJson() const
@@ -23215,7 +23315,6 @@ wmemset
 wn>Jj
 world_from_global
 world_identity
-wq$+0
 wrapS
 wrapT
 write
