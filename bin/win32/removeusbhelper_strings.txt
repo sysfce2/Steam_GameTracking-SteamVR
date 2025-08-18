@@ -245,7 +245,7 @@ PID_8328
 Parsing of JSON file "%s" failed: %s\n
 QueryPerformanceCounter
 QueryPerformanceFrequency
-RSDS`
+RSDS
 RaiseException
 RegCloseKey
 RegCreateKeyExW
@@ -469,6 +469,7 @@ openvr
 openvrpaths.vrpath
 openxr api layer %s : %s\n
 please provide an api layer name and new state.\n
+qnqC
 rejectDupKeys
 runtime
 selective suspend

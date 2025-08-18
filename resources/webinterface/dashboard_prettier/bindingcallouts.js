@@ -1,4 +1,4 @@
-var CLSTAMP = "9947453";
+var CLSTAMP = "9981652";
 (() => {
   "use strict";
   var e,
@@ -674,6 +674,7 @@ var CLSTAMP = "9947453";
               return "button";
           }
         }
+        (0, i(7813).jK)({ enforceActions: "never" });
         class b extends s.Component {
           constructor(e) {
             super(e), (this.state = {});

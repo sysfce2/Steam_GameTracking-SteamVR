@@ -1630,16 +1630,14 @@ $\n k_EProtoServiceTypeSteamMessages
 0123456789ABCDEF
 0123456789abcdef
 0A8@
-0D4@
 0J8@
-0q1@
 1.2.5
 1/2/4/8/16-bit only
 11 4 22 44 44 22 444444
 11eU%
 127.0.0.1
 127.0.0.1:
-19:16:09
+12:33:55
 1A26b
 1\f514
 1e+9999
@@ -1911,7 +1909,7 @@ Attempt to register second handler for message type %s\n
 Attempted to read payload of %d bytes from pipe but failed\n
 Attempting to start home app %s\n
 AudioDeviceChangeNotice (noting refresh): %d, device = %s\n
-Aug  1 2025
+Aug 15 2025
 Auto launch dashboard %s has not started after %u checks. Giving up waiting.\n
 Autobinding role for device path: %s
 AutosaveURL
@@ -2498,6 +2496,7 @@ DriverDirectMode::SubmitFrameThread sending legacy vsync events automatically.\n
 DriverDirect_Acquired
 DriverDirect_NewFrame
 DriverDirect_Presented
+DriverManager %s init called SetUnhandledExceptionFilter\n
 DriverManager %s load error %su
 DriverVersion
 Duplicate action '
@@ -3232,7 +3231,6 @@ Lost master process %u due to pipe corruption. Quitting all in %g seconds if it 
 Lost master process %u due to restart hint. Quitting all in %g seconds if it doesn't reconnect. \n
 Lost master process %u for an unknown reason. Quitting all immediately. \n
 Low Power Watchdog Not Supported (129)
-Lw+T
 LwH'
 M8MF
 MAT2
@@ -3417,11 +3415,11 @@ PC_%08llx
 PG9@
 PICT
 PID_
+PK3@
 PK9@
 PLACEHOLDER_VALUE
 PNG\r\n
 POST
-PR6@
 PRISM_AcquireDisplay
 PRISM_ClientDisconnected
 PRISM_CreateDisplayFactory
@@ -3728,7 +3726,7 @@ Quitting parent process %u because a quit was requested for its child %u.\n
 R1h58
 RGBG
 RPCRT4.dll
-RSDS|
+RSDS
 RaiseException
 Range
 Reached an unintended state: CPPTYPE_MESSAGE
@@ -3997,6 +3995,7 @@ Skipping external driver %s because it is not a directory\n
 Skipping simulated trackpad action %s(%d) because it doesn't have an output hand\n
 Skipping simulated trigger action %s(%d) because it doesn't have an output action\n
 Skipping start of home app because something else started\n
+Skipping unknown action set: %s\n
 Sleep
 SleepConditionVariableCS
 Software\Valve\Steam
@@ -4288,7 +4287,6 @@ Unknown HMDClass (%d)
 Unknown VRApplicationsError (%d)
 Unknown VRMsgType (%d)
 Unknown VRSettingsError (%d)
-Unknown action set %s\n
 Unknown app key
 Unknown enumeration value of "
 Unknown error
@@ -5153,6 +5151,7 @@ XV9@
 XXXX PNG chunk not known
 Xm7@
 XsBI
+Xy2@
 YUY2
 Zjz\v
 [%x:%x:%x:%x:%x:%x:%x:%x]
@@ -6045,6 +6044,7 @@ current_transforms
 current_transforms_without_controller
 current_user_persona_name
 czech
+dD4@
 dQy/
 da_dk
 danish
@@ -6341,7 +6341,6 @@ hC9@
 hF8@
 hG8@
 hPU3
-hR6@
 half_thresholds
 hand_interaction_ext
 hand_priority
@@ -6378,7 +6377,7 @@ https:
 https://
 hu_hu
 hungarian
-hy2@
+hx2@
 i91k
 i]Wb
 iauds
@@ -6713,6 +6712,7 @@ knuckles_ev1
 ko_kr
 koreana
 l6qnk
+lD4@
 lDa>
 label
 language_tag
@@ -6870,6 +6870,7 @@ multimedia
 multiple
 multiple IHDR
 multiple_group
+n&5D
 nMaxMode
 nMode
 nPendingSize == 0
@@ -7077,7 +7078,6 @@ publishedfileid
 pull
 punct
 putchar
-py6@
 py_generic_services
 qMFCreateMediaType failed hr = 0x%08x\n
 qsort
@@ -7379,7 +7379,6 @@ systemreport_
 systemreport_*.html
 systemreport_template.html
 systemui_dashboard
-tD4@
 tRNS after IDAT
 tRNS before PLTE
 tRNS with alpha
@@ -7648,7 +7647,6 @@ x_path
 xdigit
 xm7@
 xmag
-xx2@
 y9*O
 y_path
 yfov

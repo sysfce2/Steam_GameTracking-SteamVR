@@ -1,4 +1,4 @@
-var CLSTAMP = "9947453";
+var CLSTAMP = "9981652";
 (() => {
   "use strict";
   var e,
@@ -566,7 +566,7 @@ var CLSTAMP = "9947453";
           })(i || (i = {}));
         let l = 0,
           s = 0,
-          c = -1;
+          c = 4294967295;
         var d, f, p, _, S, y, m, R, v, h, g, b, O, C, k, I, w, P, T, M, E;
         !(function (e) {
           (e[(e.Invalid = 0)] = "Invalid"),
@@ -780,26 +780,31 @@ var CLSTAMP = "9947453";
           f = n(5818),
           p = n(1835),
           _ = n(6943);
-        Promise.all([
-          (0, i.uV)(
-            ["vrmonitor", "bindingui"],
-            null === a.Ay || void 0 === a.Ay ? void 0 : a.Ay.GetSteamLanguage(),
-          ),
-          u.HR.Init(!0),
-          l.W.Init(!0),
-          c.B$.Init(),
-          s.s.Init(),
-          d.X.Init(),
-          _.Q.Init(),
-          p.SW.Init(),
-        ])
-          .then(() => {
-            (document.title = (0, i.we)("#Settings_Header_SteamVR")),
-              o
-                .H(document.getElementById("root"))
-                .render(r.createElement(f.z, { visible: !0 }));
-          })
-          .catch((e) => console.error("Failed to initialize vr settings:", e));
+        (0, n(7813).jK)({ enforceActions: "never" }),
+          Promise.all([
+            (0, i.uV)(
+              ["vrmonitor", "bindingui"],
+              null === a.Ay || void 0 === a.Ay
+                ? void 0
+                : a.Ay.GetSteamLanguage(),
+            ),
+            u.HR.Init(!0),
+            l.W.Init(!0),
+            c.B$.Init(),
+            s.s.Init(),
+            d.X.Init(),
+            _.Q.Init(),
+            p.SW.Init(),
+          ])
+            .then(() => {
+              (document.title = (0, i.we)("#Settings_Header_SteamVR")),
+                o
+                  .H(document.getElementById("root"))
+                  .render(r.createElement(f.z, { visible: !0 }));
+            })
+            .catch((e) =>
+              console.error("Failed to initialize vr settings:", e),
+            );
       },
     },
     n = {};
