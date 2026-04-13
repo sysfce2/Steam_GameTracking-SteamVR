@@ -335,6 +335,12 @@ var CLSTAMP = "steamdb";
         ErrorOnce(_, ..._) {
           this.LogOnce(_, _.Error, ..._);
         }
+        ErrorOnceThenWarn(_, ..._) {
+          let _ = _.Get().ShouldLogOnce(`${this.m_sName}:${_}`)
+            ? _.Error
+            : _.Warning;
+          this.Log(_, ..._);
+        }
         IsDebugEnabled() {
           return _.Get().IsDebugLogEnabled(this.m_sName);
         }
@@ -366,7 +372,8 @@ var CLSTAMP = "steamdb";
         (0, _._)([_._], _.prototype, "DebugOnce", null),
         (0, _._)([_._], _.prototype, "InfoOnce", null),
         (0, _._)([_._], _.prototype, "WarningOnce", null),
-        (0, _._)([_._], _.prototype, "ErrorOnce", null);
+        (0, _._)([_._], _.prototype, "ErrorOnce", null),
+        (0, _._)([_._], _.prototype, "ErrorOnceThenWarn", null);
       class _ {
         constructor() {
           (this.m_Storage = null),

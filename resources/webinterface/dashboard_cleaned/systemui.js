@@ -138,6 +138,7 @@ var CLSTAMP = "steamdb";
           _: () => _._,
           _: () => _._,
           _: () => _._,
+          _: () => _._,
         });
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
@@ -5947,7 +5948,7 @@ var CLSTAMP = "steamdb";
                     _._[(0, _._)()],
                 );
               console.log("Bootstrapping " + _, _);
-              const _ = 1e3 * (null !== (_ = 1775692255) ? _ : 0);
+              const _ = 1e3 * (null !== (_ = 1776107393) ? _ : 0);
               console.log(
                 "SteamVR Version Info: " +
                   JSON.stringify({

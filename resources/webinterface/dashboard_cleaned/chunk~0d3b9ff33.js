@@ -5862,7 +5862,7 @@ var CLSTAMP = "steamdb";
           }),
           _.createElement(_._, {
             label: (0, _._)("#Settings_VersionInfo_WebpackBuildTime"),
-            value: new Date(1775692255e3).toLocaleString(),
+            value: new Date(1776107393e3).toLocaleString(),
           }),
           _.createElement(_._, {
             label: (0, _._)("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),
@@ -6967,6 +6967,8 @@ var CLSTAMP = "steamdb";
             _.createElement(_, null),
             _.createElement(_, null),
             _.createElement(_, null),
+            !1,
+            !1,
             _.createElement(_, null),
             _.createElement(_, null),
             _.createElement(_, null),
@@ -15559,6 +15561,7 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
       });
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -15569,7 +15572,8 @@ var CLSTAMP = "steamdb";
         _ = "input_server",
         _ = "desktop_store",
         _ = "vrlink_store",
-        _ = "systemui_dashboard_private",
+        _ = "vrwebui_dashboardstore",
+        _ = "vrwebui_dashboard",
         _ = "binding_callouts/main",
         _ = "scene_graph";
       class _ {
@@ -15579,20 +15583,24 @@ var CLSTAMP = "steamdb";
             (this.m_oHandlers = {}),
             (this.m_oWaits = {}),
             (this.m_oConnectWaits = []),
-            (this.m_fnConnectResolve = void 0),
             (this.m_nNextMessageNumber = 1),
             (this.Log = new _._("Mailbox", () => this.m_sMailboxName)),
             (0, _.makeObservable)(this);
         }
         OpenWebSocketToHost() {
           return new Promise((_, _) => {
-            this.Log.Info("Connecting vrmailbox...");
+            this.Log.Info("Opening Web Socket...");
             let _ = "ws://127.0.0.1:27062";
             this.m_sWebSecret && (_ += "?secret=" + this.m_sWebSecret),
-              (this.m_fnConnectResolve = _),
-              (this.m_wsWebSocketToServer = new WebSocket(_)),
+              this.m_wsWebSocketToServer &&
+                (this.Log.Error(
+                  "OpenWebSocketToHost called on existing connection",
+                ),
+                this.CloseWebSocket());
+            let _ = !1;
+            (this.m_wsWebSocketToServer = new WebSocket(_)),
               this.m_wsWebSocketToServer.addEventListener("open", (_) => {
-                this.OnWebSocketOpen(_), _();
+                this.OnWebSocketOpen(_), _ || _(), (_ = !0);
               }),
               this.m_wsWebSocketToServer.addEventListener(
                 "message",
@@ -15602,11 +15610,23 @@ var CLSTAMP = "steamdb";
                 "close",
                 this.OnWebSocketClose,
               ),
-              this.m_wsWebSocketToServer.addEventListener(
-                "error",
-                this.OnWebSocketError,
-              );
+              this.m_wsWebSocketToServer.addEventListener("error", (_) => {
+                this.OnWebSocketError(_), _ || _(), (_ = !0);
+              });
           });
+        }
+        CloseWebSocket() {
+          this.m_wsWebSocketToServer.removeEventListener(
+            "message",
+            this.OnWebSocketMessage,
+          ),
+            this.m_wsWebSocketToServer.removeEventListener(
+              "close",
+              this.OnWebSocketClose,
+            ),
+            this.m_wsWebSocketToServer.close(),
+            (this.m_wsWebSocketToServer = void 0),
+            (this.connected = !1);
         }
         static EnsureUniqueName(_) {
           if (_.includes("/")) return _;
@@ -15626,34 +15646,39 @@ var CLSTAMP = "steamdb";
             );
           });
         }
+        Destroy() {
+          this.CloseWebSocket();
+        }
         get name() {
           return this.m_sMailboxName;
         }
         OnWebSocketOpen(_) {
           (this.connected = !0),
+            this.Log.Info("Web Socket Opened"),
             this.WebSocketSend("mailbox_open " + this.m_sMailboxName),
             window.addEventListener("beforeunload", () => {
               this.WebSocketSend("websocket_close");
-            }),
-            this.m_fnConnectResolve &&
-              (this.m_fnConnectResolve(), (this.m_fnConnectResolve = void 0));
+            });
           for (let _ of this.m_oConnectWaits) _();
           this.m_oConnectWaits = [];
         }
         OnWebSocketClose(_) {
           return (0, _._)(this, void 0, void 0, function* () {
-            this.Log.Warning("Lost connection to host..."),
+            this.Log.Warning("Lost connection to host. code:", _.code),
               (this.connected = !1),
+              (this.m_wsWebSocketToServer = void 0),
               yield (0, _._)(1e3),
               this.OpenWebSocketToHost();
           });
         }
         OnWebSocketError(_) {
           return (0, _._)(this, void 0, void 0, function* () {
-            this.Log.Error("Mailbox error:", _),
-              (this.connected = !1),
-              yield (0, _._)(1e3),
-              this.OpenWebSocketToHost();
+            this.Log.ErrorOnceThenWarn(
+              "OnWebSocketError",
+              "Mailbox error:",
+              _.type,
+            ),
+              (this.connected = !1);
           });
         }
         WebSocketSend(_) {
@@ -15677,14 +15702,20 @@ var CLSTAMP = "steamdb";
                 (__webpack_require__.callback(_), (_ = !0));
             _
               ? (this.m_oWaits[_.type] = this.m_oWaits[_.type].filter(
-                  (_) => _.nMessageId == _.message_id,
+                  (_) => _.nMessageId != _.message_id,
                 ))
               : this.Log.Error(
                   `Received a ${_.type} message, but didn't have a matching message_id. Did the other end forget to mirror message_id?`,
                 ),
               (_ = !0);
           }
-          _ || this.Log.Error("Received unhandled message: ", _.type, _);
+          _ ||
+            this.Log.ErrorOnceThenWarn(
+              "OnWebsocket283",
+              "Received unhandled message: ",
+              _.type,
+              _,
+            );
         }
         RegisterHandler(_, _) {
           this.m_oHandlers[_] = _;
@@ -15723,12 +15754,10 @@ var CLSTAMP = "steamdb";
         }
         SendMessageAndWaitForResponse(_, _, _) {
           let _ = Object.assign({}, _);
-          return (
-            null == _.returnAddress && (_.returnAddress = this.m_sMailboxName),
-            (_.message_id = this.m_nNextMessageNumber++),
-            this.SendMessage(_, _),
-            this.WaitForMessage(_, _.message_id)
-          );
+          null == _.returnAddress && (_.returnAddress = this.m_sMailboxName),
+            (_.message_id = this.m_nNextMessageNumber++);
+          const _ = this.WaitForMessage(_, _.message_id);
+          return this.SendMessage(_, _), _;
         }
         SendResponse(_, _) {
           if (!_.returnAddress)
@@ -15737,6 +15766,12 @@ var CLSTAMP = "steamdb";
             message_id: _.message_id,
           });
           (_.message_id = _.message_id), this.SendMessage(_.returnAddress, _);
+        }
+        SendDebugIllegalMsg() {
+          this.WebSocketSend("debug_send_illegal_msg");
+        }
+        SendDebugCloseMsg() {
+          this.WebSocketSend("debug_close");
         }
       }
       (_.s_nNextMailboxNumber = 1),
@@ -30939,33 +30974,37 @@ var CLSTAMP = "steamdb";
             (this.m_dashboardThumbnailsChangedEventHandle = null),
             (this.m_ePreviousSceneApplicationState = _._.None),
             (this.m_vrGamepadUIPathPropertiesAutorunDisposer = null),
+            (this.m_mailbox = new _._()),
             (0, _.makeObservable)(this),
             (this.state = {}),
             _._.Init(!1),
             _._.getInstance(),
-            _._.m_mailbox.WaitForConnect().then(() => {
-              _._.m_mailbox.RegisterHandler(
+            this.m_mailbox.Init(_._).then(() => {
+              this.m_mailbox.RegisterHandler(
                 _.k_sDashboardOverlayDestroyedMessage,
                 this.onDashboardOverlayDestroyed,
               ),
-                _._.m_mailbox.RegisterHandler("show_dashboard_requested", (_) =>
-                  this.showDashboardOverlay(_(_), !0),
+                this.m_mailbox.RegisterHandler(
+                  "show_dashboard_requested",
+                  (_) => this.showDashboardOverlay(_(_), !0),
                 ),
-                _._.m_mailbox.RegisterHandler(
+                this.m_mailbox.RegisterHandler(
                   "switch_dashboard_overlay_requested",
                   (_) => this.showDashboardOverlay(_(_), !1),
                 ),
-                _._.m_mailbox.RegisterHandler(
+                this.m_mailbox.RegisterHandler(
                   "vrcmd_dock_overlay",
                   this.onVrCmdDockOverlayRequested,
                 ),
-                _._.m_mailbox.RegisterHandler("hide_dashboard_requested", (_) =>
-                  this.hideDashboard(
-                    null == _ ? void 0 : _.reason,
-                    null == _ ? void 0 : _.source_is_vrlink_remote,
-                  ),
+                this.m_mailbox.RegisterHandler(
+                  "hide_dashboard_requested",
+                  (_) =>
+                    this.hideDashboard(
+                      null == _ ? void 0 : _.reason,
+                      null == _ ? void 0 : _.source_is_vrlink_remote,
+                    ),
                 ),
-                _._.m_mailbox.RegisterHandler(
+                this.m_mailbox.RegisterHandler(
                   "toggle_dashboard_requested",
                   (_) =>
                     this.toggleDashboard(
