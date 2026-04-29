@@ -30,6 +30,7 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       function _(_) {
         if (_) return [_._, _._];
@@ -129,7 +130,7 @@ var CLSTAMP = "steamdb";
               width: 0,
               height: 0,
             }),
-            (this.m_nEmbeddedIndex = null),
+            (this.m_nEmbeddedIndex = void 0),
             (this.m_LastDOMContentSize = void 0),
             (this.m_DOMContentSizeChangedCallbacks = new _._()),
             (this.m_resizeObserver = null),
@@ -193,7 +194,8 @@ var CLSTAMP = "steamdb";
               "mousedown",
               this.onPanelMouseDown,
             ),
-            this.forceUpdate();
+            this.forceUpdate(),
+            _.s_setAllPanels.add(this);
         }
         onResizeObserved(_, _) {
           _._.Current().forceLayoutUpdate(),
@@ -206,9 +208,10 @@ var CLSTAMP = "steamdb";
             );
         }
         componentWillUnmount() {
-          this.m_resizeObserver &&
-            (this.m_resizeObserver.disconnect(),
-            (this.m_resizeObserver = null)),
+          _.s_setAllPanels.delete(this),
+            this.m_resizeObserver &&
+              (this.m_resizeObserver.disconnect(),
+              (this.m_resizeObserver = null)),
             this.stopOverDragBlocking(),
             this.getCurrentRootElement().removeEventListener(
               "mousedown",
@@ -279,7 +282,7 @@ var CLSTAMP = "steamdb";
             : _.Visible;
         }
         buildNode(_, _) {
-          var _, _, _, _, _, _, _, _, _, _;
+          var _, _, _, _, _, _, _, _, _, _, _, _;
           if (
             !(
               this.visibility == _.Visible ||
@@ -310,10 +313,12 @@ var CLSTAMP = "steamdb";
             : _
               ? (_.properties.key = _)
               : (_.properties.overlay_handle = (0, _._)()),
-            (_.properties.uv_min =
-              null !== (_ = _(this.m_UVsMin)) && void 0 !== _ ? _ : void 0),
-            (_.properties.uv_max =
-              null !== (_ = _(this.m_UVsMax)) && void 0 !== _ ? _ : void 0);
+            this.m_UVsMin &&
+              (_.properties.uv_min =
+                null !== (_ = _(this.m_UVsMin)) && void 0 !== _ ? _ : void 0),
+            this.m_UVsMax &&
+              (_.properties.uv_max =
+                null !== (_ = _(this.m_UVsMax)) && void 0 !== _ ? _ : void 0);
           const _ = 1 / _._.Current().m_fCurrentScale;
           let _ = this.props.frame_resize_scale_factor;
           return (
@@ -387,17 +392,26 @@ var CLSTAMP = "steamdb";
             (_.properties["main-panel-for-frame-page"] =
               this.props.is_frame_page_main_panel),
             (_.properties["steam-input-appid"] =
-              null === (_ = this.props.inputFocusParams) || void 0 === _
+              null === (_ = this.inputFocusParams) || void 0 === _
                 ? void 0
                 : _.unSteamInputAppID),
             (_.properties["vr-input-pid"] =
-              null === (_ = this.props.inputFocusParams) || void 0 === _
+              null === (_ = this.inputFocusParams) || void 0 === _
                 ? void 0
                 : _.unVRInputPID),
+            (_.properties["can-take-keyboard-focus"] =
+              null ===
+                (_ =
+                  null === (_ = this.inputFocusParams) || void 0 === _
+                    ? void 0
+                    : _.bCanTakeKeyboardFocus) ||
+              void 0 === _ ||
+              _),
             [_, _]
           );
         }
         scaleLocalUVToGlobal(_) {
+          if (!this.m_UVsMin || !this.m_UVsMax) return;
           const _ = this.m_UVsMax._ - this.m_UVsMin._,
             _ = this.m_UVsMax._ - this.m_UVsMin._;
           return {
@@ -413,17 +427,21 @@ var CLSTAMP = "steamdb";
             );
           this.m_Rect = this.getCurrentRootElement().getBoundingClientRect();
           let _ = this.getCurrentRootElement().ownerDocument.defaultView;
-          (this.m_UVsMin = {
-            _: this.m_Rect._ / _.innerWidth,
-            _: this.m_Rect._ / _.innerHeight,
-          }),
+          _ &&
+            ((this.m_UVsMin = {
+              _: this.m_Rect._ / _.innerWidth,
+              _: this.m_Rect._ / _.innerHeight,
+            }),
             (this.m_UVsMax = {
               _: (this.m_Rect._ + this.m_Rect.width) / _.innerWidth,
               _: (this.m_Rect._ + this.m_Rect.height) / _.innerHeight,
-            });
+            }));
         }
         PanelContextValue() {
           return this;
+        }
+        BCanUseStableSGIDs() {
+          return !0;
         }
         internalRender() {
           return _.createElement(
@@ -441,6 +459,28 @@ var CLSTAMP = "steamdb";
               }),
           );
         }
+        get inputFocusParams() {
+          return Object.assign(
+            {
+              bCanTakeKeyboardFocus: this.props.interactive,
+            },
+            this.props.inputFocusParams,
+          );
+        }
+        get isInputFocusable() {
+          var _, _, _;
+          return (
+            (null === (_ = this.inputFocusParams) || void 0 === _
+              ? void 0
+              : _.unSteamInputAppID) ||
+            (null === (_ = this.inputFocusParams) || void 0 === _
+              ? void 0
+              : _.unVRInputPID) ||
+            (null === (_ = this.inputFocusParams) || void 0 === _
+              ? void 0
+              : _.bCanTakeKeyboardFocus)
+          );
+        }
       }
       function _(_) {
         const { panel: _, panelID: _ } = _,
@@ -454,10 +494,12 @@ var CLSTAMP = "steamdb";
         );
       }
       (_.s_bPanelsAreDirty = !1),
+        (_.s_setAllPanels = new _.ObservableSet()),
         (0, _._)([_._], _.prototype, "onResizeObserved", null),
         (0, _._)([_._], _.prototype, "onPanelMouseDown", null),
         (0, _._)([_._], _.prototype, "onWindowMouseUp", null),
-        (0, _._)([_._], _.prototype, "buildNode", null);
+        (0, _._)([_._], _.prototype, "buildNode", null),
+        (window.s_setAllPanels = _.s_setAllPanels);
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       __webpack_require__._(module_exports, {

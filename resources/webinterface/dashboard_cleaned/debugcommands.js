@@ -498,9 +498,11 @@ var CLSTAMP = "steamdb";
           constructor() {
             (this.m_wsWebSocketToServer = void 0),
               (this.connected = !1),
+              (this.m_sMailboxName = ""),
               (this.m_oHandlers = {}),
               (this.m_oWaits = {}),
               (this.m_oConnectWaits = []),
+              (this.m_sWebSecret = ""),
               (this.m_nNextMessageNumber = 1),
               (this.Log = new _._("Mailbox", () => this.m_sMailboxName)),
               (0, _.makeObservable)(this);
@@ -534,16 +536,17 @@ var CLSTAMP = "steamdb";
             });
           }
           CloseWebSocket() {
-            this.m_wsWebSocketToServer.removeEventListener(
-              "message",
-              this.OnWebSocketMessage,
-            ),
+            this.m_wsWebSocketToServer &&
+              (this.m_wsWebSocketToServer.removeEventListener(
+                "message",
+                this.OnWebSocketMessage,
+              ),
               this.m_wsWebSocketToServer.removeEventListener(
                 "close",
                 this.OnWebSocketClose,
               ),
               this.m_wsWebSocketToServer.close(),
-              (this.m_wsWebSocketToServer = void 0),
+              (this.m_wsWebSocketToServer = void 0)),
               (this.connected = !1);
           }
           static EnsureUniqueName(_) {
@@ -558,7 +561,7 @@ var CLSTAMP = "steamdb";
             return (0, _._)(this, void 0, void 0, function* () {
               return (
                 (this.m_sMailboxName = _.EnsureUniqueName(_)),
-                (this.m_sWebSecret = _),
+                (this.m_sWebSecret = null != _ ? _ : ""),
                 (this.connected = !1),
                 this.OpenWebSocketToHost()
               );
@@ -700,6 +703,12 @@ var CLSTAMP = "steamdb";
           (0, _._)([_._], _.prototype, "OnWebSocketError", null),
           (0, _._)([_._], _.prototype, "WebSocketSend", null),
           (0, _._)([_._], _.prototype, "OnWebSocketMessage", null);
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        __webpack_require__._(_, {
+          _: () => _,
+        });
+        const _ = "/settings/steamvr/showAdvancedSettings";
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         var _ = __webpack_require__("chunkid"),

@@ -230,7 +230,6 @@ free
 getenv
 headset
 invalid string position
-mT ,M
 malloc
 map/set<T> too long
 memcpy
@@ -291,6 +290,7 @@ strstr
 tdh.dll
 terminate
 vector<T> too long
+xH\rD[F
 {ERR-001}
 {ERR-079}
 {oculus_legacy}/icons/%s_%s_alert_searching.gif

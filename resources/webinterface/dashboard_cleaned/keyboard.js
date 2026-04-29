@@ -19,6 +19,7 @@ var CLSTAMP = "steamdb";
           _: () => _._,
           _: () => _._,
           _: () => _._,
+          _: () => _._,
         });
         var _ = __webpack_require__("chunkid"),
           _ =
@@ -145,6 +146,7 @@ var CLSTAMP = "steamdb";
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
         function _(_) {
           if (_) return [_._, _._];
@@ -244,7 +246,7 @@ var CLSTAMP = "steamdb";
                 width: 0,
                 height: 0,
               }),
-              (this.m_nEmbeddedIndex = null),
+              (this.m_nEmbeddedIndex = void 0),
               (this.m_LastDOMContentSize = void 0),
               (this.m_DOMContentSizeChangedCallbacks = new _._()),
               (this.m_resizeObserver = null),
@@ -313,7 +315,8 @@ var CLSTAMP = "steamdb";
                 "mousedown",
                 this.onPanelMouseDown,
               ),
-              this.forceUpdate();
+              this.forceUpdate(),
+              _.s_setAllPanels.add(this);
           }
           onResizeObserved(_, _) {
             _._.Current().forceLayoutUpdate(),
@@ -326,9 +329,10 @@ var CLSTAMP = "steamdb";
               );
           }
           componentWillUnmount() {
-            this.m_resizeObserver &&
-              (this.m_resizeObserver.disconnect(),
-              (this.m_resizeObserver = null)),
+            _.s_setAllPanels.delete(this),
+              this.m_resizeObserver &&
+                (this.m_resizeObserver.disconnect(),
+                (this.m_resizeObserver = null)),
               this.stopOverDragBlocking(),
               this.getCurrentRootElement().removeEventListener(
                 "mousedown",
@@ -399,7 +403,7 @@ var CLSTAMP = "steamdb";
               : _.Visible;
           }
           buildNode(_, _) {
-            var _, _, _, _, _, _, _, _, _, _;
+            var _, _, _, _, _, _, _, _, _, _, _, _;
             if (
               !(
                 this.visibility == _.Visible ||
@@ -430,10 +434,12 @@ var CLSTAMP = "steamdb";
               : _
                 ? (_.properties.key = _)
                 : (_.properties.overlay_handle = (0, _._)()),
-              (_.properties.uv_min =
-                null !== (_ = _(this.m_UVsMin)) && void 0 !== _ ? _ : void 0),
-              (_.properties.uv_max =
-                null !== (_ = _(this.m_UVsMax)) && void 0 !== _ ? _ : void 0);
+              this.m_UVsMin &&
+                (_.properties.uv_min =
+                  null !== (_ = _(this.m_UVsMin)) && void 0 !== _ ? _ : void 0),
+              this.m_UVsMax &&
+                (_.properties.uv_max =
+                  null !== (_ = _(this.m_UVsMax)) && void 0 !== _ ? _ : void 0);
             const _ = 1 / _._.Current().m_fCurrentScale;
             let _ = this.props.frame_resize_scale_factor;
             return (
@@ -509,17 +515,26 @@ var CLSTAMP = "steamdb";
               (_.properties["main-panel-for-frame-page"] =
                 this.props.is_frame_page_main_panel),
               (_.properties["steam-input-appid"] =
-                null === (_ = this.props.inputFocusParams) || void 0 === _
+                null === (_ = this.inputFocusParams) || void 0 === _
                   ? void 0
                   : _.unSteamInputAppID),
               (_.properties["vr-input-pid"] =
-                null === (_ = this.props.inputFocusParams) || void 0 === _
+                null === (_ = this.inputFocusParams) || void 0 === _
                   ? void 0
                   : _.unVRInputPID),
+              (_.properties["can-take-keyboard-focus"] =
+                null ===
+                  (_ =
+                    null === (_ = this.inputFocusParams) || void 0 === _
+                      ? void 0
+                      : _.bCanTakeKeyboardFocus) ||
+                void 0 === _ ||
+                _),
               [_, _]
             );
           }
           scaleLocalUVToGlobal(_) {
+            if (!this.m_UVsMin || !this.m_UVsMax) return;
             const _ = this.m_UVsMax._ - this.m_UVsMin._,
               _ = this.m_UVsMax._ - this.m_UVsMin._;
             return {
@@ -535,17 +550,21 @@ var CLSTAMP = "steamdb";
               );
             this.m_Rect = this.getCurrentRootElement().getBoundingClientRect();
             let _ = this.getCurrentRootElement().ownerDocument.defaultView;
-            (this.m_UVsMin = {
-              _: this.m_Rect._ / _.innerWidth,
-              _: this.m_Rect._ / _.innerHeight,
-            }),
+            _ &&
+              ((this.m_UVsMin = {
+                _: this.m_Rect._ / _.innerWidth,
+                _: this.m_Rect._ / _.innerHeight,
+              }),
               (this.m_UVsMax = {
                 _: (this.m_Rect._ + this.m_Rect.width) / _.innerWidth,
                 _: (this.m_Rect._ + this.m_Rect.height) / _.innerHeight,
-              });
+              }));
           }
           PanelContextValue() {
             return this;
+          }
+          BCanUseStableSGIDs() {
+            return !0;
           }
           internalRender() {
             return _.createElement(
@@ -563,6 +582,28 @@ var CLSTAMP = "steamdb";
                 }),
             );
           }
+          get inputFocusParams() {
+            return Object.assign(
+              {
+                bCanTakeKeyboardFocus: this.props.interactive,
+              },
+              this.props.inputFocusParams,
+            );
+          }
+          get isInputFocusable() {
+            var _, _, _;
+            return (
+              (null === (_ = this.inputFocusParams) || void 0 === _
+                ? void 0
+                : _.unSteamInputAppID) ||
+              (null === (_ = this.inputFocusParams) || void 0 === _
+                ? void 0
+                : _.unVRInputPID) ||
+              (null === (_ = this.inputFocusParams) || void 0 === _
+                ? void 0
+                : _.bCanTakeKeyboardFocus)
+            );
+          }
         }
         function _(_) {
           const { panel: _, panelID: _ } = _,
@@ -576,101 +617,12 @@ var CLSTAMP = "steamdb";
           );
         }
         (_.s_bPanelsAreDirty = !1),
+          (_.s_setAllPanels = new _.ObservableSet()),
           (0, _._)([_._], _.prototype, "onResizeObserved", null),
           (0, _._)([_._], _.prototype, "onPanelMouseDown", null),
           (0, _._)([_._], _.prototype, "onWindowMouseUp", null),
-          (0, _._)([_._], _.prototype, "buildNode", null);
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        class _ extends _._ {
-          constructor(_) {
-            super(_),
-              (this.m_latchedPosition = null),
-              super.setBuildNodeOverride(this.buildNode);
-          }
-          getNodeType() {
-            return "panel-anchor";
-          }
-          relatch() {
-            this.m_latchedPosition = null;
-          }
-          buildNode(_, _) {
-            if (!_.currentPanel && !_.bInsideReparentedPanel)
-              return [
-                Object.assign(Object.assign({}, _), {
-                  bShouldAbort: !0,
-                }),
-                null,
-              ];
-            let _ = null;
-            "object" == typeof this.props.location
-              ? (_ = (0, _._)(this.props.location, {
-                  _: 0,
-                  _: 0,
-                }))
-              : "number" == typeof this.props.location &&
-                (_ = (0, _._)(this.props.location));
-            let _ = this.createSgNode(_);
-            if (this.props.latched && null !== this.m_latchedPosition)
-              (_.properties["anchor-u"] = this.m_latchedPosition._),
-                (_.properties["anchor-v"] = this.m_latchedPosition._);
-            else if (_) {
-              const _ = {
-                  _: 0.5 * _._ + 0.5,
-                  _: -0.5 * _._ + 0.5,
-                },
-                _ =
-                  !_.currentPanel || _.currentPanel.props.overlay_key
-                    ? _
-                    : _.currentPanel.scaleLocalUVToGlobal(_);
-              (_.properties["anchor-u"] = _._),
-                (_.properties["anchor-v"] = _._);
-            } else {
-              if (!_.currentPanel)
-                return [
-                  Object.assign(Object.assign({}, _), {
-                    bShouldAbort: !0,
-                  }),
-                  null,
-                ];
-              const _ = _.ownerDocument,
-                _ = _.getBoundingClientRect(),
-                _ = _.left + _.width / 2,
-                _ = _.top + _.height / 2,
-                _ = _.currentPanel.m_Rect;
-              if (_ < _._ || _ > _._ + _.width || _ < _._ || _ > _._ + _.height)
-                return [
-                  Object.assign(Object.assign({}, _), {
-                    bShouldAbort: !0,
-                  }),
-                  null,
-                ];
-              const _ = _.defaultView.innerWidth,
-                _ = _.defaultView.innerHeight;
-              if (!(_ > 0 && _ > 0))
-                return [
-                  Object.assign(Object.assign({}, _), {
-                    bShouldAbort: !0,
-                  }),
-                  null,
-                ];
-              (_.properties["anchor-u"] = _ / _),
-                (_.properties["anchor-v"] = _ / _);
-            }
-            return (
-              (this.m_latchedPosition = {
-                _: _.properties["anchor-u"],
-                _: _.properties["anchor-v"],
-              }),
-              [_, _]
-            );
-          }
-        }
-        (0, _._)([_._], _.prototype, "buildNode", null);
+          (0, _._)([_._], _.prototype, "buildNode", null),
+          (window.s_setAllPanels = _.s_setAllPanels);
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         __webpack_require__._(_, {
@@ -765,257 +717,6 @@ var CLSTAMP = "steamdb";
             );
           }
         }
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        function _(_, _) {
-          return {
-            _: _._ * _,
-            _: _._ * _,
-            _: _._ * _,
-          };
-        }
-        function _(_) {
-          if (void 0 === _) return;
-          let _ = 0.5 * _._,
-            _ = 0.5 * _._,
-            _ = 0.5 * _._,
-            _ = Math.cos(_),
-            _ = Math.cos(_),
-            _ = Math.cos(_),
-            _ = Math.sin(_),
-            _ = Math.sin(_),
-            _ = Math.sin(_);
-          return {
-            _: _ * _ * _ + _ * _ * _,
-            _: _ * _ * _ + _ * _ * _,
-            _: _ * _ * _ - _ * _ * _,
-            _: _ * _ * _ - _ * _ * _,
-          };
-        }
-        __webpack_require__._(_, {
-          _: () => _,
-          _: () => _,
-        });
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-          _: () => _,
-          _: () => _,
-        });
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        const _ = "vrwebui_dashboardstore",
-          _ = "binding_callouts/main";
-        class _ {
-          constructor() {
-            (this.m_wsWebSocketToServer = void 0),
-              (this.connected = !1),
-              (this.m_oHandlers = {}),
-              (this.m_oWaits = {}),
-              (this.m_oConnectWaits = []),
-              (this.m_nNextMessageNumber = 1),
-              (this.Log = new _._("Mailbox", () => this.m_sMailboxName)),
-              (0, _.makeObservable)(this);
-          }
-          OpenWebSocketToHost() {
-            return new Promise((_, _) => {
-              this.Log.Info("Opening Web Socket...");
-              let _ = "ws://127.0.0.1:27062";
-              this.m_sWebSecret && (_ += "?secret=" + this.m_sWebSecret),
-                this.m_wsWebSocketToServer &&
-                  (this.Log.Error(
-                    "OpenWebSocketToHost called on existing connection",
-                  ),
-                  this.CloseWebSocket());
-              let _ = !1;
-              (this.m_wsWebSocketToServer = new WebSocket(_)),
-                this.m_wsWebSocketToServer.addEventListener("open", (_) => {
-                  this.OnWebSocketOpen(_), _ || _(), (_ = !0);
-                }),
-                this.m_wsWebSocketToServer.addEventListener(
-                  "message",
-                  this.OnWebSocketMessage,
-                ),
-                this.m_wsWebSocketToServer.addEventListener(
-                  "close",
-                  this.OnWebSocketClose,
-                ),
-                this.m_wsWebSocketToServer.addEventListener("error", (_) => {
-                  this.OnWebSocketError(_), _ || _(), (_ = !0);
-                });
-            });
-          }
-          CloseWebSocket() {
-            this.m_wsWebSocketToServer.removeEventListener(
-              "message",
-              this.OnWebSocketMessage,
-            ),
-              this.m_wsWebSocketToServer.removeEventListener(
-                "close",
-                this.OnWebSocketClose,
-              ),
-              this.m_wsWebSocketToServer.close(),
-              (this.m_wsWebSocketToServer = void 0),
-              (this.connected = !1);
-          }
-          static EnsureUniqueName(_) {
-            if (_.includes("/")) return _;
-            let _;
-            return (
-              (_ = VRHTML ? VRHTML.GetWebHelperId() : Date.now().toString()),
-              _ + "/" + _ + "_" + this.s_nNextMailboxNumber++
-            );
-          }
-          Init(_, _) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              return (
-                (this.m_sMailboxName = _.EnsureUniqueName(_)),
-                (this.m_sWebSecret = _),
-                (this.connected = !1),
-                this.OpenWebSocketToHost()
-              );
-            });
-          }
-          Destroy() {
-            this.CloseWebSocket();
-          }
-          get name() {
-            return this.m_sMailboxName;
-          }
-          OnWebSocketOpen(_) {
-            (this.connected = !0),
-              this.Log.Info("Web Socket Opened"),
-              this.WebSocketSend("mailbox_open " + this.m_sMailboxName),
-              window.addEventListener("beforeunload", () => {
-                this.WebSocketSend("websocket_close");
-              });
-            for (let _ of this.m_oConnectWaits) _();
-            this.m_oConnectWaits = [];
-          }
-          OnWebSocketClose(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              this.Log.Warning("Lost connection to host. code:", _.code),
-                (this.connected = !1),
-                (this.m_wsWebSocketToServer = void 0),
-                yield (0, _._)(1e3),
-                this.OpenWebSocketToHost();
-            });
-          }
-          OnWebSocketError(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              this.Log.ErrorOnceThenWarn(
-                "OnWebSocketError",
-                "Mailbox error:",
-                _.type,
-              ),
-                (this.connected = !1);
-            });
-          }
-          WebSocketSend(_) {
-            return (
-              null != this.m_wsWebSocketToServer &&
-              1 == this.m_wsWebSocketToServer.readyState &&
-              (this.m_wsWebSocketToServer.send(_), !0)
-            );
-          }
-          OnWebSocketMessage(_) {
-            let _ = JSON.parse(_.data),
-              _ = !1;
-            if (
-              (this.m_oHandlers.hasOwnProperty(_.type) &&
-                (this.m_oHandlers[_.type](_), (_ = !0)),
-              this.m_oWaits.hasOwnProperty(_.type))
-            ) {
-              let _ = !1;
-              for (let _ of this.m_oWaits[_.type])
-                _.nMessageId == _.message_id &&
-                  (__webpack_require__.callback(_), (_ = !0));
-              _
-                ? (this.m_oWaits[_.type] = this.m_oWaits[_.type].filter(
-                    (_) => _.nMessageId != _.message_id,
-                  ))
-                : this.Log.Error(
-                    `Received a ${_.type} message, but didn't have a matching message_id. Did the other end forget to mirror message_id?`,
-                  ),
-                (_ = !0);
-            }
-            _ ||
-              this.Log.ErrorOnceThenWarn(
-                "OnWebsocket283",
-                "Received unhandled message: ",
-                _.type,
-                _,
-              );
-          }
-          RegisterHandler(_, _) {
-            this.m_oHandlers[_] = _;
-          }
-          SendMessage(_, _) {
-            return this.WebSocketSend(
-              "mailbox_send " + _ + " " + JSON.stringify(_),
-            );
-          }
-          WaitForMessage(_, _) {
-            return new Promise((_, _) => {
-              this.m_oWaits[_] || (this.m_oWaits[_] = []),
-                this.m_oWaits[_].push({
-                  callback: _,
-                  nMessageId: _,
-                });
-            });
-          }
-          WaitForConnect() {
-            return new Promise((_, _) => {
-              this.connected ? _() : this.m_oConnectWaits.push(_);
-            });
-          }
-          WaitForMailbox(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              let _ = {
-                type: "request_mailbox_registration_notification",
-                mailbox_name: _,
-              };
-              return this.SendMessageAndWaitForResponse(
-                "web_server_mailbox",
-                _,
-                "mailbox_registered",
-              );
-            });
-          }
-          SendMessageAndWaitForResponse(_, _, _) {
-            let _ = Object.assign({}, _);
-            null == _.returnAddress && (_.returnAddress = this.m_sMailboxName),
-              (_.message_id = this.m_nNextMessageNumber++);
-            const _ = this.WaitForMessage(_, _.message_id);
-            return this.SendMessage(_, _), _;
-          }
-          SendResponse(_, _) {
-            if (!_.returnAddress)
-              throw new Error("Missing return address on message");
-            let _ = Object.assign(Object.assign({}, _), {
-              message_id: _.message_id,
-            });
-            (_.message_id = _.message_id), this.SendMessage(_.returnAddress, _);
-          }
-          SendDebugIllegalMsg() {
-            this.WebSocketSend("debug_send_illegal_msg");
-          }
-          SendDebugCloseMsg() {
-            this.WebSocketSend("debug_close");
-          }
-        }
-        (_.s_nNextMailboxNumber = 1),
-          (0, _._)([_.observable], _.prototype, "connected", void 0),
-          (0, _._)([_._], _.prototype, "OpenWebSocketToHost", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketOpen", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketClose", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketError", null),
-          (0, _._)([_._], _.prototype, "WebSocketSend", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketMessage", null);
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         var _, _, _, _;
@@ -1251,7 +952,7 @@ var CLSTAMP = "steamdb";
           })(_ || (_ = {}));
       },
       chunkid: (module, module_exports, __webpack_require__) => {
-        var _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
         __webpack_require__._(_, {
           _: () => _,
           _: () => _,
@@ -1332,6 +1033,8 @@ var CLSTAMP = "steamdb";
               (_[(_.AllowCameraToggle_Bool = 1055)] = "AllowCameraToggle_Bool"),
               (_[(_.AllowLightSourceFrequency_Bool = 1056)] =
                 "AllowLightSourceFrequency_Bool"),
+              (_[(_.IsDedicatedVRHeadset_Bool = 1058)] =
+                "IsDedicatedVRHeadset_Bool"),
               (_[(_.HasEyeTracker_Bool = 1060)] = "HasEyeTracker_Bool"),
               (_[(_.ReportsTimeSinceVSync_Bool = 2e3)] =
                 "ReportsTimeSinceVSync_Bool"),
@@ -1523,6 +1226,8 @@ var CLSTAMP = "steamdb";
                 "DriverRequestedMuraFeather_OuterBottom_Int32"),
               (_[(_.Audio_SupportsDualSpeakerAndJackOutput_Bool = 2303)] =
                 "Audio_SupportsDualSpeakerAndJackOutput_Bool"),
+              (_[(_.Hmd_ForceRoomViewOutsideChaperone_Bool = 2500)] =
+                "Hmd_ForceRoomViewOutsideChaperone_Bool"),
               (_[(_.AttachedDeviceId_String = 3e3)] =
                 "AttachedDeviceId_String"),
               (_[(_.SupportedButtons_Uint64 = 3001)] =
@@ -1653,6 +1358,11 @@ var CLSTAMP = "steamdb";
               (_[(_.Idle_Timeout = 4)] = "Idle_Timeout");
           })(_ || (_ = {})),
           (function (_) {
+            (_[(_.VRMouseButton_Left = 1)] = "VRMouseButton_Left"),
+              (_[(_.VRMouseButton_Right = 2)] = "VRMouseButton_Right"),
+              (_[(_.VRMouseButton_Middle = 4)] = "VRMouseButton_Middle");
+          })(_ || (_ = {})),
+          (function (_) {
             (_[(_.Notification_Shown = 600)] = "Notification_Shown"),
               (_[(_.Notification_Hidden = 601)] = "Notification_Hidden"),
               (_[(_.Notification_BeginInteraction = 602)] =
@@ -1708,181 +1418,16 @@ var CLSTAMP = "steamdb";
               (_[(_.VRInput = 3)] = "VRInput");
           })(_ || (_ = {})),
           (function (_) {
+            (_[(_.Invalid = 0)] = "Invalid"),
+              (_[(_.SceneApp = 1)] = "SceneApp"),
+              (_[(_.Panel = 2)] = "Panel");
+          })(_ || (_ = {})),
+          (function (_) {
             (_[(_.None = 0)] = "None"),
               (_[(_.ThirdPartyClient = 1)] = "ThirdPartyClient"),
               (_[(_.SteamVRClientUnified = 2)] = "SteamVRClientUnified"),
               (_[(_.SteamVRClientLegacyDual = 3)] = "SteamVRClientLegacyDual");
           })(_ || (_ = {}));
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-        });
-        const _ = "/settings/steamvr/showAdvancedSettings";
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-          _: () => _,
-        });
-        __webpack_require__("chunkid");
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__._(_);
-        class _ {
-          constructor() {
-            (this.m_mapTokens = new Map()),
-              (this.m_mapFallbackTokens = new Map());
-          }
-          InitFromObjects(_, _, _, _) {
-            this.m_mapTokens.clear();
-            let _ = [_, _, _, _];
-            for (let _ in _) {
-              let _ = _[_];
-              for (let _ in _) {
-                let _ = _[_];
-                for (let _ in _) {
-                  let _ = _.toLowerCase();
-                  this.m_mapTokens.has(_) || this.m_mapTokens.set(_, _[_]);
-                }
-              }
-            }
-          }
-          LocalizeString(_) {
-            if (!_ || 0 == _.length || "#" != _.charAt(0)) return "";
-            let _ = this.m_mapTokens.get(_.substring(1).toLowerCase());
-            return void 0 === _ ? "" : _;
-          }
-          LocalizeStringFromFallback(_) {
-            if (!_ || 0 == _.length || "#" != _.charAt(0)) return "";
-            let _ = this.m_mapFallbackTokens.get(_.substring(1).toLowerCase());
-            return void 0 === _ ? "" : _;
-          }
-          static GetLocale() {
-            const _ = navigator.languages[0];
-            try {
-              const _ =
-                null === VRHTML || void 0 === VRHTML
-                  ? void 0
-                  : VRHTML.GetSystemLocale();
-              if (!_) return _;
-              _.s_Date.toLocaleTimeString(_);
-              return _;
-            } catch (_) {
-              return _;
-            }
-          }
-        }
-        function _(_, ..._) {
-          let _ = _.LocalizeString(_);
-          return _
-            ? (_.length > 0 &&
-                (_ = __webpack_require__.replace(/%(\d+)\$s/g, function (_, _) {
-                  return void 0 !== _[_ - 1] ? String(_[_ - 1]) : _;
-                })),
-              _)
-            : _;
-        }
-        _.s_Date = new Date();
-        const _ = new _();
-        function _(_, _) {
-          _ ||
-            (_ = (function () {
-              let _ = new Map([
-                ["en", "english"],
-                ["de", "german"],
-                ["fr", "french"],
-                ["it", "italian"],
-                ["ko", "korean"],
-                ["es-419", "latam"],
-                ["es", "spanish"],
-                ["zh-CN", "schinese"],
-                ["zh-TW", "tchinese"],
-                ["ru", "russian"],
-                ["th", "thai"],
-                ["ja", "japanese"],
-                ["pt", "portuguese"],
-                ["pl", "polish"],
-                ["da", "danish"],
-                ["nl", "dutch"],
-                ["fi", "finnish"],
-                ["no", "norwegian"],
-                ["sv", "swedish"],
-                ["hu", "hungarian"],
-                ["cs", "czech"],
-                ["ro", "romanian"],
-                ["tr", "turkish"],
-                ["pt-BR", "brazilian"],
-                ["bg", "bulgarian"],
-                ["el", "greek"],
-                ["uk", "ukranian"],
-                ["vi", "vietnamese"],
-              ]);
-              for (let _ of navigator.languages) {
-                let _ = _.split("-");
-                if (_.has(_)) return _.get(_);
-                if (_.has(_[0])) return _.get(_[0]);
-              }
-              return "english";
-            })());
-          let _ = [],
-            _ = (_, _, _) => {
-              let _,
-                _ = Date.now().toString();
-              return (
-                (_ =
-                  "drivers" == _
-                    ? `/input/localization.json?t=${_}`
-                    : "webhelper" == _
-                      ? `/dashboard/localization/${_}_${_}.json?t=${_}`
-                      : `localization/${_}_${_}.json?t=${_}`),
-                _()
-                  .get(_)
-                  .then((_) => {
-                    __webpack_require__(_.data);
-                  })
-                  .catch(() => {})
-              );
-            },
-            _ = [],
-            _ = [],
-            _ = [],
-            _ = [];
-          for (let _ of _)
-            __webpack_require__.push(
-              _(_, _, (_) => {
-                _.push(_);
-              }),
-            ),
-              "english" != _ &&
-                __webpack_require__.push(
-                  _(_, "english", (_) => {
-                    _.push(_);
-                  }),
-                );
-          for (let _ of ["webhelper"])
-            __webpack_require__.push(
-              _(_, _, (_) => {
-                _.push(_);
-              }),
-            ),
-              "english" != _ &&
-                __webpack_require__.push(
-                  _(_, "english", (_) => {
-                    _.push(_);
-                  }),
-                );
-          return (
-            __webpack_require__.push(
-              _("drivers", "", (_) => {
-                _.push(_);
-              }),
-            ),
-            Promise.all(_).then(() => {
-              _.InitFromObjects(_, _, _, _);
-            })
-          );
-        }
-        window.LocalizationManager = _;
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         var _ = __webpack_require__("chunkid"),
@@ -1895,80 +1440,139 @@ var CLSTAMP = "steamdb";
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
         class _ {
           constructor() {
-            (this.onScroll = null),
-              (this.onScrollStop = null),
-              (this.m_elem = null),
-              (this.m_rScrollableParents = []),
-              (this.m_bScrolling = !1),
-              (this.m_scrollStopTimeoutHandle = void 0),
+            (this.m_Applications = _.observable.map()),
+              (this.m_sceneApplicationStateChangedEventHandle = null),
               (0, _.makeObservable)(this);
           }
-          ref(_) {
-            this.m_elem && this.cleanup(),
-              (this.m_elem = _),
-              this.updateScrollableParents();
+          Init() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              (this.m_sceneApplicationStateChangedEventHandle =
+                null === VRHTML || void 0 === VRHTML
+                  ? void 0
+                  : VRHTML.RegisterForSceneApplicationStateChangedEvents(
+                      this.onSceneApplicationStateChanged,
+                    )),
+                yield this.UpdateApplications();
+            });
           }
-          get isScrolling() {
-            return this.m_bScrolling;
+          onSceneApplicationStateChanged() {
+            this.UpdateApplications();
           }
-          updateScrollableParents() {
-            for (let _ of this.m_rScrollableParents)
-              _.removeEventListener("scroll", this.onParentScroll);
-            this.m_rScrollableParents = (function (_) {
-              let _ = [];
-              if (!_) return _;
-              let _ = _.parentElement;
-              for (; _; ) {
-                const _ = _.scrollWidth > _.clientWidth,
-                  _ = _.scrollHeight > _.clientHeight;
-                (_ || _) && _.push(_), (_ = _.parentElement);
-              }
-              return _;
-            })(this.m_elem);
-            for (let _ of this.m_rScrollableParents)
-              _.addEventListener("scroll", this.onParentScroll);
-          }
-          cleanup() {
-            for (let _ of this.m_rScrollableParents)
-              _.removeEventListener("scroll", this.onParentScroll);
-            (this.m_rScrollableParents = []),
-              (this.m_elem = null),
-              this.clearScrollStopTimeout();
-          }
-          onParentScroll() {
+          SetApplicationMap(_) {
             var _;
-            this.clearScrollStopTimeout(),
-              (this.m_bScrolling = !0),
-              (this.m_scrollStopTimeoutHandle = window.setTimeout(
-                this.onScrollStopTimeout,
-                50,
-              )),
-              null === (_ = this.onScroll) || void 0 === _ || _.call(this);
-          }
-          clearScrollStopTimeout() {
-            window.clearTimeout(this.m_scrollStopTimeoutHandle),
-              (this.m_scrollStopTimeoutHandle = void 0);
-          }
-          onScrollStopTimeout() {
-            var _;
-            this.m_bScrolling &&
-              (null === (_ = this.onScrollStop) ||
+            this.m_Applications.clear(),
+              null === (_ = _.apps) ||
                 void 0 === _ ||
-                _.call(this)),
-              (this.m_bScrolling = !1);
+                _.forEach((_) => {
+                  this.m_Applications.set(_.key, _);
+                });
+          }
+          UpdateApplications() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              yield this.QueryApplications().then((_) => {
+                this.SetApplicationMap(_);
+              });
+            });
+          }
+          QueryApplications() {
+            return new Promise(function (_, _) {
+              _()
+                .get("/app/list.json")
+                .then((_) => {
+                  _(_.data);
+                })
+                .catch((_) => {
+                  _(_);
+                });
+            });
+          }
+          GetAppImageURL(_) {
+            var _;
+            return (
+              "/app/image?app_key=" +
+              _ +
+              "&version=" +
+              (null !==
+                (_ =
+                  null === VRHTML || void 0 === VRHTML
+                    ? void 0
+                    : VRHTML.SteamVRVersion()) && void 0 !== _
+                ? _
+                : "0")
+            );
+          }
+          GetApp(_) {
+            return this.m_Applications.has(_)
+              ? this.m_Applications.get(_)
+              : void 0;
+          }
+          GetRecentApps() {
+            let _ = [];
+            return (
+              this.m_Applications.forEach((_) => {
+                _.is_internal || _.push(_);
+              }),
+              _.sort((_, _) =>
+                _.last_launch < _.last_launch
+                  ? 1
+                  : _.last_launch > _.last_launch
+                    ? -1
+                    : _.name < _.name
+                      ? 1
+                      : _.name > _.name
+                        ? -1
+                        : 0,
+              ),
+              _
+            );
+          }
+          GetCurrentSceneProcess() {
+            let _;
+            return (
+              this.m_Applications.forEach((_) => {
+                _.current_scene_process && !_.is_internal && (_ = _);
+              }),
+              _
+            );
+          }
+          GetRunningApps() {
+            let _ = [];
+            for (let _ of this.m_Applications.values()) _.pid && _.push(_);
+            return _;
+          }
+          FindAppByPid(_) {
+            for (let _ of this.m_Applications.values())
+              if (_.pid == _) return _;
+          }
+          IsAppAllowedPrivateInputs(_) {
+            return "openvr.component.vrcompositor" == _;
+          }
+          ShouldShowBindingFailureForApp(_) {
+            if (null == _ || "" == _) return !1;
+            if ("openvr.component.vrcompositor" == _) return !0;
+            if (null == this.GetApp(_)) return !1;
+            let _ = this.GetCurrentSceneProcess();
+            return null != _ && _.key == _;
           }
         }
-        (0, _._)([_.observable], _.prototype, "m_bScrolling", void 0),
-          (0, _._)([_._], _.prototype, "ref", null),
-          (0, _._)([_.computed], _.prototype, "isScrolling", null),
-          (0, _._)([_._], _.prototype, "onParentScroll", null),
-          (0, _._)([_._], _.prototype, "onScrollStopTimeout", null);
+        (0, _._)([_.observable], _.prototype, "m_Applications", void 0),
+          (0, _._)([_._], _.prototype, "onSceneApplicationStateChanged", null),
+          (0, _._)([_.action], _.prototype, "SetApplicationMap", null),
+          (0, _._)([_._], _.prototype, "QueryApplications", null),
+          (0, _._)([_._], _.prototype, "GetAppImageURL", null),
+          (0, _._)([_._], _.prototype, "GetApp", null),
+          (0, _._)([_._], _.prototype, "GetRecentApps", null),
+          (0, _._)([_._], _.prototype, "GetCurrentSceneProcess", null),
+          (0, _._)([_._], _.prototype, "IsAppAllowedPrivateInputs", null),
+          (0, _._)([_._], _.prototype, "ShouldShowBindingFailureForApp", null);
+        const _ = new _();
+        window.applications = _;
+        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
         class _ extends _.Component {
           constructor() {
             super(...arguments), (this.m_ref = _.createRef());
@@ -1988,7 +1592,7 @@ var CLSTAMP = "steamdb";
                 _._.Instance.playSound(
                   null !== (_ = this.props.pressSoundEffect) && void 0 !== _
                     ? _
-                    : null,
+                    : void 0,
                 );
           }
           onMouseUp(_) {
@@ -2031,13 +1635,10 @@ var CLSTAMP = "steamdb";
               delete _.enabled,
               delete _.pressSoundEffect,
               delete _.releaseSoundEffect,
-              (_.className = (function (..._) {
-                return _.filter(
-                  (_) => null != _ && ("string" == typeof _ || _[1]),
-                )
-                  .map((_) => ("string" == typeof _ ? _ : _[0]))
-                  .join(" ");
-              })(_.className, ["Disabled", this.disabled])),
+              (_.className = (0, _._)(_.className, [
+                "Disabled",
+                this.disabled,
+              ])),
               _.cloneElement(_.createElement("div", _, this.props.children), {
                 onClick: this.onClick,
                 onMouseDown: this.onMouseDown,
@@ -2798,7 +2399,7 @@ var CLSTAMP = "steamdb";
             VRHTML.VRDashboardManager.SetKeyboardOverlayToThis(),
           (0, _._)(["systemui"], _)
             .then(() => _._.Init())
-            .then(() => _._.Init())
+            .then(() => _.Init())
             .then(() => {
               (0, _._)().Init("SteamVR", CLSTAMP, (0, _._)()),
                 _._(document.getElementById("root")).render(
@@ -2871,7 +2472,6 @@ var CLSTAMP = "steamdb";
       var _ = {
         884: 0,
         198: 0,
-        384: 0,
         527: 0,
         500: 0,
       };
@@ -2895,8 +2495,8 @@ var CLSTAMP = "steamdb";
     })();
   var _ = _._(
     void 0,
-    [967, 352, 211, 264, 305, 527, 797, 148, 500, 554, 798],
-    () => _(981),
+    [967, 352, 211, 305, 527, 797, 148, 554, 500, 737, 692],
+    () => _(5199),
   );
   _ = _._(_);
 })();

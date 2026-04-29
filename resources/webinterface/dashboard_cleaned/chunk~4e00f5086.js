@@ -3,227 +3,7 @@ var CLSTAMP = "steamdb";
   [652],
   {
     chunkid: (module, module_exports, __webpack_require__) => {
-      __webpack_require__._(module_exports, {
-        _: () => _,
-        _: () => _,
-        _: () => _,
-      });
-      var _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
-      const _ = "vrwebui_dashboardstore",
-        _ = "binding_callouts/main";
-      class _ {
-        constructor() {
-          (this.m_wsWebSocketToServer = void 0),
-            (this.connected = !1),
-            (this.m_oHandlers = {}),
-            (this.m_oWaits = {}),
-            (this.m_oConnectWaits = []),
-            (this.m_nNextMessageNumber = 1),
-            (this.Log = new _._("Mailbox", () => this.m_sMailboxName)),
-            (0, _.makeObservable)(this);
-        }
-        OpenWebSocketToHost() {
-          return new Promise((_, _) => {
-            this.Log.Info("Opening Web Socket...");
-            let _ = "ws://127.0.0.1:27062";
-            this.m_sWebSecret && (_ += "?secret=" + this.m_sWebSecret),
-              this.m_wsWebSocketToServer &&
-                (this.Log.Error(
-                  "OpenWebSocketToHost called on existing connection",
-                ),
-                this.CloseWebSocket());
-            let _ = !1;
-            (this.m_wsWebSocketToServer = new WebSocket(_)),
-              this.m_wsWebSocketToServer.addEventListener("open", (_) => {
-                this.OnWebSocketOpen(_), _ || _(), (_ = !0);
-              }),
-              this.m_wsWebSocketToServer.addEventListener(
-                "message",
-                this.OnWebSocketMessage,
-              ),
-              this.m_wsWebSocketToServer.addEventListener(
-                "close",
-                this.OnWebSocketClose,
-              ),
-              this.m_wsWebSocketToServer.addEventListener("error", (_) => {
-                this.OnWebSocketError(_), _ || _(), (_ = !0);
-              });
-          });
-        }
-        CloseWebSocket() {
-          this.m_wsWebSocketToServer.removeEventListener(
-            "message",
-            this.OnWebSocketMessage,
-          ),
-            this.m_wsWebSocketToServer.removeEventListener(
-              "close",
-              this.OnWebSocketClose,
-            ),
-            this.m_wsWebSocketToServer.close(),
-            (this.m_wsWebSocketToServer = void 0),
-            (this.connected = !1);
-        }
-        static EnsureUniqueName(_) {
-          if (_.includes("/")) return _;
-          let _;
-          return (
-            (_ = VRHTML ? VRHTML.GetWebHelperId() : Date.now().toString()),
-            _ + "/" + _ + "_" + this.s_nNextMailboxNumber++
-          );
-        }
-        Init(_, _) {
-          return (0, _._)(this, void 0, void 0, function* () {
-            return (
-              (this.m_sMailboxName = _.EnsureUniqueName(_)),
-              (this.m_sWebSecret = _),
-              (this.connected = !1),
-              this.OpenWebSocketToHost()
-            );
-          });
-        }
-        Destroy() {
-          this.CloseWebSocket();
-        }
-        get name() {
-          return this.m_sMailboxName;
-        }
-        OnWebSocketOpen(_) {
-          (this.connected = !0),
-            this.Log.Info("Web Socket Opened"),
-            this.WebSocketSend("mailbox_open " + this.m_sMailboxName),
-            window.addEventListener("beforeunload", () => {
-              this.WebSocketSend("websocket_close");
-            });
-          for (let _ of this.m_oConnectWaits) _();
-          this.m_oConnectWaits = [];
-        }
-        OnWebSocketClose(_) {
-          return (0, _._)(this, void 0, void 0, function* () {
-            this.Log.Warning("Lost connection to host. code:", _.code),
-              (this.connected = !1),
-              (this.m_wsWebSocketToServer = void 0),
-              yield (0, _._)(1e3),
-              this.OpenWebSocketToHost();
-          });
-        }
-        OnWebSocketError(_) {
-          return (0, _._)(this, void 0, void 0, function* () {
-            this.Log.ErrorOnceThenWarn(
-              "OnWebSocketError",
-              "Mailbox error:",
-              _.type,
-            ),
-              (this.connected = !1);
-          });
-        }
-        WebSocketSend(_) {
-          return (
-            null != this.m_wsWebSocketToServer &&
-            1 == this.m_wsWebSocketToServer.readyState &&
-            (this.m_wsWebSocketToServer.send(_), !0)
-          );
-        }
-        OnWebSocketMessage(_) {
-          let _ = JSON.parse(_.data),
-            _ = !1;
-          if (
-            (this.m_oHandlers.hasOwnProperty(_.type) &&
-              (this.m_oHandlers[_.type](_), (_ = !0)),
-            this.m_oWaits.hasOwnProperty(_.type))
-          ) {
-            let _ = !1;
-            for (let _ of this.m_oWaits[_.type])
-              _.nMessageId == _.message_id &&
-                (__webpack_require__.callback(_), (_ = !0));
-            _
-              ? (this.m_oWaits[_.type] = this.m_oWaits[_.type].filter(
-                  (_) => _.nMessageId != _.message_id,
-                ))
-              : this.Log.Error(
-                  `Received a ${_.type} message, but didn't have a matching message_id. Did the other end forget to mirror message_id?`,
-                ),
-              (_ = !0);
-          }
-          _ ||
-            this.Log.ErrorOnceThenWarn(
-              "OnWebsocket283",
-              "Received unhandled message: ",
-              _.type,
-              _,
-            );
-        }
-        RegisterHandler(_, _) {
-          this.m_oHandlers[_] = _;
-        }
-        SendMessage(_, _) {
-          return this.WebSocketSend(
-            "mailbox_send " + _ + " " + JSON.stringify(_),
-          );
-        }
-        WaitForMessage(_, _) {
-          return new Promise((_, _) => {
-            this.m_oWaits[_] || (this.m_oWaits[_] = []),
-              this.m_oWaits[_].push({
-                callback: _,
-                nMessageId: _,
-              });
-          });
-        }
-        WaitForConnect() {
-          return new Promise((_, _) => {
-            this.connected ? _() : this.m_oConnectWaits.push(_);
-          });
-        }
-        WaitForMailbox(_) {
-          return (0, _._)(this, void 0, void 0, function* () {
-            let _ = {
-              type: "request_mailbox_registration_notification",
-              mailbox_name: _,
-            };
-            return this.SendMessageAndWaitForResponse(
-              "web_server_mailbox",
-              _,
-              "mailbox_registered",
-            );
-          });
-        }
-        SendMessageAndWaitForResponse(_, _, _) {
-          let _ = Object.assign({}, _);
-          null == _.returnAddress && (_.returnAddress = this.m_sMailboxName),
-            (_.message_id = this.m_nNextMessageNumber++);
-          const _ = this.WaitForMessage(_, _.message_id);
-          return this.SendMessage(_, _), _;
-        }
-        SendResponse(_, _) {
-          if (!_.returnAddress)
-            throw new Error("Missing return address on message");
-          let _ = Object.assign(Object.assign({}, _), {
-            message_id: _.message_id,
-          });
-          (_.message_id = _.message_id), this.SendMessage(_.returnAddress, _);
-        }
-        SendDebugIllegalMsg() {
-          this.WebSocketSend("debug_send_illegal_msg");
-        }
-        SendDebugCloseMsg() {
-          this.WebSocketSend("debug_close");
-        }
-      }
-      (_.s_nNextMailboxNumber = 1),
-        (0, _._)([_.observable], _.prototype, "connected", void 0),
-        (0, _._)([_._], _.prototype, "OpenWebSocketToHost", null),
-        (0, _._)([_._], _.prototype, "OnWebSocketOpen", null),
-        (0, _._)([_._], _.prototype, "OnWebSocketClose", null),
-        (0, _._)([_._], _.prototype, "OnWebSocketError", null),
-        (0, _._)([_._], _.prototype, "WebSocketSend", null),
-        (0, _._)([_._], _.prototype, "OnWebSocketMessage", null);
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      var _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
@@ -298,6 +78,8 @@ var CLSTAMP = "steamdb";
             (_[(_.AllowCameraToggle_Bool = 1055)] = "AllowCameraToggle_Bool"),
             (_[(_.AllowLightSourceFrequency_Bool = 1056)] =
               "AllowLightSourceFrequency_Bool"),
+            (_[(_.IsDedicatedVRHeadset_Bool = 1058)] =
+              "IsDedicatedVRHeadset_Bool"),
             (_[(_.HasEyeTracker_Bool = 1060)] = "HasEyeTracker_Bool"),
             (_[(_.ReportsTimeSinceVSync_Bool = 2e3)] =
               "ReportsTimeSinceVSync_Bool"),
@@ -488,6 +270,8 @@ var CLSTAMP = "steamdb";
               "DriverRequestedMuraFeather_OuterBottom_Int32"),
             (_[(_.Audio_SupportsDualSpeakerAndJackOutput_Bool = 2303)] =
               "Audio_SupportsDualSpeakerAndJackOutput_Bool"),
+            (_[(_.Hmd_ForceRoomViewOutsideChaperone_Bool = 2500)] =
+              "Hmd_ForceRoomViewOutsideChaperone_Bool"),
             (_[(_.AttachedDeviceId_String = 3e3)] = "AttachedDeviceId_String"),
             (_[(_.SupportedButtons_Uint64 = 3001)] = "SupportedButtons_Uint64"),
             (_[(_.Axis0Type_Int32 = 3002)] = "Axis0Type_Int32"),
@@ -614,6 +398,11 @@ var CLSTAMP = "steamdb";
             (_[(_.Idle_Timeout = 4)] = "Idle_Timeout");
         })(_ || (_ = {})),
         (function (_) {
+          (_[(_.VRMouseButton_Left = 1)] = "VRMouseButton_Left"),
+            (_[(_.VRMouseButton_Right = 2)] = "VRMouseButton_Right"),
+            (_[(_.VRMouseButton_Middle = 4)] = "VRMouseButton_Middle");
+        })(_ || (_ = {})),
+        (function (_) {
           (_[(_.Notification_Shown = 600)] = "Notification_Shown"),
             (_[(_.Notification_Hidden = 601)] = "Notification_Hidden"),
             (_[(_.Notification_BeginInteraction = 602)] =
@@ -669,6 +458,11 @@ var CLSTAMP = "steamdb";
             (_[(_.VRInput = 3)] = "VRInput");
         })(_ || (_ = {})),
         (function (_) {
+          (_[(_.Invalid = 0)] = "Invalid"),
+            (_[(_.SceneApp = 1)] = "SceneApp"),
+            (_[(_.Panel = 2)] = "Panel");
+        })(_ || (_ = {})),
+        (function (_) {
           (_[(_.None = 0)] = "None"),
             (_[(_.ThirdPartyClient = 1)] = "ThirdPartyClient"),
             (_[(_.SteamVRClientUnified = 2)] = "SteamVRClientUnified"),
@@ -706,7 +500,7 @@ var CLSTAMP = "steamdb";
               _._.Instance.playSound(
                 null !== (_ = this.props.pressSoundEffect) && void 0 !== _
                   ? _
-                  : null,
+                  : void 0,
               );
         }
         onMouseUp(_) {

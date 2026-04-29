@@ -481,126 +481,227 @@ var CLSTAMP = "steamdb";
         const _ = VRHTML;
       },
       chunkid: (module, module_exports, __webpack_require__) => {
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        class _ extends _._ {
-          constructor(_) {
-            super(_),
-              (this.m_latchedPosition = null),
-              super.setBuildNodeOverride(this.buildNode);
-          }
-          getNodeType() {
-            return "panel-anchor";
-          }
-          relatch() {
-            this.m_latchedPosition = null;
-          }
-          buildNode(_, _) {
-            if (!_.currentPanel && !_.bInsideReparentedPanel)
-              return [
-                Object.assign(Object.assign({}, _), {
-                  bShouldAbort: !0,
-                }),
-                null,
-              ];
-            let _ = null;
-            "object" == typeof this.props.location
-              ? (_ = (0, _._)(this.props.location, {
-                  _: 0,
-                  _: 0,
-                }))
-              : "number" == typeof this.props.location &&
-                (_ = (0, _._)(this.props.location));
-            let _ = this.createSgNode(_);
-            if (this.props.latched && null !== this.m_latchedPosition)
-              (_.properties["anchor-u"] = this.m_latchedPosition._),
-                (_.properties["anchor-v"] = this.m_latchedPosition._);
-            else if (_) {
-              const _ = {
-                  _: 0.5 * _._ + 0.5,
-                  _: -0.5 * _._ + 0.5,
-                },
-                _ =
-                  !_.currentPanel || _.currentPanel.props.overlay_key
-                    ? _
-                    : _.currentPanel.scaleLocalUVToGlobal(_);
-              (_.properties["anchor-u"] = _._),
-                (_.properties["anchor-v"] = _._);
-            } else {
-              if (!_.currentPanel)
-                return [
-                  Object.assign(Object.assign({}, _), {
-                    bShouldAbort: !0,
-                  }),
-                  null,
-                ];
-              const _ = _.ownerDocument,
-                _ = _.getBoundingClientRect(),
-                _ = _.left + _.width / 2,
-                _ = _.top + _.height / 2,
-                _ = _.currentPanel.m_Rect;
-              if (_ < _._ || _ > _._ + _.width || _ < _._ || _ > _._ + _.height)
-                return [
-                  Object.assign(Object.assign({}, _), {
-                    bShouldAbort: !0,
-                  }),
-                  null,
-                ];
-              const _ = _.defaultView.innerWidth,
-                _ = _.defaultView.innerHeight;
-              if (!(_ > 0 && _ > 0))
-                return [
-                  Object.assign(Object.assign({}, _), {
-                    bShouldAbort: !0,
-                  }),
-                  null,
-                ];
-              (_.properties["anchor-u"] = _ / _),
-                (_.properties["anchor-v"] = _ / _);
-            }
-            return (
-              (this.m_latchedPosition = {
-                _: _.properties["anchor-u"],
-                _: _.properties["anchor-v"],
-              }),
-              [_, _]
-            );
-          }
-        }
-        (0, _._)([_._], _.prototype, "buildNode", null);
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        function _(_, _) {
-          return {
-            _: _._ * _,
-            _: _._ * _,
-            _: _._ * _,
-          };
-        }
-        function _(_) {
-          if (void 0 === _) return;
-          let _ = 0.5 * _._,
-            _ = 0.5 * _._,
-            _ = 0.5 * _._,
-            _ = Math.cos(_),
-            _ = Math.cos(_),
-            _ = Math.cos(_),
-            _ = Math.sin(_),
-            _ = Math.sin(_),
-            _ = Math.sin(_);
-          return {
-            _: _ * _ * _ + _ * _ * _,
-            _: _ * _ * _ + _ * _ * _,
-            _: _ * _ * _ - _ * _ * _,
-            _: _ * _ * _ - _ * _ * _,
-          };
-        }
         __webpack_require__._(_, {
           _: () => _,
           _: () => _,
+          _: () => _,
         });
+        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
+        const _ = "vrwebui_dashboardstore",
+          _ = "binding_callouts/main";
+        class _ {
+          constructor() {
+            (this.m_wsWebSocketToServer = void 0),
+              (this.connected = !1),
+              (this.m_sMailboxName = ""),
+              (this.m_oHandlers = {}),
+              (this.m_oWaits = {}),
+              (this.m_oConnectWaits = []),
+              (this.m_sWebSecret = ""),
+              (this.m_nNextMessageNumber = 1),
+              (this.Log = new _._("Mailbox", () => this.m_sMailboxName)),
+              (0, _.makeObservable)(this);
+          }
+          OpenWebSocketToHost() {
+            return new Promise((_, _) => {
+              this.Log.Info("Opening Web Socket...");
+              let _ = "ws://127.0.0.1:27062";
+              this.m_sWebSecret && (_ += "?secret=" + this.m_sWebSecret),
+                this.m_wsWebSocketToServer &&
+                  (this.Log.Error(
+                    "OpenWebSocketToHost called on existing connection",
+                  ),
+                  this.CloseWebSocket());
+              let _ = !1;
+              (this.m_wsWebSocketToServer = new WebSocket(_)),
+                this.m_wsWebSocketToServer.addEventListener("open", (_) => {
+                  this.OnWebSocketOpen(_), _ || _(), (_ = !0);
+                }),
+                this.m_wsWebSocketToServer.addEventListener(
+                  "message",
+                  this.OnWebSocketMessage,
+                ),
+                this.m_wsWebSocketToServer.addEventListener(
+                  "close",
+                  this.OnWebSocketClose,
+                ),
+                this.m_wsWebSocketToServer.addEventListener("error", (_) => {
+                  this.OnWebSocketError(_), _ || _(), (_ = !0);
+                });
+            });
+          }
+          CloseWebSocket() {
+            this.m_wsWebSocketToServer &&
+              (this.m_wsWebSocketToServer.removeEventListener(
+                "message",
+                this.OnWebSocketMessage,
+              ),
+              this.m_wsWebSocketToServer.removeEventListener(
+                "close",
+                this.OnWebSocketClose,
+              ),
+              this.m_wsWebSocketToServer.close(),
+              (this.m_wsWebSocketToServer = void 0)),
+              (this.connected = !1);
+          }
+          static EnsureUniqueName(_) {
+            if (_.includes("/")) return _;
+            let _;
+            return (
+              (_ = VRHTML ? VRHTML.GetWebHelperId() : Date.now().toString()),
+              _ + "/" + _ + "_" + this.s_nNextMailboxNumber++
+            );
+          }
+          Init(_, _) {
+            return (0, _._)(this, void 0, void 0, function* () {
+              return (
+                (this.m_sMailboxName = _.EnsureUniqueName(_)),
+                (this.m_sWebSecret = null != _ ? _ : ""),
+                (this.connected = !1),
+                this.OpenWebSocketToHost()
+              );
+            });
+          }
+          Destroy() {
+            this.CloseWebSocket();
+          }
+          get name() {
+            return this.m_sMailboxName;
+          }
+          OnWebSocketOpen(_) {
+            (this.connected = !0),
+              this.Log.Info("Web Socket Opened"),
+              this.WebSocketSend("mailbox_open " + this.m_sMailboxName),
+              window.addEventListener("beforeunload", () => {
+                this.WebSocketSend("websocket_close");
+              });
+            for (let _ of this.m_oConnectWaits) _();
+            this.m_oConnectWaits = [];
+          }
+          OnWebSocketClose(_) {
+            return (0, _._)(this, void 0, void 0, function* () {
+              this.Log.Warning("Lost connection to host. code:", _.code),
+                (this.connected = !1),
+                (this.m_wsWebSocketToServer = void 0),
+                yield (0, _._)(1e3),
+                this.OpenWebSocketToHost();
+            });
+          }
+          OnWebSocketError(_) {
+            return (0, _._)(this, void 0, void 0, function* () {
+              this.Log.ErrorOnceThenWarn(
+                "OnWebSocketError",
+                "Mailbox error:",
+                _.type,
+              ),
+                (this.connected = !1);
+            });
+          }
+          WebSocketSend(_) {
+            return (
+              null != this.m_wsWebSocketToServer &&
+              1 == this.m_wsWebSocketToServer.readyState &&
+              (this.m_wsWebSocketToServer.send(_), !0)
+            );
+          }
+          OnWebSocketMessage(_) {
+            let _ = JSON.parse(_.data),
+              _ = !1;
+            if (
+              (this.m_oHandlers.hasOwnProperty(_.type) &&
+                (this.m_oHandlers[_.type](_), (_ = !0)),
+              this.m_oWaits.hasOwnProperty(_.type))
+            ) {
+              let _ = !1;
+              for (let _ of this.m_oWaits[_.type])
+                _.nMessageId == _.message_id &&
+                  (__webpack_require__.callback(_), (_ = !0));
+              _
+                ? (this.m_oWaits[_.type] = this.m_oWaits[_.type].filter(
+                    (_) => _.nMessageId != _.message_id,
+                  ))
+                : this.Log.Error(
+                    `Received a ${_.type} message, but didn't have a matching message_id. Did the other end forget to mirror message_id?`,
+                  ),
+                (_ = !0);
+            }
+            _ ||
+              this.Log.ErrorOnceThenWarn(
+                "OnWebsocket283",
+                "Received unhandled message: ",
+                _.type,
+                _,
+              );
+          }
+          RegisterHandler(_, _) {
+            this.m_oHandlers[_] = _;
+          }
+          SendMessage(_, _) {
+            return this.WebSocketSend(
+              "mailbox_send " + _ + " " + JSON.stringify(_),
+            );
+          }
+          WaitForMessage(_, _) {
+            return new Promise((_, _) => {
+              this.m_oWaits[_] || (this.m_oWaits[_] = []),
+                this.m_oWaits[_].push({
+                  callback: _,
+                  nMessageId: _,
+                });
+            });
+          }
+          WaitForConnect() {
+            return new Promise((_, _) => {
+              this.connected ? _() : this.m_oConnectWaits.push(_);
+            });
+          }
+          WaitForMailbox(_) {
+            return (0, _._)(this, void 0, void 0, function* () {
+              let _ = {
+                type: "request_mailbox_registration_notification",
+                mailbox_name: _,
+              };
+              return this.SendMessageAndWaitForResponse(
+                "web_server_mailbox",
+                _,
+                "mailbox_registered",
+              );
+            });
+          }
+          SendMessageAndWaitForResponse(_, _, _) {
+            let _ = Object.assign({}, _);
+            null == _.returnAddress && (_.returnAddress = this.m_sMailboxName),
+              (_.message_id = this.m_nNextMessageNumber++);
+            const _ = this.WaitForMessage(_, _.message_id);
+            return this.SendMessage(_, _), _;
+          }
+          SendResponse(_, _) {
+            if (!_.returnAddress)
+              throw new Error("Missing return address on message");
+            let _ = Object.assign(Object.assign({}, _), {
+              message_id: _.message_id,
+            });
+            (_.message_id = _.message_id), this.SendMessage(_.returnAddress, _);
+          }
+          SendDebugIllegalMsg() {
+            this.WebSocketSend("debug_send_illegal_msg");
+          }
+          SendDebugCloseMsg() {
+            this.WebSocketSend("debug_close");
+          }
+        }
+        (_.s_nNextMailboxNumber = 1),
+          (0, _._)([_.observable], _.prototype, "connected", void 0),
+          (0, _._)([_._], _.prototype, "OpenWebSocketToHost", null),
+          (0, _._)([_._], _.prototype, "OnWebSocketOpen", null),
+          (0, _._)([_._], _.prototype, "OnWebSocketClose", null),
+          (0, _._)([_._], _.prototype, "OnWebSocketError", null),
+          (0, _._)([_._], _.prototype, "WebSocketSend", null),
+          (0, _._)([_._], _.prototype, "OnWebSocketMessage", null);
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         var _, _, _, _;
@@ -837,267 +938,10 @@ var CLSTAMP = "steamdb";
       chunkid: (module, module_exports, __webpack_require__) => {
         __webpack_require__._(_, {
           _: () => _,
-        });
-        var _ = __webpack_require__("chunkid");
-        const _ = Object.values(_._).filter((_) => "number" == typeof _);
-        function _(_, _) {
-          return new Set([..._, ..._]);
-        }
-        class _ {
-          constructor() {
-            this.m_mapSuppressedHaptics = new Map();
-          }
-          static get Instance() {
-            return _.s_Instance || (_.s_Instance = new _()), _.s_Instance;
-          }
-          suppressHaptics(_, _) {
-            const _ = new Set(_);
-            this.m_mapSuppressedHaptics.has(_)
-              ? this.m_mapSuppressedHaptics.set(
-                  _,
-                  _(this.m_mapSuppressedHaptics.get(_), _),
-                )
-              : this.m_mapSuppressedHaptics.set(_, _);
-          }
-          suppressHapticsExcept(_, _) {
-            const _ = new Set(_),
-              _ = new Set(_.filter((_) => !__webpack_require__.has(_)));
-            this.m_mapSuppressedHaptics.has(_)
-              ? this.m_mapSuppressedHaptics.set(
-                  _,
-                  _(this.m_mapSuppressedHaptics.get(_), _),
-                )
-              : this.m_mapSuppressedHaptics.set(_, _);
-          }
-          unsuppressHaptics(_, _) {
-            const _ = new Set(_);
-            var _, _;
-            void 0 === _
-              ? this.m_mapSuppressedHaptics.delete(_)
-              : this.m_mapSuppressedHaptics.has(_) ||
-                this.m_mapSuppressedHaptics.set(
-                  _,
-                  ((_ = this.m_mapSuppressedHaptics.get(_)),
-                  (_ = _),
-                  new Set([..._].filter((_) => !_.has(_)))),
-                );
-          }
-          isHapticSuppressed(_) {
-            return Array.from(this.m_mapSuppressedHaptics.values()).some((_) =>
-              _.has(_),
-            );
-          }
-          triggerHaptic(_) {
-            (0, _._)() != _._.Overlay ||
-              this.isHapticSuppressed(_) ||
-              null === VRHTML ||
-              void 0 === VRHTML ||
-              VRHTML.VROverlay.TriggerOverlayHapticEffect(
-                VRHTML.VROverlay.ThisOverlayHandle(),
-                _,
-              );
-          }
-        }
-        _.s_Instance = null;
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-          _: () => _,
-        });
-        var _,
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        !(function (_) {
-          (_[(_.DashboardOpen = 0)] = "DashboardOpen"),
-            (_[(_.DashboardClose = 1)] = "DashboardClose"),
-            (_[(_.ControlBarButtonClick = 2)] = "ControlBarButtonClick"),
-            (_[(_.ButtonClick = 3)] = "ButtonClick"),
-            (_[(_.SurfaceClick = 4)] = "SurfaceClick"),
-            (_[(_.VolumePreview = 5)] = "VolumePreview"),
-            (_[(_.Grab = 6)] = "Grab"),
-            (_[(_.GrabRelease = 7)] = "GrabRelease"),
-            (_[(_.PagedSettingsNavigation = 8)] = "PagedSettingsNavigation");
-        })(_ || (_ = {}));
-        class _ {
-          constructor() {
-            this.m_mapSoundElems = new Map();
-          }
-          static get Instance() {
-            return _.s_Instance || (_.s_Instance = new _()), _.s_Instance;
-          }
-          preloadSounds() {
-            if (!((0, _._)() != _._.Overlay || this.m_mapSoundElems.size > 0))
-              for (let _ in _) isNaN(Number(_)) || this.loadSounds(Number(_));
-          }
-          playSound(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              if ((0, _._)() != _._.Overlay) return;
-              if (null == _) return;
-              const _ = this.getAudioElems(_);
-              if (!_ || 0 == _.length) return;
-              const _ = _[Math.floor(Math.random() * _.length)];
-              __webpack_require__.pause(), (_.currentTime = 0);
-              try {
-                yield __webpack_require__.play();
-              } catch (_) {
-                console.error(
-                  `Failed to play sound effect "${_[_]}" (${_.src}, networkState=${_.networkState}, readyState=${_.readyState})`,
-                );
-              }
-            });
-          }
-          loadSounds(_) {
-            const _ = _.Sources[_],
-              _ = _.source;
-            if (!_) return void this.m_mapSoundElems.set(_, []);
-            const _ = ("string" == typeof _ ? [_] : _).map((_) => {
-              var _, _;
-              let _ = document.createElement("audio");
-              return (
-                (_.src = `${_}?t=${new Date().getTime()}`),
-                (_.preload = "auto"),
-                (_.volume = null !== (_ = _.volume) && void 0 !== _ ? _ : 1),
-                (null === (_ = _.bRespectsGlobalVolume) || void 0 === _ || _) &&
-                  (_.volume *= 1),
-                _
-              );
-            });
-            this.m_mapSoundElems.set(_, _);
-          }
-          getAudioElems(_) {
-            return (
-              this.m_mapSoundElems.has(_) ||
-                (console.warn(
-                  "Playing a sound which was not preloaded. Consider calling SoundEffects.Instance.preloadSounds().",
-                ),
-                this.loadSounds(_)),
-              this.m_mapSoundElems.get(_)
-            );
-          }
-        }
-        (_.Sources = {
-          [_.DashboardOpen]: {
-            source: "",
-          },
-          [_.DashboardClose]: {
-            source: "",
-          },
-          [_.ControlBarButtonClick]: {
-            source: "/dashboard/sounds/deck_ui_misc_10.wav",
-          },
-          [_.ButtonClick]: {
-            source: "/dashboard/sounds/deck_ui_misc_10.wav",
-          },
-          [_.SurfaceClick]: {
-            source: "",
-          },
-          [_.VolumePreview]: {
-            source: "/dashboard/sounds/volume_change.wav",
-            bRespectsGlobalVolume: !1,
-          },
-          [_.Grab]: {
-            source: "",
-          },
-          [_.GrabRelease]: {
-            source: "/dashboard/sounds/deck_ui_misc_10.wav",
-          },
-          [_.PagedSettingsNavigation]: {
-            source: "/dashboard/sounds/deck_ui_navigation.wav",
-          },
-        }),
-          (_.s_Instance = null);
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
           _: () => _,
         });
         const _ = "system.messageoverlay",
           _ = "/settings/steamvr/showAdvancedSettings";
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-        });
-        var _ = __webpack_require__("chunkid"),
-          _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid")),
-          _ = __webpack_require__("chunkid");
-        function _(..._) {
-          return _.filter((_) => null != _ && ("string" == typeof _ || _[1]))
-            .map((_) => ("string" == typeof _ ? _ : _[0]))
-            .join(" ");
-        }
-        class _ {
-          constructor() {
-            (this.onScroll = null),
-              (this.onScrollStop = null),
-              (this.m_elem = null),
-              (this.m_rScrollableParents = []),
-              (this.m_bScrolling = !1),
-              (this.m_scrollStopTimeoutHandle = void 0),
-              (0, _.makeObservable)(this);
-          }
-          ref(_) {
-            this.m_elem && this.cleanup(),
-              (this.m_elem = _),
-              this.updateScrollableParents();
-          }
-          get isScrolling() {
-            return this.m_bScrolling;
-          }
-          updateScrollableParents() {
-            for (let _ of this.m_rScrollableParents)
-              _.removeEventListener("scroll", this.onParentScroll);
-            this.m_rScrollableParents = (function (_) {
-              let _ = [];
-              if (!_) return _;
-              let _ = _.parentElement;
-              for (; _; ) {
-                const _ = _.scrollWidth > _.clientWidth,
-                  _ = _.scrollHeight > _.clientHeight;
-                (_ || _) && _.push(_), (_ = _.parentElement);
-              }
-              return _;
-            })(this.m_elem);
-            for (let _ of this.m_rScrollableParents)
-              _.addEventListener("scroll", this.onParentScroll);
-          }
-          cleanup() {
-            for (let _ of this.m_rScrollableParents)
-              _.removeEventListener("scroll", this.onParentScroll);
-            (this.m_rScrollableParents = []),
-              (this.m_elem = null),
-              this.clearScrollStopTimeout();
-          }
-          onParentScroll() {
-            var _;
-            this.clearScrollStopTimeout(),
-              (this.m_bScrolling = !0),
-              (this.m_scrollStopTimeoutHandle = window.setTimeout(
-                this.onScrollStopTimeout,
-                50,
-              )),
-              null === (_ = this.onScroll) || void 0 === _ || _.call(this);
-          }
-          clearScrollStopTimeout() {
-            window.clearTimeout(this.m_scrollStopTimeoutHandle),
-              (this.m_scrollStopTimeoutHandle = void 0);
-          }
-          onScrollStopTimeout() {
-            var _;
-            this.m_bScrolling &&
-              (null === (_ = this.onScrollStop) ||
-                void 0 === _ ||
-                _.call(this)),
-              (this.m_bScrolling = !1);
-          }
-        }
-        (0, _._)([_.observable], _.prototype, "m_bScrolling", void 0),
-          (0, _._)([_._], _.prototype, "ref", null),
-          (0, _._)([_.computed], _.prototype, "isScrolling", null),
-          (0, _._)([_._], _.prototype, "onParentScroll", null),
-          (0, _._)([_._], _.prototype, "onScrollStopTimeout", null);
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         var _ = __webpack_require__("chunkid"),
@@ -1533,8 +1377,10 @@ var CLSTAMP = "steamdb";
       __webpack_require__.forEach(_.bind(null, 0)),
         (_.push = _.bind(null, _.push.bind(_)));
     })();
-  var _ = _._(void 0, [967, 978, 655, 305, 527, 797, 148, 500, 198, 652], () =>
-    _(6139),
+  var _ = _._(
+    void 0,
+    [967, 978, 655, 305, 527, 797, 148, 500, 198, 652, 692],
+    () => _(6139),
   );
   _ = _._(_);
 })();

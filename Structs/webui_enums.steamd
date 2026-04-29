@@ -87,6 +87,13 @@ enum UnnamedEnum02b50ed34ee68c36
 	SecondaryControllerSetup = 2;
 }
 
+enum UnnamedEnum04da6fa4f4b56484
+{
+	Invalid = 0;
+	SceneApp = 1;
+	Panel = 2;
+}
+
 enum UnnamedEnum06e490ccab486317
 {
 	Constant = 0;
@@ -597,13 +604,7 @@ enum UnnamedEnumaa7aedb528305bef
 	Horizontal = 2;
 }
 
-enum UnnamedEnumacc9a67b80433cd5
-{
-	TheaterFast = 0;
-	TheaterSlow = 1;
-}
-
-enum UnnamedEnumb036427e5070710e
+enum UnnamedEnumac276bd6917a9d43
 {
 	Invalid = 0;
 	TrackingSystemName_String = 1000;
@@ -653,6 +654,7 @@ enum UnnamedEnumb036427e5070710e
 	ActualTrackingSystemName_String = 1054;
 	AllowCameraToggle_Bool = 1055;
 	AllowLightSourceFrequency_Bool = 1056;
+	IsDedicatedVRHeadset_Bool = 1058;
 	HasEyeTracker_Bool = 1060;
 	ReportsTimeSinceVSync_Bool = 2000;
 	SecondsFromVsyncToPhotons_Float = 2001;
@@ -759,6 +761,7 @@ enum UnnamedEnumb036427e5070710e
 	DriverRequestedMuraFeather_OuterTop_Int32 = 2207;
 	DriverRequestedMuraFeather_OuterBottom_Int32 = 2208;
 	Audio_SupportsDualSpeakerAndJackOutput_Bool = 2303;
+	Hmd_ForceRoomViewOutsideChaperone_Bool = 2500;
 	AttachedDeviceId_String = 3000;
 	SupportedButtons_Uint64 = 3001;
 	Axis0Type_Int32 = 3002;
@@ -801,6 +804,12 @@ enum UnnamedEnumb036427e5070710e
 	SupportsInHMDRoomSetup_Bool = 11003;
 	VRLinkClientHMDSupportsRoomSetupRequests_Bool = 11004;
 	TrackedDeviceProperty_Max = 1000000;
+}
+
+enum UnnamedEnumacc9a67b80433cd5
+{
+	TheaterFast = 0;
+	TheaterSlow = 1;
 }
 
 enum UnnamedEnumb0f99e67f3ec880b
@@ -989,5 +998,12 @@ enum UnnamedEnumfce20aaa16bf4fee
 {
 	Curved = 0;
 	Flat = 1;
+}
+
+enum VRMouseButton
+{
+	VRMouseButton_Left = 1;
+	VRMouseButton_Right = 2;
+	VRMouseButton_Middle = 4;
 }
 

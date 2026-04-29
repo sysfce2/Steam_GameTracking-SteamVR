@@ -287,6 +287,297 @@ var CLSTAMP = "steamdb";
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
+      });
+      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      const _ =
+        ((_ = (_) => {
+          throw new Error(_.errorStr);
+        }),
+        function (_) {
+          return _.createElement(
+            _,
+            null,
+            _.createElement(_, Object.assign({}, _)),
+          );
+        });
+      var _;
+      class _ extends _.Component {
+        constructor(_) {
+          super(_), (this.state = {}), (this.state.lastErrorKey = _.errorKey);
+        }
+        static InstallErrorReportingStore(_) {
+          this.sm_ErrorReportingStore = _;
+        }
+        componentDidCatch(_, _) {
+          const _ = _.sm_ErrorReportingStore;
+          _
+            ? __webpack_require__
+                .ReportError(_, {
+                  strComponentStack: _.componentStack || void 0,
+                })
+                .then(
+                  (_) =>
+                    _ &&
+                    this.setState({
+                      identifierHash: _.identifierHash,
+                    }),
+                )
+            : console.warn(
+                "No ErrorReportingStore - use ErrorReportingStore().Init() to configure error reporting to server",
+              ),
+            this.setState({
+              error: {
+                error: _,
+                info: _,
+              },
+              lastErrorKey: this.props.errorKey,
+            });
+        }
+        Reset() {
+          this.setState({
+            error: void 0,
+          });
+        }
+        render() {
+          const { children: _, fallback: _, errorKey: _ } = this.props,
+            { error: _, identifierHash: _, lastErrorKey: _ } = this.state;
+          return _ && _ == _
+            ? void 0 !== _
+              ? "function" == typeof _
+                ? _(_.error)
+                : _
+              : _.sm_ErrorReportingStore &&
+                  _.sm_ErrorReportingStore.reporting_enabled
+                ? _.createElement(_, {
+                    error: _,
+                    identifierHash: _,
+                    store: _.sm_ErrorReportingStore,
+                    onRefresh: this.Reset,
+                  })
+                : _.createElement(_, {
+                    error: _,
+                    onDismiss: this.Reset,
+                  })
+            : _ || null;
+        }
+      }
+      function _(_) {
+        const { enabled: _ } = _,
+          [_, _] = _.useState(_),
+          [_, _] = _.useState(_._);
+        _.useEffect(() => {
+          const _ = setTimeout(() => {
+            _ &&
+              (_ > 1
+                ? _(_ - 1)
+                : (console.warn(
+                    "Auto-reloading due to triggered ErrorBoundary...",
+                  ),
+                  window.location.reload()));
+          }, 1e3);
+          return () => clearTimeout(_);
+        }, [_, _]);
+        const _ = _.useCallback(() => {
+          console.log("Auto-reload canceled."), _(!1);
+        }, []);
+        return (
+          _.useEffect(() => {
+            const _ = () => {
+              _();
+            };
+            return (
+              document.addEventListener("click", _),
+              () => document.removeEventListener("click", _)
+            );
+          }, [_]),
+          _
+            ? _
+              ? _.createElement(
+                  _.Fragment,
+                  null,
+                  _.createElement(
+                    _,
+                    null,
+                    "Reloading UI in ",
+                    _,
+                    " seconds...",
+                  ),
+                  "   ",
+                  _.createElement(
+                    "span",
+                    {
+                      style: {
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      },
+                      onClick: _,
+                    },
+                    "Cancel",
+                  ),
+                  _.createElement("br", null),
+                )
+              : _.createElement(
+                  _.Fragment,
+                  null,
+                  _.createElement(_, null, "Auto-reload canceled."),
+                  "   ",
+                  _.createElement(
+                    "span",
+                    {
+                      style: {
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                      },
+                      onClick: () => window.location.reload(),
+                    },
+                    "Reload now",
+                  ),
+                  _.createElement("br", null),
+                )
+            : null
+        );
+      }
+      (0, _._)([_._], _.prototype, "Reset", null);
+      const _ = ({ error: _, onDismiss: _ }) => {
+          let _ = _.error ? _.error.stack : "Stack missing",
+            _ = _.info ? _.info.componentStack : "",
+            _ = (_.error && _.error.message) || "unknown error";
+          const _ = _.useContext(_._);
+          return _.createElement(
+            _,
+            null,
+            _.createElement(_, null, 'Error: "', _, '"'),
+            "   ",
+            _.createElement(
+              "span",
+              {
+                style: {
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                },
+                onClick: _,
+              },
+              "(x) Dismiss",
+            ),
+            _.createElement("br", null),
+            _.createElement(_, {
+              enabled: null == _,
+            }),
+            _.createElement(_, null, _),
+            _.createElement(_, null, "The error occurred while rendering:", _),
+          );
+        },
+        _ = (_) => {
+          const { error: _, onRefresh: _, identifierHash: _, store: _ } = _,
+            _ = (_.error && _.error.message) || "unknown error",
+            _ = `${_.product}_${_.version}_${_}`,
+            _ = _.useContext(_._);
+          return _.createElement(
+            _,
+            null,
+            _.createElement(
+              _,
+              null,
+              "Something went wrong while displaying this content. ",
+              _.createElement(
+                "span",
+                {
+                  style: {
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  },
+                  onClick: _,
+                },
+                "Refresh",
+              ),
+            ),
+            _.createElement(_, {
+              enabled: null == _,
+            }),
+            _.createElement(_, null, "Error Reference: ", _),
+            _.createElement(_, null, _),
+          );
+        };
+      function _(_) {
+        return _.useContext(_._) || (0, _._)() != _._.Overlay
+          ? _.createElement(_, Object.assign({}, _))
+          : _.createElement(
+              _._,
+              {
+                parent_path: "/user/head",
+                translation: {
+                  _: -0.5,
+                  _: -0.9,
+                },
+                rotation: {
+                  _: -20,
+                },
+              },
+              _.createElement(
+                _._,
+                {
+                  debug_name: "vr_error_container",
+                  meters_per_pixel: 75e-5,
+                  origin: {
+                    _: -0.5,
+                    _: -1,
+                  },
+                  interactive: !0,
+                },
+                _.createElement(_, Object.assign({}, _)),
+              ),
+            );
+      }
+      const _ = ({ children: _ }) =>
+          _.createElement(
+            "div",
+            {
+              style: {
+                overflow: "auto",
+                marginLeft: "15px",
+                color: "white",
+                fontSize: "16px",
+                userSelect: "auto",
+                backgroundColor: "black",
+              },
+              className: "ErrorBoundary",
+            },
+            _,
+          ),
+        _ = ({ children: _ }) =>
+          _.createElement(
+            "h1",
+            {
+              style: {
+                fontSize: "20px",
+                display: "inline-block",
+                marginTop: "15px",
+                userSelect: "auto",
+              },
+            },
+            _,
+          ),
+        _ = ({ children: _ }) =>
+          _.createElement(
+            "pre",
+            {
+              style: {
+                marginTop: "15px",
+                opacity: 0.7,
+                userSelect: "auto",
+              },
+            },
+            _,
+          );
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      __webpack_require__._(module_exports, {
+        _: () => _,
+        _: () => _,
         _: () => _,
         _: () => _,
         _: () => _,
@@ -423,9 +714,9 @@ var CLSTAMP = "steamdb";
         _ = "/settings/dashboard/theaterScreenSize",
         _ = "/settings/dashboard/theaterScreenAlignment",
         _ = "/settings/collisionBounds/CollisionBoundsFadeDistance",
+        _ = "/settings/camera/AllowBubbleInImmersiveApps",
         _ = "/settings/camera/roomView",
         _ = "/settings/camera/enableCamera",
-        _ = "/settings/camera/enableConstructRoomView",
         _ = "/settings/dashboard/enableWindowView",
         _ = "/settings/dashboard/maxInlineTabs",
         _ = "/settings/steamvr/maxRecommendedResolution",
@@ -910,8 +1201,12 @@ var CLSTAMP = "steamdb";
                 };
               },
               onInvoked: () => {
-                var _, _;
-                _.activePage.gamepad.hasGamepadFocus
+                var _, _, _;
+                (
+                  null === (_ = _.activePage) || void 0 === _
+                    ? void 0
+                    : _.gamepad.hasGamepadFocus
+                )
                   ? null === (_ = _.activePage) ||
                     void 0 === _ ||
                     _.gamepad.RemoveGamepadFocus()
@@ -1096,6 +1391,7 @@ var CLSTAMP = "steamdb";
               },
               onInvoked: (_) => {
                 var _, _;
+                if (null == _.current) return;
                 new Date().getTime() - _.current.getTime() < 100 ||
                   (_
                     ? null === (_ = null == _ ? void 0 : _.keyboard) ||
@@ -1446,16 +1742,20 @@ var CLSTAMP = "steamdb";
               (0, _.reaction)(
                 () => _.isTheaterMode,
                 (_) => {
-                  VRHTML.VRCompositor.SetAnimatedValue(
-                    _._.TheaterFast,
-                    _,
-                    0.25,
-                  ),
+                  null === VRHTML ||
+                    void 0 === VRHTML ||
                     VRHTML.VRCompositor.SetAnimatedValue(
-                      _._.TheaterSlow,
+                      _._.TheaterFast,
                       _,
-                      _ ? 2 : 1,
-                    );
+                      0.25,
+                    ),
+                    null === VRHTML ||
+                      void 0 === VRHTML ||
+                      VRHTML.VRCompositor.SetAnimatedValue(
+                        _._.TheaterSlow,
+                        _,
+                        _ ? 2 : 1,
+                      );
                 },
                 {
                   fireImmediately: !0,
@@ -1559,10 +1859,15 @@ var CLSTAMP = "steamdb";
           }).then(
             (0, _.action)((_) => {
               var _, _;
-              for (const _ of null !== (_ = _.results) && void 0 !== _ ? _ : [])
-                null === (_ = this.m_mapLocalFrames.get(_.frame_id)) ||
-                  void 0 === _ ||
-                  __webpack_require__.OnFrameUpdateResultFromSteam(_);
+              for (const _ of null !== (_ = _.results) && void 0 !== _
+                ? _
+                : []) {
+                const _ = null == _ ? void 0 : _.frame_id;
+                _ &&
+                  (null === (_ = this.m_mapLocalFrames.get(_)) ||
+                    void 0 === _ ||
+                    __webpack_require__.OnFrameUpdateResultFromSteam(_));
+              }
             }),
           );
         }
@@ -1657,7 +1962,8 @@ var CLSTAMP = "steamdb";
               : _._.Dashboard;
           if (_ !== _) {
             if (
-              (_(_) && this.m_mapPreviewExclusiveDockLocations.delete(_), _(_))
+              (_(_) && this.m_mapPreviewExclusiveDockLocations.delete(_),
+              _ && _(_))
             ) {
               const _ = this.m_mapPreviewExclusiveDockLocations.get(_);
               _ && this.m_mapPreviewDockLocations.delete(_),
@@ -1685,17 +1991,20 @@ var CLSTAMP = "steamdb";
         }
         GetFrame(_) {
           var _;
-          return null !== (_ = this.m_mapLocalFrames.get(_)) && void 0 !== _
-            ? _
-            : this.m_mapRemoteFrames.get(_);
+          if (_)
+            return null !== (_ = this.m_mapLocalFrames.get(_)) && void 0 !== _
+              ? _
+              : this.m_mapRemoteFrames.get(_);
         }
         GetLocalFrame(_) {
-          return this.m_mapLocalFrames.get(_);
+          if (_) return this.m_mapLocalFrames.get(_);
         }
         GetFramesWithAssociatedSummonKeys(_) {
-          return this.frames.filter(
-            (_) => _ && _.associatedSummonOverlayKeys.includes(_),
-          );
+          return _
+            ? this.frames.filter(
+                (_) => _ && _.associatedSummonOverlayKeys.includes(_),
+              )
+            : [];
         }
         GetFrameWithTabId(_) {
           if (null != _)
@@ -1889,15 +2198,9 @@ var CLSTAMP = "steamdb";
           : _.createElement(_.Fragment, null, _);
       }
       function _(_) {
-        let { children: _, offsetPixels: _, offsetMeters: _ } = _;
-        (_ =
-          null != _
-            ? _
-            : {
-                _: 0,
-                _: 0,
-                _: 0,
-              }),
+        let _,
+          { children: _, offsetPixels: _, offsetMeters: _ } = _;
+        return (
           (_ =
             null != _
               ? _
@@ -1905,17 +2208,28 @@ var CLSTAMP = "steamdb";
                   _: 0,
                   _: 0,
                   _: 0,
-                });
-        const _ = (0, _._)(_, (0, _._)(_, _._.m_fVRGamepadUI_MetersPerPixel));
-        return 0 != _._ || 0 != _._ || 0 != _._
-          ? _.createElement(
-              _._,
-              {
-                translation: _,
-              },
-              _,
-            )
-          : _.createElement(_.Fragment, null, _);
+                }),
+          (_ =
+            null != _
+              ? _
+              : {
+                  _: 0,
+                  _: 0,
+                  _: 0,
+                }),
+          _._.m_fVRGamepadUI_MetersPerPixel &&
+            ((_ = (0, _._)(_, (0, _._)(_, _._.m_fVRGamepadUI_MetersPerPixel))),
+            _._ || _._ || _._ || (_ = void 0)),
+          _
+            ? _.createElement(
+                _._,
+                {
+                  translation: _,
+                },
+                _,
+              )
+            : _.createElement(_.Fragment, null, _)
+        );
       }
       function _(_) {
         const { children: _, rotation: _ } = _;
@@ -1971,9 +2285,10 @@ var CLSTAMP = "steamdb";
           _,
           _,
           _,
+          _,
           _;
-        const { popupRequest: _, children: _ } = _,
-          _ = (0, _._)(_, ["popupRequest", "children"]),
+        const { popupRequest: _, refPanel: _, children: _ } = _,
+          _ = (0, _._)(_, ["popupRequest", "refPanel", "children"]),
           _ = {
             _:
               null !==
@@ -2154,7 +2469,7 @@ var CLSTAMP = "steamdb";
               ? _
               : 0)
               ? 101
-              : null,
+              : void 0,
           _ = (function (_) {
             var _, _, _;
             const _ =
@@ -2199,17 +2514,26 @@ var CLSTAMP = "steamdb";
                 _._,
                 Object.assign(
                   {
-                    debug_name: `VRGamepadUI-PooledPopup-${null == _ ? void 0 : _.dashboard_popup_id}`,
+                    ref: _,
+                    debug_name: `${null == _ ? void 0 : _.popup_overlay_key} (popup:${null == _ ? void 0 : _.dashboard_popup_id})`,
+                    _: _ ? `PooledPopup-${_.popup_overlay_key}` : void 0,
                     interactive: _,
                     only_visible_with_laser: _,
                     curvature: _ ? "inherit-from-parent-panel" : void 0,
                     overlay_key: null == _ ? void 0 : _.popup_overlay_key,
                     origin: _,
-                    meters_per_pixel: _._.m_fVRGamepadUI_MetersPerPixel * _,
+                    meters_per_pixel:
+                      (null !==
+                        (_ =
+                          null === _._ || void 0 === _._
+                            ? void 0
+                            : _._.m_fVRGamepadUI_MetersPerPixel) && void 0 !== _
+                        ? _
+                        : 1) * _,
                     reflect: _(_),
                     sort_depth_bias: _,
                     inputFocusParams: {
-                      unSteamInputAppID: _._,
+                      unSteamInputAppID: _ ? _._ : void 0,
                     },
                     uv_min: _,
                     uv_max: _,
@@ -2293,16 +2617,20 @@ var CLSTAMP = "steamdb";
                       )) &&
               void 0 !== _ &&
               _),
-              VRHTML.VRPathProperties.RegisterForBoolPathPropertyChangedEvents(
-                "/driver_cv/requestEnablingTravelModeSentToUser",
-                this.onRequestTravelModeTrackingEvent,
-              ),
-              VRHTML.VRPathProperties.RegisterForBoolPathPropertyChangedEvents(
-                "/driver_cv/enableTravelMode",
-                (0, _.action)((_) => {
-                  this.m_bEnableTravelMode = _;
-                }),
-              ),
+              null === VRHTML ||
+                void 0 === VRHTML ||
+                VRHTML.VRPathProperties.RegisterForBoolPathPropertyChangedEvents(
+                  "/driver_cv/requestEnablingTravelModeSentToUser",
+                  this.onRequestTravelModeTrackingEvent,
+                ),
+              null === VRHTML ||
+                void 0 === VRHTML ||
+                VRHTML.VRPathProperties.RegisterForBoolPathPropertyChangedEvents(
+                  "/driver_cv/enableTravelMode",
+                  (0, _.action)((_) => {
+                    this.m_bEnableTravelMode = _;
+                  }),
+                ),
               (0, _.reaction)(
                 () => _._.Instance.SceneAppKey,
                 (_) => {

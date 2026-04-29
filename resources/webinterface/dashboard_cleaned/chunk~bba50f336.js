@@ -20,6 +20,7 @@ var CLSTAMP = "steamdb";
           this.m_latchedPosition = null;
         }
         buildNode(_, _) {
+          var _, _;
           if (!_.currentPanel && !_.bInsideReparentedPanel)
             return [
               Object.assign(Object.assign({}, _), {
@@ -48,7 +49,9 @@ var CLSTAMP = "steamdb";
                 !_.currentPanel || _.currentPanel.props.overlay_key
                   ? _
                   : _.currentPanel.scaleLocalUVToGlobal(_);
-            (_.properties["anchor-u"] = _._), (_.properties["anchor-v"] = _._);
+            _ &&
+              ((_.properties["anchor-u"] = _._),
+              (_.properties["anchor-v"] = _._));
           } else {
             if (!_.currentPanel)
               return [
@@ -69,9 +72,15 @@ var CLSTAMP = "steamdb";
                 }),
                 null,
               ];
-            const _ = _.defaultView.innerWidth,
-              _ = _.defaultView.innerHeight;
-            if (!(_ > 0 && _ > 0))
+            const _ =
+                null === (_ = _.defaultView) || void 0 === _
+                  ? void 0
+                  : _.innerWidth,
+              _ =
+                null === (_ = _.defaultView) || void 0 === _
+                  ? void 0
+                  : _.innerHeight;
+            if (!(_ && _ > 0 && _ && _ > 0))
               return [
                 Object.assign(Object.assign({}, _), {
                   bShouldAbort: !0,
@@ -353,7 +362,7 @@ var CLSTAMP = "steamdb";
         })(_ || (_ = {}));
     },
     chunkid: (module, module_exports, __webpack_require__) => {
-      var _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
       __webpack_require__._(module_exports, {
         _: () => _,
       }),
@@ -427,6 +436,8 @@ var CLSTAMP = "steamdb";
             (_[(_.AllowCameraToggle_Bool = 1055)] = "AllowCameraToggle_Bool"),
             (_[(_.AllowLightSourceFrequency_Bool = 1056)] =
               "AllowLightSourceFrequency_Bool"),
+            (_[(_.IsDedicatedVRHeadset_Bool = 1058)] =
+              "IsDedicatedVRHeadset_Bool"),
             (_[(_.HasEyeTracker_Bool = 1060)] = "HasEyeTracker_Bool"),
             (_[(_.ReportsTimeSinceVSync_Bool = 2e3)] =
               "ReportsTimeSinceVSync_Bool"),
@@ -617,6 +628,8 @@ var CLSTAMP = "steamdb";
               "DriverRequestedMuraFeather_OuterBottom_Int32"),
             (_[(_.Audio_SupportsDualSpeakerAndJackOutput_Bool = 2303)] =
               "Audio_SupportsDualSpeakerAndJackOutput_Bool"),
+            (_[(_.Hmd_ForceRoomViewOutsideChaperone_Bool = 2500)] =
+              "Hmd_ForceRoomViewOutsideChaperone_Bool"),
             (_[(_.AttachedDeviceId_String = 3e3)] = "AttachedDeviceId_String"),
             (_[(_.SupportedButtons_Uint64 = 3001)] = "SupportedButtons_Uint64"),
             (_[(_.Axis0Type_Int32 = 3002)] = "Axis0Type_Int32"),
@@ -743,6 +756,11 @@ var CLSTAMP = "steamdb";
             (_[(_.Idle_Timeout = 4)] = "Idle_Timeout");
         })(_ || (_ = {})),
         (function (_) {
+          (_[(_.VRMouseButton_Left = 1)] = "VRMouseButton_Left"),
+            (_[(_.VRMouseButton_Right = 2)] = "VRMouseButton_Right"),
+            (_[(_.VRMouseButton_Middle = 4)] = "VRMouseButton_Middle");
+        })(_ || (_ = {})),
+        (function (_) {
           (_[(_.Notification_Shown = 600)] = "Notification_Shown"),
             (_[(_.Notification_Hidden = 601)] = "Notification_Hidden"),
             (_[(_.Notification_BeginInteraction = 602)] =
@@ -798,17 +816,16 @@ var CLSTAMP = "steamdb";
             (_[(_.VRInput = 3)] = "VRInput");
         })(_ || (_ = {})),
         (function (_) {
+          (_[(_.Invalid = 0)] = "Invalid"),
+            (_[(_.SceneApp = 1)] = "SceneApp"),
+            (_[(_.Panel = 2)] = "Panel");
+        })(_ || (_ = {})),
+        (function (_) {
           (_[(_.None = 0)] = "None"),
             (_[(_.ThirdPartyClient = 1)] = "ThirdPartyClient"),
             (_[(_.SteamVRClientUnified = 2)] = "SteamVRClientUnified"),
             (_[(_.SteamVRClientLegacyDual = 3)] = "SteamVRClientLegacyDual");
         })(_ || (_ = {}));
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      __webpack_require__._(module_exports, {
-        _: () => _,
-      });
-      const _ = "/settings/steamvr/showAdvancedSettings";
     },
   },
 ]);

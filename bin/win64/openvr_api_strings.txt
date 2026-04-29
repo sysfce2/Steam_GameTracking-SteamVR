@@ -7,6 +7,7 @@
  C>TQ
  Class Hierarchy Descriptor'
  Complete Object Locator'
+ LMH
  Type Descriptor'
  delete
  delete[]
@@ -612,7 +613,7 @@ QAf?
 QueryDepthSList
 QueryPerformanceCounter
 QueryUmsThreadInformation
-RSDSM
+RSDS
 RaiseException
 ReadConsoleW
 ReadFile

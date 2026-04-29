@@ -461,13 +461,16 @@ var CLSTAMP = "steamdb";
               ),
               _.Get().PrintEnabledLogs();
           });
+        const _ = "vrwebui_dashboardstore";
         class _ {
           constructor() {
             (this.m_wsWebSocketToServer = void 0),
               (this.connected = !1),
+              (this.m_sMailboxName = ""),
               (this.m_oHandlers = {}),
               (this.m_oWaits = {}),
               (this.m_oConnectWaits = []),
+              (this.m_sWebSecret = ""),
               (this.m_nNextMessageNumber = 1),
               (this.Log = new _("Mailbox", () => this.m_sMailboxName)),
               (0, _._)(this);
@@ -501,16 +504,17 @@ var CLSTAMP = "steamdb";
             });
           }
           CloseWebSocket() {
-            this.m_wsWebSocketToServer.removeEventListener(
-              "message",
-              this.OnWebSocketMessage,
-            ),
+            this.m_wsWebSocketToServer &&
+              (this.m_wsWebSocketToServer.removeEventListener(
+                "message",
+                this.OnWebSocketMessage,
+              ),
               this.m_wsWebSocketToServer.removeEventListener(
                 "close",
                 this.OnWebSocketClose,
               ),
               this.m_wsWebSocketToServer.close(),
-              (this.m_wsWebSocketToServer = void 0),
+              (this.m_wsWebSocketToServer = void 0)),
               (this.connected = !1);
           }
           static EnsureUniqueName(_) {
@@ -525,7 +529,7 @@ var CLSTAMP = "steamdb";
             return (0, _._)(this, void 0, void 0, function* () {
               return (
                 (this.m_sMailboxName = _.EnsureUniqueName(_)),
-                (this.m_sWebSecret = _),
+                (this.m_sWebSecret = null != _ ? _ : ""),
                 (this.connected = !1),
                 this.OpenWebSocketToHost()
               );
@@ -669,6 +673,16 @@ var CLSTAMP = "steamdb";
           (0, _._)([_], _.prototype, "WebSocketSend", null),
           (0, _._)([_], _.prototype, "OnWebSocketMessage", null);
         var _, _, _, _;
+        function _() {
+          var _;
+          return null !==
+            (_ =
+              null === VRHTML || void 0 === VRHTML
+                ? void 0
+                : VRHTML.Environment()) && void 0 !== _
+            ? _
+            : _.Unknown;
+        }
         !(function (_) {
           (_[(_.Desktop = 1)] = "Desktop"),
             (_[(_.Overlay = 2)] = "Overlay"),
@@ -735,12 +749,15 @@ var CLSTAMP = "steamdb";
           return _(_(_, _));
         }
         function _(_, _) {
+          var _;
           let _ = {
             type: _,
             properties: {},
           };
           return (
-            _._ && (_.properties._ = _(_._)),
+            _._ &&
+              (_.properties._ =
+                null !== (_ = _(_._)) && void 0 !== _ ? _ : void 0),
             (_.properties.sgid = _(_, "sgid")),
             _
           );
@@ -1147,8 +1164,9 @@ var CLSTAMP = "steamdb";
           _,
           _,
           _,
+          _,
+          _,
           _ = [],
-          _ = null,
           _ = null,
           _ = !0;
         function _(_) {
@@ -1182,7 +1200,7 @@ var CLSTAMP = "steamdb";
                     rootproperties: {
                       relatchDashboardTransform: _,
                       allowDismissOnClick: _,
-                      sceneColorCorrection: null,
+                      sceneColorCorrection: _,
                     },
                     children: _(
                       {
@@ -1283,14 +1301,30 @@ var CLSTAMP = "steamdb";
             super(_),
               (this.m_domRef = _.createRef()),
               (this.m_buildNodeOverride = null),
-              (this.m_SGID =
-                null !==
-                  (_ =
-                    null === VRHTML || void 0 === VRHTML
-                      ? void 0
-                      : VRHTML.NextSGID()) && void 0 !== _
-                  ? _
-                  : 0);
+              (this.m_SGID = 0);
+            const _ = _._ && "string" == typeof _._;
+            _ &&
+              this.BCanUseStableSGIDs() &&
+              _.s_mapStableSGIDsForIDs.has(_._) &&
+              ((this.m_SGID = _.s_mapStableSGIDsForIDs.get(_._)),
+              _.s_mapCurrentlyMountedSGIDs.has(this.m_SGID) &&
+                (console.error(
+                  `Constructing SGBase component (ID="${_._}") at the same time another component with that SGID is mounted. Using a new SGID.`,
+                  this.m_SGID,
+                ),
+                (this.m_SGID = 0))),
+              0 == this.m_SGID &&
+                ((this.m_SGID =
+                  null !==
+                    (_ =
+                      null === VRHTML || void 0 === VRHTML
+                        ? void 0
+                        : VRHTML.NextSGID()) && void 0 !== _
+                    ? _
+                    : 0),
+                _ &&
+                  this.BCanUseStableSGIDs() &&
+                  _.s_mapStableSGIDsForIDs.set(_._, this.m_SGID));
           }
           setBuildNodeOverride(_) {
             this.m_buildNodeOverride = _;
@@ -1311,8 +1345,9 @@ var CLSTAMP = "steamdb";
             return this.m_domRef.current;
           }
           componentDidMount() {
-            this.m_buildNodeOverride &&
-              (this.m_domRef.current.buildNode = this.m_buildNodeOverride),
+            _.s_mapCurrentlyMountedSGIDs.set(this.m_SGID, this),
+              this.m_buildNodeOverride &&
+                (this.m_domRef.current.buildNode = this.m_buildNodeOverride),
               _();
           }
           componentDidUpdate() {
@@ -1320,7 +1355,9 @@ var CLSTAMP = "steamdb";
           }
           componentWillUnmount() {
             var _;
-            (_ = this.m_SGID),
+            _.s_mapCurrentlyMountedSGIDs.get(this.m_SGID) == this &&
+              _.s_mapCurrentlyMountedSGIDs.delete(this.m_SGID),
+              (_ = this.m_SGID),
               _.push(_),
               _(),
               this.m_domRef.current &&
@@ -1328,6 +1365,9 @@ var CLSTAMP = "steamdb";
                 delete this.m_domRef.current.buildNode;
           }
           PanelContextValue() {}
+          BCanUseStableSGIDs() {
+            return !1;
+          }
           render() {
             return _.createElement(
               _.Provider,
@@ -1348,6 +1388,8 @@ var CLSTAMP = "steamdb";
               : null;
           }
         }
+        (_.s_mapStableSGIDsForIDs = new Map()),
+          (_.s_mapCurrentlyMountedSGIDs = new Map());
         const _ = _.createContext(void 0);
         var _, _;
         !(function (_) {
@@ -1807,14 +1849,7 @@ var CLSTAMP = "steamdb";
             );
           };
         function _(_) {
-          return _.useContext(_) ||
-            (null !==
-              (_ =
-                null === VRHTML || void 0 === VRHTML
-                  ? void 0
-                  : VRHTML.Environment()) && void 0 !== _
-              ? _
-              : _.Unknown) != _.Overlay
+          return _.useContext(_) || _() != _.Overlay
             ? _.createElement(_, Object.assign({}, _))
             : _.createElement(
                 _,
@@ -1842,7 +1877,6 @@ var CLSTAMP = "steamdb";
                   _.createElement(_, Object.assign({}, _)),
                 ),
               );
-          var _;
         }
         const _ = ({ children: _ }) =>
             _.createElement(
@@ -1988,7 +2022,7 @@ var CLSTAMP = "steamdb";
                 width: 0,
                 height: 0,
               }),
-              (this.m_nEmbeddedIndex = null),
+              (this.m_nEmbeddedIndex = void 0),
               (this.m_LastDOMContentSize = void 0),
               (this.m_DOMContentSizeChangedCallbacks = new _()),
               (this.m_resizeObserver = null),
@@ -2057,7 +2091,8 @@ var CLSTAMP = "steamdb";
                 "mousedown",
                 this.onPanelMouseDown,
               ),
-              this.forceUpdate();
+              this.forceUpdate(),
+              _.s_setAllPanels.add(this);
           }
           onResizeObserved(_, _) {
             _.Current().forceLayoutUpdate(),
@@ -2070,9 +2105,10 @@ var CLSTAMP = "steamdb";
               );
           }
           componentWillUnmount() {
-            this.m_resizeObserver &&
-              (this.m_resizeObserver.disconnect(),
-              (this.m_resizeObserver = null)),
+            _.s_setAllPanels.delete(this),
+              this.m_resizeObserver &&
+                (this.m_resizeObserver.disconnect(),
+                (this.m_resizeObserver = null)),
               this.stopOverDragBlocking(),
               this.getCurrentRootElement().removeEventListener(
                 "mousedown",
@@ -2143,7 +2179,7 @@ var CLSTAMP = "steamdb";
               : _.Visible;
           }
           buildNode(_, _) {
-            var _, _, _, _, _, _, _, _, _, _;
+            var _, _, _, _, _, _, _, _, _, _, _, _;
             if (
               !(
                 this.visibility == _.Visible ||
@@ -2177,10 +2213,12 @@ var CLSTAMP = "steamdb";
                     null === VRHTML || void 0 === VRHTML
                       ? void 0
                       : VRHTML.VROverlay.ThisOverlayHandle()),
-              (_.properties.uv_min =
-                null !== (_ = _(this.m_UVsMin)) && void 0 !== _ ? _ : void 0),
-              (_.properties.uv_max =
-                null !== (_ = _(this.m_UVsMax)) && void 0 !== _ ? _ : void 0);
+              this.m_UVsMin &&
+                (_.properties.uv_min =
+                  null !== (_ = _(this.m_UVsMin)) && void 0 !== _ ? _ : void 0),
+              this.m_UVsMax &&
+                (_.properties.uv_max =
+                  null !== (_ = _(this.m_UVsMax)) && void 0 !== _ ? _ : void 0);
             const _ = 1 / _.Current().m_fCurrentScale;
             let _ = this.props.frame_resize_scale_factor;
             return (
@@ -2256,17 +2294,26 @@ var CLSTAMP = "steamdb";
               (_.properties["main-panel-for-frame-page"] =
                 this.props.is_frame_page_main_panel),
               (_.properties["steam-input-appid"] =
-                null === (_ = this.props.inputFocusParams) || void 0 === _
+                null === (_ = this.inputFocusParams) || void 0 === _
                   ? void 0
                   : _.unSteamInputAppID),
               (_.properties["vr-input-pid"] =
-                null === (_ = this.props.inputFocusParams) || void 0 === _
+                null === (_ = this.inputFocusParams) || void 0 === _
                   ? void 0
                   : _.unVRInputPID),
+              (_.properties["can-take-keyboard-focus"] =
+                null ===
+                  (_ =
+                    null === (_ = this.inputFocusParams) || void 0 === _
+                      ? void 0
+                      : _.bCanTakeKeyboardFocus) ||
+                void 0 === _ ||
+                _),
               [_, _]
             );
           }
           scaleLocalUVToGlobal(_) {
+            if (!this.m_UVsMin || !this.m_UVsMax) return;
             const _ = this.m_UVsMax._ - this.m_UVsMin._,
               _ = this.m_UVsMax._ - this.m_UVsMin._;
             return {
@@ -2282,17 +2329,21 @@ var CLSTAMP = "steamdb";
               );
             this.m_Rect = this.getCurrentRootElement().getBoundingClientRect();
             let _ = this.getCurrentRootElement().ownerDocument.defaultView;
-            (this.m_UVsMin = {
-              _: this.m_Rect._ / _.innerWidth,
-              _: this.m_Rect._ / _.innerHeight,
-            }),
+            _ &&
+              ((this.m_UVsMin = {
+                _: this.m_Rect._ / _.innerWidth,
+                _: this.m_Rect._ / _.innerHeight,
+              }),
               (this.m_UVsMax = {
                 _: (this.m_Rect._ + this.m_Rect.width) / _.innerWidth,
                 _: (this.m_Rect._ + this.m_Rect.height) / _.innerHeight,
-              });
+              }));
           }
           PanelContextValue() {
             return this;
+          }
+          BCanUseStableSGIDs() {
+            return !0;
           }
           internalRender() {
             return _.createElement(
@@ -2310,6 +2361,28 @@ var CLSTAMP = "steamdb";
                 }),
             );
           }
+          get inputFocusParams() {
+            return Object.assign(
+              {
+                bCanTakeKeyboardFocus: this.props.interactive,
+              },
+              this.props.inputFocusParams,
+            );
+          }
+          get isInputFocusable() {
+            var _, _, _;
+            return (
+              (null === (_ = this.inputFocusParams) || void 0 === _
+                ? void 0
+                : _.unSteamInputAppID) ||
+              (null === (_ = this.inputFocusParams) || void 0 === _
+                ? void 0
+                : _.unVRInputPID) ||
+              (null === (_ = this.inputFocusParams) || void 0 === _
+                ? void 0
+                : _.bCanTakeKeyboardFocus)
+            );
+          }
         }
         function _(_) {
           const { panel: _, panelID: _ } = _,
@@ -2323,12 +2396,14 @@ var CLSTAMP = "steamdb";
           );
         }
         (_.s_bPanelsAreDirty = !1),
+          (_.s_setAllPanels = new _._()),
           (0, _._)([_], _.prototype, "onResizeObserved", null),
           (0, _._)([_], _.prototype, "onPanelMouseDown", null),
           (0, _._)([_], _.prototype, "onWindowMouseUp", null),
-          (0, _._)([_], _.prototype, "buildNode", null);
+          (0, _._)([_], _.prototype, "buildNode", null),
+          (window.s_setAllPanels = _.s_setAllPanels);
         const _ = new _("EmbeddedPixels");
-        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
         !(function (_) {
           (_[(_.Canvas = 0)] = "Canvas"), (_[(_.Image = 1)] = "Image");
         })(_ || (_ = {}));
@@ -2487,16 +2562,19 @@ var CLSTAMP = "steamdb";
             );
           }
           addEmbeddedPanelUVs(_) {
-            return 0 === this.m_rAvailableEmbeddedIndicesQueue.length
-              ? null
-              : (this.m_mapPanels.set(_.getSGID(), _),
-                this.m_rAvailableEmbeddedIndicesQueue.shift());
+            if (0 !== this.m_rAvailableEmbeddedIndicesQueue.length)
+              return (
+                this.m_mapPanels.set(_.getSGID(), _),
+                this.m_rAvailableEmbeddedIndicesQueue.shift()
+              );
           }
           removeEmbeddedPanelUVs(_) {
-            this.m_mapPanels.has(_.getSGID()) &&
-              (this.m_mapPanels.delete(_.getSGID()),
-              this.m_rAvailableEmbeddedIndicesQueue.push(_.getEmbeddedIndex()),
-              this.m_rEmbeddedIndicesToClear.push(_.getEmbeddedIndex()));
+            if (!this.m_mapPanels.has(_.getSGID())) return;
+            this.m_mapPanels.delete(_.getSGID());
+            const _ = _.getEmbeddedIndex();
+            null != _ &&
+              (this.m_rAvailableEmbeddedIndicesQueue.push(_),
+              this.m_rEmbeddedIndicesToClear.push(_));
           }
           onMutation(_, _) {
             this.updateAllPanelBounds();
@@ -2519,13 +2597,14 @@ var CLSTAMP = "steamdb";
                 ((this.m_CanvasRef.current.width = this.m_nEmbeddedDataWidth),
                 (this.m_CanvasContext =
                   this.m_CanvasRef.current.getContext("2d")),
-                (this.m_CanvasContext.globalCompositeOperation = "copy"),
-                (this.m_CanvasContext.imageSmoothingEnabled = !1),
-                null === this.m_Pixels &&
-                  (this.m_Pixels = this.m_CanvasContext.createImageData(
-                    this.m_nEmbeddedDataWidth,
-                    _.k_EmbeddedDataRows,
-                  ))),
+                null != this.m_CanvasContext &&
+                  ((this.m_CanvasContext.globalCompositeOperation = "copy"),
+                  (this.m_CanvasContext.imageSmoothingEnabled = !1),
+                  null === this.m_Pixels &&
+                    (this.m_Pixels = this.m_CanvasContext.createImageData(
+                      this.m_nEmbeddedDataWidth,
+                      _.k_EmbeddedDataRows,
+                    )))),
               this.updateAllPanelBounds();
           }
           updateAllPanelBounds() {
@@ -2574,8 +2653,9 @@ var CLSTAMP = "steamdb";
                     _ = _.m_Rect._ + _.m_Rect.width,
                     _ = _.m_Rect._,
                     _ = _.m_Rect._ + _.m_Rect.height,
-                    _ = _.getEmbeddedIndex(),
-                    _ = 1 + 3 * _;
+                    _ = _.getEmbeddedIndex();
+                  if (null == _) return;
+                  const _ = 1 + 3 * _;
                   let _ = [0, 0, 0, 0, 0, 0, 0, 0, 0],
                     _ = !1;
                   if (_.isExternal() || _ >= _ || _ >= _)
@@ -2615,14 +2695,18 @@ var CLSTAMP = "steamdb";
                 this.m_EmbeddedDataImgRef && this.state.eRenderMode == _.Image)
               ) {
                 const _ =
-                  null === (_ = VRHTML.VRUtil) || void 0 === _
+                  null ===
+                    (_ =
+                      null === VRHTML || void 0 === VRHTML
+                        ? void 0
+                        : VRHTML.VRUtil) || void 0 === _
                     ? void 0
                     : _.GetEmbeddedScanlineAsURIImage(
                         this.m_nEmbeddedDataWidth,
                         1,
                         4,
                       );
-                this.m_EmbeddedDataImgRef.current.src = _;
+                null != _ && (this.m_EmbeddedDataImgRef.current.src = _);
               } else if (
                 this.m_CanvasRef &&
                 this.state.eRenderMode == _.Canvas
@@ -2885,6 +2969,7 @@ var CLSTAMP = "steamdb";
               this.m_latchedPosition = null;
             }
             buildNode(_, _) {
+              var _, _;
               if (!_.currentPanel && !_.bInsideReparentedPanel)
                 return [
                   Object.assign(Object.assign({}, _), {
@@ -2913,8 +2998,9 @@ var CLSTAMP = "steamdb";
                     !_.currentPanel || _.currentPanel.props.overlay_key
                       ? _
                       : _.currentPanel.scaleLocalUVToGlobal(_);
-                (_.properties["anchor-u"] = _._),
-                  (_.properties["anchor-v"] = _._);
+                _ &&
+                  ((_.properties["anchor-u"] = _._),
+                  (_.properties["anchor-v"] = _._));
               } else {
                 if (!_.currentPanel)
                   return [
@@ -2940,9 +3026,15 @@ var CLSTAMP = "steamdb";
                     }),
                     null,
                   ];
-                const _ = _.defaultView.innerWidth,
-                  _ = _.defaultView.innerHeight;
-                if (!(_ > 0 && _ > 0))
+                const _ =
+                    null === (_ = _.defaultView) || void 0 === _
+                      ? void 0
+                      : _.innerWidth,
+                  _ =
+                    null === (_ = _.defaultView) || void 0 === _
+                      ? void 0
+                      : _.innerHeight;
+                if (!(_ && _ > 0 && _ && _ > 0))
                   return [
                     Object.assign(Object.assign({}, _), {
                       bShouldAbort: !0,
@@ -3081,6 +3173,8 @@ var CLSTAMP = "steamdb";
               (_[(_.AllowCameraToggle_Bool = 1055)] = "AllowCameraToggle_Bool"),
               (_[(_.AllowLightSourceFrequency_Bool = 1056)] =
                 "AllowLightSourceFrequency_Bool"),
+              (_[(_.IsDedicatedVRHeadset_Bool = 1058)] =
+                "IsDedicatedVRHeadset_Bool"),
               (_[(_.HasEyeTracker_Bool = 1060)] = "HasEyeTracker_Bool"),
               (_[(_.ReportsTimeSinceVSync_Bool = 2e3)] =
                 "ReportsTimeSinceVSync_Bool"),
@@ -3272,6 +3366,8 @@ var CLSTAMP = "steamdb";
                 "DriverRequestedMuraFeather_OuterBottom_Int32"),
               (_[(_.Audio_SupportsDualSpeakerAndJackOutput_Bool = 2303)] =
                 "Audio_SupportsDualSpeakerAndJackOutput_Bool"),
+              (_[(_.Hmd_ForceRoomViewOutsideChaperone_Bool = 2500)] =
+                "Hmd_ForceRoomViewOutsideChaperone_Bool"),
               (_[(_.AttachedDeviceId_String = 3e3)] =
                 "AttachedDeviceId_String"),
               (_[(_.SupportedButtons_Uint64 = 3001)] =
@@ -3402,6 +3498,11 @@ var CLSTAMP = "steamdb";
               (_[(_.Idle_Timeout = 4)] = "Idle_Timeout");
           })(_ || (_ = {})),
           (function (_) {
+            (_[(_.VRMouseButton_Left = 1)] = "VRMouseButton_Left"),
+              (_[(_.VRMouseButton_Right = 2)] = "VRMouseButton_Right"),
+              (_[(_.VRMouseButton_Middle = 4)] = "VRMouseButton_Middle");
+          })(_ || (_ = {})),
+          (function (_) {
             (_[(_.Notification_Shown = 600)] = "Notification_Shown"),
               (_[(_.Notification_Hidden = 601)] = "Notification_Hidden"),
               (_[(_.Notification_BeginInteraction = 602)] =
@@ -3455,6 +3556,11 @@ var CLSTAMP = "steamdb";
               (_[(_.System = 1)] = "System"),
               (_[(_.SteamInput = 2)] = "SteamInput"),
               (_[(_.VRInput = 3)] = "VRInput");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.Invalid = 0)] = "Invalid"),
+              (_[(_.SceneApp = 1)] = "SceneApp"),
+              (_[(_.Panel = 2)] = "Panel");
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.None = 0)] = "None"),
@@ -9045,7 +9151,7 @@ var CLSTAMP = "steamdb";
           constructor(_ = null) {
             super(),
               _.prototype.product || _(_._()),
-              _.Message.initialize(this, _, 0, -1, [3], null);
+              _.Message.initialize(this, _, 0, -1, [3, 4], null);
           }
           static M() {
             return (
@@ -9068,6 +9174,13 @@ var CLSTAMP = "steamdb";
                       _: _,
                       _: !0,
                       _: !0,
+                    },
+                    tags: {
+                      _: 4,
+                      _: !0,
+                      _: !0,
+                      _: _.readString,
+                      _: _.writeRepeatedString,
                     },
                   },
                 }),
@@ -9210,6 +9323,755 @@ var CLSTAMP = "steamdb";
             },
           );
         }
+        const _ = "/settings/steamvr/showAdvancedSettings",
+          _ = "change_route";
+        class _ {
+          constructor() {
+            (this.m_wsWebSocketToServer = void 0),
+              (this.m_mailbox = new _()),
+              (this.connected = !1),
+              (this.settingsSchema = void 0),
+              (this.settings = _._.map()),
+              (this.systemInfo = void 0),
+              (this.audioDevices = void 0),
+              (this.apps = []),
+              (this.probablyOwnedAppkeys = new Set()),
+              (this.showInternalSettings = !1),
+              (this.workshopStateChangedCanary = 1),
+              (this.onRestartRequired = null),
+              (this.onAppRestartRequired = null),
+              (this.pendingChanges = new Map()),
+              (this.route = []),
+              (this.m_mapSettingsLastWriteInfo = new Map()),
+              (this.m_bIsSettingApp = !1),
+              (this.m_bInitStarted = !1),
+              (this.GetAppList = function () {
+                return new Promise(function (_, _) {
+                  _()
+                    .get("/app/list.json")
+                    .then((_) => {
+                      _(_.data.apps);
+                    })
+                    .catch((_) => {
+                      _(_);
+                    });
+                });
+              }),
+              (this.GetSettingsUGC = function () {
+                return new Promise(function (_, _) {
+                  _()
+                    .get("/settings_getugc")
+                    .then((_) => {
+                      _(_.data);
+                    })
+                    .catch((_) => {
+                      _(_);
+                    });
+                });
+              }),
+              (this.ReloadSettingsSchema = function () {
+                return new Promise(function (_, _) {
+                  _()
+                    .get("/settings_reloadschema")
+                    .then((_) => {
+                      _(_.data);
+                    })
+                    .catch((_) => {
+                      _(_);
+                    });
+                });
+              }),
+              (this.GetSettingsInfo = function () {
+                return new Promise(function (_, _) {
+                  _()
+                    .get("/settings_getinfo")
+                    .then((_) => {
+                      _(_.data);
+                    })
+                    .catch((_) => {
+                      _(_);
+                    });
+                });
+              }),
+              (0, _._)(this);
+          }
+          OpenWebSocketToHost() {
+            return new Promise((_, _) => {
+              console.log("Connecting vrsettings..."),
+                (this.m_wsWebSocketToServer = new WebSocket(
+                  "ws://" + window.location.host,
+                )),
+                this.m_wsWebSocketToServer.addEventListener("open", (_) => {
+                  this.OnWebSocketOpen(_), _();
+                }),
+                this.m_wsWebSocketToServer.addEventListener(
+                  "message",
+                  this.OnWebSocketMessage,
+                ),
+                this.m_wsWebSocketToServer.addEventListener(
+                  "close",
+                  this.OnWebSocketClose,
+                );
+            });
+          }
+          Init(_) {
+            return (0, _._)(this, void 0, void 0, function* () {
+              if (this.m_bInitStarted) return;
+              (this.m_bInitStarted = !0),
+                (this.m_bIsSettingApp = _),
+                this.m_bIsSettingApp &&
+                  (window.addEventListener("hashchange", this.onHashChanged),
+                  this.onHashChanged()),
+                (0, _._)(
+                  () => {
+                    let _ = [];
+                    if (0 != this.pendingChanges.size) {
+                      for (const [_, _] of this.pendingChanges.entries())
+                        _.push({
+                          name: _,
+                          value: _,
+                        });
+                      this.pendingChanges.clear(),
+                        _()
+                          .post("/settings_set.action", _)
+                          .then((_) => {})
+                          .catch((_) => {
+                            console.log(
+                              "Failed to save settings! This usually happens when type is set incorrectly on one of the keys in the schema. ",
+                              _,
+                            );
+                          });
+                    }
+                  },
+                  {
+                    delay: 300,
+                  },
+                ),
+                null === VRHTML ||
+                  void 0 === VRHTML ||
+                  VRHTML.RegisterForDisplayModeNotSupportedEvents(
+                    this.SetRestartRequired,
+                  );
+              let _ = [];
+              this.m_mailbox.connected || _.push(this.ConnectMailbox()),
+                _.push(this.OpenWebSocketToHost()),
+                _.push(this.AwaitInitialSettingsSchema()),
+                yield Promise.all(_);
+            });
+          }
+          get MailboxName() {
+            if (!this.m_bIsSettingApp) return "settings";
+            switch (_()) {
+              case _.Overlay:
+                return "settings/overlay";
+              case _.Desktop:
+                return "settings/desktop";
+              default:
+                return "settings/unknown";
+            }
+          }
+          ConnectMailbox() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              try {
+                yield this.m_mailbox.Init(this.MailboxName),
+                  this.m_mailbox.RegisterHandler(
+                    "workshop_state_changed",
+                    this.OnWorkshopStateChangedMessage,
+                  ),
+                  this.m_mailbox.RegisterHandler(_, this.OnChangeRouteMessage),
+                  this.m_mailbox.RegisterHandler(
+                    "app_config_changed",
+                    this.OnAppConfigChangedMessage,
+                  ),
+                  this.m_mailbox.RegisterHandler(
+                    "refresh_rate_change",
+                    this.OnRefreshRateChangeMessage,
+                  );
+              } catch (_) {
+                console.log("Failed to open settings mailbox:" + _);
+              }
+            });
+          }
+          OnWorkshopStateChangedMessage(_) {
+            this.workshopStateChangedCanary++;
+          }
+          OnChangeRouteMessage(_) {
+            this.m_bIsSettingApp &&
+              this.setRoute(_.page, _.section, _.sectionParams);
+          }
+          OnAppConfigChangedMessage(_) {
+            return (0, _._)(this, void 0, void 0, function* () {
+              if (_.deleted_appkeys.length)
+                for (let _ = this.apps.length - 1; _ >= 0; _--)
+                  _.deleted_appkeys.indexOf(this.apps[_].key) >= 0 &&
+                    this.apps.splice(_, 1);
+              for (let _ of _.updated_apps) {
+                for (let _ = 0; _ < this.apps.length; _++)
+                  if (this.apps[_].key == _.key) {
+                    !this.apps[_].is_autolaunch &&
+                      _.is_autolaunch &&
+                      this.SetRestartRequired(),
+                      (this.apps[_] = Object.assign(
+                        Object.assign(Object.assign({}, this.apps[_]), {
+                          current_scene_process: !1,
+                        }),
+                        _,
+                      )),
+                      (_ = null);
+                    break;
+                  }
+                _ && (this.apps.push(_), this.probablyOwnedAppkeys.add(_.key));
+              }
+            });
+          }
+          OnRefreshRateChangeMessage(_) {
+            this.onAppRestartRequired &&
+              this.onAppRestartRequired(_.app_supports);
+          }
+          onHashChanged() {
+            if (!this.m_bIsSettingApp) return;
+            const _ = window.location.hash;
+            0 === _.indexOf("#")
+              ? (this.route = _.substring(1).split("/"))
+              : (this.route = []);
+          }
+          get routePage() {
+            return this.route.length >= 1 ? this.route[0] : null;
+          }
+          get routePageSection() {
+            return this.route.length >= 2 ? this.route[1] : null;
+          }
+          get routePageSectionParams() {
+            return this.route.slice(2);
+          }
+          setRoutePage(_) {
+            this.setRoute(_);
+          }
+          setRoutePageSection(_) {
+            this.setRoute(this.routePage, _);
+          }
+          setRoutePageSectionParams(_) {
+            this.setRoute(this.routePage, this.routePageSection, _);
+          }
+          setRoute(_, _, _) {
+            if (this.m_bIsSettingApp) {
+              (_ = null != _ ? _ : ""), (_ = null != _ ? _ : []);
+              const _ = _ ? [_, _, ..._] : [_],
+                _ = _.join("/");
+              window.location.hash.substring(1) != _ &&
+                ((window.location.hash = _), (this.route = _));
+            } else
+              this.m_mailbox.connected &&
+                this.m_mailbox.SendMessage(this.MailboxName, {
+                  type: _,
+                  page: _,
+                  section: _,
+                  sectionParams: _,
+                });
+          }
+          SetDashboardFadeSupression(_, _) {
+            this.m_mailbox.connected &&
+              this.m_mailbox.SendMessage(_, {
+                type: "set_dashboard_fade_suppression",
+                suppress_dashboard_fade: _,
+                for_id: _,
+              });
+          }
+          SetDashboardForceBoundsVisible(_, _, _) {
+            this.m_mailbox.connected &&
+              this.m_mailbox.SendMessage(_, {
+                type: "set_dashboard_force_bounds_visible",
+                force_bounds_visible: _,
+                for_overlay_key: _,
+                for_id: _,
+              });
+          }
+          SetRestartRequired() {
+            this.onRestartRequired && this.onRestartRequired();
+          }
+          OnWebSocketOpen(_) {
+            (this.connected = !0),
+              this.WebSocketSend("settings_open"),
+              window.addEventListener("beforeunload", () => {
+                this.WebSocketSend("settings_close");
+              }),
+              _.GetSettingsInfo().then((_) => {
+                this.systemInfo = _;
+              }),
+              _.GetAppList().then((_) => {
+                this.OnVRAppList({
+                  jsonid: "vr_app_list",
+                  apps: _,
+                });
+              });
+          }
+          OnWebSocketClose(_) {
+            console.log("Lost connection to host..."),
+              (this.connected = !1),
+              this.OpenWebSocketToHost();
+          }
+          WebSocketSend(_) {
+            null != this.m_wsWebSocketToServer &&
+              1 == this.m_wsWebSocketToServer.readyState &&
+              this.m_wsWebSocketToServer.send(_);
+          }
+          OnWebSocketMessage(_) {
+            let _ = JSON.parse(_.data);
+            switch (_.jsonid) {
+              case "vr_settings":
+                this.OnVRSettings(_);
+                break;
+              case "vr_settings_schema":
+                this.OnVRSettingsSchema(_);
+                break;
+              case "vr_audio_devices":
+                this.OnVRAudioDevices(_);
+                break;
+              case "vr_app_list":
+                this.OnVRAppList(_);
+                break;
+              default:
+                _.jsonid
+                  ? console.log("Received unhandled event: " + _.jsonid)
+                  : console.log("Received unknown message: ", _);
+            }
+          }
+          OnVRSettings(_) {
+            for (let _ in _.values) {
+              const _ = _.values[_];
+              if (
+                this.settings.get(_) != _ ||
+                this.m_mapSettingsLastWriteInfo.has(_)
+              ) {
+                if (this.settingsSchema) {
+                  const _ = this.GetSettingSchema(_);
+                  _ && _.requires_restart && this.SetRestartRequired();
+                }
+                this.SetSettingValueFromServer(_, _);
+              }
+            }
+          }
+          SetSettingValueFromServer(_, _) {
+            const _ = 1e3 * _.SERVER_SETTING_MERGE_DEFER_DURATION;
+            if (this.m_mapSettingsLastWriteInfo.has(_)) {
+              let _ = this.m_mapSettingsLastWriteInfo.get(_);
+              if (new Date().getTime() - _.nLastUserUpdateTime < _)
+                return (
+                  window.clearTimeout(_.nPendingServerValueUpdateTimeout),
+                  void (_.nPendingServerValueUpdateTimeout = window.setTimeout(
+                    () => {
+                      this.SetSettingValueFromServer(_, _);
+                    },
+                    _,
+                  ))
+                );
+              window.clearTimeout(_.nPendingServerValueUpdateTimeout),
+                this.m_mapSettingsLastWriteInfo.delete(_);
+            }
+            this.settings.set(_, _);
+          }
+          UpdateLastUserWriteTimeForSetting(_) {
+            const _ = new Date().getTime();
+            this.m_mapSettingsLastWriteInfo.has(_)
+              ? (this.m_mapSettingsLastWriteInfo.get(_).nLastUserUpdateTime = _)
+              : this.m_mapSettingsLastWriteInfo.set(_, {
+                  nLastUserUpdateTime: _,
+                  nPendingServerValueUpdateTimeout: 0,
+                });
+          }
+          OnVRSettingsSchema(_) {
+            null == this.settingsSchema &&
+              (console.log("Got vr settings schema"),
+              (this.settingsSchema = _.schema),
+              (this.showInternalSettings = _.is_steamvr_main));
+          }
+          AwaitInitialSettingsSchema() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              return (0, _._)(() => !!this.settingsSchema);
+            });
+          }
+          OnVRAudioDevices(_) {
+            console.log("Got audio devices"), (this.audioDevices = _);
+          }
+          OnVRAppList(_) {
+            (this.apps = _.apps),
+              _.apps.map((_) => this.probablyOwnedAppkeys.add(_.key));
+          }
+          SettingNameMatches(_, _) {
+            if (_ && _.endsWith("*")) {
+              let _ = _.length - 1;
+              return _.substr(0, _) == _.substr(0, _);
+            }
+            return _ == _;
+          }
+          GetSettingSchema(_) {
+            for (let _ of this.settingsSchema)
+              if (_.values)
+                for (let _ of _.values)
+                  if (_ && this.SettingNameMatches(_, _.name)) return _;
+            return null;
+          }
+          ResetSettingsValue(_) {
+            this.SetSettingsValue(_, null);
+          }
+          ResetSettingsValues(..._) {
+            _.forEach(this.ResetSettingsValue);
+          }
+          SetSettingsValue(_, _) {
+            let _ = this.GetSettingSchema(_);
+            null != _
+              ? (null != _ &&
+                  ("int" == _.type
+                    ? (_ = parseInt(_))
+                    : "float" == _.type
+                      ? (_ = parseFloat(_))
+                      : "string" == _.type
+                        ? (_ = "" + _)
+                        : "bool" == _.type && (_ = !!_)),
+                _.requires_restart && this.SetRestartRequired(),
+                this.SetSettingsStringValueWithoutSchema(_, _))
+              : console.log(
+                  "Tried to set setting " +
+                    _ +
+                    " but it's not in the schema! Aborting",
+                );
+          }
+          SetSettingsStringValueWithoutSchema(_, _) {
+            if (VRHTML) {
+              const _ = _.split("/");
+              if (4 != _.length || "" != _[0] || "settings" != _[1])
+                throw new Error("bad settings path " + _);
+              VRHTML.VRSettings.Set(_[2], _[3], _),
+                this.settings.set(_, VRHTML.VRSettings.Get(_[2], _[3]));
+            } else
+              null != _ && this.settings.set(_, _),
+                this.pendingChanges.set(_, _);
+            this.UpdateLastUserWriteTimeForSetting(_);
+          }
+          GetSettingsValue(_) {
+            return (0, _._)(this, void 0, void 0, function* () {
+              return new Promise(function (_, _) {
+                _()
+                  .get("/settings_get", {
+                    params: {
+                      name: _,
+                    },
+                  })
+                  .then((_) => {
+                    _(_.data);
+                  })
+                  .catch((_) => {
+                    __webpack_require__(null);
+                  });
+              });
+            });
+          }
+          ResetAppSettings(_) {
+            return _()
+              .post("/app/resetsettings", {
+                app: _,
+              })
+              .then((_) => this.GetAppSettings(_))
+              .catch((_) => {});
+          }
+          ResetAllAppResolutionScales() {
+            return _()
+              .post("/app/resetallresolutionscales")
+              .then((_) => !0)
+              .catch((_) => {});
+          }
+          SetAppSettings(_, _) {
+            let _ = Object.assign(Object.assign({}, _), {
+              app: _,
+            });
+            _().post("/app/setsettings", _);
+            for (let _ = 0; _ < this.apps.length; _++)
+              if (this.apps[_].key == _.app) {
+                !this.apps[_].is_autolaunch &&
+                  _.is_autolaunch &&
+                  this.SetRestartRequired(),
+                  (this.apps[_] = Object.assign(
+                    Object.assign({}, this.apps[_]),
+                    _,
+                  ));
+                break;
+              }
+          }
+          GetAppSettings(_) {
+            return (0, _._)(this, void 0, void 0, function* () {
+              return new Promise(function (_, _) {
+                _()
+                  .get("/app/getsettings", {
+                    params: {
+                      app: _,
+                    },
+                  })
+                  .then((_) => {
+                    _(_.data);
+                  })
+                  .catch((_) => {
+                    __webpack_require__(null);
+                  });
+              });
+            });
+          }
+          GetAppInfo(_) {
+            return (0, _._)(this, void 0, void 0, function* () {
+              return new Promise(function (_, _) {
+                _()
+                  .get("/app/getinfo", {
+                    params: {
+                      app: _,
+                    },
+                  })
+                  .then((_) => {
+                    _(_.data);
+                  })
+                  .catch((_) => {
+                    __webpack_require__(null);
+                  });
+              });
+            });
+          }
+          GetAppName(_) {
+            var _;
+            return null === (_ = this.apps.find((_) => _.key == _)) ||
+              void 0 === _
+              ? void 0
+              : _.name;
+          }
+          get NumSupersamplingSteps() {
+            return Math.floor(4.81 / 0.02);
+          }
+          SliderposToSupersample(_) {
+            return _ > 5 ? 5 : _ < 0.2 ? 0.2 : _;
+          }
+          get showAdvancedSettings() {
+            return this.settings.get(_);
+          }
+          set showAdvancedSettings(_) {
+            this.SetSettingsValue(_, _);
+          }
+          showBindingCallouts(_) {
+            let _ = {
+              type: "request_binding_callouts",
+              app_key: _,
+            };
+            this.m_mailbox.SendMessage("binding_callouts/main", _);
+          }
+        }
+        (_.SERVER_SETTING_MERGE_DEFER_DURATION = 1),
+          (0, _._)([_._], _.prototype, "connected", void 0),
+          (0, _._)([_._], _.prototype, "settingsSchema", void 0),
+          (0, _._)([_._], _.prototype, "settings", void 0),
+          (0, _._)([_._], _.prototype, "systemInfo", void 0),
+          (0, _._)([_._], _.prototype, "audioDevices", void 0),
+          (0, _._)([_._], _.prototype, "apps", void 0),
+          (0, _._)([_._], _.prototype, "probablyOwnedAppkeys", void 0),
+          (0, _._)([_._], _.prototype, "showInternalSettings", void 0),
+          (0, _._)([_._], _.prototype, "workshopStateChangedCanary", void 0),
+          (0, _._)([_._], _.prototype, "pendingChanges", void 0),
+          (0, _._)([_._], _.prototype, "route", void 0),
+          (0, _._)([_], _.prototype, "OpenWebSocketToHost", null),
+          (0, _._)([_], _.prototype, "OnWorkshopStateChangedMessage", null),
+          (0, _._)([_], _.prototype, "OnChangeRouteMessage", null),
+          (0, _._)([_], _.prototype, "OnAppConfigChangedMessage", null),
+          (0, _._)([_], _.prototype, "OnRefreshRateChangeMessage", null),
+          (0, _._)([_._.bound], _.prototype, "onHashChanged", null),
+          (0, _._)([_._], _.prototype, "routePage", null),
+          (0, _._)([_._], _.prototype, "routePageSection", null),
+          (0, _._)([_._], _.prototype, "routePageSectionParams", null),
+          (0, _._)([_._], _.prototype, "setRoutePage", null),
+          (0, _._)([_._], _.prototype, "setRoutePageSection", null),
+          (0, _._)([_._], _.prototype, "setRoutePageSectionParams", null),
+          (0, _._)([_._], _.prototype, "setRoute", null),
+          (0, _._)([_], _.prototype, "SetDashboardFadeSupression", null),
+          (0, _._)([_], _.prototype, "SetDashboardForceBoundsVisible", null),
+          (0, _._)([_], _.prototype, "SetRestartRequired", null),
+          (0, _._)([_], _.prototype, "OnWebSocketOpen", null),
+          (0, _._)([_], _.prototype, "OnWebSocketClose", null),
+          (0, _._)([_], _.prototype, "WebSocketSend", null),
+          (0, _._)([_], _.prototype, "OnWebSocketMessage", null),
+          (0, _._)([_._], _.prototype, "OnVRSettings", null),
+          (0, _._)([_._], _.prototype, "SetSettingValueFromServer", null),
+          (0, _._)([_._], _.prototype, "OnVRSettingsSchema", null),
+          (0, _._)([_._.bound], _.prototype, "ResetSettingsValue", null),
+          (0, _._)([_._], _.prototype, "ResetSettingsValues", null),
+          (0, _._)([_._], _.prototype, "SetSettingsValue", null),
+          (0, _._)(
+            [_._],
+            _.prototype,
+            "SetSettingsStringValueWithoutSchema",
+            null,
+          ),
+          (0, _._)([_._], _.prototype, "NumSupersamplingSteps", null);
+        const _ = new _();
+        window.VRSettingsState = _;
+        class _ {
+          constructor() {
+            (this.m_InputState = void 0),
+              (this.m_KnownControllerTypes = _._.map()),
+              (this.m_mailbox = new _()),
+              (this.m_bUpdateInputStateOnControllerTypChange = !1),
+              (0, _._)(this);
+          }
+          Init(_) {
+            return (
+              this.m_mailbox.Init("input_state"),
+              this.m_mailbox.RegisterHandler(
+                "controller_type_changed",
+                this.OnControllerTypeChanged,
+              ),
+              this.m_mailbox.RegisterHandler(
+                "action_bindings_reloaded",
+                this.OnActionBindingsReloaded,
+              ),
+              null != _ && (this.m_bUpdateInputStateOnControllerTypChange = _),
+              this.GetInputState()
+            );
+          }
+          OnActionBindingsReloaded() {
+            this.GetInputState();
+          }
+          OnControllerTypeChanged(_) {
+            this.UpdateControllerTypes(_.controller_types),
+              this.m_InputState &&
+                (this.m_InputState.controller_types = _.controller_types),
+              this.m_bUpdateInputStateOnControllerTypChange &&
+                this.GetInputState();
+          }
+          get ConnectedDevices() {
+            return null == this.m_InputState
+              ? []
+              : this.m_InputState.devices.filter(
+                  (_) =>
+                    "TrackedDeviceClass_Controller" == _.class ||
+                    "TrackedDeviceClass_HMD" == _.class ||
+                    "TrackedDeviceClass_GenericTracker" == _.class,
+                );
+          }
+          get ControllerTypes() {
+            return this.m_InputState.controller_types;
+          }
+          get ShouldSendSystemButtonToAllApps() {
+            return this.m_InputState.send_system_button_to_all_apps;
+          }
+          get ShowHiddenInputs() {
+            return this.m_InputState.show_hidden_inputs;
+          }
+          get IsSteamAvailable() {
+            return !this.m_InputState || this.m_InputState.is_steam_available;
+          }
+          get BDevMode() {
+            return this.m_InputState.dev_mode;
+          }
+          get IsValid() {
+            return null != this.m_InputState;
+          }
+          get CurrentUserPersonaName() {
+            return this.m_InputState.current_user_persona_name
+              ? this.m_InputState.current_user_persona_name
+              : null;
+          }
+          GetControllerTypeInfo(_) {
+            return this.m_InputState.controller_types.find(
+              (_) => _.controller_type == _,
+            );
+          }
+          GetDeviceInfo(_) {
+            for (let _ of this.m_InputState.devices)
+              if (_.root_path == _ || _.device_path == _) return _;
+            return null;
+          }
+          LocalizeControllerString(_, _) {
+            let _ = _("#" + _);
+            return _ != "#" + _
+              ? _
+              : _ &&
+                  this.m_InputState &&
+                  this.m_InputState.localization.hasOwnProperty(
+                    _.resource_root,
+                  ) &&
+                  this.m_InputState.localization[
+                    _.resource_root
+                  ].hasOwnProperty(_.toLowerCase())
+                ? this.m_InputState.localization[_.resource_root][
+                    _.toLowerCase()
+                  ]
+                : _;
+          }
+          LocalizeDriverString(_, _) {
+            if (
+              this.m_InputState &&
+              this.m_InputState.localization.hasOwnProperty(_) &&
+              this.m_InputState.localization[_].hasOwnProperty(_.toLowerCase())
+            )
+              return this.m_InputState.localization[_][_.toLowerCase()];
+            let _ = _("#" + _);
+            return _ != "#" + _ ? _ : _;
+          }
+          UpdateControllerTypes(_) {
+            this.m_KnownControllerTypes.clear();
+            for (let _ of _)
+              this.m_KnownControllerTypes.set(_.controller_type, _);
+          }
+          GetInputState() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              yield new Promise(function (_, _) {
+                _()
+                  .get("/input/getstate.json")
+                  .then((_) => {
+                    _(_.data);
+                  })
+                  .catch((_) => {
+                    _(_);
+                  });
+              }).then((_) => {
+                (0, _._)(() => {
+                  for (let _ of _.controller_types)
+                    _.controller_type = _.controller_type.toLowerCase();
+                  for (let _ of _.devices)
+                    _.controller_type = _.controller_type.toLowerCase();
+                  this.UpdateControllerTypes(_.controller_types),
+                    (this.m_InputState = _);
+                });
+              });
+            });
+          }
+          get KnownControllerTypes() {
+            return this.m_KnownControllerTypes;
+          }
+          FindDeviceClassForControllerType(_) {
+            let _ = this.GetControllerTypeInfo(_);
+            return null == _ ? void 0 : _.device_class;
+          }
+          FindRootPathForControllerType(_) {
+            for (let _ of this.m_InputState.devices)
+              if (_.controller_type == _) return _.root_path;
+            return null;
+          }
+        }
+        (0, _._)([_._], _.prototype, "m_InputState", void 0),
+          (0, _._)([_._], _.prototype, "m_KnownControllerTypes", void 0),
+          (0, _._)([_], _.prototype, "OnActionBindingsReloaded", null),
+          (0, _._)([_], _.prototype, "OnControllerTypeChanged", null),
+          (0, _._)([_._], _.prototype, "ConnectedDevices", null),
+          (0, _._)([_._], _.prototype, "ControllerTypes", null),
+          (0, _._)([_._], _.prototype, "ShouldSendSystemButtonToAllApps", null),
+          (0, _._)([_._], _.prototype, "ShowHiddenInputs", null),
+          (0, _._)([_._], _.prototype, "IsSteamAvailable", null),
+          (0, _._)([_._], _.prototype, "BDevMode", null),
+          (0, _._)([_._], _.prototype, "IsValid", null),
+          (0, _._)([_._], _.prototype, "CurrentUserPersonaName", null),
+          (0, _._)([_], _.prototype, "GetControllerTypeInfo", null),
+          (0, _._)([_], _.prototype, "LocalizeControllerString", null),
+          (0, _._)([_], _.prototype, "LocalizeDriverString", null),
+          (0, _._)([_._], _.prototype, "UpdateControllerTypes", null),
+          (0, _._)([_._], _.prototype, "GetInputState", null),
+          (0, _._)([_._], _.prototype, "KnownControllerTypes", null),
+          (0, _._)([_], _.prototype, "FindDeviceClassForControllerType", null);
+        const _ = new _();
+        window.inputState = _;
         const _ =
           window.addEventListener ||
           (_._ && _._.addEventListener) ||
@@ -9583,11 +10445,35 @@ var CLSTAMP = "steamdb";
               _ = new _();
             _.set_product(this.m_strProduct),
               _.set_version(this.m_strVersion),
-              _.set_errors(_),
-              this.m_transport.SendNoResponse(
-                "ClientMetrics.ReportClientError#1",
-                _.serializeBase64String(),
-              );
+              _.set_errors(_);
+            for (const _ of (function () {
+              const _ = [];
+              if (
+                ((null === VRHTML || void 0 === VRHTML
+                  ? void 0
+                  : VRHTML.HasHMD()) || _.push("no_hmd"),
+                null == _ ? void 0 : _.systemInfo)
+              ) {
+                const _ = -103;
+                _.systemInfo.os_type > 0
+                  ? _.push("windows")
+                  : _.systemInfo.os_type <= _ && _.push("linux");
+              }
+              (null == _ ? void 0 : _.IsSteamAvailable) || _.push("no_steam");
+              const _ =
+                null === VRHTML || void 0 === VRHTML
+                  ? void 0
+                  : VRHTML.VRProperties.GetStringProperty(
+                      "/user/head",
+                      _.ActualTrackingSystemName_String,
+                    );
+              return _ && _.push(_), _;
+            })())
+              _.add_tags(_);
+            this.m_transport.SendNoResponse(
+              "ClientMetrics.ReportClientError#1",
+              _.serializeBase64String(),
+            );
           }
           get version() {
             return this.m_strVersion;
@@ -10182,6 +11068,6 @@ var CLSTAMP = "steamdb";
       __webpack_require__.forEach(_.bind(null, 0)),
         (_.push = _.bind(null, _.push.bind(_)));
     })();
-  var _ = _._(void 0, [851], () => _(223));
+  var _ = _._(void 0, [851], () => _(864));
   _ = _._(_);
 })();

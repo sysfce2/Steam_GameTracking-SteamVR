@@ -96,6 +96,7 @@ var CLSTAMP = "steamdb";
           _: () => _._,
           _: () => _._,
           _: () => _._,
+          _: () => _._,
         });
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
@@ -422,6 +423,7 @@ var CLSTAMP = "steamdb";
             this.m_latchedPosition = null;
           }
           buildNode(_, _) {
+            var _, _;
             if (!_.currentPanel && !_.bInsideReparentedPanel)
               return [
                 Object.assign(Object.assign({}, _), {
@@ -450,8 +452,9 @@ var CLSTAMP = "steamdb";
                   !_.currentPanel || _.currentPanel.props.overlay_key
                     ? _
                     : _.currentPanel.scaleLocalUVToGlobal(_);
-              (_.properties["anchor-u"] = _._),
-                (_.properties["anchor-v"] = _._);
+              _ &&
+                ((_.properties["anchor-u"] = _._),
+                (_.properties["anchor-v"] = _._));
             } else {
               if (!_.currentPanel)
                 return [
@@ -472,9 +475,15 @@ var CLSTAMP = "steamdb";
                   }),
                   null,
                 ];
-              const _ = _.defaultView.innerWidth,
-                _ = _.defaultView.innerHeight;
-              if (!(_ > 0 && _ > 0))
+              const _ =
+                  null === (_ = _.defaultView) || void 0 === _
+                    ? void 0
+                    : _.innerWidth,
+                _ =
+                  null === (_ = _.defaultView) || void 0 === _
+                    ? void 0
+                    : _.innerHeight;
+              if (!(_ && _ > 0 && _ && _ > 0))
                 return [
                   Object.assign(Object.assign({}, _), {
                     bShouldAbort: !0,
@@ -1823,7 +1832,7 @@ var CLSTAMP = "steamdb";
     })();
   var _ = _._(
     void 0,
-    [967, 978, 352, 705, 948, 47, 305, 527, 500, 554, 798, 743, 366, 386, 838],
+    [967, 978, 352, 705, 948, 47, 305, 527, 554, 500, 743, 366, 386, 838],
     () => _(1278),
   );
   _ = _._(_);

@@ -114,14 +114,30 @@ var CLSTAMP = "steamdb";
           super(_),
             (this.m_domRef = _.createRef()),
             (this.m_buildNodeOverride = null),
-            (this.m_SGID =
-              null !==
-                (_ =
-                  null === VRHTML || void 0 === VRHTML
-                    ? void 0
-                    : VRHTML.NextSGID()) && void 0 !== _
-                ? _
-                : _._);
+            (this.m_SGID = _._);
+          const _ = _._ && "string" == typeof _._;
+          _ &&
+            this.BCanUseStableSGIDs() &&
+            _.s_mapStableSGIDsForIDs.has(_._) &&
+            ((this.m_SGID = _.s_mapStableSGIDsForIDs.get(_._)),
+            _.s_mapCurrentlyMountedSGIDs.has(this.m_SGID) &&
+              (console.error(
+                `Constructing SGBase component (ID="${_._}") at the same time another component with that SGID is mounted. Using a new SGID.`,
+                this.m_SGID,
+              ),
+              (this.m_SGID = _._))),
+            this.m_SGID == _._ &&
+              ((this.m_SGID =
+                null !==
+                  (_ =
+                    null === VRHTML || void 0 === VRHTML
+                      ? void 0
+                      : VRHTML.NextSGID()) && void 0 !== _
+                  ? _
+                  : _._),
+              _ &&
+                this.BCanUseStableSGIDs() &&
+                _.s_mapStableSGIDsForIDs.set(_._, this.m_SGID));
         }
         setBuildNodeOverride(_) {
           this.m_buildNodeOverride = _;
@@ -142,20 +158,26 @@ var CLSTAMP = "steamdb";
           return this.m_domRef.current;
         }
         componentDidMount() {
-          this.m_buildNodeOverride &&
-            (this.m_domRef.current.buildNode = this.m_buildNodeOverride),
+          _.s_mapCurrentlyMountedSGIDs.set(this.m_SGID, this),
+            this.m_buildNodeOverride &&
+              (this.m_domRef.current.buildNode = this.m_buildNodeOverride),
             (0, _._)();
         }
         componentDidUpdate() {
           (0, _._)();
         }
         componentWillUnmount() {
-          (0, _._)(this.m_SGID),
+          _.s_mapCurrentlyMountedSGIDs.get(this.m_SGID) == this &&
+            _.s_mapCurrentlyMountedSGIDs.delete(this.m_SGID),
+            (0, _._)(this.m_SGID),
             this.m_domRef.current &&
               this.m_buildNodeOverride &&
               delete this.m_domRef.current.buildNode;
         }
         PanelContextValue() {}
+        BCanUseStableSGIDs() {
+          return !1;
+        }
         render() {
           return _.createElement(
             _.Provider,
@@ -176,6 +198,8 @@ var CLSTAMP = "steamdb";
             : null;
         }
       }
+      (_.s_mapStableSGIDsForIDs = new Map()),
+        (_.s_mapCurrentlyMountedSGIDs = new Map());
       const _ = _.createContext(void 0);
     },
     chunkid: (module, module_exports, __webpack_require__) => {

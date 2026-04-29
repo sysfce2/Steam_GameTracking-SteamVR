@@ -285,16 +285,19 @@ var CLSTAMP = "steamdb";
           );
         }
         addEmbeddedPanelUVs(_) {
-          return 0 === this.m_rAvailableEmbeddedIndicesQueue.length
-            ? null
-            : (this.m_mapPanels.set(_.getSGID(), _),
-              this.m_rAvailableEmbeddedIndicesQueue.shift());
+          if (0 !== this.m_rAvailableEmbeddedIndicesQueue.length)
+            return (
+              this.m_mapPanels.set(_.getSGID(), _),
+              this.m_rAvailableEmbeddedIndicesQueue.shift()
+            );
         }
         removeEmbeddedPanelUVs(_) {
-          this.m_mapPanels.has(_.getSGID()) &&
-            (this.m_mapPanels.delete(_.getSGID()),
-            this.m_rAvailableEmbeddedIndicesQueue.push(_.getEmbeddedIndex()),
-            this.m_rEmbeddedIndicesToClear.push(_.getEmbeddedIndex()));
+          if (!this.m_mapPanels.has(_.getSGID())) return;
+          this.m_mapPanels.delete(_.getSGID());
+          const _ = _.getEmbeddedIndex();
+          null != _ &&
+            (this.m_rAvailableEmbeddedIndicesQueue.push(_),
+            this.m_rEmbeddedIndicesToClear.push(_));
         }
         onMutation(_, _) {
           this.updateAllPanelBounds();
@@ -317,13 +320,14 @@ var CLSTAMP = "steamdb";
               ((this.m_CanvasRef.current.width = this.m_nEmbeddedDataWidth),
               (this.m_CanvasContext =
                 this.m_CanvasRef.current.getContext("2d")),
-              (this.m_CanvasContext.globalCompositeOperation = "copy"),
-              (this.m_CanvasContext.imageSmoothingEnabled = !1),
-              null === this.m_Pixels &&
-                (this.m_Pixels = this.m_CanvasContext.createImageData(
-                  this.m_nEmbeddedDataWidth,
-                  _.k_EmbeddedDataRows,
-                ))),
+              null != this.m_CanvasContext &&
+                ((this.m_CanvasContext.globalCompositeOperation = "copy"),
+                (this.m_CanvasContext.imageSmoothingEnabled = !1),
+                null === this.m_Pixels &&
+                  (this.m_Pixels = this.m_CanvasContext.createImageData(
+                    this.m_nEmbeddedDataWidth,
+                    _.k_EmbeddedDataRows,
+                  )))),
             this.updateAllPanelBounds();
         }
         updateAllPanelBounds() {
@@ -372,8 +376,9 @@ var CLSTAMP = "steamdb";
                   _ = _.m_Rect._ + _.m_Rect.width,
                   _ = _.m_Rect._,
                   _ = _.m_Rect._ + _.m_Rect.height,
-                  _ = _.getEmbeddedIndex(),
-                  _ = 1 + 3 * _;
+                  _ = _.getEmbeddedIndex();
+                if (null == _) return;
+                const _ = 1 + 3 * _;
                 let _ = [0, 0, 0, 0, 0, 0, 0, 0, 0],
                   _ = !1;
                 if (_.isExternal() || _ >= _ || _ >= _)
@@ -412,14 +417,18 @@ var CLSTAMP = "steamdb";
               this.m_EmbeddedDataImgRef && this.state.eRenderMode == _.Image)
             ) {
               const _ =
-                null === (_ = VRHTML.VRUtil) || void 0 === _
+                null ===
+                  (_ =
+                    null === VRHTML || void 0 === VRHTML
+                      ? void 0
+                      : VRHTML.VRUtil) || void 0 === _
                   ? void 0
                   : _.GetEmbeddedScanlineAsURIImage(
                       this.m_nEmbeddedDataWidth,
                       1,
                       4,
                     );
-              this.m_EmbeddedDataImgRef.current.src = _;
+              null != _ && (this.m_EmbeddedDataImgRef.current.src = _);
             } else if (this.m_CanvasRef && this.state.eRenderMode == _.Canvas) {
               let _ = this.m_nDirtyXMax - this.m_nDirtyXMin + 1;
               this.m_CanvasContext.putImageData(

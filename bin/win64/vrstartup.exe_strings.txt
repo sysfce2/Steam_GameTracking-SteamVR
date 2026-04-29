@@ -132,7 +132,7 @@
 /user/waist
 /user/wrist/left
 /user/wrist/right
-12:09:25
+19:35:20
 1e+9999
 : exception thrown in JSON library
 <unknown>
@@ -202,7 +202,7 @@ ASSERT: "%s" at %s:%d.\n
 Aborting due to fatal assertion failure.
 Another app was already launching (117)
 App info manager init failed (114)
-Apr 13 2026
+Apr 28 2026
 Assert( %s ) %s(%d)\n
 Bad escape sequence in string
 Bad unicode escape sequence in string: four digits expected.
@@ -393,7 +393,7 @@ OutputDebugStringA
 Platform handles tutorial / initial home app launch %s. Starting Event Polling...
 QueryPerformanceCounter
 QueryPerformanceFrequency
-RSDS
+RSDSl
 RaiseException
 Rebooting In Progress (137)
 RegCloseKey

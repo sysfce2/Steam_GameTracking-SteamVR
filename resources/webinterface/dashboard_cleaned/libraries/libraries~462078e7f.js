@@ -3,9 +3,6 @@ var CLSTAMP = "steamdb";
   [47, 260],
   {
     chunkid: (module, module_exports, __webpack_require__) => {
-      module.exports = __webpack_require__("chunkid");
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
       var _,
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -783,83 +780,6 @@ var CLSTAMP = "steamdb";
           return _.current.useTransition();
         }),
         (_.version = "18.3.1");
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      var _ = __webpack_require__("chunkid");
-      var _ =
-          "function" == typeof Object._
-            ? Object._
-            : function (_, _) {
-                return (
-                  (_ === _ && (0 !== _ || 1 / _ == 1 / _)) || (_ != _ && _ != _)
-                );
-              },
-        _ = _.useState,
-        _ = _.useEffect,
-        _ = _.useLayoutEffect,
-        _ = _.useDebugValue;
-      function _(_) {
-        var _ = _.getSnapshot;
-        _ = _.value;
-        try {
-          var _ = _();
-          return !_(_, _);
-        } catch (_) {
-          return !0;
-        }
-      }
-      var _ =
-        "undefined" == typeof window ||
-        void 0 === window.document ||
-        void 0 === window.document.createElement
-          ? function (_, _) {
-              return _();
-            }
-          : function (_, _) {
-              var _ = _(),
-                _ = _({
-                  inst: {
-                    value: _,
-                    getSnapshot: _,
-                  },
-                }),
-                _ = _[0].inst,
-                _ = _[1];
-              return (
-                _(
-                  function () {
-                    (_.value = _),
-                      (_.getSnapshot = _),
-                      _(_) &&
-                        _({
-                          inst: _,
-                        });
-                  },
-                  [_, _, _],
-                ),
-                _(
-                  function () {
-                    return (
-                      _(_) &&
-                        _({
-                          inst: _,
-                        }),
-                      _(function () {
-                        _(_) &&
-                          _({
-                            inst: _,
-                          });
-                      })
-                    );
-                  },
-                  [_],
-                ),
-                _(_),
-                _
-              );
-            };
-      module_exports.useSyncExternalStore =
-        void 0 !== _.useSyncExternalStore ? _.useSyncExternalStore : _;
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       module.exports = __webpack_require__("chunkid");

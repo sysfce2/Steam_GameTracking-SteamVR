@@ -84,6 +84,7 @@ var CLSTAMP = "steamdb";
             this.m_latchedPosition = null;
           }
           buildNode(_, _) {
+            var _, _;
             if (!_.currentPanel && !_.bInsideReparentedPanel)
               return [
                 Object.assign(Object.assign({}, _), {
@@ -112,8 +113,9 @@ var CLSTAMP = "steamdb";
                   !_.currentPanel || _.currentPanel.props.overlay_key
                     ? _
                     : _.currentPanel.scaleLocalUVToGlobal(_);
-              (_.properties["anchor-u"] = _._),
-                (_.properties["anchor-v"] = _._);
+              _ &&
+                ((_.properties["anchor-u"] = _._),
+                (_.properties["anchor-v"] = _._));
             } else {
               if (!_.currentPanel)
                 return [
@@ -134,9 +136,15 @@ var CLSTAMP = "steamdb";
                   }),
                   null,
                 ];
-              const _ = _.defaultView.innerWidth,
-                _ = _.defaultView.innerHeight;
-              if (!(_ > 0 && _ > 0))
+              const _ =
+                  null === (_ = _.defaultView) || void 0 === _
+                    ? void 0
+                    : _.innerWidth,
+                _ =
+                  null === (_ = _.defaultView) || void 0 === _
+                    ? void 0
+                    : _.innerHeight;
+              if (!(_ && _ > 0 && _ && _ > 0))
                 return [
                   Object.assign(Object.assign({}, _), {
                     bShouldAbort: !0,
@@ -738,176 +746,6 @@ var CLSTAMP = "steamdb";
         __webpack_require__._(_, {
           _: () => _,
         });
-        const _ = "/settings/steamvr/showAdvancedSettings";
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-          _: () => _,
-        });
-        __webpack_require__("chunkid");
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__._(_);
-        class _ {
-          constructor() {
-            (this.m_mapTokens = new Map()),
-              (this.m_mapFallbackTokens = new Map());
-          }
-          InitFromObjects(_, _, _, _) {
-            this.m_mapTokens.clear();
-            let _ = [_, _, _, _];
-            for (let _ in _) {
-              let _ = _[_];
-              for (let _ in _) {
-                let _ = _[_];
-                for (let _ in _) {
-                  let _ = _.toLowerCase();
-                  this.m_mapTokens.has(_) || this.m_mapTokens.set(_, _[_]);
-                }
-              }
-            }
-          }
-          LocalizeString(_) {
-            if (!_ || 0 == _.length || "#" != _.charAt(0)) return "";
-            let _ = this.m_mapTokens.get(_.substring(1).toLowerCase());
-            return void 0 === _ ? "" : _;
-          }
-          LocalizeStringFromFallback(_) {
-            if (!_ || 0 == _.length || "#" != _.charAt(0)) return "";
-            let _ = this.m_mapFallbackTokens.get(_.substring(1).toLowerCase());
-            return void 0 === _ ? "" : _;
-          }
-          static GetLocale() {
-            const _ = navigator.languages[0];
-            try {
-              const _ =
-                null === VRHTML || void 0 === VRHTML
-                  ? void 0
-                  : VRHTML.GetSystemLocale();
-              if (!_) return _;
-              _.s_Date.toLocaleTimeString(_);
-              return _;
-            } catch (_) {
-              return _;
-            }
-          }
-        }
-        function _(_, ..._) {
-          let _ = _.LocalizeString(_);
-          return _
-            ? (_.length > 0 &&
-                (_ = __webpack_require__.replace(/%(\d+)\$s/g, function (_, _) {
-                  return void 0 !== _[_ - 1] ? String(_[_ - 1]) : _;
-                })),
-              _)
-            : _;
-        }
-        _.s_Date = new Date();
-        const _ = new _();
-        function _(_, _) {
-          _ ||
-            (_ = (function () {
-              let _ = new Map([
-                ["en", "english"],
-                ["de", "german"],
-                ["fr", "french"],
-                ["it", "italian"],
-                ["ko", "korean"],
-                ["es-419", "latam"],
-                ["es", "spanish"],
-                ["zh-CN", "schinese"],
-                ["zh-TW", "tchinese"],
-                ["ru", "russian"],
-                ["th", "thai"],
-                ["ja", "japanese"],
-                ["pt", "portuguese"],
-                ["pl", "polish"],
-                ["da", "danish"],
-                ["nl", "dutch"],
-                ["fi", "finnish"],
-                ["no", "norwegian"],
-                ["sv", "swedish"],
-                ["hu", "hungarian"],
-                ["cs", "czech"],
-                ["ro", "romanian"],
-                ["tr", "turkish"],
-                ["pt-BR", "brazilian"],
-                ["bg", "bulgarian"],
-                ["el", "greek"],
-                ["uk", "ukranian"],
-                ["vi", "vietnamese"],
-              ]);
-              for (let _ of navigator.languages) {
-                let _ = _.split("-");
-                if (_.has(_)) return _.get(_);
-                if (_.has(_[0])) return _.get(_[0]);
-              }
-              return "english";
-            })());
-          let _ = [],
-            _ = (_, _, _) => {
-              let _,
-                _ = Date.now().toString();
-              return (
-                (_ =
-                  "drivers" == _
-                    ? `/input/localization.json?t=${_}`
-                    : "webhelper" == _
-                      ? `/dashboard/localization/${_}_${_}.json?t=${_}`
-                      : `localization/${_}_${_}.json?t=${_}`),
-                _()
-                  .get(_)
-                  .then((_) => {
-                    __webpack_require__(_.data);
-                  })
-                  .catch(() => {})
-              );
-            },
-            _ = [],
-            _ = [],
-            _ = [],
-            _ = [];
-          for (let _ of _)
-            __webpack_require__.push(
-              _(_, _, (_) => {
-                _.push(_);
-              }),
-            ),
-              "english" != _ &&
-                __webpack_require__.push(
-                  _(_, "english", (_) => {
-                    _.push(_);
-                  }),
-                );
-          for (let _ of ["webhelper"])
-            __webpack_require__.push(
-              _(_, _, (_) => {
-                _.push(_);
-              }),
-            ),
-              "english" != _ &&
-                __webpack_require__.push(
-                  _(_, "english", (_) => {
-                    _.push(_);
-                  }),
-                );
-          return (
-            __webpack_require__.push(
-              _("drivers", "", (_) => {
-                _.push(_);
-              }),
-            ),
-            Promise.all(_).then(() => {
-              _.InitFromObjects(_, _, _, _);
-            })
-          );
-        }
-        window.LocalizationManager = _;
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-        });
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
@@ -1085,8 +923,7 @@ var CLSTAMP = "steamdb";
           (0, _._)([_._], _.prototype, "onScrollStopTimeout", null);
       },
       chunkid: (module, module_exports, __webpack_require__) => {
-        var _,
-          _ = __webpack_require__("chunkid"),
+        var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
@@ -1097,8 +934,188 @@ var CLSTAMP = "steamdb";
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__._(_),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
+        class _ {
+          constructor() {
+            (this.m_InputState = void 0),
+              (this.m_KnownControllerTypes = _.observable.map()),
+              (this.m_mailbox = new _._()),
+              (this.m_bUpdateInputStateOnControllerTypChange = !1),
+              (0, _.makeObservable)(this);
+          }
+          Init(_) {
+            return (
+              this.m_mailbox.Init("input_state"),
+              this.m_mailbox.RegisterHandler(
+                "controller_type_changed",
+                this.OnControllerTypeChanged,
+              ),
+              this.m_mailbox.RegisterHandler(
+                "action_bindings_reloaded",
+                this.OnActionBindingsReloaded,
+              ),
+              null != _ && (this.m_bUpdateInputStateOnControllerTypChange = _),
+              this.GetInputState()
+            );
+          }
+          OnActionBindingsReloaded() {
+            this.GetInputState();
+          }
+          OnControllerTypeChanged(_) {
+            this.UpdateControllerTypes(_.controller_types),
+              this.m_InputState &&
+                (this.m_InputState.controller_types = _.controller_types),
+              this.m_bUpdateInputStateOnControllerTypChange &&
+                this.GetInputState();
+          }
+          get ConnectedDevices() {
+            return null == this.m_InputState
+              ? []
+              : this.m_InputState.devices.filter(
+                  (_) =>
+                    "TrackedDeviceClass_Controller" == _.class ||
+                    "TrackedDeviceClass_HMD" == _.class ||
+                    "TrackedDeviceClass_GenericTracker" == _.class,
+                );
+          }
+          get ControllerTypes() {
+            return this.m_InputState.controller_types;
+          }
+          get ShouldSendSystemButtonToAllApps() {
+            return this.m_InputState.send_system_button_to_all_apps;
+          }
+          get ShowHiddenInputs() {
+            return this.m_InputState.show_hidden_inputs;
+          }
+          get IsSteamAvailable() {
+            return !this.m_InputState || this.m_InputState.is_steam_available;
+          }
+          get BDevMode() {
+            return this.m_InputState.dev_mode;
+          }
+          get IsValid() {
+            return null != this.m_InputState;
+          }
+          get CurrentUserPersonaName() {
+            return this.m_InputState.current_user_persona_name
+              ? this.m_InputState.current_user_persona_name
+              : null;
+          }
+          GetControllerTypeInfo(_) {
+            return this.m_InputState.controller_types.find(
+              (_) => _.controller_type == _,
+            );
+          }
+          GetDeviceInfo(_) {
+            for (let _ of this.m_InputState.devices)
+              if (_.root_path == _ || _.device_path == _) return _;
+            return null;
+          }
+          LocalizeControllerString(_, _) {
+            let _ = (0, _._)("#" + _);
+            return _ != "#" + _
+              ? _
+              : _ &&
+                  this.m_InputState &&
+                  this.m_InputState.localization.hasOwnProperty(
+                    _.resource_root,
+                  ) &&
+                  this.m_InputState.localization[
+                    _.resource_root
+                  ].hasOwnProperty(_.toLowerCase())
+                ? this.m_InputState.localization[_.resource_root][
+                    _.toLowerCase()
+                  ]
+                : _;
+          }
+          LocalizeDriverString(_, _) {
+            if (
+              this.m_InputState &&
+              this.m_InputState.localization.hasOwnProperty(_) &&
+              this.m_InputState.localization[_].hasOwnProperty(_.toLowerCase())
+            )
+              return this.m_InputState.localization[_][_.toLowerCase()];
+            let _ = (0, _._)("#" + _);
+            return _ != "#" + _ ? _ : _;
+          }
+          UpdateControllerTypes(_) {
+            this.m_KnownControllerTypes.clear();
+            for (let _ of _)
+              this.m_KnownControllerTypes.set(_.controller_type, _);
+          }
+          GetInputState() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              yield new Promise(function (_, _) {
+                _()
+                  .get("/input/getstate.json")
+                  .then((_) => {
+                    _(_.data);
+                  })
+                  .catch((_) => {
+                    _(_);
+                  });
+              }).then((_) => {
+                (0, _.runInAction)(() => {
+                  for (let _ of _.controller_types)
+                    _.controller_type = _.controller_type.toLowerCase();
+                  for (let _ of _.devices)
+                    _.controller_type = _.controller_type.toLowerCase();
+                  this.UpdateControllerTypes(_.controller_types),
+                    (this.m_InputState = _);
+                });
+              });
+            });
+          }
+          get KnownControllerTypes() {
+            return this.m_KnownControllerTypes;
+          }
+          FindDeviceClassForControllerType(_) {
+            let _ = this.GetControllerTypeInfo(_);
+            return null == _ ? void 0 : _.device_class;
+          }
+          FindRootPathForControllerType(_) {
+            for (let _ of this.m_InputState.devices)
+              if (_.controller_type == _) return _.root_path;
+            return null;
+          }
+        }
+        (0, _._)([_.observable], _.prototype, "m_InputState", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_KnownControllerTypes",
+            void 0,
+          ),
+          (0, _._)([_._], _.prototype, "OnActionBindingsReloaded", null),
+          (0, _._)([_._], _.prototype, "OnControllerTypeChanged", null),
+          (0, _._)([_.computed], _.prototype, "ConnectedDevices", null),
+          (0, _._)([_.computed], _.prototype, "ControllerTypes", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "ShouldSendSystemButtonToAllApps",
+            null,
+          ),
+          (0, _._)([_.computed], _.prototype, "ShowHiddenInputs", null),
+          (0, _._)([_.computed], _.prototype, "IsSteamAvailable", null),
+          (0, _._)([_.computed], _.prototype, "BDevMode", null),
+          (0, _._)([_.computed], _.prototype, "IsValid", null),
+          (0, _._)([_.computed], _.prototype, "CurrentUserPersonaName", null),
+          (0, _._)([_._], _.prototype, "GetControllerTypeInfo", null),
+          (0, _._)([_._], _.prototype, "LocalizeControllerString", null),
+          (0, _._)([_._], _.prototype, "LocalizeDriverString", null),
+          (0, _._)([_.action], _.prototype, "UpdateControllerTypes", null),
+          (0, _._)([_.action], _.prototype, "GetInputState", null),
+          (0, _._)([_.computed], _.prototype, "KnownControllerTypes", null),
+          (0, _._)(
+            [_._],
+            _.prototype,
+            "FindDeviceClassForControllerType",
+            null,
+          );
+        const _ = new _();
+        window.inputState = _;
+        var _,
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
         !(function (_) {
@@ -1233,9 +1250,9 @@ var CLSTAMP = "steamdb";
                   _.SetSelectedApp(_.app_key),
                   _.SetSelectedController(_.controller_type);
                 let _ = _._.GetApp(_.app_key),
-                  _ = _._.GetControllerTypeInfo(_.controller_type);
+                  _ = _.GetControllerTypeInfo(_.controller_type);
                 if (!_) return;
-                let _ = _._.LocalizeControllerString(_, _.controller_type);
+                let _ = _.LocalizeControllerString(_, _.controller_type);
                 this.ShowBindingList(
                   (0, _._)(
                     _.error,
@@ -1740,7 +1757,7 @@ var CLSTAMP = "steamdb";
             return this.GetActionForInputType(_, "value");
           }
           get GetControllerInputName() {
-            return _._.LocalizeDriverString(
+            return _.LocalizeDriverString(
               this.m_ControllerProfile.resource_root,
               this.m_sInputPath,
             );
@@ -2266,7 +2283,7 @@ var CLSTAMP = "steamdb";
           CountDevicesWithControllerType(_) {
             let _ = 0;
             return (
-              _._.ConnectedDevices.forEach((_) => {
+              _.ConnectedDevices.forEach((_) => {
                 _.controller_type == _ && _++;
               }),
               _
@@ -2291,7 +2308,7 @@ var CLSTAMP = "steamdb";
             let _,
               _ = 0;
             return (
-              _._.ControllerTypes.forEach((_) => {
+              _.ControllerTypes.forEach((_) => {
                 let _ = this.ComputeControllerTypeScore(_);
                 _ > _ && ((_ = _), (_ = _));
               }),
@@ -2300,14 +2317,14 @@ var CLSTAMP = "steamdb";
           }
           RefreshInputState() {
             return (0, _._)(this, void 0, void 0, function* () {
-              let _ = _._.KnownControllerTypes.size;
-              return _._.GetInputState().then(() => {
+              let _ = _.KnownControllerTypes.size;
+              return _.GetInputState().then(() => {
                 this.m_SelectedApp &&
-                  _ != _._.KnownControllerTypes.size &&
+                  _ != _.KnownControllerTypes.size &&
                   this.ReloadCurrentApp();
                 let _ = !1;
                 const _ = this.GetBestControllerType();
-                let _ = _._.FindDeviceClassForControllerType(
+                let _ = _.FindDeviceClassForControllerType(
                   this.m_sSelectedControllerType,
                 );
                 if (
@@ -2315,9 +2332,7 @@ var CLSTAMP = "steamdb";
                   this.m_sSelectedControllerType != _.controller_type &&
                   !this.m_bControllerTypeSelectedByUser
                 ) {
-                  let _ = _._.FindDeviceClassForControllerType(
-                    _.controller_type,
-                  );
+                  let _ = _.FindDeviceClassForControllerType(_.controller_type);
                   _.IsSafeToResetControllerType(_, _) &&
                     ((this.m_sSelectedControllerType = _.controller_type),
                     (_ = !0));
@@ -2486,18 +2501,18 @@ var CLSTAMP = "steamdb";
           get CurrentAppCanAccessPrivateInputs() {
             return (
               _._.IsAppAllowedPrivateInputs(this.m_SelectedApp.key) ||
-              _._.ShouldSendSystemButtonToAllApps
+              _.ShouldSendSystemButtonToAllApps
             );
           }
           get SelectedControllerTypeInfo() {
-            if (_._.IsValid && null != this.m_sSelectedControllerType)
-              return _._.GetControllerTypeInfo(this.m_sSelectedControllerType);
+            if (_.IsValid && null != this.m_sSelectedControllerType)
+              return _.GetControllerTypeInfo(this.m_sSelectedControllerType);
           }
           DeviceForControllerType(_, _) {
-            let _ = _._.GetControllerTypeInfo(_);
+            let _ = _.GetControllerTypeInfo(_);
             if (!_) return;
             let _ = !1,
-              _ = _._.ConnectedDevices.find((_) => {
+              _ = _.ConnectedDevices.find((_) => {
                 if (_.controller_type == _) {
                   if (((_ = !0), !_)) return !0;
                   if ("controller_handed" != _.input_bindingui_mode) return !0;
@@ -2509,7 +2524,7 @@ var CLSTAMP = "steamdb";
             return (
               _ ||
               (_
-                ? _._.ConnectedDevices.find((_) => _.controller_type == _)
+                ? _.ConnectedDevices.find((_) => _.controller_type == _)
                 : void 0)
             );
           }
@@ -2820,7 +2835,7 @@ var CLSTAMP = "steamdb";
           }
           SetSelectedController(_, _) {
             if (_ != this.m_sSelectedControllerType) {
-              let _ = _._.GetControllerTypeInfo(_);
+              let _ = _.GetControllerTypeInfo(_);
               _ &&
                 (this.m_ControllerWatchers.clear(),
                 (this.m_sSelectedControllerType = _.controller_type),
@@ -2835,7 +2850,7 @@ var CLSTAMP = "steamdb";
           LocalizeStringForSelectedControllerType(_) {
             let _ = this.SelectedControllerTypeInfo;
             return _ && _.resource_root
-              ? _._.LocalizeDriverString(_.resource_root, _)
+              ? _.LocalizeDriverString(_.resource_root, _)
               : _;
           }
           LocalizePathNameForSelectedControllerType(_) {
@@ -2861,7 +2876,7 @@ var CLSTAMP = "steamdb";
             let _ = this.SelectedControllerTypeInfo;
             return _
               ? _.resource_root
-                ? _._.LocalizeDriverString(_.resource_root, _.controller_type)
+                ? _.LocalizeDriverString(_.resource_root, _.controller_type)
                 : _.controller_type
               : "";
           }
@@ -3941,7 +3956,7 @@ var CLSTAMP = "steamdb";
           }
           get IsSecondaryController() {
             if (!this.m_sSelectedControllerType) return !1;
-            let _ = _._.FindRootPathForControllerType(
+            let _ = _.FindRootPathForControllerType(
               this.m_sSelectedControllerType,
             );
             return (
@@ -4045,7 +4060,7 @@ var CLSTAMP = "steamdb";
           get KnownControllerTypes() {
             let _ = [];
             return (
-              _._.KnownControllerTypes.forEach((_) => {
+              _.KnownControllerTypes.forEach((_) => {
                 _.push(_);
               }),
               _
@@ -4063,7 +4078,7 @@ var CLSTAMP = "steamdb";
           }
           GetDefaultBindingNameForSaveType(_) {
             let _ = _.SelectedControllerTypeInfo,
-              _ = _._.LocalizeControllerString(_, _ ? _.controller_type : "");
+              _ = _.LocalizeControllerString(_, _ ? _.controller_type : "");
             switch (_) {
               default:
               case "autosave":
@@ -4081,7 +4096,7 @@ var CLSTAMP = "steamdb";
               case "public":
                 return (0, _._)(
                   "#BindingUI_SaveDefaultName_Public",
-                  _._.CurrentUserPersonaName,
+                  _.CurrentUserPersonaName,
                 );
               case "replace_default":
                 return _.ConfigName;
@@ -4285,7 +4300,7 @@ var CLSTAMP = "steamdb";
               "" == this.m_sName)
             ) {
               let _ = _.SelectedControllerTypeInfo,
-                _ = _._.LocalizeControllerString(_, _ ? _.controller_type : "");
+                _ = _.LocalizeControllerString(_, _ ? _.controller_type : "");
               this.m_sName = (0, _._)("#BindingUI_SaveDefaultName", _, _);
             }
             _.binding_config &&
@@ -4434,7 +4449,7 @@ var CLSTAMP = "steamdb";
           }
           ShouldShowBindingFailureForControllerType(_) {
             if (null == _ || "" == _) return !1;
-            let _ = _._.GetControllerTypeInfo(_);
+            let _ = _.GetControllerTypeInfo(_);
             return !!_ && !!_.should_show_binding_errors;
           }
           HasBindingUriFailedToLoad(_) {
@@ -4527,7 +4542,7 @@ var CLSTAMP = "steamdb";
                     _ = "/user/hand/right";
                 }
               else {
-                let _ = _._.ConnectedDevices.find(
+                let _ = _.ConnectedDevices.find(
                   (_) => _.controller_type == _.controller_type,
                 );
                 _ && _.root_path
@@ -9890,7 +9905,7 @@ var CLSTAMP = "steamdb";
                 return null;
               if (
                 "InputValueVisibility_AvailableButHidden" == _.visibility &&
-                !_._.ShowHiddenInputs
+                !_.ShowHiddenInputs
               )
                 return null;
               if (null != _.side)
@@ -11848,7 +11863,7 @@ var CLSTAMP = "steamdb";
                 "div",
                 {
                   className:
-                    "PageTitleBar" + (_._.IsSteamAvailable ? "" : " NoSteam"),
+                    "PageTitleBar" + (_.IsSteamAvailable ? "" : " NoSteam"),
                 },
                 _.createElement(
                   "div",
@@ -11922,7 +11937,7 @@ var CLSTAMP = "steamdb";
                       ),
                     ),
                 ),
-                !_._.IsSteamAvailable &&
+                !_.IsSteamAvailable &&
                   _.createElement(
                     "div",
                     {
@@ -14201,11 +14216,11 @@ var CLSTAMP = "steamdb";
                       },
                       (0, _._)("#BindingUI_ImportThisBinding"),
                     ),
-                  _._.BDevMode &&
+                  _.BDevMode &&
                     _.createElement("div", {
                       className: "BindingManageButtonsHR",
                     }),
-                  _._.BDevMode &&
+                  _.BDevMode &&
                     _.createElement(
                       "div",
                       {
@@ -14214,7 +14229,7 @@ var CLSTAMP = "steamdb";
                       },
                       _,
                     ),
-                  _._.BDevMode &&
+                  _.BDevMode &&
                     _.createElement(
                       "div",
                       {
@@ -14223,7 +14238,7 @@ var CLSTAMP = "steamdb";
                       },
                       (0, _._)("#BindingUI_ExportBindingFile"),
                     ),
-                  _._.BDevMode &&
+                  _.BDevMode &&
                     !_.SelectedBindingIsLegacy &&
                     !_.SelectedBindingIsOpenXR &&
                     _.createElement(
@@ -14961,7 +14976,7 @@ var CLSTAMP = "steamdb";
           CreateControllerTypeDropdown() {
             let _ = [],
               _ = _._.IsAppAllowedPrivateInputs(_.SelectedApp);
-            _._.ControllerTypes.forEach((_) => {
+            _.ControllerTypes.forEach((_) => {
               (_ || "InputValueVisibility_SteamVRInternal" != _.visibility) &&
                 "InputValueVisibility_None" != _.visibility &&
                 _.push(_);
@@ -14972,7 +14987,7 @@ var CLSTAMP = "steamdb";
               __webpack_require__.push(
                 new _(
                   _.controller_type,
-                  _._.LocalizeDriverString(_.resource_root, _.controller_type),
+                  _.LocalizeDriverString(_.resource_root, _.controller_type),
                 ),
               );
             });
@@ -15012,7 +15027,7 @@ var CLSTAMP = "steamdb";
                   vecOptions: _,
                   sModalClass: "PinTop",
                   sValueSelectedItem: _ ? _.controller_type : "",
-                  sLocalizedSelectedItem: _._.LocalizeControllerString(
+                  sLocalizedSelectedItem: _.LocalizeControllerString(
                     _,
                     _ ? _.controller_type : "",
                   ),
@@ -16895,7 +16910,7 @@ var CLSTAMP = "steamdb";
             _.Loading
               ? document.body.classList.add("Loading")
               : document.body.classList.remove("Loading"),
-              _._.IsSteamAvailable
+              _.IsSteamAvailable
                 ? document.body.classList.remove("SteamUnavailable")
                 : document.body.classList.add("SteamUnavailable");
             return (
@@ -16957,7 +16972,7 @@ var CLSTAMP = "steamdb";
         )
           .then(() => _._.Init())
           .then(() => _._.Init())
-          .then(() => _._.Init())
+          .then(() => _.Init())
           .then(() => _._.Init(!1))
           .then(() => _.Init())
           .then(() =>
@@ -17109,8 +17124,8 @@ var CLSTAMP = "steamdb";
     })();
   var _ = _._(
     void 0,
-    [967, 978, 705, 908, 305, 527, 797, 148, 798, 743, 198, 652],
-    () => _(2248),
+    [967, 978, 705, 908, 305, 527, 797, 148, 743, 198, 737, 652],
+    () => _(1126),
   );
   _ = _._(_);
 })();

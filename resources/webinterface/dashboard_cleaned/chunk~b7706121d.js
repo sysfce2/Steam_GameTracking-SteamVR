@@ -303,12 +303,15 @@ var CLSTAMP = "steamdb";
         return _(_(_, _));
       }
       function _(_, _) {
+        var _;
         let _ = {
           type: _,
           properties: {},
         };
         return (
-          _._ && (_.properties._ = _(_._)),
+          _._ &&
+            (_.properties._ =
+              null !== (_ = _(_._)) && void 0 !== _ ? _ : void 0),
           (_.properties.sgid = _(_, "sgid")),
           _
         );
@@ -540,11 +543,11 @@ var CLSTAMP = "steamdb";
         _,
         _,
         _,
+        _,
+        _,
         _ = [],
         _ = null,
-        _ = null,
-        _ = !0,
-        _ = null;
+        _ = !0;
       function _(_, _, _) {
         (_ = _),
           (_ = _),

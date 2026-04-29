@@ -14,6 +14,7 @@ var CLSTAMP = "steamdb";
           _: () => _._,
           _: () => _._,
           _: () => _._,
+          _: () => _._,
         });
         var _ = __webpack_require__("chunkid"),
           _ =
@@ -51,286 +52,18 @@ var CLSTAMP = "steamdb";
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"));
-        __webpack_require__("chunkid");
+            __webpack_require__("chunkid")),
+          _ = __webpack_require__("chunkid");
         const _ = VRHTML;
       },
       chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-          _: () => _,
-          _: () => _,
-        });
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        const _ = "vrwebui_dashboardstore",
-          _ = "binding_callouts/main";
-        class _ {
-          constructor() {
-            (this.m_wsWebSocketToServer = void 0),
-              (this.connected = !1),
-              (this.m_oHandlers = {}),
-              (this.m_oWaits = {}),
-              (this.m_oConnectWaits = []),
-              (this.m_nNextMessageNumber = 1),
-              (this.Log = new _._("Mailbox", () => this.m_sMailboxName)),
-              (0, _.makeObservable)(this);
-          }
-          OpenWebSocketToHost() {
-            return new Promise((_, _) => {
-              this.Log.Info("Opening Web Socket...");
-              let _ = "ws://127.0.0.1:27062";
-              this.m_sWebSecret && (_ += "?secret=" + this.m_sWebSecret),
-                this.m_wsWebSocketToServer &&
-                  (this.Log.Error(
-                    "OpenWebSocketToHost called on existing connection",
-                  ),
-                  this.CloseWebSocket());
-              let _ = !1;
-              (this.m_wsWebSocketToServer = new WebSocket(_)),
-                this.m_wsWebSocketToServer.addEventListener("open", (_) => {
-                  this.OnWebSocketOpen(_), _ || _(), (_ = !0);
-                }),
-                this.m_wsWebSocketToServer.addEventListener(
-                  "message",
-                  this.OnWebSocketMessage,
-                ),
-                this.m_wsWebSocketToServer.addEventListener(
-                  "close",
-                  this.OnWebSocketClose,
-                ),
-                this.m_wsWebSocketToServer.addEventListener("error", (_) => {
-                  this.OnWebSocketError(_), _ || _(), (_ = !0);
-                });
-            });
-          }
-          CloseWebSocket() {
-            this.m_wsWebSocketToServer.removeEventListener(
-              "message",
-              this.OnWebSocketMessage,
-            ),
-              this.m_wsWebSocketToServer.removeEventListener(
-                "close",
-                this.OnWebSocketClose,
-              ),
-              this.m_wsWebSocketToServer.close(),
-              (this.m_wsWebSocketToServer = void 0),
-              (this.connected = !1);
-          }
-          static EnsureUniqueName(_) {
-            if (_.includes("/")) return _;
-            let _;
-            return (
-              (_ = VRHTML ? VRHTML.GetWebHelperId() : Date.now().toString()),
-              _ + "/" + _ + "_" + this.s_nNextMailboxNumber++
-            );
-          }
-          Init(_, _) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              return (
-                (this.m_sMailboxName = _.EnsureUniqueName(_)),
-                (this.m_sWebSecret = _),
-                (this.connected = !1),
-                this.OpenWebSocketToHost()
-              );
-            });
-          }
-          Destroy() {
-            this.CloseWebSocket();
-          }
-          get name() {
-            return this.m_sMailboxName;
-          }
-          OnWebSocketOpen(_) {
-            (this.connected = !0),
-              this.Log.Info("Web Socket Opened"),
-              this.WebSocketSend("mailbox_open " + this.m_sMailboxName),
-              window.addEventListener("beforeunload", () => {
-                this.WebSocketSend("websocket_close");
-              });
-            for (let _ of this.m_oConnectWaits) _();
-            this.m_oConnectWaits = [];
-          }
-          OnWebSocketClose(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              this.Log.Warning("Lost connection to host. code:", _.code),
-                (this.connected = !1),
-                (this.m_wsWebSocketToServer = void 0),
-                yield (0, _._)(1e3),
-                this.OpenWebSocketToHost();
-            });
-          }
-          OnWebSocketError(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              this.Log.ErrorOnceThenWarn(
-                "OnWebSocketError",
-                "Mailbox error:",
-                _.type,
-              ),
-                (this.connected = !1);
-            });
-          }
-          WebSocketSend(_) {
-            return (
-              null != this.m_wsWebSocketToServer &&
-              1 == this.m_wsWebSocketToServer.readyState &&
-              (this.m_wsWebSocketToServer.send(_), !0)
-            );
-          }
-          OnWebSocketMessage(_) {
-            let _ = JSON.parse(_.data),
-              _ = !1;
-            if (
-              (this.m_oHandlers.hasOwnProperty(_.type) &&
-                (this.m_oHandlers[_.type](_), (_ = !0)),
-              this.m_oWaits.hasOwnProperty(_.type))
-            ) {
-              let _ = !1;
-              for (let _ of this.m_oWaits[_.type])
-                _.nMessageId == _.message_id &&
-                  (__webpack_require__.callback(_), (_ = !0));
-              _
-                ? (this.m_oWaits[_.type] = this.m_oWaits[_.type].filter(
-                    (_) => _.nMessageId != _.message_id,
-                  ))
-                : this.Log.Error(
-                    `Received a ${_.type} message, but didn't have a matching message_id. Did the other end forget to mirror message_id?`,
-                  ),
-                (_ = !0);
-            }
-            _ ||
-              this.Log.ErrorOnceThenWarn(
-                "OnWebsocket283",
-                "Received unhandled message: ",
-                _.type,
-                _,
-              );
-          }
-          RegisterHandler(_, _) {
-            this.m_oHandlers[_] = _;
-          }
-          SendMessage(_, _) {
-            return this.WebSocketSend(
-              "mailbox_send " + _ + " " + JSON.stringify(_),
-            );
-          }
-          WaitForMessage(_, _) {
-            return new Promise((_, _) => {
-              this.m_oWaits[_] || (this.m_oWaits[_] = []),
-                this.m_oWaits[_].push({
-                  callback: _,
-                  nMessageId: _,
-                });
-            });
-          }
-          WaitForConnect() {
-            return new Promise((_, _) => {
-              this.connected ? _() : this.m_oConnectWaits.push(_);
-            });
-          }
-          WaitForMailbox(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              let _ = {
-                type: "request_mailbox_registration_notification",
-                mailbox_name: _,
-              };
-              return this.SendMessageAndWaitForResponse(
-                "web_server_mailbox",
-                _,
-                "mailbox_registered",
-              );
-            });
-          }
-          SendMessageAndWaitForResponse(_, _, _) {
-            let _ = Object.assign({}, _);
-            null == _.returnAddress && (_.returnAddress = this.m_sMailboxName),
-              (_.message_id = this.m_nNextMessageNumber++);
-            const _ = this.WaitForMessage(_, _.message_id);
-            return this.SendMessage(_, _), _;
-          }
-          SendResponse(_, _) {
-            if (!_.returnAddress)
-              throw new Error("Missing return address on message");
-            let _ = Object.assign(Object.assign({}, _), {
-              message_id: _.message_id,
-            });
-            (_.message_id = _.message_id), this.SendMessage(_.returnAddress, _);
-          }
-          SendDebugIllegalMsg() {
-            this.WebSocketSend("debug_send_illegal_msg");
-          }
-          SendDebugCloseMsg() {
-            this.WebSocketSend("debug_close");
-          }
-        }
-        (_.s_nNextMailboxNumber = 1),
-          (0, _._)([_.observable], _.prototype, "connected", void 0),
-          (0, _._)([_._], _.prototype, "OpenWebSocketToHost", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketOpen", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketClose", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketError", null),
-          (0, _._)([_._], _.prototype, "WebSocketSend", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketMessage", null);
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__._(_);
-        class _ {
-          constructor() {
-            (this.m_mapTokens = new Map()),
-              (this.m_mapFallbackTokens = new Map());
-          }
-          InitFromObjects(_, _, _, _) {
-            this.m_mapTokens.clear();
-            let _ = [_, _, _, _];
-            for (let _ in _) {
-              let _ = _[_];
-              for (let _ in _) {
-                let _ = _[_];
-                for (let _ in _) {
-                  let _ = _.toLowerCase();
-                  this.m_mapTokens.has(_) || this.m_mapTokens.set(_, _[_]);
-                }
-              }
-            }
-          }
-          LocalizeString(_) {
-            if (!_ || 0 == _.length || "#" != _.charAt(0)) return "";
-            let _ = this.m_mapTokens.get(_.substring(1).toLowerCase());
-            return void 0 === _ ? "" : _;
-          }
-          LocalizeStringFromFallback(_) {
-            if (!_ || 0 == _.length || "#" != _.charAt(0)) return "";
-            let _ = this.m_mapFallbackTokens.get(_.substring(1).toLowerCase());
-            return void 0 === _ ? "" : _;
-          }
-          static GetLocale() {
-            const _ = navigator.languages[0];
-            try {
-              const _ =
-                null === VRHTML || void 0 === VRHTML
-                  ? void 0
-                  : VRHTML.GetSystemLocale();
-              if (!_) return _;
-              _.s_Date.toLocaleTimeString(_);
-              return _;
-            } catch (_) {
-              return _;
-            }
-          }
-        }
-        _.s_Date = new Date();
-        const _ = new _();
-        window.LocalizationManager = _;
-        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
         (0, _.configure)({
@@ -432,104 +165,7 @@ var CLSTAMP = "steamdb";
           }
         }
         (0, _._)([_._], _.prototype, "OnRenderToast", null),
-          (function (_, _) {
-            _ ||
-              (_ = (function () {
-                let _ = new Map([
-                  ["en", "english"],
-                  ["de", "german"],
-                  ["fr", "french"],
-                  ["it", "italian"],
-                  ["ko", "korean"],
-                  ["es-419", "latam"],
-                  ["es", "spanish"],
-                  ["zh-CN", "schinese"],
-                  ["zh-TW", "tchinese"],
-                  ["ru", "russian"],
-                  ["th", "thai"],
-                  ["ja", "japanese"],
-                  ["pt", "portuguese"],
-                  ["pl", "polish"],
-                  ["da", "danish"],
-                  ["nl", "dutch"],
-                  ["fi", "finnish"],
-                  ["no", "norwegian"],
-                  ["sv", "swedish"],
-                  ["hu", "hungarian"],
-                  ["cs", "czech"],
-                  ["ro", "romanian"],
-                  ["tr", "turkish"],
-                  ["pt-BR", "brazilian"],
-                  ["bg", "bulgarian"],
-                  ["el", "greek"],
-                  ["uk", "ukranian"],
-                  ["vi", "vietnamese"],
-                ]);
-                for (let _ of navigator.languages) {
-                  let _ = _.split("-");
-                  if (_.has(_)) return _.get(_);
-                  if (_.has(_[0])) return _.get(_[0]);
-                }
-                return "english";
-              })());
-            let _ = [],
-              _ = (_, _, _) => {
-                let _,
-                  _ = Date.now().toString();
-                return (
-                  (_ =
-                    "drivers" == _
-                      ? `/input/localization.json?t=${_}`
-                      : "webhelper" == _
-                        ? `/dashboard/localization/${_}_${_}.json?t=${_}`
-                        : `localization/${_}_${_}.json?t=${_}`),
-                  _()
-                    .get(_)
-                    .then((_) => {
-                      __webpack_require__(_.data);
-                    })
-                    .catch(() => {})
-                );
-              },
-              _ = [],
-              _ = [],
-              _ = [],
-              _ = [];
-            for (let _ of _)
-              __webpack_require__.push(
-                _(_, _, (_) => {
-                  _.push(_);
-                }),
-              ),
-                "english" != _ &&
-                  __webpack_require__.push(
-                    _(_, "english", (_) => {
-                      _.push(_);
-                    }),
-                  );
-            for (let _ of ["webhelper"])
-              __webpack_require__.push(
-                _(_, _, (_) => {
-                  _.push(_);
-                }),
-              ),
-                "english" != _ &&
-                  __webpack_require__.push(
-                    _(_, "english", (_) => {
-                      _.push(_);
-                    }),
-                  );
-            return (
-              __webpack_require__.push(
-                _("drivers", "", (_) => {
-                  _.push(_);
-                }),
-              ),
-              Promise.all(_).then(() => {
-                _.InitFromObjects(_, _, _, _);
-              })
-            );
-          })(
+          (0, _._)(
             [],
             null === _._ || void 0 === _._ ? void 0 : _._.GetSteamLanguage(),
           )
@@ -628,8 +264,8 @@ var CLSTAMP = "steamdb";
     })();
   var _ = _._(
     void 0,
-    [967, 352, 211, 154, 305, 527, 797, 148, 500, 554, 198, 384],
-    () => _(4358),
+    [967, 352, 211, 305, 527, 797, 148, 554, 500, 198, 737, 384],
+    () => _(4170),
   );
   _ = _._(_);
 })();

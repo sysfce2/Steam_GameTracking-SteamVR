@@ -5366,6 +5366,10 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
       });
       function _(_) {
         for (
@@ -7002,6 +7006,9 @@ var CLSTAMP = "steamdb";
       Object.assign(_, _);
       var _ = _(!0);
       function _(_) {
+        return _(_.name, !1, _, this, void 0);
+      }
+      function _(_) {
         return _(_) && !0 === _.isMobxAction;
       }
       function _(_, _) {
@@ -7251,6 +7258,69 @@ var CLSTAMP = "steamdb";
         } finally {
           _();
         }
+      }
+      function _(_, _, _) {
+        return 1 === arguments.length || (_ && "object" == typeof _)
+          ? (function (_, _) {
+              var _, _, _;
+              0;
+              if (null != _ && null != (_ = _.signal) && _.aborted)
+                return Object.assign(
+                  Promise.reject(new Error("WHEN_ABORTED")),
+                  {
+                    cancel: function () {
+                      return null;
+                    },
+                  },
+                );
+              var _ = new Promise(function (_, _) {
+                var _,
+                  _ = _(
+                    _,
+                    _,
+                    _({}, _, {
+                      onError: _,
+                    }),
+                  );
+                (_ = function () {
+                  _(), _(new Error("WHEN_CANCELLED"));
+                }),
+                  (_ = function () {
+                    _(), _(new Error("WHEN_ABORTED"));
+                  }),
+                  null == _ ||
+                    null == (_ = _.signal) ||
+                    null == _.addEventListener ||
+                    _.addEventListener("abort", _);
+              }).finally(function () {
+                var _;
+                return null == _ ||
+                  null == (_ = _.signal) ||
+                  null == _.removeEventListener
+                  ? void 0
+                  : _.removeEventListener("abort", _);
+              });
+              return (_.cancel = _), _;
+            })(_, _)
+          : _(_, _, _ || {});
+      }
+      function _(_, _, _) {
+        var _;
+        if ("number" == typeof _.timeout) {
+          var _ = new Error("WHEN_TIMEOUT");
+          _ = setTimeout(function () {
+            if (!_[_].isDisposed_) {
+              if ((_(), !_.onError)) throw _;
+              __webpack_require__.onError(_);
+            }
+          }, _.timeout);
+        }
+        _.name = "When";
+        var _ = _("When-effect", _),
+          _ = _(function (_) {
+            _(!1, _) && (_.dispose(), _ && clearTimeout(_), _());
+          }, _);
+        return _;
       }
       function _(_) {
         return _[_];
