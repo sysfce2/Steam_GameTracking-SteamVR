@@ -6653,7 +6653,7 @@ var CLSTAMP = "steamdb";
                     _._[(0, _._)()],
                 );
               console.log("Bootstrapping " + _, _);
-              const _ = 1e3 * (null !== (_ = 1777518324) ? _ : 0);
+              const _ = 1e3 * (null !== (_ = 1777526849) ? _ : 0);
               console.log(
                 "SteamVR Version Info: " +
                   JSON.stringify({

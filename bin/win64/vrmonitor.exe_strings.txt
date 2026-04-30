@@ -1159,7 +1159,7 @@ $\t?contains@QRectF@@QEBA_NAEBVQPointF@@@Z
 1setDataScaleType(QCPAxis::ScaleType)
 1setGradient(QCPColorGradient)
 1updateStyle()
-20:04:51
+22:31:32
 2DoInit()
 2DoShutdown()
 2PlaybackVolumeGainStatus( bool )
@@ -5952,7 +5952,7 @@ R?scaledSize@QMovie@@QEAA?AVQSize@@XZ
 R?screens@QGuiApplication@@SA?AV?$QList@PEAVQScreen@@@@XZ
 REFRESH
 RPCRT4.dll
-RSDS
+RSDS-
 RSSI: %1\n
 R\v?find@QPlainTextEdit@@QEAA_NAEBVQString@@V?$QFlags@W4FindFlag@QTextDocument@@@@@Z
 Radio

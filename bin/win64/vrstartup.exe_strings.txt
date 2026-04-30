@@ -133,7 +133,7 @@
 /user/wrist/left
 /user/wrist/right
 1e+9999
-20:04:51
+22:31:32
 : exception thrown in JSON library
 <unknown>
 ================================================================================================\n
@@ -393,7 +393,7 @@ OutputDebugStringA
 Platform handles tutorial / initial home app launch %s. Starting Event Polling...
 QueryPerformanceCounter
 QueryPerformanceFrequency
-RSDSS
+RSDS
 RaiseException
 Rebooting In Progress (137)
 RegCloseKey
@@ -800,7 +800,6 @@ _time64
 _wfopen_s
 _wfsopen
 _wstat64i32
-aS'J
 abort
 additional six characters expected to parse unicode surrogate pair.
 allowComments

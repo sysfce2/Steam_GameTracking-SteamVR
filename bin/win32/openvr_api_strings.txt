@@ -549,7 +549,7 @@ PeekNamedPipe
 Pex?0
 QueryDepthSList
 QueryPerformanceCounter
-RSDSkRO
+RSDS2
 RaiseException
 ReadConsoleW
 ReadFile

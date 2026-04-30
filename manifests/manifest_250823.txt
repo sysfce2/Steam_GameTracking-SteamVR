@@ -1,10 +1,10 @@
 Content Manifest for Depot 250823 
 
-Manifest ID / date     : 4943351241434908503 / 04/30/2026 03:37:28 
+Manifest ID / date     : 597819106849475171 / 04/30/2026 05:50:18 
 Total number of files  : 336 
 Total number of chunks : 1207 
 Total bytes on disk    : 1124939214 
-Total bytes compressed : 386067152 
+Total bytes compressed : 386067312 
 
 
           Size Chunks File SHA                                 Flags Name
@@ -79,15 +79,15 @@ Total bytes compressed : 386067152
            989      1 954c9024dcbad624980a17423cae4feb448c1d59     0 bin/linux64/VkLayer_envextensions_layer.json
        6836904      7 3f6f1c375b726b174049988d9d691d186492549e     0 bin/linux64/vrclient.so
         834760      1 b54f65e03433d36437efbf24585b5639129a2c51     0 bin/linux64/vrcmd
-       4603888      5 dfba9a3b0b17956698b01a9933337e902852c669     0 bin/linux64/vrcompositor
+       4603888      5 25d7e08a5b625c0332a014774d94704e9128f097     0 bin/linux64/vrcompositor
         110664      1 fb7e228642cb1ef4c35b886861c978f930ff29c8     0 bin/linux64/vrcompositor-launcher
           2537      1 926a0e30423a05fc9fe4c9a72f1e92a2319359f5     0 bin/linux64/vrcompositor-launcher.sh
-        656784      1 1ed56f4d4f2625b0fccc95d468eaad162fbc21fd     0 bin/linux64/vrdashboard
-       3814736      4 9a641090d8e71df630893d4a63f2568d3bbbac8a     0 bin/linux64/vrmonitor
+        656784      1 005f069265353034da8aa8b0e00ccdcd1794c5a0     0 bin/linux64/vrdashboard
+       3814736      4 30fe3ed41b9ea58b35b9dbf387bcf520834f649d     0 bin/linux64/vrmonitor
         643144      1 b5fc5aa9e3c655af0266577b8d4643d6ba7a9381     0 bin/linux64/vrpathreg
-        795952      1 8a228193aa8ebec209ae507696d6a8b39a88ed76     0 bin/linux64/vrprismhost
-       5487552      6 8f05d9602e950063bb8d118874bb29226a698d58     0 bin/linux64/vrserver
-        738256      1 f4874e86c02b9f13bdd73f3f48b8c96c08ad90d0     0 bin/linux64/vrstartup
+        795952      1 11e3a081d09c3ca783a33a6bf75e610682b355f7     0 bin/linux64/vrprismhost
+       5487552      6 ae79f2ad0550d59644778b966ec1b7226f9894d1     0 bin/linux64/vrserver
+        738256      1 57163f9bf023ee6b60988b08a4764799a2fe4291     0 bin/linux64/vrstartup
         759656      1 9d2bf2bda8ebf645262be5d810b4072e064acf70     0 bin/linux64/vrurlhandler
           2000      1 db3f880cc8b6ddb7d16464f37adecfb51b153a4e     0 bin/steamvr_msg.sh
            945      1 334c149e8a4cc9c0b0a35fce39e2da236bc39143     0 bin/steamvr_question.sh
@@ -168,7 +168,7 @@ Total bytes compressed : 386067152
         477144      1 047c2ed334256eba28e959bd895381e8cbcf4a1b     0 bin/vrwebhelper/linux64/locales/zh-TW.pak
        8733826     11 87b2ce0a69d5bb213fa2948161c3128229402758     0 bin/vrwebhelper/linux64/resources.pak
            107      1 08a83ab661feb866ab881fc7cf0e2b1dc4a5c43d     0 bin/vrwebhelper/linux64/vk_swiftshader_icd.json
-       2228080      3 28268eaac6464de72fb0fa57db5bde8fa69f6737     0 bin/vrwebhelper/linux64/vrwebhelper
+       2228080      3 e5e89e5acc1c965602b5289e888a2fc6da966a4f     0 bin/vrwebhelper/linux64/vrwebhelper
            713      1 ea66c8ec52144e12979aff7826a06db476383bb3     0 bin/vrwebhelper/linux64/vrwebhelper.sh
         577096      1 28e36a998f61aa6cce6d4518dc5fa3538ee6f5f4     0 drivers/gamepad/bin/linux32/driver_gamepad.so
         584504      1 d058709f7b9c8964db1b1b55cd5cb7e681a5c4e1     0 drivers/gamepad/bin/linux64/driver_gamepad.so
