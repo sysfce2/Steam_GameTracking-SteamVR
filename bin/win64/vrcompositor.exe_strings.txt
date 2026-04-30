@@ -1145,7 +1145,6 @@ $\n k_EProtoServiceTypeSteamMessages
 1.5.26
 1/2/4/8/16-bit only
 123456789
-19:35:20
 1A26b
 1e+9999
 1wsHp
@@ -1153,6 +1152,7 @@ $\n k_EProtoServiceTypeSteamMessages
 2).google.protobuf.FileOptions.OptimizeMode:
 2*.google.protobuf.FieldDescriptorProto.Type
 2+.google.protobuf.FieldDescriptorProto.Label
+20:04:51
 214l5
 3333
 3333UUUU
@@ -1306,7 +1306,7 @@ Another app was already launching (117)
 Another copy of this program is already running on this machine. Only one instance at a time is allowed.
 App info manager init failed (114)
 Application built with libpng-
-Apr 28 2026
+Apr 29 2026
 Assert( %s ) %s(%d)\n
 Async compositor and reprojection DISABLED!!!
 Asynchronous reprojection not supported - requires NVIDIA driver 372.54 or higher.\n
@@ -3227,7 +3227,7 @@ QueryServiceConfigW
 R1h58
 RENDERDOC_GetAPI
 RPCRT4.dll
-RSDS
+RSDS[
 RaiseException
 Raw ideal render target scale = %.2f\n
 Reached an unintended state: CPPTYPE_MESSAGE
@@ -5171,8 +5171,8 @@ c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\simpledraw.cpp
 c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\standaloneoverlays.cpp
 c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\standaloneoverlays.cpp:37
 c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\systemlayer.cpp
-c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\systemlayer.cpp:1507
-c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\systemlayer.cpp:838
+c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\systemlayer.cpp:1510
+c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\systemlayer.cpp:841
 c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\trackeddevicerenderer.cpp:28
 c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\trackeddevicerenderer.cpp:297
 c:\buildslave\steamvr_rel_win64\build\src\vrcompositor\vrcompositor.cpp:1059

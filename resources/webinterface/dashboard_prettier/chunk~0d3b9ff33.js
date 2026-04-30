@@ -1,4 +1,4 @@
-var CLSTAMP = "10621526";
+var CLSTAMP = "10624426";
 (self.webpackChunkvrwebui = self.webpackChunkvrwebui || []).push([
   [366],
   {
@@ -5560,7 +5560,7 @@ var CLSTAMP = "10621526";
           }),
           l.createElement(v.WZ, {
             label: (0, m.we)("#Settings_VersionInfo_WebpackBuildTime"),
-            value: new Date(1777429667e3).toLocaleString(),
+            value: new Date(1777518324e3).toLocaleString(),
           }),
           l.createElement(v.WZ, {
             label: (0, m.we)("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),
@@ -22333,7 +22333,7 @@ var CLSTAMP = "10621526";
               ? void 0
               : e.call(VRHTML),
           ),
-            i.set_webpack_build_timestamp(1777429667);
+            i.set_webpack_build_timestamp(1777518324);
           const n =
             null ===
               (t =
@@ -28911,10 +28911,11 @@ var CLSTAMP = "10621526";
                 let o = T.JJ.GetFrameWithTabId(e);
                 if (
                   (null == o &&
-                    ot.ErrorOnceThenWarn(
+                    (ot.ErrorOnceThenWarn(
+                      "DashboardTabClicked183",
                       "DashboardTabClicked on undefined frame",
-                      e,
                     ),
+                    ot.Warning("DashboardTabClicked on undefined frame", e)),
                   e == T.Sq.LegacyFloatingSteamMainMenu_VRSettings &&
                     ((o = T.JJ.GetFramesWithAssociatedSummonKeys(c.Wt)[0]),
                     (null === (t = null == o ? void 0 : o.activePage) ||

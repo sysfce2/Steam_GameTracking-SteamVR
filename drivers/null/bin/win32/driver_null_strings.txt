@@ -90,7 +90,7 @@ IsProcessorFeaturePresent
 KERNEL32.dll
 MSVCP140.dll
 QueryPerformanceCounter
-RSDSc9
+RSDS
 SetUnhandledExceptionFilter
 TerminateProcess
 UnhandledExceptionFilter

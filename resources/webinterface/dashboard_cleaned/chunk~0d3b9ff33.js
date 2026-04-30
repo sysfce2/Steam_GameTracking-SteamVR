@@ -6212,7 +6212,7 @@ var CLSTAMP = "steamdb";
           }),
           _.createElement(_._, {
             label: (0, _._)("#Settings_VersionInfo_WebpackBuildTime"),
-            value: new Date(1777429667e3).toLocaleString(),
+            value: new Date(1777518324e3).toLocaleString(),
           }),
           _.createElement(_._, {
             label: (0, _._)("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),
@@ -31362,10 +31362,11 @@ var CLSTAMP = "steamdb";
                 let _ = _._.GetFrameWithTabId(_);
                 if (
                   (null == _ &&
-                    _.ErrorOnceThenWarn(
+                    (_.ErrorOnceThenWarn(
+                      "DashboardTabClicked183",
                       "DashboardTabClicked on undefined frame",
-                      _,
                     ),
+                    _.Warning("DashboardTabClicked on undefined frame", _)),
                   _ == _._.LegacyFloatingSteamMainMenu_VRSettings &&
                     ((_ = _._.GetFramesWithAssociatedSummonKeys(_._)[0]),
                     (null === (_ = null == _ ? void 0 : _.activePage) ||

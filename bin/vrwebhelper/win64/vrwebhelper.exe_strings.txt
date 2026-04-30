@@ -624,8 +624,8 @@
 /vrlink_stream_packet_time
 126.0.0-HEAD.3134+g1967f4c+chromium-126.0.6478.183
 127.0.0.1
-19:35:20
 1e+9999
+20:04:51
 4ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
 5I)7
 7^d[L
@@ -738,7 +738,7 @@ Another app was already launching (117)
 Another copy of this program is already running on this machine. Only one instance at a time is allowed.
 App info manager init failed (114)
 AppGetSettings
-Apr 28 2026
+Apr 29 2026
 ArrayBuffer
 Assert( %s ) %s(%d)\n
 Attempt to init shared state %s twice
@@ -834,7 +834,7 @@ ConvertStringSidToSidA
 CopySid
 Could not create DXGI Factory 1.1
 Could not find thumbnail overlay to go with dashboard overlay %s\n
-Could not get path handle for %s
+Could not get path handle for %s: %s (%d)
 CrashRenderer
 CreateDXGIFactory1
 CreateDirectoryW
@@ -2291,9 +2291,9 @@ c:\buildslave\steamvr_rel_win64\build\src\vrwebhelper\cefexecuteprocess_handler.
 c:\buildslave\steamvr_rel_win64\build\src\vrwebhelper\vrwebhelper_app.cpp
 c:\buildslave\steamvr_rel_win64\build\src\vrwebhelper\vrwebhelper_app.cpp:686
 c:\buildslave\steamvr_rel_win64\build\src\vrwebhelper\vrwebhelper_javascript.cpp
-c:\buildslave\steamvr_rel_win64\build\src\vrwebhelper\vrwebhelper_javascript.cpp:4713
-c:\buildslave\steamvr_rel_win64\build\src\vrwebhelper\vrwebhelper_javascript.cpp:4813
-c:\buildslave\steamvr_rel_win64\build\src\vrwebhelper\vrwebhelper_javascript.cpp:5243
+c:\buildslave\steamvr_rel_win64\build\src\vrwebhelper\vrwebhelper_javascript.cpp:4714
+c:\buildslave\steamvr_rel_win64\build\src\vrwebhelper\vrwebhelper_javascript.cpp:4814
+c:\buildslave\steamvr_rel_win64\build\src\vrwebhelper\vrwebhelper_javascript.cpp:5244
 cefMaxFrameRate
 cef_api_hash
 cef_browser_host_create_browser

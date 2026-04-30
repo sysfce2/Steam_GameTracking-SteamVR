@@ -4400,7 +4400,6 @@ Zjz\v
 [abi:
 [json.exception.
 [libprotobuf %s %s:%d] %s\n
-\f9)xt
 \nDDS 
 \t%s::%llx.\n
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t

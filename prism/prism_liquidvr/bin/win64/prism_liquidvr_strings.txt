@@ -85,7 +85,6 @@ CMotionEstimator_LiquidVR::VkInit
 CloseHandle
 CreateDXGIFactory1
 CreateEventW
-D/9T
 DeleteCriticalSection
 DisableThreadLibraryCalls
 EventRegister
@@ -159,7 +158,7 @@ PRISM_Stop
 QueryPerformanceCounter
 QueryPerformanceFrequency
 RPCRT4.dll
-RSDSG
+RSDS
 RaiseException
 RtlCaptureContext
 RtlLookupFunctionEntry

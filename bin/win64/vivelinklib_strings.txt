@@ -467,7 +467,7 @@ RANDOM
 RAW:
 READ -H %4.4X
 RESET
-RSDS
+RSDSz!
 RaiseException
 ReadFile
 ReadPipeResponse
@@ -729,7 +729,6 @@ buffer error
 c:\buildslave\steamvr_rel_win64\build\src\vivelinklib\Retail\win64\2017\vivelinklib.pdb
 calloc
 cntrl
-d9V!F
 dat_file
 data error
 deque<T> too long

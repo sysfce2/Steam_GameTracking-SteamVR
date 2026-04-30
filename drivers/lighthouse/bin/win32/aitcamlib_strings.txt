@@ -342,7 +342,6 @@ XXXX PNG chunk not known
 [Camera] etron::VideoFrameCallbackNoTimestamp(%d,%d)
 \nbad png sig
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t
-]2tO
 _CIpow
 _Cnd_destroy_in_situ
 _Cnd_init_in_situ

@@ -189,7 +189,7 @@ PRISM_Shutdown
 PRISM_Stop
 QueryPerformanceCounter
 RPCRT4.dll
-RSDS*k
+RSDS
 RaiseException
 ResetEvent
 RtlCaptureContext

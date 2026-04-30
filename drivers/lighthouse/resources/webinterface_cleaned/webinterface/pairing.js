@@ -10200,7 +10200,8 @@ var CLSTAMP = "steamdb";
                 (this.m_bEnabled = !0)),
               this.m_rgErrorQueue.length &&
                 (this.SendErrorReports(this.m_rgErrorQueue),
-                (this.m_rgErrorQueue = []));
+                (this.m_rgErrorQueue = [])),
+              (Error.stackTraceLimit = 12);
           }
           ReportError(_, _) {
             return (0, _._)(this, void 0, void 0, function* () {

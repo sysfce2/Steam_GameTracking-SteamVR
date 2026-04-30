@@ -1,4 +1,4 @@
-var CLSTAMP = "10621526";
+var CLSTAMP = "10624426";
 (self.webpackChunkvrwebui = self.webpackChunkvrwebui || []).push([
   [554],
   {
@@ -270,7 +270,8 @@ var CLSTAMP = "10621526";
               (this.m_bEnabled = !0)),
             this.m_rgErrorQueue.length &&
               (this.SendErrorReports(this.m_rgErrorQueue),
-              (this.m_rgErrorQueue = []));
+              (this.m_rgErrorQueue = [])),
+            (Error.stackTraceLimit = 12);
         }
         ReportError(e, t) {
           return (0, n.sH)(this, void 0, void 0, function* () {
@@ -325,7 +326,7 @@ var CLSTAMP = "10621526";
                           };
                         });
                       })(e, t)
-                    : e.stack && e.stack.match(B)
+                    : e.stack && e.stack.match(E)
                       ? (function (e, t) {
                           return (0, n.sH)(this, void 0, void 0, function* () {
                             var r, n;
@@ -341,7 +342,7 @@ var CLSTAMP = "10621526";
                                       : r.split("\n")) && void 0 !== n
                                   ? n
                                   : [];
-                            let a = k(i.filter((e) => !!e.match(B))[o]);
+                            let a = k(i.filter((e) => !!e.match(E))[o]);
                             s && (a = `${a} ${e.message}`);
                             const l = i
                               .map((e) => {
@@ -364,7 +365,7 @@ var CLSTAMP = "10621526";
                             };
                           });
                         })(e, t)
-                      : e.stack && e.stack.match(E)
+                      : e.stack && e.stack.match(B)
                         ? (function (e, t) {
                             return (0, n.sH)(
                               this,
@@ -566,8 +567,8 @@ var CLSTAMP = "10621526";
           .join(", ");
       }
       const M = /^\s*at .*(\S+:\d+|\(native\))/m,
-        B = /(^|@)\S+:\d+/,
-        E = /.*\/bundle-[a-zA-Z0-9]+:\d+:\d+/;
+        E = /(^|@)\S+:\d+/,
+        B = /.*\/bundle-[a-zA-Z0-9]+:\d+:\d+/;
       let O,
         F = !1;
       function k(e) {

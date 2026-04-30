@@ -1,4 +1,4 @@
-var CLSTAMP = "10621526";
+var CLSTAMP = "10624426";
 (() => {
   "use strict";
   var t,
@@ -9055,7 +9055,8 @@ var CLSTAMP = "10621526";
                 (this.m_bEnabled = !0)),
               this.m_rgErrorQueue.length &&
                 (this.SendErrorReports(this.m_rgErrorQueue),
-                (this.m_rgErrorQueue = []));
+                (this.m_rgErrorQueue = [])),
+              (Error.stackTraceLimit = 12);
           }
           ReportError(t, e) {
             return (0, r.sH)(this, void 0, void 0, function* () {

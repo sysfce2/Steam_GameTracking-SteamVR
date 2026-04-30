@@ -1672,19 +1672,19 @@ $\n k_EProtoServiceTypeSteamMessages
 0-pixel image
 00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899
 00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899"
-00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899PQ:@
+00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899@Q:@
 0123456789ABCDEF
 0123456789abcdef
-0B9@
+0D9@
 0E5@
-0G9@
+0I9@
+0w9@
 1.2.5
 1/2/4/8/16-bit only
 11 4 22 44 44 22 444444
 11eU%
 127.0.0.1
 127.0.0.1:
-19:35:20
 1A26b
 1\f514
 1e+9999
@@ -1693,6 +1693,7 @@ $\n k_EProtoServiceTypeSteamMessages
 2).google.protobuf.FileOptions.OptimizeMode:
 2*.google.protobuf.FieldDescriptorProto.Type
 2+.google.protobuf.FieldDescriptorProto.Label
+20:04:51
 258EAFA5-E914-47DA-95CA-C5AB0DC85B11
 4\f54d
 52F*
@@ -1704,13 +1705,14 @@ $\n k_EProtoServiceTypeSteamMessages
 7\n\tenum_type
 7^d[L
 7~8A
-8C9@
-8H9@
+8E9@
+8J9@
 8\n\textension
 8c8f13b1-60eb-4b6a-a433-de86104115ac
 8d8f13b1-60eb-4b6a-a433-de86104115ac
 8e8f13b1-60eb-4b6a-a433-de86104115ac
 8giP9giP9giP9giP9
+8l9@
 9\n\noneof_decl
 9a&g
 : Protocol message serialized to a size different from what was originally expected.  Perhaps it was modified by another thread during serialization?
@@ -1942,7 +1944,7 @@ AppInfoManager.StartSceneApplicationTransitionFromProcess: No app info for start
 AppTransition: Aborting external launch because of timeout after %g seconds\n
 Apps - Completed simple quit transition with exit of %u\n
 Apps - Initiated %s quit transition for %u\n
-Apr 28 2026
+Apr 29 2026
 Array length of `baseColorFactor` parameter in pbrMetallicRoughness must be 4, but got 
 Array length of `emissiveFactor` parameter in material must be 3, but got 
 Array length of `emissiveFactor` parameter in material must be 3, but got 4\n
@@ -2878,9 +2880,9 @@ Guessing frequency of current display mode because SDL failed us\n
 H$6t
 H*0"ZOW
 HAPTICDEBUG %s:%d sec: %f\t freq: %f\t amp: %f\n
-HE9@
 HEAD
-HJ9@
+HG9@
+HL9@
 HMD Not Known (202)
 HMD already in use by another application (205)
 HMD detected over USB, but Monitor may be mirrored instead of extended (212)
@@ -2920,7 +2922,6 @@ HTTP_REQUEST Static Content %s
 Hang the server for the specified number of seconds (default 3600)
 HasField
 Hex and octal numbers must be integers.
-Hl9@
 Hmd DriverId is invalid (125)
 Hmd DriverId is our of bounds (211)
 Hmd Not Found (108)
@@ -3475,11 +3476,11 @@ OutputDebugStringW
 Overwriting default binding file from web: %s\n
 PCI\VEN_%x&DEV_%x&SUBSYS_%x&REV_%x
 PC_%08llx
-PF9@
+PH9@
 PICT
 PID_
-PK9@
 PLACEHOLDER_VALUE
+PM9@
 PNG\r\n
 POST
 PP3@
@@ -3536,6 +3537,7 @@ PerformApplicationPrelaunchCheck
 Permanent Redirect
 Perspective camera description not found.
 PerspectiveCamera
+Ph9@
 Playback devices:\n
 PoseUpdated for invalid object ID %d\n
 PoseUpdated from driver %s (%d) for device index %d which is owned by driver %s (%d)\n
@@ -3799,7 +3801,7 @@ Quitting parent process %u because a quit was requested for its child %u.\n
 R1h58
 RGBG
 RPCRT4.dll
-RSDSl
+RSDS-
 RaiseException
 Range
 Reached an unintended state: CPPTYPE_MESSAGE
@@ -5231,11 +5233,13 @@ WorkshopSelectConfig for BindingOutOfDate for %s(%s) attempt to set default bind
 WorkshopSelectConfig for BindingOutOfDate for %s(%s) when we don't have a binding at all for that controller type\n
 WriteFile
 X-Frame-Options: sameorigin\r\nContent-Security-Policy: default-src 'self'
-XG9@
-XL9@
+XI9@
+XN9@
 XR3@
 XXXX PNG chunk not known
+Xe9@
 XsBI
+Xy9@
 YUY2
 Zjz\v
 [%x:%x:%x:%x:%x:%x:%x:%x]
@@ -6427,8 +6431,8 @@ grip
 grip_limit_transforms
 group
 guid
-hI9@
-hN9@
+hK9@
+hP9@
 hPU3
 half_thresholds
 hand_interaction_ext
@@ -6446,7 +6450,6 @@ has_force
 has_ready_ext
 has_touch
 has_value
-he9@
 header
 header crc mismatch
 height
@@ -6471,7 +6474,6 @@ https:
 https://
 hu_hu
 hungarian
-hy9@
 i91k
 i]Wb
 iauds
@@ -7077,16 +7079,17 @@ overlays
 override_throttling
 overwrite.vrsettings
 owned
+p09@
 pBegin == pEnd
 pEnd > pBegin
-pJ9@
+pL9@
 pMGConnect != nullptr
 pNewResource
 pNewResource->Load( absFilePath )
-pO9@
 pOutFormatCount MUST not be NULL.
 pOutModifierCount MUST not be NULL.
 pProcessId
+pQ9@
 pQueue->GetMetaContainerHandle() == ulExistingQueue
 pSharedState != nullptr
 pUrl != nullptr
@@ -7116,8 +7119,6 @@ pico_controller
 pinch
 pinchgrab
 pivot
-pj9@
-pk9@
 pl_pl
 playAreaColor
 play_area
@@ -7152,7 +7153,6 @@ positional
 positive_int_value
 power
 powf
-pp9@
 precision
 prediction
 prediction parameter out of range
@@ -7188,7 +7188,6 @@ pull
 punct
 putchar
 py_generic_services
-pz9@
 qMFCreateMediaType failed hr = 0x%08x\n
 qsort
 quarter_thresholds
@@ -7764,8 +7763,9 @@ wrong version
 ws handshake error
 wss:
 x-steamvr-secret
-xK9@
-xP9@
+x19@
+xM9@
+xR9@
 x_path
 xdigit
 xmag
