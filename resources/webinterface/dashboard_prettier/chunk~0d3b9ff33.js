@@ -1,4 +1,4 @@
-var CLSTAMP = "10630260";
+var CLSTAMP = "10700074";
 (self.webpackChunkvrwebui = self.webpackChunkvrwebui || []).push([
   [366],
   {
@@ -5560,7 +5560,7 @@ var CLSTAMP = "10630260";
           }),
           l.createElement(v.WZ, {
             label: (0, m.we)("#Settings_VersionInfo_WebpackBuildTime"),
-            value: new Date(177767391e4).toLocaleString(),
+            value: new Date(1780409188e3).toLocaleString(),
           }),
           l.createElement(v.WZ, {
             label: (0, m.we)("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),
@@ -22333,7 +22333,7 @@ var CLSTAMP = "10630260";
               ? void 0
               : e.call(VRHTML),
           ),
-            i.set_webpack_build_timestamp(1777673910);
+            i.set_webpack_build_timestamp(1780409188);
           const n =
             null ===
               (t =
@@ -33041,4 +33041,4 @@ var CLSTAMP = "10630260";
       window.VRLinkStore = A;
     },
   },
-]); //# sourceMappingURL=file:///home/buildbot/buildslave/steamvr_rel_npm_vrwebui/build/public/runtime/resources/webinterface/dashboard/sourcemaps/chunk~0d3b9ff33.js.map
+]); //# sourceMappingURL=file:///home/buildbot/buildslave/steamvr_rel_hotfix_npm_vrwebui/build/public/runtime/resources/webinterface/dashboard/sourcemaps/chunk~0d3b9ff33.js.map

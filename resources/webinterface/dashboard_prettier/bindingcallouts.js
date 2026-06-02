@@ -1,4 +1,4 @@
-var CLSTAMP = "10630260";
+var CLSTAMP = "10700074";
 (() => {
   "use strict";
   var t,
@@ -1668,4 +1668,4 @@ var CLSTAMP = "10630260";
     () => i(1278),
   );
   n = i.O(n);
-})(); //# sourceMappingURL=file:///home/buildbot/buildslave/steamvr_rel_npm_vrwebui/build/public/runtime/resources/webinterface/dashboard/sourcemaps/bindingcallouts.js.map
+})(); //# sourceMappingURL=file:///home/buildbot/buildslave/steamvr_rel_hotfix_npm_vrwebui/build/public/runtime/resources/webinterface/dashboard/sourcemaps/bindingcallouts.js.map

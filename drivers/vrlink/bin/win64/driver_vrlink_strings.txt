@@ -850,6 +850,7 @@ $\n k_EProtoServiceTypeSteamMessages
 0000
 00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899
 00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899"
+00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899Hv
 00P`00P`
 0123456789abcdef
 0\v2;i
@@ -2976,7 +2977,7 @@ Zjz\v
 ] is not a JSON object.
 ],"subtype":
 ]1bO
-]c:\buildslave\steamvr_rel_win64\build\src\vrlink\driver_vrlink\hmdd3d11.cpp:1647
+]c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrlink\driver_vrlink\hmdd3d11.cpp:1647
 ^lX8k
 _55j
 _Cnd_broadcast
@@ -3066,6 +3067,7 @@ _wfsopen
 _wstat64i32
 `3QbE
 `3SbE
+`L3$yG
 `P00
 `accessors' does not contain an JSON object.
 `animations' does not contain an JSON object.
@@ -3207,22 +3209,22 @@ byteOffset
 byteStride
 bytes
 c!!B0
-c:\buildslave\steamvr_rel_win64\build\src\common\generated_proto_x64\steammessages_unified_base.steamclient.pb.cc
-c:\buildslave\steamvr_rel_win64\build\src\common\generated_proto_x64\vr_vrlink.pb.cc
-c:\buildslave\steamvr_rel_win64\build\src\common\generated_proto_x64\vrshared_base.pb.cc
-c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\animation\animresourcemanager.cpp
-c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrmailbox.cpp
-c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\logbuffer.cpp
-c:\buildslave\steamvr_rel_win64\build\src\thirdparty\protobuf-2.6.1\src\google\protobuf\repeated_field.h
-c:\buildslave\steamvr_rel_win64\build\src\vrlink\common\svlfec.cpp:1078
-c:\buildslave\steamvr_rel_win64\build\src\vrlink\common\svlfec.cpp:761
-c:\buildslave\steamvr_rel_win64\build\src\vrlink\driver_vrlink\Retail\win64\2017\driver_vrlink.pdb
-c:\buildslave\steamvr_rel_win64\build\src\vrlink\driver_vrlink\hmd.cpp:2430
-c:\buildslave\steamvr_rel_win64\build\src\vrlink\driver_vrlink\hmd.cpp:2779
-c:\buildslave\steamvr_rel_win64\build\src\vrlink\driver_vrlink\hmd.cpp:2891
-c:\buildslave\steamvr_rel_win64\build\src\vrlink\driver_vrlink\hmdd3d11.cpp:1618
-c:\buildslave\steamvr_rel_win64\build\src\vrlink\driver_vrlink\steamvrlink.cpp
-c:\buildslave\steamvr_rel_win64\build\src\vrlink\driver_vrlink\videonvenc.cpp:1391
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\generated_proto_x64\steammessages_unified_base.steamclient.pb.cc
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\generated_proto_x64\vr_vrlink.pb.cc
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\generated_proto_x64\vrshared_base.pb.cc
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\animation\animresourcemanager.cpp
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrmailbox.cpp
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\logbuffer.cpp
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\thirdparty\protobuf-2.6.1\src\google\protobuf\repeated_field.h
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrlink\common\svlfec.cpp:1078
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrlink\common\svlfec.cpp:761
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrlink\driver_vrlink\Retail\win64\2017\driver_vrlink.pdb
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrlink\driver_vrlink\hmd.cpp:2430
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrlink\driver_vrlink\hmd.cpp:2779
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrlink\driver_vrlink\hmd.cpp:2891
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrlink\driver_vrlink\hmdd3d11.cpp:1618
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrlink\driver_vrlink\steamvrlink.cpp
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrlink\driver_vrlink\videonvenc.cpp:1391
 c=qx
 cAoption requires an argument -- %c
 cAudBufAvg

@@ -1,4 +1,4 @@
-var CLSTAMP = "10630260";
+var CLSTAMP = "10700074";
 (() => {
   var e,
     t = {
@@ -6025,7 +6025,7 @@ var CLSTAMP = "10630260";
                     l.OH[(0, l.R$)()],
                 );
               console.log("Bootstrapping " + e, o);
-              const i = 1e3 * (null !== (t = 1777673910) ? t : 0);
+              const i = 1e3 * (null !== (t = 1780409188) ? t : 0);
               console.log(
                 "SteamVR Version Info: " +
                   JSON.stringify({
@@ -7922,4 +7922,4 @@ var CLSTAMP = "10630260";
     () => o(7404),
   );
   r = o.O(r);
-})(); //# sourceMappingURL=file:///home/buildbot/buildslave/steamvr_rel_npm_vrwebui/build/public/runtime/resources/webinterface/dashboard/sourcemaps/systemui.js.map
+})(); //# sourceMappingURL=file:///home/buildbot/buildslave/steamvr_rel_hotfix_npm_vrwebui/build/public/runtime/resources/webinterface/dashboard/sourcemaps/systemui.js.map

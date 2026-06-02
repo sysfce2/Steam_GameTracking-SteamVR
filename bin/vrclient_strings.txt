@@ -4140,6 +4140,7 @@ XrProto:duplicate
 XrProto:event:timeout!
 XrProto:loop:timeout!
 XrProto:suspended
+Yn\rh
 Zjz\v
 [%s] %s=%llu tgid=%d file=%s %s
 [AnimSkeleton] Failed to load GLTF file: %s

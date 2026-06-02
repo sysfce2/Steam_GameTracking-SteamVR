@@ -47,6 +47,7 @@
 %s: %s, SD v%d, %s, Attempt: %d\n
 %s: Failed in state: %d (nrf_error: %s)\n
 ' is not a number.
+'XlJ
 ()$^.*+?[]|\-{},:=!\n\r
 (COM
 (R:)\s*([0-9.X]*),?\s*(M:)\s*([0-9.X]*),?\s*(B:)\s*([0-9.X]*)
@@ -1067,7 +1068,7 @@ QueryPerformanceFrequency
 QueueUserAPC
 RESERVED_5
 RESET_PERFORMED
-RSDS4
+RSDS
 RaiseException
 Read Characteristic String
 Read Characteristic Value (handle: %d, offset: %d)\n
@@ -1327,7 +1328,7 @@ bin_file
 blank
 bootloader
 buffer error
-c:\buildslave\steamvr_rel_win32\build\src\nrfserlib\Retail\win32\2017\nrfserlib.pdb
+c:\buildslave\steamvr_rel_hotfix_win32\build\src\nrfserlib\Retail\win32\2017\nrfserlib.pdb
 calloc
 ceil
 close

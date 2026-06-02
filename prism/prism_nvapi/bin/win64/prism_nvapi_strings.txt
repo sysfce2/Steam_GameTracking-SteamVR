@@ -198,7 +198,7 @@ QueryPerformanceCounter
 QueryPerformanceFrequency
 QueryServiceConfigW
 RPCRT4.dll
-RSDS|
+RSDS
 RaiseException
 RegCloseKey
 RegEnumValueW
@@ -292,13 +292,13 @@ api-ms-win-crt-stdio-l1-1-0.dll
 api-ms-win-crt-string-l1-1-0.dll
 bad allocation
 bad array new length
-c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\strtools_public.cpp
-c:\buildslave\steamvr_rel_win64\build\src\facet\include\facet\vkresource.h
-c:\buildslave\steamvr_rel_win64\build\src\facet\src\vkalloc.cpp
-c:\buildslave\steamvr_rel_win64\build\src\facet\src\vkresource.cpp
-c:\buildslave\steamvr_rel_win64\build\src\facet\src\vksync.cpp
-c:\buildslave\steamvr_rel_win64\build\src\prism\plugins\prism_nvapi\Retail\win64\2017\prism_nvapi.pdb
-c:\buildslave\steamvr_rel_win64\build\src\prism\plugins\prism_nvapi\prismdisplay_nvapi.cpp
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\strtools_public.cpp
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\include\facet\vkresource.h
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vkalloc.cpp
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vkresource.cpp
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vksync.cpp
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\prism\plugins\prism_nvapi\Retail\win64\2017\prism_nvapi.pdb
+c:\buildslave\steamvr_rel_hotfix_win64\build\src\prism\plugins\prism_nvapi\prismdisplay_nvapi.cpp
 d3d11.dll
 fabsf( *pSecondsSinceVsync ) < 1000.0f
 free
