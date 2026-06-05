@@ -1,10 +1,10 @@
-var CLSTAMP = "10700074";
+var CLSTAMP = "10715262";
 (() => {
   "use strict";
   var t,
     e = {
-      864: (t, e, n) => {
-        n.d(e, { S: () => Ln, X: () => Pn });
+      437: (t, e, n) => {
+        n.d(e, { S: () => wn, X: () => Dn });
         var r = n(635),
           a = n(540),
           s = n(338),
@@ -430,14 +430,14 @@ var CLSTAMP = "10700074";
         (f.k_EnabledLogNames_StorageKey = "EnabledWebLogs"),
           (f.k_IncludeBacktraceInLog_StorageKey = "IncludeBacktraceInLog"),
           (f.s_Singleton = null);
-        const y = () => [...f.Get().LogNames].sort(),
-          v = (t, e) => {
+        const v = () => [...f.Get().LogNames].sort(),
+          y = (t, e) => {
             f.Get().IsLogName(t)
               ? f.Get().SetDebugLogEnabled(t, e)
-              : console.warn(`No log named "${t}", available logs:`, y());
+              : console.warn(`No log named "${t}", available logs:`, v());
           };
-        (window.DebugLogEnable = (...t) => t.forEach((t) => v(t, !0))),
-          (window.DebugLogDisable = (...t) => t.forEach((t) => v(t, !1))),
+        (window.DebugLogEnable = (...t) => t.forEach((t) => y(t, !0))),
+          (window.DebugLogDisable = (...t) => t.forEach((t) => y(t, !1))),
           (window.DebugLogEnableAll = () => f.Get().SetAllDebugLogsEnabled(!0)),
           (window.DebugLogDisableAll = () =>
             f.Get().SetAllDebugLogsEnabled(!1)),
@@ -445,7 +445,7 @@ var CLSTAMP = "10700074";
             f.Get().SetIncludeBacktraceInLog(!0)),
           (window.DebugLogDisableBacktrace = () =>
             f.Get().SetIncludeBacktraceInLog(!1)),
-          (window.DebugLogNames = y),
+          (window.DebugLogNames = v),
           (window.DebugLogEnabled = (...t) => {
             t.length > 0 &&
               console.warn(
@@ -453,7 +453,8 @@ var CLSTAMP = "10700074";
               ),
               f.Get().PrintEnabledLogs();
           });
-        const b = "vrwebui_dashboardstore";
+        const b = "vrcompositor_systemlayer",
+          P = "vrwebui_dashboardstore";
         class I {
           constructor() {
             (this.m_wsWebSocketToServer = void 0),
@@ -652,6 +653,268 @@ var CLSTAMP = "10700074";
             this.WebSocketSend("debug_close");
           }
         }
+        function L(t, e) {
+          let n = t.getAttribute(e);
+          if (n && n.length > 0) {
+            if ("undefined" == n) return;
+            let t = [];
+            for (let e of n.split(" ")) 0 != e.length && t.push(parseFloat(e));
+            if (t.length > 0) return t;
+          }
+        }
+        function M(t, e) {
+          let n = t.getAttribute(e);
+          if (n && n.length > 0) return parseFloat(n);
+        }
+        function R(t, e) {
+          let n = t.getAttribute(e);
+          if (n && n.length > 0) return parseInt(n);
+        }
+        function D(t, e) {
+          let n = t.getAttribute(e);
+          if (n && n.length > 0)
+            return (
+              "true" == n ||
+              (n.length > 0 && 0 != parseInt(n) && !isNaN(parseInt(n)))
+            );
+        }
+        function w(t, e) {
+          let n = t.getAttribute(e);
+          if (n && n.length > 0) return n;
+        }
+        function x(t, e) {
+          return z(w(t, e));
+        }
+        function k(t, e) {
+          var n;
+          let r = { type: t, properties: {} };
+          return (
+            e.id &&
+              (r.properties.id =
+                null !== (n = z(e.id)) && void 0 !== n ? n : void 0),
+            (r.properties.sgid = R(e, "sgid")),
+            r
+          );
+        }
+        function T(t, e) {
+          let [n, r] = (function (t, e) {
+              let n = e.buildNode;
+              if (n) return n(t, e);
+              let r = Object.assign({}, t),
+                a = null;
+              switch (e.nodeName.toUpperCase()) {
+                case "VSG-TRANSFORM":
+                  (a = k("transform", e)),
+                    (a.properties.translation = L(e, "translation")),
+                    (a.properties.rotation = L(e, "rotation")),
+                    (a.properties.scale = L(e, "scale")),
+                    (a.properties["curvature-pitch"] = M(e, "curvature-pitch")),
+                    (a.properties["transform-path"] = w(e, "transform-path")),
+                    (a.properties["projection-constraint"] = R(
+                      e,
+                      "projection-constraint",
+                    )),
+                    (a.properties["invert-parent-panel-pitch"] = D(
+                      e,
+                      "invert-parent-panel-pitch",
+                    )),
+                    (a.properties["ignore-parent-scale"] = D(
+                      e,
+                      "ignore-parent-scale",
+                    )),
+                    (a.properties["parent-path"] = w(e, "parent-path")),
+                    (a.properties["parent-origin"] = w(e, "parent-origin")),
+                    (a.properties["parent-id"] = x(e, "parent-id")),
+                    (a.properties["frame-resize-scale-factor"] = M(
+                      e,
+                      "frame-resize-scale-factor",
+                    ));
+                  break;
+                case "VSG-TRACKING-STATE-VISIBILITY":
+                  (a = k("trackingstatevisibility", e)),
+                    (a.properties["visible-0dof"] = D(e, "visible-0dof")),
+                    (a.properties["visible-3dof"] = D(e, "visible-3dof")),
+                    (a.properties["visible-6dof"] = D(e, "visible-6dof"));
+                  break;
+                case "VSG-ELASTIC-HEAD-TRANSFORM":
+                  (a = k("elasticheadtransform", e)),
+                    (a.properties["rotation-start-angle-threshold"] = M(
+                      e,
+                      "rotation-start-angle-threshold",
+                    )),
+                    (a.properties["rotation-stop-angle-threshold"] = M(
+                      e,
+                      "rotation-stop-angle-threshold",
+                    )),
+                    (a.properties["rotation-ease-in-time"] = M(
+                      e,
+                      "rotation-ease-in-time",
+                    )),
+                    (a.properties["rotation-ease-in-power"] = M(
+                      e,
+                      "rotation-ease-in-power",
+                    )),
+                    (a.properties["rotation-ease-out-angle-threshold"] = M(
+                      e,
+                      "rotation-ease-out-angle-threshold",
+                    )),
+                    (a.properties["rotation-ease-out-power"] = M(
+                      e,
+                      "rotation-ease-out-power",
+                    )),
+                    (a.properties["rotation-min-angular-velocity"] = M(
+                      e,
+                      "rotation-min-angular-velocity",
+                    )),
+                    (a.properties["rotation-max-angular-velocity"] = M(
+                      e,
+                      "rotation-max-angular-velocity",
+                    )),
+                    (a.properties["translation-start-distance-threshold"] = M(
+                      e,
+                      "translation-start-distance-threshold",
+                    )),
+                    (a.properties["translation-stop-distance-threshold"] = M(
+                      e,
+                      "translation-stop-distance-threshold",
+                    )),
+                    (a.properties["translation-ease-in-time"] = M(
+                      e,
+                      "translation-ease-in-time",
+                    )),
+                    (a.properties["translation-ease-in-power"] = M(
+                      e,
+                      "translation-ease-in-power",
+                    )),
+                    (a.properties["translation-ease-out-distance-threshold"] =
+                      M(e, "translation-ease-out-distance-threshold")),
+                    (a.properties["translation-ease-out-power"] = M(
+                      e,
+                      "translation-ease-out-power",
+                    )),
+                    (a.properties["translation-velocity"] = M(
+                      e,
+                      "translation-velocity",
+                    )),
+                    (a.properties.enabled = D(e, "enabled")),
+                    (a.properties["lock-to-horizon"] = D(e, "lock-to-horizon")),
+                    (a.properties["translation-parent"] = R(
+                      e,
+                      "translation-parent",
+                    )),
+                    (a.properties["rotation-translation-change-together"] = D(
+                      e,
+                      "rotation-translation-change-together",
+                    ));
+                  break;
+                case "VSG-LINE":
+                  (a = k("line", e)),
+                    (a.properties["target-id"] = x(e, "target-id")),
+                    (a.properties.thickness = M(e, "thickness")),
+                    (a.properties["start-buffer"] = M(e, "start-buffer")),
+                    (a.properties["end-buffer"] = M(e, "end-buffer"));
+                  break;
+                case "VSG-LINE-CONSTRAINED-TRANSFORM":
+                  (a = k("line-constrained-transform", e)),
+                    (a.properties["target-id"] = x(e, "target-id")),
+                    (a.properties["source-id"] = x(e, "source-id")),
+                    (a.properties["source-distance"] = M(e, "source-distance")),
+                    (a.properties["target-limit"] = M(e, "target-limit"));
+                  break;
+                case "VSG-CALLOUT-TRANSFORM":
+                  (a = k("callout-transform", e)),
+                    (a.properties.offset = L(e, "offset"));
+                  break;
+                case "VSG-HEAD-FACING-TRANSFORM":
+                  a = k("head-facing-transform", e);
+                  break;
+                case "VSG-PIN-TO-VIEW-TRANSFORM":
+                  (a = k("pin-to-view-transform", e)),
+                    (a.properties["offscreen-z-depth"] = M(
+                      e,
+                      "offscreen-z-depth",
+                    )),
+                    (a.properties["off-axis-limit"] = M(e, "off-axis-limit")),
+                    (a.properties["transition-limit"] = M(
+                      e,
+                      "transition-limit",
+                    ));
+                  break;
+                case "VSG-GRAB-TRANSFORM":
+                  (a = k("grab-transform", e)),
+                    (a.properties["parent-path"] = w(e, "parent-path")),
+                    (a.properties.translation = L(e, "translation")),
+                    (a.properties.rotation = L(e, "rotation")),
+                    (a.properties.scale = L(e, "scale")),
+                    (a.properties["should-head-align"] = D(
+                      e,
+                      "should-head-align",
+                    )),
+                    (a.properties["stop-distance"] = M(e, "stop-distance")),
+                    (a.properties["start-angle"] = M(e, "start-angle")),
+                    (a.properties["start-quat-difference"] = M(
+                      e,
+                      "start-quat-difference",
+                    )),
+                    (a.properties["stop-quat-difference"] = M(
+                      e,
+                      "stop-quat-difference",
+                    )),
+                    (a.properties["scale-margin"] = M(e, "scale-margin")),
+                    (a.properties["lerp-speed"] = M(e, "lerp-speed")),
+                    (a.properties["min-distance"] = M(e, "min-distance")),
+                    (a.properties["max-distance"] = M(e, "max-distance")),
+                    (a.properties["one-to-one-radius"] = M(
+                      e,
+                      "one-to-one-radius",
+                    )),
+                    (a.properties["max-x-squared-contribution"] = M(
+                      e,
+                      "max-x-squared-contribution",
+                    )),
+                    (a.properties["acceleration-factor-x-coefficient"] = M(
+                      e,
+                      "acceleration-factor-x-coefficient",
+                    )),
+                    (a.properties["acceleration-factor-x-squared-coefficient"] =
+                      M(e, "acceleration-factor-x-squared-coefficient")),
+                    (a.properties["acceleration-factor-scale-term"] = M(
+                      e,
+                      "acceleration-factor-scale-term",
+                    )),
+                    (a.properties["remote-transform-tx"] = M(
+                      e,
+                      "remote-transform-tx",
+                    )),
+                    (a.properties["reset-on-recenter"] = D(
+                      e,
+                      "reset-on-recenter",
+                    )),
+                    (a.properties["event-panel-sgid"] = R(
+                      e,
+                      "event-panel-sgid",
+                    ));
+              }
+              return [r, a];
+            })(t, e),
+            a = [];
+          for (let t = 0; t < e.children.length; t++) {
+            let r = e.children.item(t);
+            if (r.children) {
+              let t = T(n, r);
+              t && (a = a.concat(t));
+            }
+          }
+          return n.bShouldAbort
+            ? null
+            : r
+              ? (a.length > 0 && (r.children = a), [r])
+              : a.length > 0
+                ? 1 == a.length
+                  ? a
+                  : [{ children: a }]
+                : null;
+        }
         (I.s_nNextMailboxNumber = 1),
           (0, r.Cg)([u.sH], I.prototype, "connected", void 0),
           (0, r.Cg)([g], I.prototype, "OpenWebSocketToHost", null),
@@ -660,8 +923,237 @@ var CLSTAMP = "10700074";
           (0, r.Cg)([g], I.prototype, "OnWebSocketError", null),
           (0, r.Cg)([g], I.prototype, "WebSocketSend", null),
           (0, r.Cg)([g], I.prototype, "OnWebSocketMessage", null);
-        var P, L, M, R;
-        function D() {
+        let O,
+          B,
+          F,
+          A,
+          V,
+          H,
+          W = [],
+          U = null,
+          G = !0;
+        function z(t) {
+          return t
+            ? (function (t) {
+                return t && t.includes("::");
+              })(t)
+              ? t
+              : j() + "::" + t
+            : null;
+        }
+        function j() {
+          var t;
+          return null !==
+            (t =
+              null === VRHTML || void 0 === VRHTML
+                ? void 0
+                : VRHTML.VROverlay.ThisOverlayKey()) && void 0 !== t
+            ? t
+            : B;
+        }
+        function q() {
+          U ||
+            (U = window.setTimeout(
+              () =>
+                (0, r.sH)(this, void 0, void 0, function* () {
+                  let t = document.body;
+                  F && (t = F);
+                  let e = {
+                    type: "root",
+                    rootproperties: {
+                      relatchDashboardTransform: V,
+                      allowDismissOnClick: G,
+                      sceneColorCorrection: H,
+                    },
+                    children: T(
+                      {
+                        currentPanel: null,
+                        bInsideReparentedPanel: !1,
+                        bShouldAbort: !1,
+                      },
+                      t,
+                    ),
+                  };
+                  O ||
+                    (console.log("Initializing sg_mailbox"),
+                    (O = new I()),
+                    yield O.Init("sg_mailbox", A));
+                  let n = {
+                    type: "update_scene_graph",
+                    owning_overlay_key: j(),
+                    scene_graph: e,
+                    retired_sgids: W,
+                  };
+                  O.SendMessage("vrcompositor_systemlayer", n),
+                    (U = null),
+                    (W = []),
+                    (V = !1);
+                }),
+              0,
+            ));
+        }
+        const K = new S("SGQueryService");
+        class $ {
+          constructor() {
+            (this.m_mailbox = new I()),
+              (this.m_mapPanelHeightSubscriptions = new Map()),
+              (this.m_setPanelSubscriptionsToAdd = new Set()),
+              (this.m_setPanelSubscriptionsToRemove = new Set()),
+              (this.m_bHasPendingSubscriptionUpdates = !1),
+              (this.m_bInitializedPanelSubscriptions = !1),
+              this.m_mailbox.Init("sgqueryservice").then(() => {
+                this.m_mailbox.RegisterHandler(
+                  "panel_height_update",
+                  this.OnPanelHeightUpdate,
+                );
+              });
+          }
+          static getInstance() {
+            return (
+              $.instance ||
+                (($.instance = new $()), (window.SGQueryService = $.instance)),
+              $.instance
+            );
+          }
+          SubscribeToPanelHeight(t, e) {
+            t = z(t);
+            let n = this.m_mapPanelHeightSubscriptions.get(t);
+            n ||
+              ((n = { m_Callbacks: new C(), m_lastMeasurement: void 0 }),
+              this.m_mapPanelHeightSubscriptions.set(t, n)),
+              0 == n.m_Callbacks.CountRegistered() &&
+                (this.m_setPanelSubscriptionsToAdd.add(t),
+                this.m_setPanelSubscriptionsToRemove.delete(t),
+                this.QueueSubscriptionUpdates());
+            const r = n.m_Callbacks.Register(e),
+              a = {
+                Unregister: () => {
+                  r.Unregister(),
+                    0 == n.m_Callbacks.CountRegistered() &&
+                      (this.m_setPanelSubscriptionsToRemove.add(t),
+                      this.m_setPanelSubscriptionsToAdd.delete(t),
+                      this.QueueSubscriptionUpdates());
+                },
+              };
+            return (
+              n.m_lastMeasurement &&
+                setTimeout(
+                  () =>
+                    e(
+                      Object.assign(Object.assign({}, n.m_lastMeasurement), {
+                        m_bStale: !0,
+                      }),
+                    ),
+                  0,
+                ),
+              a
+            );
+          }
+          OnPanelHeightUpdate(t) {
+            K.Debug("Received panel height updates:", t.panels);
+            for (const e of t.panels) {
+              const t = this.m_mapPanelHeightSubscriptions.get(e.panel_id);
+              t &&
+                ((t.m_lastMeasurement = {
+                  m_flRawPanelHeight: e.panel_height,
+                  m_flTransformScaleDuringMeasure:
+                    e.transform_scale_during_measure,
+                }),
+                t.m_Callbacks.Dispatch(
+                  Object.assign(Object.assign({}, t.m_lastMeasurement), {
+                    m_bStale: !1,
+                  }),
+                ));
+            }
+          }
+          QueueSubscriptionUpdates() {
+            return (0, r.sH)(this, void 0, void 0, function* () {
+              if (this.m_bHasPendingSubscriptionUpdates) return;
+              (this.m_bHasPendingSubscriptionUpdates = !0),
+                yield this.m_mailbox.WaitForConnect();
+              const t = !this.m_bInitializedPanelSubscriptions;
+              if (
+                this.m_setPanelSubscriptionsToAdd.size > 0 ||
+                this.m_setPanelSubscriptionsToRemove.size > 0 ||
+                t
+              ) {
+                const e = {
+                  type: "update_panel_height_subscriptions",
+                  subscribe_panel_ids: Array.from(
+                    this.m_setPanelSubscriptionsToAdd,
+                  ),
+                  unsubscribe_panel_ids: Array.from(
+                    this.m_setPanelSubscriptionsToRemove,
+                  ),
+                  unsubscribe_all: t,
+                };
+                K.Debug(`Sending ${e.type} message:`, e),
+                  this.m_mailbox.SendMessage("scene_graph", e);
+              }
+              this.m_setPanelSubscriptionsToAdd.clear(),
+                this.m_setPanelSubscriptionsToRemove.clear(),
+                (this.m_bHasPendingSubscriptionUpdates = !1),
+                (this.m_bInitializedPanelSubscriptions = !0);
+            });
+          }
+          requestSGTransform(t) {
+            return (0, r.sH)(
+              this,
+              arguments,
+              void 0,
+              function* (t, e = 0, n = 0) {
+                if (!t || t.toLowerCase().includes("undefined"))
+                  return Promise.reject("Invalid transform ID");
+                const r = {
+                    type: "transform_request",
+                    id: t,
+                    flPushDistance: e,
+                    timeoutSec: n,
+                  },
+                  a = yield this.m_mailbox.SendMessageAndWaitForResponse(
+                    b,
+                    r,
+                    "transform_response",
+                  );
+                return a.id == t && a.transform
+                  ? a.transform
+                  : Promise.reject("requestSGTransform failed");
+              },
+            );
+          }
+          requestSGTransformRelative(t, e) {
+            return (0, r.sH)(this, arguments, void 0, function* (t, e, n = 0) {
+              var r;
+              if (
+                !t ||
+                t.toLowerCase().includes("undefined") ||
+                !e ||
+                e.toLowerCase().includes("undefined")
+              )
+                return Promise.reject("Invalid transform ID");
+              const a = {
+                  type: "transform_request",
+                  from_id: t,
+                  id: e,
+                  timeoutSec: n,
+                },
+                s = yield this.m_mailbox.SendMessageAndWaitForResponse(
+                  b,
+                  a,
+                  "transform_response",
+                );
+              return s.from_id == t && s.id == e && s.transform
+                ? s.transform
+                : Promise.reject(
+                    null !== (r = s.error) && void 0 !== r
+                      ? r
+                      : "requestSGTransform failed",
+                  );
+            });
+          }
+        }
+        var X, Q, Y, J;
+        function Z() {
           var t;
           return null !==
             (t =
@@ -669,20 +1161,21 @@ var CLSTAMP = "10700074";
                 ? void 0
                 : VRHTML.Environment()) && void 0 !== t
             ? t
-            : P.Unknown;
+            : X.Unknown;
         }
-        !(function (t) {
-          (t[(t.Desktop = 1)] = "Desktop"),
-            (t[(t.Overlay = 2)] = "Overlay"),
-            (t[(t.Unknown = 100)] = "Unknown");
-        })(P || (P = {})),
+        (0, r.Cg)([g], $.prototype, "OnPanelHeightUpdate", null),
+          (function (t) {
+            (t[(t.Desktop = 1)] = "Desktop"),
+              (t[(t.Overlay = 2)] = "Overlay"),
+              (t[(t.Unknown = 100)] = "Unknown");
+          })(X || (X = {})),
           window.hasOwnProperty("VRHTML") || (window.VRHTML = null),
           (function (t) {
             (t[(t.Auto = 0)] = "Auto"),
               (t[(t.Low = 1)] = "Low"),
               (t[(t.Medium = 2)] = "Medium"),
               (t[(t.High = 3)] = "High");
-          })(L || (L = {})),
+          })(Q || (Q = {})),
           (function (t) {
             (t[(t.TrackingResult_Uninitialized = 1)] =
               "TrackingResult_Uninitialized"),
@@ -696,273 +1189,83 @@ var CLSTAMP = "10700074";
                 "TrackingResult_Running_OutOfRange"),
               (t[(t.TrackingResult_Fallback_RotationOnly = 300)] =
                 "TrackingResult_Fallback_RotationOnly");
-          })(M || (M = {})),
+          })(Y || (Y = {})),
           (function (t) {
             (t[(t.Seated = 0)] = "Seated"),
               (t[(t.Standing = 1)] = "Standing"),
               (t[(t.RawAndUncalibrated = 2)] = "RawAndUncalibrated");
-          })(R || (R = {}));
-        var w, x, k, T, O, B, F, A, V, W, H, U, G, z, j, q, K, $, X, Q, Y;
-        function J(t, e) {
-          let n = t.getAttribute(e);
-          if (n && n.length > 0) {
-            if ("undefined" == n) return;
-            let t = [];
-            for (let e of n.split(" ")) 0 != e.length && t.push(parseFloat(e));
-            if (t.length > 0) return t;
-          }
+          })(J || (J = {}));
+        var tt,
+          et,
+          nt,
+          rt,
+          at,
+          st,
+          it,
+          ot,
+          lt,
+          ct,
+          dt,
+          mt,
+          pt,
+          ht,
+          ut,
+          gt,
+          _t,
+          Et,
+          Ct,
+          St,
+          ft;
+        function Nt(t, e = { x: 0, y: 0 }) {
+          return Object.assign(Object.assign({}, e), t);
         }
-        function Z(t, e) {
-          let n = t.getAttribute(e);
-          if (n && n.length > 0) return parseFloat(n);
+        function vt(t, e = { x: 0, y: 0, z: 0 }) {
+          return Object.assign(Object.assign({}, e), t);
         }
-        function tt(t, e) {
-          let n = t.getAttribute(e);
-          if (n && n.length > 0) return parseInt(n);
+        function yt(t, e) {
+          return Object.assign(Object.assign({}, e), t);
         }
-        function et(t, e) {
-          let n = t.getAttribute(e);
-          if (n && n.length > 0)
-            return (
-              "true" == n ||
-              (n.length > 0 && 0 != parseInt(n) && !isNaN(parseInt(n)))
-            );
+        function bt(t) {
+          if (t) return [t.x, t.y];
         }
-        function nt(t, e) {
-          let n = t.getAttribute(e);
-          if (n && n.length > 0) return n;
+        function Pt(t) {
+          var e;
+          return null ===
+            (e = (function (t) {
+              if (t) return [t.x, t.y, t.z];
+            })(t)) || void 0 === e
+            ? void 0
+            : e.join(" ");
         }
-        function rt(t, e) {
-          return gt(nt(t, e));
+        function It(t) {
+          if (t) return t.w + " " + t.x + " " + t.y + " " + t.z;
         }
-        function at(t, e) {
-          var n;
-          let r = { type: t, properties: {} };
-          return (
-            e.id &&
-              (r.properties.id =
-                null !== (n = gt(e.id)) && void 0 !== n ? n : void 0),
-            (r.properties.sgid = tt(e, "sgid")),
-            r
-          );
+        function Lt(t) {
+          return t && void 0 !== t.to;
         }
-        function st(t, e) {
-          let [n, r] = (function (t, e) {
-              let n = e.buildNode;
-              if (n) return n(t, e);
-              let r = Object.assign({}, t),
-                a = null;
-              switch (e.nodeName.toUpperCase()) {
-                case "VSG-TRANSFORM":
-                  (a = at("transform", e)),
-                    (a.properties.translation = J(e, "translation")),
-                    (a.properties.rotation = J(e, "rotation")),
-                    (a.properties.scale = J(e, "scale")),
-                    (a.properties["curvature-pitch"] = Z(e, "curvature-pitch")),
-                    (a.properties["transform-path"] = nt(e, "transform-path")),
-                    (a.properties["projection-constraint"] = tt(
-                      e,
-                      "projection-constraint",
-                    )),
-                    (a.properties["invert-parent-panel-pitch"] = et(
-                      e,
-                      "invert-parent-panel-pitch",
-                    )),
-                    (a.properties["ignore-parent-scale"] = et(
-                      e,
-                      "ignore-parent-scale",
-                    )),
-                    (a.properties["parent-path"] = nt(e, "parent-path")),
-                    (a.properties["parent-origin"] = nt(e, "parent-origin")),
-                    (a.properties["parent-id"] = rt(e, "parent-id")),
-                    (a.properties["frame-resize-scale-factor"] = Z(
-                      e,
-                      "frame-resize-scale-factor",
-                    ));
-                  break;
-                case "VSG-TRACKING-STATE-VISIBILITY":
-                  (a = at("trackingstatevisibility", e)),
-                    (a.properties["visible-0dof"] = et(e, "visible-0dof")),
-                    (a.properties["visible-3dof"] = et(e, "visible-3dof")),
-                    (a.properties["visible-6dof"] = et(e, "visible-6dof"));
-                  break;
-                case "VSG-ELASTIC-HEAD-TRANSFORM":
-                  (a = at("elasticheadtransform", e)),
-                    (a.properties["rotation-start-angle-threshold"] = Z(
-                      e,
-                      "rotation-start-angle-threshold",
-                    )),
-                    (a.properties["rotation-stop-angle-threshold"] = Z(
-                      e,
-                      "rotation-stop-angle-threshold",
-                    )),
-                    (a.properties["rotation-ease-in-time"] = Z(
-                      e,
-                      "rotation-ease-in-time",
-                    )),
-                    (a.properties["rotation-ease-in-power"] = Z(
-                      e,
-                      "rotation-ease-in-power",
-                    )),
-                    (a.properties["rotation-ease-out-angle-threshold"] = Z(
-                      e,
-                      "rotation-ease-out-angle-threshold",
-                    )),
-                    (a.properties["rotation-ease-out-power"] = Z(
-                      e,
-                      "rotation-ease-out-power",
-                    )),
-                    (a.properties["rotation-min-angular-velocity"] = Z(
-                      e,
-                      "rotation-min-angular-velocity",
-                    )),
-                    (a.properties["rotation-max-angular-velocity"] = Z(
-                      e,
-                      "rotation-max-angular-velocity",
-                    )),
-                    (a.properties["translation-start-distance-threshold"] = Z(
-                      e,
-                      "translation-start-distance-threshold",
-                    )),
-                    (a.properties["translation-stop-distance-threshold"] = Z(
-                      e,
-                      "translation-stop-distance-threshold",
-                    )),
-                    (a.properties["translation-ease-in-time"] = Z(
-                      e,
-                      "translation-ease-in-time",
-                    )),
-                    (a.properties["translation-ease-in-power"] = Z(
-                      e,
-                      "translation-ease-in-power",
-                    )),
-                    (a.properties["translation-ease-out-distance-threshold"] =
-                      Z(e, "translation-ease-out-distance-threshold")),
-                    (a.properties["translation-ease-out-power"] = Z(
-                      e,
-                      "translation-ease-out-power",
-                    )),
-                    (a.properties["translation-velocity"] = Z(
-                      e,
-                      "translation-velocity",
-                    )),
-                    (a.properties.enabled = et(e, "enabled")),
-                    (a.properties["lock-to-horizon"] = et(
-                      e,
-                      "lock-to-horizon",
-                    )),
-                    (a.properties["translation-parent"] = tt(
-                      e,
-                      "translation-parent",
-                    )),
-                    (a.properties["rotation-translation-change-together"] = et(
-                      e,
-                      "rotation-translation-change-together",
-                    ));
-                  break;
-                case "VSG-LINE":
-                  (a = at("line", e)),
-                    (a.properties["target-id"] = rt(e, "target-id")),
-                    (a.properties.thickness = Z(e, "thickness")),
-                    (a.properties["start-buffer"] = Z(e, "start-buffer")),
-                    (a.properties["end-buffer"] = Z(e, "end-buffer"));
-                  break;
-                case "VSG-LINE-CONSTRAINED-TRANSFORM":
-                  (a = at("line-constrained-transform", e)),
-                    (a.properties["target-id"] = rt(e, "target-id")),
-                    (a.properties["source-id"] = rt(e, "source-id")),
-                    (a.properties["source-distance"] = Z(e, "source-distance")),
-                    (a.properties["target-limit"] = Z(e, "target-limit"));
-                  break;
-                case "VSG-CALLOUT-TRANSFORM":
-                  (a = at("callout-transform", e)),
-                    (a.properties.offset = J(e, "offset"));
-                  break;
-                case "VSG-HEAD-FACING-TRANSFORM":
-                  a = at("head-facing-transform", e);
-                  break;
-                case "VSG-PIN-TO-VIEW-TRANSFORM":
-                  (a = at("pin-to-view-transform", e)),
-                    (a.properties["offscreen-z-depth"] = Z(
-                      e,
-                      "offscreen-z-depth",
-                    )),
-                    (a.properties["off-axis-limit"] = Z(e, "off-axis-limit")),
-                    (a.properties["transition-limit"] = Z(
-                      e,
-                      "transition-limit",
-                    ));
-                  break;
-                case "VSG-GRAB-TRANSFORM":
-                  (a = at("grab-transform", e)),
-                    (a.properties["parent-path"] = nt(e, "parent-path")),
-                    (a.properties.translation = J(e, "translation")),
-                    (a.properties.rotation = J(e, "rotation")),
-                    (a.properties.scale = J(e, "scale")),
-                    (a.properties["should-head-align"] = et(
-                      e,
-                      "should-head-align",
-                    )),
-                    (a.properties["stop-distance"] = Z(e, "stop-distance")),
-                    (a.properties["start-angle"] = Z(e, "start-angle")),
-                    (a.properties["start-quat-difference"] = Z(
-                      e,
-                      "start-quat-difference",
-                    )),
-                    (a.properties["stop-quat-difference"] = Z(
-                      e,
-                      "stop-quat-difference",
-                    )),
-                    (a.properties["scale-margin"] = Z(e, "scale-margin")),
-                    (a.properties["lerp-speed"] = Z(e, "lerp-speed")),
-                    (a.properties["min-distance"] = Z(e, "min-distance")),
-                    (a.properties["max-distance"] = Z(e, "max-distance")),
-                    (a.properties["one-to-one-radius"] = Z(
-                      e,
-                      "one-to-one-radius",
-                    )),
-                    (a.properties["max-x-squared-contribution"] = Z(
-                      e,
-                      "max-x-squared-contribution",
-                    )),
-                    (a.properties["acceleration-factor-x-coefficient"] = Z(
-                      e,
-                      "acceleration-factor-x-coefficient",
-                    )),
-                    (a.properties["acceleration-factor-x-squared-coefficient"] =
-                      Z(e, "acceleration-factor-x-squared-coefficient")),
-                    (a.properties["acceleration-factor-scale-term"] = Z(
-                      e,
-                      "acceleration-factor-scale-term",
-                    )),
-                    (a.properties["remote-transform-tx"] = Z(
-                      e,
-                      "remote-transform-tx",
-                    )),
-                    (a.properties["reset-on-recenter"] = et(
-                      e,
-                      "reset-on-recenter",
-                    ));
-              }
-              return [r, a];
-            })(t, e),
-            a = [];
-          for (let t = 0; t < e.children.length; t++) {
-            let r = e.children.item(t);
-            if (r.children) {
-              let t = st(n, r);
-              t && (a = a.concat(t));
-            }
-          }
-          return n.bShouldAbort
-            ? null
-            : r
-              ? (a.length > 0 && (r.children = a), [r])
-              : a.length > 0
-                ? 1 == a.length
-                  ? a
-                  : [{ children: a }]
-                : null;
+        function Mt(t) {
+          return null == t
+            ? void 0
+            : "number" == typeof t
+              ? t
+              : (e = t) && void 0 !== e.to
+                ? [t.channel, t.interp, t.from, t.to]
+                : void 0;
+          var e;
+        }
+        function Rt(t) {
+          return Lt(t)
+            ? [
+                t.channel,
+                t.interp,
+                t.from ? t.from[0] : void 0,
+                t.from ? t.from[1] : void 0,
+                t.from ? t.from[2] : void 0,
+                t.to ? t.to[0] : void 0,
+                t.to ? t.to[1] : void 0,
+                t.to ? t.to[2] : void 0,
+              ]
+            : void 0;
         }
         !(function (t) {
           (t[(t.None = 0)] = "None"),
@@ -982,14 +1285,14 @@ var CLSTAMP = "10700074";
             (t[(t.Close = 14)] = "Close"),
             (t[(t.TakeFocus = 15)] = "TakeFocus"),
             (t[(t.HitTest = 16)] = "HitTest");
-        })(w || (w = {})),
+        })(tt || (tt = {})),
           (function (t) {
             (t[(t.Activated = 0)] = "Activated"),
               (t[(t.Deactivated = 1)] = "Deactivated");
-          })(x || (x = {})),
+          })(et || (et = {})),
           (function (t) {
             (t[(t.None = 0)] = "None"), (t[(t.Mouse = 1)] = "Mouse");
-          })(k || (k = {})),
+          })(nt || (nt = {})),
           (function (t) {
             (t[(t.Invalid = 0)] = "Invalid"),
               (t[(t.HMD = 1)] = "HMD"),
@@ -997,19 +1300,19 @@ var CLSTAMP = "10700074";
               (t[(t.GenericTracker = 3)] = "GenericTracker"),
               (t[(t.TrackingReference = 4)] = "TrackingReference"),
               (t[(t.DisplayRedirect = 5)] = "DisplayRedirect");
-          })(T || (T = {})),
+          })(rt || (rt = {})),
           (function (t) {
             (t[(t.Unknown = 0)] = "Unknown"),
               (t[(t.NVIDIA = 1)] = "NVIDIA"),
               (t[(t.AMD = 2)] = "AMD");
-          })(O || (O = {})),
+          })(at || (at = {})),
           (function (t) {
             (t[(t.None = 0)] = "None"),
               (t[(t.Starting = 1)] = "Starting"),
               (t[(t.Quitting = 2)] = "Quitting"),
               (t[(t.Running = 3)] = "Running"),
               (t[(t.Waiting = 4)] = "Waiting");
-          })(B || (B = {})),
+          })(st || (st = {})),
           (function (t) {
             (t[(t.ButtonPress_0 = 0)] = "ButtonPress_0"),
               (t[(t.ButtonPress_1 = 1)] = "ButtonPress_1"),
@@ -1020,29 +1323,32 @@ var CLSTAMP = "10700074";
               (t[(t.CouldntFindOrCreateClientOverlay = 5)] =
                 "CouldntFindOrCreateClientOverlay"),
               (t[(t.ApplicationQuit = 6)] = "ApplicationQuit");
-          })(F || (F = {})),
+          })(it || (it = {})),
           (function (t) {
             (t[(t.Normal = 0)] = "Normal"),
               (t[(t.Password = 1)] = "Password"),
               (t[(t.Submit = 2)] = "Submit");
-          })(A || (A = {})),
+          })(ot || (ot = {})),
           (function (t) {
             (t[(t.SingleLine = 0)] = "SingleLine"),
               (t[(t.MultipleLines = 1)] = "MultipleLines");
-          })(V || (V = {})),
+          })(lt || (lt = {})),
           (function (t) {
             (t[(t.LaserMouse = 1)] = "LaserMouse"),
-              (t[(t.Keyboard = 2)] = "Keyboard"),
-              (t[(t.RoomView = 4)] = "RoomView"),
-              (t[(t.DisplaySuppressed = 8)] = "DisplaySuppressed"),
-              (t[(t.SystemButtonDown = 16)] = "SystemButtonDown"),
-              (t[(t.DriverIsDrawingControllers = 32)] =
+              (t[(t.RoomViewFullyOccludingApp = 2)] =
+                "RoomViewFullyOccludingApp"),
+              (t[(t.DisplaySuppressed = 4)] = "DisplaySuppressed"),
+              (t[(t.SystemButtonDown = 8)] = "SystemButtonDown"),
+              (t[(t.DriverIsDrawingControllers = 16)] =
                 "DriverIsDrawingControllers"),
-              (t[(t.DriverRequestsApplicationPause = 64)] =
+              (t[(t.DriverRequestsApplicationPause = 32)] =
                 "DriverRequestsApplicationPause"),
-              (t[(t.DriverRequestsReducedRendering = 128)] =
-                "DriverRequestsReducedRendering");
-          })(W || (W = {})),
+              (t[(t.DriverRequestsReducedRendering = 64)] =
+                "DriverRequestsReducedRendering"),
+              (t[(t.DashboardTutorial = 128)] = "DashboardTutorial"),
+              (t[(t.GamepadMode = 512)] = "GamepadMode"),
+              (t[(t.SystemKeyboardPrivacy = 1024)] = "SystemKeyboardPrivacy");
+          })(ct || (ct = {})),
           (function (t) {
             (t[(t.BULK_DEFAULT = 0)] = "BULK_DEFAULT"),
               (t[(t.BULK_64K_DMA = 1)] = "BULK_64K_DMA"),
@@ -1059,20 +1365,20 @@ var CLSTAMP = "10700074";
               (t[(t.ISO_30FPS = 12)] = "ISO_30FPS"),
               (t[(t.ISO_15FPS = 13)] = "ISO_15FPS"),
               (t[(t.MAX_CAMERA_COMPAT_MODES = 14)] = "MAX_CAMERA_COMPAT_MODES");
-          })(H || (H = {})),
+          })(dt || (dt = {})),
           (function (t) {
             (t[(t.ECameraExposure_Unknown = 0)] = "ECameraExposure_Unknown"),
               (t[(t.ECameraExposure_Nominal = 1)] = "ECameraExposure_Nominal"),
               (t[(t.ECameraExposure_HighExposure = 2)] =
                 "ECameraExposure_HighExposure");
-          })(U || (U = {})),
+          })(mt || (mt = {})),
           (function (t) {
             (t[(t.None = 0)] = "None"),
               (t[(t.ThisSteamVR = 1)] = "ThisSteamVR"),
               (t[(t.AnotherSteamVR = 2)] = "AnotherSteamVR"),
               (t[(t.AnotherRuntime = 3)] = "AnotherRuntime"),
               (t[(t.Error = -1)] = "Error");
-          })(G || (G = {})),
+          })(pt || (pt = {})),
           (function (t) {
             (t[(t.TrackedControllerRole_Invalid = 0)] =
               "TrackedControllerRole_Invalid"),
@@ -1086,7 +1392,7 @@ var CLSTAMP = "10700074";
                 "TrackedControllerRole_Treadmill"),
               (t[(t.TrackedControllerRole_Max = 5)] =
                 "TrackedControllerRole_Max");
-          })(z || (z = {})),
+          })(ht || (ht = {})),
           (function (t) {
             (t[(t.Unknown = 0)] = "Unknown"),
               (t[(t.Steam_VRButton = 1)] = "Steam_VRButton"),
@@ -1098,18 +1404,18 @@ var CLSTAMP = "10700074";
               (t[(t.AppLaunch_Steam = 21)] = "AppLaunch_Steam"),
               (t[(t.SteamVR_Restart = 30)] = "SteamVR_Restart"),
               (t[(t.SteamVR_VRStartup = 31)] = "SteamVR_VRStartup");
-          })(j || (j = {})),
+          })(ut || (ut = {})),
           (function (t) {
             t[(t.Hostname = 0)] = "Hostname";
-          })(q || (q = {})),
+          })(gt || (gt = {})),
           (function (t) {
             (t[(t.Unavailable = 0)] = "Unavailable"),
               (t[(t.Active = 1)] = "Active"),
               (t[(t.Off = 2)] = "Off");
-          })(K || (K = {})),
+          })(_t || (_t = {})),
           (function (t) {
             (t[(t.Default = 1)] = "Default"), (t[(t.Floor = 2)] = "Floor");
-          })($ || ($ = {})),
+          })(Et || (Et = {})),
           (function (t) {
             (t[(t.Inactive = 0)] = "Inactive"),
               (t[(t.PendingReset = 1)] = "PendingReset"),
@@ -1117,7 +1423,7 @@ var CLSTAMP = "10700074";
               (t[(t.Default = 3)] = "Default"),
               (t[(t.CV = 4)] = "CV"),
               (t[(t.Manual = 5)] = "Manual");
-          })(X || (X = {})),
+          })(Ct || (Ct = {})),
           (function (t) {
             (t[(t.OK = 1)] = "OK"),
               (t[(t.Warning = 100)] = "Warning"),
@@ -1135,137 +1441,15 @@ var CLSTAMP = "10700074";
               (t[(t.Error_PlayAreaInvalid = 203)] = "Error_PlayAreaInvalid"),
               (t[(t.Error_CollisionBoundsInvalid = 204)] =
                 "Error_CollisionBoundsInvalid");
-          })(Q || (Q = {})),
+          })(St || (St = {})),
           (function (t) {
             (t[(t.Small = 0)] = "Small"),
               (t[(t.Medium = 1)] = "Medium"),
               (t[(t.Large = 2)] = "Large"),
               (t[(t.Gigantic = 3)] = "Gigantic"),
               (t[(t.Standing = 4)] = "Standing");
-          })(Y || (Y = {}));
-        let it,
-          ot,
-          lt,
-          ct,
-          dt,
-          mt,
-          pt = [],
-          ht = null,
-          ut = !0;
-        function gt(t) {
-          return t
-            ? (function (t) {
-                return t && t.includes("::");
-              })(t)
-              ? t
-              : _t() + "::" + t
-            : null;
-        }
-        function _t() {
-          var t;
-          return null !==
-            (t =
-              null === VRHTML || void 0 === VRHTML
-                ? void 0
-                : VRHTML.VROverlay.ThisOverlayKey()) && void 0 !== t
-            ? t
-            : ot;
-        }
-        function Et() {
-          ht ||
-            (ht = window.setTimeout(
-              () =>
-                (0, r.sH)(this, void 0, void 0, function* () {
-                  let t = document.body;
-                  lt && (t = lt);
-                  let e = {
-                    type: "root",
-                    rootproperties: {
-                      relatchDashboardTransform: dt,
-                      allowDismissOnClick: ut,
-                      sceneColorCorrection: mt,
-                    },
-                    children: st(
-                      {
-                        currentPanel: null,
-                        bInsideReparentedPanel: !1,
-                        bShouldAbort: !1,
-                      },
-                      t,
-                    ),
-                  };
-                  it ||
-                    (console.log("Initializing sg_mailbox"),
-                    (it = new I()),
-                    yield it.Init("sg_mailbox", ct));
-                  let n = {
-                    type: "update_scene_graph",
-                    owning_overlay_key: _t(),
-                    scene_graph: e,
-                    retired_sgids: pt,
-                  };
-                  it.SendMessage("vrcompositor_systemlayer", n),
-                    (ht = null),
-                    (pt = []),
-                    (dt = !1);
-                }),
-              0,
-            ));
-        }
-        function Ct(t, e) {
-          return t ? { x: t.x ? t.x : e.x, y: t.y ? t.y : e.y } : e;
-        }
-        function St(t, e) {
-          return t
-            ? { x: t.x ? t.x : e.x, y: t.y ? t.y : e.y, z: t.z ? t.z : e.z }
-            : e;
-        }
-        function ft(t, e) {
-          return t
-            ? { r: t.r ? t.r : e.r, g: t.g ? t.g : e.g, b: t.b ? t.b : e.b }
-            : e;
-        }
-        function Nt(t) {
-          if (t) return [t.x, t.y];
-        }
-        function yt(t) {
-          var e;
-          return null ===
-            (e = (function (t) {
-              if (t) return [t.x, t.y, t.z];
-            })(t)) || void 0 === e
-            ? void 0
-            : e.join(" ");
-        }
-        function vt(t) {
-          if (t) return t.w + " " + t.x + " " + t.y + " " + t.z;
-        }
-        function bt(t) {
-          return t && void 0 !== t.to;
-        }
-        function It(t) {
-          return "number" == typeof t
-            ? t
-            : (e = t) && void 0 !== e.to
-              ? [t.channel, t.interp, t.from, t.to]
-              : void 0;
-          var e;
-        }
-        function Pt(t) {
-          return bt(t)
-            ? [
-                t.channel,
-                t.interp,
-                t.from ? t.from[0] : void 0,
-                t.from ? t.from[1] : void 0,
-                t.from ? t.from[2] : void 0,
-                t.to ? t.to[0] : void 0,
-                t.to ? t.to[1] : void 0,
-                t.to ? t.to[2] : void 0,
-              ]
-            : void 0;
-        }
-        class Lt extends a.Component {
+          })(ft || (ft = {}));
+        class Dt extends a.Component {
           constructor(t) {
             var e;
             super(t),
@@ -1273,16 +1457,18 @@ var CLSTAMP = "10700074";
               (this.m_buildNodeOverride = null),
               (this.m_SGID = 0);
             const n = t.id && "string" == typeof t.id;
-            n &&
-              this.BCanUseStableSGIDs() &&
-              Lt.s_mapStableSGIDsForIDs.has(t.id) &&
-              ((this.m_SGID = Lt.s_mapStableSGIDsForIDs.get(t.id)),
-              Lt.s_mapCurrentlyMountedSGIDs.has(this.m_SGID) &&
-                (console.error(
-                  `Constructing SGBase component (ID="${t.id}") at the same time another component with that SGID is mounted. Using a new SGID.`,
-                  this.m_SGID,
-                ),
-                (this.m_SGID = 0))),
+            this.props.explicitSGID
+              ? (this.m_SGID = this.props.explicitSGID)
+              : n &&
+                this.BCanUseStableSGIDs() &&
+                Dt.s_mapStableSGIDsForIDs.has(t.id) &&
+                ((this.m_SGID = Dt.s_mapStableSGIDsForIDs.get(t.id)),
+                Dt.s_mapCurrentlyMountedSGIDs.has(this.m_SGID) &&
+                  (console.error(
+                    `Constructing SGBase component (ID="${t.id}") at the same time another component with that SGID is mounted. Using a new SGID.`,
+                    this.m_SGID,
+                  ),
+                  (this.m_SGID = 0))),
               0 == this.m_SGID &&
                 ((this.m_SGID =
                   null !==
@@ -1294,7 +1480,7 @@ var CLSTAMP = "10700074";
                     : 0),
                 n &&
                   this.BCanUseStableSGIDs() &&
-                  Lt.s_mapStableSGIDsForIDs.set(t.id, this.m_SGID));
+                  Dt.s_mapStableSGIDsForIDs.set(t.id, this.m_SGID));
           }
           setBuildNodeOverride(t) {
             this.m_buildNodeOverride = t;
@@ -1309,27 +1495,27 @@ var CLSTAMP = "10700074";
             return this.props.id;
           }
           createSgNode(t) {
-            return at(this.getNodeType(), t);
+            return k(this.getNodeType(), t);
           }
           getCurrentRootElement() {
             return this.m_domRef.current;
           }
           componentDidMount() {
-            Lt.s_mapCurrentlyMountedSGIDs.set(this.m_SGID, this),
+            Dt.s_mapCurrentlyMountedSGIDs.set(this.m_SGID, this),
               this.m_buildNodeOverride &&
                 (this.m_domRef.current.buildNode = this.m_buildNodeOverride),
-              Et();
+              q();
           }
           componentDidUpdate() {
-            Et();
+            q();
           }
           componentWillUnmount() {
             var t;
-            Lt.s_mapCurrentlyMountedSGIDs.get(this.m_SGID) == this &&
-              Lt.s_mapCurrentlyMountedSGIDs.delete(this.m_SGID),
+            Dt.s_mapCurrentlyMountedSGIDs.get(this.m_SGID) == this &&
+              Dt.s_mapCurrentlyMountedSGIDs.delete(this.m_SGID),
               (t = this.m_SGID),
-              pt.push(t),
-              Et(),
+              W.push(t),
+              q(),
               this.m_domRef.current &&
                 this.m_buildNodeOverride &&
                 delete this.m_domRef.current.buildNode;
@@ -1340,7 +1526,7 @@ var CLSTAMP = "10700074";
           }
           render() {
             return a.createElement(
-              Mt.Provider,
+              wt.Provider,
               { value: this.PanelContextValue() },
               a.cloneElement(this.internalRender(), {
                 id: this.props.id,
@@ -1356,18 +1542,18 @@ var CLSTAMP = "10700074";
               : null;
           }
         }
-        (Lt.s_mapStableSGIDsForIDs = new Map()),
-          (Lt.s_mapCurrentlyMountedSGIDs = new Map());
-        const Mt = a.createContext(void 0);
-        var Rt, Dt;
+        (Dt.s_mapStableSGIDsForIDs = new Map()),
+          (Dt.s_mapCurrentlyMountedSGIDs = new Map());
+        const wt = a.createContext(void 0);
+        var xt, kt;
         !(function (t) {
           (t[(t.RoomSetupFloor = 1)] = "RoomSetupFloor"),
             (t[(t.Locomotion = 2)] = "Locomotion"),
             (t[(t.QuickRecenter = 4)] = "QuickRecenter");
-        })(Rt || (Rt = {}));
+        })(xt || (xt = {}));
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -1377,17 +1563,18 @@ var CLSTAMP = "10700074";
             buildNode(t, e) {
               const n = this.createSgNode(e);
               return (
-                (n.properties["scene-color-mult"] = It(
+                (n.properties["scene-color-mult"] = Mt(
                   this.props["scene-color-mult"],
                 )),
-                (n.properties["floor-color-mult"] = It(
+                (n.properties["floor-color-mult"] = Mt(
                   this.props["floor-color-mult"],
                 )),
-                (n.properties["scene-reflection-mult"] = It(
+                (n.properties["scene-reflection-mult"] = Mt(
                   this.props["scene-reflection-mult"],
                 )),
-                (n.properties["skydome-mult"] = It(this.props["skydome-mult"])),
-                (n.properties["roomview-mult"] = Pt(
+                (n.properties["skydome-mult"] = Mt(this.props["skydome-mult"])),
+                (n.properties["aurora-blur"] = Mt(this.props["aurora-blur"])),
+                (n.properties["roomview-mult"] = Rt(
                   this.props["roomview-mult"],
                 )),
                 (n.properties["allowed-action-sets"] = this.props[
@@ -1412,7 +1599,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -1455,7 +1642,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -1464,7 +1651,7 @@ var CLSTAMP = "10700074";
             }
             buildNode(t, e) {
               const n = this.createSgNode(e);
-              return (n.properties.opacity = It(this.props.value)), [t, n];
+              return (n.properties.opacity = Mt(this.props.value)), [t, n];
             }
           }.prototype,
           "buildNode",
@@ -1472,7 +1659,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -1488,7 +1675,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -1498,7 +1685,7 @@ var CLSTAMP = "10700074";
             buildNode(t, e) {
               const n = this.createSgNode(e);
               return (
-                (n.properties.mountable_id = gt(this.props.mountedId)), [t, n]
+                (n.properties.mountable_id = z(this.props.mountedId)), [t, n]
               );
             }
           }.prototype,
@@ -1509,8 +1696,8 @@ var CLSTAMP = "10700074";
             (t[(t.Seated = 0)] = "Seated"),
               (t[(t.Standing = 1)] = "Standing"),
               (t[(t.Raw = 2)] = "Raw");
-          })(Dt || (Dt = {}));
-        class wt extends Lt {
+          })(kt || (kt = {}));
+        class Tt extends Dt {
           constructor(t) {
             super(t);
             if (
@@ -1524,19 +1711,20 @@ var CLSTAMP = "10700074";
               );
           }
           internalRender() {
-            var t;
-            let e, n, r;
-            var s, i;
+            var t, e, n;
+            let r, s, i;
+            var o, l;
+            let c;
             this.props.transform
-              ? ((e = yt(this.props.transform.translation)),
-                (n = this.props.transform.rotation),
-                (r = this.props.transform.scale))
-              : ((e = bt(this.props.translation)
-                  ? null === (t = Pt(this.props.translation)) || void 0 === t
+              ? ((r = Pt(this.props.transform.translation)),
+                (s = this.props.transform.rotation),
+                (i = this.props.transform.scale))
+              : ((r = Lt(this.props.translation)
+                  ? null === (t = Rt(this.props.translation)) || void 0 === t
                     ? void 0
                     : t.join(" ")
-                  : yt(St(this.props.translation, { x: 0, y: 0, z: 0 }))),
-                (n =
+                  : Pt(vt(this.props.translation, { x: 0, y: 0, z: 0 }))),
+                (s =
                   this.props.rotation && "w" in this.props.rotation
                     ? this.props.rotation
                     : (function (t) {
@@ -1557,33 +1745,43 @@ var CLSTAMP = "10700074";
                           z: a * s * c - o * l * i,
                         };
                       })(
-                        ((s = St(this.props.rotation, { x: 0, y: 0, z: 0 })),
-                        (i = Math.PI / 180),
-                        { x: s.x * i, y: s.y * i, z: s.z * i }),
+                        ((o = vt(this.props.rotation, { x: 0, y: 0, z: 0 })),
+                        (l = Math.PI / 180),
+                        { x: o.x * l, y: o.y * l, z: o.z * l }),
                       )),
-                (r =
+                (i =
                   "number" == typeof this.props.scale
                     ? {
                         x: this.props.scale,
                         y: this.props.scale,
                         z: this.props.scale,
                       }
-                    : St(this.props.scale, { x: 1, y: 1, z: 1 })));
-            let o = vt(n),
-              l = yt(r);
+                    : vt(this.props.scale, { x: 1, y: 1, z: 1 }))),
+              null !=
+                (null === (e = this.props) || void 0 === e
+                  ? void 0
+                  : e.parent_origin) &&
+                (c =
+                  kt[
+                    null === (n = this.props) || void 0 === n
+                      ? void 0
+                      : n.parent_origin
+                  ]);
+            let d = It(s),
+              m = Pt(i);
             return a.createElement(
               "vsg-transform",
               {
-                translation: e,
-                rotation: o,
-                scale: l,
+                translation: r,
+                rotation: d,
+                scale: m,
                 "curvature-pitch": this.props.curvature_pitch,
                 "invert-parent-panel-pitch":
                   this.props.invert_parent_panel_pitch,
                 "ignore-parent-scale": this.props.ignore_parent_scale,
                 "transform-path": this.props.transform_path,
                 "parent-path": this.props.parent_path,
-                "parent-origin": Dt[this.props.parent_origin],
+                "parent-origin": c,
                 "parent-id": this.props.parent_id,
                 "frame-resize-scale-factor":
                   this.props.frame_resize_scale_factor,
@@ -1592,11 +1790,11 @@ var CLSTAMP = "10700074";
             );
           }
         }
-        xt = (t) => {
+        Ot = (t) => {
           throw new Error(t.errorStr);
         };
-        var xt;
-        class kt extends a.Component {
+        var Ot;
+        class Bt extends a.Component {
           constructor(t) {
             super(t), (this.state = {}), (this.state.lastErrorKey = t.errorKey);
           }
@@ -1604,7 +1802,7 @@ var CLSTAMP = "10700074";
             this.sm_ErrorReportingStore = t;
           }
           componentDidCatch(t, e) {
-            const n = kt.sm_ErrorReportingStore;
+            const n = Bt.sm_ErrorReportingStore;
             n
               ? n
                   .ReportError(t, {
@@ -1633,19 +1831,19 @@ var CLSTAMP = "10700074";
                 ? "function" == typeof e
                   ? e(r.error)
                   : e
-                : kt.sm_ErrorReportingStore &&
-                    kt.sm_ErrorReportingStore.reporting_enabled
-                  ? a.createElement(Bt, {
+                : Bt.sm_ErrorReportingStore &&
+                    Bt.sm_ErrorReportingStore.reporting_enabled
+                  ? a.createElement(Vt, {
                       error: r,
                       identifierHash: s,
-                      store: kt.sm_ErrorReportingStore,
+                      store: Bt.sm_ErrorReportingStore,
                       onRefresh: this.Reset,
                     })
-                  : a.createElement(Ot, { error: r, onDismiss: this.Reset })
+                  : a.createElement(At, { error: r, onDismiss: this.Reset })
               : t || null;
           }
         }
-        function Tt(t) {
+        function Ft(t) {
           const { enabled: e } = t,
             [n, r] = a.useState(e),
             [s, i] = a.useState(6);
@@ -1680,7 +1878,7 @@ var CLSTAMP = "10700074";
                     a.Fragment,
                     null,
                     a.createElement(
-                      Vt,
+                      Ut,
                       null,
                       "Reloading UI in ",
                       s,
@@ -1703,7 +1901,7 @@ var CLSTAMP = "10700074";
                 : a.createElement(
                     a.Fragment,
                     null,
-                    a.createElement(Vt, null, "Auto-reload canceled."),
+                    a.createElement(Ut, null, "Auto-reload canceled."),
                     "   ",
                     a.createElement(
                       "span",
@@ -1721,16 +1919,16 @@ var CLSTAMP = "10700074";
               : null
           );
         }
-        (0, r.Cg)([g], kt.prototype, "Reset", null);
-        const Ot = ({ error: t, onDismiss: e }) => {
+        (0, r.Cg)([g], Bt.prototype, "Reset", null);
+        const At = ({ error: t, onDismiss: e }) => {
             let n = t.error ? t.error.stack : "Stack missing",
               r = t.info ? t.info.componentStack : "",
               s = (t.error && t.error.message) || "unknown error";
-            const i = a.useContext(Mt);
+            const i = a.useContext(wt);
             return a.createElement(
-              Ft,
+              Ht,
               null,
-              a.createElement(Vt, null, 'Error: "', s, '"'),
+              a.createElement(Ut, null, 'Error: "', s, '"'),
               "   ",
               a.createElement(
                 "span",
@@ -1741,26 +1939,26 @@ var CLSTAMP = "10700074";
                 "(x) Dismiss",
               ),
               a.createElement("br", null),
-              a.createElement(Tt, { enabled: null == i }),
-              a.createElement(Wt, null, n),
+              a.createElement(Ft, { enabled: null == i }),
+              a.createElement(Gt, null, n),
               a.createElement(
-                Wt,
+                Gt,
                 null,
                 "The error occurred while rendering:",
                 r,
               ),
             );
           },
-          Bt = (t) => {
+          Vt = (t) => {
             const { error: e, onRefresh: n, identifierHash: r, store: s } = t,
               i = (e.error && e.error.message) || "unknown error",
               o = `${s.product}_${s.version}_${r}`,
-              l = a.useContext(Mt);
+              l = a.useContext(wt);
             return a.createElement(
-              Ft,
+              Ht,
               null,
               a.createElement(
-                Vt,
+                Ut,
                 null,
                 "Something went wrong while displaying this content. ",
                 a.createElement(
@@ -1772,34 +1970,34 @@ var CLSTAMP = "10700074";
                   "Refresh",
                 ),
               ),
-              a.createElement(Tt, { enabled: null == l }),
-              a.createElement(Wt, null, "Error Reference: ", o),
-              a.createElement(Wt, null, i),
+              a.createElement(Ft, { enabled: null == l }),
+              a.createElement(Gt, null, "Error Reference: ", o),
+              a.createElement(Gt, null, i),
             );
           };
-        function Ft(t) {
-          return a.useContext(Mt) || D() != P.Overlay
-            ? a.createElement(At, Object.assign({}, t))
+        function Ht(t) {
+          return a.useContext(wt) || Z() != X.Overlay
+            ? a.createElement(Wt, Object.assign({}, t))
             : a.createElement(
-                wt,
+                Tt,
                 {
                   parent_path: "/user/head",
                   translation: { y: -0.5, z: -0.9 },
                   rotation: { x: -20 },
                 },
                 a.createElement(
-                  Qt,
+                  Zt,
                   {
                     debug_name: "vr_error_container",
                     meters_per_pixel: 75e-5,
                     origin: { x: -0.5, y: -1 },
                     interactive: !0,
                   },
-                  a.createElement(At, Object.assign({}, t)),
+                  a.createElement(Wt, Object.assign({}, t)),
                 ),
               );
         }
-        const At = ({ children: t }) =>
+        const Wt = ({ children: t }) =>
             a.createElement(
               "div",
               {
@@ -1815,7 +2013,7 @@ var CLSTAMP = "10700074";
               },
               t,
             ),
-          Vt = ({ children: t }) =>
+          Ut = ({ children: t }) =>
             a.createElement(
               "h1",
               {
@@ -1828,7 +2026,7 @@ var CLSTAMP = "10700074";
               },
               t,
             ),
-          Wt = ({ children: t }) =>
+          Gt = ({ children: t }) =>
             a.createElement(
               "pre",
               {
@@ -1836,30 +2034,30 @@ var CLSTAMP = "10700074";
               },
               t,
             ),
-          Ht = a.createContext({ frame: void 0, page: void 0 });
-        function Ut(t) {
+          zt = a.createContext({ frame: void 0, page: void 0 });
+        function jt(t) {
           if (t) return [t.u, t.v];
         }
-        var Gt, zt, jt, qt, Kt, $t;
-        function Xt(t) {
+        var qt, Kt, $t, Xt, Qt, Yt;
+        function Jt(t) {
           switch (t) {
-            case Gt.TopLeft:
+            case qt.TopLeft:
               return { x: -1, y: 1 };
-            case Gt.TopCenter:
+            case qt.TopCenter:
               return { x: 0, y: 1 };
-            case Gt.TopRight:
+            case qt.TopRight:
               return { x: 1, y: 1 };
-            case Gt.CenterLeft:
+            case qt.CenterLeft:
               return { x: -1, y: 0 };
-            case Gt.Center:
+            case qt.Center:
               return { x: 0, y: 0 };
-            case Gt.CenterRight:
+            case qt.CenterRight:
               return { x: 1, y: 0 };
-            case Gt.BottomLeft:
+            case qt.BottomLeft:
               return { x: -1, y: -1 };
-            case Gt.BottomCenter:
+            case qt.BottomCenter:
               return { x: 0, y: -1 };
-            case Gt.BottomRight:
+            case qt.BottomRight:
               return { x: 1, y: -1 };
           }
         }
@@ -1873,34 +2071,34 @@ var CLSTAMP = "10700074";
             (t[(t.BottomLeft = 6)] = "BottomLeft"),
             (t[(t.BottomCenter = 7)] = "BottomCenter"),
             (t[(t.BottomRight = 8)] = "BottomRight");
-        })(Gt || (Gt = {})),
+        })(qt || (qt = {})),
           (function (t) {
             (t[(t.Auto = 0)] = "Auto"), (t[(t.SingleTap = 1)] = "SingleTap");
-          })(zt || (zt = {})),
+          })(Kt || (Kt = {})),
           (function (t) {
             (t[(t.Mono = 0)] = "Mono"),
               (t[(t.Parallel = 1)] = "Parallel"),
               (t[(t.Crossed = 2)] = "Crossed"),
               (t[(t.Panorama = 3)] = "Panorama"),
               (t[(t.StackedPanorama = 4)] = "StackedPanorama");
-          })(jt || (jt = {})),
+          })($t || ($t = {})),
           (function (t) {
             (t[(t.Visible = 0)] = "Visible"),
               (t[(t.SkipInSceneGraph = 1)] = "SkipInSceneGraph"),
               (t[(t.Hidden = 2)] = "Hidden"),
               (t[(t.InvisibleButIntersectable = 3)] =
                 "InvisibleButIntersectable");
-          })(qt || (qt = {})),
+          })(Xt || (Xt = {})),
           (function (t) {
             (t[(t.Default = 0)] = "Default"),
               (t[(t.Disabled = 1)] = "Disabled"),
               (t[(t.Low = 2)] = "Low");
-          })(Kt || (Kt = {})),
+          })(Qt || (Qt = {})),
           (function (t) {
             (t[(t.PixelOffset = 0)] = "PixelOffset"),
               (t[(t.ScaleAndCenter = 1)] = "ScaleAndCenter");
-          })($t || ($t = {}));
-        class Qt extends Lt {
+          })(Yt || (Yt = {}));
+        class Zt extends Dt {
           constructor(t) {
             super(t),
               (this.m_Rect = { x: 0, y: 0, width: 0, height: 0 }),
@@ -1959,7 +2157,7 @@ var CLSTAMP = "10700074";
             return this.m_nEmbeddedIndex;
           }
           componentWillReceiveProps_UNSAFE() {
-            Qt.s_bPanelsAreDirty = !0;
+            Zt.s_bPanelsAreDirty = !0;
           }
           componentDidMount() {
             super.componentDidMount(),
@@ -1967,17 +2165,17 @@ var CLSTAMP = "10700074";
                 this.onResizeObserved,
               )),
               this.m_resizeObserver.observe(this.getCurrentRootElement()),
-              (this.m_nEmbeddedIndex = Se.Current().addEmbeddedPanelUVs(this)),
-              (Qt.s_bPanelsAreDirty = !0),
+              (this.m_nEmbeddedIndex = ye.Current().addEmbeddedPanelUVs(this)),
+              (Zt.s_bPanelsAreDirty = !0),
               this.getCurrentRootElement().addEventListener(
                 "mousedown",
                 this.onPanelMouseDown,
               ),
               this.forceUpdate(),
-              Qt.s_setAllPanels.add(this);
+              Zt.s_setAllPanels.add(this);
           }
           onResizeObserved(t, e) {
-            Se.Current().forceLayoutUpdate(),
+            ye.Current().forceLayoutUpdate(),
               (this.m_LastDOMContentSize = {
                 clientWidth: t[0].contentRect.width,
                 clientHeight: t[0].contentRect.height,
@@ -1987,7 +2185,7 @@ var CLSTAMP = "10700074";
               );
           }
           componentWillUnmount() {
-            Qt.s_setAllPanels.delete(this),
+            Zt.s_setAllPanels.delete(this),
               this.m_resizeObserver &&
                 (this.m_resizeObserver.disconnect(),
                 (this.m_resizeObserver = null)),
@@ -1996,8 +2194,8 @@ var CLSTAMP = "10700074";
                 "mousedown",
                 this.onPanelMouseDown,
               ),
-              (Qt.s_bPanelsAreDirty = !0),
-              Se.Current().removeEmbeddedPanelUVs(this),
+              (Zt.s_bPanelsAreDirty = !0),
+              ye.Current().removeEmbeddedPanelUVs(this),
               this.m_DOMContentSizeChangedCallbacks.ClearAllCallbacks(),
               super.componentWillUnmount();
           }
@@ -2058,14 +2256,14 @@ var CLSTAMP = "10700074";
             var t;
             return null !== (t = this.props.visibility) && void 0 !== t
               ? t
-              : qt.Visible;
+              : Xt.Visible;
           }
           buildNode(t, e) {
             var n, r, a, s, i, o, l, c, d, m, p, h;
             if (
               !(
-                this.visibility == qt.Visible ||
-                this.visibility == qt.InvisibleButIntersectable
+                this.visibility == Xt.Visible ||
+                this.visibility == Xt.InvisibleButIntersectable
               )
             )
               return [t, null];
@@ -2077,10 +2275,10 @@ var CLSTAMP = "10700074";
               _ = { x: 0, y: 0 };
             _ =
               "object" == typeof this.props.origin
-                ? Ct(this.props.origin, { x: 0, y: 0 })
-                : Xt(this.props.origin);
+                ? Nt(this.props.origin)
+                : Jt(this.props.origin);
             const E = this.props.overlay_key,
-              C = _t();
+              C = j();
             E && E.length > 0
               ? (g.properties.key = E)
               : C
@@ -2091,15 +2289,15 @@ var CLSTAMP = "10700074";
                       : VRHTML.VROverlay.ThisOverlayHandle()),
               this.m_UVsMin &&
                 (g.properties.uv_min =
-                  null !== (n = Ut(this.m_UVsMin)) && void 0 !== n
+                  null !== (n = jt(this.m_UVsMin)) && void 0 !== n
                     ? n
                     : void 0),
               this.m_UVsMax &&
                 (g.properties.uv_max =
-                  null !== (r = Ut(this.m_UVsMax)) && void 0 !== r
+                  null !== (r = jt(this.m_UVsMax)) && void 0 !== r
                     ? r
                     : void 0);
-            const S = 1 / Se.Current().m_fCurrentScale;
+            const S = 1 / ye.Current().m_fCurrentScale;
             let f = this.props.frame_resize_scale_factor;
             return (
               this.props.is_frame_page_main_panel && (f = null != f ? f : 1),
@@ -2113,10 +2311,10 @@ var CLSTAMP = "10700074";
                 null !== (o = this.props.min_width) && void 0 !== o
                   ? o
                   : void 0),
-              (g.properties["target-width-anchor-id"] = gt(
+              (g.properties["target-width-anchor-id"] = z(
                 this.props.target_width_anchor_id,
               )),
-              (g.properties["target-dpi-panel-id"] = gt(
+              (g.properties["target-dpi-panel-id"] = z(
                 this.props.target_dpi_panel_id,
               )),
               (g.properties["target-dpi-multiplier"] =
@@ -2131,7 +2329,7 @@ var CLSTAMP = "10700074";
                 this.props.subview_parent_panel_id),
               (g.properties["subview-sizing"] = this.props.subview_sizing),
               (g.properties.curvature = this.props.curvature),
-              (g.properties["curvature-origin-id"] = gt(
+              (g.properties["curvature-origin-id"] = z(
                 this.props.curvature_origin_id,
               )),
               (g.properties.spherical = this.props.spherical),
@@ -2157,7 +2355,7 @@ var CLSTAMP = "10700074";
                 this.props.make_overlays_interactive_if_visible),
               (g.properties["is-grab-handle"] = this.props.is_grab_handle),
               (g.properties["embedded-uv-index"] = this.m_nEmbeddedIndex),
-              (g.properties.origin = Nt(_)),
+              (g.properties.origin = bt(_)),
               (g.properties.debug_name = this.props.debug_name),
               (g.properties.sampler = this.props.sampler),
               (g.properties.reflect = this.props.reflect),
@@ -2166,7 +2364,7 @@ var CLSTAMP = "10700074";
                 this.props.rendermodel_component_device_index),
               (g.properties.rendermodel_component_name =
                 this.props.rendermodel_component_name),
-              (g.properties["texture-id"] = gt(this.props.texture_id)),
+              (g.properties["texture-id"] = z(this.props.texture_id)),
               (g.properties["sort-order"] = this.props.sort_order),
               (g.properties["sort-depth-bias"] = this.props.sort_depth_bias),
               (g.properties.visibility = this.visibility),
@@ -2230,12 +2428,12 @@ var CLSTAMP = "10700074";
               "vsg-node",
               {
                 style: {
-                  display: this.visibility == qt.Hidden ? "none" : null,
+                  display: this.visibility == Xt.Hidden ? "none" : null,
                 },
               },
-              a.createElement(kt, null, this.props.children),
+              a.createElement(Bt, null, this.props.children),
               this.props.is_frame_page_main_panel &&
-                a.createElement(Yt, { panel: this, panelID: this.getID() }),
+                a.createElement(te, { panel: this, panelID: this.getID() }),
             );
           }
           get inputFocusParams() {
@@ -2259,9 +2457,9 @@ var CLSTAMP = "10700074";
             );
           }
         }
-        function Yt(t) {
+        function te(t) {
           const { panel: e, panelID: n } = t,
-            { page: r } = a.useContext(Ht);
+            { page: r } = a.useContext(zt);
           return (
             a.useEffect(() => {
               const { Unset: t } = null == r ? void 0 : r.SetMainPanel(e);
@@ -2270,18 +2468,15 @@ var CLSTAMP = "10700074";
             null
           );
         }
-        (Qt.s_bPanelsAreDirty = !1),
-          (Qt.s_setAllPanels = new u.yy()),
-          (0, r.Cg)([g], Qt.prototype, "onResizeObserved", null),
-          (0, r.Cg)([g], Qt.prototype, "onPanelMouseDown", null),
-          (0, r.Cg)([g], Qt.prototype, "onWindowMouseUp", null),
-          (0, r.Cg)([g], Qt.prototype, "buildNode", null),
-          (window.s_setAllPanels = Qt.s_setAllPanels);
-        const Jt = new S("EmbeddedPixels");
-        var Zt,
-          te,
-          ee,
-          ne,
+        (Zt.s_bPanelsAreDirty = !1),
+          (Zt.s_setAllPanels = new u.yy()),
+          (0, r.Cg)([g], Zt.prototype, "onResizeObserved", null),
+          (0, r.Cg)([g], Zt.prototype, "onPanelMouseDown", null),
+          (0, r.Cg)([g], Zt.prototype, "onWindowMouseUp", null),
+          (0, r.Cg)([g], Zt.prototype, "buildNode", null),
+          (window.s_setAllPanels = Zt.s_setAllPanels);
+        const ee = new S("EmbeddedPixels");
+        var ne,
           re,
           ae,
           se,
@@ -2297,16 +2492,20 @@ var CLSTAMP = "10700074";
           ge,
           _e,
           Ee,
-          Ce;
+          Ce,
+          Se,
+          fe,
+          Ne,
+          ve;
         !(function (t) {
           (t[(t.Canvas = 0)] = "Canvas"), (t[(t.Image = 1)] = "Image");
-        })(Zt || (Zt = {}));
-        class Se extends a.Component {
+        })(ne || (ne = {}));
+        class ye extends a.Component {
           static get IsSceneGraphApp() {
-            return null !== Se.Current();
+            return null !== ye.Current();
           }
           static Current() {
-            return Se.s_Current;
+            return ye.s_Current;
           }
           constructor(t) {
             var e;
@@ -2327,7 +2526,7 @@ var CLSTAMP = "10700074";
               (this.m_nDirtyXMax = -1),
               (this.m_EmbeddedDataImgRef = null),
               (this.m_EmbeddedDataImgRGBBuffer = null),
-              (Se.s_Current = this),
+              (ye.s_Current = this),
               (this.state = {
                 bFontsLoaded: !1,
                 nForcedUpdateNumber: 0,
@@ -2337,8 +2536,8 @@ var CLSTAMP = "10700074";
                     ? void 0
                     : e.BSupportsCEFCanvas()
                 )
-                  ? Zt.Canvas
-                  : Zt.Image,
+                  ? ne.Canvas
+                  : ne.Image,
               }),
               (this.m_DomRef = a.createRef()),
               (this.m_scalingDomRef = a.createRef()),
@@ -2360,7 +2559,7 @@ var CLSTAMP = "10700074";
                 "px )");
           }
           forceLayoutUpdate() {
-            (Qt.s_bPanelsAreDirty = !0),
+            (Zt.s_bPanelsAreDirty = !0),
               this.setState({
                 nForcedUpdateNumber: this.state.nForcedUpdateNumber + 1,
               });
@@ -2396,9 +2595,9 @@ var CLSTAMP = "10700074";
                 ((r = this.props.owning_overlay_key),
                 (a = this.m_DomRef.current),
                 (s = this.props.web_secret),
-                (ot = r),
-                (lt = a),
-                (ct = s),
+                (B = r),
+                (F = a),
+                (A = s),
                 console.log("Setting owning overlay key to " + r));
           }
           componentWillUnmount() {
@@ -2409,8 +2608,8 @@ var CLSTAMP = "10700074";
               t.removeEventListener("mousemove", this.onMouseMove);
           }
           render() {
-            const t = this.state.eRenderMode == Zt.Image,
-              e = this.state.eRenderMode == Zt.Canvas;
+            const t = this.state.eRenderMode == ne.Image,
+              e = this.state.eRenderMode == ne.Canvas;
             let n = [];
             return (
               this.state.bShowDebugPointer && n.push("ShowDebugPointer"),
@@ -2429,13 +2628,13 @@ var CLSTAMP = "10700074";
                   a.createElement("img", {
                     ref: this.m_EmbeddedDataImgRef,
                     className: "EmbeddedData",
-                    height: Se.k_EmbeddedDataRows,
+                    height: ye.k_EmbeddedDataRows,
                   }),
                 e &&
                   a.createElement("canvas", {
                     ref: this.m_CanvasRef,
                     className: "EmbeddedData",
-                    height: Se.k_EmbeddedDataRows,
+                    height: ye.k_EmbeddedDataRows,
                   }),
                 a.createElement(
                   "div",
@@ -2465,7 +2664,7 @@ var CLSTAMP = "10700074";
           }
           createEmbeddedData() {
             var t;
-            this.state.eRenderMode == Zt.Image
+            this.state.eRenderMode == ne.Image
               ? ((this.m_EmbeddedDataImgRef.current.width =
                   this.m_nEmbeddedDataWidth),
                 this.m_EmbeddedDataImgRGBBuffer ||
@@ -2477,7 +2676,7 @@ var CLSTAMP = "10700074";
                           1,
                           4,
                         )))
-              : this.state.eRenderMode == Zt.Canvas &&
+              : this.state.eRenderMode == ne.Canvas &&
                 ((this.m_CanvasRef.current.width = this.m_nEmbeddedDataWidth),
                 (this.m_CanvasContext =
                   this.m_CanvasRef.current.getContext("2d")),
@@ -2487,7 +2686,7 @@ var CLSTAMP = "10700074";
                   null === this.m_Pixels &&
                     (this.m_Pixels = this.m_CanvasContext.createImageData(
                       this.m_nEmbeddedDataWidth,
-                      Se.k_EmbeddedDataRows,
+                      ye.k_EmbeddedDataRows,
                     )))),
               this.updateAllPanelBounds();
           }
@@ -2506,11 +2705,11 @@ var CLSTAMP = "10700074";
                   )
                 : this.m_scalingDomRef.current.removeAttribute("style"),
               (this.m_fCurrentScale = s),
-              (Qt.s_bPanelsAreDirty = !0)),
-              Qt.s_bPanelsAreDirty &&
+              (Zt.s_bPanelsAreDirty = !0)),
+              Zt.s_bPanelsAreDirty &&
                 (this.m_mapPanels.forEach((t) => t.updateLayoutValues()),
-                Et(),
-                (Qt.s_bPanelsAreDirty = !1),
+                q(),
+                (Zt.s_bPanelsAreDirty = !1),
                 this.updateEmbeddedData());
           }
           updateEmbeddedData() {
@@ -2528,7 +2727,7 @@ var CLSTAMP = "10700074";
                   for (let t = 0; t < 3; t++) this.setPixel(e + t, 0, 0, 0, 0);
                 }),
                 (this.m_rEmbeddedIndicesToClear = []),
-                Jt.Debug("UPDATE EMBEDDED DATA ------------------"),
+                ee.Debug("UPDATE EMBEDDED DATA ------------------"),
                 this.m_mapPanels.forEach((t, e) => {
                   const n = t.m_Rect.x,
                     r = t.m_Rect.x + t.m_Rect.width,
@@ -2556,7 +2755,7 @@ var CLSTAMP = "10700074";
                       this.setPixel(o, l[0], l[1], l[2]),
                       this.setPixel(o + 1, l[3], l[4], l[5]),
                       this.setPixel(o + 2, l[6], l[7], l[8]);
-                  Jt.Debug(
+                  ee.Debug(
                     "panel",
                     c ? "" : "XX",
                     t.props.debug_name,
@@ -2573,7 +2772,7 @@ var CLSTAMP = "10700074";
                     t.getCurrentRootElement(),
                   );
                 }),
-                this.m_EmbeddedDataImgRef && this.state.eRenderMode == Zt.Image)
+                this.m_EmbeddedDataImgRef && this.state.eRenderMode == ne.Image)
               ) {
                 const e =
                   null ===
@@ -2590,7 +2789,7 @@ var CLSTAMP = "10700074";
                 null != e && (this.m_EmbeddedDataImgRef.current.src = e);
               } else if (
                 this.m_CanvasRef &&
-                this.state.eRenderMode == Zt.Canvas
+                this.state.eRenderMode == ne.Canvas
               ) {
                 let t = this.m_nDirtyXMax - this.m_nDirtyXMin + 1;
                 this.m_CanvasContext.putImageData(
@@ -2609,7 +2808,7 @@ var CLSTAMP = "10700074";
           setPixel(t, e, n, r, a = 255) {
             if (
               this.m_EmbeddedDataImgRGBBuffer &&
-              this.state.eRenderMode == Zt.Image
+              this.state.eRenderMode == ne.Image
             ) {
               const s = new DataView(this.m_EmbeddedDataImgRGBBuffer);
               s.setUint8(4 * t + 0, e),
@@ -2618,7 +2817,7 @@ var CLSTAMP = "10700074";
                 s.setUint8(4 * t + 3, a);
             } else
               this.m_Pixels &&
-                this.state.eRenderMode == Zt.Canvas &&
+                this.state.eRenderMode == ne.Canvas &&
                 ((this.m_Pixels.data[4 * t + 0] = e),
                 (this.m_Pixels.data[4 * t + 1] = n),
                 (this.m_Pixels.data[4 * t + 2] = r),
@@ -2629,15 +2828,15 @@ var CLSTAMP = "10700074";
                   (this.m_nDirtyXMax = t));
           }
         }
-        (Se.s_Current = null),
-          (Se.k_EmbeddedDataRows = 1),
-          (0, r.Cg)([g], Se.prototype, "toggleDebugPointer", null),
-          (0, r.Cg)([g], Se.prototype, "onMouseMove", null),
-          (0, r.Cg)([g], Se.prototype, "forceLayoutUpdate", null),
-          (0, r.Cg)([g], Se.prototype, "onMutation", null);
+        (ye.s_Current = null),
+          (ye.k_EmbeddedDataRows = 1),
+          (0, r.Cg)([g], ye.prototype, "toggleDebugPointer", null),
+          (0, r.Cg)([g], ye.prototype, "onMouseMove", null),
+          (0, r.Cg)([g], ye.prototype, "forceLayoutUpdate", null),
+          (0, r.Cg)([g], ye.prototype, "onMutation", null);
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -2658,7 +2857,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -2679,20 +2878,21 @@ var CLSTAMP = "10700074";
                     : n["fade-distance"]),
                 (c.properties["min-tile-scale-at-periphery"] =
                   this.props["min-tile-scale-at-periphery"]),
-                (c.properties.height = It(this.props.height)),
-                (c.properties.offset = [
-                  null === (r = this.props.offset) || void 0 === r
-                    ? void 0
-                    : r.x,
-                  null === (a = this.props.offset) || void 0 === a
-                    ? void 0
-                    : a.y,
-                ]),
+                (c.properties.height = Mt(this.props.height)),
+                null != this.props.offset &&
+                  (c.properties.offset = [
+                    null === (r = this.props.offset) || void 0 === r
+                      ? void 0
+                      : r.x,
+                    null === (a = this.props.offset) || void 0 === a
+                      ? void 0
+                      : a.y,
+                  ]),
                 "string" == typeof this.props.color)
               )
                 c.properties.color = this.props.color;
               else if (this.props.color) {
-                let t = ft(this.props.color, { r: 0, g: 0, b: 0 });
+                let t = yt(this.props.color, { r: 0, g: 0, b: 0 });
                 c.properties.color = [t.r, t.g, t.b];
               }
               return (
@@ -2721,10 +2921,10 @@ var CLSTAMP = "10700074";
                   null === (i = this.props) || void 0 === i
                     ? void 0
                     : i["auto-subdivide"]),
-                (c.properties["pedestal-height"] = It(
+                (c.properties["pedestal-height"] = Mt(
                   this.props["pedestal-height"],
                 )),
-                (c.properties["pedestal-radius"] = It(
+                (c.properties["pedestal-radius"] = Mt(
                   this.props["pedestal-radius"],
                 )),
                 (c.properties["floor-aa-shader"] =
@@ -2744,10 +2944,10 @@ var CLSTAMP = "10700074";
         ),
           (function (t) {
             (t[(t.None = 0)] = "None"), (t[(t.Backface = 1)] = "Backface");
-          })(te || (te = {}));
+          })(re || (re = {}));
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -2758,14 +2958,18 @@ var CLSTAMP = "10700074";
               const n = this.createSgNode(e);
               if (
                 ((n.properties.source = this.props.source),
-                (n.properties["texture-id"] = gt(this.props["texture-id"])),
+                (n.properties["texture-id"] = z(this.props["texture-id"])),
                 (n.properties["input-path"] = this.props["input-path"]),
                 this.props.fresnel)
               ) {
                 let t = this.props.fresnel;
                 if ("string" == typeof t.color) n.properties.color = t.color;
                 else {
-                  let e = ft(t.color, { r: 0, g: 0, b: 0 });
+                  let e = yt(null == t ? void 0 : t.color, {
+                    r: 0,
+                    g: 0,
+                    b: 0,
+                  });
                   n.properties.color = [e.r, e.g, e.b];
                 }
                 (n.properties.opacity = t.opacity ? t.opacity : 1),
@@ -2787,7 +2991,42 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
+            constructor(t) {
+              super(t), super.setBuildNodeOverride(this.buildNode);
+            }
+            getNodeType() {
+              return "rendermodel-component-overrides";
+            }
+            buildNode(t, e) {
+              const {
+                  action_name: n,
+                  throbbing: r,
+                  throbColor: a = "#1a9fff",
+                  throbPeriod: s = 1.25,
+                  throbContrast: i = 2,
+                  throbMinBlend: o = 0,
+                  throbMaxBlend: l = 1,
+                } = this.props,
+                c = this.createSgNode(e);
+              return (
+                (c.properties["action-name"] = n),
+                (c.properties.throbbing = r),
+                (c.properties["throb-color"] = a),
+                (c.properties["throb-period"] = s),
+                (c.properties["throb-contrast"] = i),
+                (c.properties["throb-min-blend"] = o),
+                (c.properties["throb-max-blend"] = l),
+                [t, c]
+              );
+            }
+          }.prototype,
+          "buildNode",
+          null,
+        );
+        (0, r.Cg)(
+          [g],
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -2813,7 +3052,7 @@ var CLSTAMP = "10700074";
                 let t = this.props.specular;
                 if ("string" == typeof t.color) n.properties.color = t.color;
                 else {
-                  let e = ft(t.color, { r: 0, g: 0, b: 0 });
+                  let e = yt(t.color, { r: 0, g: 0, b: 0 });
                   n.properties.color = [e.r, e.g, e.b];
                 }
               }
@@ -2825,7 +3064,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t),
                 (this.m_latchedPosition = null),
@@ -2846,9 +3085,9 @@ var CLSTAMP = "10700074";
                 ];
               let a = null;
               "object" == typeof this.props.location
-                ? (a = Ct(this.props.location, { x: 0, y: 0 }))
+                ? (a = Nt(this.props.location, { x: 0, y: 0 }))
                 : "number" == typeof this.props.location &&
-                  (a = Xt(this.props.location));
+                  (a = Jt(this.props.location));
               let s = this.createSgNode(e);
               if (this.props.latched && null !== this.m_latchedPosition)
                 (s.properties["anchor-u"] = this.m_latchedPosition.u),
@@ -2913,7 +3152,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -2930,10 +3169,10 @@ var CLSTAMP = "10700074";
         );
         !(function (t) {
           (t[(t.Parent = 0)] = "Parent"), (t[(t.World = 1)] = "World");
-        })(ee || (ee = {}));
+        })(ae || (ae = {}));
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -3199,8 +3438,8 @@ var CLSTAMP = "10700074";
                 "Hmd_SupportsGpuBusMonitoring_Bool"),
               (t[(t.DriverProvidedIPDVisibility_Bool = 2108)] =
                 "DriverProvidedIPDVisibility_Bool"),
-              (t[(t.Prop_Hmd_SupportsVRGamepadFocus_Bool = 2117)] =
-                "Prop_Hmd_SupportsVRGamepadFocus_Bool"),
+              (t[(t.Prop_SupportsVRGamepadMode_Bool = 2117)] =
+                "Prop_SupportsVRGamepadMode_Bool"),
               (t[(t.DriverRequestedMuraCorrectionMode_Int32 = 2200)] =
                 "DriverRequestedMuraCorrectionMode_Int32"),
               (t[(t.DriverRequestedMuraFeather_InnerLeft_Int32 = 2201)] =
@@ -3296,7 +3535,7 @@ var CLSTAMP = "10700074";
                 "VRLinkClientHMDSupportsRoomSetupRequests_Bool"),
               (t[(t.TrackedDeviceProperty_Max = 1e6)] =
                 "TrackedDeviceProperty_Max");
-          })(ne || (ne = {})),
+          })(se || (se = {})),
           (function (t) {
             (t[(t.k_EButton_System = 0)] = "k_EButton_System"),
               (t[(t.k_EButton_ApplicationMenu = 1)] =
@@ -3329,7 +3568,7 @@ var CLSTAMP = "10700074";
               (t[(t.k_EButton_Reserved0 = 50)] = "k_EButton_Reserved0"),
               (t[(t.k_EButton_Reserved1 = 51)] = "k_EButton_Reserved1"),
               (t[(t.k_EButton_Max = 64)] = "k_EButton_Max");
-          })(re || (re = {})),
+          })(ie || (ie = {})),
           (function (t) {
             (t[(t.None = 0)] = "None"),
               (t[(t.ButtonEnter = 1)] = "ButtonEnter"),
@@ -3337,13 +3576,13 @@ var CLSTAMP = "10700074";
               (t[(t.Snap = 3)] = "Snap"),
               (t[(t.Sliding = 4)] = "Sliding"),
               (t[(t.SlidingEdge = 5)] = "SlidingEdge");
-          })(ae || (ae = {})),
+          })(oe || (oe = {})),
           (function (t) {
             (t[(t.Minimal = 1)] = "Minimal"),
               (t[(t.Modal = 2)] = "Modal"),
               (t[(t.ShowArrowKeys = 4)] = "ShowArrowKeys"),
               (t[(t.HideDoneKey = 8)] = "HideDoneKey");
-          })(se || (se = {})),
+          })(le || (le = {})),
           (function (t) {
             (t[(t.Unknown = -1)] = "Unknown"),
               (t[(t.Idle = 0)] = "Idle"),
@@ -3351,30 +3590,30 @@ var CLSTAMP = "10700074";
               (t[(t.UserInteraction_Timeout = 2)] = "UserInteraction_Timeout"),
               (t[(t.Standby = 3)] = "Standby"),
               (t[(t.Idle_Timeout = 4)] = "Idle_Timeout");
-          })(ie || (ie = {})),
+          })(ce || (ce = {})),
           (function (t) {
             (t[(t.VRMouseButton_Left = 1)] = "VRMouseButton_Left"),
               (t[(t.VRMouseButton_Right = 2)] = "VRMouseButton_Right"),
               (t[(t.VRMouseButton_Middle = 4)] = "VRMouseButton_Middle");
-          })(oe || (oe = {})),
+          })(de || (de = {})),
           (function (t) {
             (t[(t.Notification_Shown = 600)] = "Notification_Shown"),
               (t[(t.Notification_Hidden = 601)] = "Notification_Hidden"),
               (t[(t.Notification_BeginInteraction = 602)] =
                 "Notification_BeginInteraction"),
               (t[(t.Notification_Destroyed = 603)] = "Notification_Destroyed");
-          })(le || (le = {})),
+          })(me || (me = {})),
           (function (t) {
             (t[(t.TheaterFast = 0)] = "TheaterFast"),
               (t[(t.TheaterSlow = 1)] = "TheaterSlow");
-          })(ce || (ce = {})),
+          })(pe || (pe = {})),
           (function (t) {
             (t[(t.Constant = 0)] = "Constant"),
               (t[(t.Nearest = 1)] = "Nearest"),
               (t[(t.Linear = 2)] = "Linear"),
               (t[(t.SmoothStep = 3)] = "SmoothStep"),
               (t[(t.SmootherStep = 4)] = "SmootherStep");
-          })(de || (de = {})),
+          })(he || (he = {})),
           (function (t) {
             (t[(t.Invalid = 0)] = "Invalid"),
               (t[(t.RecenterCountdown = 1)] = "RecenterCountdown"),
@@ -3382,13 +3621,13 @@ var CLSTAMP = "10700074";
               (t[(t.RoomSetupFloor = 3)] = "RoomSetupFloor"),
               (t[(t.ClearRoomSetup = 4)] = "ClearRoomSetup"),
               (t[(t.RoomSetupFull = 5)] = "RoomSetupFull");
-          })(me || (me = {})),
+          })(ue || (ue = {})),
           (function (t) {
             (t[(t.Near = 0)] = "Near"),
               (t[(t.Middle = 1)] = "Middle"),
               (t[(t.Far = 2)] = "Far"),
               (t[(t.VRGamepadUI = 3)] = "VRGamepadUI");
-          })(pe || (pe = {})),
+          })(ge || (ge = {})),
           (function (t) {
             (t[(t.__LocalSteamVR = 0)] = "__LocalSteamVR"),
               (t[(t.__LocalSteam = 1)] = "__LocalSteam"),
@@ -3397,7 +3636,7 @@ var CLSTAMP = "10700074";
               (t[(t.MutualLocal = 4)] = "MutualLocal"),
               (t[(t.MutualSteamVR = 5)] = "MutualSteamVR"),
               (t[(t.MutualSteam = 6)] = "MutualSteam");
-          })(he || (he = {})),
+          })(_e || (_e = {})),
           (function (t) {
             (t[(t.Dashboard = 1)] = "Dashboard"),
               (t[(t.LeftHand = 2)] = "LeftHand"),
@@ -3405,28 +3644,38 @@ var CLSTAMP = "10700074";
               (t[(t.World = 4)] = "World"),
               (t[(t.Theater = 5)] = "Theater"),
               (t[(t.Boot = 6)] = "Boot");
-          })(ue || (ue = {})),
-          (function (t) {
-            (t[(t.Invalid = 0)] = "Invalid"),
-              (t[(t.System = 1)] = "System"),
-              (t[(t.SteamInput = 2)] = "SteamInput"),
-              (t[(t.VRInput = 3)] = "VRInput");
-          })(ge || (ge = {})),
+          })(Ee || (Ee = {})),
           (function (t) {
             (t[(t.Invalid = 0)] = "Invalid"),
               (t[(t.SceneApp = 1)] = "SceneApp"),
               (t[(t.Panel = 2)] = "Panel");
-          })(_e || (_e = {})),
+          })(Ce || (Ce = {})),
+          (function (t) {
+            (t[(t.ControllerPairing = 0)] = "ControllerPairing"),
+              (t[(t.WelcomeToSteamFrame = 1)] = "WelcomeToSteamFrame"),
+              (t[(t.SystemButtonHideDashboard = 2)] =
+                "SystemButtonHideDashboard"),
+              (t[(t.SystemButtonDashboardHidden = 3)] =
+                "SystemButtonDashboardHidden"),
+              (t[(t.SystemButtonShowDashboard = 4)] =
+                "SystemButtonShowDashboard"),
+              (t[(t.PairWifiDongle = 5)] = "PairWifiDongle"),
+              (t[(t.TourSendOff = 6)] = "TourSendOff"),
+              (t[(t.SteamGuidedTourFinished = 7)] = "SteamGuidedTourFinished");
+          })(Se || (Se = {})),
           (function (t) {
             (t[(t.None = 0)] = "None"),
               (t[(t.ThirdPartyClient = 1)] = "ThirdPartyClient"),
               (t[(t.SteamVRClientUnified = 2)] = "SteamVRClientUnified"),
               (t[(t.SteamVRClientLegacyDual = 3)] = "SteamVRClientLegacyDual");
-          })(Ee || (Ee = {}));
+          })(fe || (fe = {})),
+          (function (t) {
+            (t[(t.Curved = 0)] = "Curved"), (t[(t.Flat = 1)] = "Flat");
+          })(Ne || (Ne = {}));
         a.Component;
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -3454,7 +3703,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -3475,7 +3724,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -3500,7 +3749,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -3511,7 +3760,7 @@ var CLSTAMP = "10700074";
               const n = this.createSgNode(e),
                 r = Object.assign(Object.assign({}, t), {
                   bInsideReparentedPanel: !0,
-                  currentPanel: null,
+                  currentPanel: void 0,
                 });
               return (
                 this.props.parent_overlay_key &&
@@ -3526,7 +3775,7 @@ var CLSTAMP = "10700074";
         );
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -3539,6 +3788,8 @@ var CLSTAMP = "10700074";
                 (n.properties.name = this.props.name),
                 (n.properties.channel = this.props.channel),
                 (n.properties.debug = this.props.debug),
+                (n.properties["dock-location"] =
+                  this.props.dockLocation || Ee.Dashboard),
                 [t, n]
               );
             }
@@ -3550,10 +3801,10 @@ var CLSTAMP = "10700074";
             (t[(t.Disabled = 0)] = "Disabled"),
               (t[(t.WorldZeroY = 1)] = "WorldZeroY"),
               (t[(t.WorldDynamicFloor = 2)] = "WorldDynamicFloor");
-          })(Ce || (Ce = {}));
+          })(ve || (ve = {}));
         (0, r.Cg)(
           [g],
-          class extends Lt {
+          class extends Dt {
             constructor(t) {
               super(t), super.setBuildNodeOverride(this.buildNode);
             }
@@ -3572,8 +3823,52 @@ var CLSTAMP = "10700074";
           "buildNode",
           null,
         );
-        const fe = VRHTML;
-        var Ne, ye;
+        (0, r.Cg)(
+          [g],
+          class extends Dt {
+            constructor(t) {
+              super(t), super.setBuildNodeOverride(this.buildNode);
+            }
+            getNodeType() {
+              return "grab-scale";
+            }
+            buildNode(t, e) {
+              var n, r, a, s, i, o;
+              const l = this.createSgNode(e);
+              return (
+                (l.properties["event-panel-sgid"] =
+                  null === (n = this.props) || void 0 === n
+                    ? void 0
+                    : n.event_panel_sgid),
+                (l.properties["is-active"] =
+                  null === (r = this.props) || void 0 === r
+                    ? void 0
+                    : r.is_active),
+                (l.properties["base-distance"] =
+                  null === (a = this.props) || void 0 === a
+                    ? void 0
+                    : a.base_distance),
+                (l.properties["scroll-speed"] =
+                  null === (s = this.props) || void 0 === s
+                    ? void 0
+                    : s.scroll_speed),
+                (l.properties["min-distance"] =
+                  null === (i = this.props) || void 0 === i
+                    ? void 0
+                    : i.min_distance),
+                (l.properties["max-distance"] =
+                  null === (o = this.props) || void 0 === o
+                    ? void 0
+                    : o.max_distance),
+                [t, l]
+              );
+            }
+          }.prototype,
+          "buildNode",
+          null,
+        );
+        const be = VRHTML;
+        var Pe, Ie;
         !(function (t) {
           (t[(t.Uninitialized = 0)] = "Uninitialized"),
             (t[(t.ShowInstructions = 1)] = "ShowInstructions"),
@@ -3581,10 +3876,10 @@ var CLSTAMP = "10700074";
             (t[(t.Timeout = 3)] = "Timeout"),
             (t[(t.Success = 4)] = "Success"),
             (t[(t.Success_NoMoreDongles = 5)] = "Success_NoMoreDongles");
-        })(Ne || (Ne = {}));
-        class ve extends a.Component {
+        })(Pe || (Pe = {}));
+        class Le extends a.Component {
           constructor(t) {
-            super(t), (this.state = { pairingState: Ne.ShowInstructions });
+            super(t), (this.state = { pairingState: Pe.ShowInstructions });
           }
           get className() {
             return "Uninitialized";
@@ -3635,10 +3930,10 @@ var CLSTAMP = "10700074";
                 ),
               ),
               a.createElement(
-                Pn,
+                Dn,
                 null,
-                a.createElement(Ln, {
-                  onClick: () => xe.ChooseController(),
+                a.createElement(wn, {
+                  onClick: () => Be.ChooseController(),
                   text: d("#pairing_button_differentcontroller"),
                 }),
               ),
@@ -3672,15 +3967,15 @@ var CLSTAMP = "10700074";
                 ),
               ),
               a.createElement(
-                Pn,
+                Dn,
                 null,
-                a.createElement(Ln, {
-                  onClick: xe.PairWithFreeDongle,
+                a.createElement(wn, {
+                  onClick: Be.PairWithFreeDongle,
                   text: d("#pairing_success_again"),
                   focus: !0,
                 }),
-                a.createElement(Ln, {
-                  onClick: xe.Close,
+                a.createElement(wn, {
+                  onClick: Be.Close,
                   text: d("#pairing_button_done"),
                 }),
               ),
@@ -3714,41 +4009,41 @@ var CLSTAMP = "10700074";
                 ),
               ),
               a.createElement(
-                Pn,
+                Dn,
                 null,
-                a.createElement(Ln, {
-                  onClick: xe.PairWithFreeDongle,
+                a.createElement(wn, {
+                  onClick: Be.PairWithFreeDongle,
                   text: d("#pairing_try_again"),
                   focus: !0,
                 }),
-                a.createElement(Ln, {
-                  onClick: xe.Close,
+                a.createElement(wn, {
+                  onClick: Be.Close,
                   text: d("#pairing_button_cancel"),
                 }),
               ),
             );
           }
           render() {
-            switch (xe.pairingState) {
-              case ye.WaitingForDeviceToPair:
+            switch (Be.pairingState) {
+              case Ie.WaitingForDeviceToPair:
                 return this.renderInstructions();
-              case ye.UpdatingDongleListAfterPairing:
-              case ye.Success:
+              case Ie.UpdatingDongleListAfterPairing:
+              case Ie.Success:
                 return this.renderSuccess();
-              case ye.TimedOut:
+              case Ie.TimedOut:
                 return this.renderTimedOut();
               default:
                 return (
                   console.error(
                     "CPairingDevice.render(): Invalid pairing state: " +
-                      ye[xe.pairingState],
+                      Ie[Be.pairingState],
                   ),
                   a.createElement("div", null, " Invalid pairing state. ")
                 );
             }
           }
         }
-        function be(t) {
+        function Me(t) {
           return a.createElement(
             "svg",
             {
@@ -6653,7 +6948,7 @@ var CLSTAMP = "10700074";
             ),
           );
         }
-        function Ie(t) {
+        function Re(t) {
           return a.createElement(
             "svg",
             {
@@ -6724,7 +7019,7 @@ var CLSTAMP = "10700074";
             ),
           );
         }
-        function Pe(t) {
+        function De(t) {
           return a.createElement(
             "svg",
             {
@@ -7253,9 +7548,9 @@ var CLSTAMP = "10700074";
             ),
           );
         }
-        class Le extends ve {
+        class we extends Le {
           renderControllerImage(t) {
-            return be(t);
+            return Me(t);
           }
           get pairingInstructions() {
             return a.createElement(
@@ -7290,9 +7585,9 @@ var CLSTAMP = "10700074";
             return d("#pairingdevice_a_knuckles_controllername");
           }
         }
-        class Me extends ve {
+        class xe extends Le {
           renderControllerImage(t) {
-            return Pe(t);
+            return De(t);
           }
           get pairingInstructions() {
             return a.createElement(
@@ -7327,9 +7622,9 @@ var CLSTAMP = "10700074";
             return d("#pairingdevice_a_vivewand_shortname");
           }
         }
-        class Re extends ve {
+        class ke extends Le {
           renderControllerImage(t) {
-            return Ie(t);
+            return Re(t);
           }
           get pairingInstructions() {
             return a.createElement(
@@ -7359,7 +7654,7 @@ var CLSTAMP = "10700074";
             return d("#pairingdevice_a_vivetracker_shortname");
           }
         }
-        class De extends ve {
+        class Te extends Le {
           renderControllerImage(t) {
             return (function (t) {
               return a.createElement(
@@ -7617,13 +7912,13 @@ var CLSTAMP = "10700074";
             (t[(t.TimedOut = 7)] = "TimedOut"),
             (t[(t.NoDonglesDetected = 8)] = "NoDonglesDetected"),
             (t[(t.PairingFailed = 9)] = "PairingFailed");
-        })(ye || (ye = {}));
-        class we {
+        })(Ie || (Ie = {}));
+        class Oe {
           constructor() {
             (this.m_mailbox = new I()),
               (this.dongles = new Array()),
               (this.pairingNameExpected = void 0),
-              (this.pairingState = ye.Idle),
+              (this.pairingState = Ie.Idle),
               (this.pairingDevice = void 0),
               (this.windowIsShown = !1),
               (this.waitingForDonglesResponse = !1),
@@ -7662,18 +7957,18 @@ var CLSTAMP = "10700074";
           }
           getPairableDevices() {
             return new Map([
-              ["knuckles", new Le()],
-              ["vive_controller", new Me()],
-              ["vive_tracker", new Re()],
-              ["vr_ink_pilot_edition", new De()],
+              ["knuckles", new we()],
+              ["vive_controller", new xe()],
+              ["vive_tracker", new ke()],
+              ["vr_ink_pilot_edition", new Te()],
             ]);
           }
           onWindowEvent(t) {
             switch (t) {
-              case w.Shown:
+              case tt.Shown:
                 (this.windowIsShown = !0), this.Reset();
                 break;
-              case w.Hidden:
+              case tt.Hidden:
                 (this.windowIsShown = !1), this.Reset();
             }
           }
@@ -7703,14 +7998,14 @@ var CLSTAMP = "10700074";
             if (!this.HasFreeDongle)
               return (
                 console.warn("PromptUserToPair(): No available dongles."),
-                void this.SetState(ye.NoDonglesAvailable)
+                void this.SetState(Ie.NoDonglesAvailable)
               );
             null != this.pairingNameExpected &&
             this.getPairableDevices().has(this.pairingNameExpected)
-              ? xe.selectPairingDevice(
-                  xe.getPairableDevices().get(xe.pairingNameExpected),
+              ? Be.selectPairingDevice(
+                  Be.getPairableDevices().get(Be.pairingNameExpected),
                 )
-              : this.SetState(ye.DongleListReady);
+              : this.SetState(Ie.DongleListReady);
           }
           OnDiscoverDonglesResponse(t) {
             switch (
@@ -7719,30 +8014,30 @@ var CLSTAMP = "10700074";
               (this.waitingForDonglesResponse = !1),
               this.pairingState)
             ) {
-              case ye.FetchingInitialDongleList:
-              case ye.NoDonglesAvailable:
-              case ye.NoDonglesDetected:
+              case Ie.FetchingInitialDongleList:
+              case Ie.NoDonglesAvailable:
+              case Ie.NoDonglesDetected:
                 this.HasFreeDongle
                   ? this.PromptUserToPair()
                   : this.dongles && this.dongles.length > 0
-                    ? this.SetState(ye.NoDonglesAvailable)
-                    : this.SetState(ye.NoDonglesDetected);
+                    ? this.SetState(Ie.NoDonglesAvailable)
+                    : this.SetState(Ie.NoDonglesDetected);
                 break;
-              case ye.UpdatingDongleListAfterPairing:
-                this.SetState(ye.Success);
+              case Ie.UpdatingDongleListAfterPairing:
+                this.SetState(Ie.Success);
             }
           }
           OnStartPairingResponse(t) {
             switch (
-              (this.pairingState != ye.WaitingForDeviceToPair &&
+              (this.pairingState != Ie.WaitingForDeviceToPair &&
                 console.log("Pairing response when not waiting for one", t),
               t.result)
             ) {
               case "timeout":
-                this.SetState(ye.TimedOut);
+                this.SetState(Ie.TimedOut);
                 break;
               case "failed_to_start":
-                this.SetState(ye.PairingFailed);
+                this.SetState(Ie.PairingFailed);
                 break;
               case "canceled":
               case "success":
@@ -7754,24 +8049,24 @@ var CLSTAMP = "10700074";
                       this.activeDongle.serial,
                       new Date().getTime(),
                     ),
-                  this.SetState(ye.UpdatingDongleListAfterPairing);
+                  this.SetState(Ie.UpdatingDongleListAfterPairing);
             }
           }
           SetState(t) {
             switch (((this.pairingState = t), t)) {
-              case ye.FetchingInitialDongleList:
-              case ye.UpdatingDongleListAfterPairing:
-              case ye.NoDonglesAvailable:
-              case ye.NoDonglesDetected:
+              case Ie.FetchingInitialDongleList:
+              case Ie.UpdatingDongleListAfterPairing:
+              case Ie.NoDonglesAvailable:
+              case Ie.NoDonglesDetected:
                 this.DiscoverDongles();
             }
           }
           DiscoverDongles() {
             if (
-              this.pairingState != ye.FetchingInitialDongleList &&
-              this.pairingState != ye.UpdatingDongleListAfterPairing &&
-              this.pairingState != ye.NoDonglesAvailable &&
-              this.pairingState != ye.NoDonglesDetected
+              this.pairingState != Ie.FetchingInitialDongleList &&
+              this.pairingState != Ie.UpdatingDongleListAfterPairing &&
+              this.pairingState != Ie.NoDonglesAvailable &&
+              this.pairingState != Ie.NoDonglesDetected
             )
               return;
             if (this.waitingForDonglesResponse) return;
@@ -7785,7 +8080,7 @@ var CLSTAMP = "10700074";
           }
           StartPairing(t) {
             if (
-              (this.SetState(ye.WaitingForDeviceToPair),
+              (this.SetState(Ie.WaitingForDeviceToPair),
               (this.activeDongle = t),
               !t)
             )
@@ -7797,7 +8092,7 @@ var CLSTAMP = "10700074";
               timeoutSeconds: 10,
             };
             (this.pairingTimer = window.setInterval(() => {
-              this.pairingState == ye.WaitingForDeviceToPair &&
+              this.pairingState == Ie.WaitingForDeviceToPair &&
               this.activeDongle == t
                 ? (console.log("Sending StartPairing to " + e.serial),
                   this.m_mailbox.SendMessage("lighthouse_pairing", e))
@@ -7825,7 +8120,7 @@ var CLSTAMP = "10700074";
             let t = this.FindAvailableDongle();
             return null != t
               ? (this.StartPairing(t), !0)
-              : (this.SetState(ye.NoDonglesAvailable), !1);
+              : (this.SetState(Ie.NoDonglesAvailable), !1);
           }
           CancelActivePairing() {
             this.StopPairing(this.activeDongle);
@@ -7833,7 +8128,7 @@ var CLSTAMP = "10700074";
           Reset() {
             this.CancelActivePairing(),
               this.SetState(
-                this.windowIsShown ? ye.FetchingInitialDongleList : ye.Idle,
+                this.windowIsShown ? Ie.FetchingInitialDongleList : Ie.Idle,
               ),
               (this.pairingDevice = null);
           }
@@ -7841,28 +8136,28 @@ var CLSTAMP = "10700074";
             this.pairingDevice = null;
           }
         }
-        (0, r.Cg)([u.sH], we.prototype, "dongles", void 0),
-          (0, r.Cg)([u.sH], we.prototype, "pairingNameExpected", void 0),
-          (0, r.Cg)([u.sH], we.prototype, "pairingState", void 0),
-          (0, r.Cg)([u.sH], we.prototype, "pairingDevice", void 0),
-          (0, r.Cg)([u.XI], we.prototype, "init", null),
-          (0, r.Cg)([g], we.prototype, "onWindowEvent", null),
-          (0, r.Cg)([u.EW], we.prototype, "HasFreeDongle", null),
-          (0, r.Cg)([g], we.prototype, "OnDiscoverDonglesResponse", null),
-          (0, r.Cg)([g], we.prototype, "OnStartPairingResponse", null),
-          (0, r.Cg)([g], we.prototype, "DiscoverDongles", null),
-          (0, r.Cg)([g], we.prototype, "Close", null),
-          (0, r.Cg)([g], we.prototype, "PairWithFreeDongle", null),
-          (0, r.Cg)([g], we.prototype, "CancelActivePairing", null),
-          (0, r.Cg)([u.XI], we.prototype, "Reset", null),
-          (0, r.Cg)([u.XI], we.prototype, "ChooseController", null);
-        const xe = new we();
-        let ke = class extends a.Component {
+        (0, r.Cg)([u.sH], Oe.prototype, "dongles", void 0),
+          (0, r.Cg)([u.sH], Oe.prototype, "pairingNameExpected", void 0),
+          (0, r.Cg)([u.sH], Oe.prototype, "pairingState", void 0),
+          (0, r.Cg)([u.sH], Oe.prototype, "pairingDevice", void 0),
+          (0, r.Cg)([u.XI], Oe.prototype, "init", null),
+          (0, r.Cg)([g], Oe.prototype, "onWindowEvent", null),
+          (0, r.Cg)([u.EW], Oe.prototype, "HasFreeDongle", null),
+          (0, r.Cg)([g], Oe.prototype, "OnDiscoverDonglesResponse", null),
+          (0, r.Cg)([g], Oe.prototype, "OnStartPairingResponse", null),
+          (0, r.Cg)([g], Oe.prototype, "DiscoverDongles", null),
+          (0, r.Cg)([g], Oe.prototype, "Close", null),
+          (0, r.Cg)([g], Oe.prototype, "PairWithFreeDongle", null),
+          (0, r.Cg)([g], Oe.prototype, "CancelActivePairing", null),
+          (0, r.Cg)([u.XI], Oe.prototype, "Reset", null),
+          (0, r.Cg)([u.XI], Oe.prototype, "ChooseController", null);
+        const Be = new Oe();
+        let Fe = class extends a.Component {
           constructor(t) {
             super(t);
           }
           render() {
-            const t = Array.from(xe.getPairableDevices().values());
+            const t = Array.from(Be.getPairableDevices().values());
             return a.createElement(
               "div",
               null,
@@ -7882,7 +8177,7 @@ var CLSTAMP = "10700074";
                       "div",
                       {
                         className: "Button",
-                        onClick: () => xe.selectPairingDevice(t),
+                        onClick: () => Be.selectPairingDevice(t),
                       },
                       t.renderControllerImage(!1),
                     ),
@@ -7897,12 +8192,12 @@ var CLSTAMP = "10700074";
             );
           }
         };
-        ke = (0, r.Cg)([i.PA], ke);
-        var Te = n(339),
-          Oe = n.n(Te);
-        const Be = Te.BinaryReader.prototype,
-          Fe = Te.BinaryWriter.prototype;
-        function Ae(t) {
+        Fe = (0, r.Cg)([i.PA], Fe);
+        var Ae = n(339),
+          Ve = n.n(Ae);
+        const He = Ae.BinaryReader.prototype,
+          We = Ae.BinaryWriter.prototype;
+        function Ue(t) {
           const e = {},
             { fields: n } = t;
           for (const t in n) {
@@ -7911,7 +8206,7 @@ var CLSTAMP = "10700074";
           }
           return e;
         }
-        function Ve(t, e) {
+        function Ge(t, e) {
           const { proto: n, fields: r } = t,
             a = new n();
           if (null == e) return a;
@@ -7921,34 +8216,34 @@ var CLSTAMP = "10700074";
             const c = e[t];
             s
               ? i
-                ? Te.Message.setRepeatedWrapperField(
+                ? Ae.Message.setRepeatedWrapperField(
                     a,
                     n,
                     Array.isArray(c) ? c.map((t) => s.fromObject(t)) : [],
                   )
-                : Te.Message.setWrapperField(a, n, s.fromObject(c))
-              : Te.Message.setField(a, n, c);
+                : Ae.Message.setWrapperField(a, n, s.fromObject(c))
+              : Ae.Message.setField(a, n, c);
           }
           return a;
         }
-        function We(t, e, n) {
+        function ze(t, e, n) {
           const { proto: r, fields: a } = t,
             s = {};
           for (const t in a) {
             const { n: r, c: i, r: o, d: l, q: c } = a[t];
             if (i)
               if (o)
-                s[t] = Te.Message.toObjectList(
-                  Te.Message.getRepeatedWrapperField(n, i, r),
+                s[t] = Ae.Message.toObjectList(
+                  Ae.Message.getRepeatedWrapperField(n, i, r),
                   i.toObject,
                   e,
                 );
               else {
-                const a = Te.Message.getWrapperField(n, i, r, c ? 1 : 0);
+                const a = Ae.Message.getWrapperField(n, i, r, c ? 1 : 0);
                 a && (s[t] = i.toObject(e, a));
               }
             else {
-              const e = Te.Message.getFieldWithDefault(
+              const e = Ae.Message.getFieldWithDefault(
                 n,
                 r,
                 void 0 !== l ? l : null,
@@ -7958,7 +8253,7 @@ var CLSTAMP = "10700074";
           }
           return e && (s.$jspbMessageInstance = n), s;
         }
-        function He(t, e, n) {
+        function je(t, e, n) {
           for (; n.nextField() && !n.isEndGroup(); ) {
             const r = t[n.getFieldNumber()];
             if (r) {
@@ -7967,13 +8262,13 @@ var CLSTAMP = "10700074";
                 const r = new a();
                 n.readMessage(r, a.deserializeBinaryFromReader),
                   s
-                    ? Te.Message.addToRepeatedWrapperField(e, t, r, a)
-                    : Te.Message.setWrapperField(e, t, r);
+                    ? Ae.Message.addToRepeatedWrapperField(e, t, r, a)
+                    : Ae.Message.setWrapperField(e, t, r);
               } else if (l) {
                 const r = l.call(n);
                 s
-                  ? Te.Message.addToRepeatedField(e, t, r)
-                  : Te.Message.setField(e, t, r);
+                  ? Ae.Message.addToRepeatedField(e, t, r)
+                  : Ae.Message.setField(e, t, r);
               } else
                 console.assert(
                   !!l,
@@ -7984,22 +8279,22 @@ var CLSTAMP = "10700074";
           }
           return e;
         }
-        function Ue(t, e, n) {
+        function qe(t, e, n) {
           const { fields: r } = t;
           for (const t in r) {
             const { n: a, c: s, r: i, d: o, q: l, bw: c } = r[t];
             if (s)
               if (i) {
-                const t = Te.Message.getRepeatedWrapperField(e, s, a);
+                const t = Ae.Message.getRepeatedWrapperField(e, s, a);
                 ((t && t.length) || l) &&
                   n.writeRepeatedMessage(a, t, s.serializeBinaryToWriter);
               } else {
-                const t = Te.Message.getWrapperField(e, s, a, l ? 1 : 0);
+                const t = Ae.Message.getWrapperField(e, s, a, l ? 1 : 0);
                 t && n.writeMessage(a, t, s.serializeBinaryToWriter);
               }
             else if (c) {
-              const t = Te.Message.getField(e, a);
-              void 0 !== t && c.call(n, a, t);
+              const t = Ae.Message.getField(e, a);
+              null != t && c.call(n, a, t);
             } else
               console.assert(
                 !!c,
@@ -8007,178 +8302,178 @@ var CLSTAMP = "10700074";
               );
           }
         }
-        function Ge(t) {
+        function Ke(t) {
           const e = t.proto;
           for (const n in t.fields) {
             const r = t.fields[n],
               { n: a, c: s, r: i, d: o, q: l } = r;
             Object.prototype.hasOwnProperty.call(r, "d")
-              ? (e.prototype[n] = ze(Te.Message.getFieldWithDefault, a, o))
+              ? (e.prototype[n] = $e(Ae.Message.getFieldWithDefault, a, o))
               : (e.prototype[n] = s
                   ? i
-                    ? ze(Te.Message.getRepeatedWrapperField, s, a)
-                    : je(s, a)
-                  : ze(Te.Message.getField, a)),
-              (e.prototype[`set_${n}`] = qe(
+                    ? $e(Ae.Message.getRepeatedWrapperField, s, a)
+                    : Xe(s, a)
+                  : $e(Ae.Message.getField, a)),
+              (e.prototype[`set_${n}`] = Qe(
                 s
                   ? i
-                    ? Te.Message.setRepeatedWrapperField
-                    : Te.Message.setWrapperField
-                  : Te.Message.setField,
+                    ? Ae.Message.setRepeatedWrapperField
+                    : Ae.Message.setWrapperField
+                  : Ae.Message.setField,
                 a,
               )),
-              i && (e.prototype[`add_${n}`] = Ke(a, s));
+              i && (e.prototype[`add_${n}`] = Ye(a, s));
           }
         }
-        function ze(t, ...e) {
+        function $e(t, ...e) {
           return function () {
             return t(this, ...e);
           };
         }
-        function je(t, e) {
+        function Xe(t, e) {
           return function (n = !0) {
-            return Te.Message.getWrapperField(this, t, e, n ? 1 : 0);
+            return Ae.Message.getWrapperField(this, t, e, n ? 1 : 0);
           };
         }
-        function qe(t, e) {
+        function Qe(t, e) {
           return function (n) {
             return t(this, e, n);
           };
         }
-        function Ke(t, e) {
+        function Ye(t, e) {
           return e
             ? function (n, r) {
-                return Te.Message.addToRepeatedWrapperField(this, t, n, e, r);
+                return Ae.Message.addToRepeatedWrapperField(this, t, n, e, r);
               }
             : function (e, n) {
-                Te.Message.addToRepeatedField(this, t, e, n);
+                Ae.Message.addToRepeatedField(this, t, e, n);
               };
         }
-        class $e extends Te.Message {
+        class Je extends Ae.Message {
           static ImplementsStaticInterface() {}
           constructor(t = null) {
             super(),
-              $e.prototype.product || Ge($e.M()),
-              Te.Message.initialize(this, t, 0, -1, [3, 4], null);
+              Je.prototype.product || Ke(Je.M()),
+              Ae.Message.initialize(this, t, 0, -1, [3, 4], null);
           }
           static M() {
             return (
-              $e.sm_m ||
-                ($e.sm_m = {
-                  proto: $e,
+              Je.sm_m ||
+                (Je.sm_m = {
+                  proto: Je,
                   fields: {
-                    product: { n: 1, br: Be.readString, bw: Fe.writeString },
-                    version: { n: 2, br: Be.readString, bw: Fe.writeString },
-                    errors: { n: 3, c: Xe, r: !0, q: !0 },
+                    product: { n: 1, br: He.readString, bw: We.writeString },
+                    version: { n: 2, br: He.readString, bw: We.writeString },
+                    errors: { n: 3, c: Ze, r: !0, q: !0 },
                     tags: {
                       n: 4,
                       r: !0,
                       q: !0,
-                      br: Be.readString,
-                      bw: Fe.writeRepeatedString,
+                      br: He.readString,
+                      bw: We.writeRepeatedString,
                     },
                   },
                 }),
-              $e.sm_m
+              Je.sm_m
             );
           }
           static MBF() {
-            return $e.sm_mbf || ($e.sm_mbf = Ae($e.M())), $e.sm_mbf;
+            return Je.sm_mbf || (Je.sm_mbf = Ue(Je.M())), Je.sm_mbf;
           }
           toObject(t = !1) {
-            return $e.toObject(t, this);
+            return Je.toObject(t, this);
           }
           static toObject(t, e) {
-            return We($e.M(), t, e);
+            return ze(Je.M(), t, e);
           }
           static fromObject(t) {
-            return Ve($e.M(), t);
+            return Ge(Je.M(), t);
           }
           static deserializeBinary(t) {
-            let e = new (Oe().BinaryReader)(t),
-              n = new $e();
-            return $e.deserializeBinaryFromReader(n, e);
+            let e = new (Ve().BinaryReader)(t),
+              n = new Je();
+            return Je.deserializeBinaryFromReader(n, e);
           }
           static deserializeBinaryFromReader(t, e) {
-            return He($e.MBF(), t, e);
+            return je(Je.MBF(), t, e);
           }
           serializeBinary() {
-            var t = new (Oe().BinaryWriter)();
-            return $e.serializeBinaryToWriter(this, t), t.getResultBuffer();
+            var t = new (Ve().BinaryWriter)();
+            return Je.serializeBinaryToWriter(this, t), t.getResultBuffer();
           }
           static serializeBinaryToWriter(t, e) {
-            Ue($e.M(), t, e);
+            qe(Je.M(), t, e);
           }
           serializeBase64String() {
-            var t = new (Oe().BinaryWriter)();
+            var t = new (Ve().BinaryWriter)();
             return (
-              $e.serializeBinaryToWriter(this, t), t.getResultBase64String()
+              Je.serializeBinaryToWriter(this, t), t.getResultBase64String()
             );
           }
           getClassName() {
             return "CClientMetrics_ReportClientError_Notification";
           }
         }
-        class Xe extends Te.Message {
+        class Ze extends Ae.Message {
           static ImplementsStaticInterface() {}
           constructor(t = null) {
             super(),
-              Xe.prototype.identifier || Ge(Xe.M()),
-              Te.Message.initialize(this, t, 0, -1, void 0, null);
+              Ze.prototype.identifier || Ke(Ze.M()),
+              Ae.Message.initialize(this, t, 0, -1, void 0, null);
           }
           static M() {
             return (
-              Xe.sm_m ||
-                (Xe.sm_m = {
-                  proto: Xe,
+              Ze.sm_m ||
+                (Ze.sm_m = {
+                  proto: Ze,
                   fields: {
-                    identifier: { n: 1, br: Be.readString, bw: Fe.writeString },
-                    message: { n: 2, br: Be.readString, bw: Fe.writeString },
-                    count: { n: 3, br: Be.readUint32, bw: Fe.writeUint32 },
-                    context: { n: 4, br: Be.readString, bw: Fe.writeString },
+                    identifier: { n: 1, br: He.readString, bw: We.writeString },
+                    message: { n: 2, br: He.readString, bw: We.writeString },
+                    count: { n: 3, br: He.readUint32, bw: We.writeUint32 },
+                    context: { n: 4, br: He.readString, bw: We.writeString },
                   },
                 }),
-              Xe.sm_m
+              Ze.sm_m
             );
           }
           static MBF() {
-            return Xe.sm_mbf || (Xe.sm_mbf = Ae(Xe.M())), Xe.sm_mbf;
+            return Ze.sm_mbf || (Ze.sm_mbf = Ue(Ze.M())), Ze.sm_mbf;
           }
           toObject(t = !1) {
-            return Xe.toObject(t, this);
+            return Ze.toObject(t, this);
           }
           static toObject(t, e) {
-            return We(Xe.M(), t, e);
+            return ze(Ze.M(), t, e);
           }
           static fromObject(t) {
-            return Ve(Xe.M(), t);
+            return Ge(Ze.M(), t);
           }
           static deserializeBinary(t) {
-            let e = new (Oe().BinaryReader)(t),
-              n = new Xe();
-            return Xe.deserializeBinaryFromReader(n, e);
+            let e = new (Ve().BinaryReader)(t),
+              n = new Ze();
+            return Ze.deserializeBinaryFromReader(n, e);
           }
           static deserializeBinaryFromReader(t, e) {
-            return He(Xe.MBF(), t, e);
+            return je(Ze.MBF(), t, e);
           }
           serializeBinary() {
-            var t = new (Oe().BinaryWriter)();
-            return Xe.serializeBinaryToWriter(this, t), t.getResultBuffer();
+            var t = new (Ve().BinaryWriter)();
+            return Ze.serializeBinaryToWriter(this, t), t.getResultBuffer();
           }
           static serializeBinaryToWriter(t, e) {
-            Ue(Xe.M(), t, e);
+            qe(Ze.M(), t, e);
           }
           serializeBase64String() {
-            var t = new (Oe().BinaryWriter)();
+            var t = new (Ve().BinaryWriter)();
             return (
-              Xe.serializeBinaryToWriter(this, t), t.getResultBase64String()
+              Ze.serializeBinaryToWriter(this, t), t.getResultBase64String()
             );
           }
           getClassName() {
             return "CClientMetrics_ReportClientError_Notification_Error";
           }
         }
-        function Qe(t) {
+        function tn(t) {
           return (0, r.sH)(
             this,
             arguments,
@@ -8202,9 +8497,9 @@ var CLSTAMP = "10700074";
             },
           );
         }
-        const Ye = "/settings/steamvr/showAdvancedSettings",
-          Je = "change_route";
-        class Ze {
+        const en = "/settings/steamvr/showAdvancedSettings",
+          nn = "change_route";
+        class rn {
           constructor() {
             (this.m_wsWebSocketToServer = void 0),
               (this.m_mailbox = new I()),
@@ -8224,6 +8519,8 @@ var CLSTAMP = "10700074";
               (this.m_mapSettingsLastWriteInfo = new Map()),
               (this.m_bIsSettingApp = !1),
               (this.m_bInitStarted = !1),
+              (this.m_appFrameLimits = []),
+              (this.m_mapRefreshRatesForFrameLimit = new Map()),
               (this.GetAppList = function () {
                 return new Promise(function (t, e) {
                   l()
@@ -8335,10 +8632,10 @@ var CLSTAMP = "10700074";
           }
           get MailboxName() {
             if (!this.m_bIsSettingApp) return "settings";
-            switch (D()) {
-              case P.Overlay:
+            switch (Z()) {
+              case X.Overlay:
                 return "settings/overlay";
-              case P.Desktop:
+              case X.Desktop:
                 return "settings/desktop";
               default:
                 return "settings/unknown";
@@ -8352,7 +8649,7 @@ var CLSTAMP = "10700074";
                     "workshop_state_changed",
                     this.OnWorkshopStateChangedMessage,
                   ),
-                  this.m_mailbox.RegisterHandler(Je, this.OnChangeRouteMessage),
+                  this.m_mailbox.RegisterHandler(nn, this.OnChangeRouteMessage),
                   this.m_mailbox.RegisterHandler(
                     "app_config_changed",
                     this.OnAppConfigChangedMessage,
@@ -8437,7 +8734,7 @@ var CLSTAMP = "10700074";
             } else
               this.m_mailbox.connected &&
                 this.m_mailbox.SendMessage(this.MailboxName, {
-                  type: Je,
+                  type: nn,
                   page: t,
                   section: e,
                   sectionParams: n,
@@ -8445,7 +8742,7 @@ var CLSTAMP = "10700074";
           }
           SetDashboardFadeSupression(t, e) {
             this.m_mailbox.connected &&
-              this.m_mailbox.SendMessage(b, {
+              this.m_mailbox.SendMessage(P, {
                 type: "set_dashboard_fade_suppression",
                 suppress_dashboard_fade: e,
                 for_id: t,
@@ -8453,7 +8750,7 @@ var CLSTAMP = "10700074";
           }
           SetDashboardForceBoundsVisible(t, e, n) {
             this.m_mailbox.connected &&
-              this.m_mailbox.SendMessage(b, {
+              this.m_mailbox.SendMessage(P, {
                 type: "set_dashboard_force_bounds_visible",
                 force_bounds_visible: n,
                 for_overlay_key: t,
@@ -8469,10 +8766,10 @@ var CLSTAMP = "10700074";
               window.addEventListener("beforeunload", () => {
                 this.WebSocketSend("settings_close");
               }),
-              tn.GetSettingsInfo().then((t) => {
-                this.systemInfo = t;
+              an.GetSettingsInfo().then((t) => {
+                this.OnVRSystemInfo(t);
               }),
-              tn.GetAppList().then((t) => {
+              an.GetAppList().then((t) => {
                 this.OnVRAppList({ jsonid: "vr_app_list", apps: t });
               });
           }
@@ -8523,7 +8820,7 @@ var CLSTAMP = "10700074";
             }
           }
           SetSettingValueFromServer(t, e) {
-            const n = 1e3 * Ze.SERVER_SETTING_MERGE_DEFER_DURATION;
+            const n = 1e3 * rn.SERVER_SETTING_MERGE_DEFER_DURATION;
             if (this.m_mapSettingsLastWriteInfo.has(t)) {
               let r = this.m_mapSettingsLastWriteInfo.get(t);
               if (new Date().getTime() - r.nLastUserUpdateTime < n)
@@ -8564,6 +8861,30 @@ var CLSTAMP = "10700074";
           OnVRAudioDevices(t) {
             console.log("Got audio devices"), (this.audioDevices = t);
           }
+          OnVRSystemInfo(t) {
+            this.systemInfo = t;
+            const e = t.refresh_rates.supported_rates.map((t) => Math.round(t));
+            if (e.length > 1) {
+              this.m_mapRefreshRatesForFrameLimit.clear(),
+                (this.m_appFrameLimits = e.slice());
+              for (const t of e)
+                for (let e = 1; e <= 4; e++) {
+                  const n = Math.round(t / e);
+                  if (n < 30) break;
+                  const r = this.m_mapRefreshRatesForFrameLimit.get(n);
+                  r
+                    ? r.push(t)
+                    : this.m_mapRefreshRatesForFrameLimit.set(n, [t]);
+                  for (let t = 0; t < this.m_appFrameLimits.length; t++) {
+                    if (this.m_appFrameLimits[t] > n) {
+                      this.m_appFrameLimits.splice(t, 0, n);
+                      break;
+                    }
+                    if (this.m_appFrameLimits[t] === n) break;
+                  }
+                }
+            }
+          }
           OnVRAppList(t) {
             (this.apps = t.apps),
               t.apps.map((t) => this.probablyOwnedAppkeys.add(t.key));
@@ -8581,6 +8902,16 @@ var CLSTAMP = "10700074";
                 for (let n of e.values)
                   if (n && this.SettingNameMatches(t, n.name)) return n;
             return null;
+          }
+          get appFrameLimits() {
+            return this.m_appFrameLimits;
+          }
+          GetRefreshRatesForFrameLimit(t) {
+            var e;
+            return null !== (e = this.m_mapRefreshRatesForFrameLimit.get(t)) &&
+              void 0 !== e
+              ? e
+              : [t];
           }
           ResetSettingsValue(t) {
             this.SetSettingsValue(t, null);
@@ -8695,71 +9026,64 @@ var CLSTAMP = "10700074";
               ? void 0
               : e.name;
           }
-          get NumSupersamplingSteps() {
-            return Math.floor(4.81 / 0.02);
-          }
-          SliderposToSupersample(t) {
-            return t > 5 ? 5 : t < 0.2 ? 0.2 : t;
-          }
           get showAdvancedSettings() {
-            return this.settings.get(Ye);
+            return this.settings.get(en);
           }
           set showAdvancedSettings(t) {
-            this.SetSettingsValue(Ye, t);
+            this.SetSettingsValue(en, t);
           }
           showBindingCallouts(t) {
             let e = { type: "request_binding_callouts", app_key: t };
             this.m_mailbox.SendMessage("binding_callouts/main", e);
           }
         }
-        (Ze.SERVER_SETTING_MERGE_DEFER_DURATION = 1),
-          (0, r.Cg)([u.sH], Ze.prototype, "connected", void 0),
-          (0, r.Cg)([u.sH], Ze.prototype, "settingsSchema", void 0),
-          (0, r.Cg)([u.sH], Ze.prototype, "settings", void 0),
-          (0, r.Cg)([u.sH], Ze.prototype, "systemInfo", void 0),
-          (0, r.Cg)([u.sH], Ze.prototype, "audioDevices", void 0),
-          (0, r.Cg)([u.sH], Ze.prototype, "apps", void 0),
-          (0, r.Cg)([u.sH], Ze.prototype, "probablyOwnedAppkeys", void 0),
-          (0, r.Cg)([u.sH], Ze.prototype, "showInternalSettings", void 0),
-          (0, r.Cg)([u.sH], Ze.prototype, "workshopStateChangedCanary", void 0),
-          (0, r.Cg)([u.sH], Ze.prototype, "pendingChanges", void 0),
-          (0, r.Cg)([u.sH], Ze.prototype, "route", void 0),
-          (0, r.Cg)([g], Ze.prototype, "OpenWebSocketToHost", null),
-          (0, r.Cg)([g], Ze.prototype, "OnWorkshopStateChangedMessage", null),
-          (0, r.Cg)([g], Ze.prototype, "OnChangeRouteMessage", null),
-          (0, r.Cg)([g], Ze.prototype, "OnAppConfigChangedMessage", null),
-          (0, r.Cg)([g], Ze.prototype, "OnRefreshRateChangeMessage", null),
-          (0, r.Cg)([u.XI.bound], Ze.prototype, "onHashChanged", null),
-          (0, r.Cg)([u.EW], Ze.prototype, "routePage", null),
-          (0, r.Cg)([u.EW], Ze.prototype, "routePageSection", null),
-          (0, r.Cg)([u.EW], Ze.prototype, "routePageSectionParams", null),
-          (0, r.Cg)([u.XI], Ze.prototype, "setRoutePage", null),
-          (0, r.Cg)([u.XI], Ze.prototype, "setRoutePageSection", null),
-          (0, r.Cg)([u.XI], Ze.prototype, "setRoutePageSectionParams", null),
-          (0, r.Cg)([u.XI], Ze.prototype, "setRoute", null),
-          (0, r.Cg)([g], Ze.prototype, "SetDashboardFadeSupression", null),
-          (0, r.Cg)([g], Ze.prototype, "SetDashboardForceBoundsVisible", null),
-          (0, r.Cg)([g], Ze.prototype, "SetRestartRequired", null),
-          (0, r.Cg)([g], Ze.prototype, "OnWebSocketOpen", null),
-          (0, r.Cg)([g], Ze.prototype, "OnWebSocketClose", null),
-          (0, r.Cg)([g], Ze.prototype, "WebSocketSend", null),
-          (0, r.Cg)([g], Ze.prototype, "OnWebSocketMessage", null),
-          (0, r.Cg)([u.XI], Ze.prototype, "OnVRSettings", null),
-          (0, r.Cg)([u.XI], Ze.prototype, "SetSettingValueFromServer", null),
-          (0, r.Cg)([u.XI], Ze.prototype, "OnVRSettingsSchema", null),
-          (0, r.Cg)([u.XI.bound], Ze.prototype, "ResetSettingsValue", null),
-          (0, r.Cg)([u.XI], Ze.prototype, "ResetSettingsValues", null),
-          (0, r.Cg)([u.XI], Ze.prototype, "SetSettingsValue", null),
+        (rn.SERVER_SETTING_MERGE_DEFER_DURATION = 1),
+          (0, r.Cg)([u.sH], rn.prototype, "connected", void 0),
+          (0, r.Cg)([u.sH], rn.prototype, "settingsSchema", void 0),
+          (0, r.Cg)([u.sH], rn.prototype, "settings", void 0),
+          (0, r.Cg)([u.sH], rn.prototype, "systemInfo", void 0),
+          (0, r.Cg)([u.sH], rn.prototype, "audioDevices", void 0),
+          (0, r.Cg)([u.sH], rn.prototype, "apps", void 0),
+          (0, r.Cg)([u.sH], rn.prototype, "probablyOwnedAppkeys", void 0),
+          (0, r.Cg)([u.sH], rn.prototype, "showInternalSettings", void 0),
+          (0, r.Cg)([u.sH], rn.prototype, "workshopStateChangedCanary", void 0),
+          (0, r.Cg)([u.sH], rn.prototype, "pendingChanges", void 0),
+          (0, r.Cg)([u.sH], rn.prototype, "route", void 0),
+          (0, r.Cg)([g], rn.prototype, "OpenWebSocketToHost", null),
+          (0, r.Cg)([g], rn.prototype, "OnWorkshopStateChangedMessage", null),
+          (0, r.Cg)([g], rn.prototype, "OnChangeRouteMessage", null),
+          (0, r.Cg)([g], rn.prototype, "OnAppConfigChangedMessage", null),
+          (0, r.Cg)([g], rn.prototype, "OnRefreshRateChangeMessage", null),
+          (0, r.Cg)([u.XI.bound], rn.prototype, "onHashChanged", null),
+          (0, r.Cg)([u.EW], rn.prototype, "routePage", null),
+          (0, r.Cg)([u.EW], rn.prototype, "routePageSection", null),
+          (0, r.Cg)([u.EW], rn.prototype, "routePageSectionParams", null),
+          (0, r.Cg)([u.XI], rn.prototype, "setRoutePage", null),
+          (0, r.Cg)([u.XI], rn.prototype, "setRoutePageSection", null),
+          (0, r.Cg)([u.XI], rn.prototype, "setRoutePageSectionParams", null),
+          (0, r.Cg)([u.XI], rn.prototype, "setRoute", null),
+          (0, r.Cg)([g], rn.prototype, "SetDashboardFadeSupression", null),
+          (0, r.Cg)([g], rn.prototype, "SetDashboardForceBoundsVisible", null),
+          (0, r.Cg)([g], rn.prototype, "SetRestartRequired", null),
+          (0, r.Cg)([g], rn.prototype, "OnWebSocketOpen", null),
+          (0, r.Cg)([g], rn.prototype, "OnWebSocketClose", null),
+          (0, r.Cg)([g], rn.prototype, "WebSocketSend", null),
+          (0, r.Cg)([g], rn.prototype, "OnWebSocketMessage", null),
+          (0, r.Cg)([u.XI], rn.prototype, "OnVRSettings", null),
+          (0, r.Cg)([u.XI], rn.prototype, "SetSettingValueFromServer", null),
+          (0, r.Cg)([u.XI], rn.prototype, "OnVRSettingsSchema", null),
+          (0, r.Cg)([u.XI.bound], rn.prototype, "ResetSettingsValue", null),
+          (0, r.Cg)([u.XI], rn.prototype, "ResetSettingsValues", null),
+          (0, r.Cg)([u.XI], rn.prototype, "SetSettingsValue", null),
           (0, r.Cg)(
             [u.XI],
-            Ze.prototype,
+            rn.prototype,
             "SetSettingsStringValueWithoutSchema",
             null,
-          ),
-          (0, r.Cg)([u.EW], Ze.prototype, "NumSupersamplingSteps", null);
-        const tn = new Ze();
-        window.VRSettingsState = tn;
-        class en {
+          );
+        const an = new rn();
+        window.VRSettingsState = an;
+        class sn {
           constructor() {
             (this.m_InputState = void 0),
               (this.m_KnownControllerTypes = u.sH.map()),
@@ -8903,47 +9227,47 @@ var CLSTAMP = "10700074";
             return null;
           }
         }
-        (0, r.Cg)([u.sH], en.prototype, "m_InputState", void 0),
-          (0, r.Cg)([u.sH], en.prototype, "m_KnownControllerTypes", void 0),
-          (0, r.Cg)([g], en.prototype, "OnActionBindingsReloaded", null),
-          (0, r.Cg)([g], en.prototype, "OnControllerTypeChanged", null),
-          (0, r.Cg)([u.EW], en.prototype, "ConnectedDevices", null),
-          (0, r.Cg)([u.EW], en.prototype, "ControllerTypes", null),
+        (0, r.Cg)([u.sH], sn.prototype, "m_InputState", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "m_KnownControllerTypes", void 0),
+          (0, r.Cg)([g], sn.prototype, "OnActionBindingsReloaded", null),
+          (0, r.Cg)([g], sn.prototype, "OnControllerTypeChanged", null),
+          (0, r.Cg)([u.EW], sn.prototype, "ConnectedDevices", null),
+          (0, r.Cg)([u.EW], sn.prototype, "ControllerTypes", null),
           (0, r.Cg)(
             [u.EW],
-            en.prototype,
+            sn.prototype,
             "ShouldSendSystemButtonToAllApps",
             null,
           ),
-          (0, r.Cg)([u.EW], en.prototype, "ShowHiddenInputs", null),
-          (0, r.Cg)([u.EW], en.prototype, "IsSteamAvailable", null),
-          (0, r.Cg)([u.EW], en.prototype, "BDevMode", null),
-          (0, r.Cg)([u.EW], en.prototype, "IsValid", null),
-          (0, r.Cg)([u.EW], en.prototype, "CurrentUserPersonaName", null),
-          (0, r.Cg)([g], en.prototype, "GetControllerTypeInfo", null),
-          (0, r.Cg)([g], en.prototype, "LocalizeControllerString", null),
-          (0, r.Cg)([g], en.prototype, "LocalizeDriverString", null),
-          (0, r.Cg)([u.XI], en.prototype, "UpdateControllerTypes", null),
-          (0, r.Cg)([u.XI], en.prototype, "GetInputState", null),
-          (0, r.Cg)([u.EW], en.prototype, "KnownControllerTypes", null),
+          (0, r.Cg)([u.EW], sn.prototype, "ShowHiddenInputs", null),
+          (0, r.Cg)([u.EW], sn.prototype, "IsSteamAvailable", null),
+          (0, r.Cg)([u.EW], sn.prototype, "BDevMode", null),
+          (0, r.Cg)([u.EW], sn.prototype, "IsValid", null),
+          (0, r.Cg)([u.EW], sn.prototype, "CurrentUserPersonaName", null),
+          (0, r.Cg)([g], sn.prototype, "GetControllerTypeInfo", null),
+          (0, r.Cg)([g], sn.prototype, "LocalizeControllerString", null),
+          (0, r.Cg)([g], sn.prototype, "LocalizeDriverString", null),
+          (0, r.Cg)([u.XI], sn.prototype, "UpdateControllerTypes", null),
+          (0, r.Cg)([u.XI], sn.prototype, "GetInputState", null),
+          (0, r.Cg)([u.EW], sn.prototype, "KnownControllerTypes", null),
           (0, r.Cg)(
             [g],
-            en.prototype,
+            sn.prototype,
             "FindDeviceClassForControllerType",
             null,
           );
-        const nn = new en();
-        window.inputState = nn;
-        const rn =
+        const on = new sn();
+        window.inputState = on;
+        const ln =
           window.addEventListener ||
           (n.g && n.g.addEventListener) ||
           (() => {});
-        let an,
-          sn = [],
-          on = (t, e, n) =>
-            sn.push({ error: t, cCallsitesToIgnore: e, strComponentStack: n });
-        const ln = !0;
-        class cn extends Error {
+        let cn,
+          dn = [],
+          mn = (t, e, n) =>
+            dn.push({ error: t, cCallsitesToIgnore: e, strComponentStack: n });
+        const pn = !0;
+        class hn extends Error {
           constructor(...t) {
             super(...t), (this.name = "Assertion Failed");
           }
@@ -8952,38 +9276,38 @@ var CLSTAMP = "10700074";
           const t = console.assert;
           console.assert = (e, n, ...r) => {
             if (!e) {
-              const t = pn();
-              on(new cn(un(n, ...r)), 2, t);
+              const t = _n();
+              mn(new hn(Cn(n, ...r)), 2, t);
             }
             t.apply(console, [e, n, ...r]);
           };
           const e = console.error;
           (console.error = (t, ...n) => {
-            const r = pn();
-            on(new Error(un(t, ...n)), 1, r), e.apply(console, [t, ...n]);
+            const r = _n();
+            mn(new Error(Cn(t, ...n)), 1, r), e.apply(console, [t, ...n]);
           }),
             (console.clogerror = (t, n, ...r) => {
-              const a = pn();
-              on(new Error(un(n, ...r)), t + 1, a), e.apply(console, [n, ...r]);
+              const a = _n();
+              mn(new Error(Cn(n, ...r)), t + 1, a), e.apply(console, [n, ...r]);
             }),
-            rn("error", (t) => {
-              on(t.error, 0);
+            ln("error", (t) => {
+              mn(t.error, 0);
             }),
-            rn("unhandledrejection", (t) => {
-              on(t.reason, 0);
+            ln("unhandledrejection", (t) => {
+              mn(t.reason, 0);
             }),
-            (an = window.setTimeout(() => {
-              (sn = []), (on = () => {});
+            (cn = window.setTimeout(() => {
+              (dn = []), (mn = () => {});
             }, 3e4));
         }
-        const dn = { cCallsitesToIgnore: 0, bIncludeMessageInIdentifier: !1 },
-          mn = [
+        const un = { cCallsitesToIgnore: 0, bIncludeMessageInIdentifier: !1 },
+          gn = [
             "chrome-extension://",
             "HTMLDivElement.onreset \\(/market",
             "/.millennium/Dist",
             "Refused unauthorized RPC command",
           ];
-        function pn() {
+        function _n() {
           try {
             const t = a.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED,
               e =
@@ -9006,18 +9330,18 @@ var CLSTAMP = "10700074";
             }
           } catch (t) {}
         }
-        class hn {
+        class En {
           constructor(t = !0) {
             (this.m_transport = null),
               (this.m_rgErrorQueue = []),
               (this.m_sendTimer = null),
               (this.m_bReportingPaused = !1),
               (this.m_pauseTimer = void 0),
-              (this.m_fnGetReportingInterval = vn),
+              (this.m_fnGetReportingInterval = Ln),
               (this.m_bEnabled = !0),
               (this.m_bInitialized = !1),
               t
-                ? (sn.forEach(
+                ? (dn.forEach(
                     ({
                       error: t,
                       cCallsitesToIgnore: e,
@@ -9028,14 +9352,14 @@ var CLSTAMP = "10700074";
                         strComponentStack: n,
                       }),
                   ),
-                  (on = (t, e, n) =>
+                  (mn = (t, e, n) =>
                     this.ReportError(t, {
                       cCallsitesToIgnore: e,
                       strComponentStack: n,
                     })))
-                : (on = () => {}),
-              (sn = []),
-              clearTimeout(an),
+                : (mn = () => {}),
+              (dn = []),
+              clearTimeout(cn),
               window.setTimeout(() => {
                 this.m_bInitialized ||
                   ((this.m_bEnabled = !1), (this.m_rgErrorQueue = []));
@@ -9068,12 +9392,12 @@ var CLSTAMP = "10700074";
                   null
                 );
               try {
-                const n = Object.assign(Object.assign({}, dn), e);
+                const n = Object.assign(Object.assign({}, un), e);
                 if (!this.m_bEnabled) return null;
                 0;
                 const a = yield (function (t, e) {
                   try {
-                    return t.stack && t.stack.match(gn)
+                    return t.stack && t.stack.match(Sn)
                       ? (function (t, e) {
                           return (0, r.sH)(this, void 0, void 0, function* () {
                             var n, r;
@@ -9089,7 +9413,7 @@ var CLSTAMP = "10700074";
                                       : n.split("\n")) && void 0 !== r
                                   ? r
                                   : [];
-                            let o = fn(i.filter((t) => !!t.match(gn))[a]);
+                            let o = bn(i.filter((t) => !!t.match(Sn))[a]);
                             s && (o = `${o} ${t.message}`);
                             const l = i
                               .map((t) => {
@@ -9107,12 +9431,12 @@ var CLSTAMP = "10700074";
                               .filter((t) => !!t);
                             return {
                               identifier: o,
-                              identifierHash: yield yn(o),
+                              identifierHash: yield In(o),
                               message: l,
                             };
                           });
                         })(t, e)
-                      : t.stack && t.stack.match(_n)
+                      : t.stack && t.stack.match(fn)
                         ? (function (t, e) {
                             return (0, r.sH)(
                               this,
@@ -9132,7 +9456,7 @@ var CLSTAMP = "10700074";
                                           : n.split("\n")) && void 0 !== r
                                       ? r
                                       : [];
-                                let o = fn(i.filter((t) => !!t.match(_n))[a]);
+                                let o = bn(i.filter((t) => !!t.match(fn))[a]);
                                 s && (o = `${o} ${t.message}`);
                                 const l = i
                                   .map((t) => {
@@ -9150,13 +9474,13 @@ var CLSTAMP = "10700074";
                                   .filter((t) => !!t);
                                 return {
                                   identifier: o,
-                                  identifierHash: yield yn(o),
+                                  identifierHash: yield In(o),
                                   message: [t.message, ...l],
                                 };
                               },
                             );
                           })(t, e)
-                        : t.stack && t.stack.match(En)
+                        : t.stack && t.stack.match(Nn)
                           ? (function (t, e) {
                               return (0, r.sH)(
                                 this,
@@ -9200,18 +9524,18 @@ var CLSTAMP = "10700074";
                                     .filter((t) => !!t);
                                   return {
                                     identifier: c,
-                                    identifierHash: yield yn(c),
+                                    identifierHash: yield In(c),
                                     message: [t.message, ...d],
                                   };
                                 },
                               );
                             })(t, e)
-                          : (Sn ||
+                          : (yn ||
                               (console.warn(
                                 "Error reporter does not know how to parse generated stack:",
                               ),
                               console.warn(t.stack),
-                              (Sn = !0)),
+                              (yn = !0)),
                             null);
                   } catch (t) {
                     return (
@@ -9252,7 +9576,7 @@ var CLSTAMP = "10700074";
           BIsBlacklisted(t) {
             for (let e of t.message) {
               let n = JSON.stringify(e);
-              for (let e of mn) {
+              for (let e of gn) {
                 const r = new RegExp(e);
                 if (n.match(r))
                   return console.warn("Report", t, "matched regex", e), !0;
@@ -9291,7 +9615,7 @@ var CLSTAMP = "10700074";
               ),
               n = Object.keys(e).map((t) => {
                 const { report: n, count: r } = e[t],
-                  a = new Xe();
+                  a = new Ze();
                 return (
                   a.set_count(r),
                   a.set_identifier(n.identifier + " " + n.identifierHash),
@@ -9303,7 +9627,7 @@ var CLSTAMP = "10700074";
                   a
                 );
               }),
-              r = new $e();
+              r = new Je();
             r.set_product(this.m_strProduct),
               r.set_version(this.m_strVersion),
               r.set_errors(n);
@@ -9313,20 +9637,20 @@ var CLSTAMP = "10700074";
                 ((null === VRHTML || void 0 === VRHTML
                   ? void 0
                   : VRHTML.HasHMD()) || t.push("no_hmd"),
-                null == tn ? void 0 : tn.systemInfo)
+                null == an ? void 0 : an.systemInfo)
               ) {
                 const e = -103;
-                tn.systemInfo.os_type > 0
+                an.systemInfo.os_type > 0
                   ? t.push("windows")
-                  : tn.systemInfo.os_type <= e && t.push("linux");
+                  : an.systemInfo.os_type <= e && t.push("linux");
               }
-              (null == nn ? void 0 : nn.IsSteamAvailable) || t.push("no_steam");
+              (null == on ? void 0 : on.IsSteamAvailable) || t.push("no_steam");
               const e =
                 null === VRHTML || void 0 === VRHTML
                   ? void 0
                   : VRHTML.VRProperties.GetStringProperty(
                       "/user/head",
-                      ne.ActualTrackingSystemName_String,
+                      se.ActualTrackingSystemName_String,
                     );
               return e && t.push(e), t;
             })())
@@ -9343,10 +9667,10 @@ var CLSTAMP = "10700074";
             return this.m_strProduct;
           }
           get reporting_enabled() {
-            return ln;
+            return pn;
           }
         }
-        function un(t, ...e) {
+        function Cn(t, ...e) {
           if ("string" == typeof t && 0 === e.length) return t;
           return [t, ...e]
             .map((t) => {
@@ -9359,12 +9683,12 @@ var CLSTAMP = "10700074";
             })
             .join(", ");
         }
-        const gn = /^\s*at .*(\S+:\d+|\(native\))/m,
-          _n = /(^|@)\S+:\d+/,
-          En = /.*\/bundle-[a-zA-Z0-9]+:\d+:\d+/;
-        let Cn,
-          Sn = !1;
-        function fn(t) {
+        const Sn = /^\s*at .*(\S+:\d+|\(native\))/m,
+          fn = /(^|@)\S+:\d+/,
+          Nn = /.*\/bundle-[a-zA-Z0-9]+:\d+:\d+/;
+        let vn,
+          yn = !1;
+        function bn(t) {
           return (function (t) {
             const e = "https://",
               n = t.indexOf(e);
@@ -9380,19 +9704,19 @@ var CLSTAMP = "10700074";
             })(t),
           );
         }
-        const Nn = (t) => {
-          (Cn = t), kt.InstallErrorReportingStore(Cn);
+        const Pn = (t) => {
+          (vn = t), Bt.InstallErrorReportingStore(vn);
         };
-        function yn(t) {
+        function In(t) {
           return (0, r.sH)(this, void 0, void 0, function* () {
             try {
-              return (yield Qe(t)).slice(0, 16);
+              return (yield tn(t)).slice(0, 16);
             } catch (t) {
               return "";
             }
           });
         }
-        function vn() {
+        function Ln() {
           return (
             1e3 *
             ((t = 1),
@@ -9403,7 +9727,7 @@ var CLSTAMP = "10700074";
           );
           var t, e;
         }
-        class bn {
+        class Mn {
           constructor(t) {
             this.m_strWebAPIBaseURL = t;
           }
@@ -9423,15 +9747,15 @@ var CLSTAMP = "10700074";
                 .catch((t) => {});
           }
         }
-        let In;
-        function Pn(t) {
+        let Rn;
+        function Dn(t) {
           return a.createElement(
             "div",
             { className: "FlexColumn BottomRight HalfWidth" },
             t.children,
           );
         }
-        function Ln(t) {
+        function wn(t) {
           let e = "ButtonControl";
           return (
             t.focus && (e += " Focus"),
@@ -9442,28 +9766,28 @@ var CLSTAMP = "10700074";
             )
           );
         }
-        function Mn() {
+        function xn() {
           return a.createElement(
             "div",
             { className: "ControllerBackground" },
-            a.createElement("div", { className: "ViveTracker" }, Ie(!1)),
-            a.createElement("div", { className: "Knuckles" }, be(!1)),
-            a.createElement("div", { className: "ViveWand" }, Pe(!1)),
-            a.createElement("div", { className: "VRInkPilotEdition" }, Pe(!1)),
+            a.createElement("div", { className: "ViveTracker" }, Re(!1)),
+            a.createElement("div", { className: "Knuckles" }, Me(!1)),
+            a.createElement("div", { className: "ViveWand" }, De(!1)),
+            a.createElement("div", { className: "VRInkPilotEdition" }, De(!1)),
           );
         }
         (0, u.jK)({ enforceActions: "never" });
-        let Rn = class extends a.Component {
+        let kn = class extends a.Component {
           constructor(t) {
-            super(t), xe.init(), (this.state = { pairingDeviceInfo: null });
+            super(t), Be.init(), (this.state = { pairingDeviceInfo: null });
           }
           render() {
             let t;
-            switch (xe.pairingState) {
-              case ye.Idle:
+            switch (Be.pairingState) {
+              case Ie.Idle:
                 t = null;
                 break;
-              case ye.FetchingInitialDongleList:
+              case Ie.FetchingInitialDongleList:
                 t = a.createElement(
                   "div",
                   { className: "InitializingPage" },
@@ -9489,20 +9813,20 @@ var CLSTAMP = "10700074";
                     ),
                   ),
                   a.createElement(
-                    Pn,
+                    Dn,
                     null,
-                    a.createElement(Ln, {
-                      onClick: xe.Close,
+                    a.createElement(wn, {
+                      onClick: Be.Close,
                       text: d("#pairing_button_cancel"),
                     }),
                   ),
                 );
                 break;
-              case ye.NoDonglesAvailable:
+              case Ie.NoDonglesAvailable:
                 t = a.createElement(
                   "div",
                   null,
-                  a.createElement(Mn, null),
+                  a.createElement(xn, null),
                   a.createElement(
                     "div",
                     { className: "Title Label" },
@@ -9525,20 +9849,20 @@ var CLSTAMP = "10700074";
                     ),
                   ),
                   a.createElement(
-                    Pn,
+                    Dn,
                     null,
-                    a.createElement(Ln, {
-                      onClick: xe.Close,
+                    a.createElement(wn, {
+                      onClick: Be.Close,
                       text: d("#pairing_button_cancel"),
                     }),
                   ),
                 );
                 break;
-              case ye.NoDonglesDetected:
+              case Ie.NoDonglesDetected:
                 t = a.createElement(
                   "div",
                   null,
-                  a.createElement(Mn, null),
+                  a.createElement(xn, null),
                   a.createElement(
                     "div",
                     { className: "Title Label" },
@@ -9564,20 +9888,20 @@ var CLSTAMP = "10700074";
                     className: "FlexColumn BottomRight HalfWidth",
                   }),
                   a.createElement(
-                    Pn,
+                    Dn,
                     null,
-                    a.createElement(Ln, {
-                      onClick: xe.Close,
+                    a.createElement(wn, {
+                      onClick: Be.Close,
                       text: d("#pairing_button_cancel"),
                     }),
                   ),
                 );
                 break;
-              case ye.PairingFailed:
+              case Ie.PairingFailed:
                 t = a.createElement(
                   "div",
                   null,
-                  a.createElement(Mn, null),
+                  a.createElement(xn, null),
                   a.createElement(
                     "div",
                     { className: "Title Label" },
@@ -9593,32 +9917,32 @@ var CLSTAMP = "10700074";
                     ),
                   ),
                   a.createElement(
-                    Pn,
+                    Dn,
                     null,
-                    a.createElement(Ln, {
-                      onClick: xe.Close,
+                    a.createElement(wn, {
+                      onClick: Be.Close,
                       text: d("#pairing_button_cancel"),
                     }),
                   ),
                 );
                 break;
-              case ye.UpdatingDongleListAfterPairing:
-              case ye.Success:
-              case ye.WaitingForDeviceToPair:
-              case ye.TimedOut:
+              case Ie.UpdatingDongleListAfterPairing:
+              case Ie.Success:
+              case Ie.WaitingForDeviceToPair:
+              case Ie.TimedOut:
                 t =
-                  null != xe.pairingDevice
-                    ? xe.pairingDevice.render()
-                    : a.createElement(ke, null);
+                  null != Be.pairingDevice
+                    ? Be.pairingDevice.render()
+                    : a.createElement(Fe, null);
                 break;
-              case ye.DongleListReady:
-                t = a.createElement(ke, null);
+              case Ie.DongleListReady:
+                t = a.createElement(Fe, null);
                 break;
               default:
                 t = a.createElement(
                   "div",
                   null,
-                  a.createElement(Mn, null),
+                  a.createElement(xn, null),
                   a.createElement("div", { className: "Title Label" }, "Uh oh"),
                   a.createElement(
                     "div",
@@ -9630,10 +9954,10 @@ var CLSTAMP = "10700074";
                     ),
                   ),
                   a.createElement(
-                    Pn,
+                    Dn,
                     null,
-                    a.createElement(Ln, {
-                      onClick: xe.Close,
+                    a.createElement(wn, {
+                      onClick: Be.Close,
                       text: d("#pairing_button_cancel"),
                     }),
                   ),
@@ -9646,7 +9970,7 @@ var CLSTAMP = "10700074";
             );
           }
         };
-        (Rn = (0, r.Cg)([i.PA], Rn)),
+        (kn = (0, r.Cg)([i.PA], kn)),
           (function (t, e) {
             e ||
               (e = (function () {
@@ -9746,17 +10070,17 @@ var CLSTAMP = "10700074";
             );
           })(
             ["lighthouse_web"],
-            null == fe ? void 0 : fe.GetSteamLanguage(),
+            null == be ? void 0 : be.GetSteamLanguage(),
           ).then(() => {
-            (Cn || Nn(new hn()), Cn).Init(
+            (vn || Pn(new En()), vn).Init(
               "SteamVR",
               CLSTAMP,
-              (In || (In = new bn("https://api.steampowered.com/")), In),
+              (Rn || (Rn = new Mn("https://api.steampowered.com/")), Rn),
             ),
               (document.title = d("#pairing_window_title")),
               s
                 .H(document.getElementById("root"))
-                .render(a.createElement(Rn, null));
+                .render(a.createElement(kn, null));
           });
       },
     },
@@ -9827,6 +10151,6 @@ var CLSTAMP = "10700074";
         n = (self.webpackChunkvrwebui = self.webpackChunkvrwebui || []);
       n.forEach(e.bind(null, 0)), (n.push = e.bind(null, n.push.bind(n)));
     })();
-  var a = r.O(void 0, [851], () => r(864));
+  var a = r.O(void 0, [851], () => r(437));
   a = r.O(a);
-})(); //# sourceMappingURL=file:///home/buildbot/buildslave/steamvr_rel_hotfix_npm_vrwebui/build/public/runtime/drivers/lighthouse/resources/webinterface/sourcemaps/pairing.js.map
+})(); //# sourceMappingURL=file:///home/buildbot/buildslave/steamvr_rel_npm_vrwebui/build/public/runtime/drivers/lighthouse/resources/webinterface/sourcemaps/pairing.js.map

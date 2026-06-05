@@ -72,6 +72,7 @@ var CLSTAMP = "steamdb";
             (_.properties["skydome-mult"] = (0, _._)(
               this.props["skydome-mult"],
             )),
+            (_.properties["aurora-blur"] = (0, _._)(this.props["aurora-blur"])),
             (_.properties["roomview-mult"] = (0, _._)(
               this.props["roomview-mult"],
             )),
@@ -500,10 +501,11 @@ var CLSTAMP = "steamdb";
             (_.properties["min-tile-scale-at-periphery"] =
               this.props["min-tile-scale-at-periphery"]),
             (_.properties.height = (0, _._)(this.props.height)),
-            (_.properties.offset = [
-              null === (_ = this.props.offset) || void 0 === _ ? void 0 : _._,
-              null === (_ = this.props.offset) || void 0 === _ ? void 0 : _._,
-            ]),
+            null != this.props.offset &&
+              (_.properties.offset = [
+                null === (_ = this.props.offset) || void 0 === _ ? void 0 : _._,
+                null === (_ = this.props.offset) || void 0 === _ ? void 0 : _._,
+              ]),
             "string" == typeof this.props.color)
           )
             _.properties.color = this.props.color;

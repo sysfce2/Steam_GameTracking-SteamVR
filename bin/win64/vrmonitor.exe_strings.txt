@@ -724,7 +724,6 @@ $\t?contains@QRectF@@QEBA_NAEBVQPointF@@@Z
 /vrlinkdongledriver
 /wmr
 0123456789ABCDEF
-07:05:59
 0:00
 0x%016llx
 0x%08llx
@@ -732,6 +731,7 @@ $\t?contains@QRectF@@QEBA_NAEBVQPointF@@@Z
 1!?widget@QTabWidget@@QEBAPEAVQWidget@@H@Z
 100%
 1000
+14:12:14
 1DoAcquireData()
 1DoInit()
 1DoParseString( const QString & )
@@ -3060,6 +3060,7 @@ Attached Device ID: \t%1\nSupported Buttons:\t%2\nAxis 0 Type:\t%3\nAxis 1 Type:
 Attached HID Devices:\n
 Attempt to init shared state %s twice
 Attempt to take invalid index:
+Attempting to start home app %s
 Attempts
 Audio
 Audio Bridge Firmware:
@@ -4674,7 +4675,7 @@ J\n?drawForeground@QGraphicsScene@@MEAAXPEAVQPainter@@AEBVQRectF@@@Z
 J\r?indexOf@QString@@QEBAHVQChar@@HW4CaseSensitivity@Qt@@@Z
 J\t?brush@QPainter@@QEBAAEBVQBrush@@XZ
 JoysticksFound
-Jun  2 2026
+Jun  5 2026
 K32EnumProcessModules
 K32EnumProcesses
 K32GetModuleBaseNameA
@@ -5955,6 +5956,7 @@ RPCRT4.dll
 RSDS
 RSSI: %1\n
 R\v?find@QPlainTextEdit@@QEAA_NAEBVQString@@V?$QFlags@W4FindFlag@QTextDocument@@@@@Z
+R\vpD
 Radio
 Radio Version:
 Radio Version: \t%1 / %2 %3 %4\n
@@ -7853,6 +7855,7 @@ atan2
 atof
 atoi
 audio
+auroraPlayspace
 autoAddPlottableToLegend
 autoSubTicks
 autoTickCount
@@ -7950,17 +7953,17 @@ bugreport.zip
 bugsub
 bulgarian
 c ?updateEditorGeometry@QStyledItemDelegate@@UEBAXPEAVQWidget@@AEBVQStyleOptionViewItem@@AEBVQModelIndex@@@Z
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrmailbox.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrserviceclient.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\ipcwin32.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\logbuffer.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\strtools_public.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\vrcrash.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\vripcsharedstate.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\overlay_viewer\d3drenderer_shared.cpp:414
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\overlay_viewer\d3drenderer_shared.cpp:421
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrmonitor\Retail\win64\2017\vrmonitor.pdb
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrmonitor\imagetool.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrmailbox.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrserviceclient.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\ipcwin32.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\logbuffer.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\strtools_public.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\vrcrash.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\vripcsharedstate.cpp
+c:\buildslave\steamvr_rel_win64\build\src\overlay_viewer\d3drenderer_shared.cpp:414
+c:\buildslave\steamvr_rel_win64\build\src\overlay_viewer\d3drenderer_shared.cpp:421
+c:\buildslave\steamvr_rel_win64\build\src\vrmonitor\Retail\win64\2017\vrmonitor.pdb
+c:\buildslave\steamvr_rel_win64\build\src\vrmonitor\imagetool.cpp
 cR?reset@QTransform@@QEAAXXZ
 c\n?dropEvent@QListWidget@@UEAAXPEAVQDropEvent@@@Z
 c\v?finished@QDialog@@QEAAXH@Z

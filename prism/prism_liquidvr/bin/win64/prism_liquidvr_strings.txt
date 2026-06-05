@@ -158,7 +158,7 @@ PRISM_Stop
 QueryPerformanceCounter
 QueryPerformanceFrequency
 RPCRT4.dll
-RSDS
+RSDSi
 RaiseException
 RtlCaptureContext
 RtlLookupFunctionEntry
@@ -229,12 +229,12 @@ api-ms-win-crt-stdio-l1-1-0.dll
 api-ms-win-crt-string-l1-1-0.dll
 bad allocation
 bad array new length
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\include\facet\vkresource.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vkresource.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\facet\src\vksync.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\prism\plugins\prism_liquidvr\Retail\win64\2017\prism_liquidvr.pdb
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\prism\plugins\prism_liquidvr\motionestimator_liquidvr.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\prism\plugins\prism_liquidvr\prismdisplay_liquidvr.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\include\facet\vkresource.h
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\vkresource.cpp
+c:\buildslave\steamvr_rel_win64\build\src\facet\src\vksync.cpp
+c:\buildslave\steamvr_rel_win64\build\src\prism\plugins\prism_liquidvr\Retail\win64\2017\prism_liquidvr.pdb
+c:\buildslave\steamvr_rel_win64\build\src\prism\plugins\prism_liquidvr\motionestimator_liquidvr.cpp
+c:\buildslave\steamvr_rel_win64\build\src\prism\plugins\prism_liquidvr\prismdisplay_liquidvr.cpp
 dxgi.dll
 free
 lhs->m_pTimeline == rhs->m_pTimeline

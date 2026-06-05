@@ -476,6 +476,7 @@ var CLSTAMP = "steamdb";
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
+            __webpack_require__("chunkid"),
             __webpack_require__("chunkid")),
           _ = __webpack_require__("chunkid");
         const _ = VRHTML;
@@ -485,14 +486,18 @@ var CLSTAMP = "steamdb";
           _: () => _,
           _: () => _,
           _: () => _,
+          _: () => _,
+          _: () => _,
         });
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
-        const _ = "vrwebui_dashboardstore",
-          _ = "binding_callouts/main";
+        const _ = "vrcompositor_systemlayer",
+          _ = "vrwebui_dashboardstore",
+          _ = "binding_callouts/main",
+          _ = "scene_graph";
         class _ {
           constructor() {
             (this.m_wsWebSocketToServer = void 0),
@@ -823,16 +828,19 @@ var CLSTAMP = "steamdb";
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.LaserMouse = 1)] = "LaserMouse"),
-              (_[(_.Keyboard = 2)] = "Keyboard"),
-              (_[(_.RoomView = 4)] = "RoomView"),
-              (_[(_.DisplaySuppressed = 8)] = "DisplaySuppressed"),
-              (_[(_.SystemButtonDown = 16)] = "SystemButtonDown"),
-              (_[(_.DriverIsDrawingControllers = 32)] =
+              (_[(_.RoomViewFullyOccludingApp = 2)] =
+                "RoomViewFullyOccludingApp"),
+              (_[(_.DisplaySuppressed = 4)] = "DisplaySuppressed"),
+              (_[(_.SystemButtonDown = 8)] = "SystemButtonDown"),
+              (_[(_.DriverIsDrawingControllers = 16)] =
                 "DriverIsDrawingControllers"),
-              (_[(_.DriverRequestsApplicationPause = 64)] =
+              (_[(_.DriverRequestsApplicationPause = 32)] =
                 "DriverRequestsApplicationPause"),
-              (_[(_.DriverRequestsReducedRendering = 128)] =
-                "DriverRequestsReducedRendering");
+              (_[(_.DriverRequestsReducedRendering = 64)] =
+                "DriverRequestsReducedRendering"),
+              (_[(_.DashboardTutorial = 128)] = "DashboardTutorial"),
+              (_[(_.GamepadMode = 512)] = "GamepadMode"),
+              (_[(_.SystemKeyboardPrivacy = 1024)] = "SystemKeyboardPrivacy");
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.BULK_DEFAULT = 0)] = "BULK_DEFAULT"),

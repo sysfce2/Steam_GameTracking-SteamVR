@@ -301,10 +301,7 @@ var CLSTAMP = "steamdb";
             };
           _ =
             "object" == typeof this.props.origin
-              ? (0, _._)(this.props.origin, {
-                  _: 0,
-                  _: 0,
-                })
+              ? (0, _._)(this.props.origin)
               : _(this.props.origin);
           const _ = this.props.overlay_key,
             _ = (0, _._)();
@@ -528,8 +525,8 @@ var CLSTAMP = "steamdb";
             );
         }
         internalRender() {
-          var _;
-          let _, _, _;
+          var _, _, _;
+          let _, _, _, _;
           this.props.transform
             ? ((_ = (0, _._)(this.props.transform.translation)),
               (_ = this.props.transform.rotation),
@@ -570,7 +567,17 @@ var CLSTAMP = "steamdb";
                       _: 1,
                       _: 1,
                       _: 1,
-                    })));
+                    }))),
+            null !=
+              (null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _.parent_origin) &&
+              (_ =
+                _[
+                  null === (_ = this.props) || void 0 === _
+                    ? void 0
+                    : _.parent_origin
+                ]);
           let _ = (0, _._)(_),
             _ = (0, _._)(_);
           return _.createElement(
@@ -584,7 +591,7 @@ var CLSTAMP = "steamdb";
               "ignore-parent-scale": this.props.ignore_parent_scale,
               "transform-path": this.props.transform_path,
               "parent-path": this.props.parent_path,
-              "parent-origin": _[this.props.parent_origin],
+              "parent-origin": _,
               "parent-id": this.props.parent_id,
               "frame-resize-scale-factor": this.props.frame_resize_scale_factor,
             },

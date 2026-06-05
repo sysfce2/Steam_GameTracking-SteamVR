@@ -179,8 +179,9 @@ var CLSTAMP = "steamdb";
           var _;
         });
       }
-      var _ = __webpack_require__("chunkid");
       var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       const _ =
@@ -634,15 +635,7 @@ var CLSTAMP = "steamdb";
         });
       }
       function _() {
-        return (
-          1e3 *
-          ((_ = 1),
-          (_ = _._ - 1),
-          (_ = Math.ceil(_)),
-          (_ = Math.floor(_)),
-          Math.floor(Math.random() * (_ - _ + 1)) + _)
-        );
-        var _, _;
+        return 1e3 * (0, _._)(1, _._ - 1);
       }
       class _ {
         constructor(_) {
@@ -974,7 +967,7 @@ var CLSTAMP = "steamdb";
             }
           else if (_) {
             const _ = _.Message.getField(_, _);
-            void 0 !== _ && _.call(_, _, _);
+            null != _ && _.call(_, _, _);
           } else
             console.assert(
               !!_,

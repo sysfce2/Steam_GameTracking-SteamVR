@@ -52,9 +52,22 @@ var CLSTAMP = "steamdb";
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
+            __webpack_require__("chunkid"),
             __webpack_require__("chunkid")),
           _ = __webpack_require__("chunkid");
         const _ = VRHTML;
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        function _(_, _) {
+          return (
+            (_ = Math.ceil(_)),
+            (_ = Math.floor(_)),
+            Math.floor(Math.random() * (_ - _ + 1)) + _
+          );
+        }
+        __webpack_require__._(_, {
+          _: () => _,
+        });
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         var _ = __webpack_require__("chunkid"),

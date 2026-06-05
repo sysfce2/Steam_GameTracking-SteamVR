@@ -5,6 +5,7 @@ var CLSTAMP = "steamdb";
     chunkid: (module, module_exports, __webpack_require__) => {
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       class _ extends _._ {
         constructor(_) {
@@ -19,6 +20,8 @@ var CLSTAMP = "steamdb";
             (_.properties.name = this.props.name),
             (_.properties.channel = this.props.channel),
             (_.properties.debug = this.props.debug),
+            (_.properties["dock-location"] =
+              this.props.dockLocation || _._.Dashboard),
             [_, _]
           );
         }
@@ -48,6 +51,49 @@ var CLSTAMP = "steamdb";
               null !== (_ = this.props.bFreeDashboardTransform) &&
               void 0 !== _ &&
               _),
+            [_, _]
+          );
+        }
+      }
+      (0, _._)([_._], _.prototype, "buildNode", null);
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      class _ extends _._ {
+        constructor(_) {
+          super(_), super.setBuildNodeOverride(this.buildNode);
+        }
+        getNodeType() {
+          return "grab-scale";
+        }
+        buildNode(_, _) {
+          var _, _, _, _, _, _;
+          const _ = this.createSgNode(_);
+          return (
+            (_.properties["event-panel-sgid"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _.event_panel_sgid),
+            (_.properties["is-active"] =
+              null === (_ = this.props) || void 0 === _ ? void 0 : _.is_active),
+            (_.properties["base-distance"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _.base_distance),
+            (_.properties["scroll-speed"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _.scroll_speed),
+            (_.properties["min-distance"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _.min_distance),
+            (_.properties["max-distance"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _.max_distance),
             [_, _]
           );
         }
@@ -185,7 +231,7 @@ var CLSTAMP = "steamdb";
             let _ = this.props.fresnel;
             if ("string" == typeof _.color) _.properties.color = _.color;
             else {
-              let _ = (0, _._)(_.color, {
+              let _ = (0, _._)(null == _ ? void 0 : _.color, {
                 _: 0,
                 _: 0,
                 _: 0,
@@ -207,6 +253,37 @@ var CLSTAMP = "steamdb";
         }
       }
       (0, _._)([_._], _.prototype, "buildNode", null);
+      class _ extends _._ {
+        constructor(_) {
+          super(_), super.setBuildNodeOverride(this.buildNode);
+        }
+        getNodeType() {
+          return "rendermodel-component-overrides";
+        }
+        buildNode(_, _) {
+          const {
+              action_name: _,
+              throbbing: _,
+              throbColor: _ = "#1a9fff",
+              throbPeriod: _ = 1.25,
+              throbContrast: _ = 2,
+              throbMinBlend: _ = 0,
+              throbMaxBlend: _ = 1,
+            } = this.props,
+            _ = this.createSgNode(_);
+          return (
+            (_.properties["action-name"] = _),
+            (_.properties.throbbing = _),
+            (_.properties["throb-color"] = _),
+            (_.properties["throb-period"] = _),
+            (_.properties["throb-contrast"] = _),
+            (_.properties["throb-min-blend"] = _),
+            (_.properties["throb-max-blend"] = _),
+            [_, _]
+          );
+        }
+      }
+      (0, _._)([_._], _.prototype, "buildNode", null);
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       var _ = __webpack_require__("chunkid"),
@@ -223,7 +300,7 @@ var CLSTAMP = "steamdb";
           const _ = this.createSgNode(_),
             _ = Object.assign(Object.assign({}, _), {
               bInsideReparentedPanel: !0,
-              currentPanel: null,
+              currentPanel: void 0,
             });
           return (
             this.props.parent_overlay_key &&
@@ -513,7 +590,8 @@ var CLSTAMP = "steamdb";
                   (_.properties["reset-on-recenter"] = _(
                     _,
                     "reset-on-recenter",
-                  ));
+                  )),
+                  (_.properties["event-panel-sgid"] = _(_, "event-panel-sgid"));
             }
             return [_, _];
           })(_, _),
@@ -662,7 +740,171 @@ var CLSTAMP = "steamdb";
       (0, _._)([_._], _.prototype, "buildNode", null);
     },
     chunkid: (module, module_exports, __webpack_require__) => {
-      __webpack_require__("chunkid");
+      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      const _ = new _._("SGQueryService");
+      class _ {
+        constructor() {
+          (this.m_mailbox = new _._()),
+            (this.m_mapPanelHeightSubscriptions = new Map()),
+            (this.m_setPanelSubscriptionsToAdd = new Set()),
+            (this.m_setPanelSubscriptionsToRemove = new Set()),
+            (this.m_bHasPendingSubscriptionUpdates = !1),
+            (this.m_bInitializedPanelSubscriptions = !1),
+            this.m_mailbox.Init("sgqueryservice").then(() => {
+              this.m_mailbox.RegisterHandler(
+                "panel_height_update",
+                this.OnPanelHeightUpdate,
+              );
+            });
+        }
+        static getInstance() {
+          return (
+            _.instance ||
+              ((_.instance = new _()), (window.SGQueryService = _.instance)),
+            _.instance
+          );
+        }
+        SubscribeToPanelHeight(_, _) {
+          _ = (0, _._)(_);
+          let _ = this.m_mapPanelHeightSubscriptions.get(_);
+          _ ||
+            ((_ = {
+              m_Callbacks: new _._(),
+              m_lastMeasurement: void 0,
+            }),
+            this.m_mapPanelHeightSubscriptions.set(_, _)),
+            0 == _.m_Callbacks.CountRegistered() &&
+              (this.m_setPanelSubscriptionsToAdd.add(_),
+              this.m_setPanelSubscriptionsToRemove.delete(_),
+              this.QueueSubscriptionUpdates());
+          const _ = _.m_Callbacks.Register(_),
+            _ = {
+              Unregister: () => {
+                _.Unregister(),
+                  0 == _.m_Callbacks.CountRegistered() &&
+                    (this.m_setPanelSubscriptionsToRemove.add(_),
+                    this.m_setPanelSubscriptionsToAdd.delete(_),
+                    this.QueueSubscriptionUpdates());
+              },
+            };
+          return (
+            _.m_lastMeasurement &&
+              setTimeout(
+                () =>
+                  _(
+                    Object.assign(Object.assign({}, _.m_lastMeasurement), {
+                      m_bStale: !0,
+                    }),
+                  ),
+                0,
+              ),
+            _
+          );
+        }
+        OnPanelHeightUpdate(_) {
+          _.Debug("Received panel height updates:", _.panels);
+          for (const _ of _.panels) {
+            const _ = this.m_mapPanelHeightSubscriptions.get(_.panel_id);
+            _ &&
+              ((_.m_lastMeasurement = {
+                m_flRawPanelHeight: _.panel_height,
+                m_flTransformScaleDuringMeasure:
+                  _.transform_scale_during_measure,
+              }),
+              _.m_Callbacks.Dispatch(
+                Object.assign(Object.assign({}, _.m_lastMeasurement), {
+                  m_bStale: !1,
+                }),
+              ));
+          }
+        }
+        QueueSubscriptionUpdates() {
+          return (0, _._)(this, void 0, void 0, function* () {
+            if (this.m_bHasPendingSubscriptionUpdates) return;
+            (this.m_bHasPendingSubscriptionUpdates = !0),
+              yield this.m_mailbox.WaitForConnect();
+            const _ = !this.m_bInitializedPanelSubscriptions;
+            if (
+              this.m_setPanelSubscriptionsToAdd.size > 0 ||
+              this.m_setPanelSubscriptionsToRemove.size > 0 ||
+              _
+            ) {
+              const _ = {
+                type: "update_panel_height_subscriptions",
+                subscribe_panel_ids: Array.from(
+                  this.m_setPanelSubscriptionsToAdd,
+                ),
+                unsubscribe_panel_ids: Array.from(
+                  this.m_setPanelSubscriptionsToRemove,
+                ),
+                unsubscribe_all: _,
+              };
+              _.Debug(`Sending ${_.type} message:`, _),
+                this.m_mailbox.SendMessage(_._, _);
+            }
+            this.m_setPanelSubscriptionsToAdd.clear(),
+              this.m_setPanelSubscriptionsToRemove.clear(),
+              (this.m_bHasPendingSubscriptionUpdates = !1),
+              (this.m_bInitializedPanelSubscriptions = !0);
+          });
+        }
+        requestSGTransform(_) {
+          return (0, _._)(this, arguments, void 0, function* (_, _ = 0, _ = 0) {
+            if (!_ || _.toLowerCase().includes("undefined"))
+              return Promise.reject("Invalid transform ID");
+            const _ = {
+                type: "transform_request",
+                _: _,
+                flPushDistance: _,
+                timeoutSec: _,
+              },
+              _ = yield this.m_mailbox.SendMessageAndWaitForResponse(
+                _._,
+                _,
+                "transform_response",
+              );
+            return _._ == _ && _.transform
+              ? _.transform
+              : Promise.reject("requestSGTransform failed");
+          });
+        }
+        requestSGTransformRelative(_, _) {
+          return (0, _._)(this, arguments, void 0, function* (_, _, _ = 0) {
+            var _;
+            if (
+              !_ ||
+              _.toLowerCase().includes("undefined") ||
+              !_ ||
+              _.toLowerCase().includes("undefined")
+            )
+              return Promise.reject("Invalid transform ID");
+            const _ = {
+                type: "transform_request",
+                from_id: _,
+                _: _,
+                timeoutSec: _,
+              },
+              _ = yield this.m_mailbox.SendMessageAndWaitForResponse(
+                _._,
+                _,
+                "transform_response",
+              );
+            return _.from_id == _ && _._ == _ && _.transform
+              ? _.transform
+              : Promise.reject(
+                  null !== (_ = _.error) && void 0 !== _
+                    ? _
+                    : "requestSGTransform failed",
+                );
+          });
+        }
+      }
+      (0, _._)([_._], _.prototype, "OnPanelHeightUpdate", null);
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       __webpack_require__._(module_exports, {
@@ -1018,6 +1260,8 @@ var CLSTAMP = "steamdb";
             (this.m_mapSettingsLastWriteInfo = new Map()),
             (this.m_bIsSettingApp = !1),
             (this.m_bInitStarted = !1),
+            (this.m_appFrameLimits = []),
+            (this.m_mapRefreshRatesForFrameLimit = new Map()),
             (this.GetAppList = function () {
               return new Promise(function (_, _) {
                 _()
@@ -1269,7 +1513,7 @@ var CLSTAMP = "steamdb";
               this.WebSocketSend("settings_close");
             }),
             _.GetSettingsInfo().then((_) => {
-              this.systemInfo = _;
+              this.OnVRSystemInfo(_);
             }),
             _.GetAppList().then((_) => {
               this.OnVRAppList({
@@ -1366,6 +1610,28 @@ var CLSTAMP = "steamdb";
         OnVRAudioDevices(_) {
           console.log("Got audio devices"), (this.audioDevices = _);
         }
+        OnVRSystemInfo(_) {
+          this.systemInfo = _;
+          const _ = _.refresh_rates.supported_rates.map((_) => Math.round(_));
+          if (_.length > 1) {
+            this.m_mapRefreshRatesForFrameLimit.clear(),
+              (this.m_appFrameLimits = _.slice());
+            for (const _ of _)
+              for (let _ = 1; _ <= 4; _++) {
+                const _ = Math.round(_ / _);
+                if (_ < 30) break;
+                const _ = this.m_mapRefreshRatesForFrameLimit.get(_);
+                _ ? _.push(_) : this.m_mapRefreshRatesForFrameLimit.set(_, [_]);
+                for (let _ = 0; _ < this.m_appFrameLimits.length; _++) {
+                  if (this.m_appFrameLimits[_] > _) {
+                    this.m_appFrameLimits.splice(_, 0, _);
+                    break;
+                  }
+                  if (this.m_appFrameLimits[_] === _) break;
+                }
+              }
+          }
+        }
         OnVRAppList(_) {
           (this.apps = _.apps),
             _.apps.map((_) => this.probablyOwnedAppkeys.add(_.key));
@@ -1383,6 +1649,16 @@ var CLSTAMP = "steamdb";
               for (let _ of _.values)
                 if (_ && this.SettingNameMatches(_, _.name)) return _;
           return null;
+        }
+        get appFrameLimits() {
+          return this.m_appFrameLimits;
+        }
+        GetRefreshRatesForFrameLimit(_) {
+          var _;
+          return null !== (_ = this.m_mapRefreshRatesForFrameLimit.get(_)) &&
+            void 0 !== _
+            ? _
+            : [_];
         }
         ResetSettingsValue(_) {
           this.SetSettingsValue(_, null);
@@ -1512,12 +1788,6 @@ var CLSTAMP = "steamdb";
             ? void 0
             : _.name;
         }
-        get NumSupersamplingSteps() {
-          return Math.floor(4.81 / 0.02);
-        }
-        SliderposToSupersample(_) {
-          return _ > 5 ? 5 : _ < 0.2 ? 0.2 : _;
-        }
         get showAdvancedSettings() {
           return this.settings.get(_._);
         }
@@ -1580,8 +1850,7 @@ var CLSTAMP = "steamdb";
           _.prototype,
           "SetSettingsStringValueWithoutSchema",
           null,
-        ),
-        (0, _._)([_.computed], _.prototype, "NumSupersamplingSteps", null);
+        );
       const _ = new _();
       window.VRSettingsState = _;
     },

@@ -491,7 +491,7 @@ $tAUUPE
 .?AVCDepthAugmentedPassthrough@@
 .?AVCDisambiguatorFramer@vortex@@
 .?AVCDisambiguatorSyncOnBeam@vortex@@
-.?AVCDisambiguatorTDM@?A0xf3883f88@vortex@@
+.?AVCDisambiguatorTDM@?A0xdd5c741a@vortex@@
 .?AVCDynamicState@pb@lighthouse@@
 .?AVCFirmwareManifest@@
 .?AVCHandPoseLogic_IndexController@@
@@ -837,9 +837,8 @@ $tAUUPE
 0-pixel image
 00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899
 00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899"
-00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899hq$
+00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899(q$
 0123456789abcdef
-0a\v6<
 0x%08llx
 1.2.5
 1/2/4/8/16-bit only
@@ -2151,7 +2150,7 @@ QueryServiceConfigW
 R1h58
 RENDERDOC_GetAPI
 RPCRT4.dll
-RSDSnR
+RSDS
 Radio
 RaiseException
 Reached an unintended state: CPPTYPE_MESSAGE
@@ -3226,18 +3225,18 @@ byteLength
 byteOffset
 byteStride
 bytes
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\animation\animresourcemanager.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\openvrtools.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\vrmailbox.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\logbuffer.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\threadwatchdog.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\drivers\lighthouse\Retail_lighthouse\win64\2017\driver_lighthouse.pdb
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\drivers\lighthouse\lighthousehmddriver.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\drivers\lighthouse\lighthouseserverdriverprovider.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\thirdparty\protobuf-2.6.1\src\google\protobuf\repeated_field.h
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vortexlib\distortion.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vortexlib\generated_proto_x64\lighthouse_debug.pb.cc
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vortexlib\stereo_setup.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\animation\animresourcemanager.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\openvrtools.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\vrmailbox.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\logbuffer.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\threadwatchdog.cpp
+c:\buildslave\steamvr_rel_win64\build\src\drivers\lighthouse\Retail_lighthouse\win64\2017\driver_lighthouse.pdb
+c:\buildslave\steamvr_rel_win64\build\src\drivers\lighthouse\lighthousehmddriver.cpp
+c:\buildslave\steamvr_rel_win64\build\src\drivers\lighthouse\lighthouseserverdriverprovider.cpp
+c:\buildslave\steamvr_rel_win64\build\src\thirdparty\protobuf-2.6.1\src\google\protobuf\repeated_field.h
+c:\buildslave\steamvr_rel_win64\build\src\vortexlib\distortion.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vortexlib\generated_proto_x64\lighthouse_debug.pb.cc
+c:\buildslave\steamvr_rel_win64\build\src\vortexlib\stereo_setup.cpp
 cal_method
 calloc
 camera

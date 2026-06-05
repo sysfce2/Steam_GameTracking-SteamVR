@@ -1,6 +1,6 @@
 var CLSTAMP = "steamdb";
 (self.webpackChunkvrwebui = self.webpackChunkvrwebui || []).push([
-  [267, 260, 47],
+  [267],
   {
     chunkid: (module, module_exports, __webpack_require__) => {
       var _,
@@ -200,29 +200,10 @@ var CLSTAMP = "steamdb";
       };
     },
     chunkid: (module, module_exports, __webpack_require__) => {
-      __webpack_require__._(module_exports),
-        __webpack_require__._(module_exports, {
-          Observer: () => _,
-          _observerFinalizationRegistry: () => _._,
-          clearTimers: () => _,
-          enableStaticRendering: () => _._,
-          isObserverBatched: () => _._,
-          isUsingStaticRendering: () => _._,
-          observer: () => _._,
-          observerBatching: () => _._,
-          useAsObservableSource: () => _,
-          useLocalObservable: () => _,
-          useLocalStore: () => _,
-          useObserver: () => _,
-          useStaticRendering: () => _,
-        });
-      __webpack_require__("chunkid");
-      var _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
+      __webpack_require__._(module_exports, {
+        _: () => _,
+      });
+      var _ = __webpack_require__("chunkid");
       function _(_) {
         var _ = _.children,
           _ = _.render;
@@ -235,16 +216,13 @@ var CLSTAMP = "steamdb";
         return "function" != typeof _ ? null : (0, _._)(_);
       }
       _.displayName = "Observer";
-      var _,
-        _ = __webpack_require__("chunkid"),
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      __webpack_require__._(module_exports, {
+        _: () => _,
+      });
+      var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
-      function _(_, _) {
-        return (0, _.useState)(function () {
-          return (0, _.observable)(_(), _, {
-            autoBind: !0,
-          });
-        })[0];
-      }
       function _(_) {
         var _ = (0, _.useState)(function () {
           return (0, _.observable)(
@@ -262,24 +240,35 @@ var CLSTAMP = "steamdb";
           _
         );
       }
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      __webpack_require__._(module_exports, {
+        _: () => _,
+      });
+      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
       function _(_, _) {
-        var _ = _ && _(_);
+        return (0, _.useState)(function () {
+          return (0, _.observable)(_(), _, {
+            autoBind: !0,
+          });
+        })[0];
+      }
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      __webpack_require__._(module_exports, {
+        _: () => _,
+      });
+      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      function _(_, _) {
+        var _ = _ && (0, _._)(_);
         return (0, _.useState)(function () {
           return (0, _.observable)(_(_), void 0, {
             autoBind: !0,
           });
         })[0];
-      }
-      (0, _._)(_._);
-      var _ =
-        null !== (_ = _._.finalizeAllImmediately) && void 0 !== _
-          ? _
-          : function () {};
-      function _(_, _) {
-        return void 0 === _ && (_ = "observed"), (0, _._)(_, _);
-      }
-      function _(_) {
-        (0, _._)(_);
       }
     },
     chunkid: (module, module_exports, __webpack_require__) => {

@@ -461,7 +461,8 @@ var CLSTAMP = "steamdb";
               ),
               _.Get().PrintEnabledLogs();
           });
-        const _ = "vrwebui_dashboardstore";
+        const _ = "vrcompositor_systemlayer",
+          _ = "vrwebui_dashboardstore";
         class _ {
           constructor() {
             (this.m_wsWebSocketToServer = void 0),
@@ -664,57 +665,6 @@ var CLSTAMP = "steamdb";
             this.WebSocketSend("debug_close");
           }
         }
-        (_.s_nNextMailboxNumber = 1),
-          (0, _._)([_._], _.prototype, "connected", void 0),
-          (0, _._)([_], _.prototype, "OpenWebSocketToHost", null),
-          (0, _._)([_], _.prototype, "OnWebSocketOpen", null),
-          (0, _._)([_], _.prototype, "OnWebSocketClose", null),
-          (0, _._)([_], _.prototype, "OnWebSocketError", null),
-          (0, _._)([_], _.prototype, "WebSocketSend", null),
-          (0, _._)([_], _.prototype, "OnWebSocketMessage", null);
-        var _, _, _, _;
-        function _() {
-          var _;
-          return null !==
-            (_ =
-              null === VRHTML || void 0 === VRHTML
-                ? void 0
-                : VRHTML.Environment()) && void 0 !== _
-            ? _
-            : _.Unknown;
-        }
-        !(function (_) {
-          (_[(_.Desktop = 1)] = "Desktop"),
-            (_[(_.Overlay = 2)] = "Overlay"),
-            (_[(_.Unknown = 100)] = "Unknown");
-        })(_ || (_ = {})),
-          window.hasOwnProperty("VRHTML") || (window.VRHTML = null),
-          (function (_) {
-            (_[(_.Auto = 0)] = "Auto"),
-              (_[(_.Low = 1)] = "Low"),
-              (_[(_.Medium = 2)] = "Medium"),
-              (_[(_.High = 3)] = "High");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.TrackingResult_Uninitialized = 1)] =
-              "TrackingResult_Uninitialized"),
-              (_[(_.TrackingResult_Calibrating_InProgress = 100)] =
-                "TrackingResult_Calibrating_InProgress"),
-              (_[(_.TrackingResult_Calibrating_OutOfRange = 101)] =
-                "TrackingResult_Calibrating_OutOfRange"),
-              (_[(_.TrackingResult_Running_OK = 200)] =
-                "TrackingResult_Running_OK"),
-              (_[(_.TrackingResult_Running_OutOfRange = 201)] =
-                "TrackingResult_Running_OutOfRange"),
-              (_[(_.TrackingResult_Fallback_RotationOnly = 300)] =
-                "TrackingResult_Fallback_RotationOnly");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Seated = 0)] = "Seated"),
-              (_[(_.Standing = 1)] = "Standing"),
-              (_[(_.RawAndUncalibrated = 2)] = "RawAndUncalibrated");
-          })(_ || (_ = {}));
-        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
         function _(_, _) {
           let _ = _.getAttribute(_);
           if (_ && _.length > 0) {
@@ -955,6 +905,10 @@ var CLSTAMP = "steamdb";
                     (_.properties["reset-on-recenter"] = _(
                       _,
                       "reset-on-recenter",
+                    )),
+                    (_.properties["event-panel-sgid"] = _(
+                      _,
+                      "event-panel-sgid",
                     ));
               }
               return [_, _];
@@ -980,6 +934,354 @@ var CLSTAMP = "steamdb";
                       },
                     ]
                 : null;
+        }
+        (_.s_nNextMailboxNumber = 1),
+          (0, _._)([_._], _.prototype, "connected", void 0),
+          (0, _._)([_], _.prototype, "OpenWebSocketToHost", null),
+          (0, _._)([_], _.prototype, "OnWebSocketOpen", null),
+          (0, _._)([_], _.prototype, "OnWebSocketClose", null),
+          (0, _._)([_], _.prototype, "OnWebSocketError", null),
+          (0, _._)([_], _.prototype, "WebSocketSend", null),
+          (0, _._)([_], _.prototype, "OnWebSocketMessage", null);
+        let _,
+          _,
+          _,
+          _,
+          _,
+          _,
+          _ = [],
+          _ = null,
+          _ = !0;
+        function _(_) {
+          return _
+            ? (function (_) {
+                return _ && _.includes("::");
+              })(_)
+              ? _
+              : _() + "::" + _
+            : null;
+        }
+        function _() {
+          var _;
+          return null !==
+            (_ =
+              null === VRHTML || void 0 === VRHTML
+                ? void 0
+                : VRHTML.VROverlay.ThisOverlayKey()) && void 0 !== _
+            ? _
+            : _;
+        }
+        function _() {
+          _ ||
+            (_ = window.setTimeout(
+              () =>
+                (0, _._)(this, void 0, void 0, function* () {
+                  let _ = document.body;
+                  _ && (_ = _);
+                  let _ = {
+                    type: "root",
+                    rootproperties: {
+                      relatchDashboardTransform: _,
+                      allowDismissOnClick: _,
+                      sceneColorCorrection: _,
+                    },
+                    children: _(
+                      {
+                        currentPanel: null,
+                        bInsideReparentedPanel: !1,
+                        bShouldAbort: !1,
+                      },
+                      _,
+                    ),
+                  };
+                  _ ||
+                    (console.log("Initializing sg_mailbox"),
+                    (_ = new _()),
+                    yield _.Init("sg_mailbox", _));
+                  let _ = {
+                    type: "update_scene_graph",
+                    owning_overlay_key: _(),
+                    scene_graph: _,
+                    retired_sgids: _,
+                  };
+                  _.SendMessage("vrcompositor_systemlayer", _),
+                    (_ = null),
+                    (_ = []),
+                    (_ = !1);
+                }),
+              0,
+            ));
+        }
+        const _ = new _("SGQueryService");
+        class _ {
+          constructor() {
+            (this.m_mailbox = new _()),
+              (this.m_mapPanelHeightSubscriptions = new Map()),
+              (this.m_setPanelSubscriptionsToAdd = new Set()),
+              (this.m_setPanelSubscriptionsToRemove = new Set()),
+              (this.m_bHasPendingSubscriptionUpdates = !1),
+              (this.m_bInitializedPanelSubscriptions = !1),
+              this.m_mailbox.Init("sgqueryservice").then(() => {
+                this.m_mailbox.RegisterHandler(
+                  "panel_height_update",
+                  this.OnPanelHeightUpdate,
+                );
+              });
+          }
+          static getInstance() {
+            return (
+              _.instance ||
+                ((_.instance = new _()), (window.SGQueryService = _.instance)),
+              _.instance
+            );
+          }
+          SubscribeToPanelHeight(_, _) {
+            _ = _(_);
+            let _ = this.m_mapPanelHeightSubscriptions.get(_);
+            _ ||
+              ((_ = {
+                m_Callbacks: new _(),
+                m_lastMeasurement: void 0,
+              }),
+              this.m_mapPanelHeightSubscriptions.set(_, _)),
+              0 == _.m_Callbacks.CountRegistered() &&
+                (this.m_setPanelSubscriptionsToAdd.add(_),
+                this.m_setPanelSubscriptionsToRemove.delete(_),
+                this.QueueSubscriptionUpdates());
+            const _ = _.m_Callbacks.Register(_),
+              _ = {
+                Unregister: () => {
+                  _.Unregister(),
+                    0 == _.m_Callbacks.CountRegistered() &&
+                      (this.m_setPanelSubscriptionsToRemove.add(_),
+                      this.m_setPanelSubscriptionsToAdd.delete(_),
+                      this.QueueSubscriptionUpdates());
+                },
+              };
+            return (
+              _.m_lastMeasurement &&
+                setTimeout(
+                  () =>
+                    _(
+                      Object.assign(Object.assign({}, _.m_lastMeasurement), {
+                        m_bStale: !0,
+                      }),
+                    ),
+                  0,
+                ),
+              _
+            );
+          }
+          OnPanelHeightUpdate(_) {
+            _.Debug("Received panel height updates:", _.panels);
+            for (const _ of _.panels) {
+              const _ = this.m_mapPanelHeightSubscriptions.get(_.panel_id);
+              _ &&
+                ((_.m_lastMeasurement = {
+                  m_flRawPanelHeight: _.panel_height,
+                  m_flTransformScaleDuringMeasure:
+                    _.transform_scale_during_measure,
+                }),
+                _.m_Callbacks.Dispatch(
+                  Object.assign(Object.assign({}, _.m_lastMeasurement), {
+                    m_bStale: !1,
+                  }),
+                ));
+            }
+          }
+          QueueSubscriptionUpdates() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              if (this.m_bHasPendingSubscriptionUpdates) return;
+              (this.m_bHasPendingSubscriptionUpdates = !0),
+                yield this.m_mailbox.WaitForConnect();
+              const _ = !this.m_bInitializedPanelSubscriptions;
+              if (
+                this.m_setPanelSubscriptionsToAdd.size > 0 ||
+                this.m_setPanelSubscriptionsToRemove.size > 0 ||
+                _
+              ) {
+                const _ = {
+                  type: "update_panel_height_subscriptions",
+                  subscribe_panel_ids: Array.from(
+                    this.m_setPanelSubscriptionsToAdd,
+                  ),
+                  unsubscribe_panel_ids: Array.from(
+                    this.m_setPanelSubscriptionsToRemove,
+                  ),
+                  unsubscribe_all: _,
+                };
+                _.Debug(`Sending ${_.type} message:`, _),
+                  this.m_mailbox.SendMessage("scene_graph", _);
+              }
+              this.m_setPanelSubscriptionsToAdd.clear(),
+                this.m_setPanelSubscriptionsToRemove.clear(),
+                (this.m_bHasPendingSubscriptionUpdates = !1),
+                (this.m_bInitializedPanelSubscriptions = !0);
+            });
+          }
+          requestSGTransform(_) {
+            return (0, _._)(
+              this,
+              arguments,
+              void 0,
+              function* (_, _ = 0, _ = 0) {
+                if (!_ || _.toLowerCase().includes("undefined"))
+                  return Promise.reject("Invalid transform ID");
+                const _ = {
+                    type: "transform_request",
+                    _: _,
+                    flPushDistance: _,
+                    timeoutSec: _,
+                  },
+                  _ = yield this.m_mailbox.SendMessageAndWaitForResponse(
+                    _,
+                    _,
+                    "transform_response",
+                  );
+                return _._ == _ && _.transform
+                  ? _.transform
+                  : Promise.reject("requestSGTransform failed");
+              },
+            );
+          }
+          requestSGTransformRelative(_, _) {
+            return (0, _._)(this, arguments, void 0, function* (_, _, _ = 0) {
+              var _;
+              if (
+                !_ ||
+                _.toLowerCase().includes("undefined") ||
+                !_ ||
+                _.toLowerCase().includes("undefined")
+              )
+                return Promise.reject("Invalid transform ID");
+              const _ = {
+                  type: "transform_request",
+                  from_id: _,
+                  _: _,
+                  timeoutSec: _,
+                },
+                _ = yield this.m_mailbox.SendMessageAndWaitForResponse(
+                  _,
+                  _,
+                  "transform_response",
+                );
+              return _.from_id == _ && _._ == _ && _.transform
+                ? _.transform
+                : Promise.reject(
+                    null !== (_ = _.error) && void 0 !== _
+                      ? _
+                      : "requestSGTransform failed",
+                  );
+            });
+          }
+        }
+        var _, _, _, _;
+        function _() {
+          var _;
+          return null !==
+            (_ =
+              null === VRHTML || void 0 === VRHTML
+                ? void 0
+                : VRHTML.Environment()) && void 0 !== _
+            ? _
+            : _.Unknown;
+        }
+        (0, _._)([_], _.prototype, "OnPanelHeightUpdate", null),
+          (function (_) {
+            (_[(_.Desktop = 1)] = "Desktop"),
+              (_[(_.Overlay = 2)] = "Overlay"),
+              (_[(_.Unknown = 100)] = "Unknown");
+          })(_ || (_ = {})),
+          window.hasOwnProperty("VRHTML") || (window.VRHTML = null),
+          (function (_) {
+            (_[(_.Auto = 0)] = "Auto"),
+              (_[(_.Low = 1)] = "Low"),
+              (_[(_.Medium = 2)] = "Medium"),
+              (_[(_.High = 3)] = "High");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.TrackingResult_Uninitialized = 1)] =
+              "TrackingResult_Uninitialized"),
+              (_[(_.TrackingResult_Calibrating_InProgress = 100)] =
+                "TrackingResult_Calibrating_InProgress"),
+              (_[(_.TrackingResult_Calibrating_OutOfRange = 101)] =
+                "TrackingResult_Calibrating_OutOfRange"),
+              (_[(_.TrackingResult_Running_OK = 200)] =
+                "TrackingResult_Running_OK"),
+              (_[(_.TrackingResult_Running_OutOfRange = 201)] =
+                "TrackingResult_Running_OutOfRange"),
+              (_[(_.TrackingResult_Fallback_RotationOnly = 300)] =
+                "TrackingResult_Fallback_RotationOnly");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.Seated = 0)] = "Seated"),
+              (_[(_.Standing = 1)] = "Standing"),
+              (_[(_.RawAndUncalibrated = 2)] = "RawAndUncalibrated");
+          })(_ || (_ = {}));
+        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+        function _(
+          _,
+          _ = {
+            _: 0,
+            _: 0,
+          },
+        ) {
+          return Object.assign(Object.assign({}, _), _);
+        }
+        function _(
+          _,
+          _ = {
+            _: 0,
+            _: 0,
+            _: 0,
+          },
+        ) {
+          return Object.assign(Object.assign({}, _), _);
+        }
+        function _(_, _) {
+          return Object.assign(Object.assign({}, _), _);
+        }
+        function _(_) {
+          if (_) return [_._, _._];
+        }
+        function _(_) {
+          var _;
+          return null ===
+            (_ = (function (_) {
+              if (_) return [_._, _._, _._];
+            })(_)) || void 0 === _
+            ? void 0
+            : _.join(" ");
+        }
+        function _(_) {
+          if (_) return _._ + " " + _._ + " " + _._ + " " + _._;
+        }
+        function _(_) {
+          return _ && void 0 !== _._;
+        }
+        function _(_) {
+          return null == _
+            ? void 0
+            : "number" == typeof _
+              ? _
+              : (_ = _) && void 0 !== _._
+                ? [_.channel, _.interp, _.from, _._]
+                : void 0;
+          var _;
+        }
+        function _(_) {
+          return _(_)
+            ? [
+                _.channel,
+                _.interp,
+                _.from ? _.from[0] : void 0,
+                _.from ? _.from[1] : void 0,
+                _.from ? _.from[2] : void 0,
+                _._ ? _._[0] : void 0,
+                _._ ? _._[1] : void 0,
+                _._ ? _._[2] : void 0,
+              ]
+            : void 0;
         }
         !(function (_) {
           (_[(_.None = 0)] = "None"),
@@ -1049,16 +1351,19 @@ var CLSTAMP = "steamdb";
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.LaserMouse = 1)] = "LaserMouse"),
-              (_[(_.Keyboard = 2)] = "Keyboard"),
-              (_[(_.RoomView = 4)] = "RoomView"),
-              (_[(_.DisplaySuppressed = 8)] = "DisplaySuppressed"),
-              (_[(_.SystemButtonDown = 16)] = "SystemButtonDown"),
-              (_[(_.DriverIsDrawingControllers = 32)] =
+              (_[(_.RoomViewFullyOccludingApp = 2)] =
+                "RoomViewFullyOccludingApp"),
+              (_[(_.DisplaySuppressed = 4)] = "DisplaySuppressed"),
+              (_[(_.SystemButtonDown = 8)] = "SystemButtonDown"),
+              (_[(_.DriverIsDrawingControllers = 16)] =
                 "DriverIsDrawingControllers"),
-              (_[(_.DriverRequestsApplicationPause = 64)] =
+              (_[(_.DriverRequestsApplicationPause = 32)] =
                 "DriverRequestsApplicationPause"),
-              (_[(_.DriverRequestsReducedRendering = 128)] =
-                "DriverRequestsReducedRendering");
+              (_[(_.DriverRequestsReducedRendering = 64)] =
+                "DriverRequestsReducedRendering"),
+              (_[(_.DashboardTutorial = 128)] = "DashboardTutorial"),
+              (_[(_.GamepadMode = 512)] = "GamepadMode"),
+              (_[(_.SystemKeyboardPrivacy = 1024)] = "SystemKeyboardPrivacy");
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.BULK_DEFAULT = 0)] = "BULK_DEFAULT"),
@@ -1160,141 +1465,6 @@ var CLSTAMP = "steamdb";
               (_[(_.Gigantic = 3)] = "Gigantic"),
               (_[(_.Standing = 4)] = "Standing");
           })(_ || (_ = {}));
-        let _,
-          _,
-          _,
-          _,
-          _,
-          _,
-          _ = [],
-          _ = null,
-          _ = !0;
-        function _(_) {
-          return _
-            ? (function (_) {
-                return _ && _.includes("::");
-              })(_)
-              ? _
-              : _() + "::" + _
-            : null;
-        }
-        function _() {
-          var _;
-          return null !==
-            (_ =
-              null === VRHTML || void 0 === VRHTML
-                ? void 0
-                : VRHTML.VROverlay.ThisOverlayKey()) && void 0 !== _
-            ? _
-            : _;
-        }
-        function _() {
-          _ ||
-            (_ = window.setTimeout(
-              () =>
-                (0, _._)(this, void 0, void 0, function* () {
-                  let _ = document.body;
-                  _ && (_ = _);
-                  let _ = {
-                    type: "root",
-                    rootproperties: {
-                      relatchDashboardTransform: _,
-                      allowDismissOnClick: _,
-                      sceneColorCorrection: _,
-                    },
-                    children: _(
-                      {
-                        currentPanel: null,
-                        bInsideReparentedPanel: !1,
-                        bShouldAbort: !1,
-                      },
-                      _,
-                    ),
-                  };
-                  _ ||
-                    (console.log("Initializing sg_mailbox"),
-                    (_ = new _()),
-                    yield _.Init("sg_mailbox", _));
-                  let _ = {
-                    type: "update_scene_graph",
-                    owning_overlay_key: _(),
-                    scene_graph: _,
-                    retired_sgids: _,
-                  };
-                  _.SendMessage("vrcompositor_systemlayer", _),
-                    (_ = null),
-                    (_ = []),
-                    (_ = !1);
-                }),
-              0,
-            ));
-        }
-        function _(_, _) {
-          return _
-            ? {
-                _: _._ ? _._ : _._,
-                _: _._ ? _._ : _._,
-              }
-            : _;
-        }
-        function _(_, _) {
-          return _
-            ? {
-                _: _._ ? _._ : _._,
-                _: _._ ? _._ : _._,
-                _: _._ ? _._ : _._,
-              }
-            : _;
-        }
-        function _(_, _) {
-          return _
-            ? {
-                _: _._ ? _._ : _._,
-                _: _._ ? _._ : _._,
-                _: _._ ? _._ : _._,
-              }
-            : _;
-        }
-        function _(_) {
-          if (_) return [_._, _._];
-        }
-        function _(_) {
-          var _;
-          return null ===
-            (_ = (function (_) {
-              if (_) return [_._, _._, _._];
-            })(_)) || void 0 === _
-            ? void 0
-            : _.join(" ");
-        }
-        function _(_) {
-          if (_) return _._ + " " + _._ + " " + _._ + " " + _._;
-        }
-        function _(_) {
-          return _ && void 0 !== _._;
-        }
-        function _(_) {
-          return "number" == typeof _
-            ? _
-            : (_ = _) && void 0 !== _._
-              ? [_.channel, _.interp, _.from, _._]
-              : void 0;
-          var _;
-        }
-        function _(_) {
-          return _(_)
-            ? [
-                _.channel,
-                _.interp,
-                _.from ? _.from[0] : void 0,
-                _.from ? _.from[1] : void 0,
-                _.from ? _.from[2] : void 0,
-                _._ ? _._[0] : void 0,
-                _._ ? _._[1] : void 0,
-                _._ ? _._[2] : void 0,
-              ]
-            : void 0;
-        }
         class _ extends _.Component {
           constructor(_) {
             var _;
@@ -1303,16 +1473,18 @@ var CLSTAMP = "steamdb";
               (this.m_buildNodeOverride = null),
               (this.m_SGID = 0);
             const _ = _._ && "string" == typeof _._;
-            _ &&
-              this.BCanUseStableSGIDs() &&
-              _.s_mapStableSGIDsForIDs.has(_._) &&
-              ((this.m_SGID = _.s_mapStableSGIDsForIDs.get(_._)),
-              _.s_mapCurrentlyMountedSGIDs.has(this.m_SGID) &&
-                (console.error(
-                  `Constructing SGBase component (ID="${_._}") at the same time another component with that SGID is mounted. Using a new SGID.`,
-                  this.m_SGID,
-                ),
-                (this.m_SGID = 0))),
+            this.props.explicitSGID
+              ? (this.m_SGID = this.props.explicitSGID)
+              : _ &&
+                this.BCanUseStableSGIDs() &&
+                _.s_mapStableSGIDsForIDs.has(_._) &&
+                ((this.m_SGID = _.s_mapStableSGIDsForIDs.get(_._)),
+                _.s_mapCurrentlyMountedSGIDs.has(this.m_SGID) &&
+                  (console.error(
+                    `Constructing SGBase component (ID="${_._}") at the same time another component with that SGID is mounted. Using a new SGID.`,
+                    this.m_SGID,
+                  ),
+                  (this.m_SGID = 0))),
               0 == this.m_SGID &&
                 ((this.m_SGID =
                   null !==
@@ -1419,6 +1591,7 @@ var CLSTAMP = "steamdb";
                   this.props["scene-reflection-mult"],
                 )),
                 (_.properties["skydome-mult"] = _(this.props["skydome-mult"])),
+                (_.properties["aurora-blur"] = _(this.props["aurora-blur"])),
                 (_.properties["roomview-mult"] = _(
                   this.props["roomview-mult"],
                 )),
@@ -1556,9 +1729,10 @@ var CLSTAMP = "steamdb";
               );
           }
           internalRender() {
-            var _;
+            var _, _, _;
             let _, _, _;
             var _, _;
+            let _;
             this.props.transform
               ? ((_ = _(this.props.transform.translation)),
                 (_ = this.props.transform.rotation),
@@ -1618,7 +1792,17 @@ var CLSTAMP = "steamdb";
                         _: 1,
                         _: 1,
                         _: 1,
-                      })));
+                      }))),
+              null !=
+                (null === (_ = this.props) || void 0 === _
+                  ? void 0
+                  : _.parent_origin) &&
+                (_ =
+                  _[
+                    null === (_ = this.props) || void 0 === _
+                      ? void 0
+                      : _.parent_origin
+                  ]);
             let _ = _(_),
               _ = _(_);
             return _.createElement(
@@ -1633,7 +1817,7 @@ var CLSTAMP = "steamdb";
                 "ignore-parent-scale": this.props.ignore_parent_scale,
                 "transform-path": this.props.transform_path,
                 "parent-path": this.props.parent_path,
-                "parent-origin": _[this.props.parent_origin],
+                "parent-origin": _,
                 "parent-id": this.props.parent_id,
                 "frame-resize-scale-factor":
                   this.props.frame_resize_scale_factor,
@@ -2198,10 +2382,7 @@ var CLSTAMP = "steamdb";
               };
             _ =
               "object" == typeof this.props.origin
-                ? _(this.props.origin, {
-                    _: 0,
-                    _: 0,
-                  })
+                ? _(this.props.origin)
                 : _(this.props.origin);
             const _ = this.props.overlay_key,
               _ = _();
@@ -2403,7 +2584,7 @@ var CLSTAMP = "steamdb";
           (0, _._)([_], _.prototype, "buildNode", null),
           (window.s_setAllPanels = _.s_setAllPanels);
         const _ = new _("EmbeddedPixels");
-        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
         !(function (_) {
           (_[(_.Canvas = 0)] = "Canvas"), (_[(_.Image = 1)] = "Image");
         })(_ || (_ = {}));
@@ -2799,14 +2980,15 @@ var CLSTAMP = "steamdb";
                 (_.properties["min-tile-scale-at-periphery"] =
                   this.props["min-tile-scale-at-periphery"]),
                 (_.properties.height = _(this.props.height)),
-                (_.properties.offset = [
-                  null === (_ = this.props.offset) || void 0 === _
-                    ? void 0
-                    : _._,
-                  null === (_ = this.props.offset) || void 0 === _
-                    ? void 0
-                    : _._,
-                ]),
+                null != this.props.offset &&
+                  (_.properties.offset = [
+                    null === (_ = this.props.offset) || void 0 === _
+                      ? void 0
+                      : _._,
+                    null === (_ = this.props.offset) || void 0 === _
+                      ? void 0
+                      : _._,
+                  ]),
                 "string" == typeof this.props.color)
               )
                 _.properties.color = this.props.color;
@@ -2888,7 +3070,7 @@ var CLSTAMP = "steamdb";
                 let _ = this.props.fresnel;
                 if ("string" == typeof _.color) _.properties.color = _.color;
                 else {
-                  let _ = _(_.color, {
+                  let _ = _(null == _ ? void 0 : _.color, {
                     _: 0,
                     _: 0,
                     _: 0,
@@ -2905,6 +3087,41 @@ var CLSTAMP = "steamdb";
                 (_.properties.stencil_mask = this.props.stencil_mask),
                 (_.properties["no-depth-write"] = this.props["no-depth-write"]),
                 (_.properties["no-depth-test"] = this.props["no-depth-test"]),
+                [_, _]
+              );
+            }
+          }.prototype,
+          "buildNode",
+          null,
+        );
+        (0, _._)(
+          [_],
+          class extends _ {
+            constructor(_) {
+              super(_), super.setBuildNodeOverride(this.buildNode);
+            }
+            getNodeType() {
+              return "rendermodel-component-overrides";
+            }
+            buildNode(_, _) {
+              const {
+                  action_name: _,
+                  throbbing: _,
+                  throbColor: _ = "#1a9fff",
+                  throbPeriod: _ = 1.25,
+                  throbContrast: _ = 2,
+                  throbMinBlend: _ = 0,
+                  throbMaxBlend: _ = 1,
+                } = this.props,
+                _ = this.createSgNode(_);
+              return (
+                (_.properties["action-name"] = _),
+                (_.properties.throbbing = _),
+                (_.properties["throb-color"] = _),
+                (_.properties["throb-period"] = _),
+                (_.properties["throb-contrast"] = _),
+                (_.properties["throb-min-blend"] = _),
+                (_.properties["throb-max-blend"] = _),
                 [_, _]
               );
             }
@@ -3344,8 +3561,8 @@ var CLSTAMP = "steamdb";
                 "Hmd_SupportsGpuBusMonitoring_Bool"),
               (_[(_.DriverProvidedIPDVisibility_Bool = 2108)] =
                 "DriverProvidedIPDVisibility_Bool"),
-              (_[(_.Prop_Hmd_SupportsVRGamepadFocus_Bool = 2117)] =
-                "Prop_Hmd_SupportsVRGamepadFocus_Bool"),
+              (_[(_.Prop_SupportsVRGamepadMode_Bool = 2117)] =
+                "Prop_SupportsVRGamepadMode_Bool"),
               (_[(_.DriverRequestedMuraCorrectionMode_Int32 = 2200)] =
                 "DriverRequestedMuraCorrectionMode_Int32"),
               (_[(_.DriverRequestedMuraFeather_InnerLeft_Int32 = 2201)] =
@@ -3553,20 +3770,30 @@ var CLSTAMP = "steamdb";
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.Invalid = 0)] = "Invalid"),
-              (_[(_.System = 1)] = "System"),
-              (_[(_.SteamInput = 2)] = "SteamInput"),
-              (_[(_.VRInput = 3)] = "VRInput");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Invalid = 0)] = "Invalid"),
               (_[(_.SceneApp = 1)] = "SceneApp"),
               (_[(_.Panel = 2)] = "Panel");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.ControllerPairing = 0)] = "ControllerPairing"),
+              (_[(_.WelcomeToSteamFrame = 1)] = "WelcomeToSteamFrame"),
+              (_[(_.SystemButtonHideDashboard = 2)] =
+                "SystemButtonHideDashboard"),
+              (_[(_.SystemButtonDashboardHidden = 3)] =
+                "SystemButtonDashboardHidden"),
+              (_[(_.SystemButtonShowDashboard = 4)] =
+                "SystemButtonShowDashboard"),
+              (_[(_.PairWifiDongle = 5)] = "PairWifiDongle"),
+              (_[(_.TourSendOff = 6)] = "TourSendOff"),
+              (_[(_.SteamGuidedTourFinished = 7)] = "SteamGuidedTourFinished");
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.None = 0)] = "None"),
               (_[(_.ThirdPartyClient = 1)] = "ThirdPartyClient"),
               (_[(_.SteamVRClientUnified = 2)] = "SteamVRClientUnified"),
               (_[(_.SteamVRClientLegacyDual = 3)] = "SteamVRClientLegacyDual");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.Curved = 0)] = "Curved"), (_[(_.Flat = 1)] = "Flat");
           })(_ || (_ = {}));
         _.Component;
         (0, _._)(
@@ -3656,7 +3883,7 @@ var CLSTAMP = "steamdb";
               const _ = this.createSgNode(_),
                 _ = Object.assign(Object.assign({}, _), {
                   bInsideReparentedPanel: !0,
-                  currentPanel: null,
+                  currentPanel: void 0,
                 });
               return (
                 this.props.parent_overlay_key &&
@@ -3684,6 +3911,8 @@ var CLSTAMP = "steamdb";
                 (_.properties.name = this.props.name),
                 (_.properties.channel = this.props.channel),
                 (_.properties.debug = this.props.debug),
+                (_.properties["dock-location"] =
+                  this.props.dockLocation || _.Dashboard),
                 [_, _]
               );
             }
@@ -3710,6 +3939,50 @@ var CLSTAMP = "steamdb";
               return (
                 (_.properties["projection-constraint"] =
                   this.props.projection_constraint),
+                [_, _]
+              );
+            }
+          }.prototype,
+          "buildNode",
+          null,
+        );
+        (0, _._)(
+          [_],
+          class extends _ {
+            constructor(_) {
+              super(_), super.setBuildNodeOverride(this.buildNode);
+            }
+            getNodeType() {
+              return "grab-scale";
+            }
+            buildNode(_, _) {
+              var _, _, _, _, _, _;
+              const _ = this.createSgNode(_);
+              return (
+                (_.properties["event-panel-sgid"] =
+                  null === (_ = this.props) || void 0 === _
+                    ? void 0
+                    : _.event_panel_sgid),
+                (_.properties["is-active"] =
+                  null === (_ = this.props) || void 0 === _
+                    ? void 0
+                    : _.is_active),
+                (_.properties["base-distance"] =
+                  null === (_ = this.props) || void 0 === _
+                    ? void 0
+                    : _.base_distance),
+                (_.properties["scroll-speed"] =
+                  null === (_ = this.props) || void 0 === _
+                    ? void 0
+                    : _.scroll_speed),
+                (_.properties["min-distance"] =
+                  null === (_ = this.props) || void 0 === _
+                    ? void 0
+                    : _.min_distance),
+                (_.properties["max-distance"] =
+                  null === (_ = this.props) || void 0 === _
+                    ? void 0
+                    : _.max_distance),
                 [_, _]
               );
             }
@@ -9091,7 +9364,7 @@ var CLSTAMP = "steamdb";
               }
             else if (_) {
               const _ = _.Message.getField(_, _);
-              void 0 !== _ && _.call(_, _, _);
+              null != _ && _.call(_, _, _);
             } else
               console.assert(
                 !!_,
@@ -9345,6 +9618,8 @@ var CLSTAMP = "steamdb";
               (this.m_mapSettingsLastWriteInfo = new Map()),
               (this.m_bIsSettingApp = !1),
               (this.m_bInitStarted = !1),
+              (this.m_appFrameLimits = []),
+              (this.m_mapRefreshRatesForFrameLimit = new Map()),
               (this.GetAppList = function () {
                 return new Promise(function (_, _) {
                   _()
@@ -9596,7 +9871,7 @@ var CLSTAMP = "steamdb";
                 this.WebSocketSend("settings_close");
               }),
               _.GetSettingsInfo().then((_) => {
-                this.systemInfo = _;
+                this.OnVRSystemInfo(_);
               }),
               _.GetAppList().then((_) => {
                 this.OnVRAppList({
@@ -9693,6 +9968,30 @@ var CLSTAMP = "steamdb";
           OnVRAudioDevices(_) {
             console.log("Got audio devices"), (this.audioDevices = _);
           }
+          OnVRSystemInfo(_) {
+            this.systemInfo = _;
+            const _ = _.refresh_rates.supported_rates.map((_) => Math.round(_));
+            if (_.length > 1) {
+              this.m_mapRefreshRatesForFrameLimit.clear(),
+                (this.m_appFrameLimits = _.slice());
+              for (const _ of _)
+                for (let _ = 1; _ <= 4; _++) {
+                  const _ = Math.round(_ / _);
+                  if (_ < 30) break;
+                  const _ = this.m_mapRefreshRatesForFrameLimit.get(_);
+                  _
+                    ? _.push(_)
+                    : this.m_mapRefreshRatesForFrameLimit.set(_, [_]);
+                  for (let _ = 0; _ < this.m_appFrameLimits.length; _++) {
+                    if (this.m_appFrameLimits[_] > _) {
+                      this.m_appFrameLimits.splice(_, 0, _);
+                      break;
+                    }
+                    if (this.m_appFrameLimits[_] === _) break;
+                  }
+                }
+            }
+          }
           OnVRAppList(_) {
             (this.apps = _.apps),
               _.apps.map((_) => this.probablyOwnedAppkeys.add(_.key));
@@ -9710,6 +10009,16 @@ var CLSTAMP = "steamdb";
                 for (let _ of _.values)
                   if (_ && this.SettingNameMatches(_, _.name)) return _;
             return null;
+          }
+          get appFrameLimits() {
+            return this.m_appFrameLimits;
+          }
+          GetRefreshRatesForFrameLimit(_) {
+            var _;
+            return null !== (_ = this.m_mapRefreshRatesForFrameLimit.get(_)) &&
+              void 0 !== _
+              ? _
+              : [_];
           }
           ResetSettingsValue(_) {
             this.SetSettingsValue(_, null);
@@ -9840,12 +10149,6 @@ var CLSTAMP = "steamdb";
               ? void 0
               : _.name;
           }
-          get NumSupersamplingSteps() {
-            return Math.floor(4.81 / 0.02);
-          }
-          SliderposToSupersample(_) {
-            return _ > 5 ? 5 : _ < 0.2 ? 0.2 : _;
-          }
           get showAdvancedSettings() {
             return this.settings.get(_);
           }
@@ -9903,8 +10206,7 @@ var CLSTAMP = "steamdb";
             _.prototype,
             "SetSettingsStringValueWithoutSchema",
             null,
-          ),
-          (0, _._)([_._], _.prototype, "NumSupersamplingSteps", null);
+          );
         const _ = new _();
         window.VRSettingsState = _;
         class _ {
@@ -11069,6 +11371,6 @@ var CLSTAMP = "steamdb";
       __webpack_require__.forEach(_.bind(null, 0)),
         (_.push = _.bind(null, _.push.bind(_)));
     })();
-  var _ = _._(void 0, [851], () => _(864));
+  var _ = _._(void 0, [851], () => _(437));
   _ = _._(_);
 })();

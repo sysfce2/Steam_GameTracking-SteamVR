@@ -132,7 +132,7 @@
 /user/waist
 /user/wrist/left
 /user/wrist/right
-07:05:59
+14:12:14
 1e+9999
 8c8f13b1-60eb-4b6a-a433-de86104115ac
 8d8f13b1-60eb-4b6a-a433-de86104115ac
@@ -341,7 +341,7 @@ InitializeCriticalSectionAndSpinCount
 InitializeSListHead
 IsDebuggerPresent
 IsProcessorFeaturePresent
-Jun  2 2026
+Jun  5 2026
 KERNEL32.dll
 LeaveCriticalSection
 Line %d, Column %d
@@ -611,18 +611,18 @@ bad conversion
 bg_bg
 brazilian
 bulgarian
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcommon\steam_worker_thread.cpp:193
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\logbuffer.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\threadwatchdog.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\common\vrcore\src\vrcrash.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrdashboard\Retail\win64\2017\vrdashboard.pdb
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrdashboard\dashboard.cpp:135
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrdashboard\dashboard.cpp:161
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrdashboard\dashboard.cpp:30
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrdashboard\dashboard.cpp:93
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrdashboard\vrdashboard_main.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrdashboard\vrdashboard_main.cpp:812
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrdashboard\vrdashboard_main.cpp:819
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\steam_worker_thread.cpp:193
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\logbuffer.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\threadwatchdog.cpp
+c:\buildslave\steamvr_rel_win64\build\src\common\vrcore\src\vrcrash.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrdashboard\Retail\win64\2017\vrdashboard.pdb
+c:\buildslave\steamvr_rel_win64\build\src\vrdashboard\dashboard.cpp:135
+c:\buildslave\steamvr_rel_win64\build\src\vrdashboard\dashboard.cpp:161
+c:\buildslave\steamvr_rel_win64\build\src\vrdashboard\dashboard.cpp:30
+c:\buildslave\steamvr_rel_win64\build\src\vrdashboard\dashboard.cpp:93
+c:\buildslave\steamvr_rel_win64\build\src\vrdashboard\vrdashboard_main.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrdashboard\vrdashboard_main.cpp:812
+c:\buildslave\steamvr_rel_win64\build\src\vrdashboard\vrdashboard_main.cpp:819
 collectComments
 config
 cs_cz

@@ -7,6 +7,10 @@ var CLSTAMP = "steamdb";
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       "use strict";
+      __webpack_require__("chunkid");
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _observerFinalizationRegistry: () => _._,
         isUsingStaticRendering: () => _._,
@@ -14,13 +18,24 @@ var CLSTAMP = "steamdb";
       });
       __webpack_require__("chunkid");
       var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      function _(_) {
+        _();
+      }
+      __webpack_require__("chunkid");
+      var _,
+        _,
         _ = __webpack_require__("chunkid"),
-        _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid")),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
-      var _;
-      __webpack_require__("chunkid");
-      (0, _._)(_._);
+      __webpack_require__("chunkid"),
+        __webpack_require__("chunkid"),
+        __webpack_require__("chunkid"),
+        __webpack_require__("chunkid");
+      (_ = _._) || (_ = _),
+        (0, _.configure)({
+          reactionScheduler: _,
+        });
       _ = _._.finalizeAllImmediately;
     },
     chunkid: (module, module_exports, __webpack_require__) => {
@@ -32,6 +47,18 @@ var CLSTAMP = "steamdb";
       function _() {
         return _;
       }
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      __webpack_require__("chunkid");
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      __webpack_require__("chunkid");
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      __webpack_require__("chunkid"), __webpack_require__("chunkid");
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       "use strict";
@@ -101,22 +128,6 @@ var CLSTAMP = "steamdb";
         )
           throw _;
         return _;
-      }
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      "use strict";
-      __webpack_require__._(module_exports, {
-        _: () => _,
-      });
-      var _ = __webpack_require__("chunkid");
-      function _(_) {
-        _();
-      }
-      function _(_) {
-        _ || (_ = _),
-          (0, _.configure)({
-            reactionScheduler: _,
-          });
       }
     },
     chunkid: (module, module_exports, __webpack_require__) => {

@@ -42,31 +42,27 @@ var CLSTAMP = "steamdb";
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
-      function _(_, _) {
-        return _
-          ? {
-              _: _._ ? _._ : _._,
-              _: _._ ? _._ : _._,
-            }
-          : _;
+      function _(
+        _,
+        _ = {
+          _: 0,
+          _: 0,
+        },
+      ) {
+        return Object.assign(Object.assign({}, _), _);
+      }
+      function _(
+        _,
+        _ = {
+          _: 0,
+          _: 0,
+          _: 0,
+        },
+      ) {
+        return Object.assign(Object.assign({}, _), _);
       }
       function _(_, _) {
-        return _
-          ? {
-              _: _._ ? _._ : _._,
-              _: _._ ? _._ : _._,
-              _: _._ ? _._ : _._,
-            }
-          : _;
-      }
-      function _(_, _) {
-        return _
-          ? {
-              _: _._ ? _._ : _._,
-              _: _._ ? _._ : _._,
-              _: _._ ? _._ : _._,
-            }
-          : _;
+        return Object.assign(Object.assign({}, _), _);
       }
       function _(_) {
         if (_) return [_._, _._];
@@ -87,11 +83,13 @@ var CLSTAMP = "steamdb";
         return _ && void 0 !== _._;
       }
       function _(_) {
-        return "number" == typeof _
-          ? _
-          : (_ = _) && void 0 !== _._
-            ? [_.channel, _.interp, _.from, _._]
-            : void 0;
+        return null == _
+          ? void 0
+          : "number" == typeof _
+            ? _
+            : (_ = _) && void 0 !== _._
+              ? [_.channel, _.interp, _.from, _._]
+              : void 0;
         var _;
       }
       function _(_) {
@@ -116,16 +114,18 @@ var CLSTAMP = "steamdb";
             (this.m_buildNodeOverride = null),
             (this.m_SGID = _._);
           const _ = _._ && "string" == typeof _._;
-          _ &&
-            this.BCanUseStableSGIDs() &&
-            _.s_mapStableSGIDsForIDs.has(_._) &&
-            ((this.m_SGID = _.s_mapStableSGIDsForIDs.get(_._)),
-            _.s_mapCurrentlyMountedSGIDs.has(this.m_SGID) &&
-              (console.error(
-                `Constructing SGBase component (ID="${_._}") at the same time another component with that SGID is mounted. Using a new SGID.`,
-                this.m_SGID,
-              ),
-              (this.m_SGID = _._))),
+          this.props.explicitSGID
+            ? (this.m_SGID = this.props.explicitSGID)
+            : _ &&
+              this.BCanUseStableSGIDs() &&
+              _.s_mapStableSGIDsForIDs.has(_._) &&
+              ((this.m_SGID = _.s_mapStableSGIDsForIDs.get(_._)),
+              _.s_mapCurrentlyMountedSGIDs.has(this.m_SGID) &&
+                (console.error(
+                  `Constructing SGBase component (ID="${_._}") at the same time another component with that SGID is mounted. Using a new SGID.`,
+                  this.m_SGID,
+                ),
+                (this.m_SGID = _._))),
             this.m_SGID == _._ &&
               ((this.m_SGID =
                 null !==

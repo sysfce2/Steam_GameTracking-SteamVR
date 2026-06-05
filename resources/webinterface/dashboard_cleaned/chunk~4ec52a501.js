@@ -3,6 +3,203 @@ var CLSTAMP = "steamdb";
   [386],
   {
     chunkid: (module, module_exports, __webpack_require__) => {
+      var _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = (_ = _) && "object" == typeof _ && "default" in _ ? _.default : _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      if (!_.useState)
+        throw new Error("mobx-react-lite requires React with Hooks support");
+      if (!_.makeObservable)
+        throw new Error(
+          "mobx-react-lite@3 requires mobx at least version 6 to be available",
+        );
+      function _(_) {
+        _();
+      }
+      function _(_) {
+        _ || (_ = _),
+          _.configure({
+            reactionScheduler: _,
+          });
+      }
+      function _(_) {
+        return _.getDependencyTree(_);
+      }
+      var _ = !1;
+      function _(_) {
+        _ = _;
+      }
+      function _() {
+        return _;
+      }
+      var _,
+        _,
+        _ = new (
+          "undefined" != typeof FinalizationRegistry
+            ? FinalizationRegistry
+            : (function () {
+                function _(_) {
+                  var _ = this;
+                  (this.finalize = void 0),
+                    (this.registrations = new Map()),
+                    (this.sweepTimeout = void 0),
+                    (this.sweep = function (_) {
+                      void 0 === _ && (_ = 1e4),
+                        clearTimeout(_.sweepTimeout),
+                        (_.sweepTimeout = void 0);
+                      var _ = Date.now();
+                      _.registrations.forEach(function (_, _) {
+                        _ - _.registeredAt >= _ &&
+                          (_.finalize(_.value), _.registrations.delete(_));
+                      }),
+                        _.registrations.size > 0 && _.scheduleSweep();
+                    }),
+                    (this.finalizeAllImmediately = function () {
+                      _.sweep(0);
+                    }),
+                    (this.finalize = _);
+                }
+                var _ = _.prototype;
+                return (
+                  (_.register = function (_, _, _) {
+                    this.registrations.set(_, {
+                      value: _,
+                      registeredAt: Date.now(),
+                    }),
+                      this.scheduleSweep();
+                  }),
+                  (_.unregister = function (_) {
+                    this.registrations.delete(_);
+                  }),
+                  (_.scheduleSweep = function () {
+                    void 0 === this.sweepTimeout &&
+                      (this.sweepTimeout = setTimeout(this.sweep, 1e4));
+                  }),
+                  _
+                );
+              })()
+        )(function (_) {
+          var _;
+          null == (_ = _.reaction) || _.dispose(), (_.reaction = null);
+        });
+      function _(_) {
+        _.reaction = new _.Reaction("observer" + _.name, function () {
+          (_.stateVersion = Symbol()),
+            null == _.onStoreChange || _.onStoreChange();
+        });
+      }
+      function _(_, _) {
+        if ((void 0 === _ && (_ = "observed"), _())) return _();
+        var _ = _.useRef(null);
+        if (!_.current) {
+          var _ = {
+            reaction: null,
+            onStoreChange: null,
+            stateVersion: Symbol(),
+            name: _,
+            subscribe: function (_) {
+              return (
+                _.unregister(_),
+                (_.onStoreChange = _),
+                _.reaction || (_(_), (_.stateVersion = Symbol())),
+                function () {
+                  var _;
+                  (_.onStoreChange = null),
+                    null == (_ = _.reaction) || _.dispose(),
+                    (_.reaction = null);
+                }
+              );
+            },
+            getSnapshot: function () {
+              return _.stateVersion;
+            },
+          };
+          _.current = _;
+        }
+        var _,
+          _,
+          _ = _.current;
+        if (
+          (_.reaction || (_(_), _.register(_, _, _)),
+          _.useDebugValue(_.reaction, _),
+          _.useSyncExternalStore(_.subscribe, _.getSnapshot, _.getSnapshot),
+          _.reaction.track(function () {
+            try {
+              _ = _();
+            } catch (_) {
+              _ = _;
+            }
+          }),
+          _)
+        )
+          throw _;
+        return _;
+      }
+      var _,
+        _ = "function" == typeof Symbol && Symbol.for,
+        _ =
+          null !=
+            (_ =
+              null ==
+              (_ = Object.getOwnPropertyDescriptor(function () {}, "name"))
+                ? void 0
+                : _.configurable) && _,
+        _ = _
+          ? Symbol.for("react.forward_ref")
+          : "function" == typeof _.forwardRef &&
+            _.forwardRef(function (_) {
+              return null;
+            }).$$typeof,
+        _ = _
+          ? Symbol.for("react.memo")
+          : "function" == typeof _.memo &&
+            _.memo(function (_) {
+              return null;
+            }).$$typeof,
+        _ = {
+          $$typeof: !0,
+          render: !0,
+          compare: !0,
+          type: !0,
+          displayName: !0,
+        };
+      function _(_) {
+        var _ = _.children,
+          _ = _.render;
+        _ &&
+          _ &&
+          console.error(
+            "MobX Observer: Do not use children and render in the same time in `Observer`",
+          );
+        var _ = _ || _;
+        return "function" != typeof _ ? null : _(_);
+      }
+      function _(_) {
+        var _ = _.useState(function () {
+          return _.observable(
+            _,
+            {},
+            {
+              deep: !1,
+            },
+          );
+        })[0];
+        return (
+          _.runInAction(function () {
+            Object.assign(_, _);
+          }),
+          _
+        );
+      }
+      (_.displayName = "Observer"), _(_.unstable_batchedUpdates);
+      var _ = null != (_ = _.finalizeAllImmediately) ? _ : function () {};
+      module_exports.useObserver = function (_, _) {
+        return void 0 === _ && (_ = "observed"), _(_, _);
+      };
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
       __webpack_require__._(module_exports, {
         _: () => _,
       });
@@ -174,7 +371,7 @@ var CLSTAMP = "steamdb";
           return "playspace-outline";
         }
         buildNode(_, _) {
-          var _, _, _, _, _, _, _, _, _, _, _;
+          var _, _, _, _, _, _, _, _, _, _, _, _, _, _;
           const _ = this.createSgNode(_);
           return (
             (_.properties["generic-geo"] =
@@ -209,6 +406,10 @@ var CLSTAMP = "steamdb";
               null === (_ = this.props) || void 0 === _
                 ? void 0
                 : _["outline-color-hsv"]),
+            (_.properties["inactive-outline-color-hsv"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _["inactive-outline-color-hsv"]),
             (_.properties["stroke-shadow-radius-delta"] =
               null === (_ = this.props) || void 0 === _
                 ? void 0
@@ -221,6 +422,14 @@ var CLSTAMP = "steamdb";
               null === (_ = this.props) || void 0 === _
                 ? void 0
                 : _["outline-shadow-alpha"]),
+            (_.properties["area-fill-color"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _["area-fill-color"]),
+            (_.properties["area-fill-alpha"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _["area-fill-alpha"]),
             [_, _]
           );
         }
@@ -277,6 +486,26 @@ var CLSTAMP = "steamdb";
               null === (_ = this.props) || void 0 === _
                 ? void 0
                 : _["follow-head"]),
+            [_, _]
+          );
+        }
+      }
+      (0, _._)([_._], _.prototype, "buildNode", null);
+      class _ extends _._ {
+        constructor(_) {
+          super(_), super.setBuildNodeOverride(this.buildNode);
+        }
+        getNodeType() {
+          return "playspace-area-drawing";
+        }
+        buildNode(_, _) {
+          var _;
+          const _ = this.createSgNode(_);
+          return (
+            (_.properties["brush-radius"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _["brush-radius"]),
             [_, _]
           );
         }
@@ -656,6 +885,23 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
       });
       const _ = "openvr.tool.steamvr_environments",
         _ = "system.generated.steam.exe",
@@ -663,6 +909,7 @@ var CLSTAMP = "steamdb";
         _ = 250820,
         _ = 330050,
         _ = 769,
+        _ = 202355,
         _ = "steam.app.",
         _ = _ + _,
         _ = _ + _,
@@ -698,6 +945,11 @@ var CLSTAMP = "steamdb";
         _ = "DashboardGrabHandleTransform_Legacy",
         _ = "/settings/steamvr/enableHomeApp",
         _ = "/settings/dashboard/enableDashboard",
+        _ = "/settings/steamvr/disableChaperone",
+        _ = "/settings/steamvr/recommendedResolutionMultiplierMin",
+        _ = "/settings/steamvr/recommendedResolutionMultiplierMax",
+        _ = "/settings/steamvr/recommendedResolutionMultiplierSteps",
+        _ = "/settings/steamvr/showRecommendedResolutionPercentage",
         _ = "/settings/steamvr/supersampleManualOverride",
         _ = "/settings/steamvr/supersampleScale",
         _ = "/settings/GpuSpeed/gpuSpeedRenderTargetScale",
@@ -724,6 +976,13 @@ var CLSTAMP = "steamdb";
         _ = "/settings/camera/lightSourceFrequency",
         _ = "/settings/camera/autoLowerPassthroughResolution",
         _ = "/settings/steamvr/ipdHUD",
+        _ = "/settings/steamvr/inHMDRoomSetupDebug",
+        _ = "/settings/steamvr/defaultPerAppRefreshRate",
+        _ = "/settings/steamvr/unifiedPerAppRefreshRateAndThrottling",
+        _ = "/settings/steamvr/preferredRefreshRate",
+        _ = "/settings/steamvr/motionSmoothing",
+        _ = "/settings/perfcheck/perfGraphInHMD",
+        _ = "/settings/perfcheck/recordStats",
         _ = "/settings/dashboard/expectSteam",
         _ = "/settings/dashboard/allowLegacyControlBar",
         _ = "/settings/openxr/metaUnityPluginCompatibility",
@@ -736,7 +995,11 @@ var CLSTAMP = "steamdb";
         _ = "/settings/input/overlayMagnetismDeadZone",
         _ = "/steam/websocketconnected",
         _ = "/steam/oobe",
-        _ = "/steamvr/fakeoobe";
+        _ = "/steamvr/fakeoobe",
+        _ = "/steam/guidedtour",
+        _ = "/settings/perfcheck/showPerfCriteriaSettings",
+        _ = "/settings/perfcheck/drawPerfCriteriaOverlay",
+        _ = "/settings/perfcheck/drawPerfCriteriaGameTextures";
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       __webpack_require__._(module_exports, {
@@ -749,8 +1012,11 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
+      function _(_) {
+        return "string" == typeof _ || (Array.isArray(_) && _[1]);
+      }
       function _(..._) {
-        return _.filter((_) => null != _ && ("string" == typeof _ || _[1]))
+        return _.filter(_)
           .map((_) => ("string" == typeof _ ? _ : _[0]))
           .join(" ");
       }
@@ -784,17 +1050,19 @@ var CLSTAMP = "steamdb";
         updateScrollableParents() {
           for (let _ of this.m_rScrollableParents)
             _.removeEventListener("scroll", this.onParentScroll);
-          this.m_rScrollableParents = (function (_) {
-            let _ = [];
-            if (!_) return _;
-            let _ = _.parentElement;
-            for (; _; ) {
-              const _ = _.scrollWidth > _.clientWidth,
-                _ = _.scrollHeight > _.clientHeight;
-              (_ || _) && _.push(_), (_ = _.parentElement);
-            }
-            return _;
-          })(this.m_elem);
+          this.m_elem
+            ? (this.m_rScrollableParents = (function (_) {
+                let _ = [];
+                if (!_) return _;
+                let _ = _.parentElement;
+                for (; _; ) {
+                  const _ = _.scrollWidth > _.clientWidth,
+                    _ = _.scrollHeight > _.clientHeight;
+                  (_ || _) && _.push(_), (_ = _.parentElement);
+                }
+                return _;
+              })(this.m_elem))
+            : (this.m_rScrollableParents = []);
           for (let _ of this.m_rScrollableParents)
             _.addEventListener("scroll", this.onParentScroll);
         }
@@ -853,7 +1121,7 @@ var CLSTAMP = "steamdb";
         constructor(_) {
           super(_),
             (this.m_flForcedUniformDashboardHeight = void 0),
-            (this.m_eAllowResizing = 1),
+            (this.m_eAllowResizing = 2),
             (0, _.makeObservable)(this);
         }
         ForceUniformDashboardHeight(_) {
@@ -889,6 +1157,16 @@ var CLSTAMP = "steamdb";
             ? 1.75
             : 0;
         }
+        get ignoreResizeAmount() {
+          switch (this.m_eAllowResizing) {
+            case 0:
+              return !0;
+            case 1:
+              return this.frame.docking.visualDockLocation == _._.Dashboard;
+            case 2:
+              return !1;
+          }
+        }
         get mainPanelHeightOverride() {
           return this.frame.docking.visualDockLocation == _._.Theater
             ? 2
@@ -919,15 +1197,18 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.computed], _.prototype, "scaleForBottomControls", null),
         (0, _._)([_.computed], _.prototype, "scaleForActivePage", null),
         (0, _._)([_.computed], _.prototype, "resizingDisplacementFactor", null),
+        (0, _._)([_.computed], _.prototype, "ignoreResizeAmount", null),
         (0, _._)([_.computed], _.prototype, "mainPanelHeightOverride", null),
         (0, _._)([_.computed], _.prototype, "showResizeHandle", null);
       class _ extends _._ {
         constructor(_) {
           super(_),
             (this.m_lastPanelContentSize = void 0),
+            (this.m_lastPanelMeasurement = void 0),
             (0, _.makeObservable)(this);
         }
         Init() {
+          let _;
           this.OnDestroyed.Register(
             (0, _.autorun)(() => {
               var _;
@@ -950,7 +1231,41 @@ var CLSTAMP = "steamdb";
                   });
               }
             }),
-          );
+          ),
+            this.OnDestroyed.Register(() =>
+              null == _ ? void 0 : _.Unregister(),
+            ),
+            this.OnDestroyed.Register(
+              (0, _.reaction)(
+                () => this.framePage.mainPanelID,
+                (_) => {
+                  null == _ || _.Unregister(),
+                    _ &&
+                      (_ = _._.getInstance().SubscribeToPanelHeight(
+                        this.framePage.mainPanelID,
+                        (_) => (this.m_lastPanelMeasurement = _),
+                      ));
+                },
+                {
+                  fireImmediately: !0,
+                },
+              ),
+            );
+        }
+        get latestMeasuredPanelWorldHeight() {
+          return this.m_lastPanelMeasurement
+            ? this.m_lastPanelMeasurement.m_flRawPanelHeight *
+                this.m_lastPanelMeasurement.m_flTransformScaleDuringMeasure
+            : 0;
+        }
+        get latestMeasuredPanelLocalHeight() {
+          return this.m_lastPanelMeasurement
+            ? this.latestMeasuredPanelWorldHeight /
+                this.mainPanelWorldScaleIgnoringResizing
+            : 0;
+        }
+        get mainPanelWorldScaleIgnoringResizing() {
+          return _._.dashboardScale * this.frame.size.scaleForActivePage;
         }
         get latestContentSize() {
           return this.m_lastPanelContentSize;
@@ -977,8 +1292,969 @@ var CLSTAMP = "steamdb";
         }
       }
       (0, _._)([_.observable], _.prototype, "m_lastPanelContentSize", void 0),
+        (0, _._)([_.observable], _.prototype, "m_lastPanelMeasurement", void 0),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "latestMeasuredPanelWorldHeight",
+          null,
+        ),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "latestMeasuredPanelLocalHeight",
+          null,
+        ),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "mainPanelWorldScaleIgnoringResizing",
+          null,
+        ),
         (0, _._)([_.computed], _.prototype, "latestContentSize", null),
         (0, _._)([_.action], _.prototype, "SetMainPanel", null);
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      __webpack_require__._(module_exports, {
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+      });
+      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      const _ = new _._("Frame");
+      var _;
+      !(function (_) {
+        (_[(_.Uninitialized = 0)] = "Uninitialized"),
+          (_[(_.Pending = 1)] = "Pending"),
+          (_[(_.Alive = 2)] = "Alive"),
+          (_[(_.Destroyed = 3)] = "Destroyed");
+      })(_ || (_ = {}));
+      class _ {
+        RegisterComponent(_) {
+          this.m_setComponents.add(_);
+        }
+        get OnDestroyed() {
+          return this.m_OnDestroyed;
+        }
+        constructor(_, _) {
+          (this.m_eState = _.Uninitialized),
+            (this.m_sTitle = ""),
+            (this.m_mapPages = new Map()),
+            (this.m_unActivePageID = void 0),
+            (this.m_unFrameMenuPopupID = void 0),
+            (this.m_Icon = {}),
+            (this.m_TabVisibility = {
+              bVisibleInDashboardBar: !0,
+              bVisibleInDashboardHamburgerMenu: !1,
+            }),
+            (this.m_rgMenuItems_LeftFrameMenu = []),
+            (this.m_rgMenuItems_TabHoverMenu = []),
+            (this.m_rgControlsItems_BottomFrameControls = []),
+            (this.m_rgControlsItems_TabHoverControls = []),
+            (this.m_vrAppEntry = void 0),
+            (this.m_fnOnCloseRequested = void 0),
+            (this.m_sCloseButtonLabel = void 0),
+            (this.m_eCloseButtonIcon = void 0),
+            (this.m_mapSpatializeEnabledForPage = new Map()),
+            (this.m_actionToFocusMainPanel = void 0),
+            (this.m_actionToFocusLeftFrameMenu = void 0),
+            (this.m_refFrameMenu = _.createRef()),
+            (this.Log = new _._("Frame", () => this.logPrefix)),
+            (this.m_unNextPageID = 1),
+            (this.m_setComponents = new Set()),
+            (this.sharing = void 0),
+            (this.curvature = new _._(this)),
+            (this.docking = new _._(this)),
+            (this.size = new _._(this)),
+            (this.m_OnDestroyed = new _._()),
+            (this.m_bPendingLoadAppInfo = !1),
+            (this.m_bPendingInitialSyncWithSteam = !1),
+            (this.m_unOverridePageID = void 0),
+            (this.m_unFrameID = _),
+            (this.m_unTabID = _),
+            (this.m_sTitle = `Untitled Frame ${_}`),
+            (0, _.makeObservable)(this);
+        }
+        get frameID() {
+          return this.m_unFrameID;
+        }
+        get logPrefix() {
+          return _(this, !1);
+        }
+        get state() {
+          return this.m_eState;
+        }
+        get isPendingStateConcluded() {
+          return (
+            this.state == _.Pending &&
+            (!_._.supportedFrameFeatures.steamHelpsRenderFrame ||
+              !this.m_bPendingInitialSyncWithSteam) &&
+            !this.m_bPendingLoadAppInfo
+          );
+        }
+        SetPageOverride(_) {
+          (this.m_unOverridePageID = _ instanceof _._ ? _.pageID : _),
+            null != this.activePage && this.SwitchToPage(this.activePage);
+        }
+        SetTitle(_) {
+          this.m_sTitle = null != _ ? _ : "";
+        }
+        get title() {
+          return this.m_sTitle;
+        }
+        SetIcon(_) {
+          this.m_Icon = null != _ ? _ : {};
+        }
+        get icon() {
+          return Object.values(this.m_Icon).some((_) => null != _)
+            ? this.m_Icon
+            : {
+                enum: 0,
+              };
+        }
+        SetCloseButton(_, _, _) {
+          (this.m_fnOnCloseRequested = _),
+            (this.m_sCloseButtonLabel = _),
+            (this.m_eCloseButtonIcon = _);
+        }
+        get canRequestClose() {
+          return null != this.m_fnOnCloseRequested;
+        }
+        get closeButtonLabel() {
+          var _;
+          return null !== (_ = this.m_sCloseButtonLabel) && void 0 !== _
+            ? _
+            : (0, _._)("#Close");
+        }
+        get closeButtonIcon() {
+          var _;
+          return null !== (_ = this.m_eCloseButtonIcon) && void 0 !== _
+            ? _
+            : 31;
+        }
+        RequestClose() {
+          var _;
+          null === (_ = this.m_fnOnCloseRequested) ||
+            void 0 === _ ||
+            _.call(this);
+        }
+        SetTabVisibility(_) {
+          var _, _;
+          this.m_TabVisibility = {
+            bVisibleInDashboardBar:
+              null !== (_ = _.bVisibleInDashboardBar) && void 0 !== _
+                ? _
+                : this.m_TabVisibility.bVisibleInDashboardBar,
+            bVisibleInDashboardHamburgerMenu:
+              null !== (_ = _.bVisibleInDashboardHamburgerMenu) && void 0 !== _
+                ? _
+                : this.m_TabVisibility.bVisibleInDashboardHamburgerMenu,
+          };
+        }
+        get tabVisibility() {
+          return this.m_TabVisibility;
+        }
+        get isCurrentlyVisible() {
+          if (this.state != _.Alive) return !1;
+          switch (this.docking.dockLocation) {
+            case _._.Dashboard:
+              return (
+                !!_._.m_bDashboardVisible &&
+                !!this.isActiveDashboardFrame &&
+                (null == _._.framePreviewingDashboardDockSnap ||
+                  _._.framePreviewingDashboardDockSnap == this)
+              );
+            case _._.LeftHand:
+            case _._.RightHand:
+            case _._.Theater:
+            case _._.World:
+              return !0;
+          }
+          return !1;
+        }
+        get shouldSuppressPanelBacksides() {
+          return (
+            this.docking.visualDockLocation == _._.LeftHand ||
+            this.docking.visualDockLocation == _._.RightHand
+          );
+        }
+        get activePageID() {
+          return this.m_unActivePageID;
+        }
+        get activePage() {
+          return null != this.m_unActivePageID
+            ? this.m_mapPages.get(this.m_unActivePageID)
+            : void 0;
+        }
+        get isActiveDashboardFrame() {
+          return (0, _._)(_._.activeFrame, this);
+        }
+        get pageIDs() {
+          return Array.from(this.m_mapPages.keys());
+        }
+        get pages() {
+          return Array.from(this.m_mapPages.values());
+        }
+        get associatedSummonOverlayKeys() {
+          return this.pages
+            .map((_) => _.summonOverlayKey)
+            .filter((_) => Boolean(_))
+            .filter(Boolean);
+        }
+        get tab() {
+          return {
+            tab_id: this.m_unTabID,
+            associated_frame_id: this.frameID,
+            display_name: this.title,
+            icon: this.icon,
+            visible_in_dashboard_bar: this.tabVisibility.bVisibleInDashboardBar,
+            visible_in_dashboard_bar_hamburger_menu:
+              this.tabVisibility.bVisibleInDashboardHamburgerMenu,
+          };
+        }
+        get frameMenuPopupRequest() {
+          if (null != this.m_unFrameMenuPopupID)
+            return _._.GetRequestForID(this.m_unFrameMenuPopupID);
+        }
+        get shouldRenderFrameControls() {
+          var _, _;
+          return (
+            !_._.isOOBE &&
+            (null ==
+              (null === (_ = this.activePage) || void 0 === _
+                ? void 0
+                : _.summonOverlayKey) ||
+              !_._.GetOverlayFlag(
+                null === (_ = this.activePage) || void 0 === _
+                  ? void 0
+                  : _.summonOverlayKey,
+                67108864,
+              ))
+          );
+        }
+        get isRemoteFrame() {
+          return !1;
+        }
+        get asLocalFrame() {
+          return this;
+        }
+        get frameControlsTransformID() {
+          return `frame:${this.frameID}:bottom-controls-transform`;
+        }
+        get overlayKeyForSpatialize() {
+          var _;
+          let _ =
+            null === (_ = this.activePage) || void 0 === _
+              ? void 0
+              : _.summonOverlayKey;
+          for (const _ of this.associatedSummonOverlayKeys)
+            if (_.startsWith(_._ + ".")) {
+              _ = _;
+              break;
+            }
+          return _;
+        }
+        get canSpatialize() {
+          return (
+            !!this.activePage &&
+            !!_._.settings.get("/settings/audio/enableSpatializeGlobal") &&
+              null != this.overlayKeyForSpatialize &&
+            (this.overlayKeyForSpatialize.startsWith(_._ + ".") ||
+              this.overlayKeyForSpatialize == _._)
+          );
+        }
+        get isSpatializeEnabled() {
+          return (
+            !(
+              !this.activePageID ||
+              !this.activePage ||
+              null == this.activePage.summonOverlayKey
+            ) &&
+            !!this.canSpatialize &&
+            (this.m_mapSpatializeEnabledForPage.has(this.activePageID) ||
+              (this.m_mapSpatializeEnabledForPage.set(this.activePageID, !1),
+              _._.GetAppSettings(this.activePage.summonOverlayKey).then((_) =>
+                this.m_mapSpatializeEnabledForPage.set(
+                  this.activePageID,
+                  _.spatialize,
+                ),
+              )),
+            this.m_mapSpatializeEnabledForPage.get(this.activePageID))
+          );
+        }
+        SetSpatializeEnabled(_) {
+          if (
+            !this.activePageID ||
+            !this.activePage ||
+            null == this.activePage.summonOverlayKey
+          )
+            return;
+          this.m_mapSpatializeEnabledForPage.set(this.activePageID, _);
+          let _ = {};
+          (_.spatialize = _),
+            _._.SetAppSettings(this.activePage.summonOverlayKey, _);
+        }
+        get enablePositionalStereo() {
+          return this.isSpatializeEnabled;
+        }
+        get allowInputCapture() {
+          return (
+            this.docking.dockLocation == _._.Theater ||
+            _._.settings.get("/settings/dashboard/inputCaptureEnabled")
+          );
+        }
+        LoadAppManifestInfo() {
+          return (0, _._)(this, void 0, void 0, function* () {
+            const _ = this.associatedSummonOverlayKeys[0],
+              _ = yield _._.GetAppInfo(_);
+            (0, _.runInAction)(() => {
+              (this.m_vrAppEntry = _),
+                (this.docking.m_fLastTotalVisibleTimeInSeconds = (0, _._)(_)),
+                (this.m_bPendingLoadAppInfo = !1);
+            });
+          });
+        }
+        OnPendingComplete() {
+          var _, _, _, _;
+          this.m_eState = _.Alive;
+          "valve.steam.gamepadui.bootstrapper" ==
+          (null === (_ = this.activePage) || void 0 === _
+            ? void 0
+            : _.summonOverlayKey)
+            ? this.docking.SetDockLocation(_._.Boot)
+            : (null === (_ = this.m_vrAppEntry) || void 0 === _
+                  ? void 0
+                  : _.starts_theater_mode) ||
+                this.associatedSummonOverlayKeys.includes(_._)
+              ? (this.docking.SetInTheater(),
+                null ===
+                  (_ =
+                    null === VRHTML || void 0 === VRHTML
+                      ? void 0
+                      : VRHTML.VRDashboardManager) ||
+                  void 0 === _ ||
+                  __webpack_require__.HideDashboard("OnPendingComplete", !1))
+              : this.associatedSummonOverlayKeys.some((_) =>
+                  _.startsWith("gamescope."),
+                ) &&
+                _._.m_bDashboardVisible &&
+                (null === (_ = _._.Instance) ||
+                  void 0 === _ ||
+                  _.switchToFrameInternal(this, void 0, "OnPendingComplete"));
+        }
+        GetPageWithID(_) {
+          return this.m_mapPages.get(_);
+        }
+        GetPageWithOverlaySummonKey(_) {
+          if (_) return this.pages.find((_) => _.summonOverlayKey === _);
+        }
+        Init() {
+          if (this.m_eState == _.Uninitialized) {
+            this.OnDestroyed.Register(
+              (0, _.reaction)(
+                () => this.pages.filter((_) => _.state == _._.Destroyed),
+                this.OnPagesDestroyed,
+              ),
+            ),
+              (this.m_bPendingInitialSyncWithSteam =
+                _._.supportedFrameFeatures.steamHelpsRenderFrame),
+              (this.m_bPendingLoadAppInfo = !0),
+              this.LoadAppManifestInfo(),
+              (this.m_eState = _.Pending),
+              this.OnDestroyed.Register(
+                (0, _.when)(
+                  () => this.isPendingStateConcluded,
+                  this.OnPendingComplete,
+                ),
+              ),
+              this.OnDestroyed.Register(
+                (0, _.autorun)(() => {
+                  this.Log.IsDebugEnabled() &&
+                    this.Log.Debug(
+                      "Proto updated:",
+                      JSON.parse(JSON.stringify(this.protoForSteam)),
+                    );
+                }),
+              );
+            for (const _ of this.m_setComponents) _.Init();
+            (this.m_actionToFocusMainPanel = this.CreateAction(
+              {
+                invocation: 1,
+              },
+              () => {
+                var _;
+                return null === (_ = this.activePage) || void 0 === _
+                  ? void 0
+                  : _.gamepad.PushGamepadFocus();
+              },
+            )),
+              (this.m_actionToFocusLeftFrameMenu = this.CreateAction(
+                {
+                  invocation: 1,
+                },
+                () => {
+                  var _;
+                  const _ =
+                    null === (_ = this.m_refFrameMenu.current) || void 0 === _
+                      ? void 0
+                      : _.getSGID();
+                  _ && _._.PushGamepadFocus(_);
+                },
+              )),
+              this.Log.Info("Frame initialized.");
+          }
+        }
+        OnPagesDestroyed(_) {
+          _.forEach((_) => {
+            this.m_mapPages.delete(_.pageID);
+          }),
+            this.m_unActivePageID &&
+              (this.m_mapPages.has(this.m_unActivePageID) ||
+                (this.pageIDs.length
+                  ? (this.m_unActivePageID = this.pageIDs[0])
+                  : (this.m_unActivePageID = void 0)));
+        }
+        DestroyFrame() {
+          this.m_eState != _.Destroyed &&
+            (this.Log.Info("Frame destroyed."),
+            (this.m_eState = _.Destroyed),
+            this.m_OnDestroyed.Dispatch(),
+            this.m_OnDestroyed.ClearAllCallbacks());
+        }
+        CreatePage() {
+          const _ = new _._(this, this.m_unNextPageID++);
+          return (
+            queueMicrotask(() =>
+              (0, _.runInAction)(() => {
+                this.m_mapPages.set(_.pageID, _),
+                  this.m_unActivePageID || (this.m_unActivePageID = _.pageID);
+              }),
+            ),
+            _
+          );
+        }
+        SwitchToPage(_) {
+          let _ = _ instanceof _._ ? _ : this.m_mapPages.get(_);
+          null != this.m_unOverridePageID &&
+            (_ = this.GetPageWithID(this.m_unOverridePageID)),
+            _ && (this.m_unActivePageID = _.pageID);
+        }
+        CreateAction(..._) {
+          const _ = _._.CreateAction(..._);
+          return this.OnDestroyed.Register(() => _.Destroy()), _;
+        }
+        SetMenuItems(_, _) {
+          (this.m_rgMenuItems_LeftFrameMenu = _),
+            (this.m_rgMenuItems_TabHoverMenu = _);
+        }
+        SetControlsItems(_, _) {
+          (this.m_rgControlsItems_BottomFrameControls = _),
+            (this.m_rgControlsItems_TabHoverControls = _);
+        }
+        get protoForSteam() {
+          var _, _, _, _, _, _, _, _;
+          if (this.state == _.Uninitialized || this.state == _.Destroyed)
+            return;
+          const _ =
+              _._.m_bIsVRLinkServer &&
+              _._.m_eVRLinkDashboardMode == _._.SteamVRClientLegacyDual,
+            _ = {
+              frame_id: this.frameID,
+              tmp_title: this.title,
+              menu: {
+                items_for_left_frame_menu:
+                  null !== (_ = this.m_rgMenuItems_LeftFrameMenu) &&
+                  void 0 !== _
+                    ? _
+                    : [],
+                items_for_tab_hover_menu:
+                  null !== (_ = this.m_rgMenuItems_TabHoverMenu) && void 0 !== _
+                    ? _
+                    : [],
+              },
+              controls: {
+                items_for_bottom_frame_controls:
+                  null !== (_ = this.m_rgControlsItems_BottomFrameControls) &&
+                  void 0 !== _
+                    ? _
+                    : [],
+                items_for_tab_hover_menu:
+                  null !== (_ = this.m_rgControlsItems_TabHoverControls) &&
+                  void 0 !== _
+                    ? _
+                    : [],
+              },
+              frame_actions: {
+                focus_main_panel_action:
+                  null === (_ = this.m_actionToFocusMainPanel) || void 0 === _
+                    ? void 0
+                    : _.actionID,
+                focus_left_frame_menu_action:
+                  null === (_ = this.m_actionToFocusLeftFrameMenu) ||
+                  void 0 === _
+                    ? void 0
+                    : _.actionID,
+              },
+              is_vrlink_remote: _,
+              steamui_page_overlay_keys:
+                this.associatedSummonOverlayKeys.filter((_) =>
+                  _.startsWith("valve.steam."),
+                ),
+            };
+          _._.supportedFrameFeatures.steamHelpsRenderFrame &&
+            !_._.supportedFrameFeatures.steamRendersFrameControls &&
+            (function (_) {
+              var _;
+              if (
+                null ==
+                (null === (_ = null == _ ? void 0 : _.controls) || void 0 === _
+                  ? void 0
+                  : _.items_for_tab_hover_menu)
+              )
+                return;
+              const _ = _.controls.items_for_tab_hover_menu.map((_) => {
+                let _;
+                switch (_.type) {
+                  case 2:
+                    _ = 3;
+                    break;
+                  case 1:
+                    _ = 1;
+                }
+                return {
+                  action_id: _.action_id,
+                  type: _,
+                };
+              });
+              _.controls.items_for_tab_hover_menu.length > 0 &&
+                (_.menu.items_for_tab_hover_menu = [
+                  ..._.menu.items_for_tab_hover_menu,
+                  {
+                    type: 2,
+                  },
+                  ..._,
+                ]);
+            })(_),
+            this.shouldRenderFrameControls ||
+              (_.controls.items_for_bottom_frame_controls = void 0),
+            _._.isOOBE && (_.menu.items_for_left_frame_menu = void 0);
+          const _ = new Set();
+          return (
+            null === (_ = _.menu.items_for_left_frame_menu) ||
+              void 0 === _ ||
+              _.forEach((_) => _.add(_.action_id)),
+            null === (_ = _.menu.items_for_tab_hover_menu) ||
+              void 0 === _ ||
+              _.forEach((_) => _.add(_.action_id)),
+            (_.action_definitions = [..._]
+              .map((_) => {
+                var _;
+                return null === (_ = _._.GetAction(_)) || void 0 === _
+                  ? void 0
+                  : _.protoForSteam;
+              })
+              .filter(Boolean)),
+            _._.HasCapability(20, _._.MutualLocal) || (0, _._)(_.menu),
+            _
+          );
+        }
+        get protoForVRLink() {
+          return {
+            tab: this.tab,
+            icon: this.icon,
+            is_currently_visible: this.isCurrentlyVisible,
+            should_render_frame_controls: this.shouldRenderFrameControls,
+            should_suppress_panel_backsides: this.shouldSuppressPanelBacksides,
+            title: this.title,
+          };
+        }
+        OnFrameUpdateResultFromSteam(_) {
+          if (this.m_eState == _.Destroyed) return;
+          const { frame_id: _ } = _,
+            _ = (0, _._)(_, ["frame_id"]);
+          this.Log.Info("Update result:", JSON.stringify(_)),
+            (this.m_unFrameMenuPopupID = _.frame_menu_dashboard_popup_id),
+            (this.m_bPendingInitialSyncWithSteam = !1);
+        }
+      }
+      function _(_, _) {
+        let _ = _.title;
+        return (
+          _.IsDebugEnabled() ||
+            _._.includes(_) ||
+            (_ = (0, _.hash)(_).substring(0, _._)),
+          _.length > _._ &&
+            (_ = __webpack_require__.substring(0, _._ - 3) + "..."),
+          `${_.frameID}${_ ? " (remote)" : ""} "${_}"`
+        );
+      }
+      (0, _._)([_.observable], _.prototype, "m_eState", void 0),
+        (0, _._)([_.observable], _.prototype, "m_sTitle", void 0),
+        (0, _._)([_.observable], _.prototype, "m_mapPages", void 0),
+        (0, _._)([_.observable], _.prototype, "m_unActivePageID", void 0),
+        (0, _._)([_.observable], _.prototype, "m_unFrameMenuPopupID", void 0),
+        (0, _._)([_.observable.struct], _.prototype, "m_Icon", void 0),
+        (0, _._)([_.observable.struct], _.prototype, "m_TabVisibility", void 0),
+        (0, _._)(
+          [_.observable],
+          _.prototype,
+          "m_rgMenuItems_LeftFrameMenu",
+          void 0,
+        ),
+        (0, _._)(
+          [_.observable],
+          _.prototype,
+          "m_rgMenuItems_TabHoverMenu",
+          void 0,
+        ),
+        (0, _._)(
+          [_.observable],
+          _.prototype,
+          "m_rgControlsItems_BottomFrameControls",
+          void 0,
+        ),
+        (0, _._)(
+          [_.observable],
+          _.prototype,
+          "m_rgControlsItems_TabHoverControls",
+          void 0,
+        ),
+        (0, _._)([_.observable], _.prototype, "m_vrAppEntry", void 0),
+        (0, _._)([_.observable], _.prototype, "m_fnOnCloseRequested", void 0),
+        (0, _._)([_.observable], _.prototype, "m_sCloseButtonLabel", void 0),
+        (0, _._)([_.observable], _.prototype, "m_eCloseButtonIcon", void 0),
+        (0, _._)(
+          [_.observable],
+          _.prototype,
+          "m_mapSpatializeEnabledForPage",
+          void 0,
+        ),
+        (0, _._)([_.computed], _.prototype, "logPrefix", null),
+        (0, _._)([_.computed], _.prototype, "state", null),
+        (0, _._)([_.observable], _.prototype, "m_bPendingLoadAppInfo", void 0),
+        (0, _._)(
+          [_.observable],
+          _.prototype,
+          "m_bPendingInitialSyncWithSteam",
+          void 0,
+        ),
+        (0, _._)([_.computed], _.prototype, "isPendingStateConcluded", null),
+        (0, _._)([_.action], _.prototype, "SetTitle", null),
+        (0, _._)([_.computed], _.prototype, "title", null),
+        (0, _._)([_.action], _.prototype, "SetIcon", null),
+        (0, _._)([_.computed.struct], _.prototype, "icon", null),
+        (0, _._)([_.action], _.prototype, "SetCloseButton", null),
+        (0, _._)([_.computed], _.prototype, "canRequestClose", null),
+        (0, _._)([_.computed], _.prototype, "closeButtonLabel", null),
+        (0, _._)([_.computed], _.prototype, "closeButtonIcon", null),
+        (0, _._)([_.action], _.prototype, "SetTabVisibility", null),
+        (0, _._)([_.computed.struct], _.prototype, "tabVisibility", null),
+        (0, _._)([_.computed], _.prototype, "isCurrentlyVisible", null),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "shouldSuppressPanelBacksides",
+          null,
+        ),
+        (0, _._)([_.computed], _.prototype, "activePageID", null),
+        (0, _._)([_.computed], _.prototype, "activePage", null),
+        (0, _._)([_.computed], _.prototype, "isActiveDashboardFrame", null),
+        (0, _._)([_.computed], _.prototype, "pageIDs", null),
+        (0, _._)([_.computed], _.prototype, "pages", null),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "associatedSummonOverlayKeys",
+          null,
+        ),
+        (0, _._)([_.computed.struct], _.prototype, "tab", null),
+        (0, _._)([_.computed], _.prototype, "frameMenuPopupRequest", null),
+        (0, _._)([_.computed], _.prototype, "shouldRenderFrameControls", null),
+        (0, _._)([_.computed], _.prototype, "frameControlsTransformID", null),
+        (0, _._)([_.computed], _.prototype, "overlayKeyForSpatialize", null),
+        (0, _._)([_.computed], _.prototype, "canSpatialize", null),
+        (0, _._)([_.computed], _.prototype, "isSpatializeEnabled", null),
+        (0, _._)([_.action.bound], _.prototype, "SetSpatializeEnabled", null),
+        (0, _._)([_.computed], _.prototype, "enablePositionalStereo", null),
+        (0, _._)([_.computed], _.prototype, "allowInputCapture", null),
+        (0, _._)([_.action.bound], _.prototype, "OnPendingComplete", null),
+        (0, _._)([_.action], _.prototype, "Init", null),
+        (0, _._)([_.action.bound], _.prototype, "OnPagesDestroyed", null),
+        (0, _._)([_.action], _.prototype, "DestroyFrame", null),
+        (0, _._)([_.action], _.prototype, "SwitchToPage", null),
+        (0, _._)([_.action], _.prototype, "SetMenuItems", null),
+        (0, _._)([_.action], _.prototype, "SetControlsItems", null),
+        (0, _._)([_.computed.struct], _.prototype, "protoForSteam", null),
+        (0, _._)([_.computed.struct], _.prototype, "protoForVRLink", null),
+        (0, _._)(
+          [_.action.bound],
+          _.prototype,
+          "OnFrameUpdateResultFromSteam",
+          null,
+        );
+      const _ = (0, _._)(
+        _.forwardRef(function (_, _) {
+          var _, _, _, _, _;
+          const {
+              children: _,
+              title: _,
+              iconEnum: _,
+              iconAppID: _,
+              iconOverlayKey: _,
+              iconHWND: _,
+              showTabInDashboardBar: _,
+              showTabInDashboardHamburgerMenu: _,
+              onCloseRequested: _,
+              closeButtonLabel: _,
+              closeButtonIcon: _,
+              forcedUniformDashboardHeight: _,
+              allowResizing: _,
+            } = _,
+            _ = _.useMemo(() => _._.CreateCFrame(), []);
+          (0, _._)(_, _);
+          const _ = _.useMemo(() => {
+              const _ = {
+                enum: _,
+                appid: _,
+                overlay: _,
+                hwnd: _,
+              };
+              if (!Object.values(_).every((_) => void 0 === _)) return _;
+            }, [_, _, _, _]),
+            _ = _.useMemo(() => null != _, [_]),
+            _ = _.useRef(void 0);
+          (_.current = _),
+            _.useEffect(() => {
+              (0, _.runInAction)(() => {
+                _ && _.SetTitle(_),
+                  _ && _.SetIcon(_),
+                  _.SetTabVisibility({
+                    bVisibleInDashboardBar: _,
+                    bVisibleInDashboardHamburgerMenu: _,
+                  }),
+                  _.SetCloseButton(_ ? _.current : void 0, _, _),
+                  _.size.ForceUniformDashboardHeight(_),
+                  null != _ && _.size.SetResizingAllowed(_),
+                  _.state == _.Uninitialized && _.Init();
+              });
+            }, [_, _, _, _, _, _, _, _, _, _]),
+            _.useEffect(() => () => _.DestroyFrame(), [_]);
+          let _ = _._.GetDockLocationTransformID(
+            _.docking.dockLocation,
+            _.frameID,
+          );
+          return (
+            _ ||
+              _.docking.dockLocation != _._.World ||
+              (_ = _._.GetDockLocationTransformID(_._.Dashboard, _.frameID)),
+            _.createElement(
+              _._.Provider,
+              {
+                value: {
+                  frame: _,
+                  page: void 0,
+                },
+              },
+              _.createElement(
+                _._,
+                {
+                  frame_id: _.frameID,
+                  dock_location: _.docking.dockLocation,
+                  dock_location_preview: _.docking.previewDockLocation,
+                  resize_displacement: _.size.resizingDisplacementFactor,
+                  resize_scale_min: _._,
+                  resize_scale_max: _._,
+                  ignore_resize_amount: _.size.ignoreResizeAmount,
+                  allow_input_capture: _.allowInputCapture,
+                  override_pre_resize_main_panel_height:
+                    _.size.mainPanelHeightOverride,
+                  suppress_panel_backsides: _.shouldSuppressPanelBacksides,
+                  main_panel_input_focus_override:
+                    null ===
+                      (_ =
+                        null === (_ = _.activePage) || void 0 === _
+                          ? void 0
+                          : _.gamepad) || void 0 === _
+                      ? void 0
+                      : _.inputFocusParams,
+                  main_panel_origin: _.docking.mainPanelOrigin,
+                },
+                _,
+                _.isCurrentlyVisible &&
+                  _ &&
+                  _.createElement(
+                    _._,
+                    {
+                      parent_id: _,
+                      ignore_parent_scale: !0,
+                      scale: _._.dashboardScale,
+                    },
+                    _.createElement(
+                      _._,
+                      {
+                        scale: _.size.scaleForActivePage,
+                      },
+                      _.createElement(
+                        _._,
+                        {
+                          translation:
+                            _.docking.panelTranslationForResizeOrigin,
+                        },
+                        _.createElement(_._, {
+                          mountedId:
+                            null === (_ = _.activePage) || void 0 === _
+                              ? void 0
+                              : _.mountableID,
+                        }),
+                      ),
+                    ),
+                    _.createElement(
+                      _._,
+                      {
+                        _: _.frameControlsTransformID,
+                        parent_id:
+                          null === (_ = _.activePage) || void 0 === _
+                            ? void 0
+                            : _.GetPanelAnchorID(_._.BottomCenter),
+                        scale:
+                          _.size.scaleForBottomControls /
+                          _.size.scaleForActivePage,
+                        frame_resize_scale_factor:
+                          _.docking.dockLocation == _._.Theater ? 0.5 : 0,
+                      },
+                      _.createElement(_._, {
+                        frame: _,
+                      }),
+                    ),
+                    _.frameMenuPopupRequest &&
+                      _.createElement(
+                        _._,
+                        {
+                          parent_id:
+                            null === (_ = _.activePage) || void 0 === _
+                              ? void 0
+                              : _.GetPanelAnchorID(_._.CenterLeft),
+                        },
+                        _.createElement(_._, {
+                          popupRequest: _.frameMenuPopupRequest,
+                          refPanel: _.m_refFrameMenu,
+                        }),
+                      ),
+                    _.createElement(_._, null),
+                    _.createElement(_._, null),
+                    _.size.showResizeHandle && _.createElement(_._, null),
+                  ),
+              ),
+            )
+          );
+        }),
+      );
+      function _(_, _, _) {
+        const _ = _.useRef(void 0);
+        _.current = _;
+        const _ = _.useMemo(
+          () =>
+            null == _
+              ? void 0
+              : _.CreateAction(_, (..._) => {
+                  var _;
+                  return null === (_ = _.current) || void 0 === _
+                    ? void 0
+                    : _.call(_, ..._);
+                }),
+          [_],
+        );
+        return (
+          _.useLayoutEffect(() => (null == _ ? void 0 : _.SetParams(_))),
+          _.useEffect(() => () => (null == _ ? void 0 : _.Destroy()), [_]),
+          _
+        );
+      }
+      function _(_) {
+        var _;
+        let _ = !0,
+          _ = !1;
+        8 &
+          (null !== (_ = null == _ ? void 0 : _.unFlags) && void 0 !== _
+            ? _
+            : 0) && (_ = !1);
+        return (
+          _._.HasCapability(2, _._.MutualLocal) &&
+            _._.includes(null == _ ? void 0 : _.sOverlayKey) &&
+            ((_ = _), (_ = !1)),
+          {
+            showTabInDashboardBar: _,
+            showTabInDashboardHamburgerMenu: _,
+          }
+        );
+      }
+      function _(_) {
+        var _;
+        const [_, _] = _.useState(!1),
+          _ =
+            null !==
+              (_ = _._.GetOverlayFlag(
+                null == _ ? void 0 : _.sOverlayKey,
+                33554432,
+              )) &&
+            void 0 !== _ &&
+            _;
+        let _ = "#Close";
+        (null == _ ? void 0 : _.sOverlayKey) == _._
+          ? (_ = "#StopStreaming")
+          : (null == _ ? void 0 : _.sOverlayKey.startsWith(_._)) &&
+            (_ = "#QuitApp");
+        return {
+          closeButtonLabel: (0, _._)(_),
+          closeButtonIcon: _ ? 32 : void 0,
+          onCloseRequested: _
+            ? () => {
+                VRHTML.VRDashboardManager.SendOverlayClosed(
+                  null == _ ? void 0 : _.sOverlayKey,
+                ),
+                  _(!0);
+              }
+            : void 0,
+        };
+      }
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       __webpack_require__._(module_exports, {
@@ -1007,8 +2283,8 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
+      __webpack_require__("chunkid");
       const _ = _.createContext({
         CreateControlsItemID: void 0,
         OnControlsItemRender: void 0,
@@ -1149,7 +2425,6 @@ var CLSTAMP = "steamdb";
           null,
           _.createElement(_, null),
           _.createElement(_, null),
-          _.createElement(_, null),
           _.createElement(_, {
             controller: "left",
           }),
@@ -1168,62 +2443,6 @@ var CLSTAMP = "steamdb";
           _.createElement(_, null),
           _.createElement(_, null),
         );
-      }
-      function _(_) {
-        const { frame: _ } = (0, _._)();
-        return (0, _._)(() => _._.gamepadFocusAllowed)
-          ? _.createElement(_, {
-              actionParams: () => {
-                var _, _, _, _;
-                return {
-                  display_name: (
-                    null === (_ = _.activePage) || void 0 === _
-                      ? void 0
-                      : _.gamepad.hasGamepadFocus
-                  )
-                    ? "Remove Gamepad Focus (wip)"
-                    : "Give Gamepad Focus (wip)",
-                  icon: {
-                    enum: 34,
-                  },
-                  invocation: 2,
-                  active:
-                    null === (_ = _.activePage) || void 0 === _
-                      ? void 0
-                      : _.gamepad.hasGamepadFocus,
-                  enabled:
-                    (null === (_ = _.activePage) || void 0 === _
-                      ? void 0
-                      : _.gamepad.canTakeFocus) ||
-                    (null === (_ = _.activePage) || void 0 === _
-                      ? void 0
-                      : _.gamepad.hasGamepadFocus),
-                };
-              },
-              onInvoked: () => {
-                var _, _, _;
-                (
-                  null === (_ = _.activePage) || void 0 === _
-                    ? void 0
-                    : _.gamepad.hasGamepadFocus
-                )
-                  ? null === (_ = _.activePage) ||
-                    void 0 === _ ||
-                    _.gamepad.RemoveGamepadFocus()
-                  : (null === (_ = _.activePage) ||
-                      void 0 === _ ||
-                      _.gamepad.PushGamepadFocus(),
-                    _.docking.dockLocation == _._.Dashboard &&
-                      _.docking.SetDockLocation(_._.World),
-                    null === VRHTML ||
-                      void 0 === VRHTML ||
-                      VRHTML.VRDashboardManager.HideDashboard(
-                        "hiding dashboard for panel focus",
-                        !1,
-                      ));
-              },
-            })
-          : null;
       }
       function _(_) {
         const { frame: _ } = (0, _._)();
@@ -1382,7 +2601,7 @@ var CLSTAMP = "steamdb";
                 enabled: _,
                 active: _,
                 icon: {
-                  enum: 23,
+                  enum: 22,
                 },
                 icon_active: {
                   enum: 24,
@@ -1670,28 +2889,20 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       const _ = new _._("FrameStore");
       var _, _;
-      function _(_) {
-        switch (_) {
-          case _._.Theater:
-          case _._.LeftHand:
-          case _._.RightHand:
-          case _._.Boot:
-            return !0;
-          case _._.Dashboard:
-          case _._.World:
-          case void 0:
-            return !1;
-        }
-      }
       !(function (_) {
         (_[(_.Disconnected = 0)] = "Disconnected"),
           (_[(_.Pending = 1)] = "Pending"),
           (_[(_.Connected = 2)] = "Connected");
       })(_ || (_ = {}));
       class _ {
+        get OnFrameDestroyed() {
+          return this.m_OnFrameDestroyed;
+        }
         get canTryConnectingToSteam() {
           return (
             _._.isVRGamepadUIReady && _._.HasCapability(16, _._.MutualLocal)
@@ -1719,6 +2930,7 @@ var CLSTAMP = "steamdb";
             (this.m_mapLocalFrames = new Map()),
             (this.m_mapRemoteFrames = new Map()),
             (this.m_eSteamConnectionState = _.Disconnected),
+            (this.m_OnFrameDestroyed = new _._()),
             (this.m_initCallHandle = void 0),
             (this.m_mapFrameDockLocations = new Map()),
             (0, _.makeObservable)(this);
@@ -1873,7 +3085,8 @@ var CLSTAMP = "steamdb";
         }
         OnLocalFramesDestroyed(_) {
           _.forEach((_) => {
-            this.m_mapLocalFrames.delete(_.frameID);
+            this.m_mapLocalFrames.delete(_.frameID),
+              this.m_OnFrameDestroyed.Dispatch(_);
           });
         }
         CreateCFrame() {
@@ -1902,7 +3115,7 @@ var CLSTAMP = "steamdb";
           return this.getLocalFrameAtExclusiveDockLocation(_._.Boot);
         }
         get theaterFrame() {
-          return this.getLocalFrameAtExclusiveDockLocation(_._.Theater);
+          return this.getFrameAtExclusiveDockLocation(_._.Theater);
         }
         get isTheaterMode() {
           return null != this.theaterFrame;
@@ -1916,6 +3129,17 @@ var CLSTAMP = "steamdb";
         get remote_frames() {
           return [...this.m_mapRemoteFrames.values()];
         }
+        get remote_steam_frame() {
+          var _;
+          for (const _ of this.m_mapRemoteFrames.values())
+            if (
+              14 ==
+              (null === (_ = null == _ ? void 0 : _.icon) || void 0 === _
+                ? void 0
+                : _.enum)
+            )
+              return _;
+        }
         _create_remote_cframe(_) {
           const _ = new _._(_);
           return this.m_mapRemoteFrames.set(_.frameID, _), _;
@@ -1924,9 +3148,10 @@ var CLSTAMP = "steamdb";
           this.m_mapRemoteFrames.clear();
         }
         _delete_remote_frame(_) {
-          this.m_mapRemoteFrames.delete(_);
+          const _ = this.m_mapRemoteFrames.get(_);
+          this.m_mapRemoteFrames.delete(_), this.m_OnFrameDestroyed.Dispatch(_);
         }
-        getRemoteFrame(_) {
+        GetRemoteFrame(_) {
           return this.m_mapRemoteFrames.get(_);
         }
         _setDockLocation(_, _) {
@@ -1936,7 +3161,10 @@ var CLSTAMP = "steamdb";
               ? _
               : _._.Dashboard;
           if (_ !== _) {
-            if ((_(_) && this.m_mapExclusiveDockLocations.delete(_), _(_))) {
+            if (
+              ((0, _._)(_) && this.m_mapExclusiveDockLocations.delete(_),
+              (0, _._)(_))
+            ) {
               const _ = this.m_mapExclusiveDockLocations.get(_);
               _ && this.m_mapDockLocations.delete(_),
                 this.m_mapExclusiveDockLocations.set(_, _);
@@ -1951,8 +3179,18 @@ var CLSTAMP = "steamdb";
             : _._.Dashboard;
         }
         getLocalFrameAtExclusiveDockLocation(_) {
-          if (_(_))
+          if ((0, _._)(_))
             return this.GetLocalFrame(this.m_mapExclusiveDockLocations.get(_));
+        }
+        getFrameAtExclusiveDockLocation(_) {
+          var _;
+          if ((0, _._)(_))
+            return null !==
+              (_ = this.GetLocalFrame(
+                this.m_mapExclusiveDockLocations.get(_),
+              )) && void 0 !== _
+              ? _
+              : this.GetRemoteFrame(this.m_mapExclusiveDockLocations.get(_));
         }
         _setPreviewDockLocation(_, _) {
           var _;
@@ -1962,8 +3200,8 @@ var CLSTAMP = "steamdb";
               : _._.Dashboard;
           if (_ !== _) {
             if (
-              (_(_) && this.m_mapPreviewExclusiveDockLocations.delete(_),
-              _ && _(_))
+              ((0, _._)(_) && this.m_mapPreviewExclusiveDockLocations.delete(_),
+              _ && (0, _._)(_))
             ) {
               const _ = this.m_mapPreviewExclusiveDockLocations.get(_);
               _ && this.m_mapPreviewDockLocations.delete(_),
@@ -2092,10 +3330,11 @@ var CLSTAMP = "steamdb";
           null,
         ),
         (0, _._)([_.computed], _.prototype, "remote_frames", null),
+        (0, _._)([_.computed], _.prototype, "remote_steam_frame", null),
         (0, _._)([_.action], _.prototype, "_create_remote_cframe", null),
         (0, _._)([_.action.bound], _.prototype, "_clear_remote_frames", null),
         (0, _._)([_.action.bound], _.prototype, "_delete_remote_frame", null),
-        (0, _._)([_._], _.prototype, "getRemoteFrame", null),
+        (0, _._)([_._], _.prototype, "GetRemoteFrame", null),
         (0, _._)([_.action.bound], _.prototype, "_setDockLocation", null),
         (0, _._)([_._], _.prototype, "_getDockLocation", null),
         (0, _._)(
@@ -2104,6 +3343,7 @@ var CLSTAMP = "steamdb";
           "getLocalFrameAtExclusiveDockLocation",
           null,
         ),
+        (0, _._)([_._], _.prototype, "getFrameAtExclusiveDockLocation", null),
         (0, _._)(
           [_.action.bound],
           _.prototype,
@@ -2717,6 +3957,7 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
       });
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -2745,6 +3986,26 @@ var CLSTAMP = "steamdb";
               _: "M93.8,50v28.1c0,8.6-7,15.6-15.6,15.6H21.9c-8.6,0-15.6-7-15.6-15.6V21.9c0-8.6,7-15.6,15.6-15.6H50c1.7,0,3.1,1.4,3.1,3.1\n\t\t\t\ts-1.4,3.1-3.1,3.1H21.9c-5.2,0-9.4,4.2-9.4,9.4v56.3c0,5.2,4.2,9.4,9.4,9.4h56.3c5.2,0,9.4-4.2,9.4-9.4V50c0-1.7,1.4-3.1,3.1-3.1\n\t\t\t\tS93.8,48.3,93.8,50z M68.8,12.5h14.3L47.8,47.8c-1.2,1.2-1.2,3.2,0,4.4c0,0,0,0,0,0c1.2,1.2,3.2,1.2,4.4,0c0,0,0,0,0,0l35.3-35.3\n\t\t\t\tv14.3c0,1.7,1.4,3.1,3.1,3.1l0,0c1.7,0,3.1-1.4,3.1-3.1V9.4c0-0.8-0.3-1.6-0.9-2.2c-0.6-0.6-1.4-0.9-2.2-0.9H68.8\n\t\t\t\tc-1.7,0-3.1,1.4-3.1,3.1S67,12.5,68.8,12.5z",
             }),
           ),
+        );
+      }
+      function _(_) {
+        return _.createElement(
+          "svg",
+          Object.assign(
+            {
+              xmlns: "http://www.w3.org/2000/svg",
+              className: "SVGIcon_Caution",
+              viewBox: "0 0 36 36",
+              fill: "none",
+            },
+            _,
+          ),
+          _.createElement("path", {
+            fill: "currentColor",
+            fillRule: "evenodd",
+            clipRule: "evenodd",
+            _: "M18 1L0 33H36L18 1ZM21.63 12L20.42 22H15.58L14.37 12H21.63ZM18 30C17.4067 30 16.8266 29.8241 16.3333 29.4944C15.8399 29.1648 15.4554 28.6962 15.2284 28.1481C15.0013 27.5999 14.9419 26.9967 15.0576 26.4147C15.1734 25.8328 15.4591 25.2982 15.8787 24.8787C16.2982 24.4591 16.8328 24.1734 17.4147 24.0576C17.9967 23.9419 18.5999 24.0013 19.1481 24.2284C19.6962 24.4554 20.1648 24.8399 20.4944 25.3333C20.8241 25.8266 21 26.4067 21 27C21 27.7956 20.6839 28.5587 20.1213 29.1213C19.5587 29.6839 18.7956 30 18 30Z",
+          }),
         );
       }
       function _(_) {

@@ -110,6 +110,18 @@ enum UnnamedEnum0824645610e5d154
 	RawAndUncalibrated = 2;
 }
 
+enum UnnamedEnum0869c4fae89a7711
+{
+	ControllerPairing = 0;
+	WelcomeToSteamFrame = 1;
+	SystemButtonHideDashboard = 2;
+	SystemButtonDashboardHidden = 3;
+	SystemButtonShowDashboard = 4;
+	PairWifiDongle = 5;
+	TourSendOff = 6;
+	SteamGuidedTourFinished = 7;
+}
+
 enum UnnamedEnum09efa05418c35f02
 {
 	Main = 0;
@@ -135,14 +147,6 @@ enum UnnamedEnum0f30754c8f02b791
 	Pose = 1;
 	Haptics = 2;
 	Skeleton = 3;
-}
-
-enum UnnamedEnum0f5e4f08b84a55be
-{
-	Invalid = 0;
-	System = 1;
-	SteamInput = 2;
-	VRInput = 3;
 }
 
 enum UnnamedEnum100911cdad5b6b7a
@@ -204,6 +208,20 @@ enum UnnamedEnum2262335dbfd3b6e5
 	Error = -1;
 }
 
+enum UnnamedEnum22ec4b7429572daa
+{
+	LaserMouse = 1;
+	RoomViewFullyOccludingApp = 2;
+	DisplaySuppressed = 4;
+	SystemButtonDown = 8;
+	DriverIsDrawingControllers = 16;
+	DriverRequestsApplicationPause = 32;
+	DriverRequestsReducedRendering = 64;
+	DashboardTutorial = 128;
+	GamepadMode = 512;
+	SystemKeyboardPrivacy = 1024;
+}
+
 enum UnnamedEnum23c89d5452af7b09
 {
 	Unknown = 0;
@@ -252,18 +270,6 @@ enum UnnamedEnum2ff3256ae8e6ba08
 {
 	Auto = 0;
 	SingleTap = 1;
-}
-
-enum UnnamedEnum3017b2549e2c719a
-{
-	LaserMouse = 1;
-	Keyboard = 2;
-	RoomView = 4;
-	DisplaySuppressed = 8;
-	SystemButtonDown = 16;
-	DriverIsDrawingControllers = 32;
-	DriverRequestsApplicationPause = 64;
-	DriverRequestsReducedRendering = 128;
 }
 
 enum UnnamedEnum305ecb99a14e3d59
@@ -474,137 +480,7 @@ enum UnnamedEnum7d2ed42d502bc719
 	Always = 2;
 }
 
-enum UnnamedEnum8733b5643c00fec3
-{
-	Disabled = 0;
-	WorldZeroY = 1;
-	WorldDynamicFloor = 2;
-}
-
-enum UnnamedEnum88972cc84631ae4d
-{
-	None = 0;
-	Personal = 1;
-	Public = 2;
-	LocalFile = 3;
-	ReplaceDefault = 4;
-	AddNewDefault = 5;
-}
-
-enum UnnamedEnum8947b2c0ea93d40f
-{
-	BULK_DEFAULT = 0;
-	BULK_64K_DMA = 1;
-	BULK_16K_DMA = 2;
-	BULK_8K_DMA = 3;
-	ISO_52FPS = 4;
-	ISO_50FPS = 5;
-	ISO_48FPS = 6;
-	ISO_46FPS = 7;
-	ISO_44FPS = 8;
-	ISO_42FPS = 9;
-	ISO_40FPS = 10;
-	ISO_35FPS = 11;
-	ISO_30FPS = 12;
-	ISO_15FPS = 13;
-	MAX_CAMERA_COMPAT_MODES = 14;
-}
-
-enum UnnamedEnum8ca6e05196a6a6df
-{
-	Seated = 0;
-	Standing = 1;
-	Raw = 2;
-}
-
-enum UnnamedEnum8d44830b419688bf
-{
-	Opaque = 0;
-	FadingIn = 1;
-	FadingOut = 2;
-}
-
-enum UnnamedEnum8ff7ca4fbe164d05
-{
-	PixelOffset = 0;
-	ScaleAndCenter = 1;
-}
-
-enum UnnamedEnum903d132a40b274ea
-{
-	Default = 0;
-	Letterbox = 1;
-	Advanced = 2;
-}
-
-enum UnnamedEnum9135bed59314e874
-{
-	Estimated = 0;
-	Partial = 1;
-	Full = 2;
-}
-
-enum UnnamedEnum92e98869ec1045b4
-{
-	Evaluating = 0;
-	Success = 1;
-	Failure = 2;
-}
-
-enum UnnamedEnum97b9784b51946a4e
-{
-	Parent = 0;
-	World = 1;
-}
-
-enum UnnamedEnum9c58af1a5b59aa9f
-{
-	HorizontalPips = 0;
-	VerticalBattery = 1;
-}
-
-enum UnnamedEnuma3ebe80957217775
-{
-	__LocalSteamVR = 0;
-	__LocalSteam = 1;
-	__RemoteSteamVR = 2;
-	__RemoteSteam = 3;
-	MutualLocal = 4;
-	MutualSteamVR = 5;
-	MutualSteam = 6;
-}
-
-enum UnnamedEnuma68ec96c8362722a
-{
-	Unknown = -1;
-	Idle = 0;
-	UserInteraction = 1;
-	UserInteraction_Timeout = 2;
-	Standby = 3;
-	Idle_Timeout = 4;
-}
-
-enum UnnamedEnuma6e4f474e530aefd
-{
-	None = 0;
-	View = 1;
-	Theater = 2;
-}
-
-enum UnnamedEnuma827cce9513c31ff
-{
-	None = 0;
-	Mouse = 1;
-}
-
-enum UnnamedEnumaa7aedb528305bef
-{
-	None = 0;
-	Vertical = 1;
-	Horizontal = 2;
-}
-
-enum UnnamedEnumac276bd6917a9d43
+enum UnnamedEnum7fc69a440e5248f6
 {
 	Invalid = 0;
 	TrackingSystemName_String = 1000;
@@ -750,7 +626,7 @@ enum UnnamedEnumac276bd6917a9d43
 	Hmd_SupportsAppThrottling_Bool = 2106;
 	Hmd_SupportsGpuBusMonitoring_Bool = 2107;
 	DriverProvidedIPDVisibility_Bool = 2108;
-	Prop_Hmd_SupportsVRGamepadFocus_Bool = 2117;
+	Prop_SupportsVRGamepadMode_Bool = 2117;
 	DriverRequestedMuraCorrectionMode_Int32 = 2200;
 	DriverRequestedMuraFeather_InnerLeft_Int32 = 2201;
 	DriverRequestedMuraFeather_InnerRight_Int32 = 2202;
@@ -804,6 +680,136 @@ enum UnnamedEnumac276bd6917a9d43
 	SupportsInHMDRoomSetup_Bool = 11003;
 	VRLinkClientHMDSupportsRoomSetupRequests_Bool = 11004;
 	TrackedDeviceProperty_Max = 1000000;
+}
+
+enum UnnamedEnum8733b5643c00fec3
+{
+	Disabled = 0;
+	WorldZeroY = 1;
+	WorldDynamicFloor = 2;
+}
+
+enum UnnamedEnum88972cc84631ae4d
+{
+	None = 0;
+	Personal = 1;
+	Public = 2;
+	LocalFile = 3;
+	ReplaceDefault = 4;
+	AddNewDefault = 5;
+}
+
+enum UnnamedEnum8947b2c0ea93d40f
+{
+	BULK_DEFAULT = 0;
+	BULK_64K_DMA = 1;
+	BULK_16K_DMA = 2;
+	BULK_8K_DMA = 3;
+	ISO_52FPS = 4;
+	ISO_50FPS = 5;
+	ISO_48FPS = 6;
+	ISO_46FPS = 7;
+	ISO_44FPS = 8;
+	ISO_42FPS = 9;
+	ISO_40FPS = 10;
+	ISO_35FPS = 11;
+	ISO_30FPS = 12;
+	ISO_15FPS = 13;
+	MAX_CAMERA_COMPAT_MODES = 14;
+}
+
+enum UnnamedEnum8ca6e05196a6a6df
+{
+	Seated = 0;
+	Standing = 1;
+	Raw = 2;
+}
+
+enum UnnamedEnum8d44830b419688bf
+{
+	Opaque = 0;
+	FadingIn = 1;
+	FadingOut = 2;
+}
+
+enum UnnamedEnum8ff7ca4fbe164d05
+{
+	PixelOffset = 0;
+	ScaleAndCenter = 1;
+}
+
+enum UnnamedEnum903d132a40b274ea
+{
+	Default = 0;
+	Letterbox = 1;
+	Advanced = 2;
+}
+
+enum UnnamedEnum9135bed59314e874
+{
+	Estimated = 0;
+	Partial = 1;
+	Full = 2;
+}
+
+enum UnnamedEnum92e98869ec1045b4
+{
+	Evaluating = 0;
+	Success = 1;
+	Failure = 2;
+}
+
+enum UnnamedEnum97b9784b51946a4e
+{
+	Parent = 0;
+	World = 1;
+}
+
+enum UnnamedEnum9c58af1a5b59aa9f
+{
+	HorizontalPips = 0;
+	VerticalBattery = 1;
+}
+
+enum UnnamedEnuma3ebe80957217775
+{
+	__LocalSteamVR = 0;
+	__LocalSteam = 1;
+	__RemoteSteamVR = 2;
+	__RemoteSteam = 3;
+	MutualLocal = 4;
+	MutualSteamVR = 5;
+	MutualSteam = 6;
+}
+
+enum UnnamedEnuma68ec96c8362722a
+{
+	Unknown = -1;
+	Idle = 0;
+	UserInteraction = 1;
+	UserInteraction_Timeout = 2;
+	Standby = 3;
+	Idle_Timeout = 4;
+}
+
+enum UnnamedEnuma6e4f474e530aefd
+{
+	None = 0;
+	View = 1;
+	Theater = 2;
+}
+
+enum UnnamedEnuma827cce9513c31ff
+{
+	None = 0;
+	Mouse = 1;
+}
+
+enum UnnamedEnumaa7aedb528305bef
+{
+	None = 0;
+	Vertical = 1;
+	Horizontal = 2;
 }
 
 enum UnnamedEnumacc9a67b80433cd5

@@ -3,8 +3,9 @@ var CLSTAMP = "steamdb";
   [652],
   {
     chunkid: (module, module_exports, __webpack_require__) => {
-      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
       __webpack_require__._(module_exports, {
+        _: () => _,
         _: () => _,
         _: () => _,
       }),
@@ -248,8 +249,8 @@ var CLSTAMP = "steamdb";
               "Hmd_SupportsGpuBusMonitoring_Bool"),
             (_[(_.DriverProvidedIPDVisibility_Bool = 2108)] =
               "DriverProvidedIPDVisibility_Bool"),
-            (_[(_.Prop_Hmd_SupportsVRGamepadFocus_Bool = 2117)] =
-              "Prop_Hmd_SupportsVRGamepadFocus_Bool"),
+            (_[(_.Prop_SupportsVRGamepadMode_Bool = 2117)] =
+              "Prop_SupportsVRGamepadMode_Bool"),
             (_[(_.DriverRequestedMuraCorrectionMode_Int32 = 2200)] =
               "DriverRequestedMuraCorrectionMode_Int32"),
             (_[(_.DriverRequestedMuraFeather_InnerLeft_Int32 = 2201)] =
@@ -453,20 +454,30 @@ var CLSTAMP = "steamdb";
         })(_ || (_ = {})),
         (function (_) {
           (_[(_.Invalid = 0)] = "Invalid"),
-            (_[(_.System = 1)] = "System"),
-            (_[(_.SteamInput = 2)] = "SteamInput"),
-            (_[(_.VRInput = 3)] = "VRInput");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Invalid = 0)] = "Invalid"),
             (_[(_.SceneApp = 1)] = "SceneApp"),
             (_[(_.Panel = 2)] = "Panel");
+        })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.ControllerPairing = 0)] = "ControllerPairing"),
+            (_[(_.WelcomeToSteamFrame = 1)] = "WelcomeToSteamFrame"),
+            (_[(_.SystemButtonHideDashboard = 2)] =
+              "SystemButtonHideDashboard"),
+            (_[(_.SystemButtonDashboardHidden = 3)] =
+              "SystemButtonDashboardHidden"),
+            (_[(_.SystemButtonShowDashboard = 4)] =
+              "SystemButtonShowDashboard"),
+            (_[(_.PairWifiDongle = 5)] = "PairWifiDongle"),
+            (_[(_.TourSendOff = 6)] = "TourSendOff"),
+            (_[(_.SteamGuidedTourFinished = 7)] = "SteamGuidedTourFinished");
         })(_ || (_ = {})),
         (function (_) {
           (_[(_.None = 0)] = "None"),
             (_[(_.ThirdPartyClient = 1)] = "ThirdPartyClient"),
             (_[(_.SteamVRClientUnified = 2)] = "SteamVRClientUnified"),
             (_[(_.SteamVRClientLegacyDual = 3)] = "SteamVRClientLegacyDual");
+        })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.Curved = 0)] = "Curved"), (_[(_.Flat = 1)] = "Flat");
         })(_ || (_ = {}));
     },
     chunkid: (module, module_exports, __webpack_require__) => {

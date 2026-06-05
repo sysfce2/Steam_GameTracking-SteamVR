@@ -1234,7 +1234,7 @@ QUADRATIC
 QueryPerformanceCounter
 RAW_LOG ERROR: The Message was too long!\n
 RE-SOLVING DUE TO OUTLIER REMOVAL\n
-RSDS&
+RSDSYI
 Rank of subspace basis is 0. 
 Rank of the subspace basis matrix is reported to be 
 Re-solve with %s, rough center, and cut-down radius to get the final focal length (channel %d):\n
@@ -1655,12 +1655,12 @@ blue_dest
 blue_src
 bracket width: 
 bracketing containing such a point. Accepting 
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vortexcameralib\opencv_misc.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vortexlib\distortion.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vortexlib\stereo_setup.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrcalib\Retailvrcalib_public\win64\2017\vrcalib_public.pdb
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrcalib\terminal.cpp
-c:\buildslave\steamvr_rel_hotfix_win64\build\src\vrcalib\vrcalib_utils.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vortexcameralib\opencv_misc.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vortexlib\distortion.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vortexlib\stereo_setup.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrcalib\Retailvrcalib_public\win64\2017\vrcalib_public.pdb
+c:\buildslave\steamvr_rel_win64\build\src\vrcalib\terminal.cpp
+c:\buildslave\steamvr_rel_win64\build\src\vrcalib\vrcalib_utils.cpp
 calibrate_eye_to_head
 calloc
 camera1 != camera2

@@ -59,6 +59,7 @@ var CLSTAMP = "steamdb";
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
+            __webpack_require__("chunkid"),
             __webpack_require__("chunkid")),
           _ = __webpack_require__("chunkid");
         const _ = VRHTML;
@@ -333,16 +334,19 @@ var CLSTAMP = "steamdb";
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.LaserMouse = 1)] = "LaserMouse"),
-              (_[(_.Keyboard = 2)] = "Keyboard"),
-              (_[(_.RoomView = 4)] = "RoomView"),
-              (_[(_.DisplaySuppressed = 8)] = "DisplaySuppressed"),
-              (_[(_.SystemButtonDown = 16)] = "SystemButtonDown"),
-              (_[(_.DriverIsDrawingControllers = 32)] =
+              (_[(_.RoomViewFullyOccludingApp = 2)] =
+                "RoomViewFullyOccludingApp"),
+              (_[(_.DisplaySuppressed = 4)] = "DisplaySuppressed"),
+              (_[(_.SystemButtonDown = 8)] = "SystemButtonDown"),
+              (_[(_.DriverIsDrawingControllers = 16)] =
                 "DriverIsDrawingControllers"),
-              (_[(_.DriverRequestsApplicationPause = 64)] =
+              (_[(_.DriverRequestsApplicationPause = 32)] =
                 "DriverRequestsApplicationPause"),
-              (_[(_.DriverRequestsReducedRendering = 128)] =
-                "DriverRequestsReducedRendering");
+              (_[(_.DriverRequestsReducedRendering = 64)] =
+                "DriverRequestsReducedRendering"),
+              (_[(_.DashboardTutorial = 128)] = "DashboardTutorial"),
+              (_[(_.GamepadMode = 512)] = "GamepadMode"),
+              (_[(_.SystemKeyboardPrivacy = 1024)] = "SystemKeyboardPrivacy");
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.BULK_DEFAULT = 0)] = "BULK_DEFAULT"),
@@ -463,17 +467,17 @@ var CLSTAMP = "steamdb";
               (this.m_bSViewtackWasChangedInThisCallStack = !0),
               (this.m_nCallStackClearedTimeout = void 0),
               window.addEventListener("keydown", this.onWindowKeyDown),
-              window.addEventListener("click", this.onWindowClick);
+              window.addEventListener("mousedown", this.onMouseDown);
           }
           cleanup() {
             window.clearTimeout(this.m_nCallStackClearedTimeout),
               window.removeEventListener("keydown", this.onWindowKeyDown),
-              window.removeEventListener("click", this.onWindowClick);
+              window.removeEventListener("mousedown", this.onMouseDown);
           }
           onWindowKeyDown(_) {
             "Escape" == _.key && this.dismissTopView();
           }
-          onWindowClick(_) {
+          onMouseDown(_) {
             const _ = this.topView;
             _ &&
               _.div &&
@@ -533,7 +537,7 @@ var CLSTAMP = "steamdb";
         }
         (0, _._)([_._], _.prototype, "cleanup", null),
           (0, _._)([_._], _.prototype, "onWindowKeyDown", null),
-          (0, _._)([_._], _.prototype, "onWindowClick", null),
+          (0, _._)([_._], _.prototype, "onMouseDown", null),
           (0, _._)([_.computed], _.prototype, "size", null),
           (0, _._)([_.action.bound], _.prototype, "dismissTopView", null),
           (0, _._)([_.computed], _.prototype, "hasViews", null),
@@ -837,8 +841,11 @@ var CLSTAMP = "steamdb";
           }
           return "";
         }
+        function _(_) {
+          return "string" == typeof _ || (Array.isArray(_) && _[1]);
+        }
         function _(..._) {
-          return _.filter((_) => null != _ && ("string" == typeof _ || _[1]))
+          return _.filter(_)
             .map((_) => ("string" == typeof _ ? _ : _[0]))
             .join(" ");
         }
@@ -872,17 +879,19 @@ var CLSTAMP = "steamdb";
           updateScrollableParents() {
             for (let _ of this.m_rScrollableParents)
               _.removeEventListener("scroll", this.onParentScroll);
-            this.m_rScrollableParents = (function (_) {
-              let _ = [];
-              if (!_) return _;
-              let _ = _.parentElement;
-              for (; _; ) {
-                const _ = _.scrollWidth > _.clientWidth,
-                  _ = _.scrollHeight > _.clientHeight;
-                (_ || _) && _.push(_), (_ = _.parentElement);
-              }
-              return _;
-            })(this.m_elem);
+            this.m_elem
+              ? (this.m_rScrollableParents = (function (_) {
+                  let _ = [];
+                  if (!_) return _;
+                  let _ = _.parentElement;
+                  for (; _; ) {
+                    const _ = _.scrollWidth > _.clientWidth,
+                      _ = _.scrollHeight > _.clientHeight;
+                    (_ || _) && _.push(_), (_ = _.parentElement);
+                  }
+                  return _;
+                })(this.m_elem))
+              : (this.m_rScrollableParents = []);
             for (let _ of this.m_rScrollableParents)
               _.addEventListener("scroll", this.onParentScroll);
           }
@@ -4912,9 +4921,7 @@ var CLSTAMP = "steamdb";
           );
         const _ = new _();
         window.controllerBindingStore = _;
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
+        var _ = __webpack_require__("chunkid");
         __webpack_require__("chunkid");
         class _ {
           constructor(_, _, _, _) {
@@ -5118,6 +5125,2595 @@ var CLSTAMP = "steamdb";
         (0, _._)([_._], _.prototype, "Show", null),
           (0, _._)([_._], _.prototype, "Hide", null),
           (0, _._)([_._], _.prototype, "OnOptionChanged", null);
+        class _ {
+          constructor(_) {
+            (this.m_communityData = void 0),
+              (this.m_bLoadingData = !1),
+              (this.m_sSteamID = void 0),
+              (this.m_dateLastUpdate = void 0),
+              (this.m_sSteamID = _),
+              _.length > 0 && this.EnsureCommunityDataLoaded(),
+              (0, _.makeObservable)(this);
+          }
+          get community_data_ready() {
+            return void 0 !== this.m_communityData;
+          }
+          get avatar_url() {
+            return this.m_communityData && this.m_communityData.avatar_url;
+          }
+          get persona_name() {
+            return this.m_communityData && this.m_communityData.persona_name;
+          }
+          get player_level() {
+            return this.m_communityData && this.m_communityData.level;
+          }
+          get player_level_class() {
+            return this.m_communityData && this.m_communityData.level_class;
+          }
+          get player_badge() {
+            return this.m_communityData && this.m_communityData.favorite_badge;
+          }
+          get player_in_game() {
+            return this.m_communityData && this.m_communityData.in_game;
+          }
+          EnsureCommunityDataLoaded() {
+            if (void 0 === this.m_communityData && !this.m_bLoadingData) {
+              this.m_bLoadingData = !0;
+              let _ = "https://steamcommunity.com/";
+              _()
+                .get(_ + "miniprofile/s" + this.m_sSteamID + "/json")
+                .then((_) => {
+                  let _ = _.data;
+                  _ &&
+                    _.avatar_url &&
+                    ((this.m_communityData = _),
+                    (this.m_dateLastUpdate = new Date())),
+                    (this.m_bLoadingData = !1);
+                })
+                .catch((_) => {
+                  console.log(_), (this.m_bLoadingData = !1);
+                });
+            }
+          }
+        }
+        (0, _._)([_.observable], _.prototype, "m_communityData", void 0),
+          (0, _._)([_._], _.prototype, "EnsureCommunityDataLoaded", null);
+        class _ {
+          constructor() {
+            (this.m_SteamCommunityUsers = _.observable.map()),
+              (0, _.makeObservable)(this);
+          }
+          GetUserInformation(_) {
+            return (
+              this.m_SteamCommunityUsers.has(_) ||
+                this.RequestUserInformation(_),
+              this.m_SteamCommunityUsers.get(_)
+            );
+          }
+          RequestUserInformation(_) {
+            this.m_SteamCommunityUsers.hasOwnProperty(_) ||
+              this.m_SteamCommunityUsers.set(_, new _(_));
+          }
+        }
+        (0, _._)([_.observable], _.prototype, "m_SteamCommunityUsers", void 0),
+          (0, _._)([_._], _.prototype, "GetUserInformation", null),
+          (0, _._)([_._], _.prototype, "RequestUserInformation", null);
+        const _ = new _();
+        window.steamcommunity = _;
+        let _ = class extends _.Component {
+          render() {
+            let _ =
+                null == this.props.bShowBackButton ||
+                this.props.bShowBackButton,
+              _ = null != this.props.fnOpenOptionsModal,
+              _ = "PageTitleLabel";
+            return (
+              this.props.strSubTitle || (_ += " SingleTitle"),
+              _.createElement(
+                "div",
+                {
+                  className:
+                    "PageTitleBar" + (_.IsSteamAvailable ? "" : " NoSteam"),
+                },
+                _.createElement(
+                  "div",
+                  {
+                    className: "FlexFullWidthRowCentered TitleBarMainRow",
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      className: "TitleBarSection",
+                    },
+                    _ &&
+                      _.createElement(
+                        "div",
+                        {
+                          className:
+                            "ButtonControl FlexRow PageTitleButton PageTitleBackButton AllCaps",
+                          onClick: () => {
+                            this.props.fnOnClick();
+                          },
+                        },
+                        _.createElement("img", {
+                          className: "ActionButtonImage",
+                          src: "images/bindingui/icon_back.svg",
+                        }),
+                        (0, _._)("#Button_Back"),
+                      ),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "AllCaps PageTitle TitleBarSection FlexColumn",
+                    },
+                    _.createElement(
+                      "div",
+                      {
+                        className: _,
+                      },
+                      this.props.strTitle,
+                    ),
+                    this.props.strSubTitle &&
+                      _.createElement(
+                        "div",
+                        {
+                          className: "AllCaps PageSubTitle PageTitleLabel",
+                        },
+                        this.props.strSubTitle,
+                      ),
+                  ),
+                  _ &&
+                    _.createElement(
+                      "div",
+                      {
+                        className: "TitleBarSection",
+                      },
+                      _.createElement(
+                        _._,
+                        {
+                          content: (0, _._)("#BindingUI_OptionsButton_tooltip"),
+                          theme: "ControllerBindingToolTip",
+                        },
+                        _.createElement(
+                          "div",
+                          {
+                            className:
+                              "ButtonControl FlexRow OptionsButton PageTitleButton AllCaps",
+                            onClick: this.props.fnOpenOptionsModal,
+                          },
+                          (0, _._)("#BindingUI_OptionsButton"),
+                        ),
+                      ),
+                    ),
+                ),
+                !_.IsSteamAvailable &&
+                  _.createElement(
+                    "div",
+                    {
+                      className: "NoSteamWarning",
+                    },
+                    (0, _._)("#NoSteamWarning"),
+                  ),
+              )
+            );
+          }
+        };
+        _ = (0, _._)([_._], _);
+        let _ = class extends _.Component {
+          constructor(_) {
+            super(_),
+              (this.state = {
+                bIsVisible: !0,
+              });
+          }
+          CloseDialog() {
+            this.setState({
+              bIsVisible: !1,
+            });
+          }
+          render() {
+            let _ = null;
+            return (
+              _.DesktopMode ||
+                (_ = {
+                  height: "30%",
+                  width: "30%",
+                }),
+              _.createElement(
+                _._,
+                {
+                  visible: this.state.bIsVisible,
+                  onClose: this.CloseDialog,
+                  showCloseButton: !1,
+                  animation: "fade",
+                  className: "BindingChordsModal",
+                  closeOnEsc: !0,
+                  customStyles: _,
+                },
+                _.createElement(
+                  "div",
+                  {
+                    className:
+                      "SaveDialogWrapper FlexColumn LoadErrorDialogWrapper",
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label TitleCenter",
+                    },
+                    this.props.sError,
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className:
+                        "FlexRow SaveBottomButtonRow LoadErrorCloseButton",
+                    },
+                    this.props.bCanClose
+                      ? _.createElement(
+                          "div",
+                          {
+                            onClick: this.CloseDialog,
+                            className: "ButtonControl",
+                          },
+                          (0, _._)("#Button_Close"),
+                        )
+                      : _.createElement(
+                          "div",
+                          {
+                            className: "ButtonControl",
+                            onClick: () => {
+                              _.ClearSelectedApp(),
+                                _.ShowAppSelect(),
+                                this.CloseDialog();
+                            },
+                          },
+                          (0, _._)("#BindingUI_List_ErrorReturnToAppSelect"),
+                        ),
+                  ),
+                ),
+              )
+            );
+          }
+        };
+        (0, _._)([_._], _.prototype, "CloseDialog", null),
+          (_ = (0, _._)([_._], _));
+        let _ = class extends _.Component {
+          constructor(_) {
+            super(_);
+            let _ = _.SelectedAppActions;
+            (this.state = {
+              bShowDeleteConfirmModal: !1,
+              bShowUpgradeConfirmModal: !1,
+              bOldVersion:
+                !!_ && this.props.result.actionManifestVersion < _.version,
+            }),
+              this.props.result.steamIDOwner.length &&
+                "0" != this.props.result.steamIDOwner &&
+                _.RequestUserInformation(this.props.result.steamIDOwner);
+          }
+          OnDelete() {
+            this.setState({
+              bShowDeleteConfirmModal: !0,
+            });
+          }
+          OnDeleteConfirmed() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              this.setState({
+                bShowDeleteConfirmModal: !1,
+              }),
+                yield _.DeleteBinding(this.props.result.url),
+                yield _.GetBindingList();
+            });
+          }
+          OnDeleteCancel() {
+            this.setState({
+              bShowDeleteConfirmModal: !1,
+            });
+          }
+          renderDeleteConfirmModal(_) {
+            return _.createElement(
+              _._,
+              {
+                visible: this.state.bShowDeleteConfirmModal,
+                onClose: this.OnDeleteCancel,
+                showCloseButton: !1,
+                animation: "fade",
+                className: "ModeSettingsModal",
+                closeOnEsc: !0,
+              },
+              this.state.bShowDeleteConfirmModal &&
+                _.createElement(
+                  "div",
+                  {
+                    className: "FlexFullHeightColumnCentered",
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label",
+                    },
+                    (0, _._)("#BindingUI_List_Delete_Confirm", _.name),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "FlexRow",
+                    },
+                    _.createElement(
+                      "div",
+                      {
+                        className: "ButtonControl",
+                        onClick: this.OnDeleteConfirmed,
+                      },
+                      (0, _._)("#Button_Delete"),
+                    ),
+                    _.createElement(
+                      "div",
+                      {
+                        className: "ButtonControl",
+                        onClick: this.OnDeleteCancel,
+                      },
+                      (0, _._)("#Button_Cancel"),
+                    ),
+                  ),
+                ),
+            );
+          }
+          OnView() {
+            this.props.fnViewBinding(
+              this.props.result.url,
+              !this.props.bCurrentlySelectedBinding,
+            );
+          }
+          OnSelect() {
+            this.props.fnSelectBinding(this.props.result.url);
+          }
+          render() {
+            var _;
+            let _,
+              _,
+              _ = new Date(),
+              _ = new Date(1e3 * this.props.result.time),
+              _ =
+                _.getTime() - _.getTime() > 1728e5
+                  ? _.toLocaleDateString()
+                  : _.toLocaleString(),
+              _ = this.props.result,
+              _ = "developer" == _.type,
+              _ = "0" != _.steamIDOwner && !_,
+              _ = _._.GetApp(_.SelectedApp),
+              _ = _ ? _.name : "";
+            _ &&
+              ((_.name && 0 != _.name.length) ||
+                (_.SelectedBindingIsLegacy
+                  ? (_.name = (0, _._)(
+                      "#BindingUI_List_Legacy_Binding_Title",
+                      _,
+                    ))
+                  : (_.name = (0, _._)(
+                      "#BindingUI_List_Developer_Binding_Title",
+                      _,
+                    ))),
+              (_.description && 0 != _.description.length) ||
+                (_.SelectedBindingIsLegacy
+                  ? (_.description = (0, _._)(
+                      "#BindingUI_List_Legacy_Binding_Description",
+                    ))
+                  : (_.description = (0, _._)(
+                      "#BindingUI_List_Developer_Binding_Description",
+                    )))),
+              _ &&
+                ((_ = _.GetUserInformation(_.steamIDOwner).avatar_url),
+                (_ = _.GetUserInformation(_.steamIDOwner).persona_name));
+            let _ = this.props.bCurrentlySelectedBinding
+                ? (0, _._)("#BindingUI_List_Edit")
+                : (0, _._)("#BindingUI_List_View"),
+              _ = _.name;
+            "autosave" == _.type &&
+              (_ = (0, _._)("#BindingUI_List_Autosave", _.name));
+            let _ = null;
+            this.state.bOldVersion &&
+              (_ = this.props.bCurrentlySelectedBinding
+                ? (0, _._)(
+                    "#BindingUI_List_OldVersionWarning_CurrentBinding",
+                    _,
+                  )
+                : (0, _._)("#BindingUI_List_OldVersionWarning", _));
+            let _ = null;
+            if (_.secondsPlayed > 0) {
+              let _ = _.secondsPlayed / 60;
+              _ = (0, _._)("#BindingUI_List_MinutesPlayed", _.toFixed(0));
+            }
+            let _ = null;
+            if (_.secondsPlayedThisMonth > 0) {
+              let _ = _.secondsPlayedThisMonth / 60;
+              _ = (0, _._)(
+                "#BindingUI_List_MinutesPlayedThisMonth",
+                _.toFixed(0),
+              );
+            }
+            let _ =
+                null === (_ = _.SelectedControllerTypeInfo) || void 0 === _
+                  ? void 0
+                  : _.controller_type,
+              _ =
+                null != _.controllerType &&
+                "" != _.controllerType &&
+                _.controllerType != _;
+            return _.createElement(
+              "div",
+              {
+                className: "BindingEntry FlexRow",
+              },
+              _ &&
+                _.createElement("img", {
+                  className: "SteamCommunityProfileImage",
+                  src: _,
+                }),
+              _ &&
+                !_ &&
+                _.createElement("div", {
+                  className: "SteamCommunityProfileImage",
+                }),
+              _.createElement(
+                "div",
+                {
+                  className: "BindingDetails",
+                },
+                !this.props.bCurrentlySelectedBinding &&
+                  this.props.fnSelectBinding &&
+                  _.createElement(
+                    "div",
+                    {
+                      className:
+                        "BindingListEntryButton ButtonControl BindingSelectButton",
+                      onClick: this.OnSelect,
+                    },
+                    (0, _._)("#BindingUI_List_Select"),
+                  ),
+                !_.HasBindingUriFailedToLoad(_.url) &&
+                  _.createElement(
+                    "div",
+                    {
+                      className:
+                        "BindingListEntryButton ButtonControl BindingSelectButton",
+                      onClick: this.OnView,
+                    },
+                    _,
+                  ),
+                _.owned &&
+                  !this.props.bCurrentlySelectedBinding &&
+                  _.createElement(
+                    "div",
+                    {
+                      className:
+                        "BindingListEntryButton BindingSelectButton DeleteButton ButtonControl",
+                      onClick: () => {
+                        this.OnDelete();
+                      },
+                    },
+                    _.createElement("img", {
+                      className: "ActionButtonImage",
+                      src: "images/bindingui/icon_trash.svg",
+                    }),
+                  ),
+                _.createElement(
+                  "span",
+                  {
+                    className: "BindingName",
+                  },
+                  _,
+                  _.createElement("br", null),
+                ),
+                _.createElement(
+                  "span",
+                  {
+                    className: "BindingDescription",
+                  },
+                  _.description,
+                  _.createElement("br", null),
+                ),
+                _ &&
+                  _.createElement(
+                    "span",
+                    {
+                      className: "BindingSteamPersonaName Label",
+                    },
+                    (0, _._)("#BindingUI_List_PublishedBy", _),
+                    _.createElement("br", null),
+                  ),
+                _.time > 0 &&
+                  _.createElement(
+                    "span",
+                    {
+                      className: "BindingLastUpdated",
+                    },
+                    (0, _._)("#BindingUI_List_LastUpdated"),
+                    _,
+                    _ && " - " + _,
+                    _ && " - " + _,
+                    _.createElement("br", null),
+                  ),
+                _ &&
+                  _.createElement(
+                    "span",
+                    {
+                      className: "ConvertWarning",
+                    },
+                    _,
+                    _.createElement("br", null),
+                  ),
+                _ &&
+                  _.createElement(
+                    "div",
+                    {
+                      className: "RemappedInfo",
+                    },
+                    _.createElement("hr", {
+                      className: "RemappedInfoHr",
+                    }),
+                    _.createElement(
+                      "span",
+                      {
+                        className: "RemappedInfoSpan",
+                      },
+                      _.createElement("img", {
+                        className: "InformationButtonImage",
+                        src: "images/bindingui/icon_information.svg",
+                      }),
+                      (0, _._)("#BindingUI_Compatibility_Remapped_Text"),
+                    ),
+                  ),
+              ),
+              _.createElement("div", {
+                className: "FlexRow BindingEntryActionButtons",
+              }),
+              this.renderDeleteConfirmModal(_),
+            );
+          }
+        };
+        (0, _._)([_._], _.prototype, "OnDelete", null),
+          (0, _._)([_._], _.prototype, "OnDeleteConfirmed", null),
+          (0, _._)([_._], _.prototype, "OnDeleteCancel", null),
+          (0, _._)([_._], _.prototype, "renderDeleteConfirmModal", null),
+          (0, _._)([_._], _.prototype, "OnView", null),
+          (0, _._)([_._], _.prototype, "OnSelect", null),
+          (_ = (0, _._)([_._], _));
+        let _ = class extends _.Component {
+          constructor(_) {
+            super(_),
+              (this.state = {
+                bIsBindingsLoading: !0,
+              });
+          }
+          RefreshBindingList() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              this.setState({
+                bIsBindingsLoading: !0,
+              }),
+                yield _.GetBindingList(),
+                this.setState({
+                  bIsBindingsLoading: !1,
+                });
+            });
+          }
+          componentDidMount() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              yield this.RefreshBindingList();
+            });
+          }
+          CreateBinding() {
+            this.ViewBinding(_.SelectedBindingURL, !1);
+          }
+          SelectBinding(_) {
+            _.Loading = !0;
+            let _ = _.SelectedControllerTypeInfo;
+            _.SelectConfig(_.SelectedApp, _ ? _.controller_type : "", _).then(
+              () => {
+                _.ReloadCurrentApp();
+              },
+            );
+          }
+          ViewBinding(_, _) {
+            if (((_.Loading = !0), _))
+              _.SetBindingURL(_),
+                _.ReloadControllerConfiguration().then(() => {
+                  _.ViewCurrentBinding(),
+                    setTimeout(() => {
+                      _.Loading = !1;
+                    }, 1);
+                });
+            else {
+              let _ = _.SelectedControllerTypeInfo;
+              _.SelectConfig(_.SelectedApp, _ ? _.controller_type : "", _).then(
+                () => {
+                  _.ReloadCurrentApp().then(() => {
+                    _.EditCurrentBinding(),
+                      setTimeout(() => {
+                        _.Loading = !1;
+                      }, 1);
+                  });
+                },
+              );
+            }
+          }
+          OnControllerDropdownChanged(_) {
+            return (0, _._)(this, void 0, void 0, function* () {
+              _.SetSelectedController(_), yield this.RefreshBindingList();
+            });
+          }
+          ComputeResultsSection(_, _) {
+            _.CurrentBinding && _.CurrentBinding.type;
+            let _ = _.BindingQueryResults,
+              _ = [];
+            _ &&
+              _.length > 0 &&
+              (_ = __webpack_require__.filter(_).map((_, _) =>
+                _.createElement(_, {
+                  key: _,
+                  currentBinding: _.CurrentBinding,
+                  result: _,
+                  fnViewBinding: this.ViewBinding,
+                  fnSelectBinding: this.SelectBinding,
+                  bCurrentlySelectedBinding: !1,
+                }),
+              ));
+            return (
+              _.length > 0 &&
+              _.createElement(
+                "div",
+                null,
+                _.createElement(
+                  "div",
+                  {
+                    className: "BindingListSectionHeader",
+                  },
+                  (0, _._)(_),
+                ),
+                _.createElement(
+                  "div",
+                  {
+                    className: "FlexRowWithWrap BindingListSection",
+                  },
+                  _,
+                ),
+              )
+            );
+          }
+          CreateControllerTypeDropdown() {
+            let _ = [],
+              _ = _._.IsAppAllowedPrivateInputs(_.SelectedApp);
+            _.ControllerTypes.forEach((_) => {
+              (_ || "InputValueVisibility_SteamVRInternal" != _.visibility) &&
+                "InputValueVisibility_None" != _.visibility &&
+                _.push(_);
+            }),
+              _.sort((_, _) => _.priority - _.priority);
+            let _ = [];
+            _.forEach((_) => {
+              __webpack_require__.push(
+                new _(
+                  _.controller_type,
+                  _.LocalizeDriverString(_.resource_root, _.controller_type),
+                ),
+              );
+            });
+            let _ = "",
+              _ = "",
+              _ = _.SelectedControllerTypeInfo;
+            _ &&
+              (_.input_bindingui_right.transform &&
+                (_ = _.input_bindingui_right.transform),
+              (_ = _.input_bindingui_right.uri));
+            _.device_class;
+            return _.createElement(
+              "div",
+              {
+                className: "FlexColumn ControllerTypeWrapper",
+              },
+              _.createElement(
+                "div",
+                {
+                  className: "BindingListSectionHeader Label",
+                },
+                (0, _._)("#BindingList_ControllerOption"),
+              ),
+              _.createElement(
+                "div",
+                {
+                  className: "FlexRow ControllerTypeButton BindingEntry",
+                },
+                _.createElement("img", {
+                  className: "ControllerImage",
+                  src: _,
+                  style: {
+                    transform: _,
+                  },
+                }),
+                _.createElement(_, {
+                  vecOptions: _,
+                  sModalClass: "PinTop",
+                  sValueSelectedItem: _ ? _.controller_type : "",
+                  sLocalizedSelectedItem: _.LocalizeControllerString(
+                    _,
+                    _ ? _.controller_type : "",
+                  ),
+                  fnOptionSelected: this.OnControllerDropdownChanged,
+                }),
+              ),
+            );
+          }
+          render() {
+            let _ = _._.GetApp(_.SelectedApp),
+              _ = "";
+            _ && (_ = _.name);
+            let _ = _.CurrentBinding,
+              _ = "#BindingUI_List_DeveloperSection";
+            _.SelectedBindingIsLegacy && (_ = "#BindingUI_List_LegacySection");
+            let _ = [];
+            return (
+              null != _.BindingQueryResults &&
+                (_ = _.BindingQueryResults.filter((_) => "autosave" != _.type)),
+              _.createElement(
+                "div",
+                {
+                  className: "FlexColumn FullPage",
+                },
+                _.createElement(_, {
+                  fnOnClick: _.ShowAppSelect,
+                  strTitle: (0, _._)("#BindingList_PageTitle", _),
+                }),
+                _.createElement(
+                  "div",
+                  {
+                    className: "BindingUITopSection FlexRow",
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      className: "CurrentSection FlexColumn",
+                    },
+                    _.createElement(
+                      "div",
+                      {
+                        className: "BindingListSectionHeader",
+                      },
+                      (0, _._)("#BindingUI_List_CurrentSection"),
+                    ),
+                    _ &&
+                      _.createElement(_, {
+                        result: _,
+                        currentBinding: _.CurrentBinding,
+                        fnViewBinding: this.ViewBinding,
+                        bCurrentlySelectedBinding: !0,
+                      }),
+                  ),
+                  this.CreateControllerTypeDropdown(),
+                ),
+                _.createElement("hr", null),
+                this.state.bIsBindingsLoading
+                  ? _.createElement(
+                      _.Fragment,
+                      null,
+                      _.createElement(
+                        "div",
+                        {
+                          className: "BindingUILoadingSection",
+                        },
+                        _.createElement(
+                          "p",
+                          {
+                            className: "BindingUILoadingHeader",
+                          },
+                          (0, _._)("#BindingUI_List_Loading"),
+                        ),
+                      ),
+                    )
+                  : _.createElement(
+                      _.Fragment,
+                      null,
+                      _.createElement(
+                        "div",
+                        {
+                          className: "AppBindingSection",
+                        },
+                        this.ComputeResultsSection(
+                          _,
+                          (_) =>
+                            "developer" == _.type &&
+                            _.url != _.SelectedBindingURL,
+                        ),
+                        this.ComputeResultsSection(
+                          "#BindingUI_List_ImportSection",
+                          (_) =>
+                            "local_file" == _.type &&
+                            _.url != _.SelectedBindingURL,
+                        ),
+                        this.ComputeResultsSection(
+                          "#BindingUI_List_PersonalSection",
+                          (_) =>
+                            "personal" == _.type &&
+                            _.url != _.SelectedBindingURL,
+                        ),
+                        this.ComputeResultsSection(
+                          "#BindingUI_List_OwnedSection",
+                          (_) =>
+                            "public" == _.type &&
+                            _.owned &&
+                            _.url != _.SelectedBindingURL,
+                        ),
+                        this.ComputeResultsSection(
+                          "#BindingUI_List_PublicSection",
+                          (_) =>
+                            "public" == _.type &&
+                            !_.owned &&
+                            _.url != _.SelectedBindingURL,
+                        ),
+                        0 == _.length &&
+                          _.createElement(
+                            "div",
+                            null,
+                            _.createElement(
+                              "div",
+                              null,
+                              _.createElement(
+                                "div",
+                                {
+                                  className: "Label",
+                                },
+                                (0, _._)("#BindingUI_List_NoBindingsFound"),
+                              ),
+                            ),
+                          ),
+                        _.createElement(
+                          "div",
+                          {
+                            className: "ButtonControl DeveloperLabel Inline",
+                            onClick: this.CreateBinding,
+                          },
+                          (0, _._)("#BindingUI_List_CreateBinding"),
+                        ),
+                      ),
+                    ),
+                _.ShowBindingListError &&
+                  _.createElement(_, {
+                    sError: _.BindingListError,
+                    bCanClose: _.CanCloseBindingListError,
+                  }),
+              )
+            );
+          }
+        };
+        (0, _._)([_._], _.prototype, "RefreshBindingList", null),
+          (0, _._)([_._], _.prototype, "CreateBinding", null),
+          (0, _._)([_._], _.prototype, "SelectBinding", null),
+          (0, _._)([_._], _.prototype, "ViewBinding", null),
+          (0, _._)([_._], _.prototype, "OnControllerDropdownChanged", null),
+          (0, _._)([_._], _.prototype, "ComputeResultsSection", null),
+          (0, _._)([_._], _.prototype, "CreateControllerTypeDropdown", null),
+          (_ = (0, _._)([_._], _));
+        let _ = class extends _.Component {
+          constructor(_) {
+            super(_),
+              (this.state = {
+                strImageURL: _._.GetAppImageURL(this.props.app.key),
+              });
+          }
+          componentWillReceiveProps(_) {
+            _.app.key != this.props.app.key &&
+              this.setState({
+                strImageURL: _._.GetAppImageURL(_.app.key),
+              });
+          }
+          render() {
+            return _.createElement(
+              "div",
+              {
+                className: "AppSelectContainer",
+                onClick: () => {
+                  this.props.fnSelectApp(this.props.app.key);
+                },
+              },
+              _.createElement("div", {
+                className: "AppImage",
+                style: {
+                  backgroundImage: "url('" + this.state.strImageURL + "')",
+                },
+              }),
+              _.createElement(
+                "div",
+                {
+                  className: "AppSelectName AllCaps",
+                },
+                this.props.app.name,
+              ),
+            );
+          }
+        };
+        _ = (0, _._)([_._], _);
+        let _ = class extends _.Component {
+          constructor(_) {
+            super(_),
+              (this.m_bInHeadset = !1),
+              (this.m_bInHeadset = !!_._ && !_.DesktopMode),
+              (this.state = {
+                bShowRecentApps: !1,
+              });
+          }
+          SelectApplication(_) {
+            _.SetSelectedApp(_), _.ShowBindingList();
+          }
+          OnShowMoreApps() {
+            this.setState({
+              bShowRecentApps: !0,
+            });
+          }
+          renderAppColumn() {
+            let _ = _._.GetApp("openvr.component.vrcompositor"),
+              _ = _._.GetApp("openvr.tool.steamvr_environments"),
+              _ = _._.GetRecentApps();
+            _ && (_ = __webpack_require__.filter((_) => _.key != _.key));
+            let _,
+              _ = _._.GetCurrentSceneProcess();
+            return (
+              !_ && _.length > 0 && (_ = _[0]),
+              _ && (_ = __webpack_require__.filter((_) => _.key != _.key)),
+              (_ = this.state.bShowRecentApps
+                ? _.createElement(
+                    "div",
+                    {
+                      className: "AppSelectList",
+                    },
+                    _.createElement(
+                      "div",
+                      {
+                        className: "AppSelectListItems",
+                      },
+                      __webpack_require__.map((_, _) =>
+                        _.createElement(_, {
+                          key: _,
+                          app: _,
+                          fnSelectApp: this.SelectApplication,
+                        }),
+                      ),
+                    ),
+                  )
+                : _.createElement(
+                    "div",
+                    {
+                      className: "ButtonControl AppSelectShowMoreButton",
+                      onClick: this.OnShowMoreApps,
+                    },
+                    (0, _._)("#AppSelect_ShowMoreApps"),
+                  )),
+              _.createElement(
+                "div",
+                {
+                  className: "AppSelectColumn",
+                },
+                _.createElement(
+                  "div",
+                  {
+                    className: "AppSelectList",
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      className: "AppSelectListItems",
+                    },
+                    _ &&
+                      _.createElement(_, {
+                        app: _,
+                        fnSelectApp: this.SelectApplication,
+                      }),
+                    _ &&
+                      _.createElement(_, {
+                        app: _,
+                        fnSelectApp: this.SelectApplication,
+                      }),
+                    _ &&
+                      _.createElement(_, {
+                        app: _,
+                        fnSelectApp: this.SelectApplication,
+                      }),
+                  ),
+                ),
+                _,
+              )
+            );
+          }
+          render() {
+            return _.createElement(
+              "div",
+              {
+                className: "AppSelectPageWrapper",
+              },
+              _.createElement(_, {
+                fnOnClick: _.ReturnToSettingsUI,
+                strTitle: (0, _._)("#AppSelect_EditBindings"),
+                bShowBackButton: this.m_bInHeadset,
+              }),
+              _.createElement(
+                "div",
+                {
+                  className: "AppSelectColumnWrapper",
+                },
+                this.renderAppColumn(),
+              ),
+            );
+          }
+        };
+        (0, _._)([_._], _.prototype, "SelectApplication", null),
+          (0, _._)([_._], _.prototype, "OnShowMoreApps", null),
+          (_ = (0, _._)([_._], _));
+        var _,
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
+        !(function (_) {
+          _[(_.Separator = 0)] = "Separator";
+        })(_ || (_ = {}));
+        class _ extends _.Component {
+          constructor() {
+            super(...arguments),
+              (this.m_refView = _.createRef()),
+              (this.m_refScrollPanel = _.createRef()),
+              (this.m_refSelectedButton = _.createRef()),
+              (this.m_refParentPortal = _.createRef()),
+              (this.m_elemBoundingParent = window.document.body);
+          }
+          renderDropdownItem(_, _) {
+            switch (typeof _) {
+              case "number":
+                return this.renderDropdownSpecialItem(_, _);
+              case "object":
+                return this.renderDropdownValueItem(_);
+            }
+          }
+          renderDropdownSpecialItem(_, _) {
+            return _ === _.Separator
+              ? _.createElement("div", {
+                  className: "Separator",
+                  key: "separator" + _,
+                })
+              : null;
+          }
+          renderDropdownValueItem(_) {
+            return _.createElement(
+              _._,
+              {
+                key: JSON.stringify(_.value),
+                ref:
+                  _ == this.props.selectedItem
+                    ? this.m_refSelectedButton
+                    : null,
+                className: (0, _._)("DropdownPopoverButton", [
+                  "Selected",
+                  _ == this.props.selectedItem,
+                ]),
+                onClick: () => this.setValue(_.value),
+              },
+              _.sLabel,
+            );
+          }
+          setValue(_) {
+            var _, _;
+            this.props.onChange && this.props.onChange(_),
+              null === (_ = (_ = this.props).onDismissRequested) ||
+                void 0 === _ ||
+                __webpack_require__.call(_);
+          }
+          render() {
+            return _.createElement(
+              _._,
+              {
+                ref: this.m_refParentPortal,
+                allowableParentSelectors: [
+                  "body",
+                  ".SettingsMain",
+                  ".DesktopHandWidget",
+                  ".HMDPanel",
+                  "vsg-app",
+                  "vsg-mountable",
+                  "[vsg-type=panel]",
+                ],
+                onPortalDidMount: this.updateLayout,
+              },
+              _.createElement(
+                _._,
+                {
+                  ref: this.m_refView,
+                  shouldDismissOnClickAnywhere: !0,
+                  shouldDismissOnClickInViewStack: !0,
+                  fadesViewsBelow: !1,
+                  onDismissRequested: this.props.onDismissRequested,
+                  className: (0, _._)("Dropdown", "Popover"),
+                },
+                _.createElement(
+                  _._,
+                  {
+                    scrollDirection: _._.Vertical,
+                    ref: this.m_refScrollPanel,
+                  },
+                  this.props.items.map(this.renderDropdownItem),
+                ),
+              ),
+            );
+          }
+          componentDidMount() {
+            var _;
+            this.m_elemBoundingParent = (0, _._)(
+              [
+                "body",
+                "[vsg-type=panel]",
+                ".SettingsSidebarPageModalContainer",
+              ],
+              null === (_ = this.m_refParentPortal.current) || void 0 === _
+                ? void 0
+                : _.anchorElement,
+            );
+          }
+          updateLayout() {
+            var _, _, _, _;
+            const _ =
+                null === (_ = this.m_refView.current) || void 0 === _
+                  ? void 0
+                  : _.div,
+              _ =
+                null === (_ = this.m_refScrollPanel.current) || void 0 === _
+                  ? void 0
+                  : _.div;
+            if (!_ || !_) return;
+            const _ =
+                null !==
+                  (_ =
+                    null === (_ = this.props.buttonRef.current) || void 0 === _
+                      ? void 0
+                      : _.elem.clientWidth) && void 0 !== _
+                  ? _
+                  : 0,
+              _ = this.m_elemBoundingParent.getBoundingClientRect();
+            (_.style.minWidth = _ + "px"),
+              (_.style.maxWidth = _.width - 2 * _.POPOVER_BOUNDS_MARGIN + "px"),
+              (_.style.maxHeight =
+                _.height - 2 * _.POPOVER_BOUNDS_MARGIN + "px");
+            const _ = this.props.buttonRef.current.elem.getBoundingClientRect();
+            let _ = _.left,
+              _ = _.top;
+            const _ = _.getBoundingClientRect(),
+              _ = this.m_elemBoundingParent.getBoundingClientRect(),
+              _ = _.left + _.POPOVER_BOUNDS_MARGIN,
+              _ = _.right - _.POPOVER_BOUNDS_MARGIN,
+              _ = _.top + _.POPOVER_BOUNDS_MARGIN,
+              _ = _.bottom - _.POPOVER_BOUNDS_MARGIN;
+            if (this.m_refSelectedButton.current) {
+              _ -=
+                this.m_refSelectedButton.current.elem.getBoundingClientRect()
+                  .top - _.top;
+            }
+            const _ = _;
+            _ < _ && (_ = _),
+              _ + _.width > _ && (_ = _ - _.width),
+              _ < _ && (_ = _),
+              _ + _.height > _ && (_ = _ - _.height),
+              (_ = Math.round(_)),
+              (_ = Math.round(_)),
+              (_.scrollTop = _ - _),
+              (_.style.transform =
+                "translateX(" + _ + "px) translateY(" + _ + "px)");
+          }
+        }
+        (_.POPOVER_BOUNDS_MARGIN = 10),
+          (0, _._)([_._], _.prototype, "renderDropdownItem", null),
+          (0, _._)([_._], _.prototype, "renderDropdownSpecialItem", null),
+          (0, _._)([_._], _.prototype, "renderDropdownValueItem", null),
+          (0, _._)([_._], _.prototype, "setValue", null),
+          (0, _._)([_._], _.prototype, "updateLayout", null);
+        class _ extends _.Component {
+          constructor(_) {
+            super(_),
+              (this.m_refButton = _.createRef()),
+              (this.m_scrollWatcher = new _._()),
+              (this.state = {
+                bShowingOptions: !1,
+              }),
+              (this.m_scrollWatcher.onScroll = this.onParentScroll);
+          }
+          componentWillUnmount() {
+            this.m_scrollWatcher.cleanup();
+          }
+          componentDidUpdate(_, _) {
+            this.state.bShowingOptions &&
+              !_.bShowingOptions &&
+              this.m_scrollWatcher.updateScrollableParents();
+          }
+          onParentScroll() {
+            this.hideDropdown();
+          }
+          get value() {
+            return void 0 !== this.props.value ? this.props.value : null;
+          }
+          get selectedItem() {
+            const _ = this.value;
+            for (let _ of this.props.items)
+              if ("object" == typeof _ && _.value == _) return _;
+            return null;
+          }
+          showDropdown() {
+            this.setState({
+              bShowingOptions: !0,
+            });
+          }
+          hideDropdown() {
+            this.setState({
+              bShowingOptions: !1,
+            });
+          }
+          render() {
+            const _ = this.selectedItem,
+              _ =
+                void 0 !== this.props.defaultLabel
+                  ? this.props.defaultLabel
+                  : (0, _._)("#Settings_SelectAnOption"),
+              _ = _ ? _.sLabel : _;
+            return _.createElement(
+              _.Fragment,
+              null,
+              _.createElement(
+                _._,
+                {
+                  ref: this.m_refButton,
+                  className: "ButtonControl Dropdown",
+                  onClick: this.showDropdown,
+                  enabled:
+                    this.props.items &&
+                    (this.props.items.length > 1 ||
+                      (1 == this.props.items.length && !this.props.value)),
+                  style: {
+                    pointerEvents: this.state.bShowingOptions
+                      ? "none"
+                      : "initial",
+                  },
+                },
+                _.createElement(
+                  "span",
+                  {
+                    ref: this.m_scrollWatcher.ref,
+                  },
+                  _,
+                ),
+              ),
+              this.state.bShowingOptions &&
+                _.createElement(
+                  _,
+                  Object.assign({}, this.props, {
+                    selectedItem: _,
+                    buttonRef: this.m_refButton,
+                    onDismissRequested: this.hideDropdown,
+                  }),
+                ),
+            );
+          }
+        }
+        (0, _._)([_._], _.prototype, "onParentScroll", null),
+          (0, _._)([_.computed], _.prototype, "value", null),
+          (0, _._)([_.computed], _.prototype, "selectedItem", null),
+          (0, _._)([_._], _.prototype, "showDropdown", null),
+          (0, _._)([_._], _.prototype, "hideDropdown", null);
+        class _ extends _.Component {
+          constructor(_) {
+            super(_),
+              (this.state = {
+                value: void 0 === _.value ? null : _.value,
+              });
+          }
+          onChange(_) {
+            this.setState({
+              value: _,
+            }),
+              this.props.onChange && this.props.onChange(_);
+          }
+          render() {
+            let _ = Object.assign({}, this.props);
+            return (
+              (_.onChange = this.onChange),
+              (_.value = this.state.value),
+              _.createElement(_, Object.assign({}, _))
+            );
+          }
+        }
+        (0, _._)([_._], _.prototype, "onChange", null);
+        var _ = __webpack_require__("chunkid");
+        const _ = ({ quaternion: _, width: _, height: _ }) => {
+          const _ = (0, _.useRef)(null),
+            _ = (0, _.useCallback)(
+              (_, _, _) => {
+                _.clearRect(0, 0, _, _), (_.lineWidth = 3);
+                const _ = _ / 2,
+                  _ = _ / 2,
+                  _ = _ / 2,
+                  _ = (_, _) => {
+                    const _ = _._ * _._ + _._ * _._ - _._ * _._,
+                      _ = _._ * _._ + _._ * _._ - _._ * _._,
+                      _ = _._ * _._ + _._ * _._ - _._ * _._,
+                      _ = -_._ * _._ - _._ * _._ - _._ * _._;
+                    return {
+                      _: _ * _._ + _ * -_._ + _ * -_._ - _ * -_._,
+                      _: _ * _._ + _ * -_._ + _ * -_._ - _ * -_._,
+                      _: _ * _._ + _ * -_._ + _ * -_._ - _ * -_._,
+                    };
+                  },
+                  _ = [
+                    {
+                      _: 0,
+                      _: _,
+                      _: 0,
+                    },
+                    {
+                      _: 0,
+                      _: -_,
+                      _: 0,
+                    },
+                  ],
+                  _ = [
+                    {
+                      _: 0,
+                      _: 0,
+                      _: _,
+                    },
+                    {
+                      _: 0,
+                      _: 0,
+                      _: -_,
+                    },
+                  ],
+                  _ = [
+                    {
+                      _: _,
+                      _: 0,
+                      _: 0,
+                    },
+                    {
+                      _: -_,
+                      _: 0,
+                      _: 0,
+                    },
+                  ].map((_) => _(_, _)),
+                  _ = _.map((_) => _(_, _)),
+                  _ = _.map((_) => _(_, _)),
+                  _ = (_, _, _, _) => {
+                    const _ = _.createLinearGradient(_ + _._, _ - _._, _, _);
+                    _.addColorStop(0, _),
+                      _.addColorStop(1, _),
+                      (_.strokeStyle = _),
+                      _.beginPath(),
+                      _.moveTo(_ + _._, _ - _._),
+                      _.lineTo(_ + _._, _ - _._),
+                      _.stroke();
+                  };
+                _(_[1], _[0], "#00000000", "#FF0000DD"),
+                  _(_[1], _[0], "#00000000", "#00FF00DD"),
+                  _(_[1], _[0], "#00000000", "#2222FFFF");
+              },
+              [_],
+            );
+          return (
+            (0, _.useEffect)(() => {
+              const _ = _.current;
+              if (_) {
+                const _ = _.getContext("2d");
+                if (_) {
+                  const _ = _.width,
+                    _ = _.height;
+                  _(_, _, _);
+                }
+              }
+            }, [_, _, _, _]),
+            _.createElement(
+              "div",
+              {
+                className: "AxisWrapper",
+              },
+              _.createElement("canvas", {
+                className: "AxisCanvas",
+                ref: _,
+                width: _,
+                height: _,
+              }),
+            )
+          );
+        };
+        var _, _, _;
+        !(function (_) {
+          (_[(_.None = 0)] = "None"),
+            (_[(_.Boolean = 1)] = "Boolean"),
+            (_[(_.Vector1 = 2)] = "Vector1"),
+            (_[(_.Vector2 = 3)] = "Vector2"),
+            (_[(_.Vector3 = 4)] = "Vector3"),
+            (_[(_.Pose = 20)] = "Pose"),
+            (_[(_.SimpleHaptic = 21)] = "SimpleHaptic"),
+            (_[(_.Skeleton = 22)] = "Skeleton"),
+            (_[(_.EyeTracking = 23)] = "EyeTracking");
+        })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.Estimated = 0)] = "Estimated"),
+              (_[(_.Partial = 1)] = "Partial"),
+              (_[(_.Full = 2)] = "Full");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.Unknown = 0)] = "Unknown"),
+              (_[(_.Boolean = 1)] = "Boolean"),
+              (_[(_.Scalar = 2)] = "Scalar"),
+              (_[(_.Pose = 3)] = "Pose"),
+              (_[(_.Skeleton = 4)] = "Skeleton"),
+              (_[(_.Haptic = 5)] = "Haptic");
+          })(_ || (_ = {}));
+        let _ = 16777216;
+        function _(_) {
+          return "number" != typeof _
+            ? "-"
+            : _ >= _ && _ <= 33554431
+              ? (0, _._)("#InputDebugger_Priority_Overlay", _ - _)
+              : _.toFixed(0);
+        }
+        class _ extends _.Component {
+          constructor(_) {
+            super(_),
+              (this.m_mailbox = new _._()),
+              (this.m_msgNextState = null),
+              this.m_mailbox.Init("input_debugger"),
+              this.m_mailbox.RegisterHandler("input_frame", this.OnInputFrame),
+              null === VRHTML ||
+                void 0 === VRHTML ||
+                VRHTML.VRPathProperties.SetInt32PathProperty(
+                  "/input_debugger_pid",
+                  0,
+                ),
+              (this.state = {});
+          }
+          OnSelectApp(_) {
+            this.setState({
+              sCurrentApp: _,
+              latestState: null,
+              actionManifest: null,
+              sError: null,
+              sCurrentActionSet: null,
+            });
+            let _ = _._.GetApp(_);
+            _.pid &&
+              (null === VRHTML ||
+                void 0 === VRHTML ||
+                VRHTML.VRPathProperties.SetInt32PathProperty(
+                  "/input_debugger_pid",
+                  _.pid,
+                )),
+              _(_)
+                .then((_) => {
+                  this.setState({
+                    actionManifest: _,
+                  });
+                })
+                .catch((_) => {
+                  this.setState({
+                    sError: (0, _._)("InputDebugger_ActionManifestFailed"),
+                  });
+                });
+          }
+          OnInputFrame(_) {
+            if (null == this.state.sCurrentApp) {
+              let _ = _._.FindAppByPid(_.pid);
+              _ && this.OnSelectApp(_.key);
+            }
+            !this.state.sCurrentActionSet &&
+              _.actions &&
+              this.SetActionSet(_.actions[0].actionSet),
+              (this.m_msgNextState = _);
+          }
+          componentDidMount() {
+            this.m_timerStateUpdate = window.setInterval(() => {
+              this.m_msgNextState &&
+                (this.setState({
+                  latestState: this.m_msgNextState,
+                }),
+                (this.m_msgNextState = null));
+            }, 100);
+          }
+          componentWillUnmount() {
+            null === VRHTML ||
+              void 0 === VRHTML ||
+              VRHTML.VRPathProperties.SetInt32PathProperty(
+                "/input_debugger_pid",
+                0,
+              ),
+              this.m_timerStateUpdate &&
+                window.clearInterval(this.m_timerStateUpdate);
+          }
+          GetActionSetName(_) {
+            let _;
+            return (
+              this.state.actionManifest &&
+                (_ = this.state.actionManifest.action_sets.find(
+                  (_) => _.name.toLowerCase() == _.toLowerCase(),
+                )),
+              _ ? _.localized_name : _
+            );
+          }
+          GetActionName(_) {
+            let _;
+            if (this.state.actionManifest)
+              for (let _ of this.state.actionManifest.action_sets)
+                if (
+                  ((_ = _.actions.find(
+                    (_) => _.name.toLowerCase() == _.toLowerCase(),
+                  )),
+                  _)
+                )
+                  break;
+            return _ ? _.localized_name : _;
+          }
+          GetMaxPriority(_) {
+            var _, _, _, _, _, _;
+            return Math.max(
+              null !==
+                (_ =
+                  null ===
+                    (_ =
+                      null === (_ = this.state.latestState) || void 0 === _
+                        ? void 0
+                        : _.priorityMap) || void 0 === _
+                    ? void 0
+                    : _[_]) && void 0 !== _
+                ? _
+                : null,
+              null !==
+                (_ =
+                  null ===
+                    (_ =
+                      null === (_ = this.state.latestState) || void 0 === _
+                        ? void 0
+                        : _.globalPriorityMap) || void 0 === _
+                    ? void 0
+                    : _[_]) && void 0 !== _
+                ? _
+                : null,
+            );
+          }
+          renderActionSets() {
+            if (!this.state.latestState.activeActionSets)
+              return _.createElement(
+                "div",
+                {
+                  className: "Label",
+                },
+                (0, _._)("#InputDebugger_NoActiveActionSets"),
+              );
+            let _ = [];
+            for (let _ of this.state.latestState.activeActionSets) {
+              let _, _;
+              _.secondaryActionSet
+                ? ((_ = _.secondaryActionSet), (_ = this.GetActionSetName(_)))
+                : ((_ = (0, _._)("#InputDebugger_None")), (_ = ""));
+              let _ = this.GetActionSetName(_.actionSet),
+                _ = _.restrictToDevice
+                  ? _.restrictToDevice
+                  : (0, _._)("#InputDebugger_None");
+              _.push(
+                _.createElement(
+                  "div",
+                  {
+                    className: "ActiveActionSet",
+                    key: _.actionSet + _.restrictToDevice,
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionSetName",
+                    },
+                    _,
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionSetPath",
+                    },
+                    _.actionSet,
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionSetPriority",
+                    },
+                    _(_.priority),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionSetDevice",
+                    },
+                    _,
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionSetSecondaryName",
+                    },
+                    _,
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionSetSecondaryPath",
+                    },
+                    _,
+                  ),
+                ),
+              );
+            }
+            return _.createElement(
+              _.Fragment,
+              null,
+              _.createElement(
+                "div",
+                {
+                  className: "Label InputDebuggerSectionHeading",
+                },
+                (0, _._)("#InputDebugger_ActiveActionSets"),
+              ),
+              _.createElement(
+                "div",
+                {
+                  className: "ActiveActionSetContainer",
+                },
+                _.createElement(
+                  "div",
+                  {
+                    className: "ActiveActionSetsHeader",
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      style: {
+                        gridColumn: "1 / span 2",
+                      },
+                      className: "Label",
+                    },
+                    (0, _._)("#InputDebugger_ActionSetName"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      style: {
+                        gridColumn: "3",
+                      },
+                      className: "Label",
+                    },
+                    (0, _._)("#InputDebugger_Priority"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      style: {
+                        gridColumn: "4",
+                      },
+                      className: "Label",
+                    },
+                    (0, _._)("#InputDebugger_Device"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      style: {
+                        gridColumn: "5 / span 2",
+                      },
+                      className: "Label",
+                    },
+                    (0, _._)("#InputDebugger_SecondaryActionSetName"),
+                  ),
+                ),
+                _,
+              ),
+            );
+          }
+          SetActionSet(_) {
+            this.setState({
+              sCurrentActionSet: _,
+            });
+          }
+          ShowFilterState(_) {
+            this.setState({
+              sFilterPath: _,
+            });
+          }
+          renderActionHeader(_) {
+            switch (_) {
+              case _.Boolean:
+              case _.Vector1:
+              case _.Vector2:
+              case _.Vector3:
+                return [
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "source",
+                    },
+                    (0, _._)("#InputDebugger_Source"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "binding",
+                    },
+                    (0, _._)("#InputDebugger_Binding"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "active",
+                    },
+                    (0, _._)("#InputDebugger_Active"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "origin",
+                    },
+                    (0, _._)("#InputDebugger_ActiveOrigin"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "value",
+                    },
+                    (0, _._)("#InputDebugger_Value"),
+                  ),
+                ];
+              case _.Pose:
+                return [
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "source",
+                    },
+                    (0, _._)("#InputDebugger_Source"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "binding",
+                    },
+                    (0, _._)("#InputDebugger_Binding"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "active",
+                    },
+                    (0, _._)("#InputDebugger_Active"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "origin",
+                    },
+                    (0, _._)("#InputDebugger_ActiveOrigin"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "position",
+                    },
+                    (0, _._)("#InputDebugger_Pose_Position"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "rotation",
+                    },
+                    (0, _._)("#InputDebugger_Pose_Rotation"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "state",
+                    },
+                    (0, _._)("#InputDebugger_Pose_State"),
+                  ),
+                ];
+              case _.EyeTracking:
+                return [
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "source",
+                    },
+                    (0, _._)("#InputDebugger_Source"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "binding",
+                    },
+                    (0, _._)("#InputDebugger_Binding"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "active",
+                    },
+                    (0, _._)("#InputDebugger_Active"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "origin",
+                    },
+                    (0, _._)("#InputDebugger_ActiveOrigin"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "tracked",
+                    },
+                    (0, _._)("#InputDebugger_Tracked"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "valid",
+                    },
+                    (0, _._)("#InputDebugger_Valid"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "origin_position",
+                    },
+                    (0, _._)("#InputDebugger_EyeTracking_Origin"),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionHeader",
+                      key: "target_position",
+                    },
+                    (0, _._)("#InputDebugger_EyeTracking_Target"),
+                  ),
+                ];
+              default:
+                return null;
+            }
+          }
+          renderBoolean(_, _) {
+            return _.createElement(
+              "div",
+              {
+                className: (0, _._)(
+                  "BooleanValue",
+                  ["IsTrue", _],
+                  "Label",
+                  "ActionEntry",
+                ),
+                key: _,
+              },
+              _ ? "TRUE" : "false",
+            );
+          }
+          renderScalar(_, _) {
+            return _.createElement(
+              "div",
+              {
+                className: (0, _._)("Label", "ActionEntry"),
+                key: _,
+              },
+              _.toFixed(2),
+            );
+          }
+          renderBinding(_, _) {
+            var _, _;
+            if (
+              null === (_ = _.binding) || void 0 === _
+                ? void 0
+                : __webpack_require__.startsWith("/filters/")
+            )
+              return _.createElement(
+                "div",
+                {
+                  className: "Label ActionEntry FilterLink",
+                  key: _ + "_binding",
+                },
+                _.createElement(
+                  "a",
+                  {
+                    href: "#",
+                    onClick: () => {
+                      this.ShowFilterState(_.binding);
+                    },
+                  },
+                  (0, _._)("#InputDebugger_FilterDetails"),
+                ),
+              );
+            {
+              let _ = this.GetMaxPriority(_.binding),
+                _ = null !== (_ = _.binding) && void 0 !== _ ? _ : "-";
+              return (
+                "number" == typeof _ &&
+                  (_ += " " + (0, _._)("#InputDebugger_PriorityValue", _(_))),
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label ActionEntry",
+                    key: _ + _.inputSource + "_binding",
+                  },
+                  _,
+                )
+              );
+            }
+          }
+          renderActionEntry(_, _, _) {
+            var _, _, _, _, _, _, _, _, _;
+            switch (_.type) {
+              case _.Boolean:
+                let _ = _.data;
+                return [
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_source",
+                    },
+                    null !== (_ = _.inputSource) && void 0 !== _ ? _ : "-",
+                  ),
+                  this.renderBinding(_, _),
+                  this.renderBoolean(_.data.active, _ + "_active"),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_origin",
+                    },
+                    null !== (_ = _.data.activeOrigin) && void 0 !== _
+                      ? _
+                      : "-",
+                  ),
+                  this.renderBoolean(_.state, _ + "_value"),
+                ];
+              case _.Vector1:
+              case _.Vector2:
+              case _.Vector3:
+                let _ = _.data,
+                  _ = _._.toFixed(2);
+                return (
+                  void 0 !== _._ && (_ += ", " + _._.toFixed(2)),
+                  void 0 !== _._ && (_ += ", " + _._.toFixed(2)),
+                  [
+                    _.createElement(
+                      "div",
+                      {
+                        className: "Label ActionEntry",
+                        key: _ + "_source",
+                      },
+                      null !== (_ = _.inputSource) && void 0 !== _ ? _ : "-",
+                    ),
+                    this.renderBinding(_, _),
+                    this.renderBoolean(_.data.active, _ + "_active"),
+                    _.createElement(
+                      "div",
+                      {
+                        className: "Label ActionEntry",
+                        key: _ + "_origin",
+                      },
+                      null !== (_ = _.data.activeOrigin) && void 0 !== _
+                        ? _
+                        : "-",
+                    ),
+                    _.createElement(
+                      "div",
+                      {
+                        className: "Label ActionEntry",
+                        key: _ + "_value",
+                      },
+                      _,
+                    ),
+                  ]
+                );
+              case _.Pose:
+                let _ = _.data,
+                  _ = `${_.position_x.toFixed(2)}, ${_.position_y.toFixed(2)}, ${_.position_z.toFixed(2)}`,
+                  _ = {
+                    _: _.rotation_x,
+                    _: _.rotation_y,
+                    _: _.rotation_z,
+                    _: _.rotation_w,
+                  },
+                  _ = `(${_.rotation_x.toFixed(2)}, ${_.rotation_y.toFixed(2)}, ${_.rotation_z.toFixed(2)})`;
+                return [
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_source",
+                    },
+                    null !== (_ = _.inputSource) && void 0 !== _ ? _ : "-",
+                  ),
+                  this.renderBinding(_, _),
+                  this.renderBoolean(_.data.active, _ + "_active"),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_origin",
+                    },
+                    null !== (_ = _.data.activeOrigin) && void 0 !== _
+                      ? _
+                      : "-",
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_position",
+                    },
+                    _ ? _ : "-",
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_rotation",
+                    },
+                    null != _ ? _ : "-",
+                    _.createElement(_, {
+                      quaternion: _,
+                      width: 50,
+                      height: 50,
+                    }),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_state",
+                    },
+                    null !== (_ = _.tracking) && void 0 !== _ ? _ : "-",
+                  ),
+                ];
+              case _.EyeTracking:
+                let _ = _.data,
+                  _ = `${_.origin_position_x.toFixed(5)}, ${_.origin_position_y.toFixed(5)}, ${_.origin_position_z.toFixed(5)}`,
+                  _ = `${_.target_position_x.toFixed(5)}, ${_.target_position_y.toFixed(5)}, ${_.target_position_z.toFixed(5)}`;
+                return [
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_source",
+                    },
+                    null !== (_ = _.inputSource) && void 0 !== _ ? _ : "-",
+                  ),
+                  this.renderBinding(_, _),
+                  this.renderBoolean(_.data.active, _ + "_active"),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_origin",
+                    },
+                    null !== (_ = _.data.activeOrigin) && void 0 !== _
+                      ? _
+                      : "-",
+                  ),
+                  this.renderBoolean(_.tracked, _ + "_tracked"),
+                  this.renderBoolean(_.valid, _ + "_valid"),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_origin_position",
+                    },
+                    _ ? _ : "-",
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label ActionEntry",
+                      key: _ + "_target_position",
+                    },
+                    _ ? _ : "-",
+                  ),
+                ];
+              default:
+                return null;
+            }
+          }
+          renderAction(_) {
+            if (!_) return [null, 0];
+            let _ = this.renderActionHeader(_.type);
+            if (!_) return [null, 0];
+            let _ = [_],
+              _ = 1;
+            if (_.entries)
+              for (let _ of _.entries) {
+                let _ = this.renderActionEntry(_, _, (_++).toString());
+                if (_) {
+                  if (_.length != _.length)
+                    throw new Error(
+                      "Values must have the same length as header",
+                    );
+                  __webpack_require__.push(_);
+                }
+              }
+            let _ = [];
+            for (let _ = 0; _ < _[0].length; _++)
+              for (let _ = 0; _ < _.length; _++) _.push(_[_][_]);
+            let _ = Math.max(_.length, 5);
+            return [
+              _.createElement(
+                "div",
+                {
+                  className: "Action",
+                  key: _.path,
+                },
+                _.createElement(
+                  "div",
+                  {
+                    className: "ActionName Label",
+                    style: {
+                      gridColumn: "1 / " + (_ + 1),
+                    },
+                  },
+                  this.GetActionName(_.path),
+                  _.createElement(
+                    "span",
+                    {
+                      className: "ActionPath",
+                    },
+                    " (",
+                    _.path,
+                    ")",
+                  ),
+                ),
+                _,
+              ),
+              _,
+            ];
+          }
+          renderCurrentActions() {
+            if (!this.state.sCurrentActionSet) return null;
+            let _ = new Set(),
+              _ = [],
+              _ = 0;
+            for (let _ of this.state.latestState.actions)
+              if (_.actionSet == this.state.sCurrentActionSet) {
+                let [_, _] = this.renderAction(_);
+                if (!_) continue;
+                (_ = Math.max(_, _)), _.push(_), _.add(_.path.toLowerCase());
+              }
+            if (this.state.actionManifest) {
+              let _ = this.state.actionManifest.action_sets.find(
+                (_) => _.name == this.state.sCurrentActionSet,
+              );
+              if (_)
+                for (let _ of _.actions)
+                  _.has(_.name.toLowerCase()) ||
+                    ("pose" != _.type &&
+                      "skeleton" != _.type &&
+                      "vibration" != _.type &&
+                      (_.push(
+                        _.createElement(
+                          "div",
+                          {
+                            className: "Action",
+                            key: _.name,
+                          },
+                          _.createElement(
+                            "div",
+                            {
+                              className: "ActionName Label",
+                              style: {
+                                gridColumn: "1 / " + (_ + 1),
+                              },
+                            },
+                            _.localized_name,
+                            _.createElement(
+                              "span",
+                              {
+                                className: "ActionPath",
+                              },
+                              " (",
+                              _.name,
+                              ")",
+                            ),
+                          ),
+                          _.createElement(
+                            "div",
+                            {
+                              className: "Unbound Label",
+                            },
+                            (0, _._)("#InputDebugger_ActionUnbound"),
+                          ),
+                        ),
+                      ),
+                      _.add(_.name.toLowerCase())));
+            }
+            return _.createElement(
+              "div",
+              {
+                className: "ActionListWrapper",
+              },
+              _.createElement(
+                "div",
+                {
+                  className: "ActionList",
+                },
+                _,
+              ),
+            );
+          }
+          renderActions() {
+            if (!this.state.latestState.actions)
+              return _.createElement(
+                "div",
+                {
+                  className: "Label",
+                },
+                (0, _._)("#InputDebugger_NoActions"),
+              );
+            let _ = new Set();
+            for (let _ of this.state.latestState.actions) _.add(_.actionSet);
+            let _ = [];
+            for (let _ of _)
+              _.push(
+                _.createElement(
+                  _._,
+                  {
+                    onClick: () => {
+                      this.SetActionSet(_);
+                    },
+                    key: _,
+                    className: (0, _._)("ActionSetButton", "ButtonControl", [
+                      "Selected",
+                      _ == this.state.sCurrentActionSet,
+                    ]),
+                  },
+                  this.GetActionSetName(_),
+                ),
+              );
+            return _.createElement(
+              _.Fragment,
+              null,
+              _.createElement(
+                "div",
+                {
+                  className: "Label InputDebuggerSectionHeading",
+                },
+                (0, _._)("#InputDebugger_Actions"),
+              ),
+              _.createElement(
+                "div",
+                {
+                  className: "ActionContainer",
+                },
+                _.createElement(
+                  "div",
+                  {
+                    className: "ActionSetButtons",
+                  },
+                  _,
+                ),
+                this.renderCurrentActions(),
+              ),
+            );
+          }
+          renderLatestState() {
+            return this.state.latestState
+              ? _.createElement(
+                  "div",
+                  {
+                    className: "DebuggerState",
+                  },
+                  this.renderActionSets(),
+                  this.renderActions(),
+                )
+              : _.createElement(
+                  "div",
+                  {
+                    className: "Label",
+                  },
+                  (0, _._)("#InputDebugger_WaitingForApp"),
+                );
+          }
+          FindFilter(_) {
+            var _, _;
+            if (this.state.latestState && this.state.latestState.filters)
+              for (let _ of this.state.latestState.filters) {
+                if (
+                  null === (_ = _.inputs) || void 0 === _
+                    ? void 0
+                    : _.find((_) => _.path == _)
+                )
+                  return _;
+                if (
+                  null === (_ = _.outputs) || void 0 === _
+                    ? void 0
+                    : __webpack_require__.find((_) => _.path == _)
+                )
+                  return _;
+              }
+          }
+          renderFilterIO(_, _) {
+            let _;
+            switch (_.type) {
+              case _.Boolean:
+                _ = this.renderBoolean(_.value);
+                break;
+              case _.Scalar:
+                _ = this.renderScalar(_.value);
+                break;
+              default:
+                _ = _.createElement(
+                  "div",
+                  {
+                    className: "Label",
+                  },
+                  _[_.type],
+                );
+            }
+            let _ = this.GetMaxPriority(_.path);
+            return _.createElement(
+              "div",
+              {
+                className: "FilterIO",
+                key: _.path,
+              },
+              _.createElement(
+                "div",
+                {
+                  className: "Label",
+                },
+                _.path,
+                ": ",
+              ),
+              _,
+              _ &&
+                _.path.startsWith("/filters/") &&
+                _.createElement(
+                  "a",
+                  {
+                    href: "#",
+                    onClick: () => {
+                      this.ShowFilterState(_.path);
+                    },
+                  },
+                  (0, _._)("#InputDebugger_FilterDetails"),
+                ),
+              "number" == typeof _ &&
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label",
+                  },
+                  (0, _._)("#InputDebugger_PriorityValue", _(_)),
+                ),
+              _.suppressedByPriority &&
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label Suppressed",
+                  },
+                  (0, _._)("#InputDebugger_Suppressed"),
+                ),
+            );
+          }
+          renderFilterState() {
+            if (!this.state.sFilterPath) return null;
+            let _ = this.FindFilter(this.state.sFilterPath),
+              _ = [];
+            for (let _ in _.parameters) {
+              let _,
+                _ = _.parameters[_];
+              switch (typeof _) {
+                case "boolean":
+                  _ = _ ? "true" : "false";
+                  break;
+                case "number":
+                  _ = _.toFixed(2);
+                  break;
+                default:
+                  _ = JSON.stringify(_);
+              }
+              _.push(
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label",
+                    key: _,
+                  },
+                  _,
+                  ": ",
+                  _,
+                ),
+              );
+            }
+            let _ = [];
+            for (let _ of _.inputs)
+              __webpack_require__.push(this.renderFilterIO(_, !0));
+            _ ||
+              __webpack_require__.push(
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label",
+                    key: "none",
+                  },
+                  (0, _._)("#InputDebugger_None"),
+                ),
+              );
+            let _ = [];
+            for (let _ of _.outputs) _.push(this.renderFilterIO(_, !1));
+            return (
+              _ ||
+                _.push(
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label",
+                      key: "none",
+                    },
+                    (0, _._)("#InputDebugger_None"),
+                  ),
+                ),
+              _.createElement(
+                _._,
+                {
+                  onDismissRequested: () => {
+                    this.ShowFilterState(null);
+                  },
+                  className: "FilterDetails",
+                },
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label InputDebuggerSectionHeading",
+                  },
+                  (0, _._)("#InputDebugger_FilterState_Title", _.name),
+                  " ",
+                ),
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label",
+                  },
+                  (0, _._)("#InputDebugger_FilterType"),
+                  _.type,
+                ),
+                _ &&
+                  _.createElement(
+                    _.Fragment,
+                    null,
+                    _.createElement(
+                      "div",
+                      {
+                        className: "Label InputDebuggerHeading",
+                      },
+                      (0, _._)("#InputDebugger_Parameters"),
+                    ),
+                    _.createElement(
+                      "div",
+                      {
+                        className: "ParameterList",
+                      },
+                      _,
+                    ),
+                  ),
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label InputDebuggerHeading",
+                  },
+                  (0, _._)("#InputDebugger_Inputs"),
+                ),
+                _.createElement(
+                  "div",
+                  {
+                    className: "InputList",
+                  },
+                  _,
+                ),
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label InputDebuggerHeading",
+                  },
+                  (0, _._)("#InputDebugger_Outputs"),
+                ),
+                _.createElement(
+                  "div",
+                  {
+                    className: "OutputList",
+                  },
+                  _,
+                ),
+              )
+            );
+          }
+          render() {
+            let _ = _._.GetRunningApps(),
+              _ = [];
+            for (let _ of _)
+              _.push({
+                value: _.key,
+                sLabel: `${_.name} (pid: ${_.pid})`,
+              });
+            return _.createElement(
+              "div",
+              {
+                className: "DebuggerMain",
+              },
+              _.createElement(_, {
+                fnOnClick: _.ReturnToSettingsUI,
+                strTitle: (0, _._)("#InputDebugger_Title"),
+              }),
+              _.createElement(
+                "div",
+                {
+                  className: "AppDropdownWrapper",
+                },
+                _.createElement(_, {
+                  items: _,
+                  onChange: this.OnSelectApp,
+                  value: this.state.sCurrentApp,
+                  defaultLabel: (0, _._)("#InputDebugger_SelectApplication"),
+                }),
+              ),
+              !this.state.actionManifest &&
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label",
+                  },
+                  (0, _._)("#InputDebugger_ActionManifestLoading"),
+                ),
+              this.state.sError &&
+                _.createElement(
+                  "div",
+                  {
+                    className: "Label Error",
+                  },
+                  this.state.sError,
+                ),
+              this.renderLatestState(),
+              this.renderFilterState(),
+            );
+          }
+        }
+        (0, _._)([_._], _.prototype, "OnSelectApp", null),
+          (0, _._)([_._], _.prototype, "OnInputFrame", null),
+          (0, _._)([_._], _.prototype, "SetActionSet", null);
+        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
         let _ = class extends _.Component {
           constructor(_) {
             super(_),
@@ -11851,106 +14447,6 @@ var CLSTAMP = "steamdb";
         (0, _._)([_._], _.prototype, "AddChord", null),
           (_ = (0, _._)([_._], _));
         let _ = class extends _.Component {
-          render() {
-            let _ =
-                null == this.props.bShowBackButton ||
-                this.props.bShowBackButton,
-              _ = null != this.props.fnOpenOptionsModal,
-              _ = "PageTitleLabel";
-            return (
-              this.props.strSubTitle || (_ += " SingleTitle"),
-              _.createElement(
-                "div",
-                {
-                  className:
-                    "PageTitleBar" + (_.IsSteamAvailable ? "" : " NoSteam"),
-                },
-                _.createElement(
-                  "div",
-                  {
-                    className: "FlexFullWidthRowCentered TitleBarMainRow",
-                  },
-                  _.createElement(
-                    "div",
-                    {
-                      className: "TitleBarSection",
-                    },
-                    _ &&
-                      _.createElement(
-                        "div",
-                        {
-                          className:
-                            "ButtonControl FlexRow PageTitleButton PageTitleBackButton AllCaps",
-                          onClick: () => {
-                            this.props.fnOnClick();
-                          },
-                        },
-                        _.createElement("img", {
-                          className: "ActionButtonImage",
-                          src: "images/bindingui/icon_back.svg",
-                        }),
-                        (0, _._)("#Button_Back"),
-                      ),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "AllCaps PageTitle TitleBarSection FlexColumn",
-                    },
-                    _.createElement(
-                      "div",
-                      {
-                        className: _,
-                      },
-                      this.props.strTitle,
-                    ),
-                    this.props.strSubTitle &&
-                      _.createElement(
-                        "div",
-                        {
-                          className: "AllCaps PageSubTitle PageTitleLabel",
-                        },
-                        this.props.strSubTitle,
-                      ),
-                  ),
-                  _ &&
-                    _.createElement(
-                      "div",
-                      {
-                        className: "TitleBarSection",
-                      },
-                      _.createElement(
-                        _._,
-                        {
-                          content: (0, _._)("#BindingUI_OptionsButton_tooltip"),
-                          theme: "ControllerBindingToolTip",
-                        },
-                        _.createElement(
-                          "div",
-                          {
-                            className:
-                              "ButtonControl FlexRow OptionsButton PageTitleButton AllCaps",
-                            onClick: this.props.fnOpenOptionsModal,
-                          },
-                          (0, _._)("#BindingUI_OptionsButton"),
-                        ),
-                      ),
-                    ),
-                ),
-                !_.IsSteamAvailable &&
-                  _.createElement(
-                    "div",
-                    {
-                      className: "NoSteamWarning",
-                    },
-                    (0, _._)("#NoSteamWarning"),
-                  ),
-              )
-            );
-          }
-        };
-        _ = (0, _._)([_._], _);
-        let _ = class extends _.Component {
           constructor(_) {
             super(_);
           }
@@ -13171,17 +15667,16 @@ var CLSTAMP = "steamdb";
             );
           }
         }
-        (0, _._)([_._], _.prototype, "onCheckboxChanged", null);
-        var _,
-          _ = __webpack_require__("chunkid");
-        !(function (_) {
-          (_[(_.None = 0)] = "None"),
-            (_[(_.Personal = 1)] = "Personal"),
-            (_[(_.Public = 2)] = "Public"),
-            (_[(_.LocalFile = 3)] = "LocalFile"),
-            (_[(_.ReplaceDefault = 4)] = "ReplaceDefault"),
-            (_[(_.AddNewDefault = 5)] = "AddNewDefault");
-        })(_ || (_ = {}));
+        var _;
+        (0, _._)([_._], _.prototype, "onCheckboxChanged", null),
+          (function (_) {
+            (_[(_.None = 0)] = "None"),
+              (_[(_.Personal = 1)] = "Personal"),
+              (_[(_.Public = 2)] = "Public"),
+              (_[(_.LocalFile = 3)] = "LocalFile"),
+              (_[(_.ReplaceDefault = 4)] = "ReplaceDefault"),
+              (_[(_.AddNewDefault = 5)] = "AddNewDefault");
+          })(_ || (_ = {}));
         let _ = class extends _.Component {
           constructor(_) {
             super(_),
@@ -14416,2492 +16911,6 @@ var CLSTAMP = "steamdb";
           (0, _._)([_._], _.prototype, "OnLegacySetup", null),
           (0, _._)([_._], _.prototype, "OnSecondaryControllerSetup", null),
           (_ = (0, _._)([_._], _));
-        class _ {
-          constructor(_) {
-            (this.m_communityData = void 0),
-              (this.m_bLoadingData = !1),
-              (this.m_sSteamID = void 0),
-              (this.m_dateLastUpdate = void 0),
-              (this.m_sSteamID = _),
-              _.length > 0 && this.EnsureCommunityDataLoaded(),
-              (0, _.makeObservable)(this);
-          }
-          get community_data_ready() {
-            return void 0 !== this.m_communityData;
-          }
-          get avatar_url() {
-            return this.m_communityData && this.m_communityData.avatar_url;
-          }
-          get persona_name() {
-            return this.m_communityData && this.m_communityData.persona_name;
-          }
-          get player_level() {
-            return this.m_communityData && this.m_communityData.level;
-          }
-          get player_level_class() {
-            return this.m_communityData && this.m_communityData.level_class;
-          }
-          get player_badge() {
-            return this.m_communityData && this.m_communityData.favorite_badge;
-          }
-          get player_in_game() {
-            return this.m_communityData && this.m_communityData.in_game;
-          }
-          EnsureCommunityDataLoaded() {
-            if (void 0 === this.m_communityData && !this.m_bLoadingData) {
-              this.m_bLoadingData = !0;
-              let _ = "https://steamcommunity.com/";
-              _()
-                .get(_ + "miniprofile/s" + this.m_sSteamID + "/json")
-                .then((_) => {
-                  let _ = _.data;
-                  _ &&
-                    _.avatar_url &&
-                    ((this.m_communityData = _),
-                    (this.m_dateLastUpdate = new Date())),
-                    (this.m_bLoadingData = !1);
-                })
-                .catch((_) => {
-                  console.log(_), (this.m_bLoadingData = !1);
-                });
-            }
-          }
-        }
-        (0, _._)([_.observable], _.prototype, "m_communityData", void 0),
-          (0, _._)([_._], _.prototype, "EnsureCommunityDataLoaded", null);
-        class _ {
-          constructor() {
-            (this.m_SteamCommunityUsers = _.observable.map()),
-              (0, _.makeObservable)(this);
-          }
-          GetUserInformation(_) {
-            return (
-              this.m_SteamCommunityUsers.has(_) ||
-                this.RequestUserInformation(_),
-              this.m_SteamCommunityUsers.get(_)
-            );
-          }
-          RequestUserInformation(_) {
-            this.m_SteamCommunityUsers.hasOwnProperty(_) ||
-              this.m_SteamCommunityUsers.set(_, new _(_));
-          }
-        }
-        (0, _._)([_.observable], _.prototype, "m_SteamCommunityUsers", void 0),
-          (0, _._)([_._], _.prototype, "GetUserInformation", null),
-          (0, _._)([_._], _.prototype, "RequestUserInformation", null);
-        const _ = new _();
-        window.steamcommunity = _;
-        let _ = class extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.state = {
-                bIsVisible: !0,
-              });
-          }
-          CloseDialog() {
-            this.setState({
-              bIsVisible: !1,
-            });
-          }
-          render() {
-            let _ = null;
-            return (
-              _.DesktopMode ||
-                (_ = {
-                  height: "30%",
-                  width: "30%",
-                }),
-              _.createElement(
-                _._,
-                {
-                  visible: this.state.bIsVisible,
-                  onClose: this.CloseDialog,
-                  showCloseButton: !1,
-                  animation: "fade",
-                  className: "BindingChordsModal",
-                  closeOnEsc: !0,
-                  customStyles: _,
-                },
-                _.createElement(
-                  "div",
-                  {
-                    className:
-                      "SaveDialogWrapper FlexColumn LoadErrorDialogWrapper",
-                  },
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label TitleCenter",
-                    },
-                    this.props.sError,
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className:
-                        "FlexRow SaveBottomButtonRow LoadErrorCloseButton",
-                    },
-                    this.props.bCanClose
-                      ? _.createElement(
-                          "div",
-                          {
-                            onClick: this.CloseDialog,
-                            className: "ButtonControl",
-                          },
-                          (0, _._)("#Button_Close"),
-                        )
-                      : _.createElement(
-                          "div",
-                          {
-                            className: "ButtonControl",
-                            onClick: () => {
-                              _.ClearSelectedApp(),
-                                _.ShowAppSelect(),
-                                this.CloseDialog();
-                            },
-                          },
-                          (0, _._)("#BindingUI_List_ErrorReturnToAppSelect"),
-                        ),
-                  ),
-                ),
-              )
-            );
-          }
-        };
-        (0, _._)([_._], _.prototype, "CloseDialog", null),
-          (_ = (0, _._)([_._], _));
-        let _ = class extends _.Component {
-          constructor(_) {
-            super(_);
-            let _ = _.SelectedAppActions;
-            (this.state = {
-              bShowDeleteConfirmModal: !1,
-              bShowUpgradeConfirmModal: !1,
-              bOldVersion:
-                !!_ && this.props.result.actionManifestVersion < _.version,
-            }),
-              this.props.result.steamIDOwner.length &&
-                "0" != this.props.result.steamIDOwner &&
-                _.RequestUserInformation(this.props.result.steamIDOwner);
-          }
-          OnDelete() {
-            this.setState({
-              bShowDeleteConfirmModal: !0,
-            });
-          }
-          OnDeleteConfirmed() {
-            return (0, _._)(this, void 0, void 0, function* () {
-              this.setState({
-                bShowDeleteConfirmModal: !1,
-              }),
-                yield _.DeleteBinding(this.props.result.url),
-                yield _.GetBindingList();
-            });
-          }
-          OnDeleteCancel() {
-            this.setState({
-              bShowDeleteConfirmModal: !1,
-            });
-          }
-          renderDeleteConfirmModal(_) {
-            return _.createElement(
-              _._,
-              {
-                visible: this.state.bShowDeleteConfirmModal,
-                onClose: this.OnDeleteCancel,
-                showCloseButton: !1,
-                animation: "fade",
-                className: "ModeSettingsModal",
-                closeOnEsc: !0,
-              },
-              this.state.bShowDeleteConfirmModal &&
-                _.createElement(
-                  "div",
-                  {
-                    className: "FlexFullHeightColumnCentered",
-                  },
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label",
-                    },
-                    (0, _._)("#BindingUI_List_Delete_Confirm", _.name),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "FlexRow",
-                    },
-                    _.createElement(
-                      "div",
-                      {
-                        className: "ButtonControl",
-                        onClick: this.OnDeleteConfirmed,
-                      },
-                      (0, _._)("#Button_Delete"),
-                    ),
-                    _.createElement(
-                      "div",
-                      {
-                        className: "ButtonControl",
-                        onClick: this.OnDeleteCancel,
-                      },
-                      (0, _._)("#Button_Cancel"),
-                    ),
-                  ),
-                ),
-            );
-          }
-          OnView() {
-            this.props.fnViewBinding(
-              this.props.result.url,
-              !this.props.bCurrentlySelectedBinding,
-            );
-          }
-          OnSelect() {
-            this.props.fnSelectBinding(this.props.result.url);
-          }
-          render() {
-            var _;
-            let _,
-              _,
-              _ = new Date(),
-              _ = new Date(1e3 * this.props.result.time),
-              _ =
-                _.getTime() - _.getTime() > 1728e5
-                  ? _.toLocaleDateString()
-                  : _.toLocaleString(),
-              _ = this.props.result,
-              _ = "developer" == _.type,
-              _ = "0" != _.steamIDOwner && !_,
-              _ = _._.GetApp(_.SelectedApp),
-              _ = _ ? _.name : "";
-            _ &&
-              ((_.name && 0 != _.name.length) ||
-                (_.SelectedBindingIsLegacy
-                  ? (_.name = (0, _._)(
-                      "#BindingUI_List_Legacy_Binding_Title",
-                      _,
-                    ))
-                  : (_.name = (0, _._)(
-                      "#BindingUI_List_Developer_Binding_Title",
-                      _,
-                    ))),
-              (_.description && 0 != _.description.length) ||
-                (_.SelectedBindingIsLegacy
-                  ? (_.description = (0, _._)(
-                      "#BindingUI_List_Legacy_Binding_Description",
-                    ))
-                  : (_.description = (0, _._)(
-                      "#BindingUI_List_Developer_Binding_Description",
-                    )))),
-              _ &&
-                ((_ = _.GetUserInformation(_.steamIDOwner).avatar_url),
-                (_ = _.GetUserInformation(_.steamIDOwner).persona_name));
-            let _ = this.props.bCurrentlySelectedBinding
-                ? (0, _._)("#BindingUI_List_Edit")
-                : (0, _._)("#BindingUI_List_View"),
-              _ = _.name;
-            "autosave" == _.type &&
-              (_ = (0, _._)("#BindingUI_List_Autosave", _.name));
-            let _ = null;
-            this.state.bOldVersion &&
-              (_ = this.props.bCurrentlySelectedBinding
-                ? (0, _._)(
-                    "#BindingUI_List_OldVersionWarning_CurrentBinding",
-                    _,
-                  )
-                : (0, _._)("#BindingUI_List_OldVersionWarning", _));
-            let _ = null;
-            if (_.secondsPlayed > 0) {
-              let _ = _.secondsPlayed / 60;
-              _ = (0, _._)("#BindingUI_List_MinutesPlayed", _.toFixed(0));
-            }
-            let _ = null;
-            if (_.secondsPlayedThisMonth > 0) {
-              let _ = _.secondsPlayedThisMonth / 60;
-              _ = (0, _._)(
-                "#BindingUI_List_MinutesPlayedThisMonth",
-                _.toFixed(0),
-              );
-            }
-            let _ =
-                null === (_ = _.SelectedControllerTypeInfo) || void 0 === _
-                  ? void 0
-                  : _.controller_type,
-              _ =
-                null != _.controllerType &&
-                "" != _.controllerType &&
-                _.controllerType != _;
-            return _.createElement(
-              "div",
-              {
-                className: "BindingEntry FlexRow",
-              },
-              _ &&
-                _.createElement("img", {
-                  className: "SteamCommunityProfileImage",
-                  src: _,
-                }),
-              _ &&
-                !_ &&
-                _.createElement("div", {
-                  className: "SteamCommunityProfileImage",
-                }),
-              _.createElement(
-                "div",
-                {
-                  className: "BindingDetails",
-                },
-                !this.props.bCurrentlySelectedBinding &&
-                  this.props.fnSelectBinding &&
-                  _.createElement(
-                    "div",
-                    {
-                      className:
-                        "BindingListEntryButton ButtonControl BindingSelectButton",
-                      onClick: this.OnSelect,
-                    },
-                    (0, _._)("#BindingUI_List_Select"),
-                  ),
-                !_.HasBindingUriFailedToLoad(_.url) &&
-                  _.createElement(
-                    "div",
-                    {
-                      className:
-                        "BindingListEntryButton ButtonControl BindingSelectButton",
-                      onClick: this.OnView,
-                    },
-                    _,
-                  ),
-                _.owned &&
-                  !this.props.bCurrentlySelectedBinding &&
-                  _.createElement(
-                    "div",
-                    {
-                      className:
-                        "BindingListEntryButton BindingSelectButton DeleteButton ButtonControl",
-                      onClick: () => {
-                        this.OnDelete();
-                      },
-                    },
-                    _.createElement("img", {
-                      className: "ActionButtonImage",
-                      src: "images/bindingui/icon_trash.svg",
-                    }),
-                  ),
-                _.createElement(
-                  "span",
-                  {
-                    className: "BindingName",
-                  },
-                  _,
-                  _.createElement("br", null),
-                ),
-                _.createElement(
-                  "span",
-                  {
-                    className: "BindingDescription",
-                  },
-                  _.description,
-                  _.createElement("br", null),
-                ),
-                _ &&
-                  _.createElement(
-                    "span",
-                    {
-                      className: "BindingSteamPersonaName Label",
-                    },
-                    (0, _._)("#BindingUI_List_PublishedBy", _),
-                    _.createElement("br", null),
-                  ),
-                _.time > 0 &&
-                  _.createElement(
-                    "span",
-                    {
-                      className: "BindingLastUpdated",
-                    },
-                    (0, _._)("#BindingUI_List_LastUpdated"),
-                    _,
-                    _ && " - " + _,
-                    _ && " - " + _,
-                    _.createElement("br", null),
-                  ),
-                _ &&
-                  _.createElement(
-                    "span",
-                    {
-                      className: "ConvertWarning",
-                    },
-                    _,
-                    _.createElement("br", null),
-                  ),
-                _ &&
-                  _.createElement(
-                    "div",
-                    {
-                      className: "RemappedInfo",
-                    },
-                    _.createElement("hr", {
-                      className: "RemappedInfoHr",
-                    }),
-                    _.createElement(
-                      "span",
-                      {
-                        className: "RemappedInfoSpan",
-                      },
-                      _.createElement("img", {
-                        className: "InformationButtonImage",
-                        src: "images/bindingui/icon_information.svg",
-                      }),
-                      (0, _._)("#BindingUI_Compatibility_Remapped_Text"),
-                    ),
-                  ),
-              ),
-              _.createElement("div", {
-                className: "FlexRow BindingEntryActionButtons",
-              }),
-              this.renderDeleteConfirmModal(_),
-            );
-          }
-        };
-        (0, _._)([_._], _.prototype, "OnDelete", null),
-          (0, _._)([_._], _.prototype, "OnDeleteConfirmed", null),
-          (0, _._)([_._], _.prototype, "OnDeleteCancel", null),
-          (0, _._)([_._], _.prototype, "renderDeleteConfirmModal", null),
-          (0, _._)([_._], _.prototype, "OnView", null),
-          (0, _._)([_._], _.prototype, "OnSelect", null),
-          (_ = (0, _._)([_._], _));
-        let _ = class extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.state = {
-                bIsBindingsLoading: !0,
-              });
-          }
-          RefreshBindingList() {
-            return (0, _._)(this, void 0, void 0, function* () {
-              this.setState({
-                bIsBindingsLoading: !0,
-              }),
-                yield _.GetBindingList(),
-                this.setState({
-                  bIsBindingsLoading: !1,
-                });
-            });
-          }
-          componentDidMount() {
-            return (0, _._)(this, void 0, void 0, function* () {
-              yield this.RefreshBindingList();
-            });
-          }
-          CreateBinding() {
-            this.ViewBinding(_.SelectedBindingURL, !1);
-          }
-          SelectBinding(_) {
-            _.Loading = !0;
-            let _ = _.SelectedControllerTypeInfo;
-            _.SelectConfig(_.SelectedApp, _ ? _.controller_type : "", _).then(
-              () => {
-                _.ReloadCurrentApp();
-              },
-            );
-          }
-          ViewBinding(_, _) {
-            if (((_.Loading = !0), _))
-              _.SetBindingURL(_),
-                _.ReloadControllerConfiguration().then(() => {
-                  _.ViewCurrentBinding(),
-                    setTimeout(() => {
-                      _.Loading = !1;
-                    }, 1);
-                });
-            else {
-              let _ = _.SelectedControllerTypeInfo;
-              _.SelectConfig(_.SelectedApp, _ ? _.controller_type : "", _).then(
-                () => {
-                  _.ReloadCurrentApp().then(() => {
-                    _.EditCurrentBinding(),
-                      setTimeout(() => {
-                        _.Loading = !1;
-                      }, 1);
-                  });
-                },
-              );
-            }
-          }
-          OnControllerDropdownChanged(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              _.SetSelectedController(_), yield this.RefreshBindingList();
-            });
-          }
-          ComputeResultsSection(_, _) {
-            _.CurrentBinding && _.CurrentBinding.type;
-            let _ = _.BindingQueryResults,
-              _ = [];
-            _ &&
-              _.length > 0 &&
-              (_ = __webpack_require__.filter(_).map((_, _) =>
-                _.createElement(_, {
-                  key: _,
-                  currentBinding: _.CurrentBinding,
-                  result: _,
-                  fnViewBinding: this.ViewBinding,
-                  fnSelectBinding: this.SelectBinding,
-                  bCurrentlySelectedBinding: !1,
-                }),
-              ));
-            return (
-              _.length > 0 &&
-              _.createElement(
-                "div",
-                null,
-                _.createElement(
-                  "div",
-                  {
-                    className: "BindingListSectionHeader",
-                  },
-                  (0, _._)(_),
-                ),
-                _.createElement(
-                  "div",
-                  {
-                    className: "FlexRowWithWrap BindingListSection",
-                  },
-                  _,
-                ),
-              )
-            );
-          }
-          CreateControllerTypeDropdown() {
-            let _ = [],
-              _ = _._.IsAppAllowedPrivateInputs(_.SelectedApp);
-            _.ControllerTypes.forEach((_) => {
-              (_ || "InputValueVisibility_SteamVRInternal" != _.visibility) &&
-                "InputValueVisibility_None" != _.visibility &&
-                _.push(_);
-            }),
-              _.sort((_, _) => _.priority - _.priority);
-            let _ = [];
-            _.forEach((_) => {
-              __webpack_require__.push(
-                new _(
-                  _.controller_type,
-                  _.LocalizeDriverString(_.resource_root, _.controller_type),
-                ),
-              );
-            });
-            let _ = "",
-              _ = "",
-              _ = _.SelectedControllerTypeInfo;
-            _ &&
-              (_.input_bindingui_right.transform &&
-                (_ = _.input_bindingui_right.transform),
-              (_ = _.input_bindingui_right.uri));
-            _.device_class;
-            return _.createElement(
-              "div",
-              {
-                className: "FlexColumn ControllerTypeWrapper",
-              },
-              _.createElement(
-                "div",
-                {
-                  className: "BindingListSectionHeader Label",
-                },
-                (0, _._)("#BindingList_ControllerOption"),
-              ),
-              _.createElement(
-                "div",
-                {
-                  className: "FlexRow ControllerTypeButton BindingEntry",
-                },
-                _.createElement("img", {
-                  className: "ControllerImage",
-                  src: _,
-                  style: {
-                    transform: _,
-                  },
-                }),
-                _.createElement(_, {
-                  vecOptions: _,
-                  sModalClass: "PinTop",
-                  sValueSelectedItem: _ ? _.controller_type : "",
-                  sLocalizedSelectedItem: _.LocalizeControllerString(
-                    _,
-                    _ ? _.controller_type : "",
-                  ),
-                  fnOptionSelected: this.OnControllerDropdownChanged,
-                }),
-              ),
-            );
-          }
-          render() {
-            let _ = _._.GetApp(_.SelectedApp),
-              _ = "";
-            _ && (_ = _.name);
-            let _ = _.CurrentBinding,
-              _ = "#BindingUI_List_DeveloperSection";
-            _.SelectedBindingIsLegacy && (_ = "#BindingUI_List_LegacySection");
-            let _ = [];
-            return (
-              null != _.BindingQueryResults &&
-                (_ = _.BindingQueryResults.filter((_) => "autosave" != _.type)),
-              _.createElement(
-                "div",
-                {
-                  className: "FlexColumn FullPage",
-                },
-                _.createElement(_, {
-                  fnOnClick: _.ShowAppSelect,
-                  strTitle: (0, _._)("#BindingList_PageTitle", _),
-                }),
-                _.createElement(
-                  "div",
-                  {
-                    className: "BindingUITopSection FlexRow",
-                  },
-                  _.createElement(
-                    "div",
-                    {
-                      className: "CurrentSection FlexColumn",
-                    },
-                    _.createElement(
-                      "div",
-                      {
-                        className: "BindingListSectionHeader",
-                      },
-                      (0, _._)("#BindingUI_List_CurrentSection"),
-                    ),
-                    _ &&
-                      _.createElement(_, {
-                        result: _,
-                        currentBinding: _.CurrentBinding,
-                        fnViewBinding: this.ViewBinding,
-                        bCurrentlySelectedBinding: !0,
-                      }),
-                  ),
-                  this.CreateControllerTypeDropdown(),
-                ),
-                _.createElement("hr", null),
-                this.state.bIsBindingsLoading
-                  ? _.createElement(
-                      _.Fragment,
-                      null,
-                      _.createElement(
-                        "div",
-                        {
-                          className: "BindingUILoadingSection",
-                        },
-                        _.createElement(
-                          "p",
-                          {
-                            className: "BindingUILoadingHeader",
-                          },
-                          (0, _._)("#BindingUI_List_Loading"),
-                        ),
-                      ),
-                    )
-                  : _.createElement(
-                      _.Fragment,
-                      null,
-                      _.createElement(
-                        "div",
-                        {
-                          className: "AppBindingSection",
-                        },
-                        this.ComputeResultsSection(
-                          _,
-                          (_) =>
-                            "developer" == _.type &&
-                            _.url != _.SelectedBindingURL,
-                        ),
-                        this.ComputeResultsSection(
-                          "#BindingUI_List_ImportSection",
-                          (_) =>
-                            "local_file" == _.type &&
-                            _.url != _.SelectedBindingURL,
-                        ),
-                        this.ComputeResultsSection(
-                          "#BindingUI_List_PersonalSection",
-                          (_) =>
-                            "personal" == _.type &&
-                            _.url != _.SelectedBindingURL,
-                        ),
-                        this.ComputeResultsSection(
-                          "#BindingUI_List_OwnedSection",
-                          (_) =>
-                            "public" == _.type &&
-                            _.owned &&
-                            _.url != _.SelectedBindingURL,
-                        ),
-                        this.ComputeResultsSection(
-                          "#BindingUI_List_PublicSection",
-                          (_) =>
-                            "public" == _.type &&
-                            !_.owned &&
-                            _.url != _.SelectedBindingURL,
-                        ),
-                        0 == _.length &&
-                          _.createElement(
-                            "div",
-                            null,
-                            _.createElement(
-                              "div",
-                              null,
-                              _.createElement(
-                                "div",
-                                {
-                                  className: "Label",
-                                },
-                                (0, _._)("#BindingUI_List_NoBindingsFound"),
-                              ),
-                            ),
-                          ),
-                        _.createElement(
-                          "div",
-                          {
-                            className: "ButtonControl DeveloperLabel Inline",
-                            onClick: this.CreateBinding,
-                          },
-                          (0, _._)("#BindingUI_List_CreateBinding"),
-                        ),
-                      ),
-                    ),
-                _.ShowBindingListError &&
-                  _.createElement(_, {
-                    sError: _.BindingListError,
-                    bCanClose: _.CanCloseBindingListError,
-                  }),
-              )
-            );
-          }
-        };
-        (0, _._)([_._], _.prototype, "RefreshBindingList", null),
-          (0, _._)([_._], _.prototype, "CreateBinding", null),
-          (0, _._)([_._], _.prototype, "SelectBinding", null),
-          (0, _._)([_._], _.prototype, "ViewBinding", null),
-          (0, _._)([_._], _.prototype, "OnControllerDropdownChanged", null),
-          (0, _._)([_._], _.prototype, "ComputeResultsSection", null),
-          (0, _._)([_._], _.prototype, "CreateControllerTypeDropdown", null),
-          (_ = (0, _._)([_._], _));
-        let _ = class extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.state = {
-                strImageURL: _._.GetAppImageURL(this.props.app.key),
-              });
-          }
-          componentWillReceiveProps(_) {
-            _.app.key != this.props.app.key &&
-              this.setState({
-                strImageURL: _._.GetAppImageURL(_.app.key),
-              });
-          }
-          render() {
-            return _.createElement(
-              "div",
-              {
-                className: "AppSelectContainer",
-                onClick: () => {
-                  this.props.fnSelectApp(this.props.app.key);
-                },
-              },
-              _.createElement("div", {
-                className: "AppImage",
-                style: {
-                  backgroundImage: "url('" + this.state.strImageURL + "')",
-                },
-              }),
-              _.createElement(
-                "div",
-                {
-                  className: "AppSelectName AllCaps",
-                },
-                this.props.app.name,
-              ),
-            );
-          }
-        };
-        _ = (0, _._)([_._], _);
-        let _ = class extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.m_bInHeadset = !1),
-              (this.m_bInHeadset = !!_._ && !_.DesktopMode),
-              (this.state = {
-                bShowRecentApps: !1,
-              });
-          }
-          SelectApplication(_) {
-            _.SetSelectedApp(_), _.ShowBindingList();
-          }
-          OnShowMoreApps() {
-            this.setState({
-              bShowRecentApps: !0,
-            });
-          }
-          renderAppColumn() {
-            let _ = _._.GetApp("openvr.component.vrcompositor"),
-              _ = _._.GetApp("openvr.tool.steamvr_environments"),
-              _ = _._.GetRecentApps();
-            _ && (_ = __webpack_require__.filter((_) => _.key != _.key));
-            let _,
-              _ = _._.GetCurrentSceneProcess();
-            return (
-              !_ && _.length > 0 && (_ = _[0]),
-              _ && (_ = __webpack_require__.filter((_) => _.key != _.key)),
-              (_ = this.state.bShowRecentApps
-                ? _.createElement(
-                    "div",
-                    {
-                      className: "AppSelectList",
-                    },
-                    _.createElement(
-                      "div",
-                      {
-                        className: "AppSelectListItems",
-                      },
-                      __webpack_require__.map((_, _) =>
-                        _.createElement(_, {
-                          key: _,
-                          app: _,
-                          fnSelectApp: this.SelectApplication,
-                        }),
-                      ),
-                    ),
-                  )
-                : _.createElement(
-                    "div",
-                    {
-                      className: "ButtonControl AppSelectShowMoreButton",
-                      onClick: this.OnShowMoreApps,
-                    },
-                    (0, _._)("#AppSelect_ShowMoreApps"),
-                  )),
-              _.createElement(
-                "div",
-                {
-                  className: "AppSelectColumn",
-                },
-                _.createElement(
-                  "div",
-                  {
-                    className: "AppSelectList",
-                  },
-                  _.createElement(
-                    "div",
-                    {
-                      className: "AppSelectListItems",
-                    },
-                    _ &&
-                      _.createElement(_, {
-                        app: _,
-                        fnSelectApp: this.SelectApplication,
-                      }),
-                    _ &&
-                      _.createElement(_, {
-                        app: _,
-                        fnSelectApp: this.SelectApplication,
-                      }),
-                    _ &&
-                      _.createElement(_, {
-                        app: _,
-                        fnSelectApp: this.SelectApplication,
-                      }),
-                  ),
-                ),
-                _,
-              )
-            );
-          }
-          render() {
-            return _.createElement(
-              "div",
-              {
-                className: "AppSelectPageWrapper",
-              },
-              _.createElement(_, {
-                fnOnClick: _.ReturnToSettingsUI,
-                strTitle: (0, _._)("#AppSelect_EditBindings"),
-                bShowBackButton: this.m_bInHeadset,
-              }),
-              _.createElement(
-                "div",
-                {
-                  className: "AppSelectColumnWrapper",
-                },
-                this.renderAppColumn(),
-              ),
-            );
-          }
-        };
-        (0, _._)([_._], _.prototype, "SelectApplication", null),
-          (0, _._)([_._], _.prototype, "OnShowMoreApps", null),
-          (_ = (0, _._)([_._], _));
-        var _,
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        !(function (_) {
-          _[(_.Separator = 0)] = "Separator";
-        })(_ || (_ = {}));
-        class _ extends _.Component {
-          constructor() {
-            super(...arguments),
-              (this.m_refView = _.createRef()),
-              (this.m_refScrollPanel = _.createRef()),
-              (this.m_refSelectedButton = _.createRef()),
-              (this.m_refParentPortal = _.createRef()),
-              (this.m_elemBoundingParent = window.document.body);
-          }
-          renderDropdownItem(_, _) {
-            switch (typeof _) {
-              case "number":
-                return this.renderDropdownSpecialItem(_, _);
-              case "object":
-                return this.renderDropdownValueItem(_);
-            }
-          }
-          renderDropdownSpecialItem(_, _) {
-            return _ === _.Separator
-              ? _.createElement("div", {
-                  className: "Separator",
-                  key: "separator" + _,
-                })
-              : null;
-          }
-          renderDropdownValueItem(_) {
-            return _.createElement(
-              _._,
-              {
-                key: JSON.stringify(_.value),
-                ref:
-                  _ == this.props.selectedItem
-                    ? this.m_refSelectedButton
-                    : null,
-                className: (0, _._)("DropdownPopoverButton", [
-                  "Selected",
-                  _ == this.props.selectedItem,
-                ]),
-                onClick: () => this.setValue(_.value),
-              },
-              _.sLabel,
-            );
-          }
-          setValue(_) {
-            var _, _;
-            this.props.onChange && this.props.onChange(_),
-              null === (_ = (_ = this.props).onDismissRequested) ||
-                void 0 === _ ||
-                __webpack_require__.call(_);
-          }
-          render() {
-            return _.createElement(
-              _._,
-              {
-                ref: this.m_refParentPortal,
-                allowableParentSelectors: [
-                  "body",
-                  ".SettingsMain",
-                  ".DesktopHandWidget",
-                  ".HMDPanel",
-                  "vsg-app",
-                  "vsg-mountable",
-                  "[vsg-type=panel]",
-                ],
-                onPortalDidMount: this.updateLayout,
-              },
-              _.createElement(
-                _._,
-                {
-                  ref: this.m_refView,
-                  shouldDismissOnClickAnywhere: !0,
-                  shouldDismissOnClickInViewStack: !0,
-                  fadesViewsBelow: !1,
-                  onDismissRequested: this.props.onDismissRequested,
-                  className: (0, _._)("Dropdown", "Popover"),
-                },
-                _.createElement(
-                  _._,
-                  {
-                    scrollDirection: _._.Vertical,
-                    ref: this.m_refScrollPanel,
-                  },
-                  this.props.items.map(this.renderDropdownItem),
-                ),
-              ),
-            );
-          }
-          componentDidMount() {
-            var _;
-            this.m_elemBoundingParent = (0, _._)(
-              [
-                "body",
-                "[vsg-type=panel]",
-                ".SettingsSidebarPageModalContainer",
-              ],
-              null === (_ = this.m_refParentPortal.current) || void 0 === _
-                ? void 0
-                : _.anchorElement,
-            );
-          }
-          updateLayout() {
-            var _, _, _, _;
-            const _ =
-                null === (_ = this.m_refView.current) || void 0 === _
-                  ? void 0
-                  : _.div,
-              _ =
-                null === (_ = this.m_refScrollPanel.current) || void 0 === _
-                  ? void 0
-                  : _.div;
-            if (!_ || !_) return;
-            const _ =
-                null !==
-                  (_ =
-                    null === (_ = this.props.buttonRef.current) || void 0 === _
-                      ? void 0
-                      : _.elem.clientWidth) && void 0 !== _
-                  ? _
-                  : 0,
-              _ = this.m_elemBoundingParent.getBoundingClientRect();
-            (_.style.minWidth = _ + "px"),
-              (_.style.maxWidth = _.width - 2 * _.POPOVER_BOUNDS_MARGIN + "px"),
-              (_.style.maxHeight =
-                _.height - 2 * _.POPOVER_BOUNDS_MARGIN + "px");
-            const _ = this.props.buttonRef.current.elem.getBoundingClientRect();
-            let _ = _.left,
-              _ = _.top;
-            const _ = _.getBoundingClientRect(),
-              _ = this.m_elemBoundingParent.getBoundingClientRect(),
-              _ = _.left + _.POPOVER_BOUNDS_MARGIN,
-              _ = _.right - _.POPOVER_BOUNDS_MARGIN,
-              _ = _.top + _.POPOVER_BOUNDS_MARGIN,
-              _ = _.bottom - _.POPOVER_BOUNDS_MARGIN;
-            if (this.m_refSelectedButton.current) {
-              _ -=
-                this.m_refSelectedButton.current.elem.getBoundingClientRect()
-                  .top - _.top;
-            }
-            const _ = _;
-            _ < _ && (_ = _),
-              _ + _.width > _ && (_ = _ - _.width),
-              _ < _ && (_ = _),
-              _ + _.height > _ && (_ = _ - _.height),
-              (_ = Math.round(_)),
-              (_ = Math.round(_)),
-              (_.scrollTop = _ - _),
-              (_.style.transform =
-                "translateX(" + _ + "px) translateY(" + _ + "px)");
-          }
-        }
-        (_.POPOVER_BOUNDS_MARGIN = 10),
-          (0, _._)([_._], _.prototype, "renderDropdownItem", null),
-          (0, _._)([_._], _.prototype, "renderDropdownSpecialItem", null),
-          (0, _._)([_._], _.prototype, "renderDropdownValueItem", null),
-          (0, _._)([_._], _.prototype, "setValue", null),
-          (0, _._)([_._], _.prototype, "updateLayout", null);
-        class _ extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.m_refButton = _.createRef()),
-              (this.m_scrollWatcher = new _._()),
-              (this.state = {
-                bShowingOptions: !1,
-              }),
-              (this.m_scrollWatcher.onScroll = this.onParentScroll);
-          }
-          componentWillUnmount() {
-            this.m_scrollWatcher.cleanup();
-          }
-          componentDidUpdate(_, _) {
-            this.state.bShowingOptions &&
-              !_.bShowingOptions &&
-              this.m_scrollWatcher.updateScrollableParents();
-          }
-          onParentScroll() {
-            this.hideDropdown();
-          }
-          get value() {
-            return void 0 !== this.props.value ? this.props.value : null;
-          }
-          get selectedItem() {
-            const _ = this.value;
-            for (let _ of this.props.items)
-              if ("object" == typeof _ && _.value == _) return _;
-            return null;
-          }
-          showDropdown() {
-            this.setState({
-              bShowingOptions: !0,
-            });
-          }
-          hideDropdown() {
-            this.setState({
-              bShowingOptions: !1,
-            });
-          }
-          render() {
-            const _ = this.selectedItem,
-              _ =
-                void 0 !== this.props.defaultLabel
-                  ? this.props.defaultLabel
-                  : (0, _._)("#Settings_SelectAnOption"),
-              _ = _ ? _.sLabel : _;
-            return _.createElement(
-              _.Fragment,
-              null,
-              _.createElement(
-                _._,
-                {
-                  ref: this.m_refButton,
-                  className: "ButtonControl Dropdown",
-                  onClick: this.showDropdown,
-                  enabled:
-                    this.props.items &&
-                    (this.props.items.length > 1 ||
-                      (1 == this.props.items.length && !this.props.value)),
-                  style: {
-                    pointerEvents: this.state.bShowingOptions
-                      ? "none"
-                      : "initial",
-                  },
-                },
-                _.createElement(
-                  "span",
-                  {
-                    ref: this.m_scrollWatcher.ref,
-                  },
-                  _,
-                ),
-              ),
-              this.state.bShowingOptions &&
-                _.createElement(
-                  _,
-                  Object.assign({}, this.props, {
-                    selectedItem: _,
-                    buttonRef: this.m_refButton,
-                    onDismissRequested: this.hideDropdown,
-                  }),
-                ),
-            );
-          }
-        }
-        (0, _._)([_._], _.prototype, "onParentScroll", null),
-          (0, _._)([_.computed], _.prototype, "value", null),
-          (0, _._)([_.computed], _.prototype, "selectedItem", null),
-          (0, _._)([_._], _.prototype, "showDropdown", null),
-          (0, _._)([_._], _.prototype, "hideDropdown", null);
-        class _ extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.state = {
-                value: void 0 === _.value ? null : _.value,
-              });
-          }
-          onChange(_) {
-            this.setState({
-              value: _,
-            }),
-              this.props.onChange && this.props.onChange(_);
-          }
-          render() {
-            let _ = Object.assign({}, this.props);
-            return (
-              (_.onChange = this.onChange),
-              (_.value = this.state.value),
-              _.createElement(_, Object.assign({}, _))
-            );
-          }
-        }
-        (0, _._)([_._], _.prototype, "onChange", null);
-        var _ = __webpack_require__("chunkid");
-        const _ = ({ quaternion: _, width: _, height: _ }) => {
-          const _ = (0, _.useRef)(null),
-            _ = (0, _.useCallback)(
-              (_, _, _) => {
-                _.clearRect(0, 0, _, _), (_.lineWidth = 3);
-                const _ = _ / 2,
-                  _ = _ / 2,
-                  _ = _ / 2,
-                  _ = (_, _) => {
-                    const _ = _._ * _._ + _._ * _._ - _._ * _._,
-                      _ = _._ * _._ + _._ * _._ - _._ * _._,
-                      _ = _._ * _._ + _._ * _._ - _._ * _._,
-                      _ = -_._ * _._ - _._ * _._ - _._ * _._;
-                    return {
-                      _: _ * _._ + _ * -_._ + _ * -_._ - _ * -_._,
-                      _: _ * _._ + _ * -_._ + _ * -_._ - _ * -_._,
-                      _: _ * _._ + _ * -_._ + _ * -_._ - _ * -_._,
-                    };
-                  },
-                  _ = [
-                    {
-                      _: 0,
-                      _: _,
-                      _: 0,
-                    },
-                    {
-                      _: 0,
-                      _: -_,
-                      _: 0,
-                    },
-                  ],
-                  _ = [
-                    {
-                      _: 0,
-                      _: 0,
-                      _: _,
-                    },
-                    {
-                      _: 0,
-                      _: 0,
-                      _: -_,
-                    },
-                  ],
-                  _ = [
-                    {
-                      _: _,
-                      _: 0,
-                      _: 0,
-                    },
-                    {
-                      _: -_,
-                      _: 0,
-                      _: 0,
-                    },
-                  ].map((_) => _(_, _)),
-                  _ = _.map((_) => _(_, _)),
-                  _ = _.map((_) => _(_, _)),
-                  _ = (_, _, _, _) => {
-                    const _ = _.createLinearGradient(_ + _._, _ - _._, _, _);
-                    _.addColorStop(0, _),
-                      _.addColorStop(1, _),
-                      (_.strokeStyle = _),
-                      _.beginPath(),
-                      _.moveTo(_ + _._, _ - _._),
-                      _.lineTo(_ + _._, _ - _._),
-                      _.stroke();
-                  };
-                _(_[1], _[0], "#00000000", "#FF0000DD"),
-                  _(_[1], _[0], "#00000000", "#00FF00DD"),
-                  _(_[1], _[0], "#00000000", "#2222FFFF");
-              },
-              [_],
-            );
-          return (
-            (0, _.useEffect)(() => {
-              const _ = _.current;
-              if (_) {
-                const _ = _.getContext("2d");
-                if (_) {
-                  const _ = _.width,
-                    _ = _.height;
-                  _(_, _, _);
-                }
-              }
-            }, [_, _, _, _]),
-            _.createElement(
-              "div",
-              {
-                className: "AxisWrapper",
-              },
-              _.createElement("canvas", {
-                className: "AxisCanvas",
-                ref: _,
-                width: _,
-                height: _,
-              }),
-            )
-          );
-        };
-        var _, _, _;
-        !(function (_) {
-          (_[(_.None = 0)] = "None"),
-            (_[(_.Boolean = 1)] = "Boolean"),
-            (_[(_.Vector1 = 2)] = "Vector1"),
-            (_[(_.Vector2 = 3)] = "Vector2"),
-            (_[(_.Vector3 = 4)] = "Vector3"),
-            (_[(_.Pose = 20)] = "Pose"),
-            (_[(_.SimpleHaptic = 21)] = "SimpleHaptic"),
-            (_[(_.Skeleton = 22)] = "Skeleton"),
-            (_[(_.EyeTracking = 23)] = "EyeTracking");
-        })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Estimated = 0)] = "Estimated"),
-              (_[(_.Partial = 1)] = "Partial"),
-              (_[(_.Full = 2)] = "Full");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Unknown = 0)] = "Unknown"),
-              (_[(_.Boolean = 1)] = "Boolean"),
-              (_[(_.Scalar = 2)] = "Scalar"),
-              (_[(_.Pose = 3)] = "Pose"),
-              (_[(_.Skeleton = 4)] = "Skeleton"),
-              (_[(_.Haptic = 5)] = "Haptic");
-          })(_ || (_ = {}));
-        let _ = 16777216;
-        function _(_) {
-          return "number" != typeof _
-            ? "-"
-            : _ >= _ && _ <= 33554431
-              ? (0, _._)("#InputDebugger_Priority_Overlay", _ - _)
-              : _.toFixed(0);
-        }
-        class _ extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.m_mailbox = new _._()),
-              (this.m_msgNextState = null),
-              this.m_mailbox.Init("input_debugger"),
-              this.m_mailbox.RegisterHandler("input_frame", this.OnInputFrame),
-              null === VRHTML ||
-                void 0 === VRHTML ||
-                VRHTML.VRPathProperties.SetInt32PathProperty(
-                  "/input_debugger_pid",
-                  0,
-                ),
-              (this.state = {});
-          }
-          OnSelectApp(_) {
-            this.setState({
-              sCurrentApp: _,
-              latestState: null,
-              actionManifest: null,
-              sError: null,
-              sCurrentActionSet: null,
-            });
-            let _ = _._.GetApp(_);
-            _.pid &&
-              (null === VRHTML ||
-                void 0 === VRHTML ||
-                VRHTML.VRPathProperties.SetInt32PathProperty(
-                  "/input_debugger_pid",
-                  _.pid,
-                )),
-              _(_)
-                .then((_) => {
-                  this.setState({
-                    actionManifest: _,
-                  });
-                })
-                .catch((_) => {
-                  this.setState({
-                    sError: (0, _._)("InputDebugger_ActionManifestFailed"),
-                  });
-                });
-          }
-          OnInputFrame(_) {
-            if (null == this.state.sCurrentApp) {
-              let _ = _._.FindAppByPid(_.pid);
-              _ && this.OnSelectApp(_.key);
-            }
-            !this.state.sCurrentActionSet &&
-              _.actions &&
-              this.SetActionSet(_.actions[0].actionSet),
-              (this.m_msgNextState = _);
-          }
-          componentDidMount() {
-            this.m_timerStateUpdate = window.setInterval(() => {
-              this.m_msgNextState &&
-                (this.setState({
-                  latestState: this.m_msgNextState,
-                }),
-                (this.m_msgNextState = null));
-            }, 100);
-          }
-          componentWillUnmount() {
-            null === VRHTML ||
-              void 0 === VRHTML ||
-              VRHTML.VRPathProperties.SetInt32PathProperty(
-                "/input_debugger_pid",
-                0,
-              ),
-              this.m_timerStateUpdate &&
-                window.clearInterval(this.m_timerStateUpdate);
-          }
-          GetActionSetName(_) {
-            let _;
-            return (
-              this.state.actionManifest &&
-                (_ = this.state.actionManifest.action_sets.find(
-                  (_) => _.name.toLowerCase() == _.toLowerCase(),
-                )),
-              _ ? _.localized_name : _
-            );
-          }
-          GetActionName(_) {
-            let _;
-            if (this.state.actionManifest)
-              for (let _ of this.state.actionManifest.action_sets)
-                if (
-                  ((_ = _.actions.find(
-                    (_) => _.name.toLowerCase() == _.toLowerCase(),
-                  )),
-                  _)
-                )
-                  break;
-            return _ ? _.localized_name : _;
-          }
-          GetMaxPriority(_) {
-            var _, _, _, _, _, _;
-            return Math.max(
-              null !==
-                (_ =
-                  null ===
-                    (_ =
-                      null === (_ = this.state.latestState) || void 0 === _
-                        ? void 0
-                        : _.priorityMap) || void 0 === _
-                    ? void 0
-                    : _[_]) && void 0 !== _
-                ? _
-                : null,
-              null !==
-                (_ =
-                  null ===
-                    (_ =
-                      null === (_ = this.state.latestState) || void 0 === _
-                        ? void 0
-                        : _.globalPriorityMap) || void 0 === _
-                    ? void 0
-                    : _[_]) && void 0 !== _
-                ? _
-                : null,
-            );
-          }
-          renderActionSets() {
-            if (!this.state.latestState.activeActionSets)
-              return _.createElement(
-                "div",
-                {
-                  className: "Label",
-                },
-                (0, _._)("#InputDebugger_NoActiveActionSets"),
-              );
-            let _ = [];
-            for (let _ of this.state.latestState.activeActionSets) {
-              let _, _;
-              _.secondaryActionSet
-                ? ((_ = _.secondaryActionSet), (_ = this.GetActionSetName(_)))
-                : ((_ = (0, _._)("#InputDebugger_None")), (_ = ""));
-              let _ = this.GetActionSetName(_.actionSet),
-                _ = _.restrictToDevice
-                  ? _.restrictToDevice
-                  : (0, _._)("#InputDebugger_None");
-              _.push(
-                _.createElement(
-                  "div",
-                  {
-                    className: "ActiveActionSet",
-                    key: _.actionSet + _.restrictToDevice,
-                  },
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionSetName",
-                    },
-                    _,
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionSetPath",
-                    },
-                    _.actionSet,
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionSetPriority",
-                    },
-                    _(_.priority),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionSetDevice",
-                    },
-                    _,
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionSetSecondaryName",
-                    },
-                    _,
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionSetSecondaryPath",
-                    },
-                    _,
-                  ),
-                ),
-              );
-            }
-            return _.createElement(
-              _.Fragment,
-              null,
-              _.createElement(
-                "div",
-                {
-                  className: "Label InputDebuggerSectionHeading",
-                },
-                (0, _._)("#InputDebugger_ActiveActionSets"),
-              ),
-              _.createElement(
-                "div",
-                {
-                  className: "ActiveActionSetContainer",
-                },
-                _.createElement(
-                  "div",
-                  {
-                    className: "ActiveActionSetsHeader",
-                  },
-                  _.createElement(
-                    "div",
-                    {
-                      style: {
-                        gridColumn: "1 / span 2",
-                      },
-                      className: "Label",
-                    },
-                    (0, _._)("#InputDebugger_ActionSetName"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      style: {
-                        gridColumn: "3",
-                      },
-                      className: "Label",
-                    },
-                    (0, _._)("#InputDebugger_Priority"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      style: {
-                        gridColumn: "4",
-                      },
-                      className: "Label",
-                    },
-                    (0, _._)("#InputDebugger_Device"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      style: {
-                        gridColumn: "5 / span 2",
-                      },
-                      className: "Label",
-                    },
-                    (0, _._)("#InputDebugger_SecondaryActionSetName"),
-                  ),
-                ),
-                _,
-              ),
-            );
-          }
-          SetActionSet(_) {
-            this.setState({
-              sCurrentActionSet: _,
-            });
-          }
-          ShowFilterState(_) {
-            this.setState({
-              sFilterPath: _,
-            });
-          }
-          renderActionHeader(_) {
-            switch (_) {
-              case _.Boolean:
-              case _.Vector1:
-              case _.Vector2:
-              case _.Vector3:
-                return [
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "source",
-                    },
-                    (0, _._)("#InputDebugger_Source"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "binding",
-                    },
-                    (0, _._)("#InputDebugger_Binding"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "active",
-                    },
-                    (0, _._)("#InputDebugger_Active"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "origin",
-                    },
-                    (0, _._)("#InputDebugger_ActiveOrigin"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "value",
-                    },
-                    (0, _._)("#InputDebugger_Value"),
-                  ),
-                ];
-              case _.Pose:
-                return [
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "source",
-                    },
-                    (0, _._)("#InputDebugger_Source"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "binding",
-                    },
-                    (0, _._)("#InputDebugger_Binding"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "active",
-                    },
-                    (0, _._)("#InputDebugger_Active"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "origin",
-                    },
-                    (0, _._)("#InputDebugger_ActiveOrigin"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "position",
-                    },
-                    (0, _._)("#InputDebugger_Pose_Position"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "rotation",
-                    },
-                    (0, _._)("#InputDebugger_Pose_Rotation"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "state",
-                    },
-                    (0, _._)("#InputDebugger_Pose_State"),
-                  ),
-                ];
-              case _.EyeTracking:
-                return [
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "source",
-                    },
-                    (0, _._)("#InputDebugger_Source"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "binding",
-                    },
-                    (0, _._)("#InputDebugger_Binding"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "active",
-                    },
-                    (0, _._)("#InputDebugger_Active"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "origin",
-                    },
-                    (0, _._)("#InputDebugger_ActiveOrigin"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "tracked",
-                    },
-                    (0, _._)("#InputDebugger_Tracked"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "valid",
-                    },
-                    (0, _._)("#InputDebugger_Valid"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "origin_position",
-                    },
-                    (0, _._)("#InputDebugger_EyeTracking_Origin"),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionHeader",
-                      key: "target_position",
-                    },
-                    (0, _._)("#InputDebugger_EyeTracking_Target"),
-                  ),
-                ];
-              default:
-                return null;
-            }
-          }
-          renderBoolean(_, _) {
-            return _.createElement(
-              "div",
-              {
-                className: (0, _._)(
-                  "BooleanValue",
-                  ["IsTrue", _],
-                  "Label",
-                  "ActionEntry",
-                ),
-                key: _,
-              },
-              _ ? "TRUE" : "false",
-            );
-          }
-          renderScalar(_, _) {
-            return _.createElement(
-              "div",
-              {
-                className: (0, _._)("Label", "ActionEntry"),
-                key: _,
-              },
-              _.toFixed(2),
-            );
-          }
-          renderBinding(_, _) {
-            var _, _;
-            if (
-              null === (_ = _.binding) || void 0 === _
-                ? void 0
-                : __webpack_require__.startsWith("/filters/")
-            )
-              return _.createElement(
-                "div",
-                {
-                  className: "Label ActionEntry FilterLink",
-                  key: _ + "_binding",
-                },
-                _.createElement(
-                  "a",
-                  {
-                    href: "#",
-                    onClick: () => {
-                      this.ShowFilterState(_.binding);
-                    },
-                  },
-                  (0, _._)("#InputDebugger_FilterDetails"),
-                ),
-              );
-            {
-              let _ = this.GetMaxPriority(_.binding),
-                _ = null !== (_ = _.binding) && void 0 !== _ ? _ : "-";
-              return (
-                "number" == typeof _ &&
-                  (_ += " " + (0, _._)("#InputDebugger_PriorityValue", _(_))),
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label ActionEntry",
-                    key: _ + _.inputSource + "_binding",
-                  },
-                  _,
-                )
-              );
-            }
-          }
-          renderActionEntry(_, _, _) {
-            var _, _, _, _, _, _, _, _, _;
-            switch (_.type) {
-              case _.Boolean:
-                let _ = _.data;
-                return [
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_source",
-                    },
-                    null !== (_ = _.inputSource) && void 0 !== _ ? _ : "-",
-                  ),
-                  this.renderBinding(_, _),
-                  this.renderBoolean(_.data.active, _ + "_active"),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_origin",
-                    },
-                    null !== (_ = _.data.activeOrigin) && void 0 !== _
-                      ? _
-                      : "-",
-                  ),
-                  this.renderBoolean(_.state, _ + "_value"),
-                ];
-              case _.Vector1:
-              case _.Vector2:
-              case _.Vector3:
-                let _ = _.data,
-                  _ = _._.toFixed(2);
-                return (
-                  void 0 !== _._ && (_ += ", " + _._.toFixed(2)),
-                  void 0 !== _._ && (_ += ", " + _._.toFixed(2)),
-                  [
-                    _.createElement(
-                      "div",
-                      {
-                        className: "Label ActionEntry",
-                        key: _ + "_source",
-                      },
-                      null !== (_ = _.inputSource) && void 0 !== _ ? _ : "-",
-                    ),
-                    this.renderBinding(_, _),
-                    this.renderBoolean(_.data.active, _ + "_active"),
-                    _.createElement(
-                      "div",
-                      {
-                        className: "Label ActionEntry",
-                        key: _ + "_origin",
-                      },
-                      null !== (_ = _.data.activeOrigin) && void 0 !== _
-                        ? _
-                        : "-",
-                    ),
-                    _.createElement(
-                      "div",
-                      {
-                        className: "Label ActionEntry",
-                        key: _ + "_value",
-                      },
-                      _,
-                    ),
-                  ]
-                );
-              case _.Pose:
-                let _ = _.data,
-                  _ = `${_.position_x.toFixed(2)}, ${_.position_y.toFixed(2)}, ${_.position_z.toFixed(2)}`,
-                  _ = {
-                    _: _.rotation_x,
-                    _: _.rotation_y,
-                    _: _.rotation_z,
-                    _: _.rotation_w,
-                  },
-                  _ = `(${_.rotation_x.toFixed(2)}, ${_.rotation_y.toFixed(2)}, ${_.rotation_z.toFixed(2)})`;
-                return [
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_source",
-                    },
-                    null !== (_ = _.inputSource) && void 0 !== _ ? _ : "-",
-                  ),
-                  this.renderBinding(_, _),
-                  this.renderBoolean(_.data.active, _ + "_active"),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_origin",
-                    },
-                    null !== (_ = _.data.activeOrigin) && void 0 !== _
-                      ? _
-                      : "-",
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_position",
-                    },
-                    _ ? _ : "-",
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_rotation",
-                    },
-                    null != _ ? _ : "-",
-                    _.createElement(_, {
-                      quaternion: _,
-                      width: 50,
-                      height: 50,
-                    }),
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_state",
-                    },
-                    null !== (_ = _.tracking) && void 0 !== _ ? _ : "-",
-                  ),
-                ];
-              case _.EyeTracking:
-                let _ = _.data,
-                  _ = `${_.origin_position_x.toFixed(5)}, ${_.origin_position_y.toFixed(5)}, ${_.origin_position_z.toFixed(5)}`,
-                  _ = `${_.target_position_x.toFixed(5)}, ${_.target_position_y.toFixed(5)}, ${_.target_position_z.toFixed(5)}`;
-                return [
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_source",
-                    },
-                    null !== (_ = _.inputSource) && void 0 !== _ ? _ : "-",
-                  ),
-                  this.renderBinding(_, _),
-                  this.renderBoolean(_.data.active, _ + "_active"),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_origin",
-                    },
-                    null !== (_ = _.data.activeOrigin) && void 0 !== _
-                      ? _
-                      : "-",
-                  ),
-                  this.renderBoolean(_.tracked, _ + "_tracked"),
-                  this.renderBoolean(_.valid, _ + "_valid"),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_origin_position",
-                    },
-                    _ ? _ : "-",
-                  ),
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label ActionEntry",
-                      key: _ + "_target_position",
-                    },
-                    _ ? _ : "-",
-                  ),
-                ];
-              default:
-                return null;
-            }
-          }
-          renderAction(_) {
-            if (!_) return [null, 0];
-            let _ = this.renderActionHeader(_.type);
-            if (!_) return [null, 0];
-            let _ = [_],
-              _ = 1;
-            if (_.entries)
-              for (let _ of _.entries) {
-                let _ = this.renderActionEntry(_, _, (_++).toString());
-                if (_) {
-                  if (_.length != _.length)
-                    throw new Error(
-                      "Values must have the same length as header",
-                    );
-                  __webpack_require__.push(_);
-                }
-              }
-            let _ = [];
-            for (let _ = 0; _ < _[0].length; _++)
-              for (let _ = 0; _ < _.length; _++) _.push(_[_][_]);
-            let _ = Math.max(_.length, 5);
-            return [
-              _.createElement(
-                "div",
-                {
-                  className: "Action",
-                  key: _.path,
-                },
-                _.createElement(
-                  "div",
-                  {
-                    className: "ActionName Label",
-                    style: {
-                      gridColumn: "1 / " + (_ + 1),
-                    },
-                  },
-                  this.GetActionName(_.path),
-                  _.createElement(
-                    "span",
-                    {
-                      className: "ActionPath",
-                    },
-                    " (",
-                    _.path,
-                    ")",
-                  ),
-                ),
-                _,
-              ),
-              _,
-            ];
-          }
-          renderCurrentActions() {
-            if (!this.state.sCurrentActionSet) return null;
-            let _ = new Set(),
-              _ = [],
-              _ = 0;
-            for (let _ of this.state.latestState.actions)
-              if (_.actionSet == this.state.sCurrentActionSet) {
-                let [_, _] = this.renderAction(_);
-                if (!_) continue;
-                (_ = Math.max(_, _)), _.push(_), _.add(_.path.toLowerCase());
-              }
-            if (this.state.actionManifest) {
-              let _ = this.state.actionManifest.action_sets.find(
-                (_) => _.name == this.state.sCurrentActionSet,
-              );
-              if (_)
-                for (let _ of _.actions)
-                  _.has(_.name.toLowerCase()) ||
-                    ("pose" != _.type &&
-                      "skeleton" != _.type &&
-                      "vibration" != _.type &&
-                      (_.push(
-                        _.createElement(
-                          "div",
-                          {
-                            className: "Action",
-                            key: _.name,
-                          },
-                          _.createElement(
-                            "div",
-                            {
-                              className: "ActionName Label",
-                              style: {
-                                gridColumn: "1 / " + (_ + 1),
-                              },
-                            },
-                            _.localized_name,
-                            _.createElement(
-                              "span",
-                              {
-                                className: "ActionPath",
-                              },
-                              " (",
-                              _.name,
-                              ")",
-                            ),
-                          ),
-                          _.createElement(
-                            "div",
-                            {
-                              className: "Unbound Label",
-                            },
-                            (0, _._)("#InputDebugger_ActionUnbound"),
-                          ),
-                        ),
-                      ),
-                      _.add(_.name.toLowerCase())));
-            }
-            return _.createElement(
-              "div",
-              {
-                className: "ActionListWrapper",
-              },
-              _.createElement(
-                "div",
-                {
-                  className: "ActionList",
-                },
-                _,
-              ),
-            );
-          }
-          renderActions() {
-            if (!this.state.latestState.actions)
-              return _.createElement(
-                "div",
-                {
-                  className: "Label",
-                },
-                (0, _._)("#InputDebugger_NoActions"),
-              );
-            let _ = new Set();
-            for (let _ of this.state.latestState.actions) _.add(_.actionSet);
-            let _ = [];
-            for (let _ of _)
-              _.push(
-                _.createElement(
-                  _._,
-                  {
-                    onClick: () => {
-                      this.SetActionSet(_);
-                    },
-                    key: _,
-                    className: (0, _._)("ActionSetButton", "ButtonControl", [
-                      "Selected",
-                      _ == this.state.sCurrentActionSet,
-                    ]),
-                  },
-                  this.GetActionSetName(_),
-                ),
-              );
-            return _.createElement(
-              _.Fragment,
-              null,
-              _.createElement(
-                "div",
-                {
-                  className: "Label InputDebuggerSectionHeading",
-                },
-                (0, _._)("#InputDebugger_Actions"),
-              ),
-              _.createElement(
-                "div",
-                {
-                  className: "ActionContainer",
-                },
-                _.createElement(
-                  "div",
-                  {
-                    className: "ActionSetButtons",
-                  },
-                  _,
-                ),
-                this.renderCurrentActions(),
-              ),
-            );
-          }
-          renderLatestState() {
-            return this.state.latestState
-              ? _.createElement(
-                  "div",
-                  {
-                    className: "DebuggerState",
-                  },
-                  this.renderActionSets(),
-                  this.renderActions(),
-                )
-              : _.createElement(
-                  "div",
-                  {
-                    className: "Label",
-                  },
-                  (0, _._)("#InputDebugger_WaitingForApp"),
-                );
-          }
-          FindFilter(_) {
-            var _, _;
-            if (this.state.latestState && this.state.latestState.filters)
-              for (let _ of this.state.latestState.filters) {
-                if (
-                  null === (_ = _.inputs) || void 0 === _
-                    ? void 0
-                    : _.find((_) => _.path == _)
-                )
-                  return _;
-                if (
-                  null === (_ = _.outputs) || void 0 === _
-                    ? void 0
-                    : __webpack_require__.find((_) => _.path == _)
-                )
-                  return _;
-              }
-          }
-          renderFilterIO(_, _) {
-            let _;
-            switch (_.type) {
-              case _.Boolean:
-                _ = this.renderBoolean(_.value);
-                break;
-              case _.Scalar:
-                _ = this.renderScalar(_.value);
-                break;
-              default:
-                _ = _.createElement(
-                  "div",
-                  {
-                    className: "Label",
-                  },
-                  _[_.type],
-                );
-            }
-            let _ = this.GetMaxPriority(_.path);
-            return _.createElement(
-              "div",
-              {
-                className: "FilterIO",
-                key: _.path,
-              },
-              _.createElement(
-                "div",
-                {
-                  className: "Label",
-                },
-                _.path,
-                ": ",
-              ),
-              _,
-              _ &&
-                _.path.startsWith("/filters/") &&
-                _.createElement(
-                  "a",
-                  {
-                    href: "#",
-                    onClick: () => {
-                      this.ShowFilterState(_.path);
-                    },
-                  },
-                  (0, _._)("#InputDebugger_FilterDetails"),
-                ),
-              "number" == typeof _ &&
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label",
-                  },
-                  (0, _._)("#InputDebugger_PriorityValue", _(_)),
-                ),
-              _.suppressedByPriority &&
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label Suppressed",
-                  },
-                  (0, _._)("#InputDebugger_Suppressed"),
-                ),
-            );
-          }
-          renderFilterState() {
-            if (!this.state.sFilterPath) return null;
-            let _ = this.FindFilter(this.state.sFilterPath),
-              _ = [];
-            for (let _ in _.parameters) {
-              let _,
-                _ = _.parameters[_];
-              switch (typeof _) {
-                case "boolean":
-                  _ = _ ? "true" : "false";
-                  break;
-                case "number":
-                  _ = _.toFixed(2);
-                  break;
-                default:
-                  _ = JSON.stringify(_);
-              }
-              _.push(
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label",
-                    key: _,
-                  },
-                  _,
-                  ": ",
-                  _,
-                ),
-              );
-            }
-            let _ = [];
-            for (let _ of _.inputs)
-              __webpack_require__.push(this.renderFilterIO(_, !0));
-            _ ||
-              __webpack_require__.push(
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label",
-                    key: "none",
-                  },
-                  (0, _._)("#InputDebugger_None"),
-                ),
-              );
-            let _ = [];
-            for (let _ of _.outputs) _.push(this.renderFilterIO(_, !1));
-            return (
-              _ ||
-                _.push(
-                  _.createElement(
-                    "div",
-                    {
-                      className: "Label",
-                      key: "none",
-                    },
-                    (0, _._)("#InputDebugger_None"),
-                  ),
-                ),
-              _.createElement(
-                _._,
-                {
-                  onDismissRequested: () => {
-                    this.ShowFilterState(null);
-                  },
-                  className: "FilterDetails",
-                },
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label InputDebuggerSectionHeading",
-                  },
-                  (0, _._)("#InputDebugger_FilterState_Title", _.name),
-                  " ",
-                ),
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label",
-                  },
-                  (0, _._)("#InputDebugger_FilterType"),
-                  _.type,
-                ),
-                _ &&
-                  _.createElement(
-                    _.Fragment,
-                    null,
-                    _.createElement(
-                      "div",
-                      {
-                        className: "Label InputDebuggerHeading",
-                      },
-                      (0, _._)("#InputDebugger_Parameters"),
-                    ),
-                    _.createElement(
-                      "div",
-                      {
-                        className: "ParameterList",
-                      },
-                      _,
-                    ),
-                  ),
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label InputDebuggerHeading",
-                  },
-                  (0, _._)("#InputDebugger_Inputs"),
-                ),
-                _.createElement(
-                  "div",
-                  {
-                    className: "InputList",
-                  },
-                  _,
-                ),
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label InputDebuggerHeading",
-                  },
-                  (0, _._)("#InputDebugger_Outputs"),
-                ),
-                _.createElement(
-                  "div",
-                  {
-                    className: "OutputList",
-                  },
-                  _,
-                ),
-              )
-            );
-          }
-          render() {
-            let _ = _._.GetRunningApps(),
-              _ = [];
-            for (let _ of _)
-              _.push({
-                value: _.key,
-                sLabel: `${_.name} (pid: ${_.pid})`,
-              });
-            return _.createElement(
-              "div",
-              {
-                className: "DebuggerMain",
-              },
-              _.createElement(_, {
-                fnOnClick: _.ReturnToSettingsUI,
-                strTitle: (0, _._)("#InputDebugger_Title"),
-              }),
-              _.createElement(
-                "div",
-                {
-                  className: "AppDropdownWrapper",
-                },
-                _.createElement(_, {
-                  items: _,
-                  onChange: this.OnSelectApp,
-                  value: this.state.sCurrentApp,
-                  defaultLabel: (0, _._)("#InputDebugger_SelectApplication"),
-                }),
-              ),
-              !this.state.actionManifest &&
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label",
-                  },
-                  (0, _._)("#InputDebugger_ActionManifestLoading"),
-                ),
-              this.state.sError &&
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label Error",
-                  },
-                  this.state.sError,
-                ),
-              this.renderLatestState(),
-              this.renderFilterState(),
-            );
-          }
-        }
-        (0, _._)([_._], _.prototype, "OnSelectApp", null),
-          (0, _._)([_._], _.prototype, "OnInputFrame", null),
-          (0, _._)([_._], _.prototype, "SetActionSet", null);
-        var _ = __webpack_require__("chunkid");
         let _ = class extends _.Component {
           constructor(_) {
             super(_);
@@ -17125,7 +17134,7 @@ var CLSTAMP = "steamdb";
   var _ = _._(
     void 0,
     [967, 978, 705, 908, 305, 527, 797, 148, 743, 198, 737, 652],
-    () => _(1126),
+    () => _(2542),
   );
   _ = _._(_);
 })();

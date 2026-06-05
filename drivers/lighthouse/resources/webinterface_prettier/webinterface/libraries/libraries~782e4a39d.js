@@ -1,4 +1,4 @@
-var CLSTAMP = "10700074";
+var CLSTAMP = "10715262";
 (self.webpackChunkvrwebui = self.webpackChunkvrwebui || []).push([
   [851],
   {
@@ -170,7 +170,7 @@ var CLSTAMP = "10700074";
       (u.Axios = i),
         (u.CanceledError = n(563)),
         (u.CancelToken = n(191)),
-        (u.isCancel = n(483)),
+        (u.isCancel = n(864)),
         (u.VERSION = n(641).version),
         (u.toFormData = n(440)),
         (u.AxiosError = n(845)),
@@ -254,7 +254,7 @@ var CLSTAMP = "10700074";
       }
       n(516).inherits(o, r, { __CANCEL__: !0 }), (e.exports = o);
     },
-    483: (e) => {
+    864: (e) => {
       "use strict";
       e.exports = function (e) {
         return !(!e || !e.__CANCEL__);
@@ -466,7 +466,7 @@ var CLSTAMP = "10700074";
       "use strict";
       var r = n(516),
         o = n(881),
-        i = n(483),
+        i = n(864),
         a = n(412),
         u = n(563);
       function l(e) {
@@ -17894,4 +17894,4 @@ var CLSTAMP = "10700074";
       "function" == typeof SuppressedError && SuppressedError;
     },
   },
-]); //# sourceMappingURL=file:///home/buildbot/buildslave/steamvr_rel_hotfix_npm_vrwebui/build/public/runtime/drivers/lighthouse/resources/webinterface/sourcemaps/libraries/libraries~782e4a39d.js.map
+]); //# sourceMappingURL=file:///home/buildbot/buildslave/steamvr_rel_npm_vrwebui/build/public/runtime/drivers/lighthouse/resources/webinterface/sourcemaps/libraries/libraries~782e4a39d.js.map

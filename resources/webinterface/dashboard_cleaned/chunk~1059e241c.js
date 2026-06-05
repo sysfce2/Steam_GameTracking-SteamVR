@@ -313,8 +313,11 @@ var CLSTAMP = "steamdb";
       var _ = __webpack_require__("chunkid"),
         _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid")),
         _ = __webpack_require__("chunkid");
+      function _(_) {
+        return "string" == typeof _ || (Array.isArray(_) && _[1]);
+      }
       function _(..._) {
-        return _.filter((_) => null != _ && ("string" == typeof _ || _[1]))
+        return _.filter(_)
           .map((_) => ("string" == typeof _ ? _ : _[0]))
           .join(" ");
       }
@@ -339,17 +342,19 @@ var CLSTAMP = "steamdb";
         updateScrollableParents() {
           for (let _ of this.m_rScrollableParents)
             _.removeEventListener("scroll", this.onParentScroll);
-          this.m_rScrollableParents = (function (_) {
-            let _ = [];
-            if (!_) return _;
-            let _ = _.parentElement;
-            for (; _; ) {
-              const _ = _.scrollWidth > _.clientWidth,
-                _ = _.scrollHeight > _.clientHeight;
-              (_ || _) && _.push(_), (_ = _.parentElement);
-            }
-            return _;
-          })(this.m_elem);
+          this.m_elem
+            ? (this.m_rScrollableParents = (function (_) {
+                let _ = [];
+                if (!_) return _;
+                let _ = _.parentElement;
+                for (; _; ) {
+                  const _ = _.scrollWidth > _.clientWidth,
+                    _ = _.scrollHeight > _.clientHeight;
+                  (_ || _) && _.push(_), (_ = _.parentElement);
+                }
+                return _;
+              })(this.m_elem))
+            : (this.m_rScrollableParents = []);
           for (let _ of this.m_rScrollableParents)
             _.addEventListener("scroll", this.onParentScroll);
         }

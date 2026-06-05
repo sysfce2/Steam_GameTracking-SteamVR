@@ -58,6 +58,7 @@ var CLSTAMP = "steamdb";
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
+            __webpack_require__("chunkid"),
             __webpack_require__("chunkid")),
           _ = __webpack_require__("chunkid");
       },
@@ -422,10 +423,7 @@ var CLSTAMP = "steamdb";
               };
             _ =
               "object" == typeof this.props.origin
-                ? (0, _._)(this.props.origin, {
-                    _: 0,
-                    _: 0,
-                  })
+                ? (0, _._)(this.props.origin)
                 : _(this.props.origin);
             const _ = this.props.overlay_key,
               _ = (0, _._)();
@@ -651,8 +649,8 @@ var CLSTAMP = "steamdb";
               );
           }
           internalRender() {
-            var _;
-            let _, _, _;
+            var _, _, _;
+            let _, _, _, _;
             this.props.transform
               ? ((_ = (0, _._)(this.props.transform.translation)),
                 (_ = this.props.transform.rotation),
@@ -693,7 +691,17 @@ var CLSTAMP = "steamdb";
                         _: 1,
                         _: 1,
                         _: 1,
-                      })));
+                      }))),
+              null !=
+                (null === (_ = this.props) || void 0 === _
+                  ? void 0
+                  : _.parent_origin) &&
+                (_ =
+                  _[
+                    null === (_ = this.props) || void 0 === _
+                      ? void 0
+                      : _.parent_origin
+                  ]);
             let _ = (0, _._)(_),
               _ = (0, _._)(_);
             return _.createElement(
@@ -708,7 +716,7 @@ var CLSTAMP = "steamdb";
                 "ignore-parent-scale": this.props.ignore_parent_scale,
                 "transform-path": this.props.transform_path,
                 "parent-path": this.props.parent_path,
-                "parent-origin": _[this.props.parent_origin],
+                "parent-origin": _,
                 "parent-id": this.props.parent_id,
                 "frame-resize-scale-factor":
                   this.props.frame_resize_scale_factor,
@@ -839,16 +847,19 @@ var CLSTAMP = "steamdb";
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.LaserMouse = 1)] = "LaserMouse"),
-              (_[(_.Keyboard = 2)] = "Keyboard"),
-              (_[(_.RoomView = 4)] = "RoomView"),
-              (_[(_.DisplaySuppressed = 8)] = "DisplaySuppressed"),
-              (_[(_.SystemButtonDown = 16)] = "SystemButtonDown"),
-              (_[(_.DriverIsDrawingControllers = 32)] =
+              (_[(_.RoomViewFullyOccludingApp = 2)] =
+                "RoomViewFullyOccludingApp"),
+              (_[(_.DisplaySuppressed = 4)] = "DisplaySuppressed"),
+              (_[(_.SystemButtonDown = 8)] = "SystemButtonDown"),
+              (_[(_.DriverIsDrawingControllers = 16)] =
                 "DriverIsDrawingControllers"),
-              (_[(_.DriverRequestsApplicationPause = 64)] =
+              (_[(_.DriverRequestsApplicationPause = 32)] =
                 "DriverRequestsApplicationPause"),
-              (_[(_.DriverRequestsReducedRendering = 128)] =
-                "DriverRequestsReducedRendering");
+              (_[(_.DriverRequestsReducedRendering = 64)] =
+                "DriverRequestsReducedRendering"),
+              (_[(_.DashboardTutorial = 128)] = "DashboardTutorial"),
+              (_[(_.GamepadMode = 512)] = "GamepadMode"),
+              (_[(_.SystemKeyboardPrivacy = 1024)] = "SystemKeyboardPrivacy");
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.BULK_DEFAULT = 0)] = "BULK_DEFAULT"),
@@ -952,8 +963,9 @@ var CLSTAMP = "steamdb";
           })(_ || (_ = {}));
       },
       chunkid: (module, module_exports, __webpack_require__) => {
-        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
         __webpack_require__._(_, {
+          _: () => _,
           _: () => _,
           _: () => _,
           _: () => _,
@@ -1204,8 +1216,8 @@ var CLSTAMP = "steamdb";
                 "Hmd_SupportsGpuBusMonitoring_Bool"),
               (_[(_.DriverProvidedIPDVisibility_Bool = 2108)] =
                 "DriverProvidedIPDVisibility_Bool"),
-              (_[(_.Prop_Hmd_SupportsVRGamepadFocus_Bool = 2117)] =
-                "Prop_Hmd_SupportsVRGamepadFocus_Bool"),
+              (_[(_.Prop_SupportsVRGamepadMode_Bool = 2117)] =
+                "Prop_SupportsVRGamepadMode_Bool"),
               (_[(_.DriverRequestedMuraCorrectionMode_Int32 = 2200)] =
                 "DriverRequestedMuraCorrectionMode_Int32"),
               (_[(_.DriverRequestedMuraFeather_InnerLeft_Int32 = 2201)] =
@@ -1413,21 +1425,43 @@ var CLSTAMP = "steamdb";
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.Invalid = 0)] = "Invalid"),
-              (_[(_.System = 1)] = "System"),
-              (_[(_.SteamInput = 2)] = "SteamInput"),
-              (_[(_.VRInput = 3)] = "VRInput");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Invalid = 0)] = "Invalid"),
               (_[(_.SceneApp = 1)] = "SceneApp"),
               (_[(_.Panel = 2)] = "Panel");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.ControllerPairing = 0)] = "ControllerPairing"),
+              (_[(_.WelcomeToSteamFrame = 1)] = "WelcomeToSteamFrame"),
+              (_[(_.SystemButtonHideDashboard = 2)] =
+                "SystemButtonHideDashboard"),
+              (_[(_.SystemButtonDashboardHidden = 3)] =
+                "SystemButtonDashboardHidden"),
+              (_[(_.SystemButtonShowDashboard = 4)] =
+                "SystemButtonShowDashboard"),
+              (_[(_.PairWifiDongle = 5)] = "PairWifiDongle"),
+              (_[(_.TourSendOff = 6)] = "TourSendOff"),
+              (_[(_.SteamGuidedTourFinished = 7)] = "SteamGuidedTourFinished");
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.None = 0)] = "None"),
               (_[(_.ThirdPartyClient = 1)] = "ThirdPartyClient"),
               (_[(_.SteamVRClientUnified = 2)] = "SteamVRClientUnified"),
               (_[(_.SteamVRClientLegacyDual = 3)] = "SteamVRClientLegacyDual");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.Curved = 0)] = "Curved"), (_[(_.Flat = 1)] = "Flat");
           })(_ || (_ = {}));
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        function _(_, _) {
+          return (
+            (_ = Math.ceil(_)),
+            (_ = Math.floor(_)),
+            Math.floor(Math.random() * (_ - _ + 1)) + _
+          );
+        }
+        __webpack_require__._(_, {
+          _: () => _,
+        });
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         var _ = __webpack_require__("chunkid"),
@@ -2311,6 +2345,7 @@ var CLSTAMP = "steamdb";
                       width: void 0,
                       height: 1,
                       interactive: !0,
+                      make_overlays_interactive_if_visible: !0,
                       sort_depth_bias: 0.2,
                       debug_name: "keyboard-flat",
                     },

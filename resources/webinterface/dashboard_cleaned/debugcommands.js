@@ -474,11 +474,13 @@ var CLSTAMP = "steamdb";
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
+            __webpack_require__("chunkid"),
             __webpack_require__("chunkid"));
         __webpack_require__("chunkid");
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         __webpack_require__._(_, {
+          _: () => _,
           _: () => _,
           _: () => _,
           _: () => _,
@@ -493,7 +495,8 @@ var CLSTAMP = "steamdb";
         const _ = "vrcompositor_systemlayer",
           _ = "vrcompositor_mailbox",
           _ = "vrwebui_dashboardstore",
-          _ = "binding_callouts/main";
+          _ = "binding_callouts/main",
+          _ = "scene_graph";
         class _ {
           constructor() {
             (this.m_wsWebSocketToServer = void 0),
