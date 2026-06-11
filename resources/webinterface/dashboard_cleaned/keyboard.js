@@ -508,6 +508,8 @@ var CLSTAMP = "steamdb";
               (_.properties["texture-id"] = (0, _._)(this.props.texture_id)),
               (_.properties["sort-order"] = this.props.sort_order),
               (_.properties["sort-depth-bias"] = this.props.sort_depth_bias),
+              (_.properties["no-depth-write"] = this.props.no_depth_write),
+              (_.properties["no-depth-test"] = this.props.no_depth_test),
               (_.properties.visibility = this.visibility),
               (_.properties["frame-resize-scale-factor"] = _),
               (_.properties["main-panel-for-frame-page"] =
@@ -889,6 +891,7 @@ var CLSTAMP = "steamdb";
               (_[(_.ThisSteamVR = 1)] = "ThisSteamVR"),
               (_[(_.AnotherSteamVR = 2)] = "AnotherSteamVR"),
               (_[(_.AnotherRuntime = 3)] = "AnotherRuntime"),
+              (_[(_.ThisSteamVR64BitOnly = 4)] = "ThisSteamVR64BitOnly"),
               (_[(_.Error = -1)] = "Error");
           })(_ || (_ = {})),
           (function (_) {
@@ -963,7 +966,7 @@ var CLSTAMP = "steamdb";
           })(_ || (_ = {}));
       },
       chunkid: (module, module_exports, __webpack_require__) => {
-        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
         __webpack_require__._(_, {
           _: () => _,
           _: () => _,
@@ -1448,7 +1451,14 @@ var CLSTAMP = "steamdb";
               (_[(_.SteamVRClientLegacyDual = 3)] = "SteamVRClientLegacyDual");
           })(_ || (_ = {})),
           (function (_) {
+            (_[(_.Default = 0)] = "Default"),
+              (_[(_.AuroraFloor = 1)] = "AuroraFloor");
+          })(_ || (_ = {})),
+          (function (_) {
             (_[(_.Curved = 0)] = "Curved"), (_[(_.Flat = 1)] = "Flat");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.Default = 0)] = "Default"), (_[(_.Aurora = 1)] = "Aurora");
           })(_ || (_ = {}));
       },
       chunkid: (module, module_exports, __webpack_require__) => {

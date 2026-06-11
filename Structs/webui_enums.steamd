@@ -199,15 +199,6 @@ enum UnnamedEnum1b2e013c09afd423
 	SendFailure = 3;
 }
 
-enum UnnamedEnum2262335dbfd3b6e5
-{
-	None = 0;
-	ThisSteamVR = 1;
-	AnotherSteamVR = 2;
-	AnotherRuntime = 3;
-	Error = -1;
-}
-
 enum UnnamedEnum22ec4b7429572daa
 {
 	LaserMouse = 1;
@@ -854,6 +845,12 @@ enum UnnamedEnumbaa564634490e0ce
 	Submit = 2;
 }
 
+enum UnnamedEnumbba740e8429cc182
+{
+	Default = 0;
+	Aurora = 1;
+}
+
 enum UnnamedEnumbc33628c90ff4f15
 {
 	Hidden = 0;
@@ -964,6 +961,16 @@ enum UnnamedEnume090f5859a2f770f
 	Debugger = 5;
 }
 
+enum UnnamedEnume0b79b39a524b404
+{
+	None = 0;
+	ThisSteamVR = 1;
+	AnotherSteamVR = 2;
+	AnotherRuntime = 3;
+	ThisSteamVR64BitOnly = 4;
+	Error = -1;
+}
+
 enum UnnamedEnumed91888afd388320
 {
 	Value = 0;
@@ -985,6 +992,12 @@ enum UnnamedEnumf05301e70f30d754
 	Desktop = 1;
 	Overlay = 2;
 	Unknown = 100;
+}
+
+enum UnnamedEnumf36aa81a0614514f
+{
+	Default = 0;
+	AuroraFloor = 1;
 }
 
 enum UnnamedEnumf9026a77d9370b25

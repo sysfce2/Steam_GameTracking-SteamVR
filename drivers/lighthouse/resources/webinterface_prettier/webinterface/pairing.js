@@ -1,10 +1,10 @@
-var CLSTAMP = "10715262";
+var CLSTAMP = "10731156";
 (() => {
   "use strict";
   var t,
     e = {
       437: (t, e, n) => {
-        n.d(e, { S: () => wn, X: () => Dn });
+        n.d(e, { S: () => kn, X: () => xn });
         var r = n(635),
           a = n(540),
           s = n(338),
@@ -882,9 +882,9 @@ var CLSTAMP = "10715262";
                       e,
                       "acceleration-factor-scale-term",
                     )),
-                    (a.properties["remote-transform-tx"] = M(
+                    (a.properties["stored-transform"] = M(
                       e,
-                      "remote-transform-tx",
+                      "stored-transform",
                     )),
                     (a.properties["reset-on-recenter"] = D(
                       e,
@@ -1377,6 +1377,7 @@ var CLSTAMP = "10715262";
               (t[(t.ThisSteamVR = 1)] = "ThisSteamVR"),
               (t[(t.AnotherSteamVR = 2)] = "AnotherSteamVR"),
               (t[(t.AnotherRuntime = 3)] = "AnotherRuntime"),
+              (t[(t.ThisSteamVR64BitOnly = 4)] = "ThisSteamVR64BitOnly"),
               (t[(t.Error = -1)] = "Error");
           })(pt || (pt = {})),
           (function (t) {
@@ -2165,7 +2166,7 @@ var CLSTAMP = "10715262";
                 this.onResizeObserved,
               )),
               this.m_resizeObserver.observe(this.getCurrentRootElement()),
-              (this.m_nEmbeddedIndex = ye.Current().addEmbeddedPanelUVs(this)),
+              (this.m_nEmbeddedIndex = Pe.Current().addEmbeddedPanelUVs(this)),
               (Zt.s_bPanelsAreDirty = !0),
               this.getCurrentRootElement().addEventListener(
                 "mousedown",
@@ -2175,7 +2176,7 @@ var CLSTAMP = "10715262";
               Zt.s_setAllPanels.add(this);
           }
           onResizeObserved(t, e) {
-            ye.Current().forceLayoutUpdate(),
+            Pe.Current().forceLayoutUpdate(),
               (this.m_LastDOMContentSize = {
                 clientWidth: t[0].contentRect.width,
                 clientHeight: t[0].contentRect.height,
@@ -2195,7 +2196,7 @@ var CLSTAMP = "10715262";
                 this.onPanelMouseDown,
               ),
               (Zt.s_bPanelsAreDirty = !0),
-              ye.Current().removeEmbeddedPanelUVs(this),
+              Pe.Current().removeEmbeddedPanelUVs(this),
               this.m_DOMContentSizeChangedCallbacks.ClearAllCallbacks(),
               super.componentWillUnmount();
           }
@@ -2297,7 +2298,7 @@ var CLSTAMP = "10715262";
                   null !== (r = jt(this.m_UVsMax)) && void 0 !== r
                     ? r
                     : void 0);
-            const S = 1 / ye.Current().m_fCurrentScale;
+            const S = 1 / Pe.Current().m_fCurrentScale;
             let f = this.props.frame_resize_scale_factor;
             return (
               this.props.is_frame_page_main_panel && (f = null != f ? f : 1),
@@ -2367,6 +2368,8 @@ var CLSTAMP = "10715262";
               (g.properties["texture-id"] = z(this.props.texture_id)),
               (g.properties["sort-order"] = this.props.sort_order),
               (g.properties["sort-depth-bias"] = this.props.sort_depth_bias),
+              (g.properties["no-depth-write"] = this.props.no_depth_write),
+              (g.properties["no-depth-test"] = this.props.no_depth_test),
               (g.properties.visibility = this.visibility),
               (g.properties["frame-resize-scale-factor"] = f),
               (g.properties["main-panel-for-frame-page"] =
@@ -2496,16 +2499,18 @@ var CLSTAMP = "10715262";
           Se,
           fe,
           Ne,
-          ve;
+          ve,
+          ye,
+          be;
         !(function (t) {
           (t[(t.Canvas = 0)] = "Canvas"), (t[(t.Image = 1)] = "Image");
         })(ne || (ne = {}));
-        class ye extends a.Component {
+        class Pe extends a.Component {
           static get IsSceneGraphApp() {
-            return null !== ye.Current();
+            return null !== Pe.Current();
           }
           static Current() {
-            return ye.s_Current;
+            return Pe.s_Current;
           }
           constructor(t) {
             var e;
@@ -2526,7 +2531,7 @@ var CLSTAMP = "10715262";
               (this.m_nDirtyXMax = -1),
               (this.m_EmbeddedDataImgRef = null),
               (this.m_EmbeddedDataImgRGBBuffer = null),
-              (ye.s_Current = this),
+              (Pe.s_Current = this),
               (this.state = {
                 bFontsLoaded: !1,
                 nForcedUpdateNumber: 0,
@@ -2628,13 +2633,13 @@ var CLSTAMP = "10715262";
                   a.createElement("img", {
                     ref: this.m_EmbeddedDataImgRef,
                     className: "EmbeddedData",
-                    height: ye.k_EmbeddedDataRows,
+                    height: Pe.k_EmbeddedDataRows,
                   }),
                 e &&
                   a.createElement("canvas", {
                     ref: this.m_CanvasRef,
                     className: "EmbeddedData",
-                    height: ye.k_EmbeddedDataRows,
+                    height: Pe.k_EmbeddedDataRows,
                   }),
                 a.createElement(
                   "div",
@@ -2686,7 +2691,7 @@ var CLSTAMP = "10715262";
                   null === this.m_Pixels &&
                     (this.m_Pixels = this.m_CanvasContext.createImageData(
                       this.m_nEmbeddedDataWidth,
-                      ye.k_EmbeddedDataRows,
+                      Pe.k_EmbeddedDataRows,
                     )))),
               this.updateAllPanelBounds();
           }
@@ -2828,12 +2833,12 @@ var CLSTAMP = "10715262";
                   (this.m_nDirtyXMax = t));
           }
         }
-        (ye.s_Current = null),
-          (ye.k_EmbeddedDataRows = 1),
-          (0, r.Cg)([g], ye.prototype, "toggleDebugPointer", null),
-          (0, r.Cg)([g], ye.prototype, "onMouseMove", null),
-          (0, r.Cg)([g], ye.prototype, "forceLayoutUpdate", null),
-          (0, r.Cg)([g], ye.prototype, "onMutation", null);
+        (Pe.s_Current = null),
+          (Pe.k_EmbeddedDataRows = 1),
+          (0, r.Cg)([g], Pe.prototype, "toggleDebugPointer", null),
+          (0, r.Cg)([g], Pe.prototype, "onMouseMove", null),
+          (0, r.Cg)([g], Pe.prototype, "forceLayoutUpdate", null),
+          (0, r.Cg)([g], Pe.prototype, "onMutation", null);
         (0, r.Cg)(
           [g],
           class extends Dt {
@@ -2980,8 +2985,9 @@ var CLSTAMP = "10715262";
                 (n.properties.solid = this.props.solid),
                 (n.properties.culling = this.props.culling),
                 (n.properties.stencil_mask = this.props.stencil_mask),
-                (n.properties["no-depth-write"] = this.props["no-depth-write"]),
-                (n.properties["no-depth-test"] = this.props["no-depth-test"]),
+                (n.properties["no-depth-write"] = this.props.no_depth_write),
+                (n.properties["no-depth-test"] = this.props.no_depth_test),
+                (n.properties.shader = this.props.eShader),
                 [t, n]
               );
             }
@@ -3670,8 +3676,15 @@ var CLSTAMP = "10715262";
               (t[(t.SteamVRClientLegacyDual = 3)] = "SteamVRClientLegacyDual");
           })(fe || (fe = {})),
           (function (t) {
+            (t[(t.Default = 0)] = "Default"),
+              (t[(t.AuroraFloor = 1)] = "AuroraFloor");
+          })(Ne || (Ne = {})),
+          (function (t) {
             (t[(t.Curved = 0)] = "Curved"), (t[(t.Flat = 1)] = "Flat");
-          })(Ne || (Ne = {}));
+          })(ve || (ve = {})),
+          (function (t) {
+            (t[(t.Default = 0)] = "Default"), (t[(t.Aurora = 1)] = "Aurora");
+          })(ye || (ye = {}));
         a.Component;
         (0, r.Cg)(
           [g],
@@ -3801,7 +3814,7 @@ var CLSTAMP = "10715262";
             (t[(t.Disabled = 0)] = "Disabled"),
               (t[(t.WorldZeroY = 1)] = "WorldZeroY"),
               (t[(t.WorldDynamicFloor = 2)] = "WorldDynamicFloor");
-          })(ve || (ve = {}));
+          })(be || (be = {}));
         (0, r.Cg)(
           [g],
           class extends Dt {
@@ -3867,8 +3880,8 @@ var CLSTAMP = "10715262";
           "buildNode",
           null,
         );
-        const be = VRHTML;
-        var Pe, Ie;
+        const Ie = VRHTML;
+        var Le, Me;
         !(function (t) {
           (t[(t.Uninitialized = 0)] = "Uninitialized"),
             (t[(t.ShowInstructions = 1)] = "ShowInstructions"),
@@ -3876,10 +3889,10 @@ var CLSTAMP = "10715262";
             (t[(t.Timeout = 3)] = "Timeout"),
             (t[(t.Success = 4)] = "Success"),
             (t[(t.Success_NoMoreDongles = 5)] = "Success_NoMoreDongles");
-        })(Pe || (Pe = {}));
-        class Le extends a.Component {
+        })(Le || (Le = {}));
+        class Re extends a.Component {
           constructor(t) {
-            super(t), (this.state = { pairingState: Pe.ShowInstructions });
+            super(t), (this.state = { pairingState: Le.ShowInstructions });
           }
           get className() {
             return "Uninitialized";
@@ -3930,10 +3943,10 @@ var CLSTAMP = "10715262";
                 ),
               ),
               a.createElement(
-                Dn,
+                xn,
                 null,
-                a.createElement(wn, {
-                  onClick: () => Be.ChooseController(),
+                a.createElement(kn, {
+                  onClick: () => Ae.ChooseController(),
                   text: d("#pairing_button_differentcontroller"),
                 }),
               ),
@@ -3967,15 +3980,15 @@ var CLSTAMP = "10715262";
                 ),
               ),
               a.createElement(
-                Dn,
+                xn,
                 null,
-                a.createElement(wn, {
-                  onClick: Be.PairWithFreeDongle,
+                a.createElement(kn, {
+                  onClick: Ae.PairWithFreeDongle,
                   text: d("#pairing_success_again"),
                   focus: !0,
                 }),
-                a.createElement(wn, {
-                  onClick: Be.Close,
+                a.createElement(kn, {
+                  onClick: Ae.Close,
                   text: d("#pairing_button_done"),
                 }),
               ),
@@ -4009,41 +4022,41 @@ var CLSTAMP = "10715262";
                 ),
               ),
               a.createElement(
-                Dn,
+                xn,
                 null,
-                a.createElement(wn, {
-                  onClick: Be.PairWithFreeDongle,
+                a.createElement(kn, {
+                  onClick: Ae.PairWithFreeDongle,
                   text: d("#pairing_try_again"),
                   focus: !0,
                 }),
-                a.createElement(wn, {
-                  onClick: Be.Close,
+                a.createElement(kn, {
+                  onClick: Ae.Close,
                   text: d("#pairing_button_cancel"),
                 }),
               ),
             );
           }
           render() {
-            switch (Be.pairingState) {
-              case Ie.WaitingForDeviceToPair:
+            switch (Ae.pairingState) {
+              case Me.WaitingForDeviceToPair:
                 return this.renderInstructions();
-              case Ie.UpdatingDongleListAfterPairing:
-              case Ie.Success:
+              case Me.UpdatingDongleListAfterPairing:
+              case Me.Success:
                 return this.renderSuccess();
-              case Ie.TimedOut:
+              case Me.TimedOut:
                 return this.renderTimedOut();
               default:
                 return (
                   console.error(
                     "CPairingDevice.render(): Invalid pairing state: " +
-                      Ie[Be.pairingState],
+                      Me[Ae.pairingState],
                   ),
                   a.createElement("div", null, " Invalid pairing state. ")
                 );
             }
           }
         }
-        function Me(t) {
+        function De(t) {
           return a.createElement(
             "svg",
             {
@@ -6948,7 +6961,7 @@ var CLSTAMP = "10715262";
             ),
           );
         }
-        function Re(t) {
+        function we(t) {
           return a.createElement(
             "svg",
             {
@@ -7019,7 +7032,7 @@ var CLSTAMP = "10715262";
             ),
           );
         }
-        function De(t) {
+        function xe(t) {
           return a.createElement(
             "svg",
             {
@@ -7548,9 +7561,9 @@ var CLSTAMP = "10715262";
             ),
           );
         }
-        class we extends Le {
+        class ke extends Re {
           renderControllerImage(t) {
-            return Me(t);
+            return De(t);
           }
           get pairingInstructions() {
             return a.createElement(
@@ -7585,9 +7598,9 @@ var CLSTAMP = "10715262";
             return d("#pairingdevice_a_knuckles_controllername");
           }
         }
-        class xe extends Le {
+        class Te extends Re {
           renderControllerImage(t) {
-            return De(t);
+            return xe(t);
           }
           get pairingInstructions() {
             return a.createElement(
@@ -7622,9 +7635,9 @@ var CLSTAMP = "10715262";
             return d("#pairingdevice_a_vivewand_shortname");
           }
         }
-        class ke extends Le {
+        class Oe extends Re {
           renderControllerImage(t) {
-            return Re(t);
+            return we(t);
           }
           get pairingInstructions() {
             return a.createElement(
@@ -7654,7 +7667,7 @@ var CLSTAMP = "10715262";
             return d("#pairingdevice_a_vivetracker_shortname");
           }
         }
-        class Te extends Le {
+        class Be extends Re {
           renderControllerImage(t) {
             return (function (t) {
               return a.createElement(
@@ -7912,13 +7925,13 @@ var CLSTAMP = "10715262";
             (t[(t.TimedOut = 7)] = "TimedOut"),
             (t[(t.NoDonglesDetected = 8)] = "NoDonglesDetected"),
             (t[(t.PairingFailed = 9)] = "PairingFailed");
-        })(Ie || (Ie = {}));
-        class Oe {
+        })(Me || (Me = {}));
+        class Fe {
           constructor() {
             (this.m_mailbox = new I()),
               (this.dongles = new Array()),
               (this.pairingNameExpected = void 0),
-              (this.pairingState = Ie.Idle),
+              (this.pairingState = Me.Idle),
               (this.pairingDevice = void 0),
               (this.windowIsShown = !1),
               (this.waitingForDonglesResponse = !1),
@@ -7957,10 +7970,10 @@ var CLSTAMP = "10715262";
           }
           getPairableDevices() {
             return new Map([
-              ["knuckles", new we()],
-              ["vive_controller", new xe()],
-              ["vive_tracker", new ke()],
-              ["vr_ink_pilot_edition", new Te()],
+              ["knuckles", new ke()],
+              ["vive_controller", new Te()],
+              ["vive_tracker", new Oe()],
+              ["vr_ink_pilot_edition", new Be()],
             ]);
           }
           onWindowEvent(t) {
@@ -7998,14 +8011,14 @@ var CLSTAMP = "10715262";
             if (!this.HasFreeDongle)
               return (
                 console.warn("PromptUserToPair(): No available dongles."),
-                void this.SetState(Ie.NoDonglesAvailable)
+                void this.SetState(Me.NoDonglesAvailable)
               );
             null != this.pairingNameExpected &&
             this.getPairableDevices().has(this.pairingNameExpected)
-              ? Be.selectPairingDevice(
-                  Be.getPairableDevices().get(Be.pairingNameExpected),
+              ? Ae.selectPairingDevice(
+                  Ae.getPairableDevices().get(Ae.pairingNameExpected),
                 )
-              : this.SetState(Ie.DongleListReady);
+              : this.SetState(Me.DongleListReady);
           }
           OnDiscoverDonglesResponse(t) {
             switch (
@@ -8014,30 +8027,30 @@ var CLSTAMP = "10715262";
               (this.waitingForDonglesResponse = !1),
               this.pairingState)
             ) {
-              case Ie.FetchingInitialDongleList:
-              case Ie.NoDonglesAvailable:
-              case Ie.NoDonglesDetected:
+              case Me.FetchingInitialDongleList:
+              case Me.NoDonglesAvailable:
+              case Me.NoDonglesDetected:
                 this.HasFreeDongle
                   ? this.PromptUserToPair()
                   : this.dongles && this.dongles.length > 0
-                    ? this.SetState(Ie.NoDonglesAvailable)
-                    : this.SetState(Ie.NoDonglesDetected);
+                    ? this.SetState(Me.NoDonglesAvailable)
+                    : this.SetState(Me.NoDonglesDetected);
                 break;
-              case Ie.UpdatingDongleListAfterPairing:
-                this.SetState(Ie.Success);
+              case Me.UpdatingDongleListAfterPairing:
+                this.SetState(Me.Success);
             }
           }
           OnStartPairingResponse(t) {
             switch (
-              (this.pairingState != Ie.WaitingForDeviceToPair &&
+              (this.pairingState != Me.WaitingForDeviceToPair &&
                 console.log("Pairing response when not waiting for one", t),
               t.result)
             ) {
               case "timeout":
-                this.SetState(Ie.TimedOut);
+                this.SetState(Me.TimedOut);
                 break;
               case "failed_to_start":
-                this.SetState(Ie.PairingFailed);
+                this.SetState(Me.PairingFailed);
                 break;
               case "canceled":
               case "success":
@@ -8049,24 +8062,24 @@ var CLSTAMP = "10715262";
                       this.activeDongle.serial,
                       new Date().getTime(),
                     ),
-                  this.SetState(Ie.UpdatingDongleListAfterPairing);
+                  this.SetState(Me.UpdatingDongleListAfterPairing);
             }
           }
           SetState(t) {
             switch (((this.pairingState = t), t)) {
-              case Ie.FetchingInitialDongleList:
-              case Ie.UpdatingDongleListAfterPairing:
-              case Ie.NoDonglesAvailable:
-              case Ie.NoDonglesDetected:
+              case Me.FetchingInitialDongleList:
+              case Me.UpdatingDongleListAfterPairing:
+              case Me.NoDonglesAvailable:
+              case Me.NoDonglesDetected:
                 this.DiscoverDongles();
             }
           }
           DiscoverDongles() {
             if (
-              this.pairingState != Ie.FetchingInitialDongleList &&
-              this.pairingState != Ie.UpdatingDongleListAfterPairing &&
-              this.pairingState != Ie.NoDonglesAvailable &&
-              this.pairingState != Ie.NoDonglesDetected
+              this.pairingState != Me.FetchingInitialDongleList &&
+              this.pairingState != Me.UpdatingDongleListAfterPairing &&
+              this.pairingState != Me.NoDonglesAvailable &&
+              this.pairingState != Me.NoDonglesDetected
             )
               return;
             if (this.waitingForDonglesResponse) return;
@@ -8080,7 +8093,7 @@ var CLSTAMP = "10715262";
           }
           StartPairing(t) {
             if (
-              (this.SetState(Ie.WaitingForDeviceToPair),
+              (this.SetState(Me.WaitingForDeviceToPair),
               (this.activeDongle = t),
               !t)
             )
@@ -8092,7 +8105,7 @@ var CLSTAMP = "10715262";
               timeoutSeconds: 10,
             };
             (this.pairingTimer = window.setInterval(() => {
-              this.pairingState == Ie.WaitingForDeviceToPair &&
+              this.pairingState == Me.WaitingForDeviceToPair &&
               this.activeDongle == t
                 ? (console.log("Sending StartPairing to " + e.serial),
                   this.m_mailbox.SendMessage("lighthouse_pairing", e))
@@ -8120,7 +8133,7 @@ var CLSTAMP = "10715262";
             let t = this.FindAvailableDongle();
             return null != t
               ? (this.StartPairing(t), !0)
-              : (this.SetState(Ie.NoDonglesAvailable), !1);
+              : (this.SetState(Me.NoDonglesAvailable), !1);
           }
           CancelActivePairing() {
             this.StopPairing(this.activeDongle);
@@ -8128,7 +8141,7 @@ var CLSTAMP = "10715262";
           Reset() {
             this.CancelActivePairing(),
               this.SetState(
-                this.windowIsShown ? Ie.FetchingInitialDongleList : Ie.Idle,
+                this.windowIsShown ? Me.FetchingInitialDongleList : Me.Idle,
               ),
               (this.pairingDevice = null);
           }
@@ -8136,28 +8149,28 @@ var CLSTAMP = "10715262";
             this.pairingDevice = null;
           }
         }
-        (0, r.Cg)([u.sH], Oe.prototype, "dongles", void 0),
-          (0, r.Cg)([u.sH], Oe.prototype, "pairingNameExpected", void 0),
-          (0, r.Cg)([u.sH], Oe.prototype, "pairingState", void 0),
-          (0, r.Cg)([u.sH], Oe.prototype, "pairingDevice", void 0),
-          (0, r.Cg)([u.XI], Oe.prototype, "init", null),
-          (0, r.Cg)([g], Oe.prototype, "onWindowEvent", null),
-          (0, r.Cg)([u.EW], Oe.prototype, "HasFreeDongle", null),
-          (0, r.Cg)([g], Oe.prototype, "OnDiscoverDonglesResponse", null),
-          (0, r.Cg)([g], Oe.prototype, "OnStartPairingResponse", null),
-          (0, r.Cg)([g], Oe.prototype, "DiscoverDongles", null),
-          (0, r.Cg)([g], Oe.prototype, "Close", null),
-          (0, r.Cg)([g], Oe.prototype, "PairWithFreeDongle", null),
-          (0, r.Cg)([g], Oe.prototype, "CancelActivePairing", null),
-          (0, r.Cg)([u.XI], Oe.prototype, "Reset", null),
-          (0, r.Cg)([u.XI], Oe.prototype, "ChooseController", null);
-        const Be = new Oe();
-        let Fe = class extends a.Component {
+        (0, r.Cg)([u.sH], Fe.prototype, "dongles", void 0),
+          (0, r.Cg)([u.sH], Fe.prototype, "pairingNameExpected", void 0),
+          (0, r.Cg)([u.sH], Fe.prototype, "pairingState", void 0),
+          (0, r.Cg)([u.sH], Fe.prototype, "pairingDevice", void 0),
+          (0, r.Cg)([u.XI], Fe.prototype, "init", null),
+          (0, r.Cg)([g], Fe.prototype, "onWindowEvent", null),
+          (0, r.Cg)([u.EW], Fe.prototype, "HasFreeDongle", null),
+          (0, r.Cg)([g], Fe.prototype, "OnDiscoverDonglesResponse", null),
+          (0, r.Cg)([g], Fe.prototype, "OnStartPairingResponse", null),
+          (0, r.Cg)([g], Fe.prototype, "DiscoverDongles", null),
+          (0, r.Cg)([g], Fe.prototype, "Close", null),
+          (0, r.Cg)([g], Fe.prototype, "PairWithFreeDongle", null),
+          (0, r.Cg)([g], Fe.prototype, "CancelActivePairing", null),
+          (0, r.Cg)([u.XI], Fe.prototype, "Reset", null),
+          (0, r.Cg)([u.XI], Fe.prototype, "ChooseController", null);
+        const Ae = new Fe();
+        let Ve = class extends a.Component {
           constructor(t) {
             super(t);
           }
           render() {
-            const t = Array.from(Be.getPairableDevices().values());
+            const t = Array.from(Ae.getPairableDevices().values());
             return a.createElement(
               "div",
               null,
@@ -8177,7 +8190,7 @@ var CLSTAMP = "10715262";
                       "div",
                       {
                         className: "Button",
-                        onClick: () => Be.selectPairingDevice(t),
+                        onClick: () => Ae.selectPairingDevice(t),
                       },
                       t.renderControllerImage(!1),
                     ),
@@ -8192,12 +8205,12 @@ var CLSTAMP = "10715262";
             );
           }
         };
-        Fe = (0, r.Cg)([i.PA], Fe);
-        var Ae = n(339),
-          Ve = n.n(Ae);
-        const He = Ae.BinaryReader.prototype,
-          We = Ae.BinaryWriter.prototype;
-        function Ue(t) {
+        Ve = (0, r.Cg)([i.PA], Ve);
+        var He = n(339),
+          We = n.n(He);
+        const Ue = He.BinaryReader.prototype,
+          Ge = He.BinaryWriter.prototype;
+        function ze(t) {
           const e = {},
             { fields: n } = t;
           for (const t in n) {
@@ -8206,7 +8219,7 @@ var CLSTAMP = "10715262";
           }
           return e;
         }
-        function Ge(t, e) {
+        function je(t, e) {
           const { proto: n, fields: r } = t,
             a = new n();
           if (null == e) return a;
@@ -8216,34 +8229,34 @@ var CLSTAMP = "10715262";
             const c = e[t];
             s
               ? i
-                ? Ae.Message.setRepeatedWrapperField(
+                ? He.Message.setRepeatedWrapperField(
                     a,
                     n,
                     Array.isArray(c) ? c.map((t) => s.fromObject(t)) : [],
                   )
-                : Ae.Message.setWrapperField(a, n, s.fromObject(c))
-              : Ae.Message.setField(a, n, c);
+                : He.Message.setWrapperField(a, n, s.fromObject(c))
+              : He.Message.setField(a, n, c);
           }
           return a;
         }
-        function ze(t, e, n) {
+        function qe(t, e, n) {
           const { proto: r, fields: a } = t,
             s = {};
           for (const t in a) {
             const { n: r, c: i, r: o, d: l, q: c } = a[t];
             if (i)
               if (o)
-                s[t] = Ae.Message.toObjectList(
-                  Ae.Message.getRepeatedWrapperField(n, i, r),
+                s[t] = He.Message.toObjectList(
+                  He.Message.getRepeatedWrapperField(n, i, r),
                   i.toObject,
                   e,
                 );
               else {
-                const a = Ae.Message.getWrapperField(n, i, r, c ? 1 : 0);
+                const a = He.Message.getWrapperField(n, i, r, c ? 1 : 0);
                 a && (s[t] = i.toObject(e, a));
               }
             else {
-              const e = Ae.Message.getFieldWithDefault(
+              const e = He.Message.getFieldWithDefault(
                 n,
                 r,
                 void 0 !== l ? l : null,
@@ -8253,7 +8266,7 @@ var CLSTAMP = "10715262";
           }
           return e && (s.$jspbMessageInstance = n), s;
         }
-        function je(t, e, n) {
+        function Ke(t, e, n) {
           for (; n.nextField() && !n.isEndGroup(); ) {
             const r = t[n.getFieldNumber()];
             if (r) {
@@ -8262,13 +8275,13 @@ var CLSTAMP = "10715262";
                 const r = new a();
                 n.readMessage(r, a.deserializeBinaryFromReader),
                   s
-                    ? Ae.Message.addToRepeatedWrapperField(e, t, r, a)
-                    : Ae.Message.setWrapperField(e, t, r);
+                    ? He.Message.addToRepeatedWrapperField(e, t, r, a)
+                    : He.Message.setWrapperField(e, t, r);
               } else if (l) {
                 const r = l.call(n);
                 s
-                  ? Ae.Message.addToRepeatedField(e, t, r)
-                  : Ae.Message.setField(e, t, r);
+                  ? He.Message.addToRepeatedField(e, t, r)
+                  : He.Message.setField(e, t, r);
               } else
                 console.assert(
                   !!l,
@@ -8279,21 +8292,21 @@ var CLSTAMP = "10715262";
           }
           return e;
         }
-        function qe(t, e, n) {
+        function $e(t, e, n) {
           const { fields: r } = t;
           for (const t in r) {
             const { n: a, c: s, r: i, d: o, q: l, bw: c } = r[t];
             if (s)
               if (i) {
-                const t = Ae.Message.getRepeatedWrapperField(e, s, a);
+                const t = He.Message.getRepeatedWrapperField(e, s, a);
                 ((t && t.length) || l) &&
                   n.writeRepeatedMessage(a, t, s.serializeBinaryToWriter);
               } else {
-                const t = Ae.Message.getWrapperField(e, s, a, l ? 1 : 0);
+                const t = He.Message.getWrapperField(e, s, a, l ? 1 : 0);
                 t && n.writeMessage(a, t, s.serializeBinaryToWriter);
               }
             else if (c) {
-              const t = Ae.Message.getField(e, a);
+              const t = He.Message.getField(e, a);
               null != t && c.call(n, a, t);
             } else
               console.assert(
@@ -8302,178 +8315,178 @@ var CLSTAMP = "10715262";
               );
           }
         }
-        function Ke(t) {
+        function Xe(t) {
           const e = t.proto;
           for (const n in t.fields) {
             const r = t.fields[n],
               { n: a, c: s, r: i, d: o, q: l } = r;
             Object.prototype.hasOwnProperty.call(r, "d")
-              ? (e.prototype[n] = $e(Ae.Message.getFieldWithDefault, a, o))
+              ? (e.prototype[n] = Qe(He.Message.getFieldWithDefault, a, o))
               : (e.prototype[n] = s
                   ? i
-                    ? $e(Ae.Message.getRepeatedWrapperField, s, a)
-                    : Xe(s, a)
-                  : $e(Ae.Message.getField, a)),
-              (e.prototype[`set_${n}`] = Qe(
+                    ? Qe(He.Message.getRepeatedWrapperField, s, a)
+                    : Ye(s, a)
+                  : Qe(He.Message.getField, a)),
+              (e.prototype[`set_${n}`] = Je(
                 s
                   ? i
-                    ? Ae.Message.setRepeatedWrapperField
-                    : Ae.Message.setWrapperField
-                  : Ae.Message.setField,
+                    ? He.Message.setRepeatedWrapperField
+                    : He.Message.setWrapperField
+                  : He.Message.setField,
                 a,
               )),
-              i && (e.prototype[`add_${n}`] = Ye(a, s));
+              i && (e.prototype[`add_${n}`] = Ze(a, s));
           }
         }
-        function $e(t, ...e) {
+        function Qe(t, ...e) {
           return function () {
             return t(this, ...e);
           };
         }
-        function Xe(t, e) {
+        function Ye(t, e) {
           return function (n = !0) {
-            return Ae.Message.getWrapperField(this, t, e, n ? 1 : 0);
+            return He.Message.getWrapperField(this, t, e, n ? 1 : 0);
           };
         }
-        function Qe(t, e) {
+        function Je(t, e) {
           return function (n) {
             return t(this, e, n);
           };
         }
-        function Ye(t, e) {
+        function Ze(t, e) {
           return e
             ? function (n, r) {
-                return Ae.Message.addToRepeatedWrapperField(this, t, n, e, r);
+                return He.Message.addToRepeatedWrapperField(this, t, n, e, r);
               }
             : function (e, n) {
-                Ae.Message.addToRepeatedField(this, t, e, n);
+                He.Message.addToRepeatedField(this, t, e, n);
               };
         }
-        class Je extends Ae.Message {
+        class tn extends He.Message {
           static ImplementsStaticInterface() {}
           constructor(t = null) {
             super(),
-              Je.prototype.product || Ke(Je.M()),
-              Ae.Message.initialize(this, t, 0, -1, [3, 4], null);
+              tn.prototype.product || Xe(tn.M()),
+              He.Message.initialize(this, t, 0, -1, [3, 4], null);
           }
           static M() {
             return (
-              Je.sm_m ||
-                (Je.sm_m = {
-                  proto: Je,
+              tn.sm_m ||
+                (tn.sm_m = {
+                  proto: tn,
                   fields: {
-                    product: { n: 1, br: He.readString, bw: We.writeString },
-                    version: { n: 2, br: He.readString, bw: We.writeString },
-                    errors: { n: 3, c: Ze, r: !0, q: !0 },
+                    product: { n: 1, br: Ue.readString, bw: Ge.writeString },
+                    version: { n: 2, br: Ue.readString, bw: Ge.writeString },
+                    errors: { n: 3, c: en, r: !0, q: !0 },
                     tags: {
                       n: 4,
                       r: !0,
                       q: !0,
-                      br: He.readString,
-                      bw: We.writeRepeatedString,
+                      br: Ue.readString,
+                      bw: Ge.writeRepeatedString,
                     },
                   },
                 }),
-              Je.sm_m
+              tn.sm_m
             );
           }
           static MBF() {
-            return Je.sm_mbf || (Je.sm_mbf = Ue(Je.M())), Je.sm_mbf;
+            return tn.sm_mbf || (tn.sm_mbf = ze(tn.M())), tn.sm_mbf;
           }
           toObject(t = !1) {
-            return Je.toObject(t, this);
+            return tn.toObject(t, this);
           }
           static toObject(t, e) {
-            return ze(Je.M(), t, e);
+            return qe(tn.M(), t, e);
           }
           static fromObject(t) {
-            return Ge(Je.M(), t);
+            return je(tn.M(), t);
           }
           static deserializeBinary(t) {
-            let e = new (Ve().BinaryReader)(t),
-              n = new Je();
-            return Je.deserializeBinaryFromReader(n, e);
+            let e = new (We().BinaryReader)(t),
+              n = new tn();
+            return tn.deserializeBinaryFromReader(n, e);
           }
           static deserializeBinaryFromReader(t, e) {
-            return je(Je.MBF(), t, e);
+            return Ke(tn.MBF(), t, e);
           }
           serializeBinary() {
-            var t = new (Ve().BinaryWriter)();
-            return Je.serializeBinaryToWriter(this, t), t.getResultBuffer();
+            var t = new (We().BinaryWriter)();
+            return tn.serializeBinaryToWriter(this, t), t.getResultBuffer();
           }
           static serializeBinaryToWriter(t, e) {
-            qe(Je.M(), t, e);
+            $e(tn.M(), t, e);
           }
           serializeBase64String() {
-            var t = new (Ve().BinaryWriter)();
+            var t = new (We().BinaryWriter)();
             return (
-              Je.serializeBinaryToWriter(this, t), t.getResultBase64String()
+              tn.serializeBinaryToWriter(this, t), t.getResultBase64String()
             );
           }
           getClassName() {
             return "CClientMetrics_ReportClientError_Notification";
           }
         }
-        class Ze extends Ae.Message {
+        class en extends He.Message {
           static ImplementsStaticInterface() {}
           constructor(t = null) {
             super(),
-              Ze.prototype.identifier || Ke(Ze.M()),
-              Ae.Message.initialize(this, t, 0, -1, void 0, null);
+              en.prototype.identifier || Xe(en.M()),
+              He.Message.initialize(this, t, 0, -1, void 0, null);
           }
           static M() {
             return (
-              Ze.sm_m ||
-                (Ze.sm_m = {
-                  proto: Ze,
+              en.sm_m ||
+                (en.sm_m = {
+                  proto: en,
                   fields: {
-                    identifier: { n: 1, br: He.readString, bw: We.writeString },
-                    message: { n: 2, br: He.readString, bw: We.writeString },
-                    count: { n: 3, br: He.readUint32, bw: We.writeUint32 },
-                    context: { n: 4, br: He.readString, bw: We.writeString },
+                    identifier: { n: 1, br: Ue.readString, bw: Ge.writeString },
+                    message: { n: 2, br: Ue.readString, bw: Ge.writeString },
+                    count: { n: 3, br: Ue.readUint32, bw: Ge.writeUint32 },
+                    context: { n: 4, br: Ue.readString, bw: Ge.writeString },
                   },
                 }),
-              Ze.sm_m
+              en.sm_m
             );
           }
           static MBF() {
-            return Ze.sm_mbf || (Ze.sm_mbf = Ue(Ze.M())), Ze.sm_mbf;
+            return en.sm_mbf || (en.sm_mbf = ze(en.M())), en.sm_mbf;
           }
           toObject(t = !1) {
-            return Ze.toObject(t, this);
+            return en.toObject(t, this);
           }
           static toObject(t, e) {
-            return ze(Ze.M(), t, e);
+            return qe(en.M(), t, e);
           }
           static fromObject(t) {
-            return Ge(Ze.M(), t);
+            return je(en.M(), t);
           }
           static deserializeBinary(t) {
-            let e = new (Ve().BinaryReader)(t),
-              n = new Ze();
-            return Ze.deserializeBinaryFromReader(n, e);
+            let e = new (We().BinaryReader)(t),
+              n = new en();
+            return en.deserializeBinaryFromReader(n, e);
           }
           static deserializeBinaryFromReader(t, e) {
-            return je(Ze.MBF(), t, e);
+            return Ke(en.MBF(), t, e);
           }
           serializeBinary() {
-            var t = new (Ve().BinaryWriter)();
-            return Ze.serializeBinaryToWriter(this, t), t.getResultBuffer();
+            var t = new (We().BinaryWriter)();
+            return en.serializeBinaryToWriter(this, t), t.getResultBuffer();
           }
           static serializeBinaryToWriter(t, e) {
-            qe(Ze.M(), t, e);
+            $e(en.M(), t, e);
           }
           serializeBase64String() {
-            var t = new (Ve().BinaryWriter)();
+            var t = new (We().BinaryWriter)();
             return (
-              Ze.serializeBinaryToWriter(this, t), t.getResultBase64String()
+              en.serializeBinaryToWriter(this, t), t.getResultBase64String()
             );
           }
           getClassName() {
             return "CClientMetrics_ReportClientError_Notification_Error";
           }
         }
-        function tn(t) {
+        function nn(t) {
           return (0, r.sH)(
             this,
             arguments,
@@ -8497,9 +8510,9 @@ var CLSTAMP = "10715262";
             },
           );
         }
-        const en = "/settings/steamvr/showAdvancedSettings",
-          nn = "change_route";
-        class rn {
+        const rn = "/settings/steamvr/showAdvancedSettings",
+          an = "change_route";
+        class sn {
           constructor() {
             (this.m_wsWebSocketToServer = void 0),
               (this.m_mailbox = new I()),
@@ -8649,7 +8662,7 @@ var CLSTAMP = "10715262";
                     "workshop_state_changed",
                     this.OnWorkshopStateChangedMessage,
                   ),
-                  this.m_mailbox.RegisterHandler(nn, this.OnChangeRouteMessage),
+                  this.m_mailbox.RegisterHandler(an, this.OnChangeRouteMessage),
                   this.m_mailbox.RegisterHandler(
                     "app_config_changed",
                     this.OnAppConfigChangedMessage,
@@ -8734,7 +8747,7 @@ var CLSTAMP = "10715262";
             } else
               this.m_mailbox.connected &&
                 this.m_mailbox.SendMessage(this.MailboxName, {
-                  type: nn,
+                  type: an,
                   page: t,
                   section: e,
                   sectionParams: n,
@@ -8766,10 +8779,10 @@ var CLSTAMP = "10715262";
               window.addEventListener("beforeunload", () => {
                 this.WebSocketSend("settings_close");
               }),
-              an.GetSettingsInfo().then((t) => {
+              on.GetSettingsInfo().then((t) => {
                 this.OnVRSystemInfo(t);
               }),
-              an.GetAppList().then((t) => {
+              on.GetAppList().then((t) => {
                 this.OnVRAppList({ jsonid: "vr_app_list", apps: t });
               });
           }
@@ -8820,7 +8833,7 @@ var CLSTAMP = "10715262";
             }
           }
           SetSettingValueFromServer(t, e) {
-            const n = 1e3 * rn.SERVER_SETTING_MERGE_DEFER_DURATION;
+            const n = 1e3 * sn.SERVER_SETTING_MERGE_DEFER_DURATION;
             if (this.m_mapSettingsLastWriteInfo.has(t)) {
               let r = this.m_mapSettingsLastWriteInfo.get(t);
               if (new Date().getTime() - r.nLastUserUpdateTime < n)
@@ -9027,63 +9040,63 @@ var CLSTAMP = "10715262";
               : e.name;
           }
           get showAdvancedSettings() {
-            return this.settings.get(en);
+            return this.settings.get(rn);
           }
           set showAdvancedSettings(t) {
-            this.SetSettingsValue(en, t);
+            this.SetSettingsValue(rn, t);
           }
           showBindingCallouts(t) {
             let e = { type: "request_binding_callouts", app_key: t };
             this.m_mailbox.SendMessage("binding_callouts/main", e);
           }
         }
-        (rn.SERVER_SETTING_MERGE_DEFER_DURATION = 1),
-          (0, r.Cg)([u.sH], rn.prototype, "connected", void 0),
-          (0, r.Cg)([u.sH], rn.prototype, "settingsSchema", void 0),
-          (0, r.Cg)([u.sH], rn.prototype, "settings", void 0),
-          (0, r.Cg)([u.sH], rn.prototype, "systemInfo", void 0),
-          (0, r.Cg)([u.sH], rn.prototype, "audioDevices", void 0),
-          (0, r.Cg)([u.sH], rn.prototype, "apps", void 0),
-          (0, r.Cg)([u.sH], rn.prototype, "probablyOwnedAppkeys", void 0),
-          (0, r.Cg)([u.sH], rn.prototype, "showInternalSettings", void 0),
-          (0, r.Cg)([u.sH], rn.prototype, "workshopStateChangedCanary", void 0),
-          (0, r.Cg)([u.sH], rn.prototype, "pendingChanges", void 0),
-          (0, r.Cg)([u.sH], rn.prototype, "route", void 0),
-          (0, r.Cg)([g], rn.prototype, "OpenWebSocketToHost", null),
-          (0, r.Cg)([g], rn.prototype, "OnWorkshopStateChangedMessage", null),
-          (0, r.Cg)([g], rn.prototype, "OnChangeRouteMessage", null),
-          (0, r.Cg)([g], rn.prototype, "OnAppConfigChangedMessage", null),
-          (0, r.Cg)([g], rn.prototype, "OnRefreshRateChangeMessage", null),
-          (0, r.Cg)([u.XI.bound], rn.prototype, "onHashChanged", null),
-          (0, r.Cg)([u.EW], rn.prototype, "routePage", null),
-          (0, r.Cg)([u.EW], rn.prototype, "routePageSection", null),
-          (0, r.Cg)([u.EW], rn.prototype, "routePageSectionParams", null),
-          (0, r.Cg)([u.XI], rn.prototype, "setRoutePage", null),
-          (0, r.Cg)([u.XI], rn.prototype, "setRoutePageSection", null),
-          (0, r.Cg)([u.XI], rn.prototype, "setRoutePageSectionParams", null),
-          (0, r.Cg)([u.XI], rn.prototype, "setRoute", null),
-          (0, r.Cg)([g], rn.prototype, "SetDashboardFadeSupression", null),
-          (0, r.Cg)([g], rn.prototype, "SetDashboardForceBoundsVisible", null),
-          (0, r.Cg)([g], rn.prototype, "SetRestartRequired", null),
-          (0, r.Cg)([g], rn.prototype, "OnWebSocketOpen", null),
-          (0, r.Cg)([g], rn.prototype, "OnWebSocketClose", null),
-          (0, r.Cg)([g], rn.prototype, "WebSocketSend", null),
-          (0, r.Cg)([g], rn.prototype, "OnWebSocketMessage", null),
-          (0, r.Cg)([u.XI], rn.prototype, "OnVRSettings", null),
-          (0, r.Cg)([u.XI], rn.prototype, "SetSettingValueFromServer", null),
-          (0, r.Cg)([u.XI], rn.prototype, "OnVRSettingsSchema", null),
-          (0, r.Cg)([u.XI.bound], rn.prototype, "ResetSettingsValue", null),
-          (0, r.Cg)([u.XI], rn.prototype, "ResetSettingsValues", null),
-          (0, r.Cg)([u.XI], rn.prototype, "SetSettingsValue", null),
+        (sn.SERVER_SETTING_MERGE_DEFER_DURATION = 1),
+          (0, r.Cg)([u.sH], sn.prototype, "connected", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "settingsSchema", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "settings", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "systemInfo", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "audioDevices", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "apps", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "probablyOwnedAppkeys", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "showInternalSettings", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "workshopStateChangedCanary", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "pendingChanges", void 0),
+          (0, r.Cg)([u.sH], sn.prototype, "route", void 0),
+          (0, r.Cg)([g], sn.prototype, "OpenWebSocketToHost", null),
+          (0, r.Cg)([g], sn.prototype, "OnWorkshopStateChangedMessage", null),
+          (0, r.Cg)([g], sn.prototype, "OnChangeRouteMessage", null),
+          (0, r.Cg)([g], sn.prototype, "OnAppConfigChangedMessage", null),
+          (0, r.Cg)([g], sn.prototype, "OnRefreshRateChangeMessage", null),
+          (0, r.Cg)([u.XI.bound], sn.prototype, "onHashChanged", null),
+          (0, r.Cg)([u.EW], sn.prototype, "routePage", null),
+          (0, r.Cg)([u.EW], sn.prototype, "routePageSection", null),
+          (0, r.Cg)([u.EW], sn.prototype, "routePageSectionParams", null),
+          (0, r.Cg)([u.XI], sn.prototype, "setRoutePage", null),
+          (0, r.Cg)([u.XI], sn.prototype, "setRoutePageSection", null),
+          (0, r.Cg)([u.XI], sn.prototype, "setRoutePageSectionParams", null),
+          (0, r.Cg)([u.XI], sn.prototype, "setRoute", null),
+          (0, r.Cg)([g], sn.prototype, "SetDashboardFadeSupression", null),
+          (0, r.Cg)([g], sn.prototype, "SetDashboardForceBoundsVisible", null),
+          (0, r.Cg)([g], sn.prototype, "SetRestartRequired", null),
+          (0, r.Cg)([g], sn.prototype, "OnWebSocketOpen", null),
+          (0, r.Cg)([g], sn.prototype, "OnWebSocketClose", null),
+          (0, r.Cg)([g], sn.prototype, "WebSocketSend", null),
+          (0, r.Cg)([g], sn.prototype, "OnWebSocketMessage", null),
+          (0, r.Cg)([u.XI], sn.prototype, "OnVRSettings", null),
+          (0, r.Cg)([u.XI], sn.prototype, "SetSettingValueFromServer", null),
+          (0, r.Cg)([u.XI], sn.prototype, "OnVRSettingsSchema", null),
+          (0, r.Cg)([u.XI.bound], sn.prototype, "ResetSettingsValue", null),
+          (0, r.Cg)([u.XI], sn.prototype, "ResetSettingsValues", null),
+          (0, r.Cg)([u.XI], sn.prototype, "SetSettingsValue", null),
           (0, r.Cg)(
             [u.XI],
-            rn.prototype,
+            sn.prototype,
             "SetSettingsStringValueWithoutSchema",
             null,
           );
-        const an = new rn();
-        window.VRSettingsState = an;
-        class sn {
+        const on = new sn();
+        window.VRSettingsState = on;
+        class ln {
           constructor() {
             (this.m_InputState = void 0),
               (this.m_KnownControllerTypes = u.sH.map()),
@@ -9227,47 +9240,47 @@ var CLSTAMP = "10715262";
             return null;
           }
         }
-        (0, r.Cg)([u.sH], sn.prototype, "m_InputState", void 0),
-          (0, r.Cg)([u.sH], sn.prototype, "m_KnownControllerTypes", void 0),
-          (0, r.Cg)([g], sn.prototype, "OnActionBindingsReloaded", null),
-          (0, r.Cg)([g], sn.prototype, "OnControllerTypeChanged", null),
-          (0, r.Cg)([u.EW], sn.prototype, "ConnectedDevices", null),
-          (0, r.Cg)([u.EW], sn.prototype, "ControllerTypes", null),
+        (0, r.Cg)([u.sH], ln.prototype, "m_InputState", void 0),
+          (0, r.Cg)([u.sH], ln.prototype, "m_KnownControllerTypes", void 0),
+          (0, r.Cg)([g], ln.prototype, "OnActionBindingsReloaded", null),
+          (0, r.Cg)([g], ln.prototype, "OnControllerTypeChanged", null),
+          (0, r.Cg)([u.EW], ln.prototype, "ConnectedDevices", null),
+          (0, r.Cg)([u.EW], ln.prototype, "ControllerTypes", null),
           (0, r.Cg)(
             [u.EW],
-            sn.prototype,
+            ln.prototype,
             "ShouldSendSystemButtonToAllApps",
             null,
           ),
-          (0, r.Cg)([u.EW], sn.prototype, "ShowHiddenInputs", null),
-          (0, r.Cg)([u.EW], sn.prototype, "IsSteamAvailable", null),
-          (0, r.Cg)([u.EW], sn.prototype, "BDevMode", null),
-          (0, r.Cg)([u.EW], sn.prototype, "IsValid", null),
-          (0, r.Cg)([u.EW], sn.prototype, "CurrentUserPersonaName", null),
-          (0, r.Cg)([g], sn.prototype, "GetControllerTypeInfo", null),
-          (0, r.Cg)([g], sn.prototype, "LocalizeControllerString", null),
-          (0, r.Cg)([g], sn.prototype, "LocalizeDriverString", null),
-          (0, r.Cg)([u.XI], sn.prototype, "UpdateControllerTypes", null),
-          (0, r.Cg)([u.XI], sn.prototype, "GetInputState", null),
-          (0, r.Cg)([u.EW], sn.prototype, "KnownControllerTypes", null),
+          (0, r.Cg)([u.EW], ln.prototype, "ShowHiddenInputs", null),
+          (0, r.Cg)([u.EW], ln.prototype, "IsSteamAvailable", null),
+          (0, r.Cg)([u.EW], ln.prototype, "BDevMode", null),
+          (0, r.Cg)([u.EW], ln.prototype, "IsValid", null),
+          (0, r.Cg)([u.EW], ln.prototype, "CurrentUserPersonaName", null),
+          (0, r.Cg)([g], ln.prototype, "GetControllerTypeInfo", null),
+          (0, r.Cg)([g], ln.prototype, "LocalizeControllerString", null),
+          (0, r.Cg)([g], ln.prototype, "LocalizeDriverString", null),
+          (0, r.Cg)([u.XI], ln.prototype, "UpdateControllerTypes", null),
+          (0, r.Cg)([u.XI], ln.prototype, "GetInputState", null),
+          (0, r.Cg)([u.EW], ln.prototype, "KnownControllerTypes", null),
           (0, r.Cg)(
             [g],
-            sn.prototype,
+            ln.prototype,
             "FindDeviceClassForControllerType",
             null,
           );
-        const on = new sn();
-        window.inputState = on;
-        const ln =
+        const cn = new ln();
+        window.inputState = cn;
+        const dn =
           window.addEventListener ||
           (n.g && n.g.addEventListener) ||
           (() => {});
-        let cn,
-          dn = [],
-          mn = (t, e, n) =>
-            dn.push({ error: t, cCallsitesToIgnore: e, strComponentStack: n });
-        const pn = !0;
-        class hn extends Error {
+        let mn,
+          pn = [],
+          hn = (t, e, n) =>
+            pn.push({ error: t, cCallsitesToIgnore: e, strComponentStack: n });
+        const un = !0;
+        class gn extends Error {
           constructor(...t) {
             super(...t), (this.name = "Assertion Failed");
           }
@@ -9276,38 +9289,38 @@ var CLSTAMP = "10715262";
           const t = console.assert;
           console.assert = (e, n, ...r) => {
             if (!e) {
-              const t = _n();
-              mn(new hn(Cn(n, ...r)), 2, t);
+              const t = Cn();
+              hn(new gn(fn(n, ...r)), 2, t);
             }
             t.apply(console, [e, n, ...r]);
           };
           const e = console.error;
           (console.error = (t, ...n) => {
-            const r = _n();
-            mn(new Error(Cn(t, ...n)), 1, r), e.apply(console, [t, ...n]);
+            const r = Cn();
+            hn(new Error(fn(t, ...n)), 1, r), e.apply(console, [t, ...n]);
           }),
             (console.clogerror = (t, n, ...r) => {
-              const a = _n();
-              mn(new Error(Cn(n, ...r)), t + 1, a), e.apply(console, [n, ...r]);
+              const a = Cn();
+              hn(new Error(fn(n, ...r)), t + 1, a), e.apply(console, [n, ...r]);
             }),
-            ln("error", (t) => {
-              mn(t.error, 0);
+            dn("error", (t) => {
+              hn(t.error, 0);
             }),
-            ln("unhandledrejection", (t) => {
-              mn(t.reason, 0);
+            dn("unhandledrejection", (t) => {
+              hn(t.reason, 0);
             }),
-            (cn = window.setTimeout(() => {
-              (dn = []), (mn = () => {});
+            (mn = window.setTimeout(() => {
+              (pn = []), (hn = () => {});
             }, 3e4));
         }
-        const un = { cCallsitesToIgnore: 0, bIncludeMessageInIdentifier: !1 },
-          gn = [
+        const _n = { cCallsitesToIgnore: 0, bIncludeMessageInIdentifier: !1 },
+          En = [
             "chrome-extension://",
             "HTMLDivElement.onreset \\(/market",
             "/.millennium/Dist",
             "Refused unauthorized RPC command",
           ];
-        function _n() {
+        function Cn() {
           try {
             const t = a.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED,
               e =
@@ -9330,18 +9343,18 @@ var CLSTAMP = "10715262";
             }
           } catch (t) {}
         }
-        class En {
+        class Sn {
           constructor(t = !0) {
             (this.m_transport = null),
               (this.m_rgErrorQueue = []),
               (this.m_sendTimer = null),
               (this.m_bReportingPaused = !1),
               (this.m_pauseTimer = void 0),
-              (this.m_fnGetReportingInterval = Ln),
+              (this.m_fnGetReportingInterval = Rn),
               (this.m_bEnabled = !0),
               (this.m_bInitialized = !1),
               t
-                ? (dn.forEach(
+                ? (pn.forEach(
                     ({
                       error: t,
                       cCallsitesToIgnore: e,
@@ -9352,14 +9365,14 @@ var CLSTAMP = "10715262";
                         strComponentStack: n,
                       }),
                   ),
-                  (mn = (t, e, n) =>
+                  (hn = (t, e, n) =>
                     this.ReportError(t, {
                       cCallsitesToIgnore: e,
                       strComponentStack: n,
                     })))
-                : (mn = () => {}),
-              (dn = []),
-              clearTimeout(cn),
+                : (hn = () => {}),
+              (pn = []),
+              clearTimeout(mn),
               window.setTimeout(() => {
                 this.m_bInitialized ||
                   ((this.m_bEnabled = !1), (this.m_rgErrorQueue = []));
@@ -9392,12 +9405,12 @@ var CLSTAMP = "10715262";
                   null
                 );
               try {
-                const n = Object.assign(Object.assign({}, un), e);
+                const n = Object.assign(Object.assign({}, _n), e);
                 if (!this.m_bEnabled) return null;
                 0;
                 const a = yield (function (t, e) {
                   try {
-                    return t.stack && t.stack.match(Sn)
+                    return t.stack && t.stack.match(Nn)
                       ? (function (t, e) {
                           return (0, r.sH)(this, void 0, void 0, function* () {
                             var n, r;
@@ -9413,7 +9426,7 @@ var CLSTAMP = "10715262";
                                       : n.split("\n")) && void 0 !== r
                                   ? r
                                   : [];
-                            let o = bn(i.filter((t) => !!t.match(Sn))[a]);
+                            let o = In(i.filter((t) => !!t.match(Nn))[a]);
                             s && (o = `${o} ${t.message}`);
                             const l = i
                               .map((t) => {
@@ -9431,12 +9444,12 @@ var CLSTAMP = "10715262";
                               .filter((t) => !!t);
                             return {
                               identifier: o,
-                              identifierHash: yield In(o),
+                              identifierHash: yield Mn(o),
                               message: l,
                             };
                           });
                         })(t, e)
-                      : t.stack && t.stack.match(fn)
+                      : t.stack && t.stack.match(vn)
                         ? (function (t, e) {
                             return (0, r.sH)(
                               this,
@@ -9456,7 +9469,7 @@ var CLSTAMP = "10715262";
                                           : n.split("\n")) && void 0 !== r
                                       ? r
                                       : [];
-                                let o = bn(i.filter((t) => !!t.match(fn))[a]);
+                                let o = In(i.filter((t) => !!t.match(vn))[a]);
                                 s && (o = `${o} ${t.message}`);
                                 const l = i
                                   .map((t) => {
@@ -9474,13 +9487,13 @@ var CLSTAMP = "10715262";
                                   .filter((t) => !!t);
                                 return {
                                   identifier: o,
-                                  identifierHash: yield In(o),
+                                  identifierHash: yield Mn(o),
                                   message: [t.message, ...l],
                                 };
                               },
                             );
                           })(t, e)
-                        : t.stack && t.stack.match(Nn)
+                        : t.stack && t.stack.match(yn)
                           ? (function (t, e) {
                               return (0, r.sH)(
                                 this,
@@ -9524,18 +9537,18 @@ var CLSTAMP = "10715262";
                                     .filter((t) => !!t);
                                   return {
                                     identifier: c,
-                                    identifierHash: yield In(c),
+                                    identifierHash: yield Mn(c),
                                     message: [t.message, ...d],
                                   };
                                 },
                               );
                             })(t, e)
-                          : (yn ||
+                          : (Pn ||
                               (console.warn(
                                 "Error reporter does not know how to parse generated stack:",
                               ),
                               console.warn(t.stack),
-                              (yn = !0)),
+                              (Pn = !0)),
                             null);
                   } catch (t) {
                     return (
@@ -9576,7 +9589,7 @@ var CLSTAMP = "10715262";
           BIsBlacklisted(t) {
             for (let e of t.message) {
               let n = JSON.stringify(e);
-              for (let e of gn) {
+              for (let e of En) {
                 const r = new RegExp(e);
                 if (n.match(r))
                   return console.warn("Report", t, "matched regex", e), !0;
@@ -9615,7 +9628,7 @@ var CLSTAMP = "10715262";
               ),
               n = Object.keys(e).map((t) => {
                 const { report: n, count: r } = e[t],
-                  a = new Ze();
+                  a = new en();
                 return (
                   a.set_count(r),
                   a.set_identifier(n.identifier + " " + n.identifierHash),
@@ -9627,7 +9640,7 @@ var CLSTAMP = "10715262";
                   a
                 );
               }),
-              r = new Je();
+              r = new tn();
             r.set_product(this.m_strProduct),
               r.set_version(this.m_strVersion),
               r.set_errors(n);
@@ -9637,14 +9650,14 @@ var CLSTAMP = "10715262";
                 ((null === VRHTML || void 0 === VRHTML
                   ? void 0
                   : VRHTML.HasHMD()) || t.push("no_hmd"),
-                null == an ? void 0 : an.systemInfo)
+                null == on ? void 0 : on.systemInfo)
               ) {
                 const e = -103;
-                an.systemInfo.os_type > 0
+                on.systemInfo.os_type > 0
                   ? t.push("windows")
-                  : an.systemInfo.os_type <= e && t.push("linux");
+                  : on.systemInfo.os_type <= e && t.push("linux");
               }
-              (null == on ? void 0 : on.IsSteamAvailable) || t.push("no_steam");
+              (null == cn ? void 0 : cn.IsSteamAvailable) || t.push("no_steam");
               const e =
                 null === VRHTML || void 0 === VRHTML
                   ? void 0
@@ -9667,10 +9680,10 @@ var CLSTAMP = "10715262";
             return this.m_strProduct;
           }
           get reporting_enabled() {
-            return pn;
+            return un;
           }
         }
-        function Cn(t, ...e) {
+        function fn(t, ...e) {
           if ("string" == typeof t && 0 === e.length) return t;
           return [t, ...e]
             .map((t) => {
@@ -9683,12 +9696,12 @@ var CLSTAMP = "10715262";
             })
             .join(", ");
         }
-        const Sn = /^\s*at .*(\S+:\d+|\(native\))/m,
-          fn = /(^|@)\S+:\d+/,
-          Nn = /.*\/bundle-[a-zA-Z0-9]+:\d+:\d+/;
-        let vn,
-          yn = !1;
-        function bn(t) {
+        const Nn = /^\s*at .*(\S+:\d+|\(native\))/m,
+          vn = /(^|@)\S+:\d+/,
+          yn = /.*\/bundle-[a-zA-Z0-9]+:\d+:\d+/;
+        let bn,
+          Pn = !1;
+        function In(t) {
           return (function (t) {
             const e = "https://",
               n = t.indexOf(e);
@@ -9704,19 +9717,19 @@ var CLSTAMP = "10715262";
             })(t),
           );
         }
-        const Pn = (t) => {
-          (vn = t), Bt.InstallErrorReportingStore(vn);
+        const Ln = (t) => {
+          (bn = t), Bt.InstallErrorReportingStore(bn);
         };
-        function In(t) {
+        function Mn(t) {
           return (0, r.sH)(this, void 0, void 0, function* () {
             try {
-              return (yield tn(t)).slice(0, 16);
+              return (yield nn(t)).slice(0, 16);
             } catch (t) {
               return "";
             }
           });
         }
-        function Ln() {
+        function Rn() {
           return (
             1e3 *
             ((t = 1),
@@ -9727,7 +9740,7 @@ var CLSTAMP = "10715262";
           );
           var t, e;
         }
-        class Mn {
+        class Dn {
           constructor(t) {
             this.m_strWebAPIBaseURL = t;
           }
@@ -9747,15 +9760,15 @@ var CLSTAMP = "10715262";
                 .catch((t) => {});
           }
         }
-        let Rn;
-        function Dn(t) {
+        let wn;
+        function xn(t) {
           return a.createElement(
             "div",
             { className: "FlexColumn BottomRight HalfWidth" },
             t.children,
           );
         }
-        function wn(t) {
+        function kn(t) {
           let e = "ButtonControl";
           return (
             t.focus && (e += " Focus"),
@@ -9766,28 +9779,28 @@ var CLSTAMP = "10715262";
             )
           );
         }
-        function xn() {
+        function Tn() {
           return a.createElement(
             "div",
             { className: "ControllerBackground" },
-            a.createElement("div", { className: "ViveTracker" }, Re(!1)),
-            a.createElement("div", { className: "Knuckles" }, Me(!1)),
-            a.createElement("div", { className: "ViveWand" }, De(!1)),
-            a.createElement("div", { className: "VRInkPilotEdition" }, De(!1)),
+            a.createElement("div", { className: "ViveTracker" }, we(!1)),
+            a.createElement("div", { className: "Knuckles" }, De(!1)),
+            a.createElement("div", { className: "ViveWand" }, xe(!1)),
+            a.createElement("div", { className: "VRInkPilotEdition" }, xe(!1)),
           );
         }
         (0, u.jK)({ enforceActions: "never" });
-        let kn = class extends a.Component {
+        let On = class extends a.Component {
           constructor(t) {
-            super(t), Be.init(), (this.state = { pairingDeviceInfo: null });
+            super(t), Ae.init(), (this.state = { pairingDeviceInfo: null });
           }
           render() {
             let t;
-            switch (Be.pairingState) {
-              case Ie.Idle:
+            switch (Ae.pairingState) {
+              case Me.Idle:
                 t = null;
                 break;
-              case Ie.FetchingInitialDongleList:
+              case Me.FetchingInitialDongleList:
                 t = a.createElement(
                   "div",
                   { className: "InitializingPage" },
@@ -9813,20 +9826,20 @@ var CLSTAMP = "10715262";
                     ),
                   ),
                   a.createElement(
-                    Dn,
+                    xn,
                     null,
-                    a.createElement(wn, {
-                      onClick: Be.Close,
+                    a.createElement(kn, {
+                      onClick: Ae.Close,
                       text: d("#pairing_button_cancel"),
                     }),
                   ),
                 );
                 break;
-              case Ie.NoDonglesAvailable:
+              case Me.NoDonglesAvailable:
                 t = a.createElement(
                   "div",
                   null,
-                  a.createElement(xn, null),
+                  a.createElement(Tn, null),
                   a.createElement(
                     "div",
                     { className: "Title Label" },
@@ -9849,20 +9862,20 @@ var CLSTAMP = "10715262";
                     ),
                   ),
                   a.createElement(
-                    Dn,
+                    xn,
                     null,
-                    a.createElement(wn, {
-                      onClick: Be.Close,
+                    a.createElement(kn, {
+                      onClick: Ae.Close,
                       text: d("#pairing_button_cancel"),
                     }),
                   ),
                 );
                 break;
-              case Ie.NoDonglesDetected:
+              case Me.NoDonglesDetected:
                 t = a.createElement(
                   "div",
                   null,
-                  a.createElement(xn, null),
+                  a.createElement(Tn, null),
                   a.createElement(
                     "div",
                     { className: "Title Label" },
@@ -9888,20 +9901,20 @@ var CLSTAMP = "10715262";
                     className: "FlexColumn BottomRight HalfWidth",
                   }),
                   a.createElement(
-                    Dn,
+                    xn,
                     null,
-                    a.createElement(wn, {
-                      onClick: Be.Close,
+                    a.createElement(kn, {
+                      onClick: Ae.Close,
                       text: d("#pairing_button_cancel"),
                     }),
                   ),
                 );
                 break;
-              case Ie.PairingFailed:
+              case Me.PairingFailed:
                 t = a.createElement(
                   "div",
                   null,
-                  a.createElement(xn, null),
+                  a.createElement(Tn, null),
                   a.createElement(
                     "div",
                     { className: "Title Label" },
@@ -9917,32 +9930,32 @@ var CLSTAMP = "10715262";
                     ),
                   ),
                   a.createElement(
-                    Dn,
+                    xn,
                     null,
-                    a.createElement(wn, {
-                      onClick: Be.Close,
+                    a.createElement(kn, {
+                      onClick: Ae.Close,
                       text: d("#pairing_button_cancel"),
                     }),
                   ),
                 );
                 break;
-              case Ie.UpdatingDongleListAfterPairing:
-              case Ie.Success:
-              case Ie.WaitingForDeviceToPair:
-              case Ie.TimedOut:
+              case Me.UpdatingDongleListAfterPairing:
+              case Me.Success:
+              case Me.WaitingForDeviceToPair:
+              case Me.TimedOut:
                 t =
-                  null != Be.pairingDevice
-                    ? Be.pairingDevice.render()
-                    : a.createElement(Fe, null);
+                  null != Ae.pairingDevice
+                    ? Ae.pairingDevice.render()
+                    : a.createElement(Ve, null);
                 break;
-              case Ie.DongleListReady:
-                t = a.createElement(Fe, null);
+              case Me.DongleListReady:
+                t = a.createElement(Ve, null);
                 break;
               default:
                 t = a.createElement(
                   "div",
                   null,
-                  a.createElement(xn, null),
+                  a.createElement(Tn, null),
                   a.createElement("div", { className: "Title Label" }, "Uh oh"),
                   a.createElement(
                     "div",
@@ -9954,10 +9967,10 @@ var CLSTAMP = "10715262";
                     ),
                   ),
                   a.createElement(
-                    Dn,
+                    xn,
                     null,
-                    a.createElement(wn, {
-                      onClick: Be.Close,
+                    a.createElement(kn, {
+                      onClick: Ae.Close,
                       text: d("#pairing_button_cancel"),
                     }),
                   ),
@@ -9970,7 +9983,7 @@ var CLSTAMP = "10715262";
             );
           }
         };
-        (kn = (0, r.Cg)([i.PA], kn)),
+        (On = (0, r.Cg)([i.PA], On)),
           (function (t, e) {
             e ||
               (e = (function () {
@@ -10070,17 +10083,17 @@ var CLSTAMP = "10715262";
             );
           })(
             ["lighthouse_web"],
-            null == be ? void 0 : be.GetSteamLanguage(),
+            null == Ie ? void 0 : Ie.GetSteamLanguage(),
           ).then(() => {
-            (vn || Pn(new En()), vn).Init(
+            (bn || Ln(new Sn()), bn).Init(
               "SteamVR",
               CLSTAMP,
-              (Rn || (Rn = new Mn("https://api.steampowered.com/")), Rn),
+              (wn || (wn = new Dn("https://api.steampowered.com/")), wn),
             ),
               (document.title = d("#pairing_window_title")),
               s
                 .H(document.getElementById("root"))
-                .render(a.createElement(kn, null));
+                .render(a.createElement(On, null));
           });
       },
     },

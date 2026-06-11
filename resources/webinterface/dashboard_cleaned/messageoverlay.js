@@ -870,6 +870,7 @@ var CLSTAMP = "steamdb";
               (_[(_.ThisSteamVR = 1)] = "ThisSteamVR"),
               (_[(_.AnotherSteamVR = 2)] = "AnotherSteamVR"),
               (_[(_.AnotherRuntime = 3)] = "AnotherRuntime"),
+              (_[(_.ThisSteamVR64BitOnly = 4)] = "ThisSteamVR64BitOnly"),
               (_[(_.Error = -1)] = "Error");
           })(_ || (_ = {})),
           (function (_) {

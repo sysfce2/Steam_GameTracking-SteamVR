@@ -185,6 +185,7 @@ message CVRGamepadUI_Message_SetHMDSettings_Request {
 	optional string performance_profile_value = 7;
 	optional bool perf_graph_in_hmd = 8;
 	optional bool record_vr_stats = 9;
+	optional bool record_tracking = 10;
 }
 
 message CVRGamepadUI_Message_SetHMDSettings_Response {
@@ -398,6 +399,7 @@ message CVRGamepadUIShared_PathProperty_HMDSettings {
 	optional string performance_profile_value = 50;
 	optional bool perf_graph_in_hmd_value = 51;
 	optional bool record_vr_stats_value = 52;
+	optional bool record_tracking_value = 53;
 }
 
 message CVRGamepadUIShared_PathProperty_PowerOptions {

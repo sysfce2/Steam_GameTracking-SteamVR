@@ -13,7 +13,7 @@ var CLSTAMP = "steamdb";
       "use strict";
       __webpack_require__._(module_exports),
         __webpack_require__._(module_exports, {
-          Observer: () => _._,
+          Observer: () => _,
           _observerFinalizationRegistry: () => _._,
           clearTimers: () => _,
           enableStaticRendering: () => _._,
@@ -21,9 +21,9 @@ var CLSTAMP = "steamdb";
           isUsingStaticRendering: () => _._,
           observer: () => _._,
           observerBatching: () => _,
-          useAsObservableSource: () => _._,
-          useLocalObservable: () => _._,
-          useLocalStore: () => _._,
+          useAsObservableSource: () => _,
+          useLocalObservable: () => _,
+          useLocalStore: () => _,
           useObserver: () => _,
           useStaticRendering: () => _,
         });
@@ -39,18 +39,59 @@ var CLSTAMP = "steamdb";
             reactionScheduler: _,
           });
       }
-      var _,
-        _ = function () {
+      var _ = function () {
           return !0;
         },
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
+      function _(_) {
+        var _ = _.children,
+          _ = _.render;
+        _ &&
+          _ &&
+          console.error(
+            "MobX Observer: Do not use children and render in the same time in `Observer`",
+          );
+        var _ = _ || _;
+        return "function" != typeof _ ? null : (0, _._)(_);
+      }
+      _.displayName = "Observer";
+      var _,
+        _ = __webpack_require__("chunkid");
+      function _(_, _) {
+        return (0, _.useState)(function () {
+          return (0, _.observable)(_(), _, {
+            autoBind: !0,
+          });
+        })[0];
+      }
+      function _(_) {
+        var _ = (0, _.useState)(function () {
+          return (0, _.observable)(
+            _,
+            {},
+            {
+              deep: !1,
+            },
+          );
+        })[0];
+        return (
+          (0, _.runInAction)(function () {
+            Object.assign(_, _);
+          }),
+          _
+        );
+      }
+      function _(_, _) {
+        var _ = _ && _(_);
+        return (0, _.useState)(function () {
+          return (0, _.observable)(_(_), void 0, {
+            autoBind: !0,
+          });
+        })[0];
+      }
       _(_._);
       var _ =
         null !== (_ = _._.finalizeAllImmediately) && void 0 !== _

@@ -3,203 +3,6 @@ var CLSTAMP = "steamdb";
   [386],
   {
     chunkid: (module, module_exports, __webpack_require__) => {
-      var _,
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = (_ = _) && "object" == typeof _ && "default" in _ ? _.default : _,
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
-      if (!_.useState)
-        throw new Error("mobx-react-lite requires React with Hooks support");
-      if (!_.makeObservable)
-        throw new Error(
-          "mobx-react-lite@3 requires mobx at least version 6 to be available",
-        );
-      function _(_) {
-        _();
-      }
-      function _(_) {
-        _ || (_ = _),
-          _.configure({
-            reactionScheduler: _,
-          });
-      }
-      function _(_) {
-        return _.getDependencyTree(_);
-      }
-      var _ = !1;
-      function _(_) {
-        _ = _;
-      }
-      function _() {
-        return _;
-      }
-      var _,
-        _,
-        _ = new (
-          "undefined" != typeof FinalizationRegistry
-            ? FinalizationRegistry
-            : (function () {
-                function _(_) {
-                  var _ = this;
-                  (this.finalize = void 0),
-                    (this.registrations = new Map()),
-                    (this.sweepTimeout = void 0),
-                    (this.sweep = function (_) {
-                      void 0 === _ && (_ = 1e4),
-                        clearTimeout(_.sweepTimeout),
-                        (_.sweepTimeout = void 0);
-                      var _ = Date.now();
-                      _.registrations.forEach(function (_, _) {
-                        _ - _.registeredAt >= _ &&
-                          (_.finalize(_.value), _.registrations.delete(_));
-                      }),
-                        _.registrations.size > 0 && _.scheduleSweep();
-                    }),
-                    (this.finalizeAllImmediately = function () {
-                      _.sweep(0);
-                    }),
-                    (this.finalize = _);
-                }
-                var _ = _.prototype;
-                return (
-                  (_.register = function (_, _, _) {
-                    this.registrations.set(_, {
-                      value: _,
-                      registeredAt: Date.now(),
-                    }),
-                      this.scheduleSweep();
-                  }),
-                  (_.unregister = function (_) {
-                    this.registrations.delete(_);
-                  }),
-                  (_.scheduleSweep = function () {
-                    void 0 === this.sweepTimeout &&
-                      (this.sweepTimeout = setTimeout(this.sweep, 1e4));
-                  }),
-                  _
-                );
-              })()
-        )(function (_) {
-          var _;
-          null == (_ = _.reaction) || _.dispose(), (_.reaction = null);
-        });
-      function _(_) {
-        _.reaction = new _.Reaction("observer" + _.name, function () {
-          (_.stateVersion = Symbol()),
-            null == _.onStoreChange || _.onStoreChange();
-        });
-      }
-      function _(_, _) {
-        if ((void 0 === _ && (_ = "observed"), _())) return _();
-        var _ = _.useRef(null);
-        if (!_.current) {
-          var _ = {
-            reaction: null,
-            onStoreChange: null,
-            stateVersion: Symbol(),
-            name: _,
-            subscribe: function (_) {
-              return (
-                _.unregister(_),
-                (_.onStoreChange = _),
-                _.reaction || (_(_), (_.stateVersion = Symbol())),
-                function () {
-                  var _;
-                  (_.onStoreChange = null),
-                    null == (_ = _.reaction) || _.dispose(),
-                    (_.reaction = null);
-                }
-              );
-            },
-            getSnapshot: function () {
-              return _.stateVersion;
-            },
-          };
-          _.current = _;
-        }
-        var _,
-          _,
-          _ = _.current;
-        if (
-          (_.reaction || (_(_), _.register(_, _, _)),
-          _.useDebugValue(_.reaction, _),
-          _.useSyncExternalStore(_.subscribe, _.getSnapshot, _.getSnapshot),
-          _.reaction.track(function () {
-            try {
-              _ = _();
-            } catch (_) {
-              _ = _;
-            }
-          }),
-          _)
-        )
-          throw _;
-        return _;
-      }
-      var _,
-        _ = "function" == typeof Symbol && Symbol.for,
-        _ =
-          null !=
-            (_ =
-              null ==
-              (_ = Object.getOwnPropertyDescriptor(function () {}, "name"))
-                ? void 0
-                : _.configurable) && _,
-        _ = _
-          ? Symbol.for("react.forward_ref")
-          : "function" == typeof _.forwardRef &&
-            _.forwardRef(function (_) {
-              return null;
-            }).$$typeof,
-        _ = _
-          ? Symbol.for("react.memo")
-          : "function" == typeof _.memo &&
-            _.memo(function (_) {
-              return null;
-            }).$$typeof,
-        _ = {
-          $$typeof: !0,
-          render: !0,
-          compare: !0,
-          type: !0,
-          displayName: !0,
-        };
-      function _(_) {
-        var _ = _.children,
-          _ = _.render;
-        _ &&
-          _ &&
-          console.error(
-            "MobX Observer: Do not use children and render in the same time in `Observer`",
-          );
-        var _ = _ || _;
-        return "function" != typeof _ ? null : _(_);
-      }
-      function _(_) {
-        var _ = _.useState(function () {
-          return _.observable(
-            _,
-            {},
-            {
-              deep: !1,
-            },
-          );
-        })[0];
-        return (
-          _.runInAction(function () {
-            Object.assign(_, _);
-          }),
-          _
-        );
-      }
-      (_.displayName = "Observer"), _(_.unstable_batchedUpdates);
-      var _ = null != (_ = _.finalizeAllImmediately) ? _ : function () {};
-      module_exports.useObserver = function (_, _) {
-        return void 0 === _ && (_ = "observed"), _(_, _);
-      };
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
       __webpack_require__._(module_exports, {
         _: () => _,
       });
@@ -902,6 +705,14 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
       });
       const _ = "openvr.tool.steamvr_environments",
         _ = "system.generated.steam.exe",
@@ -962,6 +773,7 @@ var CLSTAMP = "steamdb";
         _ = "/settings/dashboard/lastAccessedExternalOverlayKey",
         _ = "/settings/internal/dashboardInitialOverlay",
         _ = "/settings/dashboard/position_2",
+        _ = "/settings/dashboard/laserLength",
         _ = "/settings/dashboard/theaterCurvature",
         _ = "/settings/dashboard/theaterScreenSize",
         _ = "/settings/dashboard/theaterScreenAlignment",
@@ -981,8 +793,14 @@ var CLSTAMP = "steamdb";
         _ = "/settings/steamvr/unifiedPerAppRefreshRateAndThrottling",
         _ = "/settings/steamvr/preferredRefreshRate",
         _ = "/settings/steamvr/motionSmoothing",
+        _ = "/settings/steamvr/framesToThrottle",
+        _ = "/settings/steamvr/fovScale",
+        _ = "/settings/steamvr/performanceProfile",
         _ = "/settings/perfcheck/perfGraphInHMD",
         _ = "/settings/perfcheck/recordStats",
+        _ = "/settings/steamvr/environmentMode",
+        _ = "/settings/steamvr/backgroundUseDomeProjection",
+        _ = "/settings/steamvr/auroraPalette",
         _ = "/settings/dashboard/expectSteam",
         _ = "/settings/dashboard/allowLegacyControlBar",
         _ = "/settings/openxr/metaUnityPluginCompatibility",
@@ -996,6 +814,7 @@ var CLSTAMP = "steamdb";
         _ = "/steam/websocketconnected",
         _ = "/steam/oobe",
         _ = "/steamvr/fakeoobe",
+        _ = "/steam/locked",
         _ = "/steam/guidedtour",
         _ = "/settings/perfcheck/showPerfCriteriaSettings",
         _ = "/settings/perfcheck/drawPerfCriteriaOverlay",
@@ -1158,6 +977,24 @@ var CLSTAMP = "steamdb";
             : 0;
         }
         get ignoreResizeAmount() {
+          var _, _, _;
+          if (
+            null !==
+              (_ = _._.GetOverlayFlag(
+                null ===
+                  (_ =
+                    null === (_ = null == this ? void 0 : this.frame) ||
+                    void 0 === _
+                      ? void 0
+                      : _.activePage) || void 0 === _
+                  ? void 0
+                  : _.summonOverlayKey,
+                67108864,
+              )) &&
+            void 0 !== _ &&
+            _
+          )
+            return !0;
           switch (this.m_eAllowResizing) {
             case 0:
               return !0;
@@ -1175,6 +1012,24 @@ var CLSTAMP = "steamdb";
               : void 0;
         }
         get showResizeHandle() {
+          var _, _, _;
+          if (
+            null !==
+              (_ = _._.GetOverlayFlag(
+                null ===
+                  (_ =
+                    null === (_ = null == this ? void 0 : this.frame) ||
+                    void 0 === _
+                      ? void 0
+                      : _.activePage) || void 0 === _
+                  ? void 0
+                  : _.summonOverlayKey,
+                67108864,
+              )) &&
+            void 0 !== _ &&
+            _
+          )
+            return !1;
           switch (this.m_eAllowResizing) {
             case 0:
               return !1;
@@ -1358,6 +1213,7 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       const _ = new _._("Frame");
       var _;
@@ -1385,6 +1241,7 @@ var CLSTAMP = "steamdb";
               bVisibleInDashboardBar: !0,
               bVisibleInDashboardHamburgerMenu: !1,
             }),
+            (this.m_bVisibleWhenLocked = !1),
             (this.m_rgMenuItems_LeftFrameMenu = []),
             (this.m_rgMenuItems_TabHoverMenu = []),
             (this.m_rgControlsItems_BottomFrameControls = []),
@@ -1450,6 +1307,12 @@ var CLSTAMP = "steamdb";
                 enum: 0,
               };
         }
+        get visibleWhenLocked() {
+          return this.m_bVisibleWhenLocked;
+        }
+        SetVisibleWhenLocked(_) {
+          this.m_bVisibleWhenLocked = _;
+        }
         SetCloseButton(_, _, _) {
           (this.m_fnOnCloseRequested = _),
             (this.m_sCloseButtonLabel = _),
@@ -1494,6 +1357,7 @@ var CLSTAMP = "steamdb";
         }
         get isCurrentlyVisible() {
           if (this.state != _.Alive) return !1;
+          if (_._.isLocked && !this.m_bVisibleWhenLocked) return !1;
           switch (this.docking.dockLocation) {
             case _._.Dashboard:
               return (
@@ -1558,6 +1422,7 @@ var CLSTAMP = "steamdb";
           var _, _;
           return (
             !_._.isOOBE &&
+            !_._.isLocked &&
             (null ==
               (null === (_ = this.activePage) || void 0 === _
                 ? void 0
@@ -1875,7 +1740,8 @@ var CLSTAMP = "steamdb";
             })(_),
             this.shouldRenderFrameControls ||
               (_.controls.items_for_bottom_frame_controls = void 0),
-            _._.isOOBE && (_.menu.items_for_left_frame_menu = void 0);
+            (_._.isOOBE || _._.isLocked) &&
+              (_.menu.items_for_left_frame_menu = void 0);
           const _ = new Set();
           return (
             null === (_ = _.menu.items_for_left_frame_menu) ||
@@ -1933,6 +1799,7 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.observable], _.prototype, "m_unFrameMenuPopupID", void 0),
         (0, _._)([_.observable.struct], _.prototype, "m_Icon", void 0),
         (0, _._)([_.observable.struct], _.prototype, "m_TabVisibility", void 0),
+        (0, _._)([_.observable], _.prototype, "m_bVisibleWhenLocked", void 0),
         (0, _._)(
           [_.observable],
           _.prototype,
@@ -1981,6 +1848,8 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.computed], _.prototype, "title", null),
         (0, _._)([_.action], _.prototype, "SetIcon", null),
         (0, _._)([_.computed.struct], _.prototype, "icon", null),
+        (0, _._)([_.computed], _.prototype, "visibleWhenLocked", null),
+        (0, _._)([_.action], _.prototype, "SetVisibleWhenLocked", null),
         (0, _._)([_.action], _.prototype, "SetCloseButton", null),
         (0, _._)([_.computed], _.prototype, "canRequestClose", null),
         (0, _._)([_.computed], _.prototype, "closeButtonLabel", null),
@@ -2047,6 +1916,7 @@ var CLSTAMP = "steamdb";
               closeButtonIcon: _,
               forcedUniformDashboardHeight: _,
               allowResizing: _,
+              visibleWhenSteamLocked: _,
             } = _,
             _ = _.useMemo(() => _._.CreateCFrame(), []);
           (0, _._)(_, _);
@@ -2073,9 +1943,10 @@ var CLSTAMP = "steamdb";
                   _.SetCloseButton(_ ? _.current : void 0, _, _),
                   _.size.ForceUniformDashboardHeight(_),
                   null != _ && _.size.SetResizingAllowed(_),
+                  _.SetVisibleWhenLocked(null != _ && _),
                   _.state == _.Uninitialized && _.Init();
               });
-            }, [_, _, _, _, _, _, _, _, _, _]),
+            }, [_, _, _, _, _, _, _, _, _, _, _]),
             _.useEffect(() => () => _.DestroyFrame(), [_]);
           let _ = _._.GetDockLocationTransformID(
             _.docking.dockLocation,
@@ -3704,12 +3575,10 @@ var CLSTAMP = "steamdb";
             ? _
             : 1;
         const _ =
-            1 ==
-            (null !== (_ = null == _ ? void 0 : _.sort_order) && void 0 !== _
+            null !== (_ = null == _ ? void 0 : _.sort_order) && void 0 !== _
               ? _
-              : 0)
-              ? 101
-              : void 0,
+              : 0,
+          _ = 1 == _ ? 101 : void 0,
           _ = (function (_) {
             var _, _, _;
             const _ =
@@ -3730,10 +3599,13 @@ var CLSTAMP = "steamdb";
               ? -0.5
               : 0;
           })(_);
-        _.useLayoutEffect(
-          () => _._.Current().forceLayoutUpdate(),
-          [_._, _._, _._, _._],
-        );
+        let _ = !1,
+          _ = !1;
+        1 == _ && ((_ = !0), (_ = !0)),
+          _.useLayoutEffect(
+            () => _._.Current().forceLayoutUpdate(),
+            [_._, _._, _._, _._],
+          );
         const _ = _.createElement(
           _,
           {
@@ -3778,6 +3650,8 @@ var CLSTAMP = "steamdb";
                     uv_min: _,
                     uv_max: _,
                     sort_order: _,
+                    no_depth_test: _,
+                    no_depth_write: _,
                     frame_resize_scale_factor: 1,
                   },
                   _,

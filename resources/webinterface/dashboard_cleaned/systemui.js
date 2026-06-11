@@ -173,6 +173,7 @@ var CLSTAMP = "steamdb";
           _: () => _._,
           _: () => _._,
           _: () => _._,
+          _: () => _._,
         });
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
@@ -1493,6 +1494,14 @@ var CLSTAMP = "steamdb";
           _: () => _,
           _: () => _,
           _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
         });
         const _ = "openvr.tool.steamvr_environments",
           _ = "system.generated.steam.exe",
@@ -1555,6 +1564,7 @@ var CLSTAMP = "steamdb";
           _ = "/settings/dashboard/lastAccessedExternalOverlayKey",
           _ = "/settings/internal/dashboardInitialOverlay",
           _ = "/settings/dashboard/position_2",
+          _ = "/settings/dashboard/laserLength",
           _ = "/settings/dashboard/theaterCurvature",
           _ = "/settings/dashboard/theaterScreenSize",
           _ = "/settings/dashboard/theaterScreenAlignment",
@@ -1574,8 +1584,14 @@ var CLSTAMP = "steamdb";
           _ = "/settings/steamvr/unifiedPerAppRefreshRateAndThrottling",
           _ = "/settings/steamvr/preferredRefreshRate",
           _ = "/settings/steamvr/motionSmoothing",
+          _ = "/settings/steamvr/framesToThrottle",
+          _ = "/settings/steamvr/fovScale",
+          _ = "/settings/steamvr/performanceProfile",
           _ = "/settings/perfcheck/perfGraphInHMD",
           _ = "/settings/perfcheck/recordStats",
+          _ = "/settings/steamvr/environmentMode",
+          _ = "/settings/steamvr/backgroundUseDomeProjection",
+          _ = "/settings/steamvr/auroraPalette",
           _ = "/settings/dashboard/expectSteam",
           _ = "/settings/dashboard/allowLegacyControlBar",
           _ = "/settings/openxr/metaUnityPluginCompatibility",
@@ -1589,6 +1605,7 @@ var CLSTAMP = "steamdb";
           _ = "/steam/websocketconnected",
           _ = "/steam/oobe",
           _ = "/steamvr/fakeoobe",
+          _ = "/steam/locked",
           _ = "/steam/guidedtour",
           _ = "/settings/perfcheck/showPerfCriteriaSettings",
           _ = "/settings/perfcheck/drawPerfCriteriaOverlay",
@@ -1821,6 +1838,24 @@ var CLSTAMP = "steamdb";
               : 0;
           }
           get ignoreResizeAmount() {
+            var _, _, _;
+            if (
+              null !==
+                (_ = _._.GetOverlayFlag(
+                  null ===
+                    (_ =
+                      null === (_ = null == this ? void 0 : this.frame) ||
+                      void 0 === _
+                        ? void 0
+                        : _.activePage) || void 0 === _
+                    ? void 0
+                    : _.summonOverlayKey,
+                  67108864,
+                )) &&
+              void 0 !== _ &&
+              _
+            )
+              return !0;
             switch (this.m_eAllowResizing) {
               case 0:
                 return !0;
@@ -1838,6 +1873,24 @@ var CLSTAMP = "steamdb";
                 : void 0;
           }
           get showResizeHandle() {
+            var _, _, _;
+            if (
+              null !==
+                (_ = _._.GetOverlayFlag(
+                  null ===
+                    (_ =
+                      null === (_ = null == this ? void 0 : this.frame) ||
+                      void 0 === _
+                        ? void 0
+                        : _.activePage) || void 0 === _
+                    ? void 0
+                    : _.summonOverlayKey,
+                  67108864,
+                )) &&
+              void 0 !== _ &&
+              _
+            )
+              return !1;
             switch (this.m_eAllowResizing) {
               case 0:
                 return !1;
@@ -2037,6 +2090,7 @@ var CLSTAMP = "steamdb";
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
         const _ = new _._("Frame");
         var _;
@@ -2064,6 +2118,7 @@ var CLSTAMP = "steamdb";
                 bVisibleInDashboardBar: !0,
                 bVisibleInDashboardHamburgerMenu: !1,
               }),
+              (this.m_bVisibleWhenLocked = !1),
               (this.m_rgMenuItems_LeftFrameMenu = []),
               (this.m_rgMenuItems_TabHoverMenu = []),
               (this.m_rgControlsItems_BottomFrameControls = []),
@@ -2129,6 +2184,12 @@ var CLSTAMP = "steamdb";
                   enum: 0,
                 };
           }
+          get visibleWhenLocked() {
+            return this.m_bVisibleWhenLocked;
+          }
+          SetVisibleWhenLocked(_) {
+            this.m_bVisibleWhenLocked = _;
+          }
           SetCloseButton(_, _, _) {
             (this.m_fnOnCloseRequested = _),
               (this.m_sCloseButtonLabel = _),
@@ -2174,6 +2235,7 @@ var CLSTAMP = "steamdb";
           }
           get isCurrentlyVisible() {
             if (this.state != _.Alive) return !1;
+            if (_._.isLocked && !this.m_bVisibleWhenLocked) return !1;
             switch (this.docking.dockLocation) {
               case _._.Dashboard:
                 return (
@@ -2239,6 +2301,7 @@ var CLSTAMP = "steamdb";
             var _, _;
             return (
               !_._.isOOBE &&
+              !_._.isLocked &&
               (null ==
                 (null === (_ = this.activePage) || void 0 === _
                   ? void 0
@@ -2558,7 +2621,8 @@ var CLSTAMP = "steamdb";
               })(_),
               this.shouldRenderFrameControls ||
                 (_.controls.items_for_bottom_frame_controls = void 0),
-              _._.isOOBE && (_.menu.items_for_left_frame_menu = void 0);
+              (_._.isOOBE || _._.isLocked) &&
+                (_.menu.items_for_left_frame_menu = void 0);
             const _ = new Set();
             return (
               null === (_ = _.menu.items_for_left_frame_menu) ||
@@ -2622,6 +2686,7 @@ var CLSTAMP = "steamdb";
             "m_TabVisibility",
             void 0,
           ),
+          (0, _._)([_.observable], _.prototype, "m_bVisibleWhenLocked", void 0),
           (0, _._)(
             [_.observable],
             _.prototype,
@@ -2675,6 +2740,8 @@ var CLSTAMP = "steamdb";
           (0, _._)([_.computed], _.prototype, "title", null),
           (0, _._)([_.action], _.prototype, "SetIcon", null),
           (0, _._)([_.computed.struct], _.prototype, "icon", null),
+          (0, _._)([_.computed], _.prototype, "visibleWhenLocked", null),
+          (0, _._)([_.action], _.prototype, "SetVisibleWhenLocked", null),
           (0, _._)([_.action], _.prototype, "SetCloseButton", null),
           (0, _._)([_.computed], _.prototype, "canRequestClose", null),
           (0, _._)([_.computed], _.prototype, "closeButtonLabel", null),
@@ -2746,6 +2813,7 @@ var CLSTAMP = "steamdb";
                 closeButtonIcon: _,
                 forcedUniformDashboardHeight: _,
                 allowResizing: _,
+                visibleWhenSteamLocked: _,
               } = _,
               _ = _.useMemo(() => _._.CreateCFrame(), []);
             (0, _._)(_, _);
@@ -2772,9 +2840,10 @@ var CLSTAMP = "steamdb";
                     _.SetCloseButton(_ ? _.current : void 0, _, _),
                     _.size.ForceUniformDashboardHeight(_),
                     null != _ && _.size.SetResizingAllowed(_),
+                    _.SetVisibleWhenLocked(null != _ && _),
                     _.state == _.Uninitialized && _.Init();
                 });
-              }, [_, _, _, _, _, _, _, _, _, _]),
+              }, [_, _, _, _, _, _, _, _, _, _, _]),
               _.useEffect(() => () => _.DestroyFrame(), [_]);
             let _ = _._.GetDockLocationTransformID(
               _.docking.dockLocation,
@@ -4459,12 +4528,10 @@ var CLSTAMP = "steamdb";
               ? _
               : 1;
           const _ =
-              1 ==
-              (null !== (_ = null == _ ? void 0 : _.sort_order) && void 0 !== _
+              null !== (_ = null == _ ? void 0 : _.sort_order) && void 0 !== _
                 ? _
-                : 0)
-                ? 101
-                : void 0,
+                : 0,
+            _ = 1 == _ ? 101 : void 0,
             _ = (function (_) {
               var _, _, _;
               const _ =
@@ -4486,10 +4553,13 @@ var CLSTAMP = "steamdb";
                 ? -0.5
                 : 0;
             })(_);
-          _.useLayoutEffect(
-            () => _._.Current().forceLayoutUpdate(),
-            [_._, _._, _._, _._],
-          );
+          let _ = !1,
+            _ = !1;
+          1 == _ && ((_ = !0), (_ = !0)),
+            _.useLayoutEffect(
+              () => _._.Current().forceLayoutUpdate(),
+              [_._, _._, _._, _._],
+            );
           const _ = _.createElement(
             _,
             {
@@ -4535,6 +4605,8 @@ var CLSTAMP = "steamdb";
                       uv_min: _,
                       uv_max: _,
                       sort_order: _,
+                      no_depth_test: _,
+                      no_depth_write: _,
                       frame_resize_scale_factor: 1,
                     },
                     _,
@@ -5653,7 +5725,8 @@ var CLSTAMP = "steamdb";
               );
             }
           });
-        var _ = __webpack_require__("chunkid");
+        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
         (0, _._)(function () {
           return _.createElement(
             "div",
@@ -5715,7 +5788,7 @@ var CLSTAMP = "steamdb";
         });
         const _ = (0, _._)(function () {
           return _._.m_bRequestTravelModeTrackingPopupTriggered
-            ? (_._.isOOBE || _._.bareSessionMode, null)
+            ? (_._.isOOBE || _._.isLocked || _._.bareSessionMode, null)
             : null;
         });
         var _,
@@ -5959,6 +6032,8 @@ var CLSTAMP = "steamdb";
                     height: _.kPanelHeight,
                     interactive: !1,
                     sort_order: 1e3,
+                    no_depth_test: !0,
+                    no_depth_write: !0,
                     debug_name: "ipd",
                   },
                   _.createElement(
@@ -6483,6 +6558,8 @@ var CLSTAMP = "steamdb";
                       sort_order: 1e3,
                       debug_name: "persistent_notifications",
                       key: "persistent_notifications",
+                      no_depth_test: !0,
+                      no_depth_write: !0,
                     },
                     _.createElement(
                       "div",
@@ -6529,7 +6606,7 @@ var CLSTAMP = "steamdb";
             0;
           }
           render() {
-            var _, _, _, _, _;
+            var _, _, _, _;
             const _ =
                 null !==
                   (_ = _._.settings.get(
@@ -6537,11 +6614,7 @@ var CLSTAMP = "steamdb";
                   )) &&
                 void 0 !== _ &&
                 _,
-              _ =
-                null !==
-                  (_ = _._.settings.get("/settings/steamvr/auroraPlayspace")) &&
-                void 0 !== _ &&
-                _,
+              _ = _._.settings.get(_._),
               _ =
                 null !==
                   (_ = _._.settings.get(
@@ -6565,9 +6638,11 @@ var CLSTAMP = "steamdb";
                 _: 0.001,
                 _: 0.03,
                 _: 0.157,
-              };
+              },
+              _ = _ == _._.Aurora;
             if (
               _._.isOOBE ||
+              _._.isLocked ||
               _._.showLoadingThrobberOrBootOverlay ||
               "recovery" == _._.bareSessionMode
             ) {
@@ -7870,7 +7945,7 @@ var CLSTAMP = "steamdb";
                     _._[(0, _._)()],
                 );
               console.log("Bootstrapping " + _, _);
-              const _ = 1e3 * (null !== (_ = 1780693477) ? _ : 0);
+              const _ = 1e3 * (null !== (_ = 1781211703) ? _ : 0);
               console.log(
                 "SteamVR Version Info: " +
                   JSON.stringify({
@@ -7911,6 +7986,7 @@ var CLSTAMP = "steamdb";
                   ),
                   _._.Init(!0),
                   _._.Init(!0),
+                  _._.Init(),
                   _._.Init(),
                   _._.Init(),
                   _._.Init(),
@@ -9866,6 +9942,7 @@ var CLSTAMP = "steamdb";
     (() => {
       var _ = {
         378: 0,
+        386: 0,
         527: 0,
         500: 0,
         17: 0,

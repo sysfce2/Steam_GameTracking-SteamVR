@@ -246,8 +246,9 @@ var CLSTAMP = "steamdb";
             (_.properties.solid = this.props.solid),
             (_.properties.culling = this.props.culling),
             (_.properties.stencil_mask = this.props.stencil_mask),
-            (_.properties["no-depth-write"] = this.props["no-depth-write"]),
-            (_.properties["no-depth-test"] = this.props["no-depth-test"]),
+            (_.properties["no-depth-write"] = this.props.no_depth_write),
+            (_.properties["no-depth-test"] = this.props.no_depth_test),
+            (_.properties.shader = this.props.eShader),
             [_, _]
           );
         }
@@ -583,10 +584,7 @@ var CLSTAMP = "steamdb";
                     _,
                     "acceleration-factor-scale-term",
                   )),
-                  (_.properties["remote-transform-tx"] = _(
-                    _,
-                    "remote-transform-tx",
-                  )),
+                  (_.properties["stored-transform"] = _(_, "stored-transform")),
                   (_.properties["reset-on-recenter"] = _(
                     _,
                     "reset-on-recenter",
