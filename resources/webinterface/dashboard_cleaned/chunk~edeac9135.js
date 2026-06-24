@@ -1,373 +1,723 @@
 var CLSTAMP = "steamdb";
 (self.webpackChunkvrwebui = self.webpackChunkvrwebui || []).push([
-  [384],
+  [906, 458],
   {
     chunkid: (module, module_exports, __webpack_require__) => {
-      var _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
-      class _ extends _._ {
-        constructor(_) {
-          super(_),
-            (this.m_latchedPosition = null),
-            super.setBuildNodeOverride(this.buildNode);
-        }
-        getNodeType() {
-          return "panel-anchor";
-        }
-        relatch() {
-          this.m_latchedPosition = null;
-        }
-        buildNode(_, _) {
-          var _, _;
-          if (!_.currentPanel && !_.bInsideReparentedPanel)
-            return [
-              Object.assign(Object.assign({}, _), {
-                bShouldAbort: !0,
-              }),
-              null,
-            ];
-          let _ = null;
-          "object" == typeof this.props.location
-            ? (_ = (0, _._)(this.props.location, {
-                _: 0,
-                _: 0,
-              }))
-            : "number" == typeof this.props.location &&
-              (_ = (0, _._)(this.props.location));
-          let _ = this.createSgNode(_);
-          if (this.props.latched && null !== this.m_latchedPosition)
-            (_.properties["anchor-u"] = this.m_latchedPosition._),
-              (_.properties["anchor-v"] = this.m_latchedPosition._);
-          else if (_) {
-            const _ = {
-                _: 0.5 * _._ + 0.5,
-                _: -0.5 * _._ + 0.5,
-              },
-              _ =
-                !_.currentPanel || _.currentPanel.props.overlay_key
-                  ? _
-                  : _.currentPanel.scaleLocalUVToGlobal(_);
-            _ &&
-              ((_.properties["anchor-u"] = _._),
-              (_.properties["anchor-v"] = _._));
-          } else {
-            if (!_.currentPanel)
-              return [
-                Object.assign(Object.assign({}, _), {
-                  bShouldAbort: !0,
-                }),
-                null,
-              ];
-            const _ = _.ownerDocument,
-              _ = _.getBoundingClientRect(),
-              _ = _.left + _.width / 2,
-              _ = _.top + _.height / 2,
-              _ = _.currentPanel.m_Rect;
-            if (_ < _._ || _ > _._ + _.width || _ < _._ || _ > _._ + _.height)
-              return [
-                Object.assign(Object.assign({}, _), {
-                  bShouldAbort: !0,
-                }),
-                null,
-              ];
-            const _ =
-                null === (_ = _.defaultView) || void 0 === _
-                  ? void 0
-                  : _.innerWidth,
-              _ =
-                null === (_ = _.defaultView) || void 0 === _
-                  ? void 0
-                  : _.innerHeight;
-            if (!(_ && _ > 0 && _ && _ > 0))
-              return [
-                Object.assign(Object.assign({}, _), {
-                  bShouldAbort: !0,
-                }),
-                null,
-              ];
-            (_.properties["anchor-u"] = _ / _),
-              (_.properties["anchor-v"] = _ / _);
-          }
-          return (
-            (this.m_latchedPosition = {
-              _: _.properties["anchor-u"],
-              _: _.properties["anchor-v"],
-            }),
-            [_, _]
-          );
-        }
-      }
-      (0, _._)([_._], _.prototype, "buildNode", null);
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      function _(_, _) {
-        return {
-          _: _._ * _,
-          _: _._ * _,
-          _: _._ * _,
-        };
-      }
-      function _(_) {
-        if (void 0 === _) return;
-        let _ = 0.5 * _._,
-          _ = 0.5 * _._,
-          _ = 0.5 * _._,
-          _ = Math.cos(_),
-          _ = Math.cos(_),
-          _ = Math.cos(_),
-          _ = Math.sin(_),
-          _ = Math.sin(_),
-          _ = Math.sin(_);
-        return {
-          _: _ * _ * _ + _ * _ * _,
-          _: _ * _ * _ + _ * _ * _,
-          _: _ * _ * _ - _ * _ * _,
-          _: _ * _ * _ - _ * _ * _,
-        };
-      }
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
       });
+      var _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      !(function (_) {
+        (_[(_.Parent = 0)] = "Parent"), (_[(_.World = 1)] = "World");
+      })(_ || (_ = {}));
+      class _ extends _._ {
+        constructor(_) {
+          super(_);
+        }
+        internalRender() {
+          var _;
+          const _ = null === (_ = this.props.enabled) || void 0 === _ || _,
+            _ = this.props.rotation_start_angle_threshold
+              ? (this.props.rotation_start_angle_threshold * Math._) / 180
+              : null,
+            _ = this.props.rotation_stop_angle_threshold
+              ? (this.props.rotation_stop_angle_threshold * Math._) / 180
+              : null,
+            _ = this.props.rotation_ease_out_angle_threshold
+              ? (this.props.rotation_ease_out_angle_threshold * Math._) / 180
+              : null,
+            _ = this.props.rotation_min_angular_velocity
+              ? (this.props.rotation_min_angular_velocity * Math._) / 180
+              : null,
+            _ = this.props.rotation_max_angular_velocity
+              ? (this.props.rotation_max_angular_velocity * Math._) / 180
+              : null;
+          return _.createElement(
+            "vsg-elastic-head-transform",
+            {
+              "rotation-start-angle-threshold": _,
+              "rotation-stop-angle-threshold": _,
+              "rotation-ease-in-time": this.props.rotation_ease_in_time,
+              "rotation-ease-in-power": this.props.rotation_ease_in_power,
+              "rotation-ease-out-angle-threshold": _,
+              "rotation-ease-out-power": this.props.rotation_ease_out_power,
+              "rotation-min-angular-velocity": _,
+              "rotation-max-angular-velocity": _,
+              "translation-start-distance-threshold":
+                this.props.translation_start_distance_threshold,
+              "translation-stop-distance-threshold":
+                this.props.translation_stop_distance_threshold,
+              "translation-ease-in-time": this.props.translation_ease_in_time,
+              "translation-ease-in-power": this.props.translation_ease_in_power,
+              "translation-ease-out-distance-threshold":
+                this.props.translation_ease_out_distance_threshold,
+              "translation-ease-out-power":
+                this.props.translation_ease_out_power,
+              "translation-velocity": this.props.translation_velocity,
+              enabled: _,
+              "lock-to-horizon": this.props.lock_to_horizon,
+              "translation-parent": this.props.translation_parent,
+              "rotation-translation-change-together":
+                this.props.rotation_translation_change_together,
+            },
+            this.props.children,
+          );
+        }
+      }
     },
     chunkid: (module, module_exports, __webpack_require__) => {
-      var _, _, _, _;
-      function _() {
-        var _;
-        return null !==
-          (_ =
-            null === VRHTML || void 0 === VRHTML
+      __webpack_require__._(module_exports, {
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+      });
+      var _,
+        _,
+        _,
+        _,
+        _,
+        _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      function _(_) {
+        if (_) return [_._, _._];
+      }
+      function _(_) {
+        switch (_) {
+          case _.TopLeft:
+            return {
+              _: -1,
+              _: 1,
+            };
+          case _.TopCenter:
+            return {
+              _: 0,
+              _: 1,
+            };
+          case _.TopRight:
+            return {
+              _: 1,
+              _: 1,
+            };
+          case _.CenterLeft:
+            return {
+              _: -1,
+              _: 0,
+            };
+          case _.Center:
+            return {
+              _: 0,
+              _: 0,
+            };
+          case _.CenterRight:
+            return {
+              _: 1,
+              _: 0,
+            };
+          case _.BottomLeft:
+            return {
+              _: -1,
+              _: -1,
+            };
+          case _.BottomCenter:
+            return {
+              _: 0,
+              _: -1,
+            };
+          case _.BottomRight:
+            return {
+              _: 1,
+              _: -1,
+            };
+        }
+      }
+      !(function (_) {
+        (_[(_.TopLeft = 0)] = "TopLeft"),
+          (_[(_.TopCenter = 1)] = "TopCenter"),
+          (_[(_.TopRight = 2)] = "TopRight"),
+          (_[(_.CenterLeft = 3)] = "CenterLeft"),
+          (_[(_.Center = 4)] = "Center"),
+          (_[(_.CenterRight = 5)] = "CenterRight"),
+          (_[(_.BottomLeft = 6)] = "BottomLeft"),
+          (_[(_.BottomCenter = 7)] = "BottomCenter"),
+          (_[(_.BottomRight = 8)] = "BottomRight");
+      })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.Auto = 0)] = "Auto"), (_[(_.SingleTap = 1)] = "SingleTap");
+        })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.Mono = 0)] = "Mono"),
+            (_[(_.Parallel = 1)] = "Parallel"),
+            (_[(_.Crossed = 2)] = "Crossed"),
+            (_[(_.Panorama = 3)] = "Panorama"),
+            (_[(_.StackedPanorama = 4)] = "StackedPanorama");
+        })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.Visible = 0)] = "Visible"),
+            (_[(_.SkipInSceneGraph = 1)] = "SkipInSceneGraph"),
+            (_[(_.Hidden = 2)] = "Hidden"),
+            (_[(_.InvisibleButIntersectable = 3)] =
+              "InvisibleButIntersectable");
+        })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.Default = 0)] = "Default"),
+            (_[(_.Disabled = 1)] = "Disabled"),
+            (_[(_.Low = 2)] = "Low");
+        })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.PixelOffset = 0)] = "PixelOffset"),
+            (_[(_.ScaleAndCenter = 1)] = "ScaleAndCenter");
+        })(_ || (_ = {}));
+      class _ extends _._ {
+        constructor(_) {
+          super(_),
+            (this.m_Rect = {
+              _: 0,
+              _: 0,
+              width: 0,
+              height: 0,
+            }),
+            (this.m_nEmbeddedIndex = void 0),
+            (this.m_LastDOMContentSize = void 0),
+            (this.m_DOMContentSizeChangedCallbacks = new _._()),
+            (this.m_resizeObserver = null),
+            (this.m_UVsMin = void 0),
+            (this.m_UVsMax = void 0),
+            (this.m_bOverdragBlocking = !1),
+            (this.m_overdragBlockingElements = []);
+          const _ = void 0 !== this.props.width || void 0 !== this.props.height,
+            _ = void 0 !== this.props.meters_per_pixel,
+            _ = void 0 !== this.props.target_dpi_panel_id,
+            _ =
+              void 0 !== this.props.rendermodel_component_device_index ||
+              void 0 !== this.props.rendermodel_component_name,
+            _ =
+              void 0 !== this.props.subview_parent_panel_id ||
+              void 0 !== this.props.subview_parent_panel_key;
+          if (
+            _ &&
+            (void 0 === this.props.rendermodel_component_device_index ||
+              void 0 === this.props.rendermodel_component_name)
+          )
+            throw new Error(
+              "Panel requires both rendermodel_component_device_index and rendermodel_component_name to be a rendermodel texture.",
+            );
+          const _ = [_, _, _, _, _].filter((_) => _).length,
+            _ =
+              "an (explicit width and/or height), an explicit meters_per_pixel, a target_panel_dpi panel ID, a rendermodel name, or a parent overlay of which to become a subview.";
+          if (0 == _)
+            throw new Error(`Panel requires one of the following props: ${_}.`);
+          if (_ > 1)
+            throw new Error(
+              `Panel cannot have more of the following of the following props: ${_}.`,
+            );
+          super.setBuildNodeOverride(this.buildNode);
+        }
+        get lastDOMContentSize() {
+          return this.m_LastDOMContentSize;
+        }
+        RegisterForDOMContentSizeChangedCallback(_) {
+          return this.m_DOMContentSizeChangedCallbacks.Register(_);
+        }
+        isExternal() {
+          return !!this.props.overlay_key;
+        }
+        getExternalOverlayKey() {
+          return this.props.overlay_key;
+        }
+        getEmbeddedIndex() {
+          return this.m_nEmbeddedIndex;
+        }
+        componentWillReceiveProps_UNSAFE() {
+          _.s_bPanelsAreDirty = !0;
+        }
+        componentDidMount() {
+          super.componentDidMount(),
+            (this.m_resizeObserver = new ResizeObserver(this.onResizeObserved)),
+            this.m_resizeObserver.observe(this.getCurrentRootElement()),
+            (this.m_nEmbeddedIndex = _._.Current().addEmbeddedPanelUVs(this)),
+            (_.s_bPanelsAreDirty = !0),
+            this.getCurrentRootElement().addEventListener(
+              "mousedown",
+              this.onPanelMouseDown,
+            ),
+            this.forceUpdate(),
+            _.s_setAllPanels.add(this);
+        }
+        onResizeObserved(_, _) {
+          _._.Current().forceLayoutUpdate(),
+            (this.m_LastDOMContentSize = {
+              clientWidth: _[0].contentRect.width,
+              clientHeight: _[0].contentRect.height,
+            }),
+            this.m_DOMContentSizeChangedCallbacks.Dispatch(
+              this.m_LastDOMContentSize,
+            );
+        }
+        componentWillUnmount() {
+          _.s_setAllPanels.delete(this),
+            this.m_resizeObserver &&
+              (this.m_resizeObserver.disconnect(),
+              (this.m_resizeObserver = null)),
+            this.stopOverDragBlocking(),
+            this.getCurrentRootElement().removeEventListener(
+              "mousedown",
+              this.onPanelMouseDown,
+            ),
+            (_.s_bPanelsAreDirty = !0),
+            _._.Current().removeEmbeddedPanelUVs(this),
+            this.m_DOMContentSizeChangedCallbacks.ClearAllCallbacks(),
+            super.componentWillUnmount();
+        }
+        onPanelMouseDown() {
+          this.startOverDragBlocking();
+        }
+        startOverDragBlocking() {
+          if (this.m_bOverdragBlocking) return;
+          const _ = document.body.getBoundingClientRect(),
+            _ = this.getCurrentRootElement().getBoundingClientRect();
+          this.createOverdragBlockingElement(0, 0, _.width, _._),
+            this.createOverdragBlockingElement(
+              0,
+              _._ + _.height,
+              _.width,
+              _.height - _.height - _._,
+            ),
+            this.createOverdragBlockingElement(0, _._, _._, _.height),
+            this.createOverdragBlockingElement(
+              _._ + _.width,
+              _._,
+              _.width - _.width - _._,
+              _.height,
+            ),
+            window.document.addEventListener("mouseup", this.onWindowMouseUp),
+            (this.m_bOverdragBlocking = !0);
+        }
+        stopOverDragBlocking() {
+          this.m_bOverdragBlocking &&
+            (this.m_overdragBlockingElements.forEach((_) => {
+              document.body.removeChild(_);
+            }),
+            (this.m_overdragBlockingElements = []),
+            window.document.removeEventListener(
+              "mouseup",
+              this.onWindowMouseUp,
+            ),
+            (this.m_bOverdragBlocking = !1));
+        }
+        createOverdragBlockingElement(_, _, _, _) {
+          let _ = document.createElement("div");
+          (_.style.position = "absolute"),
+            (_.style.top = _ + "px"),
+            (_.style.left = _ + "px"),
+            (_.style.width = _ + "px"),
+            (_.style.height = _ + "px"),
+            (_.style.zIndex = "90019001"),
+            this.m_overdragBlockingElements.push(_),
+            document.body.appendChild(_);
+        }
+        onWindowMouseUp(_) {
+          this.stopOverDragBlocking();
+        }
+        getNodeType() {
+          return "panel";
+        }
+        get visibility() {
+          var _;
+          return null !== (_ = this.props.visibility) && void 0 !== _
+            ? _
+            : _.Visible;
+        }
+        buildNode(_, _) {
+          var _, _, _, _, _, _, _, _, _, _, _, _;
+          if (
+            !(
+              this.visibility == _.Visible ||
+              this.visibility == _.InvisibleButIntersectable
+            )
+          )
+            return [_, null];
+          let _ = Object.assign(Object.assign({}, _), {
+              bInsideReparentedPanel: !1,
+              currentPanel: this,
+            }),
+            _ = this.createSgNode(_),
+            _ = {
+              _: 0,
+              _: 0,
+            };
+          _ =
+            "object" == typeof this.props.origin
+              ? (0, _._)(this.props.origin)
+              : _(this.props.origin);
+          const _ = this.props.overlay_key,
+            _ = (0, _._)();
+          _ && _.length > 0
+            ? (_.properties.key = _)
+            : _
+              ? (_.properties.key = _)
+              : (_.properties.overlay_handle = (0, _._)()),
+            this.m_UVsMin &&
+              (_.properties.uv_min =
+                null !== (_ = _(this.m_UVsMin)) && void 0 !== _ ? _ : void 0),
+            this.m_UVsMax &&
+              (_.properties.uv_max =
+                null !== (_ = _(this.m_UVsMax)) && void 0 !== _ ? _ : void 0);
+          const _ = 1 / _._.Current().m_fCurrentScale;
+          let _ = this.props.frame_resize_scale_factor;
+          return (
+            this.props.is_frame_page_main_panel && (_ = null != _ ? _ : 1),
+            (_.properties.width =
+              null !== (_ = this.props.width) && void 0 !== _ ? _ : void 0),
+            (_.properties.height =
+              null !== (_ = this.props.height) && void 0 !== _ ? _ : void 0),
+            (_.properties["scale-index"] =
+              null !== (_ = this.props.scale_index) && void 0 !== _ ? _ : 0),
+            (_.properties["min-width"] =
+              null !== (_ = this.props.min_width) && void 0 !== _ ? _ : void 0),
+            (_.properties["target-width-anchor-id"] = (0, _._)(
+              this.props.target_width_anchor_id,
+            )),
+            (_.properties["target-dpi-panel-id"] = (0, _._)(
+              this.props.target_dpi_panel_id,
+            )),
+            (_.properties["target-dpi-multiplier"] =
+              this.props.target_dpi_multiplier),
+            (_.properties["meters-per-pixel"] =
+              null != this.props.meters_per_pixel
+                ? this.props.meters_per_pixel * _
+                : void 0),
+            (_.properties["subview-parent-panel-key"] =
+              this.props.subview_parent_panel_key),
+            (_.properties["subview-parent-panel-id"] =
+              this.props.subview_parent_panel_id),
+            (_.properties["subview-sizing"] = this.props.subview_sizing),
+            (_.properties.curvature = this.props.curvature),
+            (_.properties["curvature-origin-id"] = (0, _._)(
+              this.props.curvature_origin_id,
+            )),
+            (_.properties.spherical = this.props.spherical),
+            (_.properties.interactive = this.props.interactive),
+            (_.properties.scrollable = this.props.scrollable),
+            (_.properties.undocked = this.props.undocked),
+            (_.properties.modal = this.props.modal),
+            (_.properties["only-visible-with-laser"] =
+              this.props.only_visible_with_laser),
+            (_.properties["allow-input-capture"] =
+              this.props.allow_input_capture),
+            (_.properties["lasermouse-filtering"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _.lasermouse_filtering),
+            (_.properties["hide-laser-when-clicking"] =
+              this.props.hide_lasermouse_when_clicking),
+            (_.properties["hide-laser-intersection"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _.hide_laser_intersection),
+            (_.properties["make-overlays-interactive-if-visible"] =
+              this.props.make_overlays_interactive_if_visible),
+            (_.properties["is-grab-handle"] = this.props.is_grab_handle),
+            (_.properties["embedded-uv-index"] = this.m_nEmbeddedIndex),
+            (_.properties.origin = (0, _._)(_)),
+            (_.properties.debug_name = this.props.debug_name),
+            (_.properties.sampler = this.props.sampler),
+            (_.properties.reflect = this.props.reflect),
+            (_.properties.stereoscopy = this.props.stereoscopy),
+            (_.properties.rendermodel_component_device_index =
+              this.props.rendermodel_component_device_index),
+            (_.properties.rendermodel_component_name =
+              this.props.rendermodel_component_name),
+            (_.properties["texture-id"] = (0, _._)(this.props.texture_id)),
+            (_.properties["sort-order"] = this.props.sort_order),
+            (_.properties["sort-depth-bias"] = this.props.sort_depth_bias),
+            (_.properties["no-depth-write"] = this.props.no_depth_write),
+            (_.properties["no-depth-test"] = this.props.no_depth_test),
+            (_.properties.visibility = this.visibility),
+            (_.properties["frame-resize-scale-factor"] = _),
+            (_.properties["main-panel-for-frame-page"] =
+              this.props.is_frame_page_main_panel),
+            (_.properties["steam-input-appid"] =
+              null === (_ = this.inputFocusParams) || void 0 === _
+                ? void 0
+                : _.unSteamInputAppID),
+            (_.properties["vr-input-pid"] =
+              null === (_ = this.inputFocusParams) || void 0 === _
+                ? void 0
+                : _.unVRInputPID),
+            (_.properties["can-take-keyboard-focus"] =
+              null ===
+                (_ =
+                  null === (_ = this.inputFocusParams) || void 0 === _
+                    ? void 0
+                    : _.bCanTakeKeyboardFocus) ||
+              void 0 === _ ||
+              _),
+            [_, _]
+          );
+        }
+        scaleLocalUVToGlobal(_) {
+          if (!this.m_UVsMin || !this.m_UVsMax) return;
+          const _ = this.m_UVsMax._ - this.m_UVsMin._,
+            _ = this.m_UVsMax._ - this.m_UVsMin._;
+          return {
+            _: this.m_UVsMin._ + _ * _._,
+            _: this.m_UVsMin._ + _ * _._,
+          };
+        }
+        updateLayoutValues() {
+          if (this.props.overlay_key)
+            return (
+              (this.m_UVsMin = this.props.uv_min),
+              void (this.m_UVsMax = this.props.uv_max)
+            );
+          this.m_Rect = this.getCurrentRootElement().getBoundingClientRect();
+          let _ = this.getCurrentRootElement().ownerDocument.defaultView;
+          _ &&
+            ((this.m_UVsMin = {
+              _: this.m_Rect._ / _.innerWidth,
+              _: this.m_Rect._ / _.innerHeight,
+            }),
+            (this.m_UVsMax = {
+              _: (this.m_Rect._ + this.m_Rect.width) / _.innerWidth,
+              _: (this.m_Rect._ + this.m_Rect.height) / _.innerHeight,
+            }));
+        }
+        PanelContextValue() {
+          return this;
+        }
+        BCanUseStableSGIDs() {
+          return !0;
+        }
+        internalRender() {
+          return _.createElement(
+            "vsg-node",
+            {
+              style: {
+                display: this.visibility == _.Hidden ? "none" : null,
+              },
+            },
+            _.createElement(_._, null, this.props.children),
+            this.props.is_frame_page_main_panel &&
+              _.createElement(_, {
+                panel: this,
+                panelID: this.getID(),
+              }),
+          );
+        }
+        get inputFocusParams() {
+          return Object.assign(
+            {
+              bCanTakeKeyboardFocus: this.props.interactive,
+            },
+            this.props.inputFocusParams,
+          );
+        }
+        get isInputFocusable() {
+          var _, _, _;
+          return (
+            (null === (_ = this.inputFocusParams) || void 0 === _
               ? void 0
-              : VRHTML.Environment()) && void 0 !== _
+              : _.unSteamInputAppID) ||
+            (null === (_ = this.inputFocusParams) || void 0 === _
+              ? void 0
+              : _.unVRInputPID) ||
+            (null === (_ = this.inputFocusParams) || void 0 === _
+              ? void 0
+              : _.bCanTakeKeyboardFocus)
+          );
+        }
+        get hasInputFocus() {
+          return (
+            (null === _._ || void 0 === _._
+              ? void 0
+              : _._.computedInputFocus.m_entryAtTopOfStack.m_unPanelSGID) ==
+            this.m_SGID
+          );
+        }
+        get hasGamepadFocus() {
+          return (
+            this.hasInputFocus &&
+            (null === _._ || void 0 === _._
+              ? void 0
+              : _._.computedInputFocus.m_bPanelVisuallyHasActiveGamepadFocus)
+          );
+        }
+        PushInputFocus() {
+          null === _._ || void 0 === _._ || _._.PushInputFocus(this.m_SGID);
+        }
+        RemoveInputFocus() {
+          null === _._ || void 0 === _._ || _._.RemoveInputFocus(this.m_SGID);
+        }
+      }
+      function _(_) {
+        const { panel: _, panelID: _ } = _,
+          { page: _ } = (0, _._)();
+        return (
+          _.useEffect(() => {
+            const { Unset: _ } = null == _ ? void 0 : _.SetMainPanel(_);
+            return _;
+          }, [_, _, _]),
+          null
+        );
+      }
+      (_.s_bPanelsAreDirty = !1),
+        (_.s_setAllPanels = new _.ObservableSet()),
+        (0, _._)([_._], _.prototype, "onResizeObserved", null),
+        (0, _._)([_._], _.prototype, "onPanelMouseDown", null),
+        (0, _._)([_._], _.prototype, "onWindowMouseUp", null),
+        (0, _._)([_._], _.prototype, "buildNode", null),
+        (0, _._)([_.computed], _.prototype, "hasInputFocus", null),
+        (0, _._)([_.computed], _.prototype, "hasGamepadFocus", null),
+        (window.s_setAllPanels = _.s_setAllPanels);
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      __webpack_require__._(module_exports, {
+        _: () => _,
+      });
+      var _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      !(function (_) {
+        (_[(_.Seated = 0)] = "Seated"),
+          (_[(_.Standing = 1)] = "Standing"),
+          (_[(_.Raw = 2)] = "Raw");
+      })(_ || (_ = {}));
+      class _ extends _._ {
+        constructor(_) {
+          super(_);
+          if (
+            (void 0 === _.parent_path ? 0 : 1) +
+              (void 0 === _.parent_origin ? 0 : 1) +
+              (void 0 === _.parent_id ? 0 : 1) >
+            1
+          )
+            throw new Error(
+              "Transform cannot have more than one parent_ property set.",
+            );
+        }
+        internalRender() {
+          var _, _, _;
+          let _, _, _, _;
+          this.props.transform
+            ? ((_ = (0, _._)(this.props.transform.translation)),
+              (_ = this.props.transform.rotation),
+              (_ = this.props.transform.scale))
+            : ((_ = (0, _._)(this.props.translation)
+                ? null === (_ = (0, _._)(this.props.translation)) ||
+                  void 0 === _
+                  ? void 0
+                  : _.join(" ")
+                : (0, _._)(
+                    (0, _._)(this.props.translation, {
+                      _: 0,
+                      _: 0,
+                      _: 0,
+                    }),
+                  )),
+              (_ =
+                this.props.rotation && "w" in this.props.rotation
+                  ? this.props.rotation
+                  : (0, _._)(
+                      (0, _._)(
+                        (0, _._)(this.props.rotation, {
+                          _: 0,
+                          _: 0,
+                          _: 0,
+                        }),
+                        Math._ / 180,
+                      ),
+                    )),
+              (_ =
+                "number" == typeof this.props.scale
+                  ? {
+                      _: this.props.scale,
+                      _: this.props.scale,
+                      _: this.props.scale,
+                    }
+                  : (0, _._)(this.props.scale, {
+                      _: 1,
+                      _: 1,
+                      _: 1,
+                    }))),
+            null !=
+              (null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _.parent_origin) &&
+              (_ =
+                _[
+                  null === (_ = this.props) || void 0 === _
+                    ? void 0
+                    : _.parent_origin
+                ]);
+          let _ = (0, _._)(_),
+            _ = (0, _._)(_);
+          return _.createElement(
+            "vsg-transform",
+            {
+              translation: _,
+              rotation: _,
+              scale: _,
+              "curvature-pitch": this.props.curvature_pitch,
+              "invert-parent-panel-pitch": this.props.invert_parent_panel_pitch,
+              "ignore-parent-scale": this.props.ignore_parent_scale,
+              "transform-path": this.props.transform_path,
+              "parent-path": this.props.parent_path,
+              "parent-origin": _,
+              "parent-id": this.props.parent_id,
+              "frame-resize-scale-factor": this.props.frame_resize_scale_factor,
+            },
+            this.props.children,
+          );
+        }
+      }
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+      function _(_) {
+        if (!_) return;
+        return Object.values(_)
+          .filter((_) => "number" == typeof _)
+          .includes(_)
           ? _
-          : _.Unknown;
+          : void 0;
       }
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
         _: () => _,
-      }),
-        (function (_) {
-          (_[(_.Desktop = 1)] = "Desktop"),
-            (_[(_.Overlay = 2)] = "Overlay"),
-            (_[(_.Unknown = 100)] = "Unknown");
-        })(_ || (_ = {})),
-        window.hasOwnProperty("VRHTML") || (window.VRHTML = null),
-        (function (_) {
-          (_[(_.Auto = 0)] = "Auto"),
-            (_[(_.Low = 1)] = "Low"),
-            (_[(_.Medium = 2)] = "Medium"),
-            (_[(_.High = 3)] = "High");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.TrackingResult_Uninitialized = 1)] =
-            "TrackingResult_Uninitialized"),
-            (_[(_.TrackingResult_Calibrating_InProgress = 100)] =
-              "TrackingResult_Calibrating_InProgress"),
-            (_[(_.TrackingResult_Calibrating_OutOfRange = 101)] =
-              "TrackingResult_Calibrating_OutOfRange"),
-            (_[(_.TrackingResult_Running_OK = 200)] =
-              "TrackingResult_Running_OK"),
-            (_[(_.TrackingResult_Running_OutOfRange = 201)] =
-              "TrackingResult_Running_OutOfRange"),
-            (_[(_.TrackingResult_Fallback_RotationOnly = 300)] =
-              "TrackingResult_Fallback_RotationOnly");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Seated = 0)] = "Seated"),
-            (_[(_.Standing = 1)] = "Standing"),
-            (_[(_.RawAndUncalibrated = 2)] = "RawAndUncalibrated");
-        })(_ || (_ = {}));
-      let _ = 0;
-      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
-      !(function (_) {
-        (_[(_.None = 0)] = "None"),
-          (_[(_.Shown = 1)] = "Shown"),
-          (_[(_.Hidden = 2)] = "Hidden"),
-          (_[(_.Exposed = 3)] = "Exposed"),
-          (_[(_.Moved = 4)] = "Moved"),
-          (_[(_.Resized = 5)] = "Resized"),
-          (_[(_.SizeChanged = 6)] = "SizeChanged"),
-          (_[(_.Minimized = 7)] = "Minimized"),
-          (_[(_.Maximized = 8)] = "Maximized"),
-          (_[(_.Restored = 9)] = "Restored"),
-          (_[(_.Enter = 10)] = "Enter"),
-          (_[(_.Leave = 11)] = "Leave"),
-          (_[(_.FocusGained = 12)] = "FocusGained"),
-          (_[(_.FocusLost = 13)] = "FocusLost"),
-          (_[(_.Close = 14)] = "Close"),
-          (_[(_.TakeFocus = 15)] = "TakeFocus"),
-          (_[(_.HitTest = 16)] = "HitTest");
-      })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Activated = 0)] = "Activated"),
-            (_[(_.Deactivated = 1)] = "Deactivated");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.None = 0)] = "None"), (_[(_.Mouse = 1)] = "Mouse");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Invalid = 0)] = "Invalid"),
-            (_[(_.HMD = 1)] = "HMD"),
-            (_[(_.Controller = 2)] = "Controller"),
-            (_[(_.GenericTracker = 3)] = "GenericTracker"),
-            (_[(_.TrackingReference = 4)] = "TrackingReference"),
-            (_[(_.DisplayRedirect = 5)] = "DisplayRedirect");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Unknown = 0)] = "Unknown"),
-            (_[(_.NVIDIA = 1)] = "NVIDIA"),
-            (_[(_.AMD = 2)] = "AMD");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.None = 0)] = "None"),
-            (_[(_.Starting = 1)] = "Starting"),
-            (_[(_.Quitting = 2)] = "Quitting"),
-            (_[(_.Running = 3)] = "Running"),
-            (_[(_.Waiting = 4)] = "Waiting");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.ButtonPress_0 = 0)] = "ButtonPress_0"),
-            (_[(_.ButtonPress_1 = 1)] = "ButtonPress_1"),
-            (_[(_.ButtonPress_2 = 2)] = "ButtonPress_2"),
-            (_[(_.ButtonPress_3 = 3)] = "ButtonPress_3"),
-            (_[(_.CouldntFindSystemOverlay = 4)] = "CouldntFindSystemOverlay"),
-            (_[(_.CouldntFindOrCreateClientOverlay = 5)] =
-              "CouldntFindOrCreateClientOverlay"),
-            (_[(_.ApplicationQuit = 6)] = "ApplicationQuit");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Normal = 0)] = "Normal"),
-            (_[(_.Password = 1)] = "Password"),
-            (_[(_.Submit = 2)] = "Submit");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.SingleLine = 0)] = "SingleLine"),
-            (_[(_.MultipleLines = 1)] = "MultipleLines");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.LaserMouse = 1)] = "LaserMouse"),
-            (_[(_.RoomViewFullyOccludingApp = 2)] =
-              "RoomViewFullyOccludingApp"),
-            (_[(_.DisplaySuppressed = 4)] = "DisplaySuppressed"),
-            (_[(_.SystemButtonDown = 8)] = "SystemButtonDown"),
-            (_[(_.DriverIsDrawingControllers = 16)] =
-              "DriverIsDrawingControllers"),
-            (_[(_.DriverRequestsApplicationPause = 32)] =
-              "DriverRequestsApplicationPause"),
-            (_[(_.DriverRequestsReducedRendering = 64)] =
-              "DriverRequestsReducedRendering"),
-            (_[(_.DashboardTutorial = 128)] = "DashboardTutorial"),
-            (_[(_.GamepadMode = 512)] = "GamepadMode"),
-            (_[(_.SystemKeyboardPrivacy = 1024)] = "SystemKeyboardPrivacy");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.BULK_DEFAULT = 0)] = "BULK_DEFAULT"),
-            (_[(_.BULK_64K_DMA = 1)] = "BULK_64K_DMA"),
-            (_[(_.BULK_16K_DMA = 2)] = "BULK_16K_DMA"),
-            (_[(_.BULK_8K_DMA = 3)] = "BULK_8K_DMA"),
-            (_[(_.ISO_52FPS = 4)] = "ISO_52FPS"),
-            (_[(_.ISO_50FPS = 5)] = "ISO_50FPS"),
-            (_[(_.ISO_48FPS = 6)] = "ISO_48FPS"),
-            (_[(_.ISO_46FPS = 7)] = "ISO_46FPS"),
-            (_[(_.ISO_44FPS = 8)] = "ISO_44FPS"),
-            (_[(_.ISO_42FPS = 9)] = "ISO_42FPS"),
-            (_[(_.ISO_40FPS = 10)] = "ISO_40FPS"),
-            (_[(_.ISO_35FPS = 11)] = "ISO_35FPS"),
-            (_[(_.ISO_30FPS = 12)] = "ISO_30FPS"),
-            (_[(_.ISO_15FPS = 13)] = "ISO_15FPS"),
-            (_[(_.MAX_CAMERA_COMPAT_MODES = 14)] = "MAX_CAMERA_COMPAT_MODES");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.ECameraExposure_Unknown = 0)] = "ECameraExposure_Unknown"),
-            (_[(_.ECameraExposure_Nominal = 1)] = "ECameraExposure_Nominal"),
-            (_[(_.ECameraExposure_HighExposure = 2)] =
-              "ECameraExposure_HighExposure");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.None = 0)] = "None"),
-            (_[(_.ThisSteamVR = 1)] = "ThisSteamVR"),
-            (_[(_.AnotherSteamVR = 2)] = "AnotherSteamVR"),
-            (_[(_.AnotherRuntime = 3)] = "AnotherRuntime"),
-            (_[(_.ThisSteamVR64BitOnly = 4)] = "ThisSteamVR64BitOnly"),
-            (_[(_.Error = -1)] = "Error");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.TrackedControllerRole_Invalid = 0)] =
-            "TrackedControllerRole_Invalid"),
-            (_[(_.TrackedControllerRole_LeftHand = 1)] =
-              "TrackedControllerRole_LeftHand"),
-            (_[(_.TrackedControllerRole_RightHand = 2)] =
-              "TrackedControllerRole_RightHand"),
-            (_[(_.TrackedControllerRole_OptOut = 3)] =
-              "TrackedControllerRole_OptOut"),
-            (_[(_.TrackedControllerRole_Treadmill = 4)] =
-              "TrackedControllerRole_Treadmill"),
-            (_[(_.TrackedControllerRole_Max = 5)] =
-              "TrackedControllerRole_Max");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Unknown = 0)] = "Unknown"),
-            (_[(_.Steam_VRButton = 1)] = "Steam_VRButton"),
-            (_[(_.Steam_StartSteamVRApp = 2)] = "Steam_StartSteamVRApp"),
-            (_[(_.Watchdog_Unknown = 10)] = "Watchdog_Unknown"),
-            (_[(_.Watchdog_Controller = 11)] = "Watchdog_Controller"),
-            (_[(_.Watchdog_Hmd = 12)] = "Watchdog_Hmd"),
-            (_[(_.AppLaunch_Unknown = 20)] = "AppLaunch_Unknown"),
-            (_[(_.AppLaunch_Steam = 21)] = "AppLaunch_Steam"),
-            (_[(_.SteamVR_Restart = 30)] = "SteamVR_Restart"),
-            (_[(_.SteamVR_VRStartup = 31)] = "SteamVR_VRStartup");
-        })(_ || (_ = {})),
-        (function (_) {
-          _[(_.Hostname = 0)] = "Hostname";
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Unavailable = 0)] = "Unavailable"),
-            (_[(_.Active = 1)] = "Active"),
-            (_[(_.Off = 2)] = "Off");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Default = 1)] = "Default"), (_[(_.Floor = 2)] = "Floor");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Inactive = 0)] = "Inactive"),
-            (_[(_.PendingReset = 1)] = "PendingReset"),
-            (_[(_.PendingResetIfNeeded = 2)] = "PendingResetIfNeeded"),
-            (_[(_.Default = 3)] = "Default"),
-            (_[(_._ = 4)] = "CV"),
-            (_[(_.Manual = 5)] = "Manual");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_._ = 1)] = "OK"),
-            (_[(_.Warning = 100)] = "Warning"),
-            (_[(_.Warning_BaseStationMayHaveMoved = 101)] =
-              "Warning_BaseStationMayHaveMoved"),
-            (_[(_.Warning_BaseStationRemoved = 102)] =
-              "Warning_BaseStationRemoved"),
-            (_[(_.Warning_SeatedBoundsInvalid = 103)] =
-              "Warning_SeatedBoundsInvalid"),
-            (_[(_.Error = 200)] = "Error"),
-            (_[(_.Error_BaseStationUninitialized = 201)] =
-              "Error_BaseStationUninitialized"),
-            (_[(_.Error_BaseStationConflict = 202)] =
-              "Error_BaseStationConflict"),
-            (_[(_.Error_PlayAreaInvalid = 203)] = "Error_PlayAreaInvalid"),
-            (_[(_.Error_CollisionBoundsInvalid = 204)] =
-              "Error_CollisionBoundsInvalid");
-        })(_ || (_ = {})),
-        (function (_) {
-          (_[(_.Small = 0)] = "Small"),
-            (_[(_.Medium = 1)] = "Medium"),
-            (_[(_.Large = 2)] = "Large"),
-            (_[(_.Gigantic = 3)] = "Gigantic"),
-            (_[(_.Standing = 4)] = "Standing");
-        })(_ || (_ = {}));
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
-      __webpack_require__._(module_exports, {
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
         _: () => _,
         _: () => _,
       }),
@@ -843,10 +1193,40 @@ var CLSTAMP = "steamdb";
             (_[(_.AuroraFloor = 1)] = "AuroraFloor");
         })(_ || (_ = {})),
         (function (_) {
+          (_[(_.Nominal = 0)] = "Nominal"),
+            (_[(_.RoomSetup = 1)] = "RoomSetup"),
+            (_[(_.System = 2)] = "System"),
+            (_[(_.SceneDimming = 3)] = "SceneDimming"),
+            (_[(_.Theater = 4)] = "Theater");
+        })(_ || (_ = {})),
+        (function (_) {
           (_[(_.Curved = 0)] = "Curved"), (_[(_.Flat = 1)] = "Flat");
         })(_ || (_ = {})),
         (function (_) {
           (_[(_.Default = 0)] = "Default"), (_[(_.Aurora = 1)] = "Aurora");
+        })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.ECameraExposure_Unknown = 0)] = "ECameraExposure_Unknown"),
+            (_[(_.ECameraExposure_Nominal = 1)] = "ECameraExposure_Nominal"),
+            (_[(_.ECameraExposure_HighExposure = 2)] =
+              "ECameraExposure_HighExposure");
+        })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.BULK_DEFAULT = 0)] = "BULK_DEFAULT"),
+            (_[(_.BULK_64K_DMA = 1)] = "BULK_64K_DMA"),
+            (_[(_.BULK_16K_DMA = 2)] = "BULK_16K_DMA"),
+            (_[(_.BULK_8K_DMA = 3)] = "BULK_8K_DMA"),
+            (_[(_.ISO_52FPS = 4)] = "ISO_52FPS"),
+            (_[(_.ISO_50FPS = 5)] = "ISO_50FPS"),
+            (_[(_.ISO_48FPS = 6)] = "ISO_48FPS"),
+            (_[(_.ISO_46FPS = 7)] = "ISO_46FPS"),
+            (_[(_.ISO_44FPS = 8)] = "ISO_44FPS"),
+            (_[(_.ISO_42FPS = 9)] = "ISO_42FPS"),
+            (_[(_.ISO_40FPS = 10)] = "ISO_40FPS"),
+            (_[(_.ISO_35FPS = 11)] = "ISO_35FPS"),
+            (_[(_.ISO_30FPS = 12)] = "ISO_30FPS"),
+            (_[(_.ISO_15FPS = 13)] = "ISO_15FPS"),
+            (_[(_.MAX_CAMERA_COMPAT_MODES = 14)] = "MAX_CAMERA_COMPAT_MODES");
         })(_ || (_ = {}));
     },
   },

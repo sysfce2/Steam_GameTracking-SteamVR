@@ -667,361 +667,183 @@ var CLSTAMP = "steamdb";
     chunkid: (module, module_exports, __webpack_require__) => {
       __webpack_require__._(module_exports, {
         _: () => _,
+        _: () => _,
+        _: () => _,
       });
+      __webpack_require__("chunkid");
       var _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__._(_),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
+        _ = __webpack_require__._(_);
       class _ {
         constructor() {
-          (this.m_InputState = void 0),
-            (this.m_KnownControllerTypes = _.observable.map()),
-            (this.m_mailbox = new _._()),
-            (this.m_bUpdateInputStateOnControllerTypChange = !1),
-            (0, _.makeObservable)(this);
+          (this.m_mapTokens = new Map()),
+            (this.m_mapFallbackTokens = new Map());
         }
-        Init(_) {
-          return (
-            this.m_mailbox.Init("input_state"),
-            this.m_mailbox.RegisterHandler(
-              "controller_type_changed",
-              this.OnControllerTypeChanged,
-            ),
-            this.m_mailbox.RegisterHandler(
-              "action_bindings_reloaded",
-              this.OnActionBindingsReloaded,
-            ),
-            null != _ && (this.m_bUpdateInputStateOnControllerTypChange = _),
-            this.GetInputState()
-          );
-        }
-        OnActionBindingsReloaded() {
-          this.GetInputState();
-        }
-        OnControllerTypeChanged(_) {
-          this.UpdateControllerTypes(_.controller_types),
-            this.m_InputState &&
-              (this.m_InputState.controller_types = _.controller_types),
-            this.m_bUpdateInputStateOnControllerTypChange &&
-              this.GetInputState();
-        }
-        get ConnectedDevices() {
-          return null == this.m_InputState
-            ? []
-            : this.m_InputState.devices.filter(
-                (_) =>
-                  "TrackedDeviceClass_Controller" == _.class ||
-                  "TrackedDeviceClass_HMD" == _.class ||
-                  "TrackedDeviceClass_GenericTracker" == _.class,
-              );
-        }
-        get ControllerTypes() {
-          return this.m_InputState.controller_types;
-        }
-        get ShouldSendSystemButtonToAllApps() {
-          return this.m_InputState.send_system_button_to_all_apps;
-        }
-        get ShowHiddenInputs() {
-          return this.m_InputState.show_hidden_inputs;
-        }
-        get IsSteamAvailable() {
-          return !this.m_InputState || this.m_InputState.is_steam_available;
-        }
-        get BDevMode() {
-          return this.m_InputState.dev_mode;
-        }
-        get IsValid() {
-          return null != this.m_InputState;
-        }
-        get CurrentUserPersonaName() {
-          return this.m_InputState.current_user_persona_name
-            ? this.m_InputState.current_user_persona_name
-            : null;
-        }
-        GetControllerTypeInfo(_) {
-          return this.m_InputState.controller_types.find(
-            (_) => _.controller_type == _,
-          );
-        }
-        GetDeviceInfo(_) {
-          for (let _ of this.m_InputState.devices)
-            if (_.root_path == _ || _.device_path == _) return _;
-          return null;
-        }
-        LocalizeControllerString(_, _) {
-          let _ = (0, _._)("#" + _);
-          return _ != "#" + _
-            ? _
-            : _ &&
-                this.m_InputState &&
-                this.m_InputState.localization.hasOwnProperty(
-                  _.resource_root,
-                ) &&
-                this.m_InputState.localization[_.resource_root].hasOwnProperty(
-                  _.toLowerCase(),
-                )
-              ? this.m_InputState.localization[_.resource_root][_.toLowerCase()]
-              : _;
-        }
-        LocalizeDriverString(_, _) {
-          if (
-            this.m_InputState &&
-            this.m_InputState.localization.hasOwnProperty(_) &&
-            this.m_InputState.localization[_].hasOwnProperty(_.toLowerCase())
-          )
-            return this.m_InputState.localization[_][_.toLowerCase()];
-          let _ = (0, _._)("#" + _);
-          return _ != "#" + _ ? _ : _;
-        }
-        UpdateControllerTypes(_) {
-          this.m_KnownControllerTypes.clear();
-          for (let _ of _)
-            this.m_KnownControllerTypes.set(_.controller_type, _);
-        }
-        GetInputState() {
-          return (0, _._)(this, void 0, void 0, function* () {
-            yield new Promise(function (_, _) {
-              _()
-                .get("/input/getstate.json")
-                .then((_) => {
-                  _(_.data);
-                })
-                .catch((_) => {
-                  _(_);
-                });
-            }).then((_) => {
-              (0, _.runInAction)(() => {
-                for (let _ of _.controller_types)
-                  _.controller_type = _.controller_type.toLowerCase();
-                for (let _ of _.devices)
-                  _.controller_type = _.controller_type.toLowerCase();
-                this.UpdateControllerTypes(_.controller_types),
-                  (this.m_InputState = _);
-              });
-            });
-          });
-        }
-        get KnownControllerTypes() {
-          return this.m_KnownControllerTypes;
-        }
-        FindDeviceClassForControllerType(_) {
-          let _ = this.GetControllerTypeInfo(_);
-          return null == _ ? void 0 : _.device_class;
-        }
-        FindRootPathForControllerType(_) {
-          for (let _ of this.m_InputState.devices)
-            if (_.controller_type == _) return _.root_path;
-          return null;
-        }
-      }
-      (0, _._)([_.observable], _.prototype, "m_InputState", void 0),
-        (0, _._)([_.observable], _.prototype, "m_KnownControllerTypes", void 0),
-        (0, _._)([_._], _.prototype, "OnActionBindingsReloaded", null),
-        (0, _._)([_._], _.prototype, "OnControllerTypeChanged", null),
-        (0, _._)([_.computed], _.prototype, "ConnectedDevices", null),
-        (0, _._)([_.computed], _.prototype, "ControllerTypes", null),
-        (0, _._)(
-          [_.computed],
-          _.prototype,
-          "ShouldSendSystemButtonToAllApps",
-          null,
-        ),
-        (0, _._)([_.computed], _.prototype, "ShowHiddenInputs", null),
-        (0, _._)([_.computed], _.prototype, "IsSteamAvailable", null),
-        (0, _._)([_.computed], _.prototype, "BDevMode", null),
-        (0, _._)([_.computed], _.prototype, "IsValid", null),
-        (0, _._)([_.computed], _.prototype, "CurrentUserPersonaName", null),
-        (0, _._)([_._], _.prototype, "GetControllerTypeInfo", null),
-        (0, _._)([_._], _.prototype, "LocalizeControllerString", null),
-        (0, _._)([_._], _.prototype, "LocalizeDriverString", null),
-        (0, _._)([_.action], _.prototype, "UpdateControllerTypes", null),
-        (0, _._)([_.action], _.prototype, "GetInputState", null),
-        (0, _._)([_.computed], _.prototype, "KnownControllerTypes", null),
-        (0, _._)([_._], _.prototype, "FindDeviceClassForControllerType", null);
-      const _ = new _();
-      window.inputState = _;
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      __webpack_require__._(module_exports, {
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-      });
-      var _ = __webpack_require__("chunkid");
-      const _ = _.BinaryReader.prototype,
-        _ = _.BinaryWriter.prototype;
-      function _(_) {
-        const _ = {},
-          { fields: _ } = _;
-        for (const _ in _) {
-          const _ = _[_];
-          _[_._] = _;
-        }
-        return _;
-      }
-      function _(_, _) {
-        const { proto: _, fields: _ } = _,
-          _ = new _();
-        if (null == _) return _;
-        for (const _ in _) {
-          const { _: _, _: _, _: _, _: _, _: _ } = _[_];
-          if (!Object.prototype.hasOwnProperty.call(_, _)) continue;
-          const _ = _[_];
-          _
-            ? _
-              ? _.Message.setRepeatedWrapperField(
-                  _,
-                  _,
-                  Array.isArray(_) ? _.map((_) => _.fromObject(_)) : [],
-                )
-              : _.Message.setWrapperField(_, _, _.fromObject(_))
-            : _.Message.setField(_, _, _);
-        }
-        return _;
-      }
-      function _(_, _, _) {
-        const { proto: _, fields: _ } = _,
-          _ = {};
-        for (const _ in _) {
-          const { _: _, _: _, _: _, _: _, _: _ } = _[_];
-          if (_)
-            if (_)
-              _[_] = _.Message.toObjectList(
-                _.Message.getRepeatedWrapperField(_, _, _),
-                _.toObject,
-                _,
-              );
-            else {
-              const _ = _.Message.getWrapperField(_, _, _, _ ? 1 : 0);
-              _ && (_[_] = _.toObject(_, _));
+        InitFromObjects(_, _, _, _) {
+          this.m_mapTokens.clear();
+          let _ = [_, _, _, _];
+          for (let _ in _) {
+            let _ = _[_];
+            for (let _ in _) {
+              let _ = _[_];
+              for (let _ in _) {
+                let _ = _.toLowerCase();
+                this.m_mapTokens.has(_) || this.m_mapTokens.set(_, _[_]);
+              }
             }
-          else {
-            const _ = _.Message.getFieldWithDefault(
-              _,
-              _,
-              void 0 !== _ ? _ : null,
-            );
-            (null !== _ || _) && (_[_] = _);
           }
         }
-        return _ && (_.$jspbMessageInstance = _), _;
-      }
-      function _(_, _, _) {
-        for (
-          ;
-          __webpack_require__.nextField() && !__webpack_require__.isEndGroup();
-        ) {
-          const _ = _[__webpack_require__.getFieldNumber()];
-          if (_) {
-            const { _: _, _: _, _: _, _: _, _: _, _: _ } = _;
-            if (_) {
-              const _ = new _();
-              __webpack_require__.readMessage(_, _.deserializeBinaryFromReader),
-                _
-                  ? _.Message.addToRepeatedWrapperField(_, _, _, _)
-                  : _.Message.setWrapperField(_, _, _);
-            } else if (_) {
-              const _ = _.call(_);
-              _
-                ? _.Message.addToRepeatedField(_, _, _)
-                : _.Message.setField(_, _, _);
-            } else
-              console.assert(
-                !!_,
-                `Reader func not set for field number ${_} in class ${_}`,
-              ),
-                __webpack_require__.skipField();
-          } else __webpack_require__.skipField();
+        LocalizeString(_) {
+          if (!_ || 0 == _.length || "#" != _.charAt(0)) return "";
+          let _ = this.m_mapTokens.get(_.substring(1).toLowerCase());
+          return void 0 === _ ? "" : _;
         }
-        return _;
-      }
-      function _(_, _, _) {
-        const { fields: _ } = _;
-        for (const _ in _) {
-          const { _: _, _: _, _: _, _: _, _: _, _: _ } = _[_];
-          if (_)
-            if (_) {
-              const _ = _.Message.getRepeatedWrapperField(_, _, _);
-              ((_ && _.length) || _) &&
-                __webpack_require__.writeRepeatedMessage(
-                  _,
-                  _,
-                  _.serializeBinaryToWriter,
-                );
-            } else {
-              const _ = _.Message.getWrapperField(_, _, _, _ ? 1 : 0);
-              _ &&
-                __webpack_require__.writeMessage(
-                  _,
-                  _,
-                  _.serializeBinaryToWriter,
-                );
-            }
-          else if (_) {
-            const _ = _.Message.getField(_, _);
-            null != _ && _.call(_, _, _);
-          } else
-            console.assert(
-              !!_,
-              `Writer func not set for field number ${_} in class ${_}`,
-            );
+        LocalizeStringFromFallback(_) {
+          if (!_ || 0 == _.length || "#" != _.charAt(0)) return "";
+          let _ = this.m_mapFallbackTokens.get(_.substring(1).toLowerCase());
+          return void 0 === _ ? "" : _;
         }
-      }
-      function _(_) {
-        const _ = _.proto;
-        for (const _ in _.fields) {
-          const _ = _.fields[_],
-            { _: _, _: _, _: _, _: _, _: _ } = _;
-          Object.prototype.hasOwnProperty.call(_, "d")
-            ? (_.prototype[_] = _(_.Message.getFieldWithDefault, _, _))
-            : (_.prototype[_] = _
-                ? _
-                  ? _(_.Message.getRepeatedWrapperField, _, _)
-                  : _(_, _)
-                : _(_.Message.getField, _)),
-            (_.prototype[`set_${_}`] = _(
-              _
-                ? _
-                  ? _.Message.setRepeatedWrapperField
-                  : _.Message.setWrapperField
-                : _.Message.setField,
-              _,
-            )),
-            _ && (_.prototype[`add_${_}`] = _(_, _));
+        static GetLocale() {
+          const _ = navigator.languages[0];
+          try {
+            const _ =
+              null === VRHTML || void 0 === VRHTML
+                ? void 0
+                : VRHTML.GetSystemLocale();
+            if (!_) return _;
+            _.s_Date.toLocaleTimeString(_);
+            return _;
+          } catch (_) {
+            return _;
+          }
         }
       }
       function _(_, ..._) {
-        return function () {
-          return _(this, ..._);
-        };
-      }
-      function _(_, _) {
-        return function (_ = !0) {
-          return _.Message.getWrapperField(this, _, _, _ ? 1 : 0);
-        };
-      }
-      function _(_, _) {
-        return function (_) {
-          return _(this, _, _);
-        };
-      }
-      function _(_, _) {
+        let _ = _.LocalizeString(_);
         return _
-          ? function (_, _) {
-              return _.Message.addToRepeatedWrapperField(this, _, _, _, _);
-            }
-          : function (_, _) {
-              _.Message.addToRepeatedField(this, _, _, _);
-            };
+          ? (_.length > 0 &&
+              (_ = __webpack_require__.replace(/%(\d+)\$s/g, function (_, _) {
+                return void 0 !== _[_ - 1] ? String(_[_ - 1]) : _;
+              })),
+            _)
+          : _;
       }
+      _.s_Date = new Date();
+      const _ = new _();
+      function _(_, _) {
+        _ ||
+          (_ = (function () {
+            let _ = new Map([
+              ["en", "english"],
+              ["de", "german"],
+              ["fr", "french"],
+              ["it", "italian"],
+              ["ko", "korean"],
+              ["es-419", "latam"],
+              ["es", "spanish"],
+              ["zh-CN", "schinese"],
+              ["zh-TW", "tchinese"],
+              ["ru", "russian"],
+              ["th", "thai"],
+              ["ja", "japanese"],
+              ["pt", "portuguese"],
+              ["pl", "polish"],
+              ["da", "danish"],
+              ["nl", "dutch"],
+              ["fi", "finnish"],
+              ["no", "norwegian"],
+              ["sv", "swedish"],
+              ["hu", "hungarian"],
+              ["cs", "czech"],
+              ["ro", "romanian"],
+              ["tr", "turkish"],
+              ["pt-BR", "brazilian"],
+              ["bg", "bulgarian"],
+              ["el", "greek"],
+              ["uk", "ukranian"],
+              ["vi", "vietnamese"],
+            ]);
+            for (let _ of navigator.languages) {
+              let _ = _.split("-");
+              if (_.has(_)) return _.get(_);
+              if (_.has(_[0])) return _.get(_[0]);
+            }
+            return "english";
+          })());
+        let _ = [],
+          _ = (_, _, _) => {
+            let _,
+              _ = Date.now().toString();
+            return (
+              (_ =
+                "drivers" == _
+                  ? `/input/localization.json?t=${_}`
+                  : "webhelper" == _
+                    ? `/dashboard/localization/${_}_${_}.json?t=${_}`
+                    : `localization/${_}_${_}.json?t=${_}`),
+              _()
+                .get(_)
+                .then((_) => {
+                  __webpack_require__(_.data);
+                })
+                .catch(() => {})
+            );
+          },
+          _ = [],
+          _ = [],
+          _ = [],
+          _ = [];
+        for (let _ of _)
+          __webpack_require__.push(
+            _(_, _, (_) => {
+              _.push(_);
+            }),
+          ),
+            "english" != _ &&
+              __webpack_require__.push(
+                _(_, "english", (_) => {
+                  _.push(_);
+                }),
+              );
+        for (let _ of ["webhelper"])
+          __webpack_require__.push(
+            _(_, _, (_) => {
+              _.push(_);
+            }),
+          ),
+            "english" != _ &&
+              __webpack_require__.push(
+                _(_, "english", (_) => {
+                  _.push(_);
+                }),
+              );
+        return (
+          __webpack_require__.push(
+            _("drivers", "", (_) => {
+              _.push(_);
+            }),
+          ),
+          Promise.all(_).then(() => {
+            _.InitFromObjects(_, _, _, _);
+          })
+        );
+      }
+      window.LocalizationManager = _;
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      function _(_, _) {
+        return (
+          (_ = Math.ceil(_)),
+          (_ = Math.floor(_)),
+          Math.floor(Math.random() * (_ - _ + 1)) + _
+        );
+      }
+      function _(_, _, _) {
+        return null == _ || isNaN(_) ? _ : Math.max(_, Math.min(_, _));
+      }
+      __webpack_require__._(module_exports, {
+        _: () => _,
+        _: () => _,
+      });
     },
   },
 ]);

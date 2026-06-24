@@ -257,6 +257,15 @@ enum UnnamedEnum2eac126be8ddde46
 	Waiting = 4;
 }
 
+enum UnnamedEnum2ec6302046983308
+{
+	Nominal = 0;
+	RoomSetup = 1;
+	System = 2;
+	SceneDimming = 3;
+	Theater = 4;
+}
+
 enum UnnamedEnum2ff3256ae8e6ba08
 {
 	Auto = 0;
@@ -756,6 +765,19 @@ enum UnnamedEnum97b9784b51946a4e
 	World = 1;
 }
 
+enum UnnamedEnum9afc536413b545d6
+{
+	None = 0;
+	ControllerPairing = 1;
+	FaceMouse = 2;
+	HardwareButtons = 4;
+	Recentering = 8;
+	ResizingFrames = 16;
+	StreamingGamesFromPC = 32;
+	StreamingToTV = 64;
+	ToggleDashboard = 128;
+}
+
 enum UnnamedEnum9c58af1a5b59aa9f
 {
 	HorizontalPips = 0;
@@ -849,6 +871,18 @@ enum UnnamedEnumbba740e8429cc182
 {
 	Default = 0;
 	Aurora = 1;
+}
+
+enum UnnamedEnumbc16bdde9cece947
+{
+	None = 0;
+	Library = 1;
+	HamburgerMenu = 2;
+	QuickAccessMenu = 4;
+	GrabHandles = 8;
+	FrameMenu = 16;
+	PlayspaceMenu = 32;
+	AdditionalTopicsLink = 64;
 }
 
 enum UnnamedEnumbc33628c90ff4f15
@@ -945,12 +979,6 @@ enum UnnamedEnumd3dde09c34ccd726
 	EyeTracking = 23;
 }
 
-enum UnnamedEnumdea6b0019127a66c
-{
-	Large = 0;
-	Medium = 1;
-}
-
 enum UnnamedEnume090f5859a2f770f
 {
 	None = 0;
@@ -1017,6 +1045,16 @@ enum UnnamedEnumfce20aaa16bf4fee
 {
 	Curved = 0;
 	Flat = 1;
+}
+
+enum UnnamedEnumff958f9fe631673c
+{
+	String = 0;
+	Proto = 1;
+	Boolean = 2;
+	Float = 3;
+	Double = 4;
+	Int32 = 5;
 }
 
 enum VRMouseButton

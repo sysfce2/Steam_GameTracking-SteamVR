@@ -4851,14 +4851,229 @@ var CLSTAMP = "steamdb";
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       "use strict";
-      __webpack_require__._(module_exports, {
-        _: () => _,
-      });
+      module.exports = __webpack_require__("chunkid");
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      var _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = (_ = _) && "object" == typeof _ && "default" in _ ? _.default : _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      if (!_.useState)
+        throw new Error("mobx-react-lite requires React with Hooks support");
+      if (!_.makeObservable)
+        throw new Error(
+          "mobx-react-lite@3 requires mobx at least version 6 to be available",
+        );
+      function _(_) {
+        _();
+      }
+      function _(_) {
+        _ || (_ = _),
+          _.configure({
+            reactionScheduler: _,
+          });
+      }
+      function _(_) {
+        return _.getDependencyTree(_);
+      }
+      var _ = !1;
+      function _(_) {
+        _ = _;
+      }
+      function _() {
+        return _;
+      }
+      var _,
+        _,
+        _ = new (
+          "undefined" != typeof FinalizationRegistry
+            ? FinalizationRegistry
+            : (function () {
+                function _(_) {
+                  var _ = this;
+                  (this.finalize = void 0),
+                    (this.registrations = new Map()),
+                    (this.sweepTimeout = void 0),
+                    (this.sweep = function (_) {
+                      void 0 === _ && (_ = 1e4),
+                        clearTimeout(_.sweepTimeout),
+                        (_.sweepTimeout = void 0);
+                      var _ = Date.now();
+                      _.registrations.forEach(function (_, _) {
+                        _ - _.registeredAt >= _ &&
+                          (_.finalize(_.value), _.registrations.delete(_));
+                      }),
+                        _.registrations.size > 0 && _.scheduleSweep();
+                    }),
+                    (this.finalizeAllImmediately = function () {
+                      _.sweep(0);
+                    }),
+                    (this.finalize = _);
+                }
+                var _ = _.prototype;
+                return (
+                  (_.register = function (_, _, _) {
+                    this.registrations.set(_, {
+                      value: _,
+                      registeredAt: Date.now(),
+                    }),
+                      this.scheduleSweep();
+                  }),
+                  (_.unregister = function (_) {
+                    this.registrations.delete(_);
+                  }),
+                  (_.scheduleSweep = function () {
+                    void 0 === this.sweepTimeout &&
+                      (this.sweepTimeout = setTimeout(this.sweep, 1e4));
+                  }),
+                  _
+                );
+              })()
+        )(function (_) {
+          var _;
+          null == (_ = _.reaction) || _.dispose(), (_.reaction = null);
+        });
+      function _(_) {
+        _.reaction = new _.Reaction("observer" + _.name, function () {
+          (_.stateVersion = Symbol()),
+            null == _.onStoreChange || _.onStoreChange();
+        });
+      }
+      function _(_, _) {
+        if ((void 0 === _ && (_ = "observed"), _())) return _();
+        var _ = _.useRef(null);
+        if (!_.current) {
+          var _ = {
+            reaction: null,
+            onStoreChange: null,
+            stateVersion: Symbol(),
+            name: _,
+            subscribe: function (_) {
+              return (
+                _.unregister(_),
+                (_.onStoreChange = _),
+                _.reaction || (_(_), (_.stateVersion = Symbol())),
+                function () {
+                  var _;
+                  (_.onStoreChange = null),
+                    null == (_ = _.reaction) || _.dispose(),
+                    (_.reaction = null);
+                }
+              );
+            },
+            getSnapshot: function () {
+              return _.stateVersion;
+            },
+          };
+          _.current = _;
+        }
+        var _,
+          _,
+          _ = _.current;
+        if (
+          (_.reaction || (_(_), _.register(_, _, _)),
+          _.useDebugValue(_.reaction, _),
+          _.useSyncExternalStore(_.subscribe, _.getSnapshot, _.getSnapshot),
+          _.reaction.track(function () {
+            try {
+              _ = _();
+            } catch (_) {
+              _ = _;
+            }
+          }),
+          _)
+        )
+          throw _;
+        return _;
+      }
+      var _,
+        _ = "function" == typeof Symbol && Symbol.for,
+        _ =
+          null !=
+            (_ =
+              null ==
+              (_ = Object.getOwnPropertyDescriptor(function () {}, "name"))
+                ? void 0
+                : _.configurable) && _,
+        _ = _
+          ? Symbol.for("react.forward_ref")
+          : "function" == typeof _.forwardRef &&
+            _.forwardRef(function (_) {
+              return null;
+            }).$$typeof,
+        _ = _
+          ? Symbol.for("react.memo")
+          : "function" == typeof _.memo &&
+            _.memo(function (_) {
+              return null;
+            }).$$typeof,
+        _ = {
+          $$typeof: !0,
+          render: !0,
+          compare: !0,
+          type: !0,
+          displayName: !0,
+        };
+      function _(_) {
+        var _ = _.children,
+          _ = _.render;
+        _ &&
+          _ &&
+          console.error(
+            "MobX Observer: Do not use children and render in the same time in `Observer`",
+          );
+        var _ = _ || _;
+        return "function" != typeof _ ? null : _(_);
+      }
+      function _(_) {
+        var _ = _.useState(function () {
+          return _.observable(
+            _,
+            {},
+            {
+              deep: !1,
+            },
+          );
+        })[0];
+        return (
+          _.runInAction(function () {
+            Object.assign(_, _);
+          }),
+          _
+        );
+      }
+      (_.displayName = "Observer"), _(_.unstable_batchedUpdates);
+      var _ = null != (_ = _.finalizeAllImmediately) ? _ : function () {};
+      module_exports.useObserver = function (_, _) {
+        return void 0 === _ && (_ = "observed"), _(_, _);
+      };
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      __webpack_require__._(module_exports),
+        __webpack_require__._(module_exports, {
+          Observer: () => _,
+          _observerFinalizationRegistry: () => _,
+          clearTimers: () => _,
+          enableStaticRendering: () => _,
+          isObserverBatched: () => _,
+          isUsingStaticRendering: () => _,
+          observer: () => _,
+          observerBatching: () => _,
+          useAsObservableSource: () => _,
+          useLocalObservable: () => _,
+          useLocalStore: () => _,
+          useObserver: () => _,
+          useStaticRendering: () => _,
+        });
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       if (!_.useState)
         throw new Error("mobx-react-lite requires React with Hooks support");
-      if (!_._)
+      if (!_.makeObservable)
         throw new Error(
           "mobx-react-lite@3 requires mobx at least version 6 to be available",
         );
@@ -4867,9 +5082,21 @@ var CLSTAMP = "steamdb";
         _();
       }
       function _(_) {
-        return (0, _._)(_);
+        _ || (_ = _),
+          (0, _.configure)({
+            reactionScheduler: _,
+          });
+      }
+      var _ = function () {
+        return !0;
+      };
+      function _(_) {
+        return (0, _.getDependencyTree)(_);
       }
       var _ = !1;
+      function _(_) {
+        _ = _;
+      }
       function _() {
         return _;
       }
@@ -4963,7 +5190,7 @@ var CLSTAMP = "steamdb";
         }),
         _ = __webpack_require__("chunkid");
       function _(_) {
-        _.reaction = new _._("observer".concat(_.name), function () {
+        _.reaction = new _.Reaction("observer".concat(_.name), function () {
           var _;
           (_.stateVersion = Symbol()),
             null === (_ = _.onStoreChange) || void 0 === _ || _.call(_);
@@ -5096,7 +5323,6 @@ var CLSTAMP = "steamdb";
         );
       }
       var _,
-        _,
         _ = {
           $$typeof: !0,
           render: !0,
@@ -5104,11 +5330,569 @@ var CLSTAMP = "steamdb";
           type: !0,
           displayName: !0,
         };
-      (_ = _.unstable_batchedUpdates) || (_ = _),
-        (0, _._)({
-          reactionScheduler: _,
+      function _(_) {
+        var _ = _.children,
+          _ = _.render;
+        _ &&
+          _ &&
+          console.error(
+            "MobX Observer: Do not use children and render in the same time in `Observer`",
+          );
+        var _ = _ || _;
+        return "function" != typeof _ ? null : _(_);
+      }
+      function _(_, _) {
+        return (0, _.useState)(function () {
+          return (0, _.observable)(_(), _, {
+            autoBind: !0,
+          });
+        })[0];
+      }
+      function _(_) {
+        var _ = (0, _.useState)(function () {
+          return (0, _.observable)(
+            _,
+            {},
+            {
+              deep: !1,
+            },
+          );
+        })[0];
+        return (
+          (0, _.runInAction)(function () {
+            Object.assign(_, _);
+          }),
+          _
+        );
+      }
+      function _(_, _) {
+        var _ = _ && _(_);
+        return (0, _.useState)(function () {
+          return (0, _.observable)(_(_), void 0, {
+            autoBind: !0,
+          });
+        })[0];
+      }
+      (_.displayName = "Observer"), _(_.unstable_batchedUpdates);
+      var _ =
+        null !== (_ = _.finalizeAllImmediately) && void 0 !== _
+          ? _
+          : function () {};
+      function _(_, _) {
+        return void 0 === _ && (_ = "observed"), _(_, _);
+      }
+      function _(_) {
+        _(_);
+      }
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      var _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = (_ = _) && "object" == typeof _ && "default" in _ ? _.default : _,
+        _ = __webpack_require__("chunkid");
+      function _(_, _) {
+        return _ === _ ? 0 !== _ || 1 / _ == 1 / _ : _ != _ && _ != _;
+      }
+      var _ = {
+          $$typeof: 1,
+          render: 1,
+          compare: 1,
+          type: 1,
+          childContextTypes: 1,
+          contextType: 1,
+          contextTypes: 1,
+          defaultProps: 1,
+          getDefaultProps: 1,
+          getDerivedStateFromError: 1,
+          getDerivedStateFromProps: 1,
+          mixins: 1,
+          displayName: 1,
+          propTypes: 1,
+        },
+        _ = Symbol("patchMixins"),
+        _ = Symbol("patchedDefinition");
+      function _(_, _) {
+        for (
+          var _ = this,
+            _ = arguments.length,
+            _ = new Array(_ > 2 ? _ - 2 : 0),
+            _ = 2;
+          _ < _;
+          _++
+        )
+          _[_ - 2] = arguments[_];
+        _.locks++;
+        try {
+          var _;
+          return null != _ && (_ = _.apply(this, _)), _;
+        } finally {
+          _.locks--,
+            0 === _.locks &&
+              _.methods.forEach(function (_) {
+                _.apply(_, _);
+              });
+        }
+      }
+      function _(_, _) {
+        return function () {
+          for (var _ = arguments.length, _ = new Array(_), _ = 0; _ < _; _++)
+            _[_] = arguments[_];
+          _.call.apply(_, [this, _, _].concat(_));
+        };
+      }
+      function _(_, _, _) {
+        var _ = (function (_, _) {
+          var _ = (_[_] = _[_] || {}),
+            _ = (_[_] = _[_] || {});
+          return (_.locks = _.locks || 0), (_.methods = _.methods || []), _;
+        })(_, _);
+        _.methods.indexOf(_) < 0 && _.methods.push(_);
+        var _ = Object.getOwnPropertyDescriptor(_, _);
+        if (!_ || !_[_]) {
+          var _ = (function _(_, _, _, _, _) {
+            var _,
+              _ = _(_, _);
+            return (
+              ((_ = {})[_] = !0),
+              (_.get = function () {
+                return _;
+              }),
+              (_.set = function (_) {
+                if (this === _) _ = _(_, _);
+                else {
+                  var _ = _(this, _, _, _, _);
+                  Object.defineProperty(this, _, _);
+                }
+              }),
+              (_.configurable = !0),
+              (_.enumerable = _),
+              _
+            );
+          })(_, _, _ ? _.enumerable : void 0, _, _[_]);
+          Object.defineProperty(_, _, _);
+        }
+      }
+      var _ = Symbol("ObserverAdministration"),
+        _ = Symbol("isMobXReactObserver");
+      function _(_) {
+        var _;
+        return null != (_ = _[_])
+          ? _
+          : (_[_] = {
+              reaction: null,
+              mounted: !1,
+              reactionInvalidatedBeforeMount: !1,
+              forceUpdate: null,
+              name: _(_.constructor),
+              state: void 0,
+              props: void 0,
+              context: void 0,
+            });
+      }
+      function _(_) {
+        return _.displayName || _.name || "<component>";
+      }
+      function _(_) {
+        var _ = _.bind(this),
+          _ = _(this);
+        return function () {
+          _.reaction ||
+            ((_.reaction = (function (_) {
+              return new _.Reaction(_.name + ".render()", function () {
+                if (_.mounted)
+                  try {
+                    null == _.forceUpdate || _.forceUpdate();
+                  } catch (_) {
+                    var _;
+                    null == (_ = _.reaction) || _.dispose(),
+                      (_.reaction = null);
+                  }
+                else _.reactionInvalidatedBeforeMount = !0;
+              });
+            })(_)),
+            _.mounted ||
+              _._observerFinalizationRegistry.register(this, _, this));
+          var _ = void 0,
+            _ = void 0;
+          if (
+            (_.reaction.track(function () {
+              try {
+                _ = _._allowStateChanges(!1, _);
+              } catch (_) {
+                _ = _;
+              }
+            }),
+            _)
+          )
+            throw _;
+          return _;
+        };
+      }
+      function _(_, _) {
+        return (
+          _.isUsingStaticRendering() &&
+            console.warn(
+              "[mobx-react] It seems that a re-rendering of a React component is triggered while in static (server-side) mode. Please make sure components are rendered only once server-side.",
+            ),
+          this.state !== _ ||
+            !(function (_, _) {
+              if (_(_, _)) return !0;
+              if (
+                "object" != typeof _ ||
+                null === _ ||
+                "object" != typeof _ ||
+                null === _
+              )
+                return !1;
+              var _ = Object.keys(_),
+                _ = Object.keys(_);
+              if (_.length !== _.length) return !1;
+              for (var _ = 0; _ < _.length; _++)
+                if (
+                  !Object.hasOwnProperty.call(_, _[_]) ||
+                  !_(_[_[_]], _[_[_]])
+                )
+                  return !1;
+              return !0;
+            })(this.props, _)
+        );
+      }
+      function _(_, _) {
+        if (_ && "class" !== _.kind)
+          throw new Error(
+            "The @observer decorator can be used on classes only",
+          );
+        return (
+          !0 === _.isMobxInjector &&
+            console.warn(
+              "Mobx observer: You are trying to use `observer` on a component that already has `inject`. Please apply `observer` before applying `inject`",
+            ),
+          Object.prototype.isPrototypeOf.call(_.Component, _) ||
+          Object.prototype.isPrototypeOf.call(_.PureComponent, _)
+            ? (function (_) {
+                var _ = _.prototype;
+                if (_[_]) {
+                  var _ = _(_);
+                  throw new Error(
+                    "The provided component class (" +
+                      _ +
+                      ") has already been declared as an observer component.",
+                  );
+                }
+                if (((_[_] = !0), _.componentWillReact))
+                  throw new Error(
+                    "The componentWillReact life-cycle event is no longer supported",
+                  );
+                if (_.__proto__ !== _.PureComponent)
+                  if (_.shouldComponentUpdate) {
+                    if (_.shouldComponentUpdate !== _)
+                      throw new Error(
+                        "It is not allowed to use shouldComponentUpdate in observer based components.",
+                      );
+                  } else _.shouldComponentUpdate = _;
+                var _ = _.render;
+                if ("function" != typeof _) {
+                  var _ = _(_);
+                  throw new Error(
+                    "[mobx-react] class component (" +
+                      _ +
+                      ") is missing `render` method.\n`observer` requires `render` being a function defined on prototype.\n`render = () => {}` or `render = function() {}` is not supported.",
+                  );
+                }
+                _.render = function () {
+                  return (
+                    Object.defineProperty(this, "render", {
+                      configurable: !1,
+                      writable: !1,
+                      value: _.isUsingStaticRendering() ? _ : _.call(this, _),
+                    }),
+                    this.render()
+                  );
+                };
+                var _ = _.componentDidMount;
+                return (
+                  (_.componentDidMount = function () {
+                    var _ = this,
+                      _ = _(this);
+                    return (
+                      (_.mounted = !0),
+                      _._observerFinalizationRegistry.unregister(this),
+                      (_.forceUpdate = function () {
+                        return _.forceUpdate();
+                      }),
+                      (_.reaction && !_.reactionInvalidatedBeforeMount) ||
+                        _.forceUpdate(),
+                      null == _ ? void 0 : _.apply(this, arguments)
+                    );
+                  }),
+                  _(_, "componentWillUnmount", function () {
+                    var _;
+                    if (!_.isUsingStaticRendering()) {
+                      var _ = _(this);
+                      null == (_ = _.reaction) || _.dispose(),
+                        (_.reaction = null),
+                        (_.forceUpdate = null),
+                        (_.mounted = !1),
+                        (_.reactionInvalidatedBeforeMount = !1);
+                    }
+                  }),
+                  _
+                );
+              })(_)
+            : _.observer(_)
+        );
+      }
+      function _() {
+        return (_ = Object.assign
+          ? Object.assign.bind()
+          : function (_) {
+              for (var _ = 1; _ < arguments.length; _++) {
+                var _ = arguments[_];
+                for (var _ in _)
+                  ({}).hasOwnProperty.call(_, _) && (_[_] = _[_]);
+              }
+              return _;
+            }).apply(null, arguments);
+      }
+      var _ = ["children"],
+        _ = _.createContext({});
+      function _(_) {
+        var _ = _.children,
+          _ = (function (_, _) {
+            if (null == _) return {};
+            var _ = {};
+            for (var _ in _)
+              if ({}.hasOwnProperty.call(_, _)) {
+                if (_.indexOf(_) >= 0) continue;
+                _[_] = _[_];
+              }
+            return _;
+          })(_, _),
+          _ = _.useContext(_),
+          _ = _.useRef(_({}, _, _));
+        return _.createElement(
+          _.Provider,
+          {
+            value: _.current,
+          },
+          _,
+        );
+      }
+      function _(_, _, _, _) {
+        var _,
+          _,
+          _,
+          _ = _.forwardRef(function (_, _) {
+            var _ = _({}, _),
+              _ = _.useContext(_);
+            return (
+              Object.assign(_, _(_ || {}, _) || {}),
+              _ && (_.ref = _),
+              _.createElement(_, _)
+            );
+          });
+        return (
+          _ && (_ = _(_)),
+          (_.isMobxInjector = !0),
+          (_ = _),
+          (_ = _),
+          (_ = Object.getOwnPropertyNames(Object.getPrototypeOf(_))),
+          Object.getOwnPropertyNames(_).forEach(function (_) {
+            _[_] ||
+              -1 !== _.indexOf(_) ||
+              Object.defineProperty(
+                _,
+                _,
+                Object.getOwnPropertyDescriptor(_, _),
+              );
+          }),
+          (_.wrappedComponent = _),
+          (_.displayName = (function (_, _) {
+            var _ =
+              _.displayName ||
+              _.name ||
+              (_.constructor && _.constructor.name) ||
+              "Component";
+            return _ ? "inject-with-" + _ + "(" + _ + ")" : "inject(" + _ + ")";
+          })(_, _)),
+          _
+        );
+      }
+      _.displayName = "MobXProvider";
+      var _ = Number.parseInt(_.version.split(".")[0]),
+        _ = !1,
+        _ = Symbol("disposeOnUnmountProto"),
+        _ = Symbol("disposeOnUnmountInst");
+      function _() {
+        var _ = this;
+        [].concat(this[_] || [], this[_] || []).forEach(function (_) {
+          var _ = "string" == typeof _ ? _[_] : _;
+          null != _ &&
+            (Array.isArray(_)
+              ? __webpack_require__.map(function (_) {
+                  return _();
+                })
+              : __webpack_require__());
         });
-      _ = _.finalizeAllImmediately;
+      }
+      function _(_) {
+        function _(_, _, _, _, _, _) {
+          for (
+            var _ = arguments.length, _ = new Array(_ > 6 ? _ - 6 : 0), _ = 6;
+            _ < _;
+            _++
+          )
+            _[_ - 6] = arguments[_];
+          return _.untracked(function () {
+            return (
+              (_ = _ || "<<anonymous>>"),
+              (_ = _ || _),
+              null == _[_]
+                ? _
+                  ? new Error(
+                      "The " +
+                        _ +
+                        " `" +
+                        _ +
+                        "` is marked as required in `" +
+                        _ +
+                        "`, but its value is `" +
+                        (null === _[_] ? "null" : "undefined") +
+                        "`.",
+                    )
+                  : null
+                : _.apply(void 0, [_, _, _, _, _].concat(_))
+            );
+          });
+        }
+        var _ = _.bind(null, !1);
+        return (_.isRequired = _.bind(null, !0)), _;
+      }
+      function _(_) {
+        var _ = typeof _;
+        return Array.isArray(_)
+          ? "array"
+          : _ instanceof RegExp
+            ? "object"
+            : (function (_, _) {
+                  return (
+                    "symbol" === _ ||
+                    "Symbol" === _["@@toStringTag"] ||
+                    ("function" == typeof Symbol && _ instanceof Symbol)
+                  );
+                })(_, _)
+              ? "symbol"
+              : _;
+      }
+      function _(_, _) {
+        return _(function (_, _, _, _, _) {
+          return _.untracked(function () {
+            if (_ && _(_[_]) === _.toLowerCase()) return null;
+            var _;
+            switch (_) {
+              case "Array":
+                _ = _.isObservableArray;
+                break;
+              case "Object":
+                _ = _.isObservableObject;
+                break;
+              case "Map":
+                _ = _.isObservableMap;
+                break;
+              default:
+                throw new Error("Unexpected mobxType: " + _);
+            }
+            var _ = _[_];
+            if (!_(_)) {
+              var _ = (function (_) {
+                  var _ = _(_);
+                  if ("object" === _) {
+                    if (_ instanceof Date) return "date";
+                    if (_ instanceof RegExp) return "regexp";
+                  }
+                  return _;
+                })(_),
+                _ = _ ? " or javascript `" + _.toLowerCase() + "`" : "";
+              return new Error(
+                "Invalid prop `" +
+                  _ +
+                  "` of type `" +
+                  _ +
+                  "` supplied to `" +
+                  _ +
+                  "`, expected `mobx.Observable" +
+                  _ +
+                  "`" +
+                  _ +
+                  ".",
+              );
+            }
+            return null;
+          });
+        });
+      }
+      function _(_, _) {
+        return _(function (_, _, _, _, _) {
+          for (
+            var _ = arguments.length, _ = new Array(_ > 5 ? _ - 5 : 0), _ = 5;
+            _ < _;
+            _++
+          )
+            _[_ - 5] = arguments[_];
+          return _.untracked(function () {
+            if ("function" != typeof _)
+              return new Error(
+                "Property `" +
+                  _ +
+                  "` of component `" +
+                  _ +
+                  "` has invalid PropType notation.",
+              );
+            var _ = _(_, "Array")(_, _, _, _, _);
+            if (_ instanceof Error) return _;
+            for (var _ = _[_], _ = 0; _ < _.length; _++)
+              if (
+                (_ = _.apply(
+                  void 0,
+                  [_, _, _, _, _ + "[" + _ + "]"].concat(_),
+                )) instanceof Error
+              )
+                return _;
+            return null;
+          });
+        });
+      }
+      var _ = {
+        observableArray: _(!1, "Array"),
+        observableArrayOf: _.bind(null, !1),
+        observableMap: _(!1, "Map"),
+        observableObject: _(!1, "Object"),
+        arrayOrObservableArray: _(!0, "Array"),
+        arrayOrObservableArrayOf: _.bind(null, !0),
+        objectOrObservableObject: _(!0, "Object"),
+      };
+      if (!_.Component)
+        throw new Error("mobx-react requires React to be available");
+      if (!_.observable)
+        throw new Error("mobx-react requires mobx to be available");
+      Object.defineProperty(module_exports, "q3", {
+        enumerable: !0,
+        get: function () {
+          return _.useObserver;
+        },
+      }),
+        (module_exports._ = _);
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      __webpack_require__._(module_exports, {
+        _: () => _,
+      });
+      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
       function _(_, _) {
         return _ === _ ? 0 !== _ || 1 / _ == 1 / _ : _ != _ && _ != _;
       }
@@ -5203,7 +5987,7 @@ var CLSTAMP = "steamdb";
         return function () {
           _.reaction ||
             ((_.reaction = (function (_) {
-              return new _._(_.name + ".render()", function () {
+              return new _.Reaction(_.name + ".render()", function () {
                 if (_.mounted)
                   try {
                     null == _.forceUpdate || _.forceUpdate();
@@ -5215,13 +5999,14 @@ var CLSTAMP = "steamdb";
                 else _.reactionInvalidatedBeforeMount = !0;
               });
             })(_)),
-            _.mounted || _.register(this, _, this));
+            _.mounted ||
+              _._observerFinalizationRegistry.register(this, _, this));
           var _ = void 0,
             _ = void 0;
           if (
             (_.reaction.track(function () {
               try {
-                _ = (0, _._)(!1, _);
+                _ = (0, _._allowStateChanges)(!1, _);
               } catch (_) {
                 _ = _;
               }
@@ -5234,7 +6019,7 @@ var CLSTAMP = "steamdb";
       }
       function _(_, _) {
         return (
-          _() &&
+          (0, _.isUsingStaticRendering)() &&
             console.warn(
               "[mobx-react] It seems that a re-rendering of a React component is triggered while in static (server-side) mode. Please make sure components are rendered only once server-side.",
             ),
@@ -5308,7 +6093,9 @@ var CLSTAMP = "steamdb";
                     Object.defineProperty(this, "render", {
                       configurable: !1,
                       writable: !1,
-                      value: _() ? _ : _.call(this, _),
+                      value: (0, _.isUsingStaticRendering)()
+                        ? _
+                        : _.call(this, _),
                     }),
                     this.render()
                   );
@@ -5320,7 +6107,7 @@ var CLSTAMP = "steamdb";
                       _ = _(this);
                     return (
                       (_.mounted = !0),
-                      _.unregister(this),
+                      _._observerFinalizationRegistry.unregister(this),
                       (_.forceUpdate = function () {
                         return _.forceUpdate();
                       }),
@@ -5331,7 +6118,7 @@ var CLSTAMP = "steamdb";
                   }),
                   _(_, "componentWillUnmount", function () {
                     var _;
-                    if (!_()) {
+                    if (!(0, _.isUsingStaticRendering)()) {
                       var _ = _(this);
                       null == (_ = _.reaction) || _.dispose(),
                         (_.reaction = null),
@@ -5343,34 +6130,88 @@ var CLSTAMP = "steamdb";
                   _
                 );
               })(_)
-            : _(_)
+            : (0, _.observer)(_)
         );
       }
       _.version.split(".")[0];
       if (!_.Component)
         throw new Error("mobx-react requires React to be available");
-      if (!_._) throw new Error("mobx-react requires mobx to be available");
+      if (!_.observable)
+        throw new Error("mobx-react requires mobx to be available");
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       "use strict";
-      __webpack_require__._(module_exports, {
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-      });
+      __webpack_require__._(module_exports),
+        __webpack_require__._(module_exports, {
+          $mobx: () => _,
+          FlowCancellationError: () => _,
+          ObservableMap: () => _,
+          ObservableSet: () => _,
+          Reaction: () => _,
+          _allowStateChanges: () => _,
+          _allowStateChangesInsideComputed: () => _,
+          _allowStateReadsEnd: () => _,
+          _allowStateReadsStart: () => _,
+          _autoAction: () => _,
+          _endAction: () => _,
+          _getAdministration: () => _,
+          _getGlobalState: () => _,
+          _interceptReads: () => _,
+          _isComputingDerivation: () => _,
+          _resetGlobalState: () => _,
+          _startAction: () => _,
+          action: () => _,
+          autorun: () => _,
+          comparer: () => _,
+          computed: () => _,
+          configure: () => _,
+          createAtom: () => _,
+          defineProperty: () => _,
+          entries: () => _,
+          extendObservable: () => _,
+          flow: () => _,
+          flowResult: () => _,
+          get: () => _,
+          getAtom: () => _,
+          getDebugName: () => _,
+          getDependencyTree: () => _,
+          getObserverTree: () => _,
+          has: () => _,
+          intercept: () => _,
+          isAction: () => _,
+          isBoxedObservable: () => _,
+          isComputed: () => _,
+          isComputedProp: () => _,
+          isFlow: () => _,
+          isFlowCancellationError: () => _,
+          isObservable: () => _,
+          isObservableArray: () => _,
+          isObservableMap: () => _,
+          isObservableObject: () => _,
+          isObservableProp: () => _,
+          isObservableSet: () => _,
+          keys: () => _,
+          makeAutoObservable: () => _,
+          makeObservable: () => _,
+          observable: () => _,
+          observe: () => _,
+          onBecomeObserved: () => _,
+          onBecomeUnobserved: () => _,
+          onReactionError: () => _,
+          override: () => _,
+          ownKeys: () => _,
+          reaction: () => _,
+          remove: () => _,
+          runInAction: () => _,
+          set: () => _,
+          spy: () => _,
+          toJS: () => _,
+          trace: () => _,
+          transaction: () => _,
+          untracked: () => _,
+          values: () => _,
+          when: () => _,
+        });
       function _(_) {
         for (
           var _ = arguments.length, _ = new Array(_ > 1 ? _ - 1 : 0), _ = 1;
@@ -5682,9 +6523,8 @@ var CLSTAMP = "steamdb";
         _ = _("Atom", _);
       function _(_, _, _) {
         void 0 === _ && (_ = _), void 0 === _ && (_ = _);
-        var _,
-          _ = new _(_);
-        return _ !== _ && _(_, _, _, _), _ !== _ && _(_, _), _;
+        var _ = new _(_);
+        return _ !== _ && _(_, _), _ !== _ && _(_, _), _;
       }
       var _ = {
         identity: function (_, _) {
@@ -5732,7 +6572,29 @@ var CLSTAMP = "steamdb";
       function _(_) {
         return _;
       }
-      var _ = "override";
+      var _ = "override",
+        _ = _({
+          annotationType_: _,
+          make_: function (_, _) {
+            0;
+            0;
+            return 0;
+          },
+          extend_: function (_, _, _, _) {
+            _(
+              "'" +
+                this.annotationType_ +
+                "' can only be used with 'makeObservable'",
+            );
+          },
+          decorate_20223_: function (_, _) {
+            console.warn(
+              "'" +
+                this.annotationType_ +
+                "' cannot be used with decorators - this is a no-op",
+            );
+          },
+        });
       function _(_, _) {
         return {
           annotationType_: _,
@@ -6246,45 +7108,42 @@ var CLSTAMP = "steamdb";
         );
       }
       function _(_, _, _, _, _) {
-        var _ = (function (_, _) {
-          var _ = !1,
-            _ = 0;
-          0;
-          var _ = _.trackingDerivation,
-            _ = !_ || !_;
-          _();
-          var _ = _.allowStateChanges;
-          _ && (_(), (_ = _(!0)));
-          var _ = _(!0),
-            _ = {
-              runAsAction_: _,
-              prevDerivation_: _,
-              prevAllowStateChanges_: _,
-              prevAllowStateReads_: _,
-              notifySpy_: _,
-              startTime_: _,
-              actionId_: _++,
-              parentActionId_: _,
-            };
-          return (_ = _.actionId_), _;
-        })(0, _);
+        var _ = _(_, _, _, _);
         try {
           return __webpack_require__.apply(_, _);
         } catch (_) {
           throw ((_.error_ = _), _);
         } finally {
-          !(function (_) {
-            _ !== _.actionId_ && _(30);
-            (_ = _.parentActionId_),
-              void 0 !== _.error_ && (_.suppressReactionErrors = !0);
-            _(_.prevAllowStateChanges_),
-              _(_.prevAllowStateReads_),
-              _(),
-              _.runAsAction_ && _(_.prevDerivation_);
-            0;
-            _.suppressReactionErrors = !1;
-          })(_);
+          _(_);
         }
+      }
+      function _(_, _, _, _) {
+        var _ = _.trackingDerivation,
+          _ = !_ || !_;
+        _();
+        var _ = _.allowStateChanges;
+        _ && (_(), (_ = _(!0)));
+        var _ = {
+          runAsAction_: _,
+          prevDerivation_: _,
+          prevAllowStateChanges_: _,
+          prevAllowStateReads_: _(!0),
+          notifySpy_: !1,
+          startTime_: 0,
+          actionId_: _++,
+          parentActionId_: _,
+        };
+        return (_ = _.actionId_), _;
+      }
+      function _(_) {
+        _ !== _.actionId_ && _(30),
+          (_ = _.parentActionId_),
+          void 0 !== _.error_ && (_.suppressReactionErrors = !0),
+          _(_.prevAllowStateChanges_),
+          _(_.prevAllowStateReads_),
+          _(),
+          _.runAsAction_ && _(_.prevDerivation_),
+          (_.suppressReactionErrors = !1);
       }
       function _(_, _) {
         var _ = _(_);
@@ -6302,104 +7161,105 @@ var CLSTAMP = "steamdb";
         _.allowStateChanges = _;
       }
       var _ = (function (_) {
-        function _(_, _, _, _, _) {
-          var _;
+          function _(_, _, _, _, _) {
+            var _;
+            return (
+              void 0 === _ && (_ = "ObservableValue"),
+              void 0 === _ && (_ = !0),
+              void 0 === _ && (_ = _.default),
+              ((_ = _.call(this, _) || this).enhancer = void 0),
+              (_.name_ = void 0),
+              (_.equals = void 0),
+              (_.hasUnreportedChange_ = !1),
+              (_.interceptors_ = void 0),
+              (_.changeListeners_ = void 0),
+              (_.value_ = void 0),
+              (_.dehancer = void 0),
+              (_.enhancer = _),
+              (_.name_ = _),
+              (_.equals = _),
+              (_.value_ = __webpack_require__(_, void 0, _)),
+              _
+            );
+          }
+          _(_, _);
+          var _ = _.prototype;
           return (
-            void 0 === _ && (_ = "ObservableValue"),
-            void 0 === _ && (_ = !0),
-            void 0 === _ && (_ = _.default),
-            ((_ = _.call(this, _) || this).enhancer = void 0),
-            (_.name_ = void 0),
-            (_.equals = void 0),
-            (_.hasUnreportedChange_ = !1),
-            (_.interceptors_ = void 0),
-            (_.changeListeners_ = void 0),
-            (_.value_ = void 0),
-            (_.dehancer = void 0),
-            (_.enhancer = _),
-            (_.name_ = _),
-            (_.equals = _),
-            (_.value_ = __webpack_require__(_, void 0, _)),
+            (_.dehanceValue = function (_) {
+              return void 0 !== this.dehancer ? this.dehancer(_) : _;
+            }),
+            (_.set = function (_) {
+              this.value_;
+              if ((_ = this.prepareNewValue_(_)) !== _.UNCHANGED) {
+                0, this.setNewValue_(_);
+              }
+            }),
+            (_.prepareNewValue_ = function (_) {
+              if ((_(this), _(this))) {
+                var _ = _(this, {
+                  object: this,
+                  type: _,
+                  newValue: _,
+                });
+                if (!_) return _.UNCHANGED;
+                _ = _.newValue;
+              }
+              return (
+                (_ = this.enhancer(_, this.value_, this.name_)),
+                this.equals(this.value_, _) ? _.UNCHANGED : _
+              );
+            }),
+            (_.setNewValue_ = function (_) {
+              var _ = this.value_;
+              (this.value_ = _),
+                this.reportChanged(),
+                _(this) &&
+                  _(this, {
+                    type: _,
+                    object: this,
+                    newValue: _,
+                    oldValue: _,
+                  });
+            }),
+            (_.get = function () {
+              return this.reportObserved(), this.dehanceValue(this.value_);
+            }),
+            (_.intercept_ = function (_) {
+              return _(this, _);
+            }),
+            (_.observe_ = function (_, _) {
+              return (
+                _ &&
+                  _({
+                    observableKind: "value",
+                    debugObjectName: this.name_,
+                    object: this,
+                    type: _,
+                    newValue: this.value_,
+                    oldValue: void 0,
+                  }),
+                _(this, _)
+              );
+            }),
+            (_.raw = function () {
+              return this.value_;
+            }),
+            (_.toJSON = function () {
+              return this.get();
+            }),
+            (_.toString = function () {
+              return this.name_ + "[" + this.value_ + "]";
+            }),
+            (_.valueOf = function () {
+              return _(this.get());
+            }),
+            (_[Symbol.toPrimitive] = function () {
+              return this.valueOf();
+            }),
             _
           );
-        }
-        _(_, _);
-        var _ = _.prototype;
-        return (
-          (_.dehanceValue = function (_) {
-            return void 0 !== this.dehancer ? this.dehancer(_) : _;
-          }),
-          (_.set = function (_) {
-            this.value_;
-            if ((_ = this.prepareNewValue_(_)) !== _.UNCHANGED) {
-              0, this.setNewValue_(_);
-            }
-          }),
-          (_.prepareNewValue_ = function (_) {
-            if ((_(this), _(this))) {
-              var _ = _(this, {
-                object: this,
-                type: _,
-                newValue: _,
-              });
-              if (!_) return _.UNCHANGED;
-              _ = _.newValue;
-            }
-            return (
-              (_ = this.enhancer(_, this.value_, this.name_)),
-              this.equals(this.value_, _) ? _.UNCHANGED : _
-            );
-          }),
-          (_.setNewValue_ = function (_) {
-            var _ = this.value_;
-            (this.value_ = _),
-              this.reportChanged(),
-              _(this) &&
-                _(this, {
-                  type: _,
-                  object: this,
-                  newValue: _,
-                  oldValue: _,
-                });
-          }),
-          (_.get = function () {
-            return this.reportObserved(), this.dehanceValue(this.value_);
-          }),
-          (_.intercept_ = function (_) {
-            return _(this, _);
-          }),
-          (_.observe_ = function (_, _) {
-            return (
-              _ &&
-                _({
-                  observableKind: "value",
-                  debugObjectName: this.name_,
-                  object: this,
-                  type: _,
-                  newValue: this.value_,
-                  oldValue: void 0,
-                }),
-              _(this, _)
-            );
-          }),
-          (_.raw = function () {
-            return this.value_;
-          }),
-          (_.toJSON = function () {
-            return this.get();
-          }),
-          (_.toString = function () {
-            return this.name_ + "[" + this.value_ + "]";
-          }),
-          (_.valueOf = function () {
-            return _(this.get());
-          }),
-          (_[Symbol.toPrimitive] = function () {
-            return this.valueOf();
-          }),
-          _
-        );
-      })(_);
+        })(_),
+        _ = _("ObservableValue", _);
       function _(_, _) {
         return !!(_ & _);
       }
@@ -6656,6 +7516,9 @@ var CLSTAMP = "steamdb";
             return _(_), _(_), _(_), !1;
         }
       }
+      function _() {
+        return null !== _.trackingDerivation;
+      }
       function _(_) {}
       function _(_, _, _) {
         var _ = _(!0);
@@ -6749,7 +7612,20 @@ var CLSTAMP = "steamdb";
             _[_].lowestObserverState_ = _.UP_TO_DATE_;
         }
       }
-      var _ = function () {
+      var _ = [
+          "mobxGuid",
+          "spyListeners",
+          "enforceActions",
+          "computedRequiresReaction",
+          "reactionRequiresObservable",
+          "observableRequiresReaction",
+          "allowStateReads",
+          "disableErrorBoundaries",
+          "runId",
+          "UNCHANGED",
+          "useProxies",
+        ],
+        _ = function () {
           (this.version = 6),
             (this.UNCHANGED = {}),
             (this.trackingDerivation = null),
@@ -6795,6 +7671,14 @@ var CLSTAMP = "steamdb";
                 new _())
           );
         })();
+      function _() {
+        return _;
+      }
+      function _() {
+        var _ = new _();
+        for (var _ in _) -1 === _.indexOf(_) && (_[_] = _[_]);
+        _.allowStateChanges = !_.enforceActions;
+      }
       function _(_, _) {
         _.observers_.add(_),
           _.lowestObserverState_ > _.dependenciesState_ &&
@@ -6945,11 +7829,20 @@ var CLSTAMP = "steamdb";
             return "Reaction[" + this.name_ + "]";
           }),
           (_.trace = function (_) {
-            void 0 === _ && (_ = !1);
+            void 0 === _ && (_ = !1), _(this, _);
           }),
           _
         );
       })();
+      function _(_) {
+        return (
+          _.globalReactionErrorHandlers.push(_),
+          function () {
+            var _ = _.globalReactionErrorHandlers.indexOf(_);
+            _ >= 0 && _.globalReactionErrorHandlers.splice(_, 1);
+          }
+        );
+      }
       var _ = 100,
         _ = function (_) {
           return _();
@@ -6968,6 +7861,12 @@ var CLSTAMP = "steamdb";
         _.isRunningReactions = !1;
       }
       var _ = _("Reaction", _);
+      function _(_) {
+        return (
+          console.warn("[mobx.spy] Is a no-op in production builds"),
+          function () {}
+        );
+      }
       var _ = "action",
         _ = "autoAction",
         _ = "<unnamed action>",
@@ -7006,7 +7905,7 @@ var CLSTAMP = "steamdb";
       Object.assign(_, _);
       var _ = _(!0);
       function _(_) {
-        return _(_.name, !1, _, this, void 0);
+        return _(_.name || _, !1, _, this, void 0);
       }
       function _(_) {
         return _(_) && !0 === _.isMobxAction;
@@ -7063,8 +7962,65 @@ var CLSTAMP = "steamdb";
               }
             : _;
       }
+      function _(_, _, _) {
+        var _, _, _;
+        void 0 === _ && (_ = _);
+        var _,
+          _,
+          _,
+          _ = null != (_ = _.name) ? _ : "Reaction",
+          _ = _(
+            _,
+            _.onError
+              ? ((_ = _.onError),
+                (_ = _),
+                function () {
+                  try {
+                    return _.apply(this, arguments);
+                  } catch (_) {
+                    _.call(this, _);
+                  }
+                })
+              : _,
+          ),
+          _ = !_.scheduler && !_.delay,
+          _ = _(_),
+          _ = !0,
+          _ = !1,
+          _ = _.compareStructural ? _.structural : _.equals || _.default,
+          _ = new _(
+            _,
+            function () {
+              _ || _ ? _() : _ || ((_ = !0), _(_));
+            },
+            _.onError,
+            _.requiresObservable,
+          );
+        function _() {
+          if (((_ = !1), !_.isDisposed_)) {
+            var _ = !1,
+              _ = _;
+            _.track(function () {
+              var _ = _(!1, function () {
+                return _(_);
+              });
+              (_ = _ || !_(_, _)), (_ = _);
+            }),
+              ((_ && _.fireImmediately) || (!_ && _)) && _(_, _, _),
+              (_ = !1);
+          }
+        }
+        return (
+          (null != (_ = _) && null != (_ = _.signal) && _.aborted) ||
+            _.schedule_(),
+          _.getDisposer_(null == (_ = _) ? void 0 : _.signal)
+        );
+      }
       var _ = "onBO",
         _ = "onBUO";
+      function _(_, _, _) {
+        return _(_, _, _, _);
+      }
       function _(_, _, _) {
         return _(_, _, _, _);
       }
@@ -7161,9 +8117,31 @@ var CLSTAMP = "steamdb";
           _
         );
       }
+      function _(_, _) {
+        return _(_(_, _));
+      }
+      function _(_) {
+        var _ = {
+          name: _.name_,
+        };
+        return (
+          (function (_) {
+            return _.observers_ && _.observers_.size > 0;
+          })(_) &&
+            (_.observers = Array.from(
+              (function (_) {
+                return _.observers_;
+              })(_),
+            ).map(_)),
+          _
+        );
+      }
       var _ = 0;
       function _() {
         this.message = "FLOW_CANCELLED";
+      }
+      function _(_) {
+        return _ instanceof _;
       }
       _.prototype = Object.create(Error.prototype);
       var _ = _("flow"),
@@ -7238,7 +8216,42 @@ var CLSTAMP = "steamdb";
         _(_.cancel) && _.cancel();
       }
       function _(_) {
+        return _;
+      }
+      function _(_) {
         return !0 === (null == _ ? void 0 : _.isMobXFlow);
+      }
+      function _(_, _, _) {
+        var _;
+        return (
+          _(_) || _(_) || _(_) ? (_ = _(_)) : _(_) && (_ = _(_, _)),
+          (_.dehancer = "function" == typeof _ ? _ : _),
+          function () {
+            _.dehancer = void 0;
+          }
+        );
+      }
+      function _(_, _, _) {
+        return _(_)
+          ? (function (_, _, _) {
+              return _(_, _).intercept_(_);
+            })(_, _, _)
+          : (function (_, _) {
+              return _(_).intercept_(_);
+            })(_, _);
+      }
+      function _(_, _) {
+        if (void 0 === _) return _(_);
+        if (!1 === _(_)) return !1;
+        if (!_[_].values_.has(_)) return !1;
+        var _ = _(_, _);
+        return _(_);
+      }
+      function _(_) {
+        return _(_);
+      }
+      function _(_, _) {
+        return _(_, _);
       }
       function _(_, _) {
         return (
@@ -7251,6 +8264,170 @@ var CLSTAMP = "steamdb";
       function _(_) {
         return _(_);
       }
+      function _(_, _) {
+        return _(_, _);
+      }
+      function _(_) {
+        return _(_)
+          ? _[_].keys_()
+          : _(_) || _(_)
+            ? Array.from(_.keys())
+            : _(_)
+              ? _.map(function (_, _) {
+                  return _;
+                })
+              : void _(5);
+      }
+      function _(_) {
+        return _(_)
+          ? _(_).map(function (_) {
+              return _[_];
+            })
+          : _(_)
+            ? _(_).map(function (_) {
+                return _.get(_);
+              })
+            : _(_)
+              ? Array.from(_.values())
+              : _(_)
+                ? _.slice()
+                : void _(6);
+      }
+      function _(_) {
+        return _(_)
+          ? _(_).map(function (_) {
+              return [_, _[_]];
+            })
+          : _(_)
+            ? _(_).map(function (_) {
+                return [_, _.get(_)];
+              })
+            : _(_)
+              ? Array.from(_.entries())
+              : _(_)
+                ? _.map(function (_, _) {
+                    return [_, _];
+                  })
+                : void _(7);
+      }
+      function _(_, _, _) {
+        if (2 !== arguments.length || _(_))
+          _(_)
+            ? _[_].set_(_, _)
+            : _(_)
+              ? _.set(_, _)
+              : _(_)
+                ? _.add(_)
+                : _(_)
+                  ? ("number" != typeof _ && (_ = parseInt(_, 10)),
+                    _ < 0 && _("Invalid index: '" + _ + "'"),
+                    _(),
+                    _ >= _.length && (_.length = _ + 1),
+                    (_[_] = _),
+                    _())
+                  : _(8);
+        else {
+          _();
+          var _ = _;
+          try {
+            for (var _ in _) _(_, _, _[_]);
+          } finally {
+            _();
+          }
+        }
+      }
+      function _(_, _) {
+        _(_)
+          ? _[_].delete_(_)
+          : _(_) || _(_)
+            ? _.delete(_)
+            : _(_)
+              ? ("number" != typeof _ && (_ = parseInt(_, 10)), _.splice(_, 1))
+              : _(9);
+      }
+      function _(_, _) {
+        return _(_)
+          ? _[_].has_(_)
+          : _(_) || _(_)
+            ? _.has(_)
+            : _(_)
+              ? _ >= 0 && _ < _.length
+              : void _(10);
+      }
+      function _(_, _) {
+        if (_(_, _))
+          return _(_)
+            ? _[_].get_(_)
+            : _(_)
+              ? _.get(_)
+              : _(_)
+                ? _[_]
+                : void _(11);
+      }
+      function _(_, _, _) {
+        if (_(_)) return _[_].defineProperty_(_, _);
+        _(39);
+      }
+      function _(_) {
+        if (_(_)) return _[_].ownKeys_();
+        _(38);
+      }
+      function _(_, _, _, _) {
+        return _(_)
+          ? (function (_, _, _, _) {
+              return _(_, _).observe_(_, _);
+            })(_, _, _, _)
+          : (function (_, _, _) {
+              return _(_).observe_(_, _);
+            })(_, _, _);
+      }
+      function _(_, _, _) {
+        return _.set(_, _), _;
+      }
+      function _(_, _) {
+        if (null == _ || "object" != typeof _ || _ instanceof Date || !_(_))
+          return _;
+        if (_(_) || _(_)) return _(_.get(), _);
+        if (_.has(_)) return _.get(_);
+        if (_(_)) {
+          var _ = _(_, _, new Array(_.length));
+          return (
+            _.forEach(function (_, _) {
+              _[_] = _(_, _);
+            }),
+            _
+          );
+        }
+        if (_(_)) {
+          var _ = _(_, _, new Set());
+          return (
+            _.forEach(function (_) {
+              _.add(_(_, _));
+            }),
+            _
+          );
+        }
+        if (_(_)) {
+          var _ = _(_, _, new Map());
+          return (
+            _.forEach(function (_, _) {
+              _.set(_, _(_, _));
+            }),
+            _
+          );
+        }
+        var _ = _(_, _, {});
+        return (
+          _(_).forEach(function (_) {
+            _.propertyIsEnumerable.call(_, _) && (_[_] = _(_[_], _));
+          }),
+          _
+        );
+      }
+      function _(_, _) {
+        return _(_, new Map());
+      }
+      function _() {}
       function _(_, _) {
         void 0 === _ && (_ = void 0), _();
         try {
@@ -7413,6 +8590,23 @@ var CLSTAMP = "steamdb";
           }),
           _
         );
+      }
+      var _ = Symbol("mobx-keys");
+      function _(_, _, _) {
+        return _(_)
+          ? _(_, _, _, _)
+          : (_(function () {
+              var _ = _(_, _)[_];
+              if (!_[_]) {
+                var _ = Object.getPrototypeOf(_),
+                  _ = new Set([].concat(_(_), _(_)));
+                _.delete("constructor"), _.delete(_), _(_, _, _);
+              }
+              _[_].forEach(function (_) {
+                return _.make_(_, !_ || !(_ in _) || _[_]);
+              });
+            }),
+            _);
       }
       var _ = "splice",
         _ = "update",
@@ -8985,12 +10179,7 @@ var CLSTAMP = "steamdb";
       }),
         "object" == typeof __MOBX_DEVTOOLS_GLOBAL_HOOK__ &&
           __MOBX_DEVTOOLS_GLOBAL_HOOK__.injectMobx({
-            spy: function (_) {
-              return (
-                console.warn("[mobx.spy] Is a no-op in production builds"),
-                function () {}
-              );
-            },
+            spy: _,
             extras: {
               getDebugName: _,
             },
@@ -17478,6 +18667,353 @@ var CLSTAMP = "steamdb";
       })(),
         (module.exports = __webpack_require__("chunkid"));
     },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      var _,
+        _ =
+          Object.assign ||
+          function (_) {
+            for (var _ = 1; _ < arguments.length; _++) {
+              var _ = arguments[_];
+              for (var _ in _)
+                Object.prototype.hasOwnProperty.call(_, _) && (_[_] = _[_]);
+            }
+            return _;
+          },
+        _ = (function () {
+          function _(_, _) {
+            for (var _ = 0; _ < _.length; _++) {
+              var _ = _[_];
+              (_.enumerable = _.enumerable || !1),
+                (_.configurable = !0),
+                "value" in _ && (_.writable = !0),
+                Object.defineProperty(_, _.key, _);
+            }
+          }
+          return function (_, _, _) {
+            return _ && _(_.prototype, _), _ && _(_, _), _;
+          };
+        })(),
+        _ = __webpack_require__("chunkid"),
+        _ =
+          (_ = _) && _.__esModule
+            ? _
+            : {
+                default: _,
+              };
+      var _ = {
+          position: "absolute",
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          overflow: "hidden",
+          zIndex: -1,
+          visibility: "hidden",
+          pointerEvents: "none",
+        },
+        _ = {
+          position: "absolute",
+          left: 0,
+          top: 0,
+          transition: "0s",
+        };
+      var _ = (function (_) {
+        function _(_, _) {
+          !(function (_, _) {
+            if (!(_ instanceof _))
+              throw new TypeError("Cannot call a class as a function");
+          })(this, _);
+          var _ = (function (_, _) {
+            if (!_)
+              throw new ReferenceError(
+                "this hasn't been initialised - super() hasn't been called",
+              );
+            return !_ || ("object" != typeof _ && "function" != typeof _)
+              ? _
+              : _;
+          })(this, (_.__proto__ || Object.getPrototypeOf(_)).call(this, _, _));
+          return (
+            (_._expandRef = null),
+            (_._shrinkRef = null),
+            (_._node = null),
+            (_._lastRect = {}),
+            (_._handleScroll = _._handleScroll.bind(_)),
+            (_._reflow = _._reflow.bind(_)),
+            (_._handleRef = _._handleRef.bind(_)),
+            (_._handleExpandRef = _._handleExpandRef.bind(_)),
+            (_._handleShrinkRef = _._handleShrinkRef.bind(_)),
+            _
+          );
+        }
+        return (
+          (function (_, _) {
+            if ("function" != typeof _ && null !== _)
+              throw new TypeError(
+                "Super expression must either be null or a function, not " +
+                  typeof _,
+              );
+            (_.prototype = Object.create(_ && _.prototype, {
+              constructor: {
+                value: _,
+                enumerable: !1,
+                writable: !0,
+                configurable: !0,
+              },
+            })),
+              _ &&
+                (Object.setPrototypeOf
+                  ? Object.setPrototypeOf(_, _)
+                  : (_.__proto__ = _));
+          })(_, _),
+          _(_, null, [
+            {
+              key: "_handleScroll",
+              value: function (_) {
+                for (var _ = _._scrollListeners.length, _ = 0; _ < _; _++)
+                  _._scrollListeners[_].call(void 0, _);
+              },
+            },
+            {
+              key: "_handleResize",
+              value: function (_) {
+                for (var _ = _._resizeListeners.length, _ = 0; _ < _; _++)
+                  _._resizeListeners[_].call(void 0, _);
+              },
+            },
+            {
+              key: "addScrollListener",
+              value: function (_) {
+                0 === _._scrollListeners.length &&
+                  document.addEventListener("scroll", _._handleScroll, !0);
+                var _ = !0;
+                return (
+                  _._scrollListeners.push(_),
+                  function () {
+                    _ &&
+                      ((_ = !1),
+                      _._scrollListeners.splice(
+                        _._scrollListeners.indexOf(_),
+                        1,
+                      ),
+                      0 === _._scrollListeners.length &&
+                        document.removeEventListener(
+                          "scroll",
+                          _._handleScroll,
+                          !0,
+                        ));
+                  }
+                );
+              },
+            },
+            {
+              key: "addResizeListener",
+              value: function (_) {
+                0 === _._resizeListeners.length &&
+                  window.addEventListener("resize", _._handleResize, !0);
+                var _ = !0;
+                return (
+                  _._resizeListeners.push(_),
+                  function () {
+                    _ &&
+                      ((_ = !1),
+                      _._resizeListeners.splice(
+                        _._resizeListeners.indexOf(_),
+                        1,
+                      ),
+                      0 === _._resizeListeners.length &&
+                        window.removeEventListener(
+                          "resize",
+                          _._handleResize,
+                          !0,
+                        ));
+                  }
+                );
+              },
+            },
+          ]),
+          _(_, [
+            {
+              key: "componentDidMount",
+              value: function () {
+                this._reflow(),
+                  (this._removeScroll = _.addScrollListener(
+                    this._handleScroll,
+                  )),
+                  (this.props.onPosition || this.props.onReflow) &&
+                    (this._removeResize = _.addResizeListener(this._reflow));
+              },
+            },
+            {
+              key: "componentWillReceiveProps",
+              value: function (_) {
+                (!_.onPosition && !_.onReflow) || this._removeResize
+                  ? _.onPosition ||
+                    _.onReflow ||
+                    !this._removeResize ||
+                    (this._removeResize(), (this._removeResize = null))
+                  : (this._removeResize = _.addResizeListener(this._reflow));
+              },
+            },
+            {
+              key: "componentWillUnmount",
+              value: function () {
+                this._removeScroll &&
+                  (this._removeScroll(), (this._removeScroll = null)),
+                  this._removeResize &&
+                    (this._removeResize(), (this._removeResize = null));
+              },
+            },
+            {
+              key: "_handleScroll",
+              value: function (_) {
+                (this.props.onPosition ||
+                  this.props.onReflow ||
+                  this.props.onResize) &&
+                  (this._globalScollTarget(_.target) ||
+                    this._refScrollTarget(_.target) ||
+                    this._ancestorScollTarget(_.target)) &&
+                  this._reflow();
+              },
+            },
+            {
+              key: "_globalScollTarget",
+              value: function (_) {
+                return (
+                  (this.props.onPosition || this.props.onReflow) &&
+                  (_ === document ||
+                    _ === document.documentElement ||
+                    _ === document.body)
+                );
+              },
+            },
+            {
+              key: "_refScrollTarget",
+              value: function (_) {
+                if (_ === this._expandRef || _ === this._shrinkRef) {
+                  var _ = _.offsetWidth,
+                    _ = _.offsetHeight;
+                  if (_ !== this._lastWidth || _ !== this._lastHeight)
+                    return (
+                      (this._lastWidth = _),
+                      (this._lastHeight = _),
+                      this._reset(this._expandRef),
+                      this._reset(this._shrinkRef),
+                      !0
+                    );
+                }
+                return !1;
+              },
+            },
+            {
+              key: "_ancestorScollTarget",
+              value: function (_) {
+                return (
+                  (this.props.onPosition || this.props.onReflow) &&
+                  this._node &&
+                  (function (_, _) {
+                    for (var _ = _.parentNode; _; ) {
+                      if (_ === _) return !0;
+                      _ = _.parentNode;
+                    }
+                    return !1;
+                  })(this._node, _)
+                );
+              },
+            },
+            {
+              key: "_reflow",
+              value: function () {
+                if (this._node && this._node.parentNode instanceof Element) {
+                  var _ = this._node.parentNode.getBoundingClientRect(),
+                    _ =
+                      _.width !== this._lastRect.width ||
+                      _.height !== this._lastRect.height,
+                    _ =
+                      _.top !== this._lastRect.top ||
+                      _.left !== this._lastRect.left;
+                  (this._lastRect = _),
+                    _ && this.props.onResize && this.props.onResize(_),
+                    _ && this.props.onPosition && this.props.onPosition(_),
+                    (_ || _) && this.props.onReflow && this.props.onReflow(_);
+                }
+              },
+            },
+            {
+              key: "_reset",
+              value: function (_) {
+                _ && ((_.scrollLeft = 1e5), (_.scrollTop = 1e5));
+              },
+            },
+            {
+              key: "_handleRef",
+              value: function (_) {
+                this._node = _;
+              },
+            },
+            {
+              key: "_handleExpandRef",
+              value: function (_) {
+                this._reset(_), (this._expandRef = _);
+              },
+            },
+            {
+              key: "_handleShrinkRef",
+              value: function (_) {
+                this._reset(_), (this._shrinkRef = _);
+              },
+            },
+            {
+              key: "render",
+              value: function () {
+                return this.props.onResize || this.props.onReflow
+                  ? _.default.createElement(
+                      "div",
+                      {
+                        style: _,
+                        ref: this._handleRef,
+                      },
+                      _.default.createElement(
+                        "div",
+                        {
+                          ref: this._handleExpandRef,
+                          style: _,
+                        },
+                        _.default.createElement("div", {
+                          style: _({}, _, {
+                            width: 1e5,
+                            height: 1e5,
+                          }),
+                        }),
+                      ),
+                      _.default.createElement(
+                        "div",
+                        {
+                          ref: this._handleShrinkRef,
+                          style: _,
+                        },
+                        _.default.createElement("div", {
+                          style: _({}, _, {
+                            width: "200%",
+                            height: "200%",
+                          }),
+                        }),
+                      ),
+                    )
+                  : _.default.createElement("noscript", {
+                      ref: this._handleRef,
+                    });
+              },
+            },
+          ]),
+          _
+        );
+      })(_.default.Component);
+      (_.displayName = "ResizeObserver"),
+        (_._scrollListeners = []),
+        (_._resizeListeners = []),
+        (module_exports._ = _);
+    },
     chunkid: (_, _) => {
       "use strict";
       var _ = Symbol.for("react.element"),
@@ -18191,6 +19727,935 @@ var CLSTAMP = "steamdb";
       "use strict";
       module.exports = __webpack_require__("chunkid");
     },
+    chunkid: (module) => {
+      module.exports = (function (_) {
+        "use strict";
+        var _ = [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+        ];
+        function _(_, _) {
+          var _ = _[0],
+            _ = _[1],
+            _ = _[2],
+            _ = _[3];
+          (_ =
+            ((((_ +=
+              ((((_ =
+                ((((_ +=
+                  ((((_ =
+                    ((((_ +=
+                      ((((_ =
+                        ((((_ +=
+                          (((_ & _) | (~_ & _)) + _[0] - 680876936) | 0) <<
+                          7) |
+                          (_ >>> 25)) +
+                          _) |
+                        0) &
+                        _) |
+                        (~_ & _)) +
+                        _[1] -
+                        389564586) |
+                      0) <<
+                      12) |
+                      (_ >>> 20)) +
+                      _) |
+                    0) &
+                    _) |
+                    (~_ & _)) +
+                    _[2] +
+                    606105819) |
+                  0) <<
+                  17) |
+                  (_ >>> 15)) +
+                  _) |
+                0) &
+                _) |
+                (~_ & _)) +
+                _[3] -
+                1044525330) |
+              0) <<
+              22) |
+              (_ >>> 10)) +
+              _) |
+            0),
+            (_ =
+              ((((_ +=
+                ((((_ =
+                  ((((_ +=
+                    ((((_ =
+                      ((((_ +=
+                        ((((_ =
+                          ((((_ +=
+                            (((_ & _) | (~_ & _)) + _[4] - 176418897) | 0) <<
+                            7) |
+                            (_ >>> 25)) +
+                            _) |
+                          0) &
+                          _) |
+                          (~_ & _)) +
+                          _[5] +
+                          1200080426) |
+                        0) <<
+                        12) |
+                        (_ >>> 20)) +
+                        _) |
+                      0) &
+                      _) |
+                      (~_ & _)) +
+                      _[6] -
+                      1473231341) |
+                    0) <<
+                    17) |
+                    (_ >>> 15)) +
+                    _) |
+                  0) &
+                  _) |
+                  (~_ & _)) +
+                  _[7] -
+                  45705983) |
+                0) <<
+                22) |
+                (_ >>> 10)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                ((((_ =
+                  ((((_ +=
+                    ((((_ =
+                      ((((_ +=
+                        ((((_ =
+                          ((((_ +=
+                            (((_ & _) | (~_ & _)) + _[8] + 1770035416) | 0) <<
+                            7) |
+                            (_ >>> 25)) +
+                            _) |
+                          0) &
+                          _) |
+                          (~_ & _)) +
+                          _[9] -
+                          1958414417) |
+                        0) <<
+                        12) |
+                        (_ >>> 20)) +
+                        _) |
+                      0) &
+                      _) |
+                      (~_ & _)) +
+                      _[10] -
+                      42063) |
+                    0) <<
+                    17) |
+                    (_ >>> 15)) +
+                    _) |
+                  0) &
+                  _) |
+                  (~_ & _)) +
+                  _[11] -
+                  1990404162) |
+                0) <<
+                22) |
+                (_ >>> 10)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                ((((_ =
+                  ((((_ +=
+                    ((((_ =
+                      ((((_ +=
+                        ((((_ =
+                          ((((_ +=
+                            (((_ & _) | (~_ & _)) + _[12] + 1804603682) | 0) <<
+                            7) |
+                            (_ >>> 25)) +
+                            _) |
+                          0) &
+                          _) |
+                          (~_ & _)) +
+                          _[13] -
+                          40341101) |
+                        0) <<
+                        12) |
+                        (_ >>> 20)) +
+                        _) |
+                      0) &
+                      _) |
+                      (~_ & _)) +
+                      _[14] -
+                      1502002290) |
+                    0) <<
+                    17) |
+                    (_ >>> 15)) +
+                    _) |
+                  0) &
+                  _) |
+                  (~_ & _)) +
+                  _[15] +
+                  1236535329) |
+                0) <<
+                22) |
+                (_ >>> 10)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                ((((_ =
+                  ((((_ +=
+                    ((((_ =
+                      ((((_ +=
+                        ((((_ =
+                          ((((_ +=
+                            (((_ & _) | (_ & ~_)) + _[1] - 165796510) | 0) <<
+                            5) |
+                            (_ >>> 27)) +
+                            _) |
+                          0) &
+                          _) |
+                          (_ & ~_)) +
+                          _[6] -
+                          1069501632) |
+                        0) <<
+                        9) |
+                        (_ >>> 23)) +
+                        _) |
+                      0) &
+                      _) |
+                      (_ & ~_)) +
+                      _[11] +
+                      643717713) |
+                    0) <<
+                    14) |
+                    (_ >>> 18)) +
+                    _) |
+                  0) &
+                  _) |
+                  (_ & ~_)) +
+                  _[0] -
+                  373897302) |
+                0) <<
+                20) |
+                (_ >>> 12)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                ((((_ =
+                  ((((_ +=
+                    ((((_ =
+                      ((((_ +=
+                        ((((_ =
+                          ((((_ +=
+                            (((_ & _) | (_ & ~_)) + _[5] - 701558691) | 0) <<
+                            5) |
+                            (_ >>> 27)) +
+                            _) |
+                          0) &
+                          _) |
+                          (_ & ~_)) +
+                          _[10] +
+                          38016083) |
+                        0) <<
+                        9) |
+                        (_ >>> 23)) +
+                        _) |
+                      0) &
+                      _) |
+                      (_ & ~_)) +
+                      _[15] -
+                      660478335) |
+                    0) <<
+                    14) |
+                    (_ >>> 18)) +
+                    _) |
+                  0) &
+                  _) |
+                  (_ & ~_)) +
+                  _[4] -
+                  405537848) |
+                0) <<
+                20) |
+                (_ >>> 12)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                ((((_ =
+                  ((((_ +=
+                    ((((_ =
+                      ((((_ +=
+                        ((((_ =
+                          ((((_ +=
+                            (((_ & _) | (_ & ~_)) + _[9] + 568446438) | 0) <<
+                            5) |
+                            (_ >>> 27)) +
+                            _) |
+                          0) &
+                          _) |
+                          (_ & ~_)) +
+                          _[14] -
+                          1019803690) |
+                        0) <<
+                        9) |
+                        (_ >>> 23)) +
+                        _) |
+                      0) &
+                      _) |
+                      (_ & ~_)) +
+                      _[3] -
+                      187363961) |
+                    0) <<
+                    14) |
+                    (_ >>> 18)) +
+                    _) |
+                  0) &
+                  _) |
+                  (_ & ~_)) +
+                  _[8] +
+                  1163531501) |
+                0) <<
+                20) |
+                (_ >>> 12)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                ((((_ =
+                  ((((_ +=
+                    ((((_ =
+                      ((((_ +=
+                        ((((_ =
+                          ((((_ +=
+                            (((_ & _) | (_ & ~_)) + _[13] - 1444681467) | 0) <<
+                            5) |
+                            (_ >>> 27)) +
+                            _) |
+                          0) &
+                          _) |
+                          (_ & ~_)) +
+                          _[2] -
+                          51403784) |
+                        0) <<
+                        9) |
+                        (_ >>> 23)) +
+                        _) |
+                      0) &
+                      _) |
+                      (_ & ~_)) +
+                      _[7] +
+                      1735328473) |
+                    0) <<
+                    14) |
+                    (_ >>> 18)) +
+                    _) |
+                  0) &
+                  _) |
+                  (_ & ~_)) +
+                  _[12] -
+                  1926607734) |
+                0) <<
+                20) |
+                (_ >>> 12)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                (((_ =
+                  ((((_ +=
+                    (((_ =
+                      ((((_ +=
+                        (((_ =
+                          ((((_ += ((_ ^ _ ^ _) + _[5] - 378558) | 0) << 4) |
+                            (_ >>> 28)) +
+                            _) |
+                          0) ^
+                          _ ^
+                          _) +
+                          _[8] -
+                          2022574463) |
+                        0) <<
+                        11) |
+                        (_ >>> 21)) +
+                        _) |
+                      0) ^
+                      _ ^
+                      _) +
+                      _[11] +
+                      1839030562) |
+                    0) <<
+                    16) |
+                    (_ >>> 16)) +
+                    _) |
+                  0) ^
+                  _ ^
+                  _) +
+                  _[14] -
+                  35309556) |
+                0) <<
+                23) |
+                (_ >>> 9)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                (((_ =
+                  ((((_ +=
+                    (((_ =
+                      ((((_ +=
+                        (((_ =
+                          ((((_ += ((_ ^ _ ^ _) + _[1] - 1530992060) | 0) <<
+                            4) |
+                            (_ >>> 28)) +
+                            _) |
+                          0) ^
+                          _ ^
+                          _) +
+                          _[4] +
+                          1272893353) |
+                        0) <<
+                        11) |
+                        (_ >>> 21)) +
+                        _) |
+                      0) ^
+                      _ ^
+                      _) +
+                      _[7] -
+                      155497632) |
+                    0) <<
+                    16) |
+                    (_ >>> 16)) +
+                    _) |
+                  0) ^
+                  _ ^
+                  _) +
+                  _[10] -
+                  1094730640) |
+                0) <<
+                23) |
+                (_ >>> 9)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                (((_ =
+                  ((((_ +=
+                    (((_ =
+                      ((((_ +=
+                        (((_ =
+                          ((((_ += ((_ ^ _ ^ _) + _[13] + 681279174) | 0) <<
+                            4) |
+                            (_ >>> 28)) +
+                            _) |
+                          0) ^
+                          _ ^
+                          _) +
+                          _[0] -
+                          358537222) |
+                        0) <<
+                        11) |
+                        (_ >>> 21)) +
+                        _) |
+                      0) ^
+                      _ ^
+                      _) +
+                      _[3] -
+                      722521979) |
+                    0) <<
+                    16) |
+                    (_ >>> 16)) +
+                    _) |
+                  0) ^
+                  _ ^
+                  _) +
+                  _[6] +
+                  76029189) |
+                0) <<
+                23) |
+                (_ >>> 9)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                (((_ =
+                  ((((_ +=
+                    (((_ =
+                      ((((_ +=
+                        (((_ =
+                          ((((_ += ((_ ^ _ ^ _) + _[9] - 640364487) | 0) << 4) |
+                            (_ >>> 28)) +
+                            _) |
+                          0) ^
+                          _ ^
+                          _) +
+                          _[12] -
+                          421815835) |
+                        0) <<
+                        11) |
+                        (_ >>> 21)) +
+                        _) |
+                      0) ^
+                      _ ^
+                      _) +
+                      _[15] +
+                      530742520) |
+                    0) <<
+                    16) |
+                    (_ >>> 16)) +
+                    _) |
+                  0) ^
+                  _ ^
+                  _) +
+                  _[2] -
+                  995338651) |
+                0) <<
+                23) |
+                (_ >>> 9)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                (((_ =
+                  ((((_ +=
+                    ((_ ^
+                      ((_ =
+                        ((((_ += ((_ ^ (_ | ~_)) + _[0] - 198630844) | 0) <<
+                          6) |
+                          (_ >>> 26)) +
+                          _) |
+                        0) |
+                        ~_)) +
+                      _[7] +
+                      1126891415) |
+                    0) <<
+                    10) |
+                    (_ >>> 22)) +
+                    _) |
+                  0) ^
+                  ((_ =
+                    ((((_ += ((_ ^ (_ | ~_)) + _[14] - 1416354905) | 0) << 15) |
+                      (_ >>> 17)) +
+                      _) |
+                    0) |
+                    ~_)) +
+                  _[5] -
+                  57434055) |
+                0) <<
+                21) |
+                (_ >>> 11)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                (((_ =
+                  ((((_ +=
+                    ((_ ^
+                      ((_ =
+                        ((((_ += ((_ ^ (_ | ~_)) + _[12] + 1700485571) | 0) <<
+                          6) |
+                          (_ >>> 26)) +
+                          _) |
+                        0) |
+                        ~_)) +
+                      _[3] -
+                      1894986606) |
+                    0) <<
+                    10) |
+                    (_ >>> 22)) +
+                    _) |
+                  0) ^
+                  ((_ =
+                    ((((_ += ((_ ^ (_ | ~_)) + _[10] - 1051523) | 0) << 15) |
+                      (_ >>> 17)) +
+                      _) |
+                    0) |
+                    ~_)) +
+                  _[1] -
+                  2054922799) |
+                0) <<
+                21) |
+                (_ >>> 11)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                (((_ =
+                  ((((_ +=
+                    ((_ ^
+                      ((_ =
+                        ((((_ += ((_ ^ (_ | ~_)) + _[8] + 1873313359) | 0) <<
+                          6) |
+                          (_ >>> 26)) +
+                          _) |
+                        0) |
+                        ~_)) +
+                      _[15] -
+                      30611744) |
+                    0) <<
+                    10) |
+                    (_ >>> 22)) +
+                    _) |
+                  0) ^
+                  ((_ =
+                    ((((_ += ((_ ^ (_ | ~_)) + _[6] - 1560198380) | 0) << 15) |
+                      (_ >>> 17)) +
+                      _) |
+                    0) |
+                    ~_)) +
+                  _[13] +
+                  1309151649) |
+                0) <<
+                21) |
+                (_ >>> 11)) +
+                _) |
+              0),
+            (_ =
+              ((((_ +=
+                (((_ =
+                  ((((_ +=
+                    ((_ ^
+                      ((_ =
+                        ((((_ += ((_ ^ (_ | ~_)) + _[4] - 145523070) | 0) <<
+                          6) |
+                          (_ >>> 26)) +
+                          _) |
+                        0) |
+                        ~_)) +
+                      _[11] -
+                      1120210379) |
+                    0) <<
+                    10) |
+                    (_ >>> 22)) +
+                    _) |
+                  0) ^
+                  ((_ =
+                    ((((_ += ((_ ^ (_ | ~_)) + _[2] + 718787259) | 0) << 15) |
+                      (_ >>> 17)) +
+                      _) |
+                    0) |
+                    ~_)) +
+                  _[9] -
+                  343485551) |
+                0) <<
+                21) |
+                (_ >>> 11)) +
+                _) |
+              0),
+            (_[0] = (_ + _[0]) | 0),
+            (_[1] = (_ + _[1]) | 0),
+            (_[2] = (_ + _[2]) | 0),
+            (_[3] = (_ + _[3]) | 0);
+        }
+        function _(_) {
+          var _,
+            _ = [];
+          for (_ = 0; _ < 64; _ += 4)
+            _[_ >> 2] =
+              _.charCodeAt(_) +
+              (_.charCodeAt(_ + 1) << 8) +
+              (_.charCodeAt(_ + 2) << 16) +
+              (_.charCodeAt(_ + 3) << 24);
+          return _;
+        }
+        function _(_) {
+          var _,
+            _ = [];
+          for (_ = 0; _ < 64; _ += 4)
+            _[_ >> 2] =
+              _[_] + (_[_ + 1] << 8) + (_[_ + 2] << 16) + (_[_ + 3] << 24);
+          return _;
+        }
+        function _(_) {
+          var _,
+            _,
+            _,
+            _,
+            _,
+            _,
+            _ = _.length,
+            _ = [1732584193, -271733879, -1732584194, 271733878];
+          for (_ = 64; _ <= _; _ += 64)
+            __webpack_require__(_, _(_.substring(_ - 64, _)));
+          for (
+            _ = (_ = _.substring(_ - 64)).length,
+              _ = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+              _ = 0;
+            _ < _;
+            _ += 1
+          )
+            _[_ >> 2] |= _.charCodeAt(_) << ((_ % 4) << 3);
+          if (((_[_ >> 2] |= 128 << ((_ % 4) << 3)), _ > 55))
+            for (__webpack_require__(_, _), _ = 0; _ < 16; _ += 1) _[_] = 0;
+          return (
+            (_ = (_ = 8 * _).toString(16).match(/(.*?)(.{0,8})$/)),
+            (_ = parseInt(_[2], 16)),
+            (_ = parseInt(_[1], 16) || 0),
+            (_[14] = _),
+            (_[15] = _),
+            __webpack_require__(_, _),
+            _
+          );
+        }
+        function _(_) {
+          var _,
+            _,
+            _,
+            _,
+            _,
+            _,
+            _ = _.length,
+            _ = [1732584193, -271733879, -1732584194, 271733878];
+          for (_ = 64; _ <= _; _ += 64)
+            __webpack_require__(_, _(_.subarray(_ - 64, _)));
+          for (
+            _ = (_ = _ - 64 < _ ? _.subarray(_ - 64) : new Uint8Array(0))
+              .length,
+              _ = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+              _ = 0;
+            _ < _;
+            _ += 1
+          )
+            _[_ >> 2] |= _[_] << ((_ % 4) << 3);
+          if (((_[_ >> 2] |= 128 << ((_ % 4) << 3)), _ > 55))
+            for (__webpack_require__(_, _), _ = 0; _ < 16; _ += 1) _[_] = 0;
+          return (
+            (_ = (_ = 8 * _).toString(16).match(/(.*?)(.{0,8})$/)),
+            (_ = parseInt(_[2], 16)),
+            (_ = parseInt(_[1], 16) || 0),
+            (_[14] = _),
+            (_[15] = _),
+            __webpack_require__(_, _),
+            _
+          );
+        }
+        function _(_) {
+          var _,
+            _ = "";
+          for (_ = 0; _ < 4; _ += 1)
+            _ += _[(_ >> (8 * _ + 4)) & 15] + _[(_ >> (8 * _)) & 15];
+          return _;
+        }
+        function _(_) {
+          var _;
+          for (_ = 0; _ < _.length; _ += 1) _[_] = _(_[_]);
+          return _.join("");
+        }
+        function _(_) {
+          return (
+            /[\u0080-\uFFFF]/.test(_) && (_ = unescape(encodeURIComponent(_))),
+            _
+          );
+        }
+        function _(_, _) {
+          var _,
+            _ = _.length,
+            _ = new ArrayBuffer(_),
+            _ = new Uint8Array(_);
+          for (_ = 0; _ < _; _ += 1) _[_] = _.charCodeAt(_);
+          return _ ? _ : _;
+        }
+        function _(_) {
+          return String.fromCharCode.apply(null, new Uint8Array(_));
+        }
+        function _(_, _, _) {
+          var _ = new Uint8Array(_.byteLength + _.byteLength);
+          return (
+            _.set(new Uint8Array(_)),
+            _.set(new Uint8Array(_), _.byteLength),
+            _ ? _ : _.buffer
+          );
+        }
+        function _(_) {
+          var _,
+            _ = [],
+            _ = _.length;
+          for (_ = 0; _ < _ - 1; _ += 2)
+            __webpack_require__.push(parseInt(_.substr(_, 2), 16));
+          return String.fromCharCode.apply(String, _);
+        }
+        function _() {
+          this.reset();
+        }
+        return (
+          _(_("hello")),
+          "undefined" == typeof ArrayBuffer ||
+            ArrayBuffer.prototype.slice ||
+            (function () {
+              function _(_, _) {
+                return (_ = 0 | _ || 0) < 0
+                  ? Math.max(_ + _, 0)
+                  : Math.min(_, _);
+              }
+              ArrayBuffer.prototype.slice = function (_, _) {
+                var _,
+                  _,
+                  _,
+                  _,
+                  _ = this.byteLength,
+                  _ = _(_, _),
+                  _ = _;
+                return (
+                  _ !== _ && (_ = _(_, _)),
+                  _ > _
+                    ? new ArrayBuffer(0)
+                    : ((_ = _ - _),
+                      (_ = new ArrayBuffer(_)),
+                      (_ = new Uint8Array(_)),
+                      (_ = new Uint8Array(this, _, _)),
+                      _.set(_),
+                      _)
+                );
+              };
+            })(),
+          (_.prototype.append = function (_) {
+            return this.appendBinary(_(_)), this;
+          }),
+          (_.prototype.appendBinary = function (_) {
+            (this._buff += _), (this._length += _.length);
+            var _,
+              _ = this._buff.length;
+            for (_ = 64; _ <= _; _ += 64)
+              __webpack_require__(
+                this._hash,
+                _(this._buff.substring(_ - 64, _)),
+              );
+            return (this._buff = this._buff.substring(_ - 64)), this;
+          }),
+          (_.prototype.end = function (_) {
+            var _,
+              _,
+              _ = this._buff,
+              _ = _.length,
+              _ = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            for (_ = 0; _ < _; _ += 1)
+              _[_ >> 2] |= _.charCodeAt(_) << ((_ % 4) << 3);
+            return (
+              this._finish(_, _),
+              (_ = _(this._hash)),
+              _ && (_ = _(_)),
+              this.reset(),
+              _
+            );
+          }),
+          (_.prototype.reset = function () {
+            return (
+              (this._buff = ""),
+              (this._length = 0),
+              (this._hash = [1732584193, -271733879, -1732584194, 271733878]),
+              this
+            );
+          }),
+          (_.prototype.getState = function () {
+            return {
+              buff: this._buff,
+              length: this._length,
+              hash: this._hash.slice(),
+            };
+          }),
+          (_.prototype.setState = function (_) {
+            return (
+              (this._buff = _.buff),
+              (this._length = _.length),
+              (this._hash = _.hash),
+              this
+            );
+          }),
+          (_.prototype.destroy = function () {
+            delete this._hash, delete this._buff, delete this._length;
+          }),
+          (_.prototype._finish = function (_, _) {
+            var _,
+              _,
+              _,
+              _ = _;
+            if (((_[_ >> 2] |= 128 << ((_ % 4) << 3)), _ > 55))
+              for (__webpack_require__(this._hash, _), _ = 0; _ < 16; _ += 1)
+                _[_] = 0;
+            (_ = (_ = 8 * this._length).toString(16).match(/(.*?)(.{0,8})$/)),
+              (_ = parseInt(_[2], 16)),
+              (_ = parseInt(_[1], 16) || 0),
+              (_[14] = _),
+              (_[15] = _),
+              __webpack_require__(this._hash, _);
+          }),
+          (_.hash = function (_, _) {
+            return _.hashBinary(_(_), _);
+          }),
+          (_.hashBinary = function (_, _) {
+            var _ = _(_(_));
+            return _ ? _(_) : _;
+          }),
+          (_.ArrayBuffer = function () {
+            this.reset();
+          }),
+          (_.ArrayBuffer.prototype.append = function (_) {
+            var _,
+              _ = _(this._buff.buffer, _, !0),
+              _ = _.length;
+            for (this._length += _.byteLength, _ = 64; _ <= _; _ += 64)
+              __webpack_require__(this._hash, _(_.subarray(_ - 64, _)));
+            return (
+              (this._buff =
+                _ - 64 < _
+                  ? new Uint8Array(_.buffer.slice(_ - 64))
+                  : new Uint8Array(0)),
+              this
+            );
+          }),
+          (_.ArrayBuffer.prototype.end = function (_) {
+            var _,
+              _,
+              _ = this._buff,
+              _ = _.length,
+              _ = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            for (_ = 0; _ < _; _ += 1) _[_ >> 2] |= _[_] << ((_ % 4) << 3);
+            return (
+              this._finish(_, _),
+              (_ = _(this._hash)),
+              _ && (_ = _(_)),
+              this.reset(),
+              _
+            );
+          }),
+          (_.ArrayBuffer.prototype.reset = function () {
+            return (
+              (this._buff = new Uint8Array(0)),
+              (this._length = 0),
+              (this._hash = [1732584193, -271733879, -1732584194, 271733878]),
+              this
+            );
+          }),
+          (_.ArrayBuffer.prototype.getState = function () {
+            var _ = _.prototype.getState.call(this);
+            return (_.buff = _(_.buff)), _;
+          }),
+          (_.ArrayBuffer.prototype.setState = function (_) {
+            return (_.buff = _(_.buff, !0)), _.prototype.setState.call(this, _);
+          }),
+          (_.ArrayBuffer.prototype.destroy = _.prototype.destroy),
+          (_.ArrayBuffer.prototype._finish = _.prototype._finish),
+          (_.ArrayBuffer.hash = function (_, _) {
+            var _ = _(_(new Uint8Array(_)));
+            return _ ? _(_) : _;
+          }),
+          _
+        );
+      })();
+    },
     chunkid: (module, module_exports, __webpack_require__) => {
       "use strict";
       var _ = __webpack_require__("chunkid");
@@ -18278,7 +20743,23 @@ var CLSTAMP = "steamdb";
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
+        _: () => _,
       });
+      function _(_, _) {
+        var _ = {};
+        for (var _ in _)
+          Object.prototype.hasOwnProperty.call(_, _) &&
+            _.indexOf(_) < 0 &&
+            (_[_] = _[_]);
+        if (null != _ && "function" == typeof Object.getOwnPropertySymbols) {
+          var _ = 0;
+          for (_ = Object.getOwnPropertySymbols(_); _ < _.length; _++)
+            _.indexOf(_[_]) < 0 &&
+              Object.prototype.propertyIsEnumerable.call(_, _[_]) &&
+              (_[_[_]] = _[_[_]]);
+        }
+        return _;
+      }
       function _(_, _, _, _) {
         var _,
           _ = arguments.length,

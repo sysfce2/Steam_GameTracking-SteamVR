@@ -6,1525 +6,22 @@ var CLSTAMP = "steamdb";
       chunkid: (module, module_exports, __webpack_require__) => {
         __webpack_require__._(_, {
           _: () => _,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-        });
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ =
-            (__webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid")),
-          _ =
-            (__webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid")),
-          _ =
-            (__webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid")),
-          _ = __webpack_require__("chunkid"),
-          _ =
-            (__webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid")),
-          _ = __webpack_require__("chunkid");
-        const _ = VRHTML;
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-        });
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        class _ extends _._ {
-          constructor(_) {
-            super(_),
-              (this.m_latchedPosition = null),
-              super.setBuildNodeOverride(this.buildNode);
-          }
-          getNodeType() {
-            return "panel-anchor";
-          }
-          relatch() {
-            this.m_latchedPosition = null;
-          }
-          buildNode(_, _) {
-            var _, _;
-            if (!_.currentPanel && !_.bInsideReparentedPanel)
-              return [
-                Object.assign(Object.assign({}, _), {
-                  bShouldAbort: !0,
-                }),
-                null,
-              ];
-            let _ = null;
-            "object" == typeof this.props.location
-              ? (_ = (0, _._)(this.props.location, {
-                  _: 0,
-                  _: 0,
-                }))
-              : "number" == typeof this.props.location &&
-                (_ = (0, _._)(this.props.location));
-            let _ = this.createSgNode(_);
-            if (this.props.latched && null !== this.m_latchedPosition)
-              (_.properties["anchor-u"] = this.m_latchedPosition._),
-                (_.properties["anchor-v"] = this.m_latchedPosition._);
-            else if (_) {
-              const _ = {
-                  _: 0.5 * _._ + 0.5,
-                  _: -0.5 * _._ + 0.5,
-                },
-                _ =
-                  !_.currentPanel || _.currentPanel.props.overlay_key
-                    ? _
-                    : _.currentPanel.scaleLocalUVToGlobal(_);
-              _ &&
-                ((_.properties["anchor-u"] = _._),
-                (_.properties["anchor-v"] = _._));
-            } else {
-              if (!_.currentPanel)
-                return [
-                  Object.assign(Object.assign({}, _), {
-                    bShouldAbort: !0,
-                  }),
-                  null,
-                ];
-              const _ = _.ownerDocument,
-                _ = _.getBoundingClientRect(),
-                _ = _.left + _.width / 2,
-                _ = _.top + _.height / 2,
-                _ = _.currentPanel.m_Rect;
-              if (_ < _._ || _ > _._ + _.width || _ < _._ || _ > _._ + _.height)
-                return [
-                  Object.assign(Object.assign({}, _), {
-                    bShouldAbort: !0,
-                  }),
-                  null,
-                ];
-              const _ =
-                  null === (_ = _.defaultView) || void 0 === _
-                    ? void 0
-                    : _.innerWidth,
-                _ =
-                  null === (_ = _.defaultView) || void 0 === _
-                    ? void 0
-                    : _.innerHeight;
-              if (!(_ && _ > 0 && _ && _ > 0))
-                return [
-                  Object.assign(Object.assign({}, _), {
-                    bShouldAbort: !0,
-                  }),
-                  null,
-                ];
-              (_.properties["anchor-u"] = _ / _),
-                (_.properties["anchor-v"] = _ / _);
-            }
-            return (
-              (this.m_latchedPosition = {
-                _: _.properties["anchor-u"],
-                _: _.properties["anchor-v"],
-              }),
-              [_, _]
-            );
-          }
-        }
-        (0, _._)([_._], _.prototype, "buildNode", null);
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        function _(_, _) {
-          return {
-            _: _._ - _._,
-            _: _._ - _._,
-          };
-        }
-        function _(_, _) {
-          return {
-            _: _._ * _,
-            _: _._ * _,
-          };
-        }
-        function _(_, _) {
-          return {
-            _: _._ * _,
-            _: _._ * _,
-            _: _._ * _,
-          };
-        }
-        function _(_) {
-          return Math.sqrt(_._ * _._ + _._ * _._);
-        }
-        function _(_) {
-          if (void 0 === _) return;
-          let _ = 0.5 * _._,
-            _ = 0.5 * _._,
-            _ = 0.5 * _._,
-            _ = Math.cos(_),
-            _ = Math.cos(_),
-            _ = Math.cos(_),
-            _ = Math.sin(_),
-            _ = Math.sin(_),
-            _ = Math.sin(_);
-          return {
-            _: _ * _ * _ + _ * _ * _,
-            _: _ * _ * _ + _ * _ * _,
-            _: _ * _ * _ - _ * _ * _,
-            _: _ * _ * _ - _ * _ * _,
-          };
-        }
-        __webpack_require__._(_, {
           _: () => _,
           _: () => _,
           _: () => _,
-          _: () => _,
-          _: () => _,
-        });
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        var _, _, _, _;
-        function _() {
-          var _;
-          return null !==
-            (_ =
-              null === VRHTML || void 0 === VRHTML
-                ? void 0
-                : VRHTML.Environment()) && void 0 !== _
-            ? _
-            : _.Unknown;
-        }
-        __webpack_require__._(_, {
-          _: () => _,
-          _: () => _,
-          _: () => _,
-          _: () => _,
-        }),
-          (function (_) {
-            (_[(_.Desktop = 1)] = "Desktop"),
-              (_[(_.Overlay = 2)] = "Overlay"),
-              (_[(_.Unknown = 100)] = "Unknown");
-          })(_ || (_ = {})),
-          window.hasOwnProperty("VRHTML") || (window.VRHTML = null),
-          (function (_) {
-            (_[(_.Auto = 0)] = "Auto"),
-              (_[(_.Low = 1)] = "Low"),
-              (_[(_.Medium = 2)] = "Medium"),
-              (_[(_.High = 3)] = "High");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.TrackingResult_Uninitialized = 1)] =
-              "TrackingResult_Uninitialized"),
-              (_[(_.TrackingResult_Calibrating_InProgress = 100)] =
-                "TrackingResult_Calibrating_InProgress"),
-              (_[(_.TrackingResult_Calibrating_OutOfRange = 101)] =
-                "TrackingResult_Calibrating_OutOfRange"),
-              (_[(_.TrackingResult_Running_OK = 200)] =
-                "TrackingResult_Running_OK"),
-              (_[(_.TrackingResult_Running_OutOfRange = 201)] =
-                "TrackingResult_Running_OutOfRange"),
-              (_[(_.TrackingResult_Fallback_RotationOnly = 300)] =
-                "TrackingResult_Fallback_RotationOnly");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Seated = 0)] = "Seated"),
-              (_[(_.Standing = 1)] = "Standing"),
-              (_[(_.RawAndUncalibrated = 2)] = "RawAndUncalibrated");
-          })(_ || (_ = {}));
-        let _ = 0;
-        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
-        !(function (_) {
-          (_[(_.None = 0)] = "None"),
-            (_[(_.Shown = 1)] = "Shown"),
-            (_[(_.Hidden = 2)] = "Hidden"),
-            (_[(_.Exposed = 3)] = "Exposed"),
-            (_[(_.Moved = 4)] = "Moved"),
-            (_[(_.Resized = 5)] = "Resized"),
-            (_[(_.SizeChanged = 6)] = "SizeChanged"),
-            (_[(_.Minimized = 7)] = "Minimized"),
-            (_[(_.Maximized = 8)] = "Maximized"),
-            (_[(_.Restored = 9)] = "Restored"),
-            (_[(_.Enter = 10)] = "Enter"),
-            (_[(_.Leave = 11)] = "Leave"),
-            (_[(_.FocusGained = 12)] = "FocusGained"),
-            (_[(_.FocusLost = 13)] = "FocusLost"),
-            (_[(_.Close = 14)] = "Close"),
-            (_[(_.TakeFocus = 15)] = "TakeFocus"),
-            (_[(_.HitTest = 16)] = "HitTest");
-        })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Activated = 0)] = "Activated"),
-              (_[(_.Deactivated = 1)] = "Deactivated");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.None = 0)] = "None"), (_[(_.Mouse = 1)] = "Mouse");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Invalid = 0)] = "Invalid"),
-              (_[(_.HMD = 1)] = "HMD"),
-              (_[(_.Controller = 2)] = "Controller"),
-              (_[(_.GenericTracker = 3)] = "GenericTracker"),
-              (_[(_.TrackingReference = 4)] = "TrackingReference"),
-              (_[(_.DisplayRedirect = 5)] = "DisplayRedirect");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Unknown = 0)] = "Unknown"),
-              (_[(_.NVIDIA = 1)] = "NVIDIA"),
-              (_[(_.AMD = 2)] = "AMD");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.None = 0)] = "None"),
-              (_[(_.Starting = 1)] = "Starting"),
-              (_[(_.Quitting = 2)] = "Quitting"),
-              (_[(_.Running = 3)] = "Running"),
-              (_[(_.Waiting = 4)] = "Waiting");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.ButtonPress_0 = 0)] = "ButtonPress_0"),
-              (_[(_.ButtonPress_1 = 1)] = "ButtonPress_1"),
-              (_[(_.ButtonPress_2 = 2)] = "ButtonPress_2"),
-              (_[(_.ButtonPress_3 = 3)] = "ButtonPress_3"),
-              (_[(_.CouldntFindSystemOverlay = 4)] =
-                "CouldntFindSystemOverlay"),
-              (_[(_.CouldntFindOrCreateClientOverlay = 5)] =
-                "CouldntFindOrCreateClientOverlay"),
-              (_[(_.ApplicationQuit = 6)] = "ApplicationQuit");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Normal = 0)] = "Normal"),
-              (_[(_.Password = 1)] = "Password"),
-              (_[(_.Submit = 2)] = "Submit");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.SingleLine = 0)] = "SingleLine"),
-              (_[(_.MultipleLines = 1)] = "MultipleLines");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.LaserMouse = 1)] = "LaserMouse"),
-              (_[(_.RoomViewFullyOccludingApp = 2)] =
-                "RoomViewFullyOccludingApp"),
-              (_[(_.DisplaySuppressed = 4)] = "DisplaySuppressed"),
-              (_[(_.SystemButtonDown = 8)] = "SystemButtonDown"),
-              (_[(_.DriverIsDrawingControllers = 16)] =
-                "DriverIsDrawingControllers"),
-              (_[(_.DriverRequestsApplicationPause = 32)] =
-                "DriverRequestsApplicationPause"),
-              (_[(_.DriverRequestsReducedRendering = 64)] =
-                "DriverRequestsReducedRendering"),
-              (_[(_.DashboardTutorial = 128)] = "DashboardTutorial"),
-              (_[(_.GamepadMode = 512)] = "GamepadMode"),
-              (_[(_.SystemKeyboardPrivacy = 1024)] = "SystemKeyboardPrivacy");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.BULK_DEFAULT = 0)] = "BULK_DEFAULT"),
-              (_[(_.BULK_64K_DMA = 1)] = "BULK_64K_DMA"),
-              (_[(_.BULK_16K_DMA = 2)] = "BULK_16K_DMA"),
-              (_[(_.BULK_8K_DMA = 3)] = "BULK_8K_DMA"),
-              (_[(_.ISO_52FPS = 4)] = "ISO_52FPS"),
-              (_[(_.ISO_50FPS = 5)] = "ISO_50FPS"),
-              (_[(_.ISO_48FPS = 6)] = "ISO_48FPS"),
-              (_[(_.ISO_46FPS = 7)] = "ISO_46FPS"),
-              (_[(_.ISO_44FPS = 8)] = "ISO_44FPS"),
-              (_[(_.ISO_42FPS = 9)] = "ISO_42FPS"),
-              (_[(_.ISO_40FPS = 10)] = "ISO_40FPS"),
-              (_[(_.ISO_35FPS = 11)] = "ISO_35FPS"),
-              (_[(_.ISO_30FPS = 12)] = "ISO_30FPS"),
-              (_[(_.ISO_15FPS = 13)] = "ISO_15FPS"),
-              (_[(_.MAX_CAMERA_COMPAT_MODES = 14)] = "MAX_CAMERA_COMPAT_MODES");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.ECameraExposure_Unknown = 0)] = "ECameraExposure_Unknown"),
-              (_[(_.ECameraExposure_Nominal = 1)] = "ECameraExposure_Nominal"),
-              (_[(_.ECameraExposure_HighExposure = 2)] =
-                "ECameraExposure_HighExposure");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.None = 0)] = "None"),
-              (_[(_.ThisSteamVR = 1)] = "ThisSteamVR"),
-              (_[(_.AnotherSteamVR = 2)] = "AnotherSteamVR"),
-              (_[(_.AnotherRuntime = 3)] = "AnotherRuntime"),
-              (_[(_.ThisSteamVR64BitOnly = 4)] = "ThisSteamVR64BitOnly"),
-              (_[(_.Error = -1)] = "Error");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.TrackedControllerRole_Invalid = 0)] =
-              "TrackedControllerRole_Invalid"),
-              (_[(_.TrackedControllerRole_LeftHand = 1)] =
-                "TrackedControllerRole_LeftHand"),
-              (_[(_.TrackedControllerRole_RightHand = 2)] =
-                "TrackedControllerRole_RightHand"),
-              (_[(_.TrackedControllerRole_OptOut = 3)] =
-                "TrackedControllerRole_OptOut"),
-              (_[(_.TrackedControllerRole_Treadmill = 4)] =
-                "TrackedControllerRole_Treadmill"),
-              (_[(_.TrackedControllerRole_Max = 5)] =
-                "TrackedControllerRole_Max");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Unknown = 0)] = "Unknown"),
-              (_[(_.Steam_VRButton = 1)] = "Steam_VRButton"),
-              (_[(_.Steam_StartSteamVRApp = 2)] = "Steam_StartSteamVRApp"),
-              (_[(_.Watchdog_Unknown = 10)] = "Watchdog_Unknown"),
-              (_[(_.Watchdog_Controller = 11)] = "Watchdog_Controller"),
-              (_[(_.Watchdog_Hmd = 12)] = "Watchdog_Hmd"),
-              (_[(_.AppLaunch_Unknown = 20)] = "AppLaunch_Unknown"),
-              (_[(_.AppLaunch_Steam = 21)] = "AppLaunch_Steam"),
-              (_[(_.SteamVR_Restart = 30)] = "SteamVR_Restart"),
-              (_[(_.SteamVR_VRStartup = 31)] = "SteamVR_VRStartup");
-          })(_ || (_ = {})),
-          (function (_) {
-            _[(_.Hostname = 0)] = "Hostname";
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Unavailable = 0)] = "Unavailable"),
-              (_[(_.Active = 1)] = "Active"),
-              (_[(_.Off = 2)] = "Off");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Default = 1)] = "Default"), (_[(_.Floor = 2)] = "Floor");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Inactive = 0)] = "Inactive"),
-              (_[(_.PendingReset = 1)] = "PendingReset"),
-              (_[(_.PendingResetIfNeeded = 2)] = "PendingResetIfNeeded"),
-              (_[(_.Default = 3)] = "Default"),
-              (_[(_._ = 4)] = "CV"),
-              (_[(_.Manual = 5)] = "Manual");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_._ = 1)] = "OK"),
-              (_[(_.Warning = 100)] = "Warning"),
-              (_[(_.Warning_BaseStationMayHaveMoved = 101)] =
-                "Warning_BaseStationMayHaveMoved"),
-              (_[(_.Warning_BaseStationRemoved = 102)] =
-                "Warning_BaseStationRemoved"),
-              (_[(_.Warning_SeatedBoundsInvalid = 103)] =
-                "Warning_SeatedBoundsInvalid"),
-              (_[(_.Error = 200)] = "Error"),
-              (_[(_.Error_BaseStationUninitialized = 201)] =
-                "Error_BaseStationUninitialized"),
-              (_[(_.Error_BaseStationConflict = 202)] =
-                "Error_BaseStationConflict"),
-              (_[(_.Error_PlayAreaInvalid = 203)] = "Error_PlayAreaInvalid"),
-              (_[(_.Error_CollisionBoundsInvalid = 204)] =
-                "Error_CollisionBoundsInvalid");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.Small = 0)] = "Small"),
-              (_[(_.Medium = 1)] = "Medium"),
-              (_[(_.Large = 2)] = "Large"),
-              (_[(_.Gigantic = 3)] = "Gigantic"),
-              (_[(_.Standing = 4)] = "Standing");
-          })(_ || (_ = {}));
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
           _: () => _,
         });
         var _,
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        const _ = _.createContext(null);
-        class _ {
-          constructor() {
-            (this.m_stack = _.observable.array([])),
-              (this.m_bSViewtackWasChangedInThisCallStack = !0),
-              (this.m_nCallStackClearedTimeout = void 0),
-              window.addEventListener("keydown", this.onWindowKeyDown),
-              window.addEventListener("mousedown", this.onMouseDown);
-          }
-          cleanup() {
-            window.clearTimeout(this.m_nCallStackClearedTimeout),
-              window.removeEventListener("keydown", this.onWindowKeyDown),
-              window.removeEventListener("mousedown", this.onMouseDown);
-          }
-          onWindowKeyDown(_) {
-            "Escape" == _.key && this.dismissTopView();
-          }
-          onMouseDown(_) {
-            const _ = this.topView;
-            _ &&
-              _.div &&
-              !this.m_bSViewtackWasChangedInThisCallStack &&
-              (_.shouldDismissOnClickAnywhere ||
-                _.shouldDismissOnClickInViewStack) &&
-              !_.isPointInDiv(_.clientX, _.clientY) &&
-              (_.shouldDismissOnClickAnywhere ||
-                _ == this.bottomView ||
-                _.getViewsBelow().some((_) =>
-                  _.isPointInDiv(_.clientX, _.clientY),
-                )) &&
-              _.dismissView();
-          }
-          get size() {
-            return this.m_stack.length;
-          }
-          dismissTopView() {
-            var _;
-            null === (_ = this.topView) || void 0 === _ || _.dismissView();
-          }
-          get hasViews() {
-            return this.m_stack.length > 0;
-          }
-          get bottomView() {
-            return this.hasViews ? this.m_stack[0] : null;
-          }
-          get topView() {
-            return this.hasViews ? this.m_stack[this.m_stack.length - 1] : null;
-          }
-          getViewsBelow(_) {
-            const _ = this.m_stack.indexOf(_);
-            return _ < 0 ? [] : this.m_stack.slice(0, _);
-          }
-          getViewsAbove(_) {
-            const _ = this.m_stack.indexOf(_);
-            return _ < 0 ? [] : this.m_stack.slice(_ + 1);
-          }
-          getViewLevel(_) {
-            return this.m_stack.indexOf(_);
-          }
-          pushView(_) {
-            this.m_stack.push(_), this.setViewJustAddedOrRemoved();
-          }
-          removeView(_) {
-            this.m_stack.splice(this.m_stack.indexOf(_), 1),
-              this.setViewJustAddedOrRemoved();
-          }
-          setViewJustAddedOrRemoved() {
-            window.clearTimeout(this.m_nCallStackClearedTimeout),
-              (this.m_bSViewtackWasChangedInThisCallStack = !0),
-              (this.m_nCallStackClearedTimeout = window.setTimeout(
-                () => (this.m_bSViewtackWasChangedInThisCallStack = !1),
-                0,
-              ));
-          }
-        }
-        (0, _._)([_._], _.prototype, "cleanup", null),
-          (0, _._)([_._], _.prototype, "onWindowKeyDown", null),
-          (0, _._)([_._], _.prototype, "onMouseDown", null),
-          (0, _._)([_.computed], _.prototype, "size", null),
-          (0, _._)([_.action.bound], _.prototype, "dismissTopView", null),
-          (0, _._)([_.computed], _.prototype, "hasViews", null),
-          (0, _._)([_.computed], _.prototype, "bottomView", null),
-          (0, _._)([_.computed], _.prototype, "topView", null),
-          (0, _._)([_.action], _.prototype, "pushView", null),
-          (0, _._)([_.action], _.prototype, "removeView", null);
-        let _ = (_ = class extends _.Component {
-          get viewStack() {
-            return this.m_ViewStack;
-          }
-          get isTopView() {
-            return this.viewStack.topView == this;
-          }
-          getViewsBelow() {
-            var _, _;
-            return null !==
-              (_ =
-                null === (_ = this.viewStack) || void 0 === _
-                  ? void 0
-                  : _.getViewsBelow(this)) && void 0 !== _
-              ? _
-              : [];
-          }
-          getViewsAbove() {
-            var _, _;
-            return null !==
-              (_ =
-                null === (_ = this.viewStack) || void 0 === _
-                  ? void 0
-                  : _.getViewsAbove(this)) && void 0 !== _
-              ? _
-              : [];
-          }
-          get viewLevel() {
-            var _, _;
-            return null !==
-              (_ =
-                null === (_ = this.viewStack) || void 0 === _
-                  ? void 0
-                  : _.getViewLevel(this)) && void 0 !== _
-              ? _
-              : 0;
-          }
-          get viewShouldFadeForModal() {
-            return this.getViewsAbove().some((_) => _.fadesViewsBelow);
-          }
-          get shouldDismissOnClickInViewStack() {
-            var _;
-            return (
-              null !== (_ = this.props.shouldDismissOnClickInViewStack) &&
-              void 0 !== _ &&
-              _
-            );
-          }
-          get shouldDismissOnClickAnywhere() {
-            var _;
-            return (
-              null !== (_ = this.props.shouldDismissOnClickAnywhere) &&
-              void 0 !== _ &&
-              _
-            );
-          }
-          get fadesViewsBelow() {
-            return this.m_bFadesViewsBelow;
-          }
-          dismissView() {
-            var _, _;
-            null === (_ = (_ = this.props).onDismissRequested) ||
-              void 0 === _ ||
-              _.call(_);
-          }
-          get div() {
-            return this.m_viewRef.current;
-          }
-          isPointInDiv(_, _) {
-            if (!this.div) return !1;
-            const _ = this.div.getBoundingClientRect();
-            return _ >= _.left && _ <= _.right && _ >= _.top && _ <= _.bottom;
-          }
-          constructor(_) {
-            super(_),
-              (this.m_viewRef = _.createRef()),
-              (this.m_ViewStack = null),
-              (this.m_bOwnsViewStack = !1),
-              (this.m_bFadesViewsBelow = !1),
-              (0, _.makeObservable)(this);
-          }
-          componentDidMount() {
-            (this.m_bFadesViewsBelow = this.props.fadesViewsBelow),
-              this.addToViewStack();
-          }
-          componentWillUnmount() {
-            this.removeFromViewStack();
-          }
-          addToViewStack() {
-            this.context
-              ? (this.m_ViewStack = this.context)
-              : (this.m_ViewStack = new _()),
-              this.viewStack.pushView(this);
-          }
-          removeFromViewStack() {
-            this.viewStack.removeView(this),
-              this.m_bOwnsViewStack &&
-                (this.m_ViewStack.cleanup(),
-                (this.m_ViewStack = null),
-                (this.m_bOwnsViewStack = !1));
-          }
-          render() {
-            const _ = this.props,
-              {
-                shouldDismissOnClickAnywhere: _,
-                shouldDismissOnClickInViewStack: _,
-                fadesViewsBelow: _,
-                onDismissRequested: _,
-              } = _,
-              _ = (0, _._)(_, [
-                "shouldDismissOnClickAnywhere",
-                "shouldDismissOnClickInViewStack",
-                "fadesViewsBelow",
-                "onDismissRequested",
-              ]),
-              _ = _.createElement(
-                "div",
-                Object.assign({}, _, {
-                  className: (0, _._)(
-                    "View",
-                    [_.k_FadedForModalClassName, this.viewShouldFadeForModal],
-                    _.className,
-                  ),
-                  style: Object.assign(Object.assign({}, _.style), {
-                    zIndex: 3e3 + this.viewLevel,
-                  }),
-                  ref: this.m_viewRef,
-                }),
-                _.children,
-              );
-            return null === this.context
-              ? _.createElement(
-                  _.Provider,
-                  {
-                    value: this.viewStack,
-                  },
-                  _,
-                )
-              : _;
-          }
-        });
-        (_.k_FadedForModalClassName = "FadedForModal"),
-          (_.contextType = _),
-          (0, _._)([_.observable], _.prototype, "m_ViewStack", void 0),
-          (0, _._)([_.computed], _.prototype, "isTopView", null),
-          (0, _._)([_.computed], _.prototype, "viewLevel", null),
-          (0, _._)([_.computed], _.prototype, "viewShouldFadeForModal", null),
-          (0, _._)([_._], _.prototype, "dismissView", null),
-          (0, _._)([_.action.bound], _.prototype, "addToViewStack", null),
-          (0, _._)([_.action.bound], _.prototype, "removeFromViewStack", null),
-          (_ = _ = (0, _._)([_._], _));
-        _.forwardRef((_, _) =>
-          _.createElement(
-            _,
-            Object.assign({}, _, {
-              ref: _,
-            }),
-            _.children,
-          ),
-        );
-        let _ = class extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.state = {
-                viewStack: null,
-              });
-          }
-          setFloatingViewStack(_) {
-            this.setState({
-              viewStack: _,
-            });
-          }
-          render() {
-            var _, _, _;
-            const _ =
-              null !==
-                (_ =
-                  null ===
-                    (_ =
-                      null === (_ = this.state.viewStack) || void 0 === _
-                        ? void 0
-                        : _.bottomView) || void 0 === _
-                    ? void 0
-                    : _.viewShouldFadeForModal) &&
-              void 0 !== _ &&
-              _;
-            return _.createElement(
-              "div",
-              Object.assign({}, this.props, {
-                className: (0, _._)(
-                  "View",
-                  [_.k_FadedForModalClassName, _],
-                  this.props.className,
-                ),
-              }),
-              this.props.children,
-            );
-          }
-        };
-        _ = (0, _._)([_._], _);
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-        });
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        __webpack_require__("chunkid");
-        class _ extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.m_elemPortalContainer = null),
-              (this.m_elemPortal = null),
-              (this.m_refAnchor = _.createRef()),
-              (this.state = {
-                bInDOM: !1,
-              }),
-              (this.m_elemPortal = document.createElement("div")),
-              this.m_elemPortal.classList.add(_.ELEM_CLASS);
-          }
-          get anchorElement() {
-            return this.m_refAnchor.current;
-          }
-          get portalContainer() {
-            var _;
-            return this.m_refAnchor.current
-              ? (null === this.m_elemPortalContainer &&
-                  (this.m_elemPortalContainer = (0, _._)(
-                    [
-                      "body",
-                      "vsg-app",
-                      "vsg-mountable",
-                      ...(null !== (_ = this.props.allowableParentSelectors) &&
-                      void 0 !== _
-                        ? _
-                        : []),
-                    ],
-                    this.m_refAnchor.current,
-                  )),
-                this.m_elemPortalContainer)
-              : null;
-          }
-          componentDidMount() {
-            this.portalContainer.appendChild(this.m_elemPortal),
-              this.setState(
-                {
-                  bInDOM: !0,
-                },
-                this.props.onPortalDidMount,
-              );
-          }
-          componentWillUnmount() {
-            this.portalContainer.removeChild(this.m_elemPortal);
-          }
-          render() {
-            if (!this.props.children) return null;
-            return (
-              delete Object.assign({}, this.props).allowableParentSelectors,
-              _.createElement(
-                _.Fragment,
-                null,
-                _.createElement("div", {
-                  className: "ParentPortalAnchor",
-                  ref: this.m_refAnchor,
-                }),
-                this.m_elemPortal &&
-                  this.state.bInDOM &&
-                  this.props.children &&
-                  _.createPortal(this.props.children, this.m_elemPortal),
-              )
-            );
-          }
-        }
-        _.ELEM_CLASS = "v-parent-portal";
-        _.Component;
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-          _: () => _,
-          _: () => _,
-          _: () => _,
-        });
-        var _ = __webpack_require__("chunkid"),
-          _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid")),
-          _ = __webpack_require__("chunkid");
-        function _(_) {
-          let _ = window.location.search.substring(1).split("&");
-          for (let _ = 0; _ < _.length; _++) {
-            let _ = _[_].split("=");
-            if (decodeURIComponent(_[0]).toUpperCase() == _.toUpperCase())
-              return decodeURIComponent(_[1]);
-          }
-          return "";
-        }
-        function _(_) {
-          return "string" == typeof _ || (Array.isArray(_) && _[1]);
-        }
-        function _(..._) {
-          return _.filter(_)
-            .map((_) => ("string" == typeof _ ? _ : _[0]))
-            .join(" ");
-        }
-        function _(_, _) {
-          let _ = _;
-          for (
-            ;
-            _.parentElement && !_.some((_) => __webpack_require__.matches(_));
-          )
-            _ = _.parentElement;
-          return _;
-        }
-        class _ {
-          constructor() {
-            (this.onScroll = null),
-              (this.onScrollStop = null),
-              (this.m_elem = null),
-              (this.m_rScrollableParents = []),
-              (this.m_bScrolling = !1),
-              (this.m_scrollStopTimeoutHandle = void 0),
-              (0, _.makeObservable)(this);
-          }
-          ref(_) {
-            this.m_elem && this.cleanup(),
-              (this.m_elem = _),
-              this.updateScrollableParents();
-          }
-          get isScrolling() {
-            return this.m_bScrolling;
-          }
-          updateScrollableParents() {
-            for (let _ of this.m_rScrollableParents)
-              _.removeEventListener("scroll", this.onParentScroll);
-            this.m_elem
-              ? (this.m_rScrollableParents = (function (_) {
-                  let _ = [];
-                  if (!_) return _;
-                  let _ = _.parentElement;
-                  for (; _; ) {
-                    const _ = _.scrollWidth > _.clientWidth,
-                      _ = _.scrollHeight > _.clientHeight;
-                    (_ || _) && _.push(_), (_ = _.parentElement);
-                  }
-                  return _;
-                })(this.m_elem))
-              : (this.m_rScrollableParents = []);
-            for (let _ of this.m_rScrollableParents)
-              _.addEventListener("scroll", this.onParentScroll);
-          }
-          cleanup() {
-            for (let _ of this.m_rScrollableParents)
-              _.removeEventListener("scroll", this.onParentScroll);
-            (this.m_rScrollableParents = []),
-              (this.m_elem = null),
-              this.clearScrollStopTimeout();
-          }
-          onParentScroll() {
-            var _;
-            this.clearScrollStopTimeout(),
-              (this.m_bScrolling = !0),
-              (this.m_scrollStopTimeoutHandle = window.setTimeout(
-                this.onScrollStopTimeout,
-                50,
-              )),
-              null === (_ = this.onScroll) || void 0 === _ || _.call(this);
-          }
-          clearScrollStopTimeout() {
-            window.clearTimeout(this.m_scrollStopTimeoutHandle),
-              (this.m_scrollStopTimeoutHandle = void 0);
-          }
-          onScrollStopTimeout() {
-            var _;
-            this.m_bScrolling &&
-              (null === (_ = this.onScrollStop) ||
-                void 0 === _ ||
-                _.call(this)),
-              (this.m_bScrolling = !1);
-          }
-        }
-        (0, _._)([_.observable], _.prototype, "m_bScrolling", void 0),
-          (0, _._)([_._], _.prototype, "ref", null),
-          (0, _._)([_.computed], _.prototype, "isScrolling", null),
-          (0, _._)([_._], _.prototype, "onParentScroll", null),
-          (0, _._)([_._], _.prototype, "onScrollStopTimeout", null);
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__._(_),
-          _ = __webpack_require__("chunkid");
-        class _ {
-          constructor() {
-            (this.m_InputState = void 0),
-              (this.m_KnownControllerTypes = _.observable.map()),
-              (this.m_mailbox = new _._()),
-              (this.m_bUpdateInputStateOnControllerTypChange = !1),
-              (0, _.makeObservable)(this);
-          }
-          Init(_) {
-            return (
-              this.m_mailbox.Init("input_state"),
-              this.m_mailbox.RegisterHandler(
-                "controller_type_changed",
-                this.OnControllerTypeChanged,
-              ),
-              this.m_mailbox.RegisterHandler(
-                "action_bindings_reloaded",
-                this.OnActionBindingsReloaded,
-              ),
-              null != _ && (this.m_bUpdateInputStateOnControllerTypChange = _),
-              this.GetInputState()
-            );
-          }
-          OnActionBindingsReloaded() {
-            this.GetInputState();
-          }
-          OnControllerTypeChanged(_) {
-            this.UpdateControllerTypes(_.controller_types),
-              this.m_InputState &&
-                (this.m_InputState.controller_types = _.controller_types),
-              this.m_bUpdateInputStateOnControllerTypChange &&
-                this.GetInputState();
-          }
-          get ConnectedDevices() {
-            return null == this.m_InputState
-              ? []
-              : this.m_InputState.devices.filter(
-                  (_) =>
-                    "TrackedDeviceClass_Controller" == _.class ||
-                    "TrackedDeviceClass_HMD" == _.class ||
-                    "TrackedDeviceClass_GenericTracker" == _.class,
-                );
-          }
-          get ControllerTypes() {
-            return this.m_InputState.controller_types;
-          }
-          get ShouldSendSystemButtonToAllApps() {
-            return this.m_InputState.send_system_button_to_all_apps;
-          }
-          get ShowHiddenInputs() {
-            return this.m_InputState.show_hidden_inputs;
-          }
-          get IsSteamAvailable() {
-            return !this.m_InputState || this.m_InputState.is_steam_available;
-          }
-          get BDevMode() {
-            return this.m_InputState.dev_mode;
-          }
-          get IsValid() {
-            return null != this.m_InputState;
-          }
-          get CurrentUserPersonaName() {
-            return this.m_InputState.current_user_persona_name
-              ? this.m_InputState.current_user_persona_name
-              : null;
-          }
-          GetControllerTypeInfo(_) {
-            return this.m_InputState.controller_types.find(
-              (_) => _.controller_type == _,
-            );
-          }
-          GetDeviceInfo(_) {
-            for (let _ of this.m_InputState.devices)
-              if (_.root_path == _ || _.device_path == _) return _;
-            return null;
-          }
-          LocalizeControllerString(_, _) {
-            let _ = (0, _._)("#" + _);
-            return _ != "#" + _
-              ? _
-              : _ &&
-                  this.m_InputState &&
-                  this.m_InputState.localization.hasOwnProperty(
-                    _.resource_root,
-                  ) &&
-                  this.m_InputState.localization[
-                    _.resource_root
-                  ].hasOwnProperty(_.toLowerCase())
-                ? this.m_InputState.localization[_.resource_root][
-                    _.toLowerCase()
-                  ]
-                : _;
-          }
-          LocalizeDriverString(_, _) {
-            if (
-              this.m_InputState &&
-              this.m_InputState.localization.hasOwnProperty(_) &&
-              this.m_InputState.localization[_].hasOwnProperty(_.toLowerCase())
-            )
-              return this.m_InputState.localization[_][_.toLowerCase()];
-            let _ = (0, _._)("#" + _);
-            return _ != "#" + _ ? _ : _;
-          }
-          UpdateControllerTypes(_) {
-            this.m_KnownControllerTypes.clear();
-            for (let _ of _)
-              this.m_KnownControllerTypes.set(_.controller_type, _);
-          }
-          GetInputState() {
-            return (0, _._)(this, void 0, void 0, function* () {
-              yield new Promise(function (_, _) {
-                _()
-                  .get("/input/getstate.json")
-                  .then((_) => {
-                    _(_.data);
-                  })
-                  .catch((_) => {
-                    _(_);
-                  });
-              }).then((_) => {
-                (0, _.runInAction)(() => {
-                  for (let _ of _.controller_types)
-                    _.controller_type = _.controller_type.toLowerCase();
-                  for (let _ of _.devices)
-                    _.controller_type = _.controller_type.toLowerCase();
-                  this.UpdateControllerTypes(_.controller_types),
-                    (this.m_InputState = _);
-                });
-              });
-            });
-          }
-          get KnownControllerTypes() {
-            return this.m_KnownControllerTypes;
-          }
-          FindDeviceClassForControllerType(_) {
-            let _ = this.GetControllerTypeInfo(_);
-            return null == _ ? void 0 : _.device_class;
-          }
-          FindRootPathForControllerType(_) {
-            for (let _ of this.m_InputState.devices)
-              if (_.controller_type == _) return _.root_path;
-            return null;
-          }
-        }
-        (0, _._)([_.observable], _.prototype, "m_InputState", void 0),
-          (0, _._)(
-            [_.observable],
-            _.prototype,
-            "m_KnownControllerTypes",
-            void 0,
-          ),
-          (0, _._)([_._], _.prototype, "OnActionBindingsReloaded", null),
-          (0, _._)([_._], _.prototype, "OnControllerTypeChanged", null),
-          (0, _._)([_.computed], _.prototype, "ConnectedDevices", null),
-          (0, _._)([_.computed], _.prototype, "ControllerTypes", null),
-          (0, _._)(
-            [_.computed],
-            _.prototype,
-            "ShouldSendSystemButtonToAllApps",
-            null,
-          ),
-          (0, _._)([_.computed], _.prototype, "ShowHiddenInputs", null),
-          (0, _._)([_.computed], _.prototype, "IsSteamAvailable", null),
-          (0, _._)([_.computed], _.prototype, "BDevMode", null),
-          (0, _._)([_.computed], _.prototype, "IsValid", null),
-          (0, _._)([_.computed], _.prototype, "CurrentUserPersonaName", null),
-          (0, _._)([_._], _.prototype, "GetControllerTypeInfo", null),
-          (0, _._)([_._], _.prototype, "LocalizeControllerString", null),
-          (0, _._)([_._], _.prototype, "LocalizeDriverString", null),
-          (0, _._)([_.action], _.prototype, "UpdateControllerTypes", null),
-          (0, _._)([_.action], _.prototype, "GetInputState", null),
-          (0, _._)([_.computed], _.prototype, "KnownControllerTypes", null),
-          (0, _._)(
-            [_._],
-            _.prototype,
-            "FindDeviceClassForControllerType",
-            null,
-          );
-        const _ = new _();
-        window.inputState = _;
-        var _,
           _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        !(function (_) {
-          (_[(_.None = 0)] = "None"),
-            (_[(_.List = 1)] = "List"),
-            (_[(_.ViewBinding = 2)] = "ViewBinding"),
-            (_[(_.EditBinding = 3)] = "EditBinding"),
-            (_[(_.AppSelect = 4)] = "AppSelect"),
-            (_[(_.Debugger = 5)] = "Debugger");
-        })(_ || (_ = {}));
-        class _ {
-          constructor() {
-            (this.m_State = _.None),
-              (this.m_bLoading = !1),
-              (this.m_rBindingList = void 0),
-              (this.m_bShowBindingListError = !1),
-              (this.m_sBindingListError = void 0),
-              (this.m_bCanCloseBindingListError = !0),
-              (this.m_timeoutLoading = void 0),
-              (this.m_pathUpdateTimer = void 0),
-              (this.m_bStandaloneSettingsPage = !1),
-              (this.m_bDesktopMode = !1),
-              (0, _.makeObservable)(this);
-          }
-          Init() {
-            window.addEventListener("popstate", this.OnPopState),
-              history.pushState(
-                {
-                  direction: "back",
-                },
-                "back",
-              ),
-              history.pushState(
-                {
-                  direction: "current",
-                },
-                "current",
-              ),
-              history.pushState(
-                {
-                  direction: "forward",
-                },
-                "forward",
-              ),
-              history.back();
-            let _ = "bindingui/" + _._[(0, _._)()];
-            (this.m_mailbox = new _._()),
-              this.m_mailbox.Init(_),
-              this.m_mailbox.RegisterHandler(
-                "show_app_select",
-                this.OnShowAppSelect,
-              ),
-              this.m_mailbox.RegisterHandler(
-                "show_app_binding",
-                this.OnShowAppBinding,
-              ),
-              this.m_mailbox.RegisterHandler(
-                "show_input_debugger",
-                this.OnShowInputDebugger,
-              ),
-              this.m_mailbox.RegisterHandler(
-                "binding_load_failed",
-                this.OnBindingLoadFailed,
-              ),
-              (0, _.autorun)(this.UpdateWindowTitle);
-          }
-          ShowOverlayInDashboard() {
-            null === _._ ||
-              void 0 === _._ ||
-              _._.VRClient.ShowDashboardOverlay({
-                overlayKey: "system.vrwebhelper.controllerbinding",
-                sReason: "cinputui_showoverlayindashboard",
-              });
-          }
-          OnShowAppSelect(_) {
-            (this.m_bStandaloneSettingsPage = !1), this.ShowAppSelect();
-          }
-          OnShowInputDebugger(_) {
-            (this.m_bStandaloneSettingsPage = !1), this.ShowDebugger();
-          }
-          OnShowAppBinding(_) {
-            (this.m_bStandaloneSettingsPage = !1),
-              (this.Loading = !0),
-              _._.UpdateApplications().then(() => {
-                if (
-                  ((0, _._)() == _._.Overlay
-                    ? this.ShowOverlayInDashboard()
-                    : (0, _._)() == _._.Desktop && _._.ShowBindingUI(!0),
-                  !_._.GetApp(_.app_key))
-                )
-                  return (
-                    console.log(
-                      "Warning: Could not find app key: " +
-                        _.app_key +
-                        " showing app select.",
-                    ),
-                    void this.ShowAppSelect()
-                  );
-                _.SetSelectedApp(_.app_key, !0),
-                  _.ReloadCurrentApp().then(() => {
-                    if (_.controller_type)
-                      return (
-                        _.SetSelectedController(_.controller_type, !0),
-                        void _.ReloadControllerConfiguration().then(() => {
-                          _.action_set && _.SetSelectedActionSet(_.action_set),
-                            (this.Loading = !1),
-                            this.EditCurrentBinding();
-                        })
-                      );
-                    (this.Loading = !1), this.ShowBindingList();
-                  });
-              });
-          }
-          OnBindingLoadFailed(_) {
-            console.log(
-              "OnBindingLoadFailed: " +
-                _.app_key +
-                " " +
-                _.controller_type +
-                " " +
-                _.error,
-            ),
-              _._.UpdateApplications().then(() => {
-                if (!_._.ShouldShowBindingFailureForApp(_.app_key)) return;
-                if (
-                  !_.ShouldShowBindingFailureForControllerType(
-                    _.controller_type,
-                  )
-                )
-                  return;
-                _.RememberFailedLoadUri(_.uri),
-                  _.SetSelectedApp(_.app_key),
-                  _.SetSelectedController(_.controller_type);
-                let _ = _._.GetApp(_.app_key),
-                  _ = _.GetControllerTypeInfo(_.controller_type);
-                if (!_) return;
-                let _ = _.LocalizeControllerString(_, _.controller_type);
-                this.ShowBindingList(
-                  (0, _._)(
-                    _.error,
-                    _ ? _.name : (0, _._)("#unknown_application"),
-                    _,
-                  ),
-                ),
-                  null === _._ || void 0 === _._ || _._.ShowBindingUI(!1);
-              });
-          }
-          SetStandaloneSettingsPage(_) {
-            this.m_bStandaloneSettingsPage = _;
-          }
-          SetDesktopMode(_) {
-            this.m_bDesktopMode = _;
-          }
-          get DesktopMode() {
-            return this.m_bDesktopMode;
-          }
-          SetBindingListError(_, _ = !0) {
-            (this.m_bShowBindingListError = null != _),
-              (this.m_sBindingListError = _),
-              (this.m_bCanCloseBindingListError = _);
-          }
-          get ShowBindingListError() {
-            return this.m_bShowBindingListError;
-          }
-          get BindingListError() {
-            return this.m_sBindingListError;
-          }
-          get CanCloseBindingListError() {
-            return this.m_bCanCloseBindingListError;
-          }
-          OnPopState(_) {
-            let _ = "";
-            _.state && _.state.direction && (_ = _.state.direction),
-              "back" == _
-                ? (this.m_bStandaloneSettingsPage &&
-                    (this.SetStandaloneSettingsPage(!1),
-                    this.ReturnToSettingsUI()),
-                  this.GoBackPage(),
-                  history.forward())
-                : "forward" == _ && (history.back(), this.GoForwardPage());
-          }
-          GoBackPage() {
-            switch (this.m_State) {
-              default:
-              case _.None:
-              case _.AppSelect:
-                break;
-              case _.Debugger:
-              case _.List:
-                this.ShowAppSelect();
-                break;
-              case _.EditBinding:
-              case _.ViewBinding:
-                this.ShowBindingList();
-            }
-          }
-          GoForwardPage() {
-            switch (this.m_State) {
-              default:
-              case _.None:
-              case _.AppSelect:
-                this.ShowBindingList();
-                break;
-              case _.List:
-                this.CurrentBinding.url == _.LoadedBindingURL
-                  ? this.EditCurrentBinding()
-                  : this.ViewCurrentBinding();
-              case _.EditBinding:
-              case _.ViewBinding:
-            }
-          }
-          get GetUIState() {
-            return this.m_State;
-          }
-          get BindingQueryResults() {
-            return this.m_rBindingList;
-          }
-          get Loading() {
-            return this.m_bLoading;
-          }
-          set Loading(_) {
-            (this.m_bLoading = _),
-              _
-                ? (this.m_timeoutLoading && clearTimeout(this.m_timeoutLoading),
-                  (this.m_timeoutLoading = window.setTimeout(() => {
-                    this.Loading = !1;
-                  }, 1e4)))
-                : this.m_timeoutLoading && clearTimeout(this.m_timeoutLoading);
-          }
-          IsSafeToResetControllerType(_, _) {
-            return (
-              this.m_State == _.AppSelect ||
-              this.m_State == _.None ||
-              ("TrackedDeviceClass_HMD" == _ &&
-                "TrackedDeviceClass_Controller" == _)
-            );
-          }
-          EditCurrentBinding() {
-            this.m_State = _.EditBinding;
-          }
-          ViewCurrentBinding() {
-            this.m_State = _.ViewBinding;
-          }
-          ShowBindingList(_ = void 0) {
-            (this.m_bStandaloneSettingsPage = !1),
-              this.SetBindingListError(_),
-              (this.m_State = _.List),
-              (this.Loading = !1);
-          }
-          get CurrentBinding() {
-            if (this.BindingQueryResults)
-              return _.BindingQueryResults.find(
-                (_) => _.url == _.SelectedBindingURL,
-              );
-          }
-          ReturnToSettingsUI() {
-            this.ShowAppSelect(),
-              null === _._ ||
-                void 0 === _._ ||
-                _._.ShowSettingsUI((0, _._)() == _._.Desktop);
-          }
-          ShowAppSelect() {
-            (this.m_bStandaloneSettingsPage = !1),
-              (this.Loading = !0),
-              _._.UpdateApplications()
-                .then(() => {
-                  (0, _.runInAction)(() => {
-                    (this.Loading = !1), (this.m_State = _.AppSelect);
-                  });
-                })
-                .catch(() => {
-                  this.Loading = !1;
-                });
-          }
-          UpdatePathsTimeout() {
-            try {
-              _._.UpdatePaths().then(() => {
-                this.m_State == _.Debugger
-                  ? (this.m_pathUpdateTimer = window.setTimeout(
-                      this.UpdatePathsTimeout,
-                      500,
-                    ))
-                  : (this.m_pathUpdateTimer = void 0);
-              });
-            } catch (_) {
-              console.log("Stopping debugger timer because", _);
-            }
-          }
-          ShowDebugger() {
-            (this.Loading = !0),
-              _._.UpdateApplications()
-                .then(() => {
-                  this.Loading = !1;
-                  let _ = _._.GetApp(_.SelectedApp);
-                  _ &&
-                    _.client_container_handle &&
-                    _._.AddSubscribedContainer(_.client_container_handle),
-                    (this.m_State = _.Debugger),
-                    (this.m_pathUpdateTimer = window.setTimeout(
-                      this.UpdatePathsTimeout,
-                      500,
-                    )),
-                    _._.ShowBindingUI((0, _._)() == _._.Desktop);
-                })
-                .catch(() => {
-                  this.Loading = !1;
-                });
-          }
-          GetBindingList() {
-            return (0, _._)(this, void 0, void 0, function* () {
-              var _;
-              (0, _.runInAction)(() => {
-                (this.Loading = !0), (this.m_rBindingList = []);
-              });
-              try {
-                const _ = _.SelectedControllerTypeInfo,
-                  _ = yield _.QueryBindingList(
-                    _.SelectedApp,
-                    null !== (_ = null == _ ? void 0 : _.controller_type) &&
-                      void 0 !== _
-                      ? _
-                      : "",
-                  );
-                _.success &&
-                  (0, _.runInAction)(() => {
-                    this.m_rBindingList = _.results;
-                  });
-              } catch (_) {
-                this.SetBindingListError(
-                  (0, _._)("#BindingUI_WorkshopBindingLoadFailed"),
-                ),
-                  console.error("Failed to load workshop bindings " + _);
-              } finally {
-                this.Loading = !1;
-              }
-            });
-          }
-          UpdateWindowTitle() {
-            setTimeout(() => {
-              switch (this.GetUIState) {
-                case _.AppSelect:
-                case _.Debugger:
-                case _.EditBinding:
-                case _.List:
-                case _.None:
-                case _.ViewBinding:
-                  document.title = (0, _._)(
-                    "#BindingUI_WindowTitle_ControllerBinding",
-                  );
-              }
-            }, 0);
-          }
-        }
-        (0, _._)([_.observable], _.prototype, "m_State", void 0),
-          (0, _._)([_.observable], _.prototype, "m_bLoading", void 0),
-          (0, _._)([_.observable], _.prototype, "m_rBindingList", void 0),
-          (0, _._)(
-            [_.observable],
-            _.prototype,
-            "m_bShowBindingListError",
-            void 0,
-          ),
-          (0, _._)([_.observable], _.prototype, "m_sBindingListError", void 0),
-          (0, _._)(
-            [_.observable],
-            _.prototype,
-            "m_bCanCloseBindingListError",
-            void 0,
-          ),
-          (0, _._)([_.observable], _.prototype, "m_bDesktopMode", void 0),
-          (0, _._)([_._], _.prototype, "OnShowAppSelect", null),
-          (0, _._)([_._], _.prototype, "OnShowInputDebugger", null),
-          (0, _._)([_._], _.prototype, "OnShowAppBinding", null),
-          (0, _._)([_._], _.prototype, "OnBindingLoadFailed", null),
-          (0, _._)([_.computed], _.prototype, "DesktopMode", null),
-          (0, _._)([_._], _.prototype, "SetBindingListError", null),
-          (0, _._)([_.computed], _.prototype, "ShowBindingListError", null),
-          (0, _._)([_.computed], _.prototype, "BindingListError", null),
-          (0, _._)([_.computed], _.prototype, "CanCloseBindingListError", null),
-          (0, _._)([_._], _.prototype, "OnPopState", null),
-          (0, _._)([_._], _.prototype, "GoBackPage", null),
-          (0, _._)([_._], _.prototype, "GoForwardPage", null),
-          (0, _._)([_.computed], _.prototype, "GetUIState", null),
-          (0, _._)([_.computed], _.prototype, "BindingQueryResults", null),
-          (0, _._)([_.computed], _.prototype, "Loading", null),
-          (0, _._)([_._], _.prototype, "IsSafeToResetControllerType", null),
-          (0, _._)([_.action.bound], _.prototype, "EditCurrentBinding", null),
-          (0, _._)([_._], _.prototype, "ViewCurrentBinding", null),
-          (0, _._)([_._], _.prototype, "ShowBindingList", null),
-          (0, _._)([_.computed], _.prototype, "CurrentBinding", null),
-          (0, _._)([_._], _.prototype, "ReturnToSettingsUI", null),
-          (0, _._)([_._], _.prototype, "ShowAppSelect", null),
-          (0, _._)([_._], _.prototype, "UpdatePathsTimeout", null),
-          (0, _._)([_._], _.prototype, "ShowDebugger", null),
-          (0, _._)([_._], _.prototype, "GetBindingList", null),
-          (0, _._)([_._], _.prototype, "UpdateWindowTitle", null);
-        const _ = new _();
-        window.inputUI = _;
-        var _,
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
         class _ {
           constructor() {
@@ -1627,6 +124,20 @@ var CLSTAMP = "steamdb";
               .catch((_) => {
                 __webpack_require__(_);
               });
+          });
+        }
+        function _(_, _, _) {
+          return (0, _._)(this, void 0, void 0, function* () {
+            let _ = (yield _().get(
+              "/input/loadbindingfromurl.json?binding_url=" +
+                encodeURI(_) +
+                "&controller_type=" +
+                encodeURI(_) +
+                "&app_key=" +
+                encodeURI(_),
+            )).data;
+            if (_.success) return _;
+            throw new Error(_.error);
           });
         }
         (0, _._)([_.observable], _.prototype, "trackers", void 0),
@@ -1767,7 +278,7 @@ var CLSTAMP = "steamdb";
             return this.GetActionForInputType(_, "value");
           }
           get GetControllerInputName() {
-            return _.LocalizeDriverString(
+            return _._.LocalizeDriverString(
               this.m_ControllerProfile.resource_root,
               this.m_sInputPath,
             );
@@ -2293,7 +804,7 @@ var CLSTAMP = "steamdb";
           CountDevicesWithControllerType(_) {
             let _ = 0;
             return (
-              _.ConnectedDevices.forEach((_) => {
+              _._.ConnectedDevices.forEach((_) => {
                 _.controller_type == _ && _++;
               }),
               _
@@ -2318,7 +829,7 @@ var CLSTAMP = "steamdb";
             let _,
               _ = 0;
             return (
-              _.ControllerTypes.forEach((_) => {
+              _._.ControllerTypes.forEach((_) => {
                 let _ = this.ComputeControllerTypeScore(_);
                 _ > _ && ((_ = _), (_ = _));
               }),
@@ -2327,14 +838,14 @@ var CLSTAMP = "steamdb";
           }
           RefreshInputState() {
             return (0, _._)(this, void 0, void 0, function* () {
-              let _ = _.KnownControllerTypes.size;
-              return _.GetInputState().then(() => {
+              let _ = _._.KnownControllerTypes.size;
+              return _._.GetInputState().then(() => {
                 this.m_SelectedApp &&
-                  _ != _.KnownControllerTypes.size &&
+                  _ != _._.KnownControllerTypes.size &&
                   this.ReloadCurrentApp();
                 let _ = !1;
                 const _ = this.GetBestControllerType();
-                let _ = _.FindDeviceClassForControllerType(
+                let _ = _._.FindDeviceClassForControllerType(
                   this.m_sSelectedControllerType,
                 );
                 if (
@@ -2342,8 +853,10 @@ var CLSTAMP = "steamdb";
                   this.m_sSelectedControllerType != _.controller_type &&
                   !this.m_bControllerTypeSelectedByUser
                 ) {
-                  let _ = _.FindDeviceClassForControllerType(_.controller_type);
-                  _.IsSafeToResetControllerType(_, _) &&
+                  let _ = _._.FindDeviceClassForControllerType(
+                    _.controller_type,
+                  );
+                  _._.IsSafeToResetControllerType(_, _) &&
                     ((this.m_sSelectedControllerType = _.controller_type),
                     (_ = !0));
                 }
@@ -2511,18 +1024,18 @@ var CLSTAMP = "steamdb";
           get CurrentAppCanAccessPrivateInputs() {
             return (
               _._.IsAppAllowedPrivateInputs(this.m_SelectedApp.key) ||
-              _.ShouldSendSystemButtonToAllApps
+              _._.ShouldSendSystemButtonToAllApps
             );
           }
           get SelectedControllerTypeInfo() {
-            if (_.IsValid && null != this.m_sSelectedControllerType)
-              return _.GetControllerTypeInfo(this.m_sSelectedControllerType);
+            if (_._.IsValid && null != this.m_sSelectedControllerType)
+              return _._.GetControllerTypeInfo(this.m_sSelectedControllerType);
           }
           DeviceForControllerType(_, _) {
-            let _ = _.GetControllerTypeInfo(_);
+            let _ = _._.GetControllerTypeInfo(_);
             if (!_) return;
             let _ = !1,
-              _ = _.ConnectedDevices.find((_) => {
+              _ = _._.ConnectedDevices.find((_) => {
                 if (_.controller_type == _) {
                   if (((_ = !0), !_)) return !0;
                   if ("controller_handed" != _.input_bindingui_mode) return !0;
@@ -2534,7 +1047,7 @@ var CLSTAMP = "steamdb";
             return (
               _ ||
               (_
-                ? _.ConnectedDevices.find((_) => _.controller_type == _)
+                ? _._.ConnectedDevices.find((_) => _.controller_type == _)
                 : void 0)
             );
           }
@@ -2845,7 +1358,7 @@ var CLSTAMP = "steamdb";
           }
           SetSelectedController(_, _) {
             if (_ != this.m_sSelectedControllerType) {
-              let _ = _.GetControllerTypeInfo(_);
+              let _ = _._.GetControllerTypeInfo(_);
               _ &&
                 (this.m_ControllerWatchers.clear(),
                 (this.m_sSelectedControllerType = _.controller_type),
@@ -2860,7 +1373,7 @@ var CLSTAMP = "steamdb";
           LocalizeStringForSelectedControllerType(_) {
             let _ = this.SelectedControllerTypeInfo;
             return _ && _.resource_root
-              ? _.LocalizeDriverString(_.resource_root, _)
+              ? _._.LocalizeDriverString(_.resource_root, _)
               : _;
           }
           LocalizePathNameForSelectedControllerType(_) {
@@ -2886,7 +1399,7 @@ var CLSTAMP = "steamdb";
             let _ = this.SelectedControllerTypeInfo;
             return _
               ? _.resource_root
-                ? _.LocalizeDriverString(_.resource_root, _.controller_type)
+                ? _._.LocalizeDriverString(_.resource_root, _.controller_type)
                 : _.controller_type
               : "";
           }
@@ -3931,7 +2444,7 @@ var CLSTAMP = "steamdb";
                         (this.m_SelectedAppActions = void 0),
                           (this.m_sLoadedBindingURI = void 0);
                       }),
-                      _.SetBindingListError(
+                      _._.SetBindingListError(
                         (0, _._)("#ActionManifestError_UnknownError"),
                         !1,
                       )),
@@ -3966,7 +2479,7 @@ var CLSTAMP = "steamdb";
           }
           get IsSecondaryController() {
             if (!this.m_sSelectedControllerType) return !1;
-            let _ = _.FindRootPathForControllerType(
+            let _ = _._.FindRootPathForControllerType(
               this.m_sSelectedControllerType,
             );
             return (
@@ -3986,20 +2499,7 @@ var CLSTAMP = "steamdb";
                 )
               )
                 return;
-              let _ = yield (function (_, _, _) {
-                return (0, _._)(this, void 0, void 0, function* () {
-                  let _ = (yield _().get(
-                    "/input/loadbindingfromurl.json?binding_url=" +
-                      encodeURI(_) +
-                      "&controller_type=" +
-                      encodeURI(_) +
-                      "&app_key=" +
-                      encodeURI(_),
-                  )).data;
-                  if (_.success) return _;
-                  throw new Error(_.error);
-                });
-              })(
+              let _ = yield _(
                 this.m_SelectedApp.key,
                 this.SelectedControllerTypeInfo.controller_type,
                 this.m_sLoadedBindingURI,
@@ -4070,14 +2570,14 @@ var CLSTAMP = "steamdb";
           get KnownControllerTypes() {
             let _ = [];
             return (
-              _.KnownControllerTypes.forEach((_) => {
+              _._.KnownControllerTypes.forEach((_) => {
                 _.push(_);
               }),
               _
             );
           }
           PreserveCurrentBindingForUpgrade() {
-            let _ = _.CurrentBinding;
+            let _ = _._.CurrentBinding;
             return _ && "autosave" == _.type
               ? this.SaveCurrentBinding(
                   (0, _._)("#PreservedAutosaveName"),
@@ -4088,7 +2588,7 @@ var CLSTAMP = "steamdb";
           }
           GetDefaultBindingNameForSaveType(_) {
             let _ = _.SelectedControllerTypeInfo,
-              _ = _.LocalizeControllerString(_, _ ? _.controller_type : "");
+              _ = _._.LocalizeControllerString(_, _ ? _.controller_type : "");
             switch (_) {
               default:
               case "autosave":
@@ -4106,7 +2606,7 @@ var CLSTAMP = "steamdb";
               case "public":
                 return (0, _._)(
                   "#BindingUI_SaveDefaultName_Public",
-                  _.CurrentUserPersonaName,
+                  _._.CurrentUserPersonaName,
                 );
               case "replace_default":
                 return _.ConfigName;
@@ -4310,7 +2810,7 @@ var CLSTAMP = "steamdb";
               "" == this.m_sName)
             ) {
               let _ = _.SelectedControllerTypeInfo,
-                _ = _.LocalizeControllerString(_, _ ? _.controller_type : "");
+                _ = _._.LocalizeControllerString(_, _ ? _.controller_type : "");
               this.m_sName = (0, _._)("#BindingUI_SaveDefaultName", _, _);
             }
             _.binding_config &&
@@ -4459,7 +2959,7 @@ var CLSTAMP = "steamdb";
           }
           ShouldShowBindingFailureForControllerType(_) {
             if (null == _ || "" == _) return !1;
-            let _ = _.GetControllerTypeInfo(_);
+            let _ = _._.GetControllerTypeInfo(_);
             return !!_ && !!_.should_show_binding_errors;
           }
           HasBindingUriFailedToLoad(_) {
@@ -4520,7 +3020,7 @@ var CLSTAMP = "steamdb";
                 (this.m_OutstandingSelectConfigResolve = void 0),
                 console.log("OnSelectConfigComplete: ", _))
               : _.error_to_show
-                ? _.ShowBindingList(_.error_to_show)
+                ? _._.ShowBindingList(_.error_to_show)
                 : console.warn(
                     "Missing outstanding query resolve for select config",
                   );
@@ -4552,7 +3052,7 @@ var CLSTAMP = "steamdb";
                     _ = "/user/hand/right";
                 }
               else {
-                let _ = _.ConnectedDevices.find(
+                let _ = _._.ConnectedDevices.find(
                   (_) => _.controller_type == _.controller_type,
                 );
                 _ && _.root_path
@@ -4922,7 +3422,721 @@ var CLSTAMP = "steamdb";
           );
         const _ = new _();
         window.controllerBindingStore = _;
-        var _ = __webpack_require__("chunkid");
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        __webpack_require__._(_, {
+          _: () => _,
+          _: () => _,
+        });
+        var _,
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
+        !(function (_) {
+          (_[(_.None = 0)] = "None"),
+            (_[(_.List = 1)] = "List"),
+            (_[(_.ViewBinding = 2)] = "ViewBinding"),
+            (_[(_.EditBinding = 3)] = "EditBinding"),
+            (_[(_.AppSelect = 4)] = "AppSelect"),
+            (_[(_.Debugger = 5)] = "Debugger");
+        })(_ || (_ = {}));
+        class _ {
+          constructor() {
+            (this.m_State = _.None),
+              (this.m_bLoading = !1),
+              (this.m_rBindingList = void 0),
+              (this.m_bShowBindingListError = !1),
+              (this.m_sBindingListError = void 0),
+              (this.m_bCanCloseBindingListError = !0),
+              (this.m_timeoutLoading = void 0),
+              (this.m_pathUpdateTimer = void 0),
+              (this.m_bStandaloneSettingsPage = !1),
+              (this.m_bDesktopMode = !1),
+              (0, _.makeObservable)(this);
+          }
+          Init() {
+            window.addEventListener("popstate", this.OnPopState),
+              history.pushState(
+                {
+                  direction: "back",
+                },
+                "back",
+              ),
+              history.pushState(
+                {
+                  direction: "current",
+                },
+                "current",
+              ),
+              history.pushState(
+                {
+                  direction: "forward",
+                },
+                "forward",
+              ),
+              history.back();
+            let _ = "bindingui/" + _._[(0, _._)()];
+            (this.m_mailbox = new _._()),
+              this.m_mailbox.Init(_),
+              this.m_mailbox.RegisterHandler(
+                "show_app_select",
+                this.OnShowAppSelect,
+              ),
+              this.m_mailbox.RegisterHandler(
+                "show_app_binding",
+                this.OnShowAppBinding,
+              ),
+              this.m_mailbox.RegisterHandler(
+                "show_input_debugger",
+                this.OnShowInputDebugger,
+              ),
+              this.m_mailbox.RegisterHandler(
+                "binding_load_failed",
+                this.OnBindingLoadFailed,
+              ),
+              (0, _.autorun)(this.UpdateWindowTitle);
+          }
+          ShowOverlayInDashboard() {
+            null === _._ ||
+              void 0 === _._ ||
+              _._.VRClient.ShowDashboardOverlay({
+                overlayKey: "system.vrwebhelper.controllerbinding",
+                sReason: "cinputui_showoverlayindashboard",
+              });
+          }
+          OnShowAppSelect(_) {
+            (this.m_bStandaloneSettingsPage = !1), this.ShowAppSelect();
+          }
+          OnShowInputDebugger(_) {
+            (this.m_bStandaloneSettingsPage = !1), this.ShowDebugger();
+          }
+          OnShowAppBinding(_) {
+            (this.m_bStandaloneSettingsPage = !1),
+              (this.Loading = !0),
+              _._.UpdateApplications().then(() => {
+                if (
+                  ((0, _._)() == _._.Overlay
+                    ? this.ShowOverlayInDashboard()
+                    : (0, _._)() == _._.Desktop && _._.ShowBindingUI(!0),
+                  !_._.GetApp(_.app_key))
+                )
+                  return (
+                    console.log(
+                      "Warning: Could not find app key: " +
+                        _.app_key +
+                        " showing app select.",
+                    ),
+                    void this.ShowAppSelect()
+                  );
+                _._.SetSelectedApp(_.app_key, !0),
+                  _._.ReloadCurrentApp().then(() => {
+                    if (_.controller_type)
+                      return (
+                        _._.SetSelectedController(_.controller_type, !0),
+                        void _._.ReloadControllerConfiguration().then(() => {
+                          _.action_set &&
+                            _._.SetSelectedActionSet(_.action_set),
+                            (this.Loading = !1),
+                            this.EditCurrentBinding();
+                        })
+                      );
+                    (this.Loading = !1), this.ShowBindingList();
+                  });
+              });
+          }
+          OnBindingLoadFailed(_) {
+            console.log(
+              "OnBindingLoadFailed: " +
+                _.app_key +
+                " " +
+                _.controller_type +
+                " " +
+                _.error,
+            ),
+              _._.UpdateApplications().then(() => {
+                if (!_._.ShouldShowBindingFailureForApp(_.app_key)) return;
+                if (
+                  !_._.ShouldShowBindingFailureForControllerType(
+                    _.controller_type,
+                  )
+                )
+                  return;
+                _._.RememberFailedLoadUri(_.uri),
+                  _._.SetSelectedApp(_.app_key),
+                  _._.SetSelectedController(_.controller_type);
+                let _ = _._.GetApp(_.app_key),
+                  _ = _._.GetControllerTypeInfo(_.controller_type);
+                if (!_) return;
+                let _ = _._.LocalizeControllerString(_, _.controller_type);
+                this.ShowBindingList(
+                  (0, _._)(
+                    _.error,
+                    _ ? _.name : (0, _._)("#unknown_application"),
+                    _,
+                  ),
+                ),
+                  null === _._ || void 0 === _._ || _._.ShowBindingUI(!1);
+              });
+          }
+          SetStandaloneSettingsPage(_) {
+            this.m_bStandaloneSettingsPage = _;
+          }
+          SetDesktopMode(_) {
+            this.m_bDesktopMode = _;
+          }
+          get DesktopMode() {
+            return this.m_bDesktopMode;
+          }
+          SetBindingListError(_, _ = !0) {
+            (this.m_bShowBindingListError = null != _),
+              (this.m_sBindingListError = _),
+              (this.m_bCanCloseBindingListError = _);
+          }
+          get ShowBindingListError() {
+            return this.m_bShowBindingListError;
+          }
+          get BindingListError() {
+            return this.m_sBindingListError;
+          }
+          get CanCloseBindingListError() {
+            return this.m_bCanCloseBindingListError;
+          }
+          OnPopState(_) {
+            let _ = "";
+            _.state && _.state.direction && (_ = _.state.direction),
+              "back" == _
+                ? (this.m_bStandaloneSettingsPage &&
+                    (this.SetStandaloneSettingsPage(!1),
+                    this.ReturnToSettingsUI()),
+                  this.GoBackPage(),
+                  history.forward())
+                : "forward" == _ && (history.back(), this.GoForwardPage());
+          }
+          GoBackPage() {
+            switch (this.m_State) {
+              default:
+              case _.None:
+              case _.AppSelect:
+                break;
+              case _.Debugger:
+              case _.List:
+                this.ShowAppSelect();
+                break;
+              case _.EditBinding:
+              case _.ViewBinding:
+                this.ShowBindingList();
+            }
+          }
+          GoForwardPage() {
+            switch (this.m_State) {
+              default:
+              case _.None:
+              case _.AppSelect:
+                this.ShowBindingList();
+                break;
+              case _.List:
+                this.CurrentBinding.url == _._.LoadedBindingURL
+                  ? this.EditCurrentBinding()
+                  : this.ViewCurrentBinding();
+              case _.EditBinding:
+              case _.ViewBinding:
+            }
+          }
+          get GetUIState() {
+            return this.m_State;
+          }
+          get BindingQueryResults() {
+            return this.m_rBindingList;
+          }
+          get Loading() {
+            return this.m_bLoading;
+          }
+          set Loading(_) {
+            (this.m_bLoading = _),
+              _
+                ? (this.m_timeoutLoading && clearTimeout(this.m_timeoutLoading),
+                  (this.m_timeoutLoading = window.setTimeout(() => {
+                    this.Loading = !1;
+                  }, 1e4)))
+                : this.m_timeoutLoading && clearTimeout(this.m_timeoutLoading);
+          }
+          IsSafeToResetControllerType(_, _) {
+            return (
+              this.m_State == _.AppSelect ||
+              this.m_State == _.None ||
+              ("TrackedDeviceClass_HMD" == _ &&
+                "TrackedDeviceClass_Controller" == _)
+            );
+          }
+          EditCurrentBinding() {
+            this.m_State = _.EditBinding;
+          }
+          ViewCurrentBinding() {
+            this.m_State = _.ViewBinding;
+          }
+          ShowBindingList(_ = void 0) {
+            (this.m_bStandaloneSettingsPage = !1),
+              this.SetBindingListError(_),
+              (this.m_State = _.List),
+              (this.Loading = !1);
+          }
+          get CurrentBinding() {
+            if (this.BindingQueryResults)
+              return _.BindingQueryResults.find(
+                (_) => _.url == _._.SelectedBindingURL,
+              );
+          }
+          ReturnToSettingsUI() {
+            this.ShowAppSelect(),
+              null === _._ ||
+                void 0 === _._ ||
+                _._.ShowSettingsUI((0, _._)() == _._.Desktop);
+          }
+          ShowAppSelect() {
+            (this.m_bStandaloneSettingsPage = !1),
+              (this.Loading = !0),
+              _._.UpdateApplications()
+                .then(() => {
+                  (0, _.runInAction)(() => {
+                    (this.Loading = !1), (this.m_State = _.AppSelect);
+                  });
+                })
+                .catch(() => {
+                  this.Loading = !1;
+                });
+          }
+          UpdatePathsTimeout() {
+            try {
+              _._.UpdatePaths().then(() => {
+                this.m_State == _.Debugger
+                  ? (this.m_pathUpdateTimer = window.setTimeout(
+                      this.UpdatePathsTimeout,
+                      500,
+                    ))
+                  : (this.m_pathUpdateTimer = void 0);
+              });
+            } catch (_) {
+              console.log("Stopping debugger timer because", _);
+            }
+          }
+          ShowDebugger() {
+            (this.Loading = !0),
+              _._.UpdateApplications()
+                .then(() => {
+                  this.Loading = !1;
+                  let _ = _._.GetApp(_._.SelectedApp);
+                  _ &&
+                    _.client_container_handle &&
+                    _._.AddSubscribedContainer(_.client_container_handle),
+                    (this.m_State = _.Debugger),
+                    (this.m_pathUpdateTimer = window.setTimeout(
+                      this.UpdatePathsTimeout,
+                      500,
+                    )),
+                    _._.ShowBindingUI((0, _._)() == _._.Desktop);
+                })
+                .catch(() => {
+                  this.Loading = !1;
+                });
+          }
+          GetBindingList() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              var _;
+              (0, _.runInAction)(() => {
+                (this.Loading = !0), (this.m_rBindingList = []);
+              });
+              try {
+                const _ = _._.SelectedControllerTypeInfo,
+                  _ = yield _._.QueryBindingList(
+                    _._.SelectedApp,
+                    null !== (_ = null == _ ? void 0 : _.controller_type) &&
+                      void 0 !== _
+                      ? _
+                      : "",
+                  );
+                _.success &&
+                  (0, _.runInAction)(() => {
+                    this.m_rBindingList = _.results;
+                  });
+              } catch (_) {
+                this.SetBindingListError(
+                  (0, _._)("#BindingUI_WorkshopBindingLoadFailed"),
+                ),
+                  console.error("Failed to load workshop bindings " + _);
+              } finally {
+                this.Loading = !1;
+              }
+            });
+          }
+          UpdateWindowTitle() {
+            setTimeout(() => {
+              switch (this.GetUIState) {
+                case _.AppSelect:
+                case _.Debugger:
+                case _.EditBinding:
+                case _.List:
+                case _.None:
+                case _.ViewBinding:
+                  document.title = (0, _._)(
+                    "#BindingUI_WindowTitle_ControllerBinding",
+                  );
+              }
+            }, 0);
+          }
+        }
+        (0, _._)([_.observable], _.prototype, "m_State", void 0),
+          (0, _._)([_.observable], _.prototype, "m_bLoading", void 0),
+          (0, _._)([_.observable], _.prototype, "m_rBindingList", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_bShowBindingListError",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_sBindingListError", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_bCanCloseBindingListError",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_bDesktopMode", void 0),
+          (0, _._)([_._], _.prototype, "OnShowAppSelect", null),
+          (0, _._)([_._], _.prototype, "OnShowInputDebugger", null),
+          (0, _._)([_._], _.prototype, "OnShowAppBinding", null),
+          (0, _._)([_._], _.prototype, "OnBindingLoadFailed", null),
+          (0, _._)([_.computed], _.prototype, "DesktopMode", null),
+          (0, _._)([_._], _.prototype, "SetBindingListError", null),
+          (0, _._)([_.computed], _.prototype, "ShowBindingListError", null),
+          (0, _._)([_.computed], _.prototype, "BindingListError", null),
+          (0, _._)([_.computed], _.prototype, "CanCloseBindingListError", null),
+          (0, _._)([_._], _.prototype, "OnPopState", null),
+          (0, _._)([_._], _.prototype, "GoBackPage", null),
+          (0, _._)([_._], _.prototype, "GoForwardPage", null),
+          (0, _._)([_.computed], _.prototype, "GetUIState", null),
+          (0, _._)([_.computed], _.prototype, "BindingQueryResults", null),
+          (0, _._)([_.computed], _.prototype, "Loading", null),
+          (0, _._)([_._], _.prototype, "IsSafeToResetControllerType", null),
+          (0, _._)([_.action.bound], _.prototype, "EditCurrentBinding", null),
+          (0, _._)([_._], _.prototype, "ViewCurrentBinding", null),
+          (0, _._)([_._], _.prototype, "ShowBindingList", null),
+          (0, _._)([_.computed], _.prototype, "CurrentBinding", null),
+          (0, _._)([_._], _.prototype, "ReturnToSettingsUI", null),
+          (0, _._)([_._], _.prototype, "ShowAppSelect", null),
+          (0, _._)([_._], _.prototype, "UpdatePathsTimeout", null),
+          (0, _._)([_._], _.prototype, "ShowDebugger", null),
+          (0, _._)([_._], _.prototype, "GetBindingList", null),
+          (0, _._)([_._], _.prototype, "UpdateWindowTitle", null);
+        const _ = new _();
+        window.inputUI = _;
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        __webpack_require__._(_, {
+          _: () => _,
+          _: () => _,
+          _: () => _,
+        });
+        __webpack_require__("chunkid");
+        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__._(_);
+        class _ {
+          constructor() {
+            (this.m_mapTokens = new Map()),
+              (this.m_mapFallbackTokens = new Map());
+          }
+          InitFromObjects(_, _, _, _) {
+            this.m_mapTokens.clear();
+            let _ = [_, _, _, _];
+            for (let _ in _) {
+              let _ = _[_];
+              for (let _ in _) {
+                let _ = _[_];
+                for (let _ in _) {
+                  let _ = _.toLowerCase();
+                  this.m_mapTokens.has(_) || this.m_mapTokens.set(_, _[_]);
+                }
+              }
+            }
+          }
+          LocalizeString(_) {
+            if (!_ || 0 == _.length || "#" != _.charAt(0)) return "";
+            let _ = this.m_mapTokens.get(_.substring(1).toLowerCase());
+            return void 0 === _ ? "" : _;
+          }
+          LocalizeStringFromFallback(_) {
+            if (!_ || 0 == _.length || "#" != _.charAt(0)) return "";
+            let _ = this.m_mapFallbackTokens.get(_.substring(1).toLowerCase());
+            return void 0 === _ ? "" : _;
+          }
+          static GetLocale() {
+            const _ = navigator.languages[0];
+            try {
+              const _ =
+                null === VRHTML || void 0 === VRHTML
+                  ? void 0
+                  : VRHTML.GetSystemLocale();
+              if (!_) return _;
+              _.s_Date.toLocaleTimeString(_);
+              return _;
+            } catch (_) {
+              return _;
+            }
+          }
+        }
+        function _(_, ..._) {
+          let _ = _.LocalizeString(_);
+          return _
+            ? (_.length > 0 &&
+                (_ = __webpack_require__.replace(/%(\d+)\$s/g, function (_, _) {
+                  return void 0 !== _[_ - 1] ? String(_[_ - 1]) : _;
+                })),
+              _)
+            : _;
+        }
+        _.s_Date = new Date();
+        const _ = new _();
+        function _(_, _) {
+          _ ||
+            (_ = (function () {
+              let _ = new Map([
+                ["en", "english"],
+                ["de", "german"],
+                ["fr", "french"],
+                ["it", "italian"],
+                ["ko", "korean"],
+                ["es-419", "latam"],
+                ["es", "spanish"],
+                ["zh-CN", "schinese"],
+                ["zh-TW", "tchinese"],
+                ["ru", "russian"],
+                ["th", "thai"],
+                ["ja", "japanese"],
+                ["pt", "portuguese"],
+                ["pl", "polish"],
+                ["da", "danish"],
+                ["nl", "dutch"],
+                ["fi", "finnish"],
+                ["no", "norwegian"],
+                ["sv", "swedish"],
+                ["hu", "hungarian"],
+                ["cs", "czech"],
+                ["ro", "romanian"],
+                ["tr", "turkish"],
+                ["pt-BR", "brazilian"],
+                ["bg", "bulgarian"],
+                ["el", "greek"],
+                ["uk", "ukranian"],
+                ["vi", "vietnamese"],
+              ]);
+              for (let _ of navigator.languages) {
+                let _ = _.split("-");
+                if (_.has(_)) return _.get(_);
+                if (_.has(_[0])) return _.get(_[0]);
+              }
+              return "english";
+            })());
+          let _ = [],
+            _ = (_, _, _) => {
+              let _,
+                _ = Date.now().toString();
+              return (
+                (_ =
+                  "drivers" == _
+                    ? `/input/localization.json?t=${_}`
+                    : "webhelper" == _
+                      ? `/dashboard/localization/${_}_${_}.json?t=${_}`
+                      : `localization/${_}_${_}.json?t=${_}`),
+                _()
+                  .get(_)
+                  .then((_) => {
+                    __webpack_require__(_.data);
+                  })
+                  .catch(() => {})
+              );
+            },
+            _ = [],
+            _ = [],
+            _ = [],
+            _ = [];
+          for (let _ of _)
+            __webpack_require__.push(
+              _(_, _, (_) => {
+                _.push(_);
+              }),
+            ),
+              "english" != _ &&
+                __webpack_require__.push(
+                  _(_, "english", (_) => {
+                    _.push(_);
+                  }),
+                );
+          for (let _ of ["webhelper"])
+            __webpack_require__.push(
+              _(_, _, (_) => {
+                _.push(_);
+              }),
+            ),
+              "english" != _ &&
+                __webpack_require__.push(
+                  _(_, "english", (_) => {
+                    _.push(_);
+                  }),
+                );
+          return (
+            __webpack_require__.push(
+              _("drivers", "", (_) => {
+                _.push(_);
+              }),
+            ),
+            Promise.all(_).then(() => {
+              _.InitFromObjects(_, _, _, _);
+            })
+          );
+        }
+        window.LocalizationManager = _;
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        function _(_, _, _) {
+          return null == _ || isNaN(_) ? _ : Math.max(_, Math.min(_, _));
+        }
+        __webpack_require__._(_, {
+          _: () => _,
+        });
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        __webpack_require__._(_, {
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+        });
+        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
+        function _(_) {
+          let _ = window.location.search.substring(1).split("&");
+          for (let _ = 0; _ < _.length; _++) {
+            let _ = _[_].split("=");
+            if (decodeURIComponent(_[0]).toUpperCase() == _.toUpperCase())
+              return decodeURIComponent(_[1]);
+          }
+          return "";
+        }
+        function _(_) {
+          return "string" == typeof _ || (Array.isArray(_) && _[1]);
+        }
+        function _(..._) {
+          return _.filter(_)
+            .map((_) => ("string" == typeof _ ? _ : _[0]))
+            .join(" ");
+        }
+        function _(_, _) {
+          let _ = _;
+          for (
+            ;
+            _.parentElement && !_.some((_) => __webpack_require__.matches(_));
+          )
+            _ = _.parentElement;
+          return _;
+        }
+        class _ {
+          constructor() {
+            (this.onScroll = null),
+              (this.onScrollStop = null),
+              (this.m_elem = null),
+              (this.m_rScrollableParents = []),
+              (this.m_bScrolling = !1),
+              (this.m_scrollStopTimeoutHandle = void 0),
+              (0, _.makeObservable)(this);
+          }
+          ref(_) {
+            this.m_elem && this.cleanup(),
+              (this.m_elem = _),
+              this.updateScrollableParents();
+          }
+          get isScrolling() {
+            return this.m_bScrolling;
+          }
+          updateScrollableParents() {
+            for (let _ of this.m_rScrollableParents)
+              _.removeEventListener("scroll", this.onParentScroll);
+            this.m_elem
+              ? (this.m_rScrollableParents = (function (_) {
+                  let _ = [];
+                  if (!_) return _;
+                  let _ = _.parentElement;
+                  for (; _; ) {
+                    const _ = _.scrollWidth > _.clientWidth,
+                      _ = _.scrollHeight > _.clientHeight;
+                    (_ || _) && _.push(_), (_ = _.parentElement);
+                  }
+                  return _;
+                })(this.m_elem))
+              : (this.m_rScrollableParents = []);
+            for (let _ of this.m_rScrollableParents)
+              _.addEventListener("scroll", this.onParentScroll);
+          }
+          cleanup() {
+            for (let _ of this.m_rScrollableParents)
+              _.removeEventListener("scroll", this.onParentScroll);
+            (this.m_rScrollableParents = []),
+              (this.m_elem = null),
+              this.clearScrollStopTimeout();
+          }
+          onParentScroll() {
+            var _;
+            this.clearScrollStopTimeout(),
+              (this.m_bScrolling = !0),
+              (this.m_scrollStopTimeoutHandle = window.setTimeout(
+                this.onScrollStopTimeout,
+                50,
+              )),
+              null === (_ = this.onScroll) || void 0 === _ || _.call(this);
+          }
+          clearScrollStopTimeout() {
+            window.clearTimeout(this.m_scrollStopTimeoutHandle),
+              (this.m_scrollStopTimeoutHandle = void 0);
+          }
+          onScrollStopTimeout() {
+            var _;
+            this.m_bScrolling &&
+              (null === (_ = this.onScrollStop) ||
+                void 0 === _ ||
+                _.call(this)),
+              (this.m_bScrolling = !1);
+          }
+        }
+        function _() {
+          const [, _] = _.useState(0);
+          return _.useCallback(() => _((_) => _ + 1), []);
+        }
+        (0, _._)([_.observable], _.prototype, "m_bScrolling", void 0),
+          (0, _._)([_._], _.prototype, "ref", null),
+          (0, _._)([_.computed], _.prototype, "isScrolling", null),
+          (0, _._)([_._], _.prototype, "onParentScroll", null),
+          (0, _._)([_._], _.prototype, "onScrollStopTimeout", null);
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
         __webpack_require__("chunkid");
         class _ {
           constructor(_, _, _, _) {
@@ -5126,6 +4340,10 @@ var CLSTAMP = "steamdb";
         (0, _._)([_._], _.prototype, "Show", null),
           (0, _._)([_._], _.prototype, "Hide", null),
           (0, _._)([_._], _.prototype, "OnOptionChanged", null);
+        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__._(_),
+          _ = __webpack_require__("chunkid");
         class _ {
           constructor(_) {
             (this.m_communityData = void 0),
@@ -5201,6 +4419,7 @@ var CLSTAMP = "steamdb";
           (0, _._)([_._], _.prototype, "RequestUserInformation", null);
         const _ = new _();
         window.steamcommunity = _;
+        var _ = __webpack_require__("chunkid");
         let _ = class extends _.Component {
           render() {
             let _ =
@@ -5214,7 +4433,7 @@ var CLSTAMP = "steamdb";
                 "div",
                 {
                   className:
-                    "PageTitleBar" + (_.IsSteamAvailable ? "" : " NoSteam"),
+                    "PageTitleBar" + (_._.IsSteamAvailable ? "" : " NoSteam"),
                 },
                 _.createElement(
                   "div",
@@ -5288,7 +4507,7 @@ var CLSTAMP = "steamdb";
                       ),
                     ),
                 ),
-                !_.IsSteamAvailable &&
+                !_._.IsSteamAvailable &&
                   _.createElement(
                     "div",
                     {
@@ -5316,7 +4535,7 @@ var CLSTAMP = "steamdb";
           render() {
             let _ = null;
             return (
-              _.DesktopMode ||
+              _._.DesktopMode ||
                 (_ = {
                   height: "30%",
                   width: "30%",
@@ -5365,8 +4584,8 @@ var CLSTAMP = "steamdb";
                           {
                             className: "ButtonControl",
                             onClick: () => {
-                              _.ClearSelectedApp(),
-                                _.ShowAppSelect(),
+                              _._.ClearSelectedApp(),
+                                _._.ShowAppSelect(),
                                 this.CloseDialog();
                             },
                           },
@@ -5383,7 +4602,7 @@ var CLSTAMP = "steamdb";
         let _ = class extends _.Component {
           constructor(_) {
             super(_);
-            let _ = _.SelectedAppActions;
+            let _ = _._.SelectedAppActions;
             (this.state = {
               bShowDeleteConfirmModal: !1,
               bShowUpgradeConfirmModal: !1,
@@ -5404,8 +4623,8 @@ var CLSTAMP = "steamdb";
               this.setState({
                 bShowDeleteConfirmModal: !1,
               }),
-                yield _.DeleteBinding(this.props.result.url),
-                yield _.GetBindingList();
+                yield _._.DeleteBinding(this.props.result.url),
+                yield _._.GetBindingList();
             });
           }
           OnDeleteCancel() {
@@ -5484,11 +4703,11 @@ var CLSTAMP = "steamdb";
               _ = this.props.result,
               _ = "developer" == _.type,
               _ = "0" != _.steamIDOwner && !_,
-              _ = _._.GetApp(_.SelectedApp),
+              _ = _._.GetApp(_._.SelectedApp),
               _ = _ ? _.name : "";
             _ &&
               ((_.name && 0 != _.name.length) ||
-                (_.SelectedBindingIsLegacy
+                (_._.SelectedBindingIsLegacy
                   ? (_.name = (0, _._)(
                       "#BindingUI_List_Legacy_Binding_Title",
                       _,
@@ -5498,7 +4717,7 @@ var CLSTAMP = "steamdb";
                       _,
                     ))),
               (_.description && 0 != _.description.length) ||
-                (_.SelectedBindingIsLegacy
+                (_._.SelectedBindingIsLegacy
                   ? (_.description = (0, _._)(
                       "#BindingUI_List_Legacy_Binding_Description",
                     ))
@@ -5536,7 +4755,7 @@ var CLSTAMP = "steamdb";
               );
             }
             let _ =
-                null === (_ = _.SelectedControllerTypeInfo) || void 0 === _
+                null === (_ = _._.SelectedControllerTypeInfo) || void 0 === _
                   ? void 0
                   : _.controller_type,
               _ =
@@ -5574,7 +4793,7 @@ var CLSTAMP = "steamdb";
                     },
                     (0, _._)("#BindingUI_List_Select"),
                   ),
-                !_.HasBindingUriFailedToLoad(_.url) &&
+                !_._.HasBindingUriFailedToLoad(_.url) &&
                   _.createElement(
                     "div",
                     {
@@ -5694,7 +4913,7 @@ var CLSTAMP = "steamdb";
               this.setState({
                 bIsBindingsLoading: !0,
               }),
-                yield _.GetBindingList(),
+                yield _._.GetBindingList(),
                 this.setState({
                   bIsBindingsLoading: !1,
                 });
@@ -5706,55 +4925,59 @@ var CLSTAMP = "steamdb";
             });
           }
           CreateBinding() {
-            this.ViewBinding(_.SelectedBindingURL, !1);
+            this.ViewBinding(_._.SelectedBindingURL, !1);
           }
           SelectBinding(_) {
-            _.Loading = !0;
-            let _ = _.SelectedControllerTypeInfo;
-            _.SelectConfig(_.SelectedApp, _ ? _.controller_type : "", _).then(
-              () => {
-                _.ReloadCurrentApp();
-              },
-            );
+            _._.Loading = !0;
+            let _ = _._.SelectedControllerTypeInfo;
+            _._.SelectConfig(
+              _._.SelectedApp,
+              _ ? _.controller_type : "",
+              _,
+            ).then(() => {
+              _._.ReloadCurrentApp();
+            });
           }
           ViewBinding(_, _) {
-            if (((_.Loading = !0), _))
-              _.SetBindingURL(_),
-                _.ReloadControllerConfiguration().then(() => {
-                  _.ViewCurrentBinding(),
+            if (((_._.Loading = !0), _))
+              _._.SetBindingURL(_),
+                _._.ReloadControllerConfiguration().then(() => {
+                  _._.ViewCurrentBinding(),
                     setTimeout(() => {
-                      _.Loading = !1;
+                      _._.Loading = !1;
                     }, 1);
                 });
             else {
-              let _ = _.SelectedControllerTypeInfo;
-              _.SelectConfig(_.SelectedApp, _ ? _.controller_type : "", _).then(
-                () => {
-                  _.ReloadCurrentApp().then(() => {
-                    _.EditCurrentBinding(),
-                      setTimeout(() => {
-                        _.Loading = !1;
-                      }, 1);
-                  });
-                },
-              );
+              let _ = _._.SelectedControllerTypeInfo;
+              _._.SelectConfig(
+                _._.SelectedApp,
+                _ ? _.controller_type : "",
+                _,
+              ).then(() => {
+                _._.ReloadCurrentApp().then(() => {
+                  _._.EditCurrentBinding(),
+                    setTimeout(() => {
+                      _._.Loading = !1;
+                    }, 1);
+                });
+              });
             }
           }
           OnControllerDropdownChanged(_) {
             return (0, _._)(this, void 0, void 0, function* () {
-              _.SetSelectedController(_), yield this.RefreshBindingList();
+              _._.SetSelectedController(_), yield this.RefreshBindingList();
             });
           }
           ComputeResultsSection(_, _) {
-            _.CurrentBinding && _.CurrentBinding.type;
-            let _ = _.BindingQueryResults,
+            _._.CurrentBinding && _._.CurrentBinding.type;
+            let _ = _._.BindingQueryResults,
               _ = [];
             _ &&
               _.length > 0 &&
               (_ = __webpack_require__.filter(_).map((_, _) =>
                 _.createElement(_, {
                   key: _,
-                  currentBinding: _.CurrentBinding,
+                  currentBinding: _._.CurrentBinding,
                   result: _,
                   fnViewBinding: this.ViewBinding,
                   fnSelectBinding: this.SelectBinding,
@@ -5785,8 +5008,8 @@ var CLSTAMP = "steamdb";
           }
           CreateControllerTypeDropdown() {
             let _ = [],
-              _ = _._.IsAppAllowedPrivateInputs(_.SelectedApp);
-            _.ControllerTypes.forEach((_) => {
+              _ = _._.IsAppAllowedPrivateInputs(_._.SelectedApp);
+            _._.ControllerTypes.forEach((_) => {
               (_ || "InputValueVisibility_SteamVRInternal" != _.visibility) &&
                 "InputValueVisibility_None" != _.visibility &&
                 _.push(_);
@@ -5797,13 +5020,13 @@ var CLSTAMP = "steamdb";
               __webpack_require__.push(
                 new _(
                   _.controller_type,
-                  _.LocalizeDriverString(_.resource_root, _.controller_type),
+                  _._.LocalizeDriverString(_.resource_root, _.controller_type),
                 ),
               );
             });
             let _ = "",
               _ = "",
-              _ = _.SelectedControllerTypeInfo;
+              _ = _._.SelectedControllerTypeInfo;
             _ &&
               (_.input_bindingui_right.transform &&
                 (_ = _.input_bindingui_right.transform),
@@ -5837,7 +5060,7 @@ var CLSTAMP = "steamdb";
                   vecOptions: _,
                   sModalClass: "PinTop",
                   sValueSelectedItem: _ ? _.controller_type : "",
-                  sLocalizedSelectedItem: _.LocalizeControllerString(
+                  sLocalizedSelectedItem: _._.LocalizeControllerString(
                     _,
                     _ ? _.controller_type : "",
                   ),
@@ -5847,23 +5070,26 @@ var CLSTAMP = "steamdb";
             );
           }
           render() {
-            let _ = _._.GetApp(_.SelectedApp),
+            let _ = _._.GetApp(_._.SelectedApp),
               _ = "";
             _ && (_ = _.name);
-            let _ = _.CurrentBinding,
+            let _ = _._.CurrentBinding,
               _ = "#BindingUI_List_DeveloperSection";
-            _.SelectedBindingIsLegacy && (_ = "#BindingUI_List_LegacySection");
+            _._.SelectedBindingIsLegacy &&
+              (_ = "#BindingUI_List_LegacySection");
             let _ = [];
             return (
-              null != _.BindingQueryResults &&
-                (_ = _.BindingQueryResults.filter((_) => "autosave" != _.type)),
+              null != _._.BindingQueryResults &&
+                (_ = _._.BindingQueryResults.filter(
+                  (_) => "autosave" != _.type,
+                )),
               _.createElement(
                 "div",
                 {
                   className: "FlexColumn FullPage",
                 },
                 _.createElement(_, {
-                  fnOnClick: _.ShowAppSelect,
+                  fnOnClick: _._.ShowAppSelect,
                   strTitle: (0, _._)("#BindingList_PageTitle", _),
                 }),
                 _.createElement(
@@ -5886,7 +5112,7 @@ var CLSTAMP = "steamdb";
                     _ &&
                       _.createElement(_, {
                         result: _,
-                        currentBinding: _.CurrentBinding,
+                        currentBinding: _._.CurrentBinding,
                         fnViewBinding: this.ViewBinding,
                         bCurrentlySelectedBinding: !0,
                       }),
@@ -5924,33 +5150,33 @@ var CLSTAMP = "steamdb";
                           _,
                           (_) =>
                             "developer" == _.type &&
-                            _.url != _.SelectedBindingURL,
+                            _.url != _._.SelectedBindingURL,
                         ),
                         this.ComputeResultsSection(
                           "#BindingUI_List_ImportSection",
                           (_) =>
                             "local_file" == _.type &&
-                            _.url != _.SelectedBindingURL,
+                            _.url != _._.SelectedBindingURL,
                         ),
                         this.ComputeResultsSection(
                           "#BindingUI_List_PersonalSection",
                           (_) =>
                             "personal" == _.type &&
-                            _.url != _.SelectedBindingURL,
+                            _.url != _._.SelectedBindingURL,
                         ),
                         this.ComputeResultsSection(
                           "#BindingUI_List_OwnedSection",
                           (_) =>
                             "public" == _.type &&
                             _.owned &&
-                            _.url != _.SelectedBindingURL,
+                            _.url != _._.SelectedBindingURL,
                         ),
                         this.ComputeResultsSection(
                           "#BindingUI_List_PublicSection",
                           (_) =>
                             "public" == _.type &&
                             !_.owned &&
-                            _.url != _.SelectedBindingURL,
+                            _.url != _._.SelectedBindingURL,
                         ),
                         0 == _.length &&
                           _.createElement(
@@ -5978,10 +5204,10 @@ var CLSTAMP = "steamdb";
                         ),
                       ),
                     ),
-                _.ShowBindingListError &&
+                _._.ShowBindingListError &&
                   _.createElement(_, {
-                    sError: _.BindingListError,
-                    bCanClose: _.CanCloseBindingListError,
+                    sError: _._.BindingListError,
+                    bCanClose: _._.CanCloseBindingListError,
                   }),
               )
             );
@@ -6038,13 +5264,13 @@ var CLSTAMP = "steamdb";
           constructor(_) {
             super(_),
               (this.m_bInHeadset = !1),
-              (this.m_bInHeadset = !!_._ && !_.DesktopMode),
+              (this.m_bInHeadset = !!_._ && !_._.DesktopMode),
               (this.state = {
                 bShowRecentApps: !1,
               });
           }
           SelectApplication(_) {
-            _.SetSelectedApp(_), _.ShowBindingList();
+            _._.SetSelectedApp(_), _._.ShowBindingList();
           }
           OnShowMoreApps() {
             this.setState({
@@ -6132,7 +5358,7 @@ var CLSTAMP = "steamdb";
                 className: "AppSelectPageWrapper",
               },
               _.createElement(_, {
-                fnOnClick: _.ReturnToSettingsUI,
+                fnOnClick: _._.ReturnToSettingsUI,
                 strTitle: (0, _._)("#AppSelect_EditBindings"),
                 bShowBackButton: this.m_bInHeadset,
               }),
@@ -6149,285 +5375,9 @@ var CLSTAMP = "steamdb";
         (0, _._)([_._], _.prototype, "SelectApplication", null),
           (0, _._)([_._], _.prototype, "OnShowMoreApps", null),
           (_ = (0, _._)([_._], _));
-        var _,
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
+        var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
-        !(function (_) {
-          _[(_.Separator = 0)] = "Separator";
-        })(_ || (_ = {}));
-        class _ extends _.Component {
-          constructor() {
-            super(...arguments),
-              (this.m_refView = _.createRef()),
-              (this.m_refScrollPanel = _.createRef()),
-              (this.m_refSelectedButton = _.createRef()),
-              (this.m_refParentPortal = _.createRef()),
-              (this.m_elemBoundingParent = window.document.body);
-          }
-          renderDropdownItem(_, _) {
-            switch (typeof _) {
-              case "number":
-                return this.renderDropdownSpecialItem(_, _);
-              case "object":
-                return this.renderDropdownValueItem(_);
-            }
-          }
-          renderDropdownSpecialItem(_, _) {
-            return _ === _.Separator
-              ? _.createElement("div", {
-                  className: "Separator",
-                  key: "separator" + _,
-                })
-              : null;
-          }
-          renderDropdownValueItem(_) {
-            return _.createElement(
-              _._,
-              {
-                key: JSON.stringify(_.value),
-                ref:
-                  _ == this.props.selectedItem
-                    ? this.m_refSelectedButton
-                    : null,
-                className: (0, _._)("DropdownPopoverButton", [
-                  "Selected",
-                  _ == this.props.selectedItem,
-                ]),
-                onClick: () => this.setValue(_.value),
-              },
-              _.sLabel,
-            );
-          }
-          setValue(_) {
-            var _, _;
-            this.props.onChange && this.props.onChange(_),
-              null === (_ = (_ = this.props).onDismissRequested) ||
-                void 0 === _ ||
-                __webpack_require__.call(_);
-          }
-          render() {
-            return _.createElement(
-              _._,
-              {
-                ref: this.m_refParentPortal,
-                allowableParentSelectors: [
-                  "body",
-                  ".SettingsMain",
-                  ".DesktopHandWidget",
-                  ".HMDPanel",
-                  "vsg-app",
-                  "vsg-mountable",
-                  "[vsg-type=panel]",
-                ],
-                onPortalDidMount: this.updateLayout,
-              },
-              _.createElement(
-                _._,
-                {
-                  ref: this.m_refView,
-                  shouldDismissOnClickAnywhere: !0,
-                  shouldDismissOnClickInViewStack: !0,
-                  fadesViewsBelow: !1,
-                  onDismissRequested: this.props.onDismissRequested,
-                  className: (0, _._)("Dropdown", "Popover"),
-                },
-                _.createElement(
-                  _._,
-                  {
-                    scrollDirection: _._.Vertical,
-                    ref: this.m_refScrollPanel,
-                  },
-                  this.props.items.map(this.renderDropdownItem),
-                ),
-              ),
-            );
-          }
-          componentDidMount() {
-            var _;
-            this.m_elemBoundingParent = (0, _._)(
-              [
-                "body",
-                "[vsg-type=panel]",
-                ".SettingsSidebarPageModalContainer",
-              ],
-              null === (_ = this.m_refParentPortal.current) || void 0 === _
-                ? void 0
-                : _.anchorElement,
-            );
-          }
-          updateLayout() {
-            var _, _, _, _;
-            const _ =
-                null === (_ = this.m_refView.current) || void 0 === _
-                  ? void 0
-                  : _.div,
-              _ =
-                null === (_ = this.m_refScrollPanel.current) || void 0 === _
-                  ? void 0
-                  : _.div;
-            if (!_ || !_) return;
-            const _ =
-                null !==
-                  (_ =
-                    null === (_ = this.props.buttonRef.current) || void 0 === _
-                      ? void 0
-                      : _.elem.clientWidth) && void 0 !== _
-                  ? _
-                  : 0,
-              _ = this.m_elemBoundingParent.getBoundingClientRect();
-            (_.style.minWidth = _ + "px"),
-              (_.style.maxWidth = _.width - 2 * _.POPOVER_BOUNDS_MARGIN + "px"),
-              (_.style.maxHeight =
-                _.height - 2 * _.POPOVER_BOUNDS_MARGIN + "px");
-            const _ = this.props.buttonRef.current.elem.getBoundingClientRect();
-            let _ = _.left,
-              _ = _.top;
-            const _ = _.getBoundingClientRect(),
-              _ = this.m_elemBoundingParent.getBoundingClientRect(),
-              _ = _.left + _.POPOVER_BOUNDS_MARGIN,
-              _ = _.right - _.POPOVER_BOUNDS_MARGIN,
-              _ = _.top + _.POPOVER_BOUNDS_MARGIN,
-              _ = _.bottom - _.POPOVER_BOUNDS_MARGIN;
-            if (this.m_refSelectedButton.current) {
-              _ -=
-                this.m_refSelectedButton.current.elem.getBoundingClientRect()
-                  .top - _.top;
-            }
-            const _ = _;
-            _ < _ && (_ = _),
-              _ + _.width > _ && (_ = _ - _.width),
-              _ < _ && (_ = _),
-              _ + _.height > _ && (_ = _ - _.height),
-              (_ = Math.round(_)),
-              (_ = Math.round(_)),
-              (_.scrollTop = _ - _),
-              (_.style.transform =
-                "translateX(" + _ + "px) translateY(" + _ + "px)");
-          }
-        }
-        (_.POPOVER_BOUNDS_MARGIN = 10),
-          (0, _._)([_._], _.prototype, "renderDropdownItem", null),
-          (0, _._)([_._], _.prototype, "renderDropdownSpecialItem", null),
-          (0, _._)([_._], _.prototype, "renderDropdownValueItem", null),
-          (0, _._)([_._], _.prototype, "setValue", null),
-          (0, _._)([_._], _.prototype, "updateLayout", null);
-        class _ extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.m_refButton = _.createRef()),
-              (this.m_scrollWatcher = new _._()),
-              (this.state = {
-                bShowingOptions: !1,
-              }),
-              (this.m_scrollWatcher.onScroll = this.onParentScroll);
-          }
-          componentWillUnmount() {
-            this.m_scrollWatcher.cleanup();
-          }
-          componentDidUpdate(_, _) {
-            this.state.bShowingOptions &&
-              !_.bShowingOptions &&
-              this.m_scrollWatcher.updateScrollableParents();
-          }
-          onParentScroll() {
-            this.hideDropdown();
-          }
-          get value() {
-            return void 0 !== this.props.value ? this.props.value : null;
-          }
-          get selectedItem() {
-            const _ = this.value;
-            for (let _ of this.props.items)
-              if ("object" == typeof _ && _.value == _) return _;
-            return null;
-          }
-          showDropdown() {
-            this.setState({
-              bShowingOptions: !0,
-            });
-          }
-          hideDropdown() {
-            this.setState({
-              bShowingOptions: !1,
-            });
-          }
-          render() {
-            const _ = this.selectedItem,
-              _ =
-                void 0 !== this.props.defaultLabel
-                  ? this.props.defaultLabel
-                  : (0, _._)("#Settings_SelectAnOption"),
-              _ = _ ? _.sLabel : _;
-            return _.createElement(
-              _.Fragment,
-              null,
-              _.createElement(
-                _._,
-                {
-                  ref: this.m_refButton,
-                  className: "ButtonControl Dropdown",
-                  onClick: this.showDropdown,
-                  enabled:
-                    this.props.items &&
-                    (this.props.items.length > 1 ||
-                      (1 == this.props.items.length && !this.props.value)),
-                  style: {
-                    pointerEvents: this.state.bShowingOptions
-                      ? "none"
-                      : "initial",
-                  },
-                },
-                _.createElement(
-                  "span",
-                  {
-                    ref: this.m_scrollWatcher.ref,
-                  },
-                  _,
-                ),
-              ),
-              this.state.bShowingOptions &&
-                _.createElement(
-                  _,
-                  Object.assign({}, this.props, {
-                    selectedItem: _,
-                    buttonRef: this.m_refButton,
-                    onDismissRequested: this.hideDropdown,
-                  }),
-                ),
-            );
-          }
-        }
-        (0, _._)([_._], _.prototype, "onParentScroll", null),
-          (0, _._)([_.computed], _.prototype, "value", null),
-          (0, _._)([_.computed], _.prototype, "selectedItem", null),
-          (0, _._)([_._], _.prototype, "showDropdown", null),
-          (0, _._)([_._], _.prototype, "hideDropdown", null);
-        class _ extends _.Component {
-          constructor(_) {
-            super(_),
-              (this.state = {
-                value: void 0 === _.value ? null : _.value,
-              });
-          }
-          onChange(_) {
-            this.setState({
-              value: _,
-            }),
-              this.props.onChange && this.props.onChange(_);
-          }
-          render() {
-            let _ = Object.assign({}, this.props);
-            return (
-              (_.onChange = this.onChange),
-              (_.value = this.state.value),
-              _.createElement(_, Object.assign({}, _))
-            );
-          }
-        }
-        (0, _._)([_._], _.prototype, "onChange", null);
-        var _ = __webpack_require__("chunkid");
         const _ = ({ quaternion: _, width: _, height: _ }) => {
           const _ = (0, _.useRef)(null),
             _ = (0, _.useCallback)(
@@ -6591,7 +5541,7 @@ var CLSTAMP = "steamdb";
                   "/input_debugger_pid",
                   _.pid,
                 )),
-              _(_)
+              (0, _._)(_)
                 .then((_) => {
                   this.setState({
                     actionManifest: _,
@@ -7673,7 +6623,7 @@ var CLSTAMP = "steamdb";
                 className: "DebuggerMain",
               },
               _.createElement(_, {
-                fnOnClick: _.ReturnToSettingsUI,
+                fnOnClick: _._.ReturnToSettingsUI,
                 strTitle: (0, _._)("#InputDebugger_Title"),
               }),
               _.createElement(
@@ -7681,7 +6631,7 @@ var CLSTAMP = "steamdb";
                 {
                   className: "AppDropdownWrapper",
                 },
-                _.createElement(_, {
+                _.createElement(_._, {
                   items: _,
                   onChange: this.OnSelectApp,
                   value: this.state.sCurrentApp,
@@ -7713,6 +6663,7 @@ var CLSTAMP = "steamdb";
           (0, _._)([_._], _.prototype, "OnInputFrame", null),
           (0, _._)([_._], _.prototype, "SetActionSet", null);
         var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
         let _ = class extends _.Component {
@@ -7829,7 +6780,7 @@ var CLSTAMP = "steamdb";
                   }),
                 this.renderDeleteConfirmModal(),
               );
-            let _ = _.GetInputModesForSourceType(
+            let _ = _._.GetInputModesForSourceType(
               _.GetInputSourceType,
               _.GetInputSourceForceSupport,
             );
@@ -7850,7 +6801,7 @@ var CLSTAMP = "steamdb";
                 1 == _.GetButtonSide
                   ? "#BindingUI_LeftHandController"
                   : "#BindingUI_RightHandController",
-              _ = _.SelectedControllerTypeLocalizedName;
+              _ = _._.SelectedControllerTypeLocalizedName;
             0 != _.GetButtonSide && (_ = (0, _._)(_, _, ""));
             let _ = (0, _._)(
               "#SourceInputMode_SelectMode",
@@ -8203,7 +7154,7 @@ var CLSTAMP = "steamdb";
           }
           GetBooleanDropDownItems(_, _) {
             this.AddHeaderItem(_, "#SourceInputSubHeader_BooleanActions");
-            let _ = _.GetBooleanActionBindings.map((_, _) =>
+            let _ = _._.GetBooleanActionBindings.map((_, _) =>
               this.GetActionDropDownItem(_),
             );
             null == _ || 0 == _.length
@@ -8214,7 +7165,7 @@ var CLSTAMP = "steamdb";
           }
           GetVector1DropDownItems(_, _) {
             this.AddHeaderItem(_, "#SourceInputSubHeader_Vector1Actions");
-            let _ = _.GetVector1ActionBindings.map((_, _) =>
+            let _ = _._.GetVector1ActionBindings.map((_, _) =>
               this.GetActionDropDownItem(_),
             );
             null == _ || 0 == _.length
@@ -8225,7 +7176,7 @@ var CLSTAMP = "steamdb";
           }
           GetVector2DropDownItems(_, _) {
             this.AddHeaderItem(_, "#SourceInputSubHeader_Vector2Actions");
-            let _ = _.GetVector2ActionBindings.map((_, _) =>
+            let _ = _._.GetVector2ActionBindings.map((_, _) =>
               this.GetActionDropDownItem(_),
             );
             null == _ || 0 == _.length
@@ -8236,7 +7187,7 @@ var CLSTAMP = "steamdb";
           }
           GetVector3DropDownItems(_, _) {
             this.AddHeaderItem(_, "#SourceInputSubHeader_Vector3Actions");
-            let _ = _.GetVector3ActionBindings.map((_, _) =>
+            let _ = _._.GetVector3ActionBindings.map((_, _) =>
               this.GetActionDropDownItem(_),
             );
             null == _ || 0 == _.length
@@ -8247,7 +7198,7 @@ var CLSTAMP = "steamdb";
           }
           GetSkeletonDropDownItems(_, _) {
             this.AddHeaderItem(_, "#SourceInputSubHeader_SkeletonActions");
-            let _ = _.GetSkeletonActionBindings.map((_, _) =>
+            let _ = _._.GetSkeletonActionBindings.map((_, _) =>
               this.GetActionDropDownItem(_),
             );
             null == _ || 0 == _.length
@@ -8258,7 +7209,7 @@ var CLSTAMP = "steamdb";
           }
           GetPoseDropDownItems(_, _) {
             this.AddHeaderItem(_, "#SourceInputSubHeader_PoseActions");
-            let _ = _.GetPoseActionBindings.map((_, _) =>
+            let _ = _._.GetPoseActionBindings.map((_, _) =>
               this.GetActionDropDownItem(_),
             );
             null == _ || 0 == _.length
@@ -8269,7 +7220,7 @@ var CLSTAMP = "steamdb";
           }
           GetHapticsDropDownItems(_, _) {
             this.AddHeaderItem(_, "#SourceInputSubHeader_HapticsActions");
-            let _ = _.GetHapticsActionBindings.map((_, _) =>
+            let _ = _._.GetHapticsActionBindings.map((_, _) =>
               this.GetActionDropDownItem(_),
             );
             null == _ || 0 == _.length
@@ -9757,7 +8708,7 @@ var CLSTAMP = "steamdb";
           }
           OnActionChanged(_, _) {
             this.props.controllerWatcher.forEach((_) => {
-              _.SetActionForInputModeType(
+              _._.SetActionForInputModeType(
                 _.GetFullInputPath,
                 this.props.iMode,
                 _,
@@ -12248,7 +11199,7 @@ var CLSTAMP = "steamdb";
                   this.props.iMode,
                 ),
               bToggleButtonMode: "toggle_button" == this.props.sMode,
-              sActionSet: _.SelectedActionSet,
+              sActionSet: _._.SelectedActionSet,
             };
             switch (this.props.sMode) {
               case "toggle_button":
@@ -12341,7 +11292,7 @@ var CLSTAMP = "steamdb";
                   (_._ = this.props.ptControllerImagePosition.width - _._),
                 (_._ += this.props.ptControllerImagePosition._ - _.left),
                 (_._ += this.props.ptControllerImagePosition._ - _.top);
-              let _ = new _(0, _.top - _.top);
+              let _ = new _._(0, _.top - _.top);
               _._ = _ ? _.left - 10 : _.right + 10;
               let _ = _ ? -20 : 20,
                 _ = _._ + _ + "," + _._ + " " + _._ + "," + _._;
@@ -12481,9 +11432,9 @@ var CLSTAMP = "steamdb";
           (_ = (0, _._)([_._], _));
         let _ = class extends _.Component {
           render() {
-            let _ = _.SelectedControllerTypeInfo;
+            let _ = _._.SelectedControllerTypeInfo;
             if (!_ || !this.props.selectedActionSet) return null;
-            _.SelectedControllerTypeLocalizedName;
+            _._.SelectedControllerTypeLocalizedName;
             let _ = [];
             Object.keys(_.input_source).forEach((_) => {
               _.push({
@@ -12497,12 +11448,12 @@ var CLSTAMP = "steamdb";
               if ("pose" == _.type || "vibration" == _.type) return null;
               if (
                 "InputValueVisibility_SteamVRInternal" == _.visibility &&
-                !_.CurrentAppCanAccessPrivateInputs
+                !_._.CurrentAppCanAccessPrivateInputs
               )
                 return null;
               if (
                 "InputValueVisibility_AvailableButHidden" == _.visibility &&
-                !_.ShowHiddenInputs
+                !_._.ShowHiddenInputs
               )
                 return null;
               if (null != _.side)
@@ -12516,7 +11467,7 @@ var CLSTAMP = "steamdb";
               let _ = [];
               return (
                 _.push(
-                  _.GetControllerWatcherForSourceFromControllerType(
+                  _._.GetControllerWatcherForSourceFromControllerType(
                     _,
                     this.props.eControllerButtonSide,
                     _.name,
@@ -12526,7 +11477,7 @@ var CLSTAMP = "steamdb";
                 this.props.eControllerButtonOtherSide &&
                   0 != this.props.eControllerButtonOtherSide.valueOf() &&
                   _.push(
-                    _.GetControllerWatcherForSourceFromControllerType(
+                    _._.GetControllerWatcherForSourceFromControllerType(
                       _,
                       this.props.eControllerButtonOtherSide,
                       _.name,
@@ -12586,16 +11537,16 @@ var CLSTAMP = "steamdb";
               if ("single" == _.usage) {
                 (_ = !0),
                   Object.keys(
-                    _.SelectedControllerTypeInfo.input_source,
+                    _._.SelectedControllerTypeInfo.input_source,
                   ).forEach((_) => {
-                    let _ = _.GetControllerWatcherForSourceFromControllerType(
-                        _.SelectedControllerTypeInfo,
+                    let _ = _._.GetControllerWatcherForSourceFromControllerType(
+                        _._.SelectedControllerTypeInfo,
                         1,
                         _,
                         _.name,
                       ),
-                      _ = _.GetControllerWatcherForSourceFromControllerType(
-                        _.SelectedControllerTypeInfo,
+                      _ = _._.GetControllerWatcherForSourceFromControllerType(
+                        _._.SelectedControllerTypeInfo,
                         2,
                         _,
                         _.name,
@@ -12619,22 +11570,22 @@ var CLSTAMP = "steamdb";
                 this.props.fnSetMirroredMode(!this.state.bMirrorBinding),
                 !_)
               ) {
-                Object.keys(_.SelectedControllerTypeInfo.input_source).forEach(
-                  (_) => {
-                    let _ = _.GetControllerWatcherForSourceFromControllerType(
-                      _.SelectedControllerTypeInfo,
-                      1,
-                      _,
-                      this.props.selectedActionSet.name,
-                    );
-                    _.GetControllerWatcherForSourceFromControllerType(
-                      _.SelectedControllerTypeInfo,
-                      2,
-                      _,
-                      this.props.selectedActionSet.name,
-                    ).CopyActions(_);
-                  },
-                );
+                Object.keys(
+                  _._.SelectedControllerTypeInfo.input_source,
+                ).forEach((_) => {
+                  let _ = _._.GetControllerWatcherForSourceFromControllerType(
+                    _._.SelectedControllerTypeInfo,
+                    1,
+                    _,
+                    this.props.selectedActionSet.name,
+                  );
+                  _._.GetControllerWatcherForSourceFromControllerType(
+                    _._.SelectedControllerTypeInfo,
+                    2,
+                    _,
+                    this.props.selectedActionSet.name,
+                  ).CopyActions(_);
+                });
               }
             }
           }
@@ -12679,7 +11630,7 @@ var CLSTAMP = "steamdb";
               });
           }
           render() {
-            let _ = _.SelectedControllerTypeInfo;
+            let _ = _._.SelectedControllerTypeInfo;
             if (!_) return null;
             let _ = "",
               _ = "";
@@ -12713,15 +11664,15 @@ var CLSTAMP = "steamdb";
                 (_ = !this.props.bReadOnly),
                 this.state.bMirrorBinding && (_ = 2));
             }
-            let _ = _.SelectedControllerTypeLocalizedName,
+            let _ = _._.SelectedControllerTypeLocalizedName,
               _ = (0, _._)("#BindingUI_LeftHandController", _),
               _ = (0, _._)("#BindingUI_RightHandController", _),
               _ =
                 (this.props.bReadOnly,
                 !this.props.bReadOnly ||
-                  (_.SelectedActionSetChords &&
-                    _.SelectedActionSetChords.length > 0));
-            const _ = _.GetSimulatedControllerProperties();
+                  (_._.SelectedActionSetChords &&
+                    _._.SelectedActionSetChords.length > 0));
+            const _ = _._.GetSimulatedControllerProperties();
             return _.createElement(
               "div",
               {
@@ -12807,7 +11758,7 @@ var CLSTAMP = "steamdb";
                           (0, _._)("#BindingUI_ChordsButton"),
                         ),
                       ),
-                    _.BSelectedActionSetHasPoses &&
+                    _._.BSelectedActionSetHasPoses &&
                       _.createElement(
                         _._,
                         {
@@ -12824,7 +11775,7 @@ var CLSTAMP = "steamdb";
                           (0, _._)("#BindingUI_PosesButton"),
                         ),
                       ),
-                    _.BSelectedActionSetHasHaptics &&
+                    _._.BSelectedActionSetHasHaptics &&
                       _.createElement(
                         _._,
                         {
@@ -12841,7 +11792,7 @@ var CLSTAMP = "steamdb";
                           (0, _._)("#BindingUI_HapticsButton"),
                         ),
                       ),
-                    _.BSelectedActionSetHasSkeletons &&
+                    _._.BSelectedActionSetHasSkeletons &&
                       _.createElement(
                         _._,
                         {
@@ -12938,7 +11889,7 @@ var CLSTAMP = "steamdb";
                       eControllerButtonSide: 0,
                       strSVGClass: "Left",
                       bReadOnly: this.props.bReadOnly,
-                      selectedActionSet: _.SelectedActionSetDetails,
+                      selectedActionSet: _._.SelectedActionSetDetails,
                       ptControllerImagePosition: this.state.ptRightController,
                     }),
                   ),
@@ -13276,17 +12227,17 @@ var CLSTAMP = "steamdb";
           }
           OnPoseActionChanged(_) {
             this.FullInputPaths().forEach((_) => {
-              _.SetPoseForInputPath(_, _);
+              _._.SetPoseForInputPath(_, _);
             });
           }
           OnHapticsActionChanged(_) {
             this.FullInputPaths().forEach((_) => {
-              _.SetHapticsForInputPath(_, _);
+              _._.SetHapticsForInputPath(_, _);
             });
           }
           OnSkeletonActionChanged(_) {
             this.FullInputPaths().forEach((_) => {
-              _.SetSkeletonForInputPath(_, _);
+              _._.SetSkeletonForInputPath(_, _);
             });
           }
           OnPositionOffsetChanged(_) {
@@ -13295,13 +12246,13 @@ var CLSTAMP = "steamdb";
             }),
               "pose" == this.props.type
                 ? this.FullInputPaths().forEach((_) => {
-                    const _ = _.GetPoseForInputPath(_);
-                    _.SetParameterForPose(_, "offset_position", _);
+                    const _ = _._.GetPoseForInputPath(_);
+                    _._.SetParameterForPose(_, "offset_position", _);
                   })
                 : "skeleton" == this.props.type &&
                   this.FullInputPaths().forEach((_) => {
-                    const _ = _.GetSkeletonForInputPath(_);
-                    _.SetParameterForSkeleton(_, "offset_position", _);
+                    const _ = _._.GetSkeletonForInputPath(_);
+                    _._.SetParameterForSkeleton(_, "offset_position", _);
                   });
           }
           OnRotationOffsetChanged(_) {
@@ -13310,13 +12261,13 @@ var CLSTAMP = "steamdb";
             }),
               "pose" == this.props.type
                 ? this.FullInputPaths().forEach((_) => {
-                    const _ = _.GetPoseForInputPath(_);
-                    _.SetParameterForPose(_, "offset_rotation", _);
+                    const _ = _._.GetPoseForInputPath(_);
+                    _._.SetParameterForPose(_, "offset_rotation", _);
                   })
                 : "skeleton" == this.props.type &&
                   this.FullInputPaths().forEach((_) => {
-                    const _ = _.GetSkeletonForInputPath(_);
-                    _.SetParameterForSkeleton(_, "offset_rotation", _);
+                    const _ = _._.GetSkeletonForInputPath(_);
+                    _._.SetParameterForSkeleton(_, "offset_rotation", _);
                   });
           }
           renderSettingsModal() {
@@ -13427,18 +12378,18 @@ var CLSTAMP = "steamdb";
               _ = "",
               _ = (0, _._)("#SourceInputMode_none"),
               _ = this.FullInputPaths()[0],
-              _ = _.LocalizePathNameForSelectedControllerType(_);
+              _ = _._.LocalizePathNameForSelectedControllerType(_);
             switch (this.props.type) {
               case "pose":
-                (_ = _.GetPoseActionByPath(_)),
+                (_ = _._.GetPoseActionByPath(_)),
                   (_ = "#SourceInputSubHeader_PoseActions");
                 break;
               case "skeleton":
-                (_ = _.GetSkeletonActionByPath(_)),
+                (_ = _._.GetSkeletonActionByPath(_)),
                   (_ = "#SourceInputSubHeader_SkeletonActions");
                 break;
               case "vibration":
-                (_ = _.GetHapticsActionByPath(_)),
+                (_ = _._.GetHapticsActionByPath(_)),
                   (_ = "#SourceInputSubHeader_HapticsActions");
                 break;
               default:
@@ -13447,7 +12398,7 @@ var CLSTAMP = "steamdb";
                   this.props.type,
                 );
             }
-            let _ = _.SelectedActionSetActions.filter(
+            let _ = _._.SelectedActionSetActions.filter(
               (_) =>
                 !!(
                   "skeleton" != this.props.type ||
@@ -13465,8 +12416,8 @@ var CLSTAMP = "steamdb";
                   ((this.currentAction = _),
                   (_ = _.name),
                   (_ = _.localized_name),
-                  (_ = _.GetParameterForPose(_[0], "offset_position")),
-                  (_ = _.GetParameterForPose(_[0], "offset_rotation"))),
+                  (_ = _._.GetParameterForPose(_[0], "offset_position")),
+                  (_ = _._.GetParameterForPose(_[0], "offset_rotation"))),
                 "mandatory" == _.requirement &&
                   (_ =
                     " (" + (0, _._)("#BindingUI_SelectAction_Required") + ")"),
@@ -13622,25 +12573,25 @@ var CLSTAMP = "steamdb";
               case _.Skeleton:
                 _ = "skeleton";
             }
-            let _ = _.SelectedActionSetActions.filter((_) => _.type == _);
+            let _ = _._.SelectedActionSetActions.filter((_) => _.type == _);
             if (0 == _.length) return null;
-            let _ = _.SelectedControllerTypeInfo,
-              _ = _.SelectedControllerTypeInfo.input_source,
+            let _ = _._.SelectedControllerTypeInfo,
+              _ = _._.SelectedControllerTypeInfo.input_source,
               _ = [];
             if (
               "controller_handed" ==
-              _.SelectedControllerTypeInfo.input_bindingui_mode
+              _._.SelectedControllerTypeInfo.input_bindingui_mode
             )
               _ = ["/user/hand/left", "/user/hand/right"];
             else {
-              let _ = _.DeviceForControllerType(_.controller_type);
+              let _ = _._.DeviceForControllerType(_.controller_type);
               _ &&
                 (_.root_path && _.push(_.root_path),
                 _.root_path_alt && _.push(_.root_path_alt));
             }
             if (0 == _.length)
               return console.log("Missing base root path for controller"), null;
-            _.GetPoseActionBindings;
+            _._.GetPoseActionBindings;
             let _,
               _ = [],
               _ = 0;
@@ -13664,7 +12615,7 @@ var CLSTAMP = "steamdb";
                   _ = _
                     ? this.props.ptLeftController._
                     : this.props.ptRightController._,
-                  _ = new _(0, 0);
+                  _ = new _._(0, 0);
                 if (
                   (_.hasOwnProperty(_) &&
                     ((_._ = _.binding_image_point[0]),
@@ -13676,7 +12627,7 @@ var CLSTAMP = "steamdb";
                   _ && this.props.bSlaveSecondaryControllerBinding)
                 )
                   continue;
-                let _ = new _(this.props.ptPoseListOffset._ + 5, 0),
+                let _ = new _._(this.props.ptPoseListOffset._ + 5, 0),
                   _ = (_++, _.length, [_]);
                 this.props.bSlaveSecondaryControllerBinding && (_ = _),
                   _.push(
@@ -13721,8 +12672,8 @@ var CLSTAMP = "steamdb";
         _ = (0, _._)([_._], _);
         let _ = class extends _.Component {
           render() {
-            let _ = _.SelectedControllerTypeInfo.input_source,
-              _ = new _(
+            let _ = _._.SelectedControllerTypeInfo.input_source,
+              _ = new _._(
                 _[this.props.vecPosePath[0]].binding_image_point[0],
                 _[this.props.vecPosePath[0]].binding_image_point[1],
               );
@@ -13735,7 +12686,7 @@ var CLSTAMP = "steamdb";
             let _ = "";
             this.props.vecPosePath.forEach((_, _) => {
               0 != _ && (_ += ","),
-                (_ += _.LocalizeStringForSelectedControllerType(_));
+                (_ += _._.LocalizeStringForSelectedControllerType(_));
             });
             let _ = this.props.bLeftHandController ? "start" : "end",
               _ = this.props.bLeftHandController ? 6 : -6;
@@ -13846,10 +12797,10 @@ var CLSTAMP = "steamdb";
               (this.m_SVGElement = void 0),
               (this.m_PropsListDiv = void 0),
               (this.state = {
-                ptLeftController: new _(0, 0),
-                ptRightController: new _(0, 0),
+                ptLeftController: new _._(0, 0),
+                ptRightController: new _._(0, 0),
                 nPointScale: 0,
-                ptDivList: new _(0, 0),
+                ptDivList: new _._(0, 0),
               });
           }
           OnUpdateControllerPicturePosition() {
@@ -13873,7 +12824,7 @@ var CLSTAMP = "steamdb";
                       .top));
               }
               this.setState({
-                ptLeftController: new _(_, _),
+                ptLeftController: new _._(_, _),
               });
             }
             if (this.m_RightControllerImage) {
@@ -13896,7 +12847,7 @@ var CLSTAMP = "steamdb";
                       .top));
               }
               this.setState({
-                ptRightController: new _(_, _),
+                ptRightController: new _._(_, _),
                 nPointScale: _,
               });
             }
@@ -13905,7 +12856,7 @@ var CLSTAMP = "steamdb";
                 _ =
                   this.m_PropsListDiv.parentElement.parentElement.getBoundingClientRect();
               this.setState({
-                ptDivList: new _(_.width, _.top - _.top),
+                ptDivList: new _._(_.width, _.top - _.top),
               });
             }
           }
@@ -13927,7 +12878,7 @@ var CLSTAMP = "steamdb";
               _ = "",
               _ = "",
               _ = "",
-              _ = _.SelectedControllerTypeInfo;
+              _ = _._.SelectedControllerTypeInfo;
             switch (this.props.eActionSourceType) {
               case _.Pose:
                 (_ = "pose"), (_ = (0, _._)("#BindingUI_PoseTitle"));
@@ -13946,7 +12897,7 @@ var CLSTAMP = "steamdb";
             let _ = function (_, _, _, _, _) {
                 let _ = _.input_source[_];
                 if (_.type == _ && (null == _.side || _.side == _)) {
-                  let _ = new _(
+                  let _ = new _._(
                     _.binding_image_point[0],
                     _.binding_image_point[1],
                   );
@@ -14094,25 +13045,25 @@ var CLSTAMP = "steamdb";
           (_ = (0, _._)([_._], _));
         let _ = class extends _.Component {
           OnActionOutputChanged(_) {
-            _.SetActionForChord(this.props.chord, _);
+            _._.SetActionForChord(this.props.chord, _);
           }
           DeleteChord() {
-            _.DeleteChord(this.props.chord);
+            _._.DeleteChord(this.props.chord);
           }
           DeleteSourceFromChord(_, _) {
-            _.DeleteSourceFromChord(this.props.chord, _);
+            _._.DeleteSourceFromChord(this.props.chord, _);
           }
           AddSourceToChord() {
             let _ = this.props.chord.inputs
               ? this.props.chord.inputs.length
               : 0;
-            _.SetInputSourceForChord(
+            _._.SetInputSourceForChord(
               this.props.chord,
-              _.SelectedActionSetSources[_].path,
+              _._.SelectedActionSetSources[_].path,
             );
           }
           render() {
-            let _ = _.SelectedActionSetActions.filter(
+            let _ = _._.SelectedActionSetActions.filter(
                 (_) => "boolean" == _.type,
               ),
               _ = "",
@@ -14132,7 +13083,7 @@ var CLSTAMP = "steamdb";
                   new _(_.name.toLowerCase(), _.localized_name)
                 ),
               ),
-              _ = _.SelectedActionSetSources;
+              _ = _._.SelectedActionSetSources;
             return _ && 0 != _.length
               ? (this.props.chord.inputs
                   ? (_ = this.props.chord.inputs.map((_, _) => {
@@ -14170,7 +13121,7 @@ var CLSTAMP = "steamdb";
                                 (_, _) =>
                                   new _(
                                     _.path,
-                                    _.LocalizePathNameForSelectedControllerType(
+                                    _._.LocalizePathNameForSelectedControllerType(
                                       _.path,
                                     ),
                                   ),
@@ -14184,27 +13135,27 @@ var CLSTAMP = "steamdb";
                                   vecOptions: _,
                                   sValueSelectedItem: _,
                                   sLocalizedSelectedItem:
-                                    _.LocalizePathNameForSelectedControllerType(
+                                    _._.LocalizePathNameForSelectedControllerType(
                                       _,
                                     ),
                                   fnOptionSelected: function (_) {
-                                    _.SetInputSourceForChord(_, _, _);
+                                    _._.SetInputSourceForChord(_, _, _);
                                   },
                                   bReadOnly: _,
                                 }),
                               );
                             })(_[0], _, this.props.chord, this.props.bReadOnly),
                             (function (_, _, _, _) {
-                              let _ = _.GetActionBinding(
+                              let _ = _._.GetActionBinding(
                                 _,
-                                _.SelectedActionSet,
+                                _._.SelectedActionSet,
                               );
                               if (!_ || 0 == _.length) return null;
                               let _ = [],
                                 _ = "";
                               if (
                                 (_.forEach((_) => {
-                                  let _ = _.GetBooleanInputOptionsForMode(
+                                  let _ = _._.GetBooleanInputOptionsForMode(
                                     _.mode,
                                   );
                                   for (let _ of _)
@@ -14243,7 +13194,7 @@ var CLSTAMP = "steamdb";
                                     " " +
                                     (0, _._)("#SourceInputMode_" + _),
                                   fnOptionSelected: function (_) {
-                                    _.SetInputTypeForChord(_, _, _);
+                                    _._.SetInputTypeForChord(_, _, _);
                                   },
                                   bReadOnly: _,
                                 }),
@@ -14361,11 +13312,11 @@ var CLSTAMP = "steamdb";
             super(_);
           }
           AddChord() {
-            _.AddChord();
+            _._.AddChord();
           }
           render() {
             let _ = [],
-              _ = _.SelectedActionSetChords;
+              _ = _._.SelectedActionSetChords;
             return (
               _ &&
                 _.length &&
@@ -14457,9 +13408,9 @@ var CLSTAMP = "steamdb";
           render() {
             let _ = [];
             return (
-              _.ActionSets.forEach((_) => {
-                _.GetActionSetActions(_.name).forEach((_) => {
-                  let _ = _.GetAliasInfo(_.name);
+              _._.ActionSets.forEach((_) => {
+                _._.GetActionSetActions(_.name).forEach((_) => {
+                  let _ = _._.GetAliasInfo(_.name);
                   _ &&
                     _.hidden &&
                     "vibration" != _.type &&
@@ -14483,7 +13434,7 @@ var CLSTAMP = "steamdb";
                           {
                             className: "Label ButtonControl",
                             onClick: () => {
-                              _.SetAliasHidden(_.name, !1);
+                              _._.SetAliasHidden(_.name, !1);
                             },
                           },
                           (0, _._)("#ShowActionButton"),
@@ -14523,7 +13474,7 @@ var CLSTAMP = "steamdb";
         let _ = class extends _.Component {
           constructor(_) {
             super(_);
-            let _ = _.GetAliasInfo(this.props.sAction);
+            let _ = _._.GetAliasInfo(this.props.sAction);
             this.state = _
               ? {
                   sUserSuppliedName: _.alias_name,
@@ -14538,13 +13489,13 @@ var CLSTAMP = "steamdb";
             this.setState({
               bHidden: _,
             }),
-              _.SetAliasHidden(this.props.sAction, _);
+              _._.SetAliasHidden(this.props.sAction, _);
           }
           onNameChanged(_) {
             this.setState({
               sUserSuppliedName: _,
             }),
-              _.SetAliasName(this.props.sAction, _);
+              _._.SetAliasName(this.props.sAction, _);
           }
           render() {
             let _ = "InputOption" + this.props.sAction;
@@ -14558,7 +13509,9 @@ var CLSTAMP = "steamdb";
                 {
                   className: "Label ActionAliasAction",
                 },
-                (0, _._)(_.GetActionByName(this.props.sAction).localized_name),
+                (0, _._)(
+                  _._.GetActionByName(this.props.sAction).localized_name,
+                ),
               ),
               _.createElement("input", {
                 _: _ + "name",
@@ -14576,7 +13529,7 @@ var CLSTAMP = "steamdb";
                   {
                     className: "Label ButtonControl",
                     onClick: () => {
-                      _.SetAliasHidden(this.props.sAction, !0);
+                      _._.SetAliasHidden(this.props.sAction, !0);
                     },
                   },
                   (0, _._)("#HideActionButton"),
@@ -14608,9 +13561,9 @@ var CLSTAMP = "steamdb";
           render() {
             let _ = [];
             return (
-              _.ActionSets.forEach((_) => {
-                _.GetActionSetActions(_.name).forEach((_) => {
-                  let _ = _.GetAliasInfo(_.name);
+              _._.ActionSets.forEach((_) => {
+                _._.GetActionSetActions(_.name).forEach((_) => {
+                  let _ = _._.GetAliasInfo(_.name);
                   (_ && _.hidden) ||
                     ("vibration" != _.type &&
                       "skeleton" != _.type &&
@@ -14672,11 +13625,11 @@ var CLSTAMP = "steamdb";
           constructor(_) {
             super(_),
               (this.state = {
-                bValue: _.GetOptionValue(this.props.sOptionName),
+                bValue: _._.GetOptionValue(this.props.sOptionName),
               });
           }
           onCheckboxChanged(_) {
-            _.SetOptionValue(this.props.sOptionName, _),
+            _._.SetOptionValue(this.props.sOptionName, _),
               this.setState({
                 bValue: _,
               });
@@ -14719,20 +13672,20 @@ var CLSTAMP = "steamdb";
         class _ extends _.Component {
           constructor(_) {
             super(_);
-            let _ = _.GetOptionValue(this.props.sOptionName);
+            let _ = _._.GetOptionValue(this.props.sOptionName);
             _ || (_ = "none"),
               (this.state = {
                 sValue: _,
               });
           }
           OnControllerDropdownChanged(_) {
-            _.SetOptionValue(this.props.sOptionName, _),
+            _._.SetOptionValue(this.props.sOptionName, _),
               this.setState({
                 sValue: _,
               });
           }
           render() {
-            let _ = _.SelectedAppActions.simulation_types,
+            let _ = _._.SelectedAppActions.simulation_types,
               _ = [];
             for (let _ of _)
               "TrackedDeviceClass_Controller" == _.device_type &&
@@ -14775,7 +13728,7 @@ var CLSTAMP = "steamdb";
             super(_);
           }
           onCheckboxChanged(_, _) {
-            _.SetOptionValue(_, _), this.forceUpdate();
+            _._.SetOptionValue(_, _), this.forceUpdate();
           }
           render() {
             return this.props.options.map((_, _) => {
@@ -14819,8 +13772,8 @@ var CLSTAMP = "steamdb";
             });
             let _ = this.props.simAction;
             _.name = _;
-            let _ = _.ComputeSimulatedActionPathFromId(_._);
-            _.SetSimulatedActionByPath(_, _);
+            let _ = _._.ComputeSimulatedActionPathFromId(_._);
+            _._.SetSimulatedActionByPath(_, _);
           }
           onActionChanged(_) {
             this.setState({
@@ -14828,15 +13781,17 @@ var CLSTAMP = "steamdb";
             });
             let _ = this.props.simAction;
             _.output = "none" == _ ? "" : _;
-            let _ = _.ComputeSimulatedActionPathFromId(_._);
-            _.SetSimulatedActionByPath(_, _);
+            let _ = _._.ComputeSimulatedActionPathFromId(_._);
+            _._.SetSimulatedActionByPath(_, _);
           }
           onDelete() {
-            let _ = _.ComputeSimulatedActionPathFromId(this.props.simAction._);
-            _.DeleteSimulatedActionByPath(_);
+            let _ = _._.ComputeSimulatedActionPathFromId(
+              this.props.simAction._,
+            );
+            _._.DeleteSimulatedActionByPath(_);
           }
           render() {
-            let _ = _.GetLiteralVector1ActionBindings.map(
+            let _ = _._.GetLiteralVector1ActionBindings.map(
               (_, _) => new _(_.name, _.localized_name),
             );
             _.push(new _("none", (0, _._)("#SourceInputAction_none")));
@@ -14908,8 +13863,8 @@ var CLSTAMP = "steamdb";
             });
             let _ = this.props.simAction;
             _.name = _;
-            let _ = _.ComputeSimulatedActionPathFromId(_._);
-            _.SetSimulatedActionByPath(_, _);
+            let _ = _._.ComputeSimulatedActionPathFromId(_._);
+            _._.SetSimulatedActionByPath(_, _);
           }
           onOutputChanged(_) {
             this.setState({
@@ -14917,12 +13872,14 @@ var CLSTAMP = "steamdb";
             });
             let _ = this.props.simAction;
             _.output = "none" == _ ? "" : _;
-            let _ = _.ComputeSimulatedActionPathFromId(_._);
-            _.SetSimulatedActionByPath(_, _);
+            let _ = _._.ComputeSimulatedActionPathFromId(_._);
+            _._.SetSimulatedActionByPath(_, _);
           }
           onDelete() {
-            let _ = _.ComputeSimulatedActionPathFromId(this.props.simAction._);
-            _.DeleteSimulatedActionByPath(_);
+            let _ = _._.ComputeSimulatedActionPathFromId(
+              this.props.simAction._,
+            );
+            _._.DeleteSimulatedActionByPath(_);
           }
           OnClickTrackpad(_) {
             let _ = _.currentTarget.getBoundingClientRect(),
@@ -14934,12 +13891,12 @@ var CLSTAMP = "steamdb";
             });
             let _ = this.props.simAction;
             (_.position_x = _), (_.position_y = _);
-            let _ = _.ComputeSimulatedActionPathFromId(_._);
-            _.SetSimulatedActionByPath(_, _);
+            let _ = _._.ComputeSimulatedActionPathFromId(_._);
+            _._.SetSimulatedActionByPath(_, _);
           }
           render() {
             let _ = [];
-            _.GetOptionValue("mirror_actions") ||
+            _._.GetOptionValue("mirror_actions") ||
               (_.push(new _("left", (0, _._)("#TrackpadClickLeft"))),
               _.push(new _("right", (0, _._)("#TrackpadClickRight"))),
               _.push(new _("none", (0, _._)("#TrackpadClickNone"))));
@@ -15013,7 +13970,7 @@ var CLSTAMP = "steamdb";
             super(_);
           }
           OnCreateSimAction(_) {
-            _.AddSimulatedAction(_);
+            _._.AddSimulatedAction(_);
           }
           CreateEntry(_) {
             switch (_.type) {
@@ -15057,7 +14014,7 @@ var CLSTAMP = "steamdb";
                   },
                   (0, _._)("#LegacySetup_SimulatedActionHeader"),
                 ),
-                _.SimulatedActions.map((_, _) => this.CreateEntry(_)),
+                _._.SimulatedActions.map((_, _) => this.CreateEntry(_)),
                 !this.props.readOnly &&
                   _.createElement(
                     "div",
@@ -15084,7 +14041,7 @@ var CLSTAMP = "steamdb";
             super(_),
               (this.controllerTypeOptions = []),
               (this.rendermodelTypeOptions = []);
-            let _ = _.GetOptionValue("device_offsets");
+            let _ = _._.GetOptionValue("device_offsets");
             null == _ && (_ = []),
               _.find((_) => "left_hand" == _.role) ||
                 _.push({
@@ -15098,7 +14055,7 @@ var CLSTAMP = "steamdb";
                   offset_position: [0, 0, 0],
                   offset_rotation: [0, 0, 0],
                 });
-            const _ = _.SelectedAppActions.simulation_types.sort(
+            const _ = _._.SelectedAppActions.simulation_types.sort(
               function (_, _) {
                 return _.device_type < _.device_type;
               },
@@ -15174,7 +14131,7 @@ var CLSTAMP = "steamdb";
               this.SetOffsetsOptionValue(_);
           }
           SetOffsetsOptionValue(_) {
-            _.SetOptionValue("device_offsets", this.GetOffsetsValue(_));
+            _._.SetOptionValue("device_offsets", this.GetOffsetsValue(_));
           }
           GetOffsetsValue(_) {
             const _ = [];
@@ -15309,13 +14266,13 @@ var CLSTAMP = "steamdb";
           }
           render() {
             var _;
-            let _ = "openxr" == _.SelectedAppActions.category,
+            let _ = "openxr" == _._.SelectedAppActions.category,
               _ =
-                (null === (_ = _.SelectedAppActions.interaction_profiles) ||
+                (null === (_ = _._.SelectedAppActions.interaction_profiles) ||
                 void 0 === _
                   ? void 0
                   : _.length) > 0,
-              _ = _.GetOptionValue("simulated_controller_type"),
+              _ = _._.GetOptionValue("simulated_controller_type"),
               _ = _ && "none" != _;
             return _.createElement(
               "div",
@@ -15454,20 +14411,20 @@ var CLSTAMP = "steamdb";
         class _ extends _.Component {
           constructor(_) {
             super(_);
-            let _ = _.GetInteractionProfile();
+            let _ = _._.GetInteractionProfile();
             _ || (_ = " "),
               (this.state = {
                 sValue: _,
               });
           }
           OnInteractionProfileDropdownChanged(_) {
-            _.SetInteractionProfile(_),
+            _._.SetInteractionProfile(_),
               this.setState({
                 sValue: _,
               });
           }
           render() {
-            let _ = _.GetInteractionProfiles(),
+            let _ = _._.GetInteractionProfiles(),
               _ = [];
             return (
               _.forEach(function (_) {
@@ -15534,7 +14491,7 @@ var CLSTAMP = "steamdb";
         class _ extends _.Component {
           constructor(_) {
             super(_), (this.vecOptionValues = []);
-            let _ = _.GetOptionValue(_.sOptionName);
+            let _ = _._.GetOptionValue(_.sOptionName);
             _ || (_ = "none"),
               (!0 !== _ && "true" != _) || (_ = "name_only"),
               (this.state = {
@@ -15548,7 +14505,7 @@ var CLSTAMP = "steamdb";
               });
           }
           OnStringDropdownChanged(_) {
-            _.SetOptionValue(this.props.sOptionName, _),
+            _._.SetOptionValue(this.props.sOptionName, _),
               this.setState({
                 sValue: _,
               });
@@ -15612,15 +14569,15 @@ var CLSTAMP = "steamdb";
           constructor(_) {
             super(_);
             let _ = !1;
-            _.HasOptionValue(_.sOptionName)
-              ? (_ = _.GetOptionValue(_.sOptionName))
+            _._.HasOptionValue(_.sOptionName)
+              ? (_ = _._.GetOptionValue(_.sOptionName))
               : null != _.bDefaultValue && (_ = _.bDefaultValue),
               (this.state = {
                 bValue: _,
               });
           }
           onCheckboxChanged(_) {
-            _.SetOptionValue(this.props.sOptionName, _),
+            _._.SetOptionValue(this.props.sOptionName, _),
               this.setState({
                 bValue: _,
               });
@@ -15668,16 +14625,17 @@ var CLSTAMP = "steamdb";
             );
           }
         }
-        var _;
-        (0, _._)([_._], _.prototype, "onCheckboxChanged", null),
-          (function (_) {
-            (_[(_.None = 0)] = "None"),
-              (_[(_.Personal = 1)] = "Personal"),
-              (_[(_.Public = 2)] = "Public"),
-              (_[(_.LocalFile = 3)] = "LocalFile"),
-              (_[(_.ReplaceDefault = 4)] = "ReplaceDefault"),
-              (_[(_.AddNewDefault = 5)] = "AddNewDefault");
-          })(_ || (_ = {}));
+        (0, _._)([_._], _.prototype, "onCheckboxChanged", null);
+        var _,
+          _ = __webpack_require__("chunkid");
+        !(function (_) {
+          (_[(_.None = 0)] = "None"),
+            (_[(_.Personal = 1)] = "Personal"),
+            (_[(_.Public = 2)] = "Public"),
+            (_[(_.LocalFile = 3)] = "LocalFile"),
+            (_[(_.ReplaceDefault = 4)] = "ReplaceDefault"),
+            (_[(_.AddNewDefault = 5)] = "AddNewDefault");
+        })(_ || (_ = {}));
         let _ = class extends _.Component {
           constructor(_) {
             super(_),
@@ -15716,13 +14674,13 @@ var CLSTAMP = "steamdb";
               );
             let _ = this.GetSaveTypeString(this.props.eSaveType);
             _
-              ? _.SaveCurrentBinding(
+              ? _._.SaveCurrentBinding(
                   this.m_NameInput.value,
                   this.m_DescriptionInput.value,
                   _,
                 )
                   .then((_) => {
-                    _.SetBindingURL(_.uri), this.CloseSaveDialog();
+                    _._.SetBindingURL(_.uri), this.CloseSaveDialog();
                   })
                   .catch((_) => {
                     const _ = (null == _ ? void 0 : _.message)
@@ -15744,20 +14702,20 @@ var CLSTAMP = "steamdb";
             this.m_DescriptionInput = _;
           }
           GetUnboundActionItems() {
-            const _ = _.UnboundActions;
+            const _ = _._.UnboundActions;
             let _ = [];
             for (const _ of _) {
               const [_, { vecRequired: _ }] = _;
               for (const _ of _)
                 _.push(
-                  `${_.GetActionSetLocalizedNameByName(_)}: ${_.localized_name}`,
+                  `${_._.GetActionSetLocalizedNameByName(_)}: ${_.localized_name}`,
                 );
             }
             const _ = _.length;
             return _ > 5 && ((_ = _.slice(0, 5)), _.push("+ " + (_ - 5))), _;
           }
           render() {
-            let _ = _.GetDefaultBindingNameForSaveType(
+            let _ = _._.GetDefaultBindingNameForSaveType(
               this.GetSaveTypeString(this.props.eSaveType),
             );
             return _.createElement(
@@ -16001,13 +14959,13 @@ var CLSTAMP = "steamdb";
               });
           }
           OnAppDropdownChanged(_) {
-            _.SetSelectedApp(_);
+            _._.SetSelectedApp(_);
           }
           OnActionSetDropdownChanged(_) {
             this.setState({
               eTabType: _.ActionSet,
             }),
-              _.SetSelectedActionSet(_);
+              _._.SetSelectedActionSet(_);
           }
           ToggleDeveloperOutput() {
             this.setState({
@@ -16070,7 +15028,7 @@ var CLSTAMP = "steamdb";
             });
           }
           ShowPublicModal() {
-            _.HasUnboundActions && !this.state.bHasConfirmedSaveWithUnbound
+            _._.HasUnboundActions && !this.state.bHasConfirmedSaveWithUnbound
               ? this.setState({
                   bShowConfirmSaveWithUnbound: !0,
                 })
@@ -16079,7 +15037,7 @@ var CLSTAMP = "steamdb";
                 });
           }
           ShowPersonalModal() {
-            _.HasUnboundActions &&
+            _._.HasUnboundActions &&
               !this.state.bHasConfirmedSaveWithUnbound &&
               this.setState({
                 bShowConfirmSaveWithUnbound: !0,
@@ -16089,7 +15047,7 @@ var CLSTAMP = "steamdb";
               });
           }
           ShowExportModal() {
-            _.HasUnboundActions &&
+            _._.HasUnboundActions &&
               !this.state.bHasConfirmedSaveWithUnbound &&
               this.setState({
                 bShowConfirmSaveWithUnbound: !0,
@@ -16099,15 +15057,15 @@ var CLSTAMP = "steamdb";
               });
           }
           ShowReplaceDefaultModal() {
-            _.HasUnboundActions &&
+            _._.HasUnboundActions &&
               !this.state.bHasConfirmedSaveWithUnbound &&
               this.setState({
                 bShowConfirmSaveWithUnbound: !0,
               });
             let _ =
               null !=
-              _.GetSelectedAppDefaultBinding(
-                _.SelectedControllerTypeInfo.controller_type,
+              _._.GetSelectedAppDefaultBinding(
+                _._.SelectedControllerTypeInfo.controller_type,
               );
             this.setState({
               eSaveType: _ ? _.ReplaceDefault : _.AddNewDefault,
@@ -16131,25 +15089,27 @@ var CLSTAMP = "steamdb";
               });
           }
           SelectThisBinding(_, _) {
-            _.Loading = !0;
-            let _ = _.SelectedControllerTypeInfo;
-            _.SelectConfig(_.SelectedApp, _ ? _.controller_type : "", _).then(
-              () => {
-                _.ReloadCurrentApp().then(() => {
-                  _ ? _.EditCurrentBinding() : _.ShowBindingList(),
-                    setTimeout(() => {
-                      _.Loading = !1;
-                    }, 1);
-                });
-              },
-            );
+            _._.Loading = !0;
+            let _ = _._.SelectedControllerTypeInfo;
+            _._.SelectConfig(
+              _._.SelectedApp,
+              _ ? _.controller_type : "",
+              _,
+            ).then(() => {
+              _._.ReloadCurrentApp().then(() => {
+                _ ? _._.EditCurrentBinding() : _._.ShowBindingList(),
+                  setTimeout(() => {
+                    _._.Loading = !1;
+                  }, 1);
+              });
+            });
           }
           SelectWouldOverwriteAutosave() {
-            let _ = _.CurrentBinding;
+            let _ = _._.CurrentBinding;
             return (
               !!_ &&
               this.props.bReadOnlyView && "autosave" == _.type &&
-              _.url != _.LoadedBindingURL
+              _.url != _._.LoadedBindingURL
             );
           }
           ShouldShowSelectConfirmDialog() {
@@ -16164,18 +15124,19 @@ var CLSTAMP = "steamdb";
                   bShowSelectConfirmModal: !0,
                   bEditBindingOnSelectConfirm: _,
                 })
-              : this.OnSelectConfirmed(_.LoadedBindingURL, _);
+              : this.OnSelectConfirmed(_._.LoadedBindingURL, _);
           }
           ThisConfigNeedsUpgrade() {
-            let _ = _.SelectedAppActions;
+            let _ = _._.SelectedAppActions;
             return (
-              _.CurrentBindingActionManifestVersion < _.minimum_required_version
+              _._.CurrentBindingActionManifestVersion <
+              _.minimum_required_version
             );
           }
           OnSelectConfirmed(_, _) {
             this.ThisConfigNeedsUpgrade()
-              ? (_.PreserveCurrentBindingForUpgrade().then(() => {
-                  _.AutosaveBinding();
+              ? (_._.PreserveCurrentBindingForUpgrade().then(() => {
+                  _._.AutosaveBinding();
                 }),
                 this.OnSelectDone())
               : (this.SelectThisBinding(_, _), this.OnSelectDone());
@@ -16186,10 +15147,10 @@ var CLSTAMP = "steamdb";
             });
           }
           OnSaveCurrentBinding(_) {
-            let _ = _.CurrentBinding;
-            _.SetBindingURL(_.url),
-              _.ReloadControllerConfiguration().then(() => {
-                _.SaveCurrentBinding(_.name, _.description, "personal").then(
+            let _ = _._.CurrentBinding;
+            _._.SetBindingURL(_.url),
+              _._.ReloadControllerConfiguration().then(() => {
+                _._.SaveCurrentBinding(_.name, _.description, "personal").then(
                   () => {
                     _();
                   },
@@ -16202,7 +15163,7 @@ var CLSTAMP = "steamdb";
               _ = !0,
               _ = (0, _._)("#Button_Discard");
             if (this.ThisConfigNeedsUpgrade()) {
-              let _ = _._.GetApp(_.SelectedApp);
+              let _ = _._.GetApp(_._.SelectedApp);
               (_ = (0, _._)("#BindingUI_List_Upgrade_Confirm", _.name)),
                 (_ = this.SelectWouldOverwriteAutosave()),
                 _
@@ -16211,7 +15172,7 @@ var CLSTAMP = "steamdb";
             } else _ = (0, _._)("#BindingUI_List_Select_Confirm");
             let _ = null;
             return (
-              _.DesktopMode ||
+              _._.DesktopMode ||
                 (_ = {
                   height: "30%",
                   width: "30%",
@@ -16266,7 +15227,7 @@ var CLSTAMP = "steamdb";
                           className: "ButtonControl",
                           onClick: () =>
                             this.OnSelectConfirmed(
-                              _.LoadedBindingURL,
+                              _._.LoadedBindingURL,
                               this.state.bEditBindingOnSelectConfirm,
                             ),
                         },
@@ -16296,10 +15257,10 @@ var CLSTAMP = "steamdb";
           }
           renderSaveWithUnboundModal() {
             let _ = "";
-            _.UnboundRequiredActionStrings.forEach((_) => {
+            _._.UnboundRequiredActionStrings.forEach((_) => {
               _ += `${_}\n`;
             });
-            const _ = Math.max(_.UnboundRequiredActionStrings.length, 4);
+            const _ = Math.max(_._.UnboundRequiredActionStrings.length, 4);
             return _.createElement(
               _._,
               {
@@ -16411,7 +15372,7 @@ var CLSTAMP = "steamdb";
             });
           }
           OnSaveClicked() {
-            let _ = _.LoadedBindingURL;
+            let _ = _._.LoadedBindingURL;
             this.OnSaveCurrentBinding(() =>
               this.OnSelectConfirmed(_, this.state.bEditBindingOnSelectConfirm),
             );
@@ -16427,18 +15388,18 @@ var CLSTAMP = "steamdb";
             });
           }
           render() {
-            let _ = _.ActionSets,
+            let _ = _._.ActionSets,
               _ = _.map((_, _) => {
                 let _ = "Label Tab PositionRelative",
-                  _ = new _();
-                _.UnboundActions.has(_.name) &&
-                  (_ = _.UnboundActions.get(_.name));
+                  _ = new _._();
+                _._.UnboundActions.has(_.name) &&
+                  (_ = _._.UnboundActions.get(_.name));
                 let _ = _.vecRequired.length + _.vecSuggested.length;
                 return (
                   _.vecRequired.length > 0
                     ? (_ += " Error")
                     : _.vecSuggested.length > 0 && (_ += " Warning"),
-                  _.name == _.SelectedActionSet &&
+                  _.name == _._.SelectedActionSet &&
                     this.state.eTabType == _.ActionSet &&
                     (_ += " Selected"),
                   _.createElement(
@@ -16466,7 +15427,7 @@ var CLSTAMP = "steamdb";
                   )
                 );
               });
-            if (_.SelectedBindingIsLegacy || _.ManifestOptions.length > 0) {
+            if (_._.SelectedBindingIsLegacy || _._.ManifestOptions.length > 0) {
               let _ = "Label Tab PositionRelative";
               this.state.eTabType == _.LegacySetup && (_ += " Selected"),
                 _.push(
@@ -16481,7 +15442,7 @@ var CLSTAMP = "steamdb";
                   ),
                 );
             }
-            if (_.IsSecondaryController) {
+            if (_._.IsSecondaryController) {
               let _ = "Label Tab PositionRelative";
               this.state.eTabType == _.SecondaryControllerSetup &&
                 (_ += " Selected"),
@@ -16500,9 +15461,9 @@ var CLSTAMP = "steamdb";
             let _,
               _ = !1,
               _ = !1;
-            _.SelectedControllerTypeInfo &&
+            _._.SelectedControllerTypeInfo &&
               this.state.eTabType == _.ActionSet &&
-              ((_ = _.SelectedControllerTypeInfo),
+              ((_ = _._.SelectedControllerTypeInfo),
               (_ = "controller_handed" == _.input_bindingui_mode),
               (_ =
                 "hmd" == _.input_bindingui_mode ||
@@ -16522,23 +15483,25 @@ var CLSTAMP = "steamdb";
                 padding: "0px",
                 maxHeight: "90%",
               };
-            let _ = _._.GetApp(_.SelectedApp),
+            let _ = _._.GetApp(_._.SelectedApp),
               _ = "";
             _ && (_ = _.name);
             let _,
               _ = this.props.bReadOnlyView
-                ? (0, _._)("#BindingUI_ViewPageTitle", _.ConfigName)
-                : (0, _._)("#BindingUI_EditPageTitle", _.ConfigName),
+                ? (0, _._)("#BindingUI_ViewPageTitle", _._.ConfigName)
+                : (0, _._)("#BindingUI_EditPageTitle", _._.ConfigName),
               _ = "#BindingUI_PageSubTitle",
-              _ = _.GetOptionValue("variant");
+              _ = _._.GetOptionValue("variant");
             _ &&
               ((_ = (0, _._)("#BindingVariant_" + _)),
               (_ = "#BindingUI_PageSubTitle_WithVariant"));
             let _ = (0, _._)(
                 _,
-                _.SelectedControllerTypeLocalizedName,
+                _._.SelectedControllerTypeLocalizedName,
                 _,
-                (0, _._)("#BindingUI_BindingType_" + _.CurrentBindingSaveType),
+                (0, _._)(
+                  "#BindingUI_BindingType_" + _._.CurrentBindingSaveType,
+                ),
                 _,
               ),
               _ = !this.ThisConfigNeedsUpgrade() && this.props.bReadOnlyView,
@@ -16559,7 +15522,7 @@ var CLSTAMP = "steamdb";
                     className: "FlexColumn DescriptionTopRow",
                   },
                   _.createElement(_, {
-                    fnOnClick: _.ShowBindingList,
+                    fnOnClick: _._.ShowBindingList,
                     strTitle: _,
                     strSubTitle: _,
                     fnOpenOptionsModal: this.OpenOptionsModal,
@@ -16579,19 +15542,19 @@ var CLSTAMP = "steamdb";
                     Visible: this.state.bShowUnboundActionsOverlay,
                     UnboundActions: this.state.vecUnboundActions,
                   }),
-                _.SaveNoticeText &&
+                _._.SaveNoticeText &&
                   _.createElement(
                     "div",
                     {
                       className: "UnboundActionsOverlay Visible",
                     },
-                    (0, _._)(_.SaveNoticeText),
+                    (0, _._)(_._.SaveNoticeText),
                   ),
               ),
               _ &&
                 _.createElement(_, {
                   bSingleMode: !1,
-                  selectedActionSet: _.SelectedActionSetDetails,
+                  selectedActionSet: _._.SelectedActionSetDetails,
                   fnSetMirroredMode: this.SetBindingUIInMirroredMode,
                   fnOpenChordBindingsModal: this.OpenChordBindingsModal,
                   fnOpenHapticsBindingsModal: this.OpenHapticsBindingsModal,
@@ -16621,7 +15584,7 @@ var CLSTAMP = "steamdb";
                     },
                     _.createElement(_, {
                       readOnly: this.props.bReadOnlyView,
-                      options: _.ManifestOptions,
+                      options: _._.ManifestOptions,
                     }),
                     _.createElement(_, {
                       readOnly: this.props.bReadOnlyView,
@@ -16644,7 +15607,7 @@ var CLSTAMP = "steamdb";
                     },
                     _.createElement(_, {
                       readOnly: this.props.bReadOnlyView,
-                      options: _.SecondaryControllerOptions,
+                      options: _._.SecondaryControllerOptions,
                     }),
                   ),
                 ),
@@ -16712,11 +15675,11 @@ var CLSTAMP = "steamdb";
                       },
                       (0, _._)("#BindingUI_ImportThisBinding"),
                     ),
-                  _.BDevMode &&
+                  _._.BDevMode &&
                     _.createElement("div", {
                       className: "BindingManageButtonsHR",
                     }),
-                  _.BDevMode &&
+                  _._.BDevMode &&
                     _.createElement(
                       "div",
                       {
@@ -16725,7 +15688,7 @@ var CLSTAMP = "steamdb";
                       },
                       _,
                     ),
-                  _.BDevMode &&
+                  _._.BDevMode &&
                     _.createElement(
                       "div",
                       {
@@ -16734,9 +15697,9 @@ var CLSTAMP = "steamdb";
                       },
                       (0, _._)("#BindingUI_ExportBindingFile"),
                     ),
-                  _.BDevMode &&
-                    !_.SelectedBindingIsLegacy &&
-                    !_.SelectedBindingIsOpenXR &&
+                  _._.BDevMode &&
+                    !_._.SelectedBindingIsLegacy &&
+                    !_._.SelectedBindingIsOpenXR &&
                     _.createElement(
                       "div",
                       {
@@ -16745,7 +15708,7 @@ var CLSTAMP = "steamdb";
                       },
                       (0, _._)("#BindingUI_ReplaceDefaultFile"),
                     ),
-                  _.BSelectedActionSetHasPoses &&
+                  _._.BSelectedActionSetHasPoses &&
                     _.createElement(
                       _._,
                       {
@@ -16768,7 +15731,7 @@ var CLSTAMP = "steamdb";
                           bReadOnly: this.props.bReadOnlyView,
                         }),
                     ),
-                  _.BSelectedActionSetHasHaptics &&
+                  _._.BSelectedActionSetHasHaptics &&
                     _.createElement(
                       _._,
                       {
@@ -16791,7 +15754,7 @@ var CLSTAMP = "steamdb";
                           bReadOnly: this.props.bReadOnlyView,
                         }),
                     ),
-                  _.BSelectedActionSetHasSkeletons &&
+                  _._.BSelectedActionSetHasSkeletons &&
                     _.createElement(
                       _._,
                       {
@@ -16861,14 +15824,14 @@ var CLSTAMP = "steamdb";
                         width: "1000px",
                         height: "400px",
                       },
-                      value: _.BindingConfig,
+                      value: _._.BindingConfig,
                     }),
                 ),
               ),
               !this.state.bShowConfirmSaveWithUnbound &&
                 this.state.eSaveType != _.None &&
                 _.createElement(_, {
-                  sDescription: _.ConfigDescription,
+                  sDescription: _._.ConfigDescription,
                   eSaveType: this.state.eSaveType,
                   ParentClose: this.CloseSaveModal,
                 }),
@@ -16917,10 +15880,10 @@ var CLSTAMP = "steamdb";
             super(_);
           }
           render() {
-            _.Loading
+            _._.Loading
               ? document.body.classList.add("Loading")
               : document.body.classList.remove("Loading"),
-              _.IsSteamAvailable
+              _._.IsSteamAvailable
                 ? document.body.classList.remove("SteamUnavailable")
                 : document.body.classList.add("SteamUnavailable");
             return (
@@ -16931,19 +15894,19 @@ var CLSTAMP = "steamdb";
                 {
                   className: "FullPage InputContainer",
                 },
-                (_.GetUIState == _.ViewBinding ||
-                  _.GetUIState == _.EditBinding) &&
+                (_._.GetUIState == _._.ViewBinding ||
+                  _._.GetUIState == _._.EditBinding) &&
                   _.createElement(_, {
-                    bReadOnlyView: _.GetUIState == _.ViewBinding,
+                    bReadOnlyView: _._.GetUIState == _._.ViewBinding,
                   }),
-                _.GetUIState == _.List && _.createElement(_, null),
-                _.GetUIState == _.AppSelect && _.createElement(_, null),
-                _.GetUIState == _.Debugger && _.createElement(_, null),
-                _.GetUIState == _.None && _.createElement("div", null),
+                _._.GetUIState == _._.List && _.createElement(_, null),
+                _._.GetUIState == _._.AppSelect && _.createElement(_, null),
+                _._.GetUIState == _._.Debugger && _.createElement(_, null),
+                _._.GetUIState == _._.None && _.createElement("div", null),
                 _.createElement(
                   _._,
                   {
-                    visible: _.SteamVRUnavailable,
+                    visible: _._.SteamVRUnavailable,
                     showCloseButton: !1,
                     onClose: () => {},
                     animation: "fade",
@@ -16982,15 +15945,15 @@ var CLSTAMP = "steamdb";
         )
           .then(() => _._.Init())
           .then(() => _._.Init())
-          .then(() => _.Init())
+          .then(() => _._.Init())
           .then(() => _._.Init(!1))
-          .then(() => _.Init())
+          .then(() => _._.Init())
           .then(() =>
             (function () {
               return (0, _._)(this, void 0, void 0, function* () {
-                _.SetDesktopMode((0, _._)("desktop").length > 0),
+                _._.SetDesktopMode((0, _._)("desktop").length > 0),
                   VRHTML &&
-                    !_.DesktopMode &&
+                    !_._.DesktopMode &&
                     (document.body.parentElement.classList.add("VROverlay"),
                     VRHTML.VROverlay.SetWidthInMeters(
                       VRHTML.VROverlay.ThisOverlayHandle(),
@@ -17021,29 +15984,29 @@ var CLSTAMP = "steamdb";
                       _._.Mouse,
                     ));
                 let _ = (0, _._)("debugger");
-                if (null != _ && _.length > 0) return void _.ShowDebugger();
+                if (null != _ && _.length > 0) return void _._.ShowDebugger();
                 let _ = (0, _._)("app");
                 if (null != _ && _.length > 0 && _._.GetApp(_)) {
-                  _.SetSelectedApp(_);
+                  _._.SetSelectedApp(_);
                   let _ = (0, _._)("controller");
                   if (null != _ && _.length > 0) {
-                    _.SetSelectedController(_);
+                    _._.SetSelectedController(_);
                     let _ = (0, _._)("action_set");
                     return (
                       null != _ &&
                         _.length > 0 &&
-                        _.SetSelectedActionSet("/actions/" + _),
+                        _._.SetSelectedActionSet("/actions/" + _),
                       void ((0, _._)("read_only").length > 0
-                        ? _.ViewCurrentBinding()
-                        : _.EditCurrentBinding())
+                        ? _._.ViewCurrentBinding()
+                        : _._.EditCurrentBinding())
                     );
                   }
-                  _.ShowBindingList();
-                } else _.ShowAppSelect();
+                  _._.ShowBindingList();
+                } else _._.ShowAppSelect();
               });
             })(),
           )
-          .then(() => _.Init())
+          .then(() => _._.Init())
           .then(() => {
             var _;
             (_ = _), _._(_).render(_.createElement(_, null));
@@ -17058,7 +16021,7 @@ var CLSTAMP = "steamdb";
     var _ = (_[_] = {
       exports: {},
     });
-    return _[_](_, _.exports, _), _.exports;
+    return _[_].call(_.exports, _, _.exports, _), _.exports;
   }
   (_._ = _),
     (_ = []),
@@ -17109,9 +16072,20 @@ var CLSTAMP = "steamdb";
       }
     })()),
     (_._ = (_, _) => Object.prototype.hasOwnProperty.call(_, _)),
+    (_._ = (_) => {
+      "undefined" != typeof Symbol &&
+        Symbol.toStringTag &&
+        Object.defineProperty(_, Symbol.toStringTag, {
+          value: "Module",
+        }),
+        Object.defineProperty(_, "__esModule", {
+          value: !0,
+        });
+    }),
     (() => {
       var _ = {
         600: 0,
+        452: 0,
         527: 0,
       };
       _._._ = (_) => 0 === _[_];
@@ -17132,10 +16106,8 @@ var CLSTAMP = "steamdb";
       __webpack_require__.forEach(_.bind(null, 0)),
         (_.push = _.bind(null, _.push.bind(_)));
     })();
-  var _ = _._(
-    void 0,
-    [967, 978, 705, 908, 305, 527, 797, 148, 743, 198, 737, 652],
-    () => _(2542),
+  var _ = _._(void 0, [967, 991, 908, 305, 527, 170, 797, 906, 204], () =>
+    _(9424),
   );
   _ = _._(_);
 })();

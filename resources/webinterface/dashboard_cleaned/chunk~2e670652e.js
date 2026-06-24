@@ -1,8 +1,92 @@
 var CLSTAMP = "steamdb";
 (self.webpackChunkvrwebui = self.webpackChunkvrwebui || []).push([
-  [386],
+  [170],
   {
+    chunkid: (module) => {
+      module.exports = {
+        recordingCircle: "svg_library_recordingCircle_2ovZQ",
+        AnimationFadeOutIn: "svg_library_AnimationFadeOutIn_1lEwX",
+        Spinner: "svg_library_Spinner_1q9tu",
+        SpinnerSpokeFade: "svg_library_SpinnerSpokeFade_2E-wW",
+      };
+    },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      var _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      !(function (_) {
+        (_[(_.Disabled = 0)] = "Disabled"),
+          (_[(_.WorldZeroY = 1)] = "WorldZeroY"),
+          (_[(_.WorldDynamicFloor = 2)] = "WorldDynamicFloor");
+      })(_ || (_ = {}));
+      class _ extends _._ {
+        constructor(_) {
+          super(_), super.setBuildNodeOverride(this.buildNode);
+        }
+        getNodeType() {
+          return "constraint";
+        }
+        buildNode(_, _) {
+          const _ = this.createSgNode(_);
+          return (
+            (_.properties["projection-constraint"] =
+              this.props.projection_constraint),
+            [_, _]
+          );
+        }
+      }
+      (0, _._)([_._], _.prototype, "buildNode", null);
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      var _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      !(function (_) {
+        (_[(_.RoomSetupFloor = 1)] = "RoomSetupFloor"),
+          (_[(_.Locomotion = 2)] = "Locomotion"),
+          (_[(_.QuickRecenter = 4)] = "QuickRecenter");
+      })(_ || (_ = {}));
+      class _ extends _._ {
+        constructor(_) {
+          super(_), super.setBuildNodeOverride(this.buildNode);
+        }
+        getNodeType() {
+          return "constructglobals";
+        }
+        buildNode(_, _) {
+          const _ = this.createSgNode(_);
+          return (
+            (_.properties["allowed-action-sets"] = this.props[
+              "allowed-action-sets"
+            ].reduce((_, _) => _ | _, 0)),
+            (_.properties["inhibit-bounds-rendering"] =
+              this.props["inhibit-bounds-rendering"]),
+            (_.properties["pause-notifications"] =
+              this.props["pause-notifications"]),
+            (_.properties["roomview-enable-override"] =
+              this.props["roomview-enable-override"]),
+            (_.properties["systemlayer-msaa-enable-override"] =
+              this.props["systemlayer-msaa-enable-override"]),
+            (_.properties["construct-alpha-override"] =
+              this.props["construct-alpha-override"]),
+            [_, _]
+          );
+        }
+      }
+      (0, _._)([_._], _.prototype, "buildNode", null);
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      __webpack_require__("chunkid");
+      var _ = __webpack_require__("chunkid");
+      _._;
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
       });
@@ -316,6 +400,102 @@ var CLSTAMP = "steamdb";
       (0, _._)([_._], _.prototype, "buildNode", null);
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      class _ extends _._ {
+        constructor(_) {
+          super(_), super.setBuildNodeOverride(this.buildNode);
+        }
+        getNodeType() {
+          return "tilefloor";
+        }
+        buildNode(_, _) {
+          var _, _, _, _, _, _, _;
+          const _ = this.createSgNode(_);
+          if (
+            ((_.properties["tile-size"] = this.props["tile-size"]),
+            (_.properties["tile-gap"] = this.props["tile-gap"]),
+            (_.properties["inner-radius"] = this.props["inner-radius"]),
+            (_.properties["outer-radius"] = this.props["outer-radius"]),
+            (_.properties["fade-distance"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _["fade-distance"]),
+            (_.properties["min-tile-scale-at-periphery"] =
+              this.props["min-tile-scale-at-periphery"]),
+            (_.properties.height = (0, _._)(this.props.height)),
+            null != this.props.offset &&
+              (_.properties.offset = [
+                null === (_ = this.props.offset) || void 0 === _ ? void 0 : _._,
+                null === (_ = this.props.offset) || void 0 === _ ? void 0 : _._,
+              ]),
+            "string" == typeof this.props.color)
+          )
+            _.properties.color = this.props.color;
+          else if (this.props.color) {
+            let _ = (0, _._)(this.props.color, {
+              _: 0,
+              _: 0,
+              _: 0,
+            });
+            _.properties.color = [_._, _._, _._];
+          }
+          return (
+            (_.properties["center-randomization"] =
+              null == this ? void 0 : this.props["center-randomization"]),
+            this.props["luma-randomization"] &&
+              ((_.properties["luma-randomization-min-gain"] =
+                this.props["luma-randomization"]["min-gain"]),
+              (_.properties["luma-randomization-max-gain"] =
+                this.props["luma-randomization"]["max-gain"])),
+            this.props["reflection-randomization"] &&
+              ((_.properties["reflection-randomization-min-gain"] =
+                this.props["reflection-randomization"]["min-gain"]),
+              (_.properties["reflection-randomization-max-gain"] =
+                this.props["reflection-randomization"]["max-gain"])),
+            (_.properties["normal-randomization-degrees"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _["normal-randomization-degrees"]),
+            this.props.chevron &&
+              ((_.properties["chevron-luma-scale"] =
+                this.props.chevron["luma-scale"]),
+              (_.properties["chevron-reflection-scale"] =
+                this.props.chevron["reflection-scale"])),
+            (_.properties["auto-subdivide"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _["auto-subdivide"]),
+            (_.properties["pedestal-height"] = (0, _._)(
+              this.props["pedestal-height"],
+            )),
+            (_.properties["pedestal-radius"] = (0, _._)(
+              this.props["pedestal-radius"],
+            )),
+            (_.properties["floor-aa-shader"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _["floor-aa-shader"]),
+            (_.properties["stable-fade"] =
+              null === (_ = this.props) || void 0 === _
+                ? void 0
+                : _["stable-fade"]),
+            [_, _]
+          );
+        }
+      }
+      (0, _._)([_._], _.prototype, "buildNode", null);
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      __webpack_require__("chunkid");
+      var _ = __webpack_require__("chunkid");
+      _._;
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
@@ -607,323 +787,7 @@ var CLSTAMP = "steamdb";
           );
     },
     chunkid: (module, module_exports, __webpack_require__) => {
-      __webpack_require__._(module_exports, {
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-      });
-      const _ = "openvr.tool.steamvr_environments",
-        _ = "system.generated.steam.exe",
-        _ = "vrlink.client",
-        _ = 250820,
-        _ = 330050,
-        _ = 769,
-        _ = 202355,
-        _ = "steam.app.",
-        _ = _ + _,
-        _ = _ + _,
-        _ = "system.dashboard.",
-        _ = "system.dashboard.quicklaunch",
-        _ = "system.dashboard.nowplaying",
-        _ = "XRServiceDashboard",
-        _ = 0.25,
-        _ = 2,
-        _ = 0.03,
-        _ = "current.scene.app.binding.list",
-        _ = "system.desktop",
-        _ = "system.window",
-        _ = "system.standalone",
-        _ = "system.systemui",
-        _ = "system.settings",
-        _ = "system.keyboard",
-        _ = "system.vrwebhelper.controllerbinding",
-        _ = "system.messageoverlay",
-        _ = "valve.steam",
-        _ = "valve.steam.desktopgame",
-        _ = "valve.steam.gamepadui.main",
-        _ = "valve.steam.gamepadui.appoverlay",
-        _ = "valve.steam.gamepadui.keyboard",
-        _ = "valve.steam.desktop",
-        _ = "steamlink_openvr-overlay",
-        _ = "valve.plasma.recoverymode",
-        _ = "valve.plasma.desktopmode",
-        _ = "DashboardCurvatureOrigin",
-        _ = 2.667 / 1694,
-        _ = "DashboardGrabHandleTransform",
-        _ = "DashboardOverlayDashboardBarOrigin",
-        _ = "DashboardGrabHandleTransform_Legacy",
-        _ = "/settings/steamvr/enableHomeApp",
-        _ = "/settings/dashboard/enableDashboard",
-        _ = "/settings/steamvr/disableChaperone",
-        _ = "/settings/steamvr/recommendedResolutionMultiplierMin",
-        _ = "/settings/steamvr/recommendedResolutionMultiplierMax",
-        _ = "/settings/steamvr/recommendedResolutionMultiplierSteps",
-        _ = "/settings/steamvr/showRecommendedResolutionPercentage",
-        _ = "/settings/steamvr/supersampleManualOverride",
-        _ = "/settings/steamvr/supersampleScale",
-        _ = "/settings/GpuSpeed/gpuSpeedRenderTargetScale",
-        _ = "/settings/camera/roomViewStyle",
-        _ = "/settings/steamvr/backgroundCameraHeight",
-        _ = "/settings/steamvr/backgroundDomeRadius",
-        _ = "/settings/steamvr/analogGain",
-        _ = "/settings/driver_lighthouse/indexHmdColumnCorrection",
-        _ = "/settings/steamvr/showAdvancedSettings",
-        _ = "/settings/dashboard/lastAccessedExternalOverlayKey",
-        _ = "/settings/internal/dashboardInitialOverlay",
-        _ = "/settings/dashboard/position_2",
-        _ = "/settings/dashboard/laserLength",
-        _ = "/settings/dashboard/theaterCurvature",
-        _ = "/settings/dashboard/theaterScreenSize",
-        _ = "/settings/dashboard/theaterScreenAlignment",
-        _ = "/settings/collisionBounds/CollisionBoundsFadeDistance",
-        _ = "/settings/camera/AllowBubbleInImmersiveApps",
-        _ = "/settings/camera/roomView",
-        _ = "/settings/camera/enableCamera",
-        _ = "/settings/dashboard/enableWindowView",
-        _ = "/settings/dashboard/maxInlineTabs",
-        _ = "/settings/steamvr/maxRecommendedResolution",
-        _ = "/settings/steamvr/disableKeyboardPrivacy",
-        _ = "/settings/camera/lightSourceFrequency",
-        _ = "/settings/camera/autoLowerPassthroughResolution",
-        _ = "/settings/steamvr/ipdHUD",
-        _ = "/settings/steamvr/inHMDRoomSetupDebug",
-        _ = "/settings/steamvr/defaultPerAppRefreshRate",
-        _ = "/settings/steamvr/unifiedPerAppRefreshRateAndThrottling",
-        _ = "/settings/steamvr/preferredRefreshRate",
-        _ = "/settings/steamvr/motionSmoothing",
-        _ = "/settings/steamvr/framesToThrottle",
-        _ = "/settings/steamvr/fovScale",
-        _ = "/settings/steamvr/performanceProfile",
-        _ = "/settings/perfcheck/perfGraphInHMD",
-        _ = "/settings/perfcheck/recordStats",
-        _ = "/settings/steamvr/environmentMode",
-        _ = "/settings/steamvr/backgroundUseDomeProjection",
-        _ = "/settings/steamvr/auroraPalette",
-        _ = "/settings/dashboard/expectSteam",
-        _ = "/settings/dashboard/allowLegacyControlBar",
-        _ = "/settings/openxr/metaUnityPluginCompatibility",
-        _ = "/settings/input/overlayFilteringEnabled",
-        _ = "/settings/input/overlayFilteringMinCutoff",
-        _ = "/settings/input/overlayFilteringBeta",
-        _ = "/settings/input/overlayFilteringDerivCutoff",
-        _ = "/settings/input/overlayMagnetismEnabled",
-        _ = "/settings/input/overlayMagnetismLockDistance",
-        _ = "/settings/input/overlayMagnetismDeadZone",
-        _ = "/steam/websocketconnected",
-        _ = "/steam/oobe",
-        _ = "/steamvr/fakeoobe",
-        _ = "/steam/locked",
-        _ = "/steam/guidedtour",
-        _ = "/settings/perfcheck/showPerfCriteriaSettings",
-        _ = "/settings/perfcheck/drawPerfCriteriaOverlay",
-        _ = "/settings/perfcheck/drawPerfCriteriaGameTextures";
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      __webpack_require__._(module_exports, {
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-      });
-      var _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
-      function _(_) {
-        return "string" == typeof _ || (Array.isArray(_) && _[1]);
-      }
-      function _(..._) {
-        return _.filter(_)
-          .map((_) => ("string" == typeof _ ? _ : _[0]))
-          .join(" ");
-      }
-      function _(_, _) {
-        let _ = _;
-        for (
-          ;
-          _.parentElement && !_.some((_) => __webpack_require__.matches(_));
-        )
-          _ = _.parentElement;
-        return _;
-      }
-      class _ {
-        constructor() {
-          (this.onScroll = null),
-            (this.onScrollStop = null),
-            (this.m_elem = null),
-            (this.m_rScrollableParents = []),
-            (this.m_bScrolling = !1),
-            (this.m_scrollStopTimeoutHandle = void 0),
-            (0, _.makeObservable)(this);
-        }
-        ref(_) {
-          this.m_elem && this.cleanup(),
-            (this.m_elem = _),
-            this.updateScrollableParents();
-        }
-        get isScrolling() {
-          return this.m_bScrolling;
-        }
-        updateScrollableParents() {
-          for (let _ of this.m_rScrollableParents)
-            _.removeEventListener("scroll", this.onParentScroll);
-          this.m_elem
-            ? (this.m_rScrollableParents = (function (_) {
-                let _ = [];
-                if (!_) return _;
-                let _ = _.parentElement;
-                for (; _; ) {
-                  const _ = _.scrollWidth > _.clientWidth,
-                    _ = _.scrollHeight > _.clientHeight;
-                  (_ || _) && _.push(_), (_ = _.parentElement);
-                }
-                return _;
-              })(this.m_elem))
-            : (this.m_rScrollableParents = []);
-          for (let _ of this.m_rScrollableParents)
-            _.addEventListener("scroll", this.onParentScroll);
-        }
-        cleanup() {
-          for (let _ of this.m_rScrollableParents)
-            _.removeEventListener("scroll", this.onParentScroll);
-          (this.m_rScrollableParents = []),
-            (this.m_elem = null),
-            this.clearScrollStopTimeout();
-        }
-        onParentScroll() {
-          var _;
-          this.clearScrollStopTimeout(),
-            (this.m_bScrolling = !0),
-            (this.m_scrollStopTimeoutHandle = window.setTimeout(
-              this.onScrollStopTimeout,
-              50,
-            )),
-            null === (_ = this.onScroll) || void 0 === _ || _.call(this);
-        }
-        clearScrollStopTimeout() {
-          window.clearTimeout(this.m_scrollStopTimeoutHandle),
-            (this.m_scrollStopTimeoutHandle = void 0);
-        }
-        onScrollStopTimeout() {
-          var _;
-          this.m_bScrolling &&
-            (null === (_ = this.onScrollStop) || void 0 === _ || _.call(this)),
-            (this.m_bScrolling = !1);
-        }
-      }
-      function _() {
-        const [, _] = _.useState(0);
-        return _.useCallback(() => _((_) => _ + 1), []);
-      }
-      (0, _._)([_.observable], _.prototype, "m_bScrolling", void 0),
-        (0, _._)([_._], _.prototype, "ref", null),
-        (0, _._)([_.computed], _.prototype, "isScrolling", null),
-        (0, _._)([_._], _.prototype, "onParentScroll", null),
-        (0, _._)([_._], _.prototype, "onScrollStopTimeout", null);
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
@@ -939,20 +803,16 @@ var CLSTAMP = "steamdb";
       class _ extends _._ {
         constructor(_) {
           super(_),
-            (this.m_flForcedUniformDashboardHeight = void 0),
-            (this.m_eAllowResizing = 2),
+            (this.componentName = "size"),
+            (this.defaultComponentProps = {
+              allowResizing: 2,
+            }),
             (0, _.makeObservable)(this);
-        }
-        ForceUniformDashboardHeight(_) {
-          this.m_flForcedUniformDashboardHeight = _;
-        }
-        SetResizingAllowed(_) {
-          this.m_eAllowResizing = _;
         }
         get scaleForBottomControls() {
           switch (this.frame.docking.visualDockLocation) {
             case _._.Theater:
-              return 2;
+              return _._.defaultTheaterScale;
             case _._.LeftHand:
             case _._.RightHand:
               return 0.5;
@@ -963,7 +823,7 @@ var CLSTAMP = "steamdb";
         get scaleForActivePage() {
           switch (this.frame.docking.visualDockLocation) {
             case _._.Theater:
-              return _._.currentTheaterScreenSize == _._.Large ? 2.1 : 1.65;
+              return _._.defaultTheaterScale;
             case _._.LeftHand:
             case _._.RightHand:
               return 0.5;
@@ -995,7 +855,7 @@ var CLSTAMP = "steamdb";
             _
           )
             return !0;
-          switch (this.m_eAllowResizing) {
+          switch (this.componentProps.allowResizing) {
             case 0:
               return !0;
             case 1:
@@ -1007,8 +867,8 @@ var CLSTAMP = "steamdb";
         get mainPanelHeightOverride() {
           return this.frame.docking.visualDockLocation == _._.Theater
             ? 2
-            : null != this.m_flForcedUniformDashboardHeight
-              ? this.m_flForcedUniformDashboardHeight
+            : null != this.componentProps.forcedUniformDashboardHeight
+              ? this.componentProps.forcedUniformDashboardHeight
               : void 0;
         }
         get showResizeHandle() {
@@ -1030,7 +890,7 @@ var CLSTAMP = "steamdb";
             _
           )
             return !1;
-          switch (this.m_eAllowResizing) {
+          switch (this.componentProps.allowResizing) {
             case 0:
               return !1;
             case 1:
@@ -1040,16 +900,7 @@ var CLSTAMP = "steamdb";
           }
         }
       }
-      (0, _._)(
-        [_.observable],
-        _.prototype,
-        "m_flForcedUniformDashboardHeight",
-        void 0,
-      ),
-        (0, _._)([_.observable], _.prototype, "m_eAllowResizing", void 0),
-        (0, _._)([_.action], _.prototype, "ForceUniformDashboardHeight", null),
-        (0, _._)([_.action], _.prototype, "SetResizingAllowed", null),
-        (0, _._)([_.computed], _.prototype, "scaleForBottomControls", null),
+      (0, _._)([_.computed], _.prototype, "scaleForBottomControls", null),
         (0, _._)([_.computed], _.prototype, "scaleForActivePage", null),
         (0, _._)([_.computed], _.prototype, "resizingDisplacementFactor", null),
         (0, _._)([_.computed], _.prototype, "ignoreResizeAmount", null),
@@ -1058,6 +909,8 @@ var CLSTAMP = "steamdb";
       class _ extends _._ {
         constructor(_) {
           super(_),
+            (this.componentName = "size"),
+            (this.defaultComponentProps = {}),
             (this.m_lastPanelContentSize = void 0),
             (this.m_lastPanelMeasurement = void 0),
             (0, _.makeObservable)(this);
@@ -1170,9 +1023,8 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.action], _.prototype, "SetMainPanel", null);
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
-        _: () => _,
-        _: () => _,
         _: () => _,
         _: () => _,
         _: () => _,
@@ -1180,6 +1032,7 @@ var CLSTAMP = "steamdb";
         _: () => _,
       });
       var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -1230,26 +1083,18 @@ var CLSTAMP = "steamdb";
         get OnDestroyed() {
           return this.m_OnDestroyed;
         }
-        constructor(_, _) {
-          (this.m_eState = _.Uninitialized),
-            (this.m_sTitle = ""),
+        constructor(_, _, _) {
+          (this.props = void 0),
+            (this.m_eState = _.Uninitialized),
             (this.m_mapPages = new Map()),
             (this.m_unActivePageID = void 0),
             (this.m_unFrameMenuPopupID = void 0),
-            (this.m_Icon = {}),
-            (this.m_TabVisibility = {
-              bVisibleInDashboardBar: !0,
-              bVisibleInDashboardHamburgerMenu: !1,
-            }),
             (this.m_bVisibleWhenLocked = !1),
             (this.m_rgMenuItems_LeftFrameMenu = []),
             (this.m_rgMenuItems_TabHoverMenu = []),
             (this.m_rgControlsItems_BottomFrameControls = []),
             (this.m_rgControlsItems_TabHoverControls = []),
             (this.m_vrAppEntry = void 0),
-            (this.m_fnOnCloseRequested = void 0),
-            (this.m_sCloseButtonLabel = void 0),
-            (this.m_eCloseButtonIcon = void 0),
             (this.m_mapSpatializeEnabledForPage = new Map()),
             (this.m_actionToFocusMainPanel = void 0),
             (this.m_actionToFocusLeftFrameMenu = void 0),
@@ -1260,14 +1105,15 @@ var CLSTAMP = "steamdb";
             (this.sharing = void 0),
             (this.curvature = new _._(this)),
             (this.docking = new _._(this)),
+            (this.closing = new _._(this)),
             (this.size = new _._(this)),
             (this.m_OnDestroyed = new _._()),
             (this.m_bPendingLoadAppInfo = !1),
             (this.m_bPendingInitialSyncWithSteam = !1),
             (this.m_unOverridePageID = void 0),
             (this.m_unFrameID = _),
-            (this.m_unTabID = _),
-            (this.m_sTitle = `Untitled Frame ${_}`),
+            (this.tab = new _._(this, _)),
+            (this.props = _),
             (0, _.makeObservable)(this);
         }
         get frameID() {
@@ -1291,69 +1137,36 @@ var CLSTAMP = "steamdb";
           (this.m_unOverridePageID = _ instanceof _._ ? _.pageID : _),
             null != this.activePage && this.SwitchToPage(this.activePage);
         }
-        SetTitle(_) {
-          this.m_sTitle = null != _ ? _ : "";
-        }
         get title() {
-          return this.m_sTitle;
-        }
-        SetIcon(_) {
-          this.m_Icon = null != _ ? _ : {};
+          var _, _;
+          return null !==
+            (_ =
+              null === (_ = this.props) || void 0 === _ ? void 0 : _.title) &&
+            void 0 !== _
+            ? _
+            : `Untitled Frame ${this.frameID}`;
         }
         get icon() {
-          return Object.values(this.m_Icon).some((_) => null != _)
-            ? this.m_Icon
-            : {
-                enum: 0,
-              };
+          var _;
+          if (
+            (null === (_ = this.props) || void 0 === _ ? void 0 : _.icon) &&
+            !Object.values(this.props.icon).every((_) => void 0 === _)
+          )
+            return this.props.icon;
         }
         get visibleWhenLocked() {
-          return this.m_bVisibleWhenLocked;
-        }
-        SetVisibleWhenLocked(_) {
-          this.m_bVisibleWhenLocked = _;
-        }
-        SetCloseButton(_, _, _) {
-          (this.m_fnOnCloseRequested = _),
-            (this.m_sCloseButtonLabel = _),
-            (this.m_eCloseButtonIcon = _);
-        }
-        get canRequestClose() {
-          return null != this.m_fnOnCloseRequested;
-        }
-        get closeButtonLabel() {
           var _;
-          return null !== (_ = this.m_sCloseButtonLabel) && void 0 !== _
-            ? _
-            : (0, _._)("#Close");
+          return (
+            null !== (_ = this.props.visibleWhenSteamLocked) &&
+            void 0 !== _ &&
+            _
+          );
         }
-        get closeButtonIcon() {
+        get isStreamingClient() {
           var _;
-          return null !== (_ = this.m_eCloseButtonIcon) && void 0 !== _
-            ? _
-            : 31;
-        }
-        RequestClose() {
-          var _;
-          null === (_ = this.m_fnOnCloseRequested) ||
-            void 0 === _ ||
-            _.call(this);
-        }
-        SetTabVisibility(_) {
-          var _, _;
-          this.m_TabVisibility = {
-            bVisibleInDashboardBar:
-              null !== (_ = _.bVisibleInDashboardBar) && void 0 !== _
-                ? _
-                : this.m_TabVisibility.bVisibleInDashboardBar,
-            bVisibleInDashboardHamburgerMenu:
-              null !== (_ = _.bVisibleInDashboardHamburgerMenu) && void 0 !== _
-                ? _
-                : this.m_TabVisibility.bVisibleInDashboardHamburgerMenu,
-          };
-        }
-        get tabVisibility() {
-          return this.m_TabVisibility;
+          return (
+            null !== (_ = this.props.isStreamingClient) && void 0 !== _ && _
+          );
         }
         get isCurrentlyVisible() {
           if (this.state != _.Alive) return !1;
@@ -1402,17 +1215,6 @@ var CLSTAMP = "steamdb";
             .map((_) => _.summonOverlayKey)
             .filter((_) => Boolean(_))
             .filter(Boolean);
-        }
-        get tab() {
-          return {
-            tab_id: this.m_unTabID,
-            associated_frame_id: this.frameID,
-            display_name: this.title,
-            icon: this.icon,
-            visible_in_dashboard_bar: this.tabVisibility.bVisibleInDashboardBar,
-            visible_in_dashboard_bar_hamburger_menu:
-              this.tabVisibility.bVisibleInDashboardHamburgerMenu,
-          };
         }
         get frameMenuPopupRequest() {
           if (null != this.m_unFrameMenuPopupID)
@@ -1588,7 +1390,7 @@ var CLSTAMP = "steamdb";
                 var _;
                 return null === (_ = this.activePage) || void 0 === _
                   ? void 0
-                  : _.gamepad.PushGamepadFocus();
+                  : _.focus.PushInputFocus();
               },
             )),
               (this.m_actionToFocusLeftFrameMenu = this.CreateAction(
@@ -1601,7 +1403,7 @@ var CLSTAMP = "steamdb";
                     null === (_ = this.m_refFrameMenu.current) || void 0 === _
                       ? void 0
                       : _.getSGID();
-                  _ && _._.PushGamepadFocus(_);
+                  _ && _._.PushInputFocus(_);
                 },
               )),
               this.Log.Info("Frame initialized.");
@@ -1624,8 +1426,8 @@ var CLSTAMP = "steamdb";
             this.m_OnDestroyed.Dispatch(),
             this.m_OnDestroyed.ClearAllCallbacks());
         }
-        CreatePage() {
-          const _ = new _._(this, this.m_unNextPageID++);
+        CreatePage(_) {
+          const _ = new _._(this, this.m_unNextPageID++, _);
           return (
             queueMicrotask(() =>
               (0, _.runInAction)(() => {
@@ -1663,7 +1465,6 @@ var CLSTAMP = "steamdb";
               _._.m_eVRLinkDashboardMode == _._.SteamVRClientLegacyDual,
             _ = {
               frame_id: this.frameID,
-              tmp_title: this.title,
               menu: {
                 items_for_left_frame_menu:
                   null !== (_ = this.m_rgMenuItems_LeftFrameMenu) &&
@@ -1699,6 +1500,7 @@ var CLSTAMP = "steamdb";
                     : _.actionID,
               },
               is_vrlink_remote: _,
+              is_streaming_client: this.isStreamingClient,
               steamui_page_overlay_keys:
                 this.associatedSummonOverlayKeys.filter((_) =>
                   _.startsWith("valve.steam."),
@@ -1759,12 +1561,28 @@ var CLSTAMP = "steamdb";
               })
               .filter(Boolean)),
             _._.HasCapability(20, _._.MutualLocal) || (0, _._)(_.menu),
+            (_.dock_location = (function (_) {
+              switch (_) {
+                case _._.Dashboard:
+                  return 1;
+                case _._.LeftHand:
+                  return 2;
+                case _._.RightHand:
+                  return 3;
+                case _._.World:
+                  return 4;
+                case _._.Theater:
+                  return 5;
+                case _._.Boot:
+                  return 6;
+              }
+            })(this.docking.dockLocation)),
             _
           );
         }
         get protoForVRLink() {
           return {
-            tab: this.tab,
+            tab: this.tab.proto,
             icon: this.icon,
             is_currently_visible: this.isCurrentlyVisible,
             should_render_frame_controls: this.shouldRenderFrameControls,
@@ -1792,13 +1610,11 @@ var CLSTAMP = "steamdb";
           `${_.frameID}${_ ? " (remote)" : ""} "${_}"`
         );
       }
-      (0, _._)([_.observable], _.prototype, "m_eState", void 0),
-        (0, _._)([_.observable], _.prototype, "m_sTitle", void 0),
+      (0, _._)([_.observable.ref], _.prototype, "props", void 0),
+        (0, _._)([_.observable], _.prototype, "m_eState", void 0),
         (0, _._)([_.observable], _.prototype, "m_mapPages", void 0),
         (0, _._)([_.observable], _.prototype, "m_unActivePageID", void 0),
         (0, _._)([_.observable], _.prototype, "m_unFrameMenuPopupID", void 0),
-        (0, _._)([_.observable.struct], _.prototype, "m_Icon", void 0),
-        (0, _._)([_.observable.struct], _.prototype, "m_TabVisibility", void 0),
         (0, _._)([_.observable], _.prototype, "m_bVisibleWhenLocked", void 0),
         (0, _._)(
           [_.observable],
@@ -1825,9 +1641,6 @@ var CLSTAMP = "steamdb";
           void 0,
         ),
         (0, _._)([_.observable], _.prototype, "m_vrAppEntry", void 0),
-        (0, _._)([_.observable], _.prototype, "m_fnOnCloseRequested", void 0),
-        (0, _._)([_.observable], _.prototype, "m_sCloseButtonLabel", void 0),
-        (0, _._)([_.observable], _.prototype, "m_eCloseButtonIcon", void 0),
         (0, _._)(
           [_.observable],
           _.prototype,
@@ -1844,18 +1657,10 @@ var CLSTAMP = "steamdb";
           void 0,
         ),
         (0, _._)([_.computed], _.prototype, "isPendingStateConcluded", null),
-        (0, _._)([_.action], _.prototype, "SetTitle", null),
         (0, _._)([_.computed], _.prototype, "title", null),
-        (0, _._)([_.action], _.prototype, "SetIcon", null),
         (0, _._)([_.computed.struct], _.prototype, "icon", null),
         (0, _._)([_.computed], _.prototype, "visibleWhenLocked", null),
-        (0, _._)([_.action], _.prototype, "SetVisibleWhenLocked", null),
-        (0, _._)([_.action], _.prototype, "SetCloseButton", null),
-        (0, _._)([_.computed], _.prototype, "canRequestClose", null),
-        (0, _._)([_.computed], _.prototype, "closeButtonLabel", null),
-        (0, _._)([_.computed], _.prototype, "closeButtonIcon", null),
-        (0, _._)([_.action], _.prototype, "SetTabVisibility", null),
-        (0, _._)([_.computed.struct], _.prototype, "tabVisibility", null),
+        (0, _._)([_.computed], _.prototype, "isStreamingClient", null),
         (0, _._)([_.computed], _.prototype, "isCurrentlyVisible", null),
         (0, _._)(
           [_.computed],
@@ -1874,7 +1679,6 @@ var CLSTAMP = "steamdb";
           "associatedSummonOverlayKeys",
           null,
         ),
-        (0, _._)([_.computed.struct], _.prototype, "tab", null),
         (0, _._)([_.computed], _.prototype, "frameMenuPopupRequest", null),
         (0, _._)([_.computed], _.prototype, "shouldRenderFrameControls", null),
         (0, _._)([_.computed], _.prototype, "frameControlsTransformID", null),
@@ -1902,52 +1706,15 @@ var CLSTAMP = "steamdb";
       const _ = (0, _._)(
         _.forwardRef(function (_, _) {
           var _, _, _, _, _;
-          const {
-              children: _,
-              title: _,
-              iconEnum: _,
-              iconAppID: _,
-              iconOverlayKey: _,
-              iconHWND: _,
-              showTabInDashboardBar: _,
-              showTabInDashboardHamburgerMenu: _,
-              onCloseRequested: _,
-              closeButtonLabel: _,
-              closeButtonIcon: _,
-              forcedUniformDashboardHeight: _,
-              allowResizing: _,
-              visibleWhenSteamLocked: _,
-            } = _,
-            _ = _.useMemo(() => _._.CreateCFrame(), []);
-          (0, _._)(_, _);
-          const _ = _.useMemo(() => {
-              const _ = {
-                enum: _,
-                appid: _,
-                overlay: _,
-                hwnd: _,
-              };
-              if (!Object.values(_).every((_) => void 0 === _)) return _;
-            }, [_, _, _, _]),
-            _ = _.useMemo(() => null != _, [_]),
-            _ = _.useRef(void 0);
-          (_.current = _),
-            _.useEffect(() => {
-              (0, _.runInAction)(() => {
-                _ && _.SetTitle(_),
-                  _ && _.SetIcon(_),
-                  _.SetTabVisibility({
-                    bVisibleInDashboardBar: _,
-                    bVisibleInDashboardHamburgerMenu: _,
-                  }),
-                  _.SetCloseButton(_ ? _.current : void 0, _, _),
-                  _.size.ForceUniformDashboardHeight(_),
-                  null != _ && _.size.SetResizingAllowed(_),
-                  _.SetVisibleWhenLocked(null != _ && _),
-                  _.state == _.Uninitialized && _.Init();
-              });
-            }, [_, _, _, _, _, _, _, _, _, _, _]),
-            _.useEffect(() => () => _.DestroyFrame(), [_]);
+          const { children: _ } = _,
+            _ = _.useMemo(() => _._.CreateCFrame(_), []);
+          _.useLayoutEffect(() =>
+            (0, _.runInAction)(() => {
+              _.props = _;
+            }),
+          ),
+            (0, _._)(_, _),
+            _.useEffect(() => (_.Init(), () => _.DestroyFrame()), [_]);
           let _ = _._.GetDockLocationTransformID(
             _.docking.dockLocation,
             _.frameID,
@@ -1983,7 +1750,7 @@ var CLSTAMP = "steamdb";
                       (_ =
                         null === (_ = _.activePage) || void 0 === _
                           ? void 0
-                          : _.gamepad) || void 0 === _
+                          : _.focus) || void 0 === _
                       ? void 0
                       : _.inputFocusParams,
                   main_panel_origin: _.docking.mainPanelOrigin,
@@ -2079,55 +1846,9 @@ var CLSTAMP = "steamdb";
           _
         );
       }
-      function _(_) {
-        var _;
-        let _ = !0,
-          _ = !1;
-        8 &
-          (null !== (_ = null == _ ? void 0 : _.unFlags) && void 0 !== _
-            ? _
-            : 0) && (_ = !1);
-        return (
-          _._.HasCapability(2, _._.MutualLocal) &&
-            _._.includes(null == _ ? void 0 : _.sOverlayKey) &&
-            ((_ = _), (_ = !1)),
-          {
-            showTabInDashboardBar: _,
-            showTabInDashboardHamburgerMenu: _,
-          }
-        );
-      }
-      function _(_) {
-        var _;
-        const [_, _] = _.useState(!1),
-          _ =
-            null !==
-              (_ = _._.GetOverlayFlag(
-                null == _ ? void 0 : _.sOverlayKey,
-                33554432,
-              )) &&
-            void 0 !== _ &&
-            _;
-        let _ = "#Close";
-        (null == _ ? void 0 : _.sOverlayKey) == _._
-          ? (_ = "#StopStreaming")
-          : (null == _ ? void 0 : _.sOverlayKey.startsWith(_._)) &&
-            (_ = "#QuitApp");
-        return {
-          closeButtonLabel: (0, _._)(_),
-          closeButtonIcon: _ ? 32 : void 0,
-          onCloseRequested: _
-            ? () => {
-                VRHTML.VRDashboardManager.SendOverlayClosed(
-                  null == _ ? void 0 : _.sOverlayKey,
-                ),
-                  _(!0);
-              }
-            : void 0,
-        };
-      }
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
@@ -2142,6 +1863,7 @@ var CLSTAMP = "steamdb";
       }
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
@@ -2410,11 +2132,11 @@ var CLSTAMP = "steamdb";
       }
       function _(_) {
         const { frame: _ } = (0, _._)(),
-          _ = (0, _._)(() => _.canRequestClose),
-          _ = (0, _._)(() => _.closeButtonLabel),
-          _ = (0, _._)(() => _.closeButtonIcon),
+          _ = (0, _._)(() => _.closing.showCloseButton),
+          _ = (0, _._)(() => _.closing.closeButtonLabel),
+          _ = (0, _._)(() => _.closing.closeButtonIcon),
           _ = _.useCallback(() => {
-            _.RequestClose();
+            _.closing.RequestClose();
           }, []);
         return _
           ? _.createElement(
@@ -2519,6 +2241,7 @@ var CLSTAMP = "steamdb";
       }
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
@@ -2745,6 +2468,7 @@ var CLSTAMP = "steamdb";
       }
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
@@ -2808,7 +2532,6 @@ var CLSTAMP = "steamdb";
         }
         Init() {
           return (0, _._)(this, void 0, void 0, function* () {
-            var _;
             (0, _.reaction)(
               () => this.canTryConnectingToSteam,
               (_) => {
@@ -2846,14 +2569,7 @@ var CLSTAMP = "steamdb";
               ),
               (0, _.autorun)(this.SendUpdatesToSteam, {
                 delay: 1e-4,
-              }),
-              null ===
-                (_ =
-                  null === VRHTML || void 0 === VRHTML
-                    ? void 0
-                    : VRHTML.RegisterForFrameDockLocationRequests) ||
-                void 0 === _ ||
-                _.call(VRHTML, this.onFrameDockLocationRequest);
+              });
           });
         }
         InitSteamConnection() {
@@ -2960,8 +2676,8 @@ var CLSTAMP = "steamdb";
               this.m_OnFrameDestroyed.Dispatch(_);
           });
         }
-        CreateCFrame() {
-          const _ = new _._(this.m_unNextFrameID++, this.m_unNextTabID++);
+        CreateCFrame(_) {
+          const _ = new _._(this.m_unNextFrameID++, this.m_unNextTabID++, _);
           return (
             (0, _.when)(
               () => _.state != _._.Uninitialized && _.state != _._.Destroyed,
@@ -2990,12 +2706,6 @@ var CLSTAMP = "steamdb";
         }
         get isTheaterMode() {
           return null != this.theaterFrame;
-        }
-        onFrameDockLocationRequest(_, _) {
-          var _;
-          null === (_ = this.GetLocalFrame(_)) ||
-            void 0 === _ ||
-            _.docking.SetDockLocation(_);
         }
         get remote_frames() {
           return [...this.m_mapRemoteFrames.values()];
@@ -3088,6 +2798,40 @@ var CLSTAMP = "steamdb";
             ? _
             : void 0;
         }
+        get dockEntries() {
+          let _ = [];
+          for (const [_, _] of this.m_mapDockLocations.entries()) {
+            const _ = {
+              frame_id: _,
+              dock_location: null != _ ? _ : 0,
+            };
+            _.push(_);
+          }
+          return _;
+        }
+        setDockEntries(_) {
+          if (
+            (this.m_mapDockLocations.clear(),
+            this.m_mapExclusiveDockLocations.clear(),
+            this.m_mapPreviewExclusiveDockLocations.clear(),
+            this.m_mapPreviewDockLocations.clear(),
+            _)
+          )
+            for (const _ of _) {
+              const _ = (0, _._)(null == _ ? void 0 : _.dock_location);
+              _ &&
+                (null == _ ? void 0 : _.frame_id) &&
+                (this.m_mapDockLocations.set(
+                  null == _ ? void 0 : _.frame_id,
+                  _,
+                ),
+                (0, _._)(_) &&
+                  this.m_mapExclusiveDockLocations.set(
+                    _,
+                    null == _ ? void 0 : _.frame_id,
+                  ));
+            }
+        }
         get frames_local_undocked() {
           return [
             ...Array.from(this.m_mapLocalFrames.values()).filter(
@@ -3120,7 +2864,9 @@ var CLSTAMP = "steamdb";
             return this.frames.find((_) => {
               var _;
               return (
-                (null === (_ = _.tab) || void 0 === _ ? void 0 : _.tab_id) === _
+                (null === (_ = _.tab.proto) || void 0 === _
+                  ? void 0
+                  : _.tab_id) === _
               );
             });
         }
@@ -3194,12 +2940,6 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.computed], _.prototype, "bootFrame", null),
         (0, _._)([_.computed], _.prototype, "theaterFrame", null),
         (0, _._)([_.computed], _.prototype, "isTheaterMode", null),
-        (0, _._)(
-          [_.action.bound],
-          _.prototype,
-          "onFrameDockLocationRequest",
-          null,
-        ),
         (0, _._)([_.computed], _.prototype, "remote_frames", null),
         (0, _._)([_.computed], _.prototype, "remote_steam_frame", null),
         (0, _._)([_.action], _.prototype, "_create_remote_cframe", null),
@@ -3222,6 +2962,8 @@ var CLSTAMP = "steamdb";
           null,
         ),
         (0, _._)([_._], _.prototype, "_getPreviewDockLocation", null),
+        (0, _._)([_.computed], _.prototype, "dockEntries", null),
+        (0, _._)([_.action.bound], _.prototype, "setDockEntries", null),
         (0, _._)([_.computed], _.prototype, "frames_local_undocked", null),
         (0, _._)([_._], _.prototype, "GetFrame", null),
         (0, _._)([_._], _.prototype, "GetLocalFrame", null),
@@ -3253,6 +2995,7 @@ var CLSTAMP = "steamdb";
       window.FrameStore = _;
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
@@ -3284,10 +3027,266 @@ var CLSTAMP = "steamdb";
       }
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
+      var _,
+        _,
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ =
+          (__webpack_require__("chunkid"),
+          __webpack_require__("chunkid"),
+          __webpack_require__("chunkid")),
+        _ = __webpack_require__("chunkid");
+      __webpack_require__("chunkid"),
+        __webpack_require__("chunkid"),
+        __webpack_require__("chunkid"),
+        __webpack_require__("chunkid"),
+        __webpack_require__("chunkid");
+      !(function (_) {
+        (_[(_.None = 0)] = "None"),
+          (_[(_.ControllerPairing = 1)] = "ControllerPairing"),
+          (_[(_.FaceMouse = 2)] = "FaceMouse"),
+          (_[(_.HardwareButtons = 4)] = "HardwareButtons"),
+          (_[(_.Recentering = 8)] = "Recentering"),
+          (_[(_.ResizingFrames = 16)] = "ResizingFrames"),
+          (_[(_.StreamingGamesFromPC = 32)] = "StreamingGamesFromPC"),
+          (_[(_.StreamingToTV = 64)] = "StreamingToTV"),
+          (_[(_.ToggleDashboard = 128)] = "ToggleDashboard");
+      })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.None = 0)] = "None"),
+            (_[(_.Library = 1)] = "Library"),
+            (_[(_.HamburgerMenu = 2)] = "HamburgerMenu"),
+            (_[(_.QuickAccessMenu = 4)] = "QuickAccessMenu"),
+            (_[(_.GrabHandles = 8)] = "GrabHandles"),
+            (_[(_.FrameMenu = 16)] = "FrameMenu"),
+            (_[(_.PlayspaceMenu = 32)] = "PlayspaceMenu"),
+            (_[(_.AdditionalTopicsLink = 64)] = "AdditionalTopicsLink");
+        })(_ || (_ = {}));
+      const _ = [
+        {
+          key: "steamframe-quick-access-menu",
+          strTitle: "Quick Access Menu",
+          bodyComponent: () =>
+            _.createElement(_, {
+              enum: _.QuickAccessMenu,
+            }),
+          BCanShow: () => !0,
+          parentOrigin: {
+            _: 0.35,
+            _: -0.5,
+          },
+          offsetPixels: {
+            _: 0,
+            _: 150,
+            _: 120,
+          },
+          rotation: {
+            pitch_degrees: 40,
+            yaw_degrees: 0,
+          },
+          parentOverlayKey: "valve.steam.gamepadui.bar",
+          GetLocation: () => 1,
+          tooltipFlow: 1,
+        },
+        {
+          key: "steam-playspace",
+          strTitle: "Playspace Menu",
+          bodyComponent: () =>
+            _.createElement(_, {
+              enum: _.PlayspaceMenu,
+            }),
+          BCanShow: () => !0,
+          parentOrigin: {
+            _: 0.1,
+            _: -0.5,
+          },
+          offsetPixels: {
+            _: 0,
+            _: 150,
+            _: 120,
+          },
+          rotation: {
+            pitch_degrees: 40,
+            yaw_degrees: 0,
+          },
+          parentOverlayKey: "valve.steam.gamepadui.bar",
+          GetLocation: () => 1,
+          tooltipFlow: 1,
+        },
+        {
+          key: "steam-library",
+          strTitle: "Library",
+          bodyComponent: () =>
+            _.createElement(_, {
+              enum: _.Library,
+            }),
+          BCanShow: () => !0,
+          parentOrigin: {
+            _: -1,
+            _: 0.35,
+          },
+          offsetPixels: {
+            _: -500,
+            _: -70,
+            _: 30,
+          },
+          rotation: {
+            pitch_degrees: 0,
+            yaw_degrees: 0,
+          },
+          parentOverlayKey: "valve.steam.gamepadui.main",
+          GetLocation: () => 1,
+          tooltipFlow: 0,
+        },
+      ];
+      function _(_) {
+        return _.createElement(
+          "div",
+          {
+            className: _.LearningTopicBody,
+          },
+          _.createElement(
+            "div",
+            {
+              className: _.LearningTopicParagraph,
+            },
+            "User Guide Reference",
+          ),
+          _.createElement(
+            "div",
+            {
+              className: _.BodyText,
+            },
+            "This is the Quick Access menu. Here is where you can restart the guided tour under the help section.",
+          ),
+        );
+      }
+      function _(_) {
+        return _.createElement(
+          "div",
+          {
+            className: _.LearningTopicBody,
+          },
+          _.createElement(
+            "div",
+            {
+              className: _.LearningTopicParagraph,
+            },
+            "Library Topic",
+          ),
+          _.createElement(
+            "div",
+            {
+              className: _.BodyText,
+            },
+            "Here's your Library",
+          ),
+        );
+      }
+      function _(_) {
+        return _.createElement(
+          "div",
+          {
+            className: _.LearningTopicBody,
+          },
+          _.createElement(
+            "div",
+            {
+              className: _.LearningTopicParagraph,
+            },
+            "Playspace Menu",
+          ),
+          _.createElement(
+            "div",
+            {
+              className: _.BodyText,
+            },
+            "Here you can see your playspae and recenter it.",
+          ),
+        );
+      }
+      class _ {
+        constructor() {
+          (this.m_mapTopicRead = new Map()), (0, _.makeObservable)(this);
+        }
+        Init() {
+          this.FakeTopicReadStatesUntilThisIsReadyForPrimetime();
+        }
+        FakeTopicReadStatesUntilThisIsReadyForPrimetime() {
+          return (0, _._)(this, void 0, void 0, function* () {
+            this.allTopics.forEach((_) => {
+              (0, _._)(_.key);
+            }),
+              yield this.LoadAllTopicReadStates();
+          });
+        }
+        get allTopics() {
+          return _;
+        }
+        get showableTopics() {
+          return this.allTopics.filter((_) => _.BCanShow());
+        }
+        get unreadShowableTopics() {
+          return this.allTopics.filter((_) => !this.m_mapTopicRead.get(_.key));
+        }
+        LoadAllTopicReadStates() {
+          return (0, _._)(this, void 0, void 0, function* () {
+            yield Promise.all(
+              this.allTopics.map((_) => this.LoadTopicReadState(_.key)),
+            );
+          });
+        }
+        LoadTopicReadState(_) {
+          return (0, _._)(this, void 0, void 0, function* () {
+            const _ = yield (0, _._)(_);
+            (0, _.runInAction)(() => {
+              this.m_mapTopicRead.set(_, _);
+            });
+          });
+        }
+        get hasAnyReadTopics() {
+          return this.m_mapTopicRead.size > 0;
+        }
+        get hasAnyUnreadTopics() {
+          return this.unreadShowableTopics.length > 0;
+        }
+        IsTopicRead(_) {
+          var _;
+          return null !== (_ = this.m_mapTopicRead.get(_)) && void 0 !== _ && _;
+        }
+        MarkTopicsAsRead(_) {
+          (0, _._)(_),
+            (0, _.runInAction)(() => {
+              this.m_mapTopicRead.set(_, !0);
+            });
+        }
+        ClearTopicsRead() {
+          return (0, _._)(this, void 0, void 0, function* () {
+            this.allTopics.forEach((_) => {
+              (0, _._)(_.key);
+            }),
+              (0, _.runInAction)(() => {
+                this.m_mapTopicRead.clear();
+              }),
+              yield this.LoadAllTopicReadStates();
+          });
+        }
+      }
+      (0, _._)([_.observable], _.prototype, "m_mapTopicRead", void 0),
+        (0, _._)([_.computed], _.prototype, "unreadShowableTopics", null),
+        (0, _._)([_.computed], _.prototype, "hasAnyReadTopics", null),
+        (0, _._)([_.computed], _.prototype, "hasAnyUnreadTopics", null);
+      new _();
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
       });
       var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -3400,6 +3399,7 @@ var CLSTAMP = "steamdb";
           _;
         const { popupRequest: _, refPanel: _, children: _ } = _,
           _ = (0, _._)(_, ["popupRequest", "refPanel", "children"]),
+          _ = null == _ ? void 0 : _.dashboard_popup_id,
           _ = {
             _:
               null !==
@@ -3606,61 +3606,69 @@ var CLSTAMP = "steamdb";
             () => _._.Current().forceLayoutUpdate(),
             [_._, _._, _._, _._],
           );
-        const _ = _.createElement(
-          _,
-          {
-            invertParentPanelPitch: !_,
-          },
-          _.createElement(
+        const _ = _.useCallback(
+            (_) => {
+              _._.SetRenderedPanelForRequestID(_, _);
+            },
+            [_],
+          ),
+          _ = (0, _._)(_, _),
+          _ = _.createElement(
             _,
             {
-              offsetPixels: _,
-              offsetMeters: _,
+              invertParentPanelPitch: !_,
             },
             _.createElement(
               _,
               {
-                rotation: _,
+                offsetPixels: _,
+                offsetMeters: _,
               },
               _.createElement(
-                _._,
-                Object.assign(
-                  {
-                    ref: _,
-                    debug_name: `${null == _ ? void 0 : _.popup_overlay_key} (popup:${null == _ ? void 0 : _.dashboard_popup_id})`,
-                    _: _ ? `PooledPopup-${_.popup_overlay_key}` : void 0,
-                    interactive: _,
-                    only_visible_with_laser: _,
-                    curvature: _ ? "inherit-from-parent-panel" : void 0,
-                    overlay_key: null == _ ? void 0 : _.popup_overlay_key,
-                    origin: _,
-                    meters_per_pixel:
-                      (null !==
-                        (_ =
-                          null === _._ || void 0 === _._
-                            ? void 0
-                            : _._.m_fVRGamepadUI_MetersPerPixel) && void 0 !== _
-                        ? _
-                        : 1) * _,
-                    reflect: _(_),
-                    sort_depth_bias: _,
-                    inputFocusParams: {
-                      unSteamInputAppID: _ ? _._ : void 0,
+                _,
+                {
+                  rotation: _,
+                },
+                _.createElement(
+                  _._,
+                  Object.assign(
+                    {
+                      ref: _,
+                      debug_name: `${null == _ ? void 0 : _.popup_overlay_key} (popup:${null == _ ? void 0 : _.dashboard_popup_id})`,
+                      _: _ ? `PooledPopup-${_.popup_overlay_key}` : void 0,
+                      interactive: _,
+                      only_visible_with_laser: _,
+                      curvature: _ ? "inherit-from-parent-panel" : void 0,
+                      overlay_key: null == _ ? void 0 : _.popup_overlay_key,
+                      origin: _,
+                      meters_per_pixel:
+                        (null !==
+                          (_ =
+                            null === _._ || void 0 === _._
+                              ? void 0
+                              : _._.m_fVRGamepadUI_MetersPerPixel) &&
+                        void 0 !== _
+                          ? _
+                          : 1) * _,
+                      reflect: _(_),
+                      sort_depth_bias: _,
+                      inputFocusParams: {
+                        unSteamInputAppID: _ ? _._ : void 0,
+                      },
+                      uv_min: _,
+                      uv_max: _,
+                      sort_order: _,
+                      no_depth_test: _,
+                      no_depth_write: _,
+                      frame_resize_scale_factor: 1,
                     },
-                    uv_min: _,
-                    uv_max: _,
-                    sort_order: _,
-                    no_depth_test: _,
-                    no_depth_write: _,
-                    frame_resize_scale_factor: 1,
-                  },
+                    _,
+                  ),
                   _,
                 ),
-                _,
               ),
             ),
-          ),
-        );
+          );
         return (null == _ ? void 0 : _.parent_overlay_key)
           ? _.createElement(
               _._,
@@ -3707,6 +3715,7 @@ var CLSTAMP = "steamdb";
       );
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
@@ -3802,6 +3811,7 @@ var CLSTAMP = "steamdb";
       window.TravelModeStore = _;
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
         _: () => _,
@@ -3834,9 +3844,9 @@ var CLSTAMP = "steamdb";
         _: () => _,
       });
       var _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      let _ = 0;
+      var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__._(_),
         _ = __webpack_require__("chunkid");
       function _(_) {
@@ -4564,7 +4574,13 @@ var CLSTAMP = "steamdb";
       function _(_) {
         const { type: _, partial: _ } = _,
           _ = (0, _._)(_, ["type", "partial"]),
-          [_, _] = (0, _._)();
+          [_, _] = (function () {
+            const _ = _.useRef(void 0);
+            return (
+              void 0 === _.current && (_.current = "svgid_" + _++),
+              [_.current, `url(#${_.current})`]
+            );
+          })();
         return "triton" == _
           ? _.createElement(
               "svg",
@@ -5061,6 +5077,7 @@ var CLSTAMP = "steamdb";
       }
     },
     chunkid: (module, module_exports, __webpack_require__) => {
+      "use strict";
       __webpack_require__._(module_exports, {
         _: () => _,
       });

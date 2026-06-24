@@ -13,89 +13,6 @@ var CLSTAMP = "steamdb";
       _.Component;
     },
     chunkid: (module, module_exports, __webpack_require__) => {
-      var _,
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
-      !(function (_) {
-        (_[(_.Disabled = 0)] = "Disabled"),
-          (_[(_.WorldZeroY = 1)] = "WorldZeroY"),
-          (_[(_.WorldDynamicFloor = 2)] = "WorldDynamicFloor");
-      })(_ || (_ = {}));
-      class _ extends _._ {
-        constructor(_) {
-          super(_), super.setBuildNodeOverride(this.buildNode);
-        }
-        getNodeType() {
-          return "constraint";
-        }
-        buildNode(_, _) {
-          const _ = this.createSgNode(_);
-          return (
-            (_.properties["projection-constraint"] =
-              this.props.projection_constraint),
-            [_, _]
-          );
-        }
-      }
-      (0, _._)([_._], _.prototype, "buildNode", null);
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      var _,
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
-      !(function (_) {
-        (_[(_.RoomSetupFloor = 1)] = "RoomSetupFloor"),
-          (_[(_.Locomotion = 2)] = "Locomotion"),
-          (_[(_.QuickRecenter = 4)] = "QuickRecenter");
-      })(_ || (_ = {}));
-      class _ extends _._ {
-        constructor(_) {
-          super(_), super.setBuildNodeOverride(this.buildNode);
-        }
-        getNodeType() {
-          return "constructglobals";
-        }
-        buildNode(_, _) {
-          const _ = this.createSgNode(_);
-          return (
-            (_.properties["scene-color-mult"] = (0, _._)(
-              this.props["scene-color-mult"],
-            )),
-            (_.properties["floor-color-mult"] = (0, _._)(
-              this.props["floor-color-mult"],
-            )),
-            (_.properties["scene-reflection-mult"] = (0, _._)(
-              this.props["scene-reflection-mult"],
-            )),
-            (_.properties["skydome-mult"] = (0, _._)(
-              this.props["skydome-mult"],
-            )),
-            (_.properties["aurora-blur"] = (0, _._)(this.props["aurora-blur"])),
-            (_.properties["roomview-mult"] = (0, _._)(
-              this.props["roomview-mult"],
-            )),
-            (_.properties["allowed-action-sets"] = this.props[
-              "allowed-action-sets"
-            ].reduce((_, _) => _ | _, 0)),
-            (_.properties["inhibit-bounds-rendering"] =
-              this.props["inhibit-bounds-rendering"]),
-            (_.properties["pause-notifications"] =
-              this.props["pause-notifications"]),
-            (_.properties["roomview-enable-override"] =
-              this.props["roomview-enable-override"]),
-            (_.properties["systemlayer-msaa-enable-override"] =
-              this.props["systemlayer-msaa-enable-override"]),
-            (_.properties["construct-alpha-override"] =
-              this.props["construct-alpha-override"]),
-            [_, _]
-          );
-        }
-      }
-      (0, _._)([_._], _.prototype, "buildNode", null);
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
@@ -119,9 +36,126 @@ var CLSTAMP = "steamdb";
       (0, _._)([_._], _.prototype, "buildNode", null);
     },
     chunkid: (module, module_exports, __webpack_require__) => {
-      __webpack_require__("chunkid");
-      var _ = __webpack_require__("chunkid");
-      _._;
+      __webpack_require__._(module_exports, {
+        _: () => _,
+      });
+      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      class _ extends _._ {
+        constructor(_) {
+          super(_);
+        }
+        internalRender() {
+          return _.createElement("vsg-line", {
+            "target-id": this.props.target_id,
+            thickness: this.props.thickness,
+            "start-buffer": this.props.start_buffer,
+            "end-buffer": this.props.end_buffer,
+          });
+        }
+      }
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      __webpack_require__._(module_exports, {
+        _: () => _,
+      });
+      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid");
+      class _ extends _._ {
+        constructor(_) {
+          super(_),
+            (this.m_latchedPosition = null),
+            super.setBuildNodeOverride(this.buildNode);
+        }
+        getNodeType() {
+          return "panel-anchor";
+        }
+        relatch() {
+          this.m_latchedPosition = null;
+        }
+        buildNode(_, _) {
+          var _, _;
+          if (!_.currentPanel && !_.bInsideReparentedPanel)
+            return [
+              Object.assign(Object.assign({}, _), {
+                bShouldAbort: !0,
+              }),
+              null,
+            ];
+          let _ = null;
+          "object" == typeof this.props.location
+            ? (_ = (0, _._)(this.props.location, {
+                _: 0,
+                _: 0,
+              }))
+            : "number" == typeof this.props.location &&
+              (_ = (0, _._)(this.props.location));
+          let _ = this.createSgNode(_);
+          if (this.props.latched && null !== this.m_latchedPosition)
+            (_.properties["anchor-u"] = this.m_latchedPosition._),
+              (_.properties["anchor-v"] = this.m_latchedPosition._);
+          else if (_) {
+            const _ = {
+                _: 0.5 * _._ + 0.5,
+                _: -0.5 * _._ + 0.5,
+              },
+              _ =
+                !_.currentPanel || _.currentPanel.props.overlay_key
+                  ? _
+                  : _.currentPanel.scaleLocalUVToGlobal(_);
+            _ &&
+              ((_.properties["anchor-u"] = _._),
+              (_.properties["anchor-v"] = _._));
+          } else {
+            if (!_.currentPanel)
+              return [
+                Object.assign(Object.assign({}, _), {
+                  bShouldAbort: !0,
+                }),
+                null,
+              ];
+            const _ = _.ownerDocument,
+              _ = _.getBoundingClientRect(),
+              _ = _.left + _.width / 2,
+              _ = _.top + _.height / 2,
+              _ = _.currentPanel.m_Rect;
+            if (_ < _._ || _ > _._ + _.width || _ < _._ || _ > _._ + _.height)
+              return [
+                Object.assign(Object.assign({}, _), {
+                  bShouldAbort: !0,
+                }),
+                null,
+              ];
+            const _ =
+                null === (_ = _.defaultView) || void 0 === _
+                  ? void 0
+                  : _.innerWidth,
+              _ =
+                null === (_ = _.defaultView) || void 0 === _
+                  ? void 0
+                  : _.innerHeight;
+            if (!(_ && _ > 0 && _ && _ > 0))
+              return [
+                Object.assign(Object.assign({}, _), {
+                  bShouldAbort: !0,
+                }),
+                null,
+              ];
+            (_.properties["anchor-u"] = _ / _),
+              (_.properties["anchor-v"] = _ / _);
+          }
+          return (
+            (this.m_latchedPosition = {
+              _: _.properties["anchor-u"],
+              _: _.properties["anchor-v"],
+            }),
+            [_, _]
+          );
+        }
+      }
+      (0, _._)([_._], _.prototype, "buildNode", null);
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       __webpack_require__._(module_exports, {
@@ -474,99 +508,6 @@ var CLSTAMP = "steamdb";
         (0, _._)([_._], _.prototype, "onMouseMove", null),
         (0, _._)([_._], _.prototype, "forceLayoutUpdate", null),
         (0, _._)([_._], _.prototype, "onMutation", null);
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      var _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
-      class _ extends _._ {
-        constructor(_) {
-          super(_), super.setBuildNodeOverride(this.buildNode);
-        }
-        getNodeType() {
-          return "tilefloor";
-        }
-        buildNode(_, _) {
-          var _, _, _, _, _, _, _;
-          const _ = this.createSgNode(_);
-          if (
-            ((_.properties["tile-size"] = this.props["tile-size"]),
-            (_.properties["tile-gap"] = this.props["tile-gap"]),
-            (_.properties["inner-radius"] = this.props["inner-radius"]),
-            (_.properties["outer-radius"] = this.props["outer-radius"]),
-            (_.properties["fade-distance"] =
-              null === (_ = this.props) || void 0 === _
-                ? void 0
-                : _["fade-distance"]),
-            (_.properties["min-tile-scale-at-periphery"] =
-              this.props["min-tile-scale-at-periphery"]),
-            (_.properties.height = (0, _._)(this.props.height)),
-            null != this.props.offset &&
-              (_.properties.offset = [
-                null === (_ = this.props.offset) || void 0 === _ ? void 0 : _._,
-                null === (_ = this.props.offset) || void 0 === _ ? void 0 : _._,
-              ]),
-            "string" == typeof this.props.color)
-          )
-            _.properties.color = this.props.color;
-          else if (this.props.color) {
-            let _ = (0, _._)(this.props.color, {
-              _: 0,
-              _: 0,
-              _: 0,
-            });
-            _.properties.color = [_._, _._, _._];
-          }
-          return (
-            (_.properties["center-randomization"] =
-              null == this ? void 0 : this.props["center-randomization"]),
-            this.props["luma-randomization"] &&
-              ((_.properties["luma-randomization-min-gain"] =
-                this.props["luma-randomization"]["min-gain"]),
-              (_.properties["luma-randomization-max-gain"] =
-                this.props["luma-randomization"]["max-gain"])),
-            this.props["reflection-randomization"] &&
-              ((_.properties["reflection-randomization-min-gain"] =
-                this.props["reflection-randomization"]["min-gain"]),
-              (_.properties["reflection-randomization-max-gain"] =
-                this.props["reflection-randomization"]["max-gain"])),
-            (_.properties["normal-randomization-degrees"] =
-              null === (_ = this.props) || void 0 === _
-                ? void 0
-                : _["normal-randomization-degrees"]),
-            this.props.chevron &&
-              ((_.properties["chevron-luma-scale"] =
-                this.props.chevron["luma-scale"]),
-              (_.properties["chevron-reflection-scale"] =
-                this.props.chevron["reflection-scale"])),
-            (_.properties["auto-subdivide"] =
-              null === (_ = this.props) || void 0 === _
-                ? void 0
-                : _["auto-subdivide"]),
-            (_.properties["pedestal-height"] = (0, _._)(
-              this.props["pedestal-height"],
-            )),
-            (_.properties["pedestal-radius"] = (0, _._)(
-              this.props["pedestal-radius"],
-            )),
-            (_.properties["floor-aa-shader"] =
-              null === (_ = this.props) || void 0 === _
-                ? void 0
-                : _["floor-aa-shader"]),
-            (_.properties["stable-fade"] =
-              null === (_ = this.props) || void 0 === _
-                ? void 0
-                : _["stable-fade"]),
-            [_, _]
-          );
-        }
-      }
-      (0, _._)([_._], _.prototype, "buildNode", null);
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      __webpack_require__("chunkid");
-      var _ = __webpack_require__("chunkid");
-      _._;
     },
   },
 ]);

@@ -3,431 +3,93 @@ var CLSTAMP = "steamdb";
   "use strict";
   var _,
     _ = {
-      chunkid: (_, _) => {
-        var _ = Symbol.for("react.element"),
-          _ = Symbol.for("react.portal"),
-          _ = Symbol.for("react.fragment"),
-          _ = Symbol.for("react.strict_mode"),
-          _ = Symbol.for("react.profiler"),
-          _ = Symbol.for("react.provider"),
-          _ = Symbol.for("react.context"),
-          _ = Symbol.for("react.forward_ref"),
-          _ = Symbol.for("react.suspense"),
-          _ = Symbol.for("react.memo"),
-          _ = Symbol.for("react.lazy"),
-          _ = Symbol.iterator;
-        var _ = {
-            isMounted: function () {
-              return !1;
-            },
-            enqueueForceUpdate: function () {},
-            enqueueReplaceState: function () {},
-            enqueueSetState: function () {},
-          },
-          _ = Object.assign,
-          _ = {};
-        function _(_, _, _) {
-          (this.props = _),
-            (this.context = _),
-            (this.refs = _),
-            (this.updater = _ || _);
-        }
-        function _() {}
-        function _(_, _, _) {
-          (this.props = _),
-            (this.context = _),
-            (this.refs = _),
-            (this.updater = _ || _);
-        }
-        (_.prototype.isReactComponent = {}),
-          (_.prototype.setState = function (_, _) {
-            if ("object" != typeof _ && "function" != typeof _ && null != _)
-              throw Error(
-                "setState(...): takes an object of state variables to update or a function which returns an object of state variables.",
-              );
-            this.updater.enqueueSetState(this, _, _, "setState");
-          }),
-          (_.prototype.forceUpdate = function (_) {
-            this.updater.enqueueForceUpdate(this, _, "forceUpdate");
-          }),
-          (_.prototype = _.prototype);
-        var _ = (_.prototype = new _());
-        (_.constructor = _), _(_, _.prototype), (_.isPureReactComponent = !0);
-        var _ = Array.isArray,
-          _ = Object.prototype.hasOwnProperty,
-          _ = {
-            current: null,
-          },
-          _ = {
-            key: !0,
-            ref: !0,
-            __self: !0,
-            __source: !0,
-          };
-        function _(_, _, _) {
-          var _,
-            _ = {},
-            _ = null,
-            _ = null;
-          if (null != _)
-            for (_ in (void 0 !== _.ref && (_ = _.ref),
-            void 0 !== _.key && (_ = "" + _.key),
-            _))
-              _.call(_, _) && !_.hasOwnProperty(_) && (_[_] = _[_]);
-          var _ = arguments.length - 2;
-          if (1 === _) _.children = _;
-          else if (1 < _) {
-            for (var _ = Array(_), _ = 0; _ < _; _++) _[_] = arguments[_ + 2];
-            _.children = _;
-          }
-          if (_ && _.defaultProps)
-            for (_ in (_ = _.defaultProps)) void 0 === _[_] && (_[_] = _[_]);
-          return {
-            $$typeof: _,
-            type: _,
-            key: _,
-            ref: _,
-            props: _,
-            _owner: _.current,
-          };
-        }
-        function _(_) {
-          return "object" == typeof _ && null !== _ && _.$$typeof === _;
-        }
-        var _ = /\/+/g;
-        function _(_, _) {
-          return "object" == typeof _ && null !== _ && null != _.key
-            ? (function (_) {
-                var _ = {
-                  "=": "=0",
-                  ":": "=2",
-                };
-                return (
-                  "$" +
-                  _.replace(/[=:]/g, function (_) {
-                    return _[_];
-                  })
-                );
-              })("" + _.key)
-            : _.toString(36);
-        }
-        function _(_, _, _, _, _) {
-          var _ = typeof _;
-          ("undefined" !== _ && "boolean" !== _) || (_ = null);
-          var _ = !1;
-          if (null === _) _ = !0;
-          else
-            switch (_) {
-              case "string":
-              case "number":
-                _ = !0;
-                break;
-              case "object":
-                switch (_.$$typeof) {
-                  case _:
-                  case _:
-                    _ = !0;
-                }
-            }
-          if (_)
-            return (
-              (_ = _((_ = _))),
-              (_ = "" === _ ? "." + _(_, 0) : _),
-              _(_)
-                ? ((_ = ""),
-                  null != _ && (_ = _.replace(_, "$&/") + "/"),
-                  _(_, _, _, "", function (_) {
-                    return _;
-                  }))
-                : null != _ &&
-                  (_(_) &&
-                    (_ = (function (_, _) {
-                      return {
-                        $$typeof: _,
-                        type: _.type,
-                        key: _,
-                        ref: _.ref,
-                        props: _.props,
-                        _owner: _._owner,
-                      };
-                    })(
-                      _,
-                      _ +
-                        (!_.key || (_ && _.key === _.key)
-                          ? ""
-                          : ("" + _.key).replace(_, "$&/") + "/") +
-                        _,
-                    )),
-                  _.push(_)),
-              1
-            );
-          if (((_ = 0), (_ = "" === _ ? "." : _ + ":"), _(_)))
-            for (var _ = 0; _ < _.length; _++) {
-              var _ = _ + _((_ = _[_]), _);
-              _ += _(_, _, _, _, _);
-            }
-          else if (
-            ((_ = (function (_) {
-              return null === _ || "object" != typeof _
-                ? null
-                : "function" == typeof (_ = (_ && _[_]) || _["@@iterator"])
-                  ? _
-                  : null;
-            })(_)),
-            "function" == typeof _)
-          )
-            for (_ = _.call(_), _ = 0; !(_ = _.next()).done; )
-              _ += _((_ = _.value), _, _, (_ = _ + _(_, _++)), _);
-          else if ("object" === _)
-            throw (
-              ((_ = String(_)),
-              Error(
-                "Objects are not valid as a React child (found: " +
-                  ("[object Object]" === _
-                    ? "object with keys {" + Object.keys(_).join(", ") + "}"
-                    : _) +
-                  "). If you meant to render a collection of children, use an array instead.",
-              ))
-            );
-          return _;
-        }
-        function _(_, _, _) {
-          if (null == _) return _;
-          var _ = [],
-            _ = 0;
-          return (
-            _(_, _, "", "", function (_) {
-              return _.call(_, _, _++);
-            }),
-            _
-          );
-        }
-        function _(_) {
-          if (-1 === _._status) {
-            var _ = _._result;
-            (_ = _()).then(
-              function (_) {
-                (0 !== _._status && -1 !== _._status) ||
-                  ((_._status = 1), (_._result = _));
-              },
-              function (_) {
-                (0 !== _._status && -1 !== _._status) ||
-                  ((_._status = 2), (_._result = _));
-              },
-            ),
-              -1 === _._status && ((_._status = 0), (_._result = _));
-          }
-          if (1 === _._status) return _._result.default;
-          throw _._result;
-        }
-        var _ = {
-            current: null,
-          },
-          _ = {
-            transition: null,
-          },
-          _ = {
-            ReactCurrentDispatcher: _,
-            ReactCurrentBatchConfig: _,
-            ReactCurrentOwner: _,
-          };
-        function _() {
-          throw Error(
-            "act(...) is not supported in production builds of React.",
-          );
-        }
-        (_.Children = {
-          map: _,
-          forEach: function (_, _, _) {
-            _(
-              _,
-              function () {
-                _.apply(this, arguments);
-              },
-              _,
-            );
-          },
-          count: function (_) {
-            var _ = 0;
-            return (
-              _(_, function () {
-                _++;
-              }),
-              _
-            );
-          },
-          toArray: function (_) {
-            return (
-              _(_, function (_) {
-                return _;
-              }) || []
-            );
-          },
-          only: function (_) {
-            if (!_(_))
-              throw Error(
-                "React.Children.only expected to receive a single React element child.",
-              );
-            return _;
-          },
-        }),
-          (_.Component = _),
-          (_.Fragment = _),
-          (_.Profiler = _),
-          (_.PureComponent = _),
-          (_.StrictMode = _),
-          (_.Suspense = _),
-          (_.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = _),
-          (_.act = _),
-          (_.cloneElement = function (_, _, _) {
-            if (null == _)
-              throw Error(
-                "React.cloneElement(...): The argument must be a React element, but you passed " +
-                  _ +
-                  ".",
-              );
-            var _ = _({}, _.props),
-              _ = _.key,
-              _ = _.ref,
-              _ = _._owner;
-            if (null != _) {
-              if (
-                (void 0 !== _.ref && ((_ = _.ref), (_ = _.current)),
-                void 0 !== _.key && (_ = "" + _.key),
-                _.type && _.type.defaultProps)
-              )
-                var _ = _.type.defaultProps;
-              for (_ in _)
-                _.call(_, _) &&
-                  !_.hasOwnProperty(_) &&
-                  (_[_] = void 0 === _[_] && void 0 !== _ ? _[_] : _[_]);
-            }
-            var _ = arguments.length - 2;
-            if (1 === _) _.children = _;
-            else if (1 < _) {
-              _ = Array(_);
-              for (var _ = 0; _ < _; _++) _[_] = arguments[_ + 2];
-              _.children = _;
-            }
-            return {
-              $$typeof: _,
-              type: _.type,
-              key: _,
-              ref: _,
-              props: _,
-              _owner: _,
-            };
-          }),
-          (_.createContext = function (_) {
-            return (
-              ((_ = {
-                $$typeof: _,
-                _currentValue: _,
-                _currentValue2: _,
-                _threadCount: 0,
-                Provider: null,
-                Consumer: null,
-                _defaultValue: null,
-                _globalName: null,
-              }).Provider = {
-                $$typeof: _,
-                _context: _,
-              }),
-              (_.Consumer = _)
-            );
-          }),
-          (_.createElement = _),
-          (_.createFactory = function (_) {
-            var _ = _.bind(null, _);
-            return (_.type = _), _;
-          }),
-          (_.createRef = function () {
-            return {
-              current: null,
-            };
-          }),
-          (_.forwardRef = function (_) {
-            return {
-              $$typeof: _,
-              render: _,
-            };
-          }),
-          (_.isValidElement = _),
-          (_.lazy = function (_) {
-            return {
-              $$typeof: _,
-              _payload: {
-                _status: -1,
-                _result: _,
-              },
-              _init: _,
-            };
-          }),
-          (_.memo = function (_, _) {
-            return {
-              $$typeof: _,
-              type: _,
-              compare: void 0 === _ ? null : _,
-            };
-          }),
-          (_.startTransition = function (_) {
-            var _ = _.transition;
-            _.transition = {};
-            try {
-              _();
-            } finally {
-              _.transition = _;
-            }
-          }),
-          (_.unstable_act = _),
-          (_.useCallback = function (_, _) {
-            return _.current.useCallback(_, _);
-          }),
-          (_.useContext = function (_) {
-            return _.current.useContext(_);
-          }),
-          (_.useDebugValue = function () {}),
-          (_.useDeferredValue = function (_) {
-            return _.current.useDeferredValue(_);
-          }),
-          (_.useEffect = function (_, _) {
-            return _.current.useEffect(_, _);
-          }),
-          (_.useId = function () {
-            return _.current.useId();
-          }),
-          (_.useImperativeHandle = function (_, _, _) {
-            return _.current.useImperativeHandle(_, _, _);
-          }),
-          (_.useInsertionEffect = function (_, _) {
-            return _.current.useInsertionEffect(_, _);
-          }),
-          (_.useLayoutEffect = function (_, _) {
-            return _.current.useLayoutEffect(_, _);
-          }),
-          (_.useMemo = function (_, _) {
-            return _.current.useMemo(_, _);
-          }),
-          (_.useReducer = function (_, _, _) {
-            return _.current.useReducer(_, _, _);
-          }),
-          (_.useRef = function (_) {
-            return _.current.useRef(_);
-          }),
-          (_.useState = function (_) {
-            return _.current.useState(_);
-          }),
-          (_.useSyncExternalStore = function (_, _, _) {
-            return _.current.useSyncExternalStore(_, _, _);
-          }),
-          (_.useTransition = function () {
-            return _.current.useTransition();
-          }),
-          (_.version = "18.3.1");
-      },
       chunkid: (module, module_exports, __webpack_require__) => {
         __webpack_require__._(_, {
+          _: () => _._,
+          _: () => _._,
           _: () => _,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
           _: () => _._,
           _: () => _._,
           _: () => _._,
@@ -441,272 +103,40 @@ var CLSTAMP = "steamdb";
           _: () => _._,
         });
         var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid")),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid")),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ =
             (__webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
+            __webpack_require__("chunkid")),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid")),
+          _ = __webpack_require__("chunkid"),
+          _ =
+            (__webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid")),
           _ =
             (__webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
-            __webpack_require__("chunkid")),
-          _ =
-            (__webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
             __webpack_require__("chunkid"),
             __webpack_require__("chunkid")),
-          _ =
-            (__webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid")),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid")),
+          _ = __webpack_require__("chunkid"),
+          _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid")),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
         const _ = VRHTML;
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-          _: () => _,
-          _: () => _,
-          _: () => _,
-          _: () => _,
-        });
-        var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        const _ = "vrcompositor_systemlayer",
-          _ = "vrwebui_dashboardstore",
-          _ = "binding_callouts/main",
-          _ = "scene_graph";
-        class _ {
-          constructor() {
-            (this.m_wsWebSocketToServer = void 0),
-              (this.connected = !1),
-              (this.m_sMailboxName = ""),
-              (this.m_oHandlers = {}),
-              (this.m_oWaits = {}),
-              (this.m_oConnectWaits = []),
-              (this.m_sWebSecret = ""),
-              (this.m_nNextMessageNumber = 1),
-              (this.Log = new _._("Mailbox", () => this.m_sMailboxName)),
-              (0, _.makeObservable)(this);
-          }
-          OpenWebSocketToHost() {
-            return new Promise((_, _) => {
-              this.Log.Info("Opening Web Socket...");
-              let _ = "ws://127.0.0.1:27062";
-              this.m_sWebSecret && (_ += "?secret=" + this.m_sWebSecret),
-                this.m_wsWebSocketToServer &&
-                  (this.Log.Error(
-                    "OpenWebSocketToHost called on existing connection",
-                  ),
-                  this.CloseWebSocket());
-              let _ = !1;
-              (this.m_wsWebSocketToServer = new WebSocket(_)),
-                this.m_wsWebSocketToServer.addEventListener("open", (_) => {
-                  this.OnWebSocketOpen(_), _ || _(), (_ = !0);
-                }),
-                this.m_wsWebSocketToServer.addEventListener(
-                  "message",
-                  this.OnWebSocketMessage,
-                ),
-                this.m_wsWebSocketToServer.addEventListener(
-                  "close",
-                  this.OnWebSocketClose,
-                ),
-                this.m_wsWebSocketToServer.addEventListener("error", (_) => {
-                  this.OnWebSocketError(_), _ || _(), (_ = !0);
-                });
-            });
-          }
-          CloseWebSocket() {
-            this.m_wsWebSocketToServer &&
-              (this.m_wsWebSocketToServer.removeEventListener(
-                "message",
-                this.OnWebSocketMessage,
-              ),
-              this.m_wsWebSocketToServer.removeEventListener(
-                "close",
-                this.OnWebSocketClose,
-              ),
-              this.m_wsWebSocketToServer.close(),
-              (this.m_wsWebSocketToServer = void 0)),
-              (this.connected = !1);
-          }
-          static EnsureUniqueName(_) {
-            if (_.includes("/")) return _;
-            let _;
-            return (
-              (_ = VRHTML ? VRHTML.GetWebHelperId() : Date.now().toString()),
-              _ + "/" + _ + "_" + this.s_nNextMailboxNumber++
-            );
-          }
-          Init(_, _) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              return (
-                (this.m_sMailboxName = _.EnsureUniqueName(_)),
-                (this.m_sWebSecret = null != _ ? _ : ""),
-                (this.connected = !1),
-                this.OpenWebSocketToHost()
-              );
-            });
-          }
-          Destroy() {
-            this.CloseWebSocket();
-          }
-          get name() {
-            return this.m_sMailboxName;
-          }
-          OnWebSocketOpen(_) {
-            (this.connected = !0),
-              this.Log.Info("Web Socket Opened"),
-              this.WebSocketSend("mailbox_open " + this.m_sMailboxName),
-              window.addEventListener("beforeunload", () => {
-                this.WebSocketSend("websocket_close");
-              });
-            for (let _ of this.m_oConnectWaits) _();
-            this.m_oConnectWaits = [];
-          }
-          OnWebSocketClose(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              this.Log.Warning("Lost connection to host. code:", _.code),
-                (this.connected = !1),
-                (this.m_wsWebSocketToServer = void 0),
-                yield (0, _._)(1e3),
-                this.OpenWebSocketToHost();
-            });
-          }
-          OnWebSocketError(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              this.Log.ErrorOnceThenWarn(
-                "OnWebSocketError",
-                "Mailbox error:",
-                _.type,
-              ),
-                (this.connected = !1);
-            });
-          }
-          WebSocketSend(_) {
-            return (
-              null != this.m_wsWebSocketToServer &&
-              1 == this.m_wsWebSocketToServer.readyState &&
-              (this.m_wsWebSocketToServer.send(_), !0)
-            );
-          }
-          OnWebSocketMessage(_) {
-            let _ = JSON.parse(_.data),
-              _ = !1;
-            if (
-              (this.m_oHandlers.hasOwnProperty(_.type) &&
-                (this.m_oHandlers[_.type](_), (_ = !0)),
-              this.m_oWaits.hasOwnProperty(_.type))
-            ) {
-              let _ = !1;
-              for (let _ of this.m_oWaits[_.type])
-                _.nMessageId == _.message_id &&
-                  (__webpack_require__.callback(_), (_ = !0));
-              _
-                ? (this.m_oWaits[_.type] = this.m_oWaits[_.type].filter(
-                    (_) => _.nMessageId != _.message_id,
-                  ))
-                : this.Log.Error(
-                    `Received a ${_.type} message, but didn't have a matching message_id. Did the other end forget to mirror message_id?`,
-                  ),
-                (_ = !0);
-            }
-            _ ||
-              this.Log.ErrorOnceThenWarn(
-                "OnWebsocket283",
-                "Received unhandled message: ",
-                _.type,
-                _,
-              );
-          }
-          RegisterHandler(_, _) {
-            this.m_oHandlers[_] = _;
-          }
-          SendMessage(_, _) {
-            return this.WebSocketSend(
-              "mailbox_send " + _ + " " + JSON.stringify(_),
-            );
-          }
-          WaitForMessage(_, _) {
-            return new Promise((_, _) => {
-              this.m_oWaits[_] || (this.m_oWaits[_] = []),
-                this.m_oWaits[_].push({
-                  callback: _,
-                  nMessageId: _,
-                });
-            });
-          }
-          WaitForConnect() {
-            return new Promise((_, _) => {
-              this.connected ? _() : this.m_oConnectWaits.push(_);
-            });
-          }
-          WaitForMailbox(_) {
-            return (0, _._)(this, void 0, void 0, function* () {
-              let _ = {
-                type: "request_mailbox_registration_notification",
-                mailbox_name: _,
-              };
-              return this.SendMessageAndWaitForResponse(
-                "web_server_mailbox",
-                _,
-                "mailbox_registered",
-              );
-            });
-          }
-          SendMessageAndWaitForResponse(_, _, _) {
-            let _ = Object.assign({}, _);
-            null == _.returnAddress && (_.returnAddress = this.m_sMailboxName),
-              (_.message_id = this.m_nNextMessageNumber++);
-            const _ = this.WaitForMessage(_, _.message_id);
-            return this.SendMessage(_, _), _;
-          }
-          SendResponse(_, _) {
-            if (!_.returnAddress)
-              throw new Error("Missing return address on message");
-            let _ = Object.assign(Object.assign({}, _), {
-              message_id: _.message_id,
-            });
-            (_.message_id = _.message_id), this.SendMessage(_.returnAddress, _);
-          }
-          SendDebugIllegalMsg() {
-            this.WebSocketSend("debug_send_illegal_msg");
-          }
-          SendDebugCloseMsg() {
-            this.WebSocketSend("debug_close");
-          }
-        }
-        (_.s_nNextMailboxNumber = 1),
-          (0, _._)([_.observable], _.prototype, "connected", void 0),
-          (0, _._)([_._], _.prototype, "OpenWebSocketToHost", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketOpen", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketClose", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketError", null),
-          (0, _._)([_._], _.prototype, "WebSocketSend", null),
-          (0, _._)([_._], _.prototype, "OnWebSocketMessage", null);
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         var _, _, _, _;
@@ -721,6 +151,22 @@ var CLSTAMP = "steamdb";
             : _.Unknown;
         }
         __webpack_require__._(_, {
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
           _: () => _,
           _: () => _,
           _: () => _,
@@ -758,8 +204,10 @@ var CLSTAMP = "steamdb";
               (_[(_.Standing = 1)] = "Standing"),
               (_[(_.RawAndUncalibrated = 2)] = "RawAndUncalibrated");
           })(_ || (_ = {}));
-        let _ = 0;
-        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+        let _ = 0,
+          _ = 0,
+          _ = 4294967295;
+        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
         !(function (_) {
           (_[(_.None = 0)] = "None"),
             (_[(_.Shown = 1)] = "Shown"),
@@ -841,29 +289,6 @@ var CLSTAMP = "steamdb";
               (_[(_.DashboardTutorial = 128)] = "DashboardTutorial"),
               (_[(_.GamepadMode = 512)] = "GamepadMode"),
               (_[(_.SystemKeyboardPrivacy = 1024)] = "SystemKeyboardPrivacy");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.BULK_DEFAULT = 0)] = "BULK_DEFAULT"),
-              (_[(_.BULK_64K_DMA = 1)] = "BULK_64K_DMA"),
-              (_[(_.BULK_16K_DMA = 2)] = "BULK_16K_DMA"),
-              (_[(_.BULK_8K_DMA = 3)] = "BULK_8K_DMA"),
-              (_[(_.ISO_52FPS = 4)] = "ISO_52FPS"),
-              (_[(_.ISO_50FPS = 5)] = "ISO_50FPS"),
-              (_[(_.ISO_48FPS = 6)] = "ISO_48FPS"),
-              (_[(_.ISO_46FPS = 7)] = "ISO_46FPS"),
-              (_[(_.ISO_44FPS = 8)] = "ISO_44FPS"),
-              (_[(_.ISO_42FPS = 9)] = "ISO_42FPS"),
-              (_[(_.ISO_40FPS = 10)] = "ISO_40FPS"),
-              (_[(_.ISO_35FPS = 11)] = "ISO_35FPS"),
-              (_[(_.ISO_30FPS = 12)] = "ISO_30FPS"),
-              (_[(_.ISO_15FPS = 13)] = "ISO_15FPS"),
-              (_[(_.MAX_CAMERA_COMPAT_MODES = 14)] = "MAX_CAMERA_COMPAT_MODES");
-          })(_ || (_ = {})),
-          (function (_) {
-            (_[(_.ECameraExposure_Unknown = 0)] = "ECameraExposure_Unknown"),
-              (_[(_.ECameraExposure_Nominal = 1)] = "ECameraExposure_Nominal"),
-              (_[(_.ECameraExposure_HighExposure = 2)] =
-                "ECameraExposure_HighExposure");
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.None = 0)] = "None"),
@@ -948,18 +373,10 @@ var CLSTAMP = "steamdb";
         __webpack_require__._(_, {
           _: () => _,
           _: () => _,
+          _: () => _,
         });
-        const _ = "system.messageoverlay",
-          _ = "/settings/steamvr/showAdvancedSettings";
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
+        __webpack_require__("chunkid");
         var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__._(_);
         class _ {
           constructor() {
@@ -1005,10 +422,441 @@ var CLSTAMP = "steamdb";
             }
           }
         }
+        function _(_, ..._) {
+          let _ = _.LocalizeString(_);
+          return _
+            ? (_.length > 0 &&
+                (_ = __webpack_require__.replace(/%(\d+)\$s/g, function (_, _) {
+                  return void 0 !== _[_ - 1] ? String(_[_ - 1]) : _;
+                })),
+              _)
+            : _;
+        }
         _.s_Date = new Date();
         const _ = new _();
+        function _(_, _) {
+          _ ||
+            (_ = (function () {
+              let _ = new Map([
+                ["en", "english"],
+                ["de", "german"],
+                ["fr", "french"],
+                ["it", "italian"],
+                ["ko", "korean"],
+                ["es-419", "latam"],
+                ["es", "spanish"],
+                ["zh-CN", "schinese"],
+                ["zh-TW", "tchinese"],
+                ["ru", "russian"],
+                ["th", "thai"],
+                ["ja", "japanese"],
+                ["pt", "portuguese"],
+                ["pl", "polish"],
+                ["da", "danish"],
+                ["nl", "dutch"],
+                ["fi", "finnish"],
+                ["no", "norwegian"],
+                ["sv", "swedish"],
+                ["hu", "hungarian"],
+                ["cs", "czech"],
+                ["ro", "romanian"],
+                ["tr", "turkish"],
+                ["pt-BR", "brazilian"],
+                ["bg", "bulgarian"],
+                ["el", "greek"],
+                ["uk", "ukranian"],
+                ["vi", "vietnamese"],
+              ]);
+              for (let _ of navigator.languages) {
+                let _ = _.split("-");
+                if (_.has(_)) return _.get(_);
+                if (_.has(_[0])) return _.get(_[0]);
+              }
+              return "english";
+            })());
+          let _ = [],
+            _ = (_, _, _) => {
+              let _,
+                _ = Date.now().toString();
+              return (
+                (_ =
+                  "drivers" == _
+                    ? `/input/localization.json?t=${_}`
+                    : "webhelper" == _
+                      ? `/dashboard/localization/${_}_${_}.json?t=${_}`
+                      : `localization/${_}_${_}.json?t=${_}`),
+                _()
+                  .get(_)
+                  .then((_) => {
+                    __webpack_require__(_.data);
+                  })
+                  .catch(() => {})
+              );
+            },
+            _ = [],
+            _ = [],
+            _ = [],
+            _ = [];
+          for (let _ of _)
+            __webpack_require__.push(
+              _(_, _, (_) => {
+                _.push(_);
+              }),
+            ),
+              "english" != _ &&
+                __webpack_require__.push(
+                  _(_, "english", (_) => {
+                    _.push(_);
+                  }),
+                );
+          for (let _ of ["webhelper"])
+            __webpack_require__.push(
+              _(_, _, (_) => {
+                _.push(_);
+              }),
+            ),
+              "english" != _ &&
+                __webpack_require__.push(
+                  _(_, "english", (_) => {
+                    _.push(_);
+                  }),
+                );
+          return (
+            __webpack_require__.push(
+              _("drivers", "", (_) => {
+                _.push(_);
+              }),
+            ),
+            Promise.all(_).then(() => {
+              _.InitFromObjects(_, _, _, _);
+            })
+          );
+        }
         window.LocalizationManager = _;
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        function _(_, _, _) {
+          return null == _ || isNaN(_) ? _ : Math.max(_, Math.min(_, _));
+        }
+        __webpack_require__._(_, {
+          _: () => _,
+        });
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        __webpack_require__._(_, {
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+        });
+        var _,
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
+        !(function (_) {
+          (_[(_.Alive = 0)] = "Alive"), (_[(_.Destroyed = 1)] = "Destroyed");
+        })(_ || (_ = {}));
+        class _ {
+          get OnDestroyed() {
+            return this.m_OnDestroyed;
+          }
+          get frame() {
+            return this.m_Frame;
+          }
+          get pageID() {
+            return this.m_unPageID;
+          }
+          get state() {
+            return this.m_eState;
+          }
+          get summonOverlayKey() {
+            return this.m_sSummonOverlayKey;
+          }
+          get isExternalDashboardOverlay() {
+            return !!this.m_bExternalDashboardOverlay;
+          }
+          get isActivePage() {
+            return this.m_Frame.activePageID === this.m_unPageID;
+          }
+          get isActiveAndVisiblePage() {
+            return this.isActivePage && this.frame.isCurrentlyVisible;
+          }
+          get mountableID() {
+            return `frame:${this.frame.frameID}:page:${this.pageID}:mountable`;
+          }
+          get latestContentSize() {
+            return this.size.latestContentSize;
+          }
+          get logPrefix() {
+            let _ = this.frame.title;
+            return (
+              _.length > _._ && (_ = _.substring(0, _._ - 3) + "..."),
+              `${this.frame.frameID}[${this.pageID}] "${_}"`
+            );
+          }
+          RegisterComponent(_) {
+            this.m_setComponents.add(_);
+          }
+          constructor(_, _, _) {
+            (this.props = void 0),
+              (this.m_eState = _.Alive),
+              (this.m_OnDestroyed = new _._()),
+              (this.m_sSummonOverlayKey = void 0),
+              (this.m_bExternalDashboardOverlay = !1),
+              (this.m_mainPanel = void 0),
+              (this.Log = new _._("Frame", () => this.logPrefix)),
+              (this.m_setComponents = new Set()),
+              (this.keyboard = new _._(this)),
+              (this.sharing = void 0),
+              (this.size = new _._(this)),
+              (this.focus = new _._(this)),
+              (this.m_Frame = _),
+              (this.m_unPageID = _),
+              (this.props = _),
+              (0, _.makeObservable)(this);
+          }
+          Init() {
+            for (const _ of this.m_setComponents) _.Init();
+          }
+          DestroyPage() {
+            this.m_eState != _.Destroyed &&
+              ((this.m_eState = _.Destroyed),
+              this.m_OnDestroyed.Dispatch(),
+              this.m_OnDestroyed.ClearAllCallbacks());
+          }
+          SetSummonOverlayKey(_) {
+            this.m_sSummonOverlayKey = _;
+          }
+          SetIsExternalDashboardOverlay(_) {
+            this.m_bExternalDashboardOverlay = _;
+          }
+          SetMainPanel(_) {
+            if (!_)
+              return {
+                Unset: () => {},
+              };
+            this.m_mainPanel = _;
+            const _ = this.size.SetMainPanel(_).Unset;
+            return {
+              Unset: () => {
+                (this.m_mainPanel = void 0), _();
+              },
+            };
+          }
+          get mainPanelID() {
+            if (this.m_mainPanel) {
+              const _ = this.m_mainPanel.getID();
+              if (null == _) return;
+              return (0, _._)(_._, _);
+            }
+            if (this.isExternalDashboardOverlay) {
+              if (null == this.summonOverlayKey) return;
+              return (0, _._)(_._, this.summonOverlayKey) + "_Panel";
+            }
+          }
+          get mainPanelSGID() {
+            var _;
+            return this.m_mainPanel
+              ? this.m_mainPanel.getSGID()
+              : (this.isExternalDashboardOverlay &&
+                  null != this.summonOverlayKey &&
+                  (null === (_ = _._.GetOverlayInfo(this.summonOverlayKey)) ||
+                  void 0 === _
+                    ? void 0
+                    : _.unStandalonePanelSGID)) ||
+                  void 0;
+          }
+          GetPanelAnchorID(_) {
+            if (!this.isExternalDashboardOverlay)
+              return `frame:${this.frame.frameID}:page:${this.pageID}:anchor:${_}`;
+            {
+              if (null == this.summonOverlayKey) return;
+              const _ = (0, _._)(_._, this.summonOverlayKey);
+              switch (_) {
+                case _._.TopCenter:
+                  return _ + "_TopCenter";
+                case _._.CenterLeft:
+                  return _ + "_CenterLeft";
+                case _._.CenterRight:
+                  return _ + "_CenterRight";
+                case _._.BottomCenter:
+                  return _ + "_BottomCenter";
+                case _._.BottomRight:
+                  return _ + "_BottomRight";
+              }
+            }
+          }
+        }
+        (0, _._)([_.observable], _.prototype, "props", void 0),
+          (0, _._)([_.observable], _.prototype, "m_eState", void 0),
+          (0, _._)([_.observable], _.prototype, "m_sSummonOverlayKey", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_bExternalDashboardOverlay",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_mainPanel", void 0),
+          (0, _._)([_.computed], _.prototype, "state", null),
+          (0, _._)([_.computed], _.prototype, "summonOverlayKey", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "isExternalDashboardOverlay",
+            null,
+          ),
+          (0, _._)([_.computed], _.prototype, "isActivePage", null),
+          (0, _._)([_.computed], _.prototype, "isActiveAndVisiblePage", null),
+          (0, _._)([_.computed], _.prototype, "mountableID", null),
+          (0, _._)([_.computed], _.prototype, "latestContentSize", null),
+          (0, _._)([_.computed], _.prototype, "logPrefix", null),
+          (0, _._)([_.action], _.prototype, "DestroyPage", null),
+          (0, _._)([_.action], _.prototype, "SetSummonOverlayKey", null),
+          (0, _._)(
+            [_.action],
+            _.prototype,
+            "SetIsExternalDashboardOverlay",
+            null,
+          ),
+          (0, _._)([_.action], _.prototype, "SetMainPanel", null),
+          (0, _._)([_.computed], _.prototype, "mainPanelID", null),
+          (0, _._)([_.computed], _.prototype, "mainPanelSGID", null);
+        const _ = _.forwardRef(function (_, _) {
+            const { children: _, summonOverlayKey: _ } = _,
+              { frame: _ } = (0, _._)(),
+              _ = _.useMemo(() => _.CreatePage(_), [_]);
+            _.useLayoutEffect(() =>
+              (0, _.runInAction)(() => {
+                _.props = _;
+              }),
+            ),
+              _.useEffect(() => _.SetSummonOverlayKey(_), [_, _, _]),
+              (0, _._)(_, _),
+              _.useEffect(() => (_.Init(), () => _.DestroyPage()), [_]);
+            const _ = (0, _._)(() => _.mountableID);
+            return _.createElement(
+              _._.Provider,
+              {
+                value: {
+                  frame: _,
+                  page: _,
+                },
+              },
+              _.createElement(
+                _._,
+                {
+                  _: _,
+                },
+                _,
+              ),
+            );
+          }),
+          _ = _.forwardRef(function (_, _) {
+            var _, _;
+            const {
+                requireExternalOverlay: _ = !0,
+                overlayKey: _,
+                componentProps: _,
+              } = _,
+              _ = (0, _._)(_, [
+                "requireExternalOverlay",
+                "overlayKey",
+                "componentProps",
+              ]),
+              { frame: _ } = (0, _._)(),
+              _ = _.useCallback(
+                (_) => {
+                  null == _ || _.SetIsExternalDashboardOverlay(!0),
+                    (0, _._)(_, _);
+                },
+                [_],
+              ),
+              _ = (0, _._)(() => _.curvature.curvatureTransformOriginID),
+              _ = (0, _._)(() => _._.GetOverlayInfo(_)),
+              _ =
+                null !== (_ = null == _ ? void 0 : _.unFlags) && void 0 !== _
+                  ? _
+                  : 0,
+              _ = (16 & _) > 0,
+              _ = (1073741824 & _) > 0;
+            return _ && !_
+              ? null
+              : _.createElement(
+                  _,
+                  Object.assign({}, _, {
+                    summonOverlayKey:
+                      null !== (_ = _.summonOverlayKey) && void 0 !== _ ? _ : _,
+                    ref: _,
+                    componentProps: Object.assign(Object.assign({}, _), {
+                      keyboard: Object.assign(
+                        {
+                          overlayKeyForKeyboardInput: _,
+                        },
+                        null == _ ? void 0 : _.keyboard,
+                      ),
+                      focus: Object.assign(
+                        {
+                          vrClientPID: _ ? _.unClientPID : void 0,
+                          steamInputAppID: _ ? _.unSteamInputAppID : void 0,
+                        },
+                        null == _ ? void 0 : _.focus,
+                      ),
+                    }),
+                  }),
+                  _.createElement(_._, {
+                    mountedId: (0, _._)(_._, _),
+                  }),
+                  _.createElement(_._, {
+                    _: (0, _._)(_._, _) + "_CurvatureOrigin",
+                    parent_id: _,
+                  }),
+                  _.children,
+                );
+          });
+        function _(_) {
+          const { page: _ } = (0, _._)();
+          if ((0, _._)(() => (null == _ ? void 0 : _.isActiveAndVisiblePage)))
+            return _.createElement(_.Fragment, null, _.children);
+        }
+        function _(_) {
+          const { frame: _, page: _ } = (0, _._)();
+          if (_ && _ && !_.isExternalDashboardOverlay)
+            return _.createElement(
+              _.Fragment,
+              null,
+              _._.map((_) =>
+                _.createElement(_._, {
+                  key: _,
+                  _: __webpack_require__.GetPanelAnchorID(_),
+                  location: _,
+                }),
+              ),
+            );
+        }
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
         var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
         function _(_) {
@@ -1193,104 +1041,7 @@ var CLSTAMP = "steamdb";
               _._.VROverlay.ThisOverlayHandle(),
               _._.Mouse,
             ),
-          (function (_, _) {
-            _ ||
-              (_ = (function () {
-                let _ = new Map([
-                  ["en", "english"],
-                  ["de", "german"],
-                  ["fr", "french"],
-                  ["it", "italian"],
-                  ["ko", "korean"],
-                  ["es-419", "latam"],
-                  ["es", "spanish"],
-                  ["zh-CN", "schinese"],
-                  ["zh-TW", "tchinese"],
-                  ["ru", "russian"],
-                  ["th", "thai"],
-                  ["ja", "japanese"],
-                  ["pt", "portuguese"],
-                  ["pl", "polish"],
-                  ["da", "danish"],
-                  ["nl", "dutch"],
-                  ["fi", "finnish"],
-                  ["no", "norwegian"],
-                  ["sv", "swedish"],
-                  ["hu", "hungarian"],
-                  ["cs", "czech"],
-                  ["ro", "romanian"],
-                  ["tr", "turkish"],
-                  ["pt-BR", "brazilian"],
-                  ["bg", "bulgarian"],
-                  ["el", "greek"],
-                  ["uk", "ukranian"],
-                  ["vi", "vietnamese"],
-                ]);
-                for (let _ of navigator.languages) {
-                  let _ = _.split("-");
-                  if (_.has(_)) return _.get(_);
-                  if (_.has(_[0])) return _.get(_[0]);
-                }
-                return "english";
-              })());
-            let _ = [],
-              _ = (_, _, _) => {
-                let _,
-                  _ = Date.now().toString();
-                return (
-                  (_ =
-                    "drivers" == _
-                      ? `/input/localization.json?t=${_}`
-                      : "webhelper" == _
-                        ? `/dashboard/localization/${_}_${_}.json?t=${_}`
-                        : `localization/${_}_${_}.json?t=${_}`),
-                  _()
-                    .get(_)
-                    .then((_) => {
-                      __webpack_require__(_.data);
-                    })
-                    .catch(() => {})
-                );
-              },
-              _ = [],
-              _ = [],
-              _ = [],
-              _ = [];
-            for (let _ of _)
-              __webpack_require__.push(
-                _(_, _, (_) => {
-                  _.push(_);
-                }),
-              ),
-                "english" != _ &&
-                  __webpack_require__.push(
-                    _(_, "english", (_) => {
-                      _.push(_);
-                    }),
-                  );
-            for (let _ of ["webhelper"])
-              __webpack_require__.push(
-                _(_, _, (_) => {
-                  _.push(_);
-                }),
-              ),
-                "english" != _ &&
-                  __webpack_require__.push(
-                    _(_, "english", (_) => {
-                      _.push(_);
-                    }),
-                  );
-            return (
-              __webpack_require__.push(
-                _("drivers", "", (_) => {
-                  _.push(_);
-                }),
-              ),
-              Promise.all(_).then(() => {
-                _.InitFromObjects(_, _, _, _);
-              })
-            );
-          })(
+          (0, _._)(
             [],
             null === _._ || void 0 === _._ ? void 0 : _._.GetSteamLanguage(),
           )
@@ -1311,7 +1062,7 @@ var CLSTAMP = "steamdb";
     var _ = (_[_] = {
       exports: {},
     });
-    return _[_](_, _.exports, _), _.exports;
+    return _[_].call(_.exports, _, _.exports, _), _.exports;
   }
   (_._ = _),
     (_ = []),
@@ -1362,9 +1113,20 @@ var CLSTAMP = "steamdb";
       }
     })()),
     (_._ = (_, _) => Object.prototype.hasOwnProperty.call(_, _)),
+    (_._ = (_) => {
+      "undefined" != typeof Symbol &&
+        Symbol.toStringTag &&
+        Object.defineProperty(_, Symbol.toStringTag, {
+          value: "Module",
+        }),
+        Object.defineProperty(_, "__esModule", {
+          value: !0,
+        });
+    }),
     (() => {
       var _ = {
         868: 0,
+        204: 0,
         527: 0,
         500: 0,
       };
@@ -1386,10 +1148,8 @@ var CLSTAMP = "steamdb";
       __webpack_require__.forEach(_.bind(null, 0)),
         (_.push = _.bind(null, _.push.bind(_)));
     })();
-  var _ = _._(
-    void 0,
-    [967, 978, 655, 305, 527, 797, 148, 500, 198, 652, 692],
-    () => _(6139),
+  var _ = _._(void 0, [967, 991, 982, 305, 527, 170, 452, 797, 906, 500], () =>
+    _(1583),
   );
   _ = _._(_);
 })();

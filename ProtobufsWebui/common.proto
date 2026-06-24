@@ -24,7 +24,8 @@ message CVRGamepadUI_Frame {
 	optional bool is_vrlink_remote = 5;
 	optional .CVRGamepadUI_Frame_FrameActions frame_actions = 6;
 	repeated string steamui_page_overlay_keys = 7;
-	optional string tmp_title = 1000;
+	optional bool is_streaming_client = 8;
+	optional int32 dock_location = 9 [(.description) = "enum"];
 }
 
 // Used by: common.proto
@@ -111,6 +112,12 @@ message CVRGamepadUI_Message_ExecuteSteamURL_Request {
 message CVRGamepadUI_Message_ExecuteSteamURL_Response {
 }
 
+message CVRGamepadUI_Message_FocusDashboardBar_Request {
+}
+
+message CVRGamepadUI_Message_FocusDashboardBar_Response {
+}
+
 message CVRGamepadUI_Message_GetAppIcon_Request {
 	optional uint32 app_id = 1;
 }
@@ -139,6 +146,14 @@ message CVRGamepadUI_Message_InitFrameSystem_Request {
 message CVRGamepadUI_Message_InitFrameSystem_Response {
 }
 
+message CVRGamepadUI_Message_NavigateInstance_Request {
+	optional uint32 navigate_overlay_for_app_id = 1;
+	optional int32 location = 2 [(.description) = "enum"];
+}
+
+message CVRGamepadUI_Message_NavigateInstance_Response {
+}
+
 message CVRGamepadUI_Message_RemoteVideoStream_Request {
 	optional uint32 source_accountid = 1;
 	optional string video_uniqueid = 2;
@@ -153,6 +168,14 @@ message CVRGamepadUI_Message_ReportVRPanelErrorBoundaryError_Request {
 }
 
 message CVRGamepadUI_Message_ReportVRPanelErrorBoundaryError_Response {
+}
+
+message CVRGamepadUI_Message_RequestAppQuit_Request {
+	optional uint32 app_id = 1;
+}
+
+message CVRGamepadUI_Message_RequestAppQuit_Response {
+	optional int32 result = 1 [(.description) = "enum"];
 }
 
 message CVRGamepadUI_Message_ResetHMDSettings_Request {
@@ -330,6 +353,12 @@ message CVRGamepadUIShared_Icon {
 	optional uint32 hwnd = 4;
 }
 
+message CVRGamepadUIShared_PathProperty_ClientUserInfo {
+	optional bool logged_in = 1;
+	optional bool valve_email = 2;
+	optional bool developer_mode_enabled = 3;
+}
+
 message CVRGamepadUIShared_PathProperty_DashboardBarActions {
 	repeated .CVRGamepadUIShared_DEPRECATED_DashboardBarAction deprecated_actions = 1;
 	repeated .CVRGamepadUIShared_Action defined_actions = 2;
@@ -350,6 +379,11 @@ message CVRGamepadUIShared_PathProperty_DashboardBarActions_BarMenuItem {
 	optional int32 type = 1 [(.description) = "enum"];
 	optional uint32 parent_menu_action_id = 2;
 	optional uint32 action_id = 3;
+}
+
+message CVRGamepadUIShared_PathProperty_DashboardState {
+	optional bool dashboard_bar_visible = 1;
+	optional bool dashboard_bar_focused = 2;
 }
 
 message CVRGamepadUIShared_PathProperty_DashboardTabs {
@@ -429,6 +463,12 @@ message CVRGamepadUIShared_PathProperty_VRVersionInfo {
 }
 
 // Used by: common.proto
+message VRLink_DockEntry {
+	optional uint32 frame_id = 1;
+	optional uint32 dock_location = 2;
+}
+
+// Used by: common.proto
 message VRLink_Frame_Additional {
 	optional .CVRGamepadUIShared_PathProperty_DashboardTabs_Tab tab = 1;
 	optional .CVRGamepadUIShared_Icon icon = 2;
@@ -454,7 +494,8 @@ message VRLink_ShowSteamVRSettings {
 }
 
 message VRLink_UnifiedDashboard_State {
+	repeated .VRLink_DockEntry dock_entries = 1;
 	optional bool dashboard_visible = 2;
-	optional uint32 dashboard_frame_id = 3;
+	optional uint32 active_dashboard_frame_id = 3;
 }
 
