@@ -289,9 +289,9 @@ $3br
 /data/src/vrclient/skeletalinpututils.cpp
 /data/src/vrclient/vrclientcore.cpp
 /data/src/vrclient/vrcompositorclient.cpp
-/data/src/vrclient/vrcompositorclient.cpp:1455
-/data/src/vrclient/vrcompositorclient.cpp:1711
-/data/src/vrclient/vrcompositorclient.cpp:2512
+/data/src/vrclient/vrcompositorclient.cpp:1429
+/data/src/vrclient/vrcompositorclient.cpp:1685
+/data/src/vrclient/vrcompositorclient.cpp:2486
 /data/src/vrclient/vrcompositorclient.cpp:463
 /data/src/vrclient/vrcompositorsharedtextures.cpp
 /data/src/vrclient/vrcompositorsharedtextures.cpp:2564
@@ -2762,6 +2762,7 @@ Plane count of DmabufAttributes_t not in range of 1 to %u. Was: %u
 Pose
 Positional emitter description not found.
 PostPresentHandoff
+Powersave
 Primitive
 Process %d failed to shm_open %s: %d\n
 Process called VR_Init or xrCreateInstance %u times without a matching VR_Shutdown or xrDestroyInstance. Behavior is undefined.\n
@@ -5641,7 +5642,8 @@ position_z
 positional
 posix_memalign
 power
-powersaving
+powersaveFovScale
+powersaveResolution
 powf
 ppCmdBuf
 preferredRefreshRate

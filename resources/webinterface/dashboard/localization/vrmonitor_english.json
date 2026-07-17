@@ -240,7 +240,7 @@
 
 	"Settings_OpenRemoteSetting": "Open Remote Settings",
 
-	"Settings_Unavailable_PowerSaving": "Some settings cannot be changed while in Power Saving mode. Open the Quick Access Menu, then toggle Power Saving Mode off in the Performance tab.",
+	"Settings_Unavailable_Playtime": "Some settings cannot be changed while in Playtime mode. Open the Quick Access Menu, then toggle Playtime mode off in the Performance tab.",
 
 	"Settings_Video_FrameLimitForApp_Header": "Frame Limit",
 	"Settings_Video_FrameLimitForApp_FPS": "%1$s FPS",

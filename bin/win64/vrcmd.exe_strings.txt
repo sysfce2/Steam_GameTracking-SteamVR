@@ -879,7 +879,7 @@ PropertyContainer: High lock acquisition counters: sp:%u yd:%u re:%u\n
 PropertyContainerCreation
 QueryPerformanceCounter
 QueryPerformanceFrequency
-RSDS"
+RSDS_X\
 RaiseException
 ReadFile
 ReadFile failed on %s after event was signaled because %s\n

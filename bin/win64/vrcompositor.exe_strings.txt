@@ -1172,6 +1172,7 @@ $\n k_EProtoServiceTypeSteamMessages
 1.5.26
 1/2/4/8/16-bit only
 123456789
+14:58:52
 1A26b
 1e+9999
 1wsHp
@@ -1180,7 +1181,6 @@ $\n k_EProtoServiceTypeSteamMessages
 2*.google.protobuf.FieldDescriptorProto.Type
 2+.google.protobuf.FieldDescriptorProto.Label
 214l5
-23:47:36
 3333
 3333UUUU
 416.16
@@ -2793,7 +2793,7 @@ IsWorkstationLocked::IsRemoteSession unexpected response length %d != 1\n
 It shouldn't be possible to add a child twice because of move semantics
 JFIF
 Journaling %s\n
-Jul 15 2026
+Jul 17 2026
 KERNEL32.dll
 Kernel32.dll
 KillTimer
@@ -3051,6 +3051,7 @@ Potential overflow in png_zalloc()
 PowerClearRequest
 PowerCreateRequest
 PowerSetRequest
+Powersave
 Precise timer is disabled, compositor will use additional cpu resources!\n
 Preferred refresh rate for '%s' is %.2fHz
 Present offset = %f
@@ -6084,7 +6085,8 @@ polish
 portuguese
 positive_int_value
 power
-powersaving
+powersaveFramesToThrottle
+powersaveRefreshRate
 powf
 preferredRefreshRate
 prefersUpperDeviceIndices

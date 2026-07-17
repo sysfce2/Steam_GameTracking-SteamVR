@@ -1993,8 +1993,9 @@ $tI(knN
 0-pixel image
 00010203040506070809101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899
 0123456789ABCDEF
-04>5
+0J>5
 0\tFAJ
+0d"5
 1.0.3.16
 1/2/4/8/16-bit only
 11 4 22 44 44 22 444444
@@ -3834,6 +3835,7 @@ OutputDebugStringW
 PATH_TO_LOCAL_STRING failed with %s
 PC_%08llx
 PICT
+PJ>5
 PNG\r\n
 POSITION
 PS_AURORA
@@ -3847,17 +3849,20 @@ PS_SAMPLESCENE
 PS_SAMPLESCENE0
 PS_STENCIL
 PS_main
+P\r0d"5
 Parse error in system resource manifest %s.\n
 Parse failed for JSON message in mailbox %s: %s\n
 Parsing of JSON file "%s" failed: %s\n
 Parsing of JSON string "%s" failed: %s\n
 Path_Exists( absFilePath )
+Pd"5
 PeekNamedPipe
 Perspective camera description not found.
 PerspectiveCamera
 PoolGC
 Pose
 Positional emitter description not found.
+Powersave
 Primitive
 PrismTimeline:%llu
 Process called VR_Init or xrCreateInstance %u times without a matching VR_Shutdown or xrDestroyInstance. Behavior is undefined.\n
@@ -4094,7 +4099,7 @@ QuickCalibratePlayspace couldn't get a pose from the HMD\n
 RADV
 RGBG
 RPCRT4.dll
-RSDS@
+RSDSIR
 RadialMenu missing X axis input.\n
 RadialMenu missing Y axis input.\n
 RadialMenu setting 'num_buttons' not specified.\n
@@ -6551,6 +6556,8 @@ ZvFailed to create fence %ls.\n
 [xrRenderModel] parameter was nullptr
 [xrRenderModel] renderModelIdCountOutput was nullptr
 [xrRenderModel] session is not running
+\fpJ>5
+\fpd"5
 \mfpmp.exe
 \nbad png sig
 \t%s::%llx.\n
@@ -7028,9 +7035,9 @@ c:\buildslave\steamvr_rel_win64\build\src\vrclient\skeletalinpututils.cpp
 c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrchaperoneclient.cpp
 c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrclientcore.cpp
 c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorclient.cpp
-c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorclient.cpp:1455
-c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorclient.cpp:1711
-c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorclient.cpp:2512
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorclient.cpp:1429
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorclient.cpp:1685
+c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorclient.cpp:2486
 c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorclient.cpp:463
 c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorsharedtextures.cpp
 c:\buildslave\steamvr_rel_win64\build\src\vrclient\vrcompositorsharedtextures.cpp:2963
@@ -7899,7 +7906,6 @@ overlay_input_focused_changed
 overlay_key
 override_device_class
 overwrite.vrsettings
-p4>5
 pBuffer != nullptr
 pClient
 pCmdBuf
@@ -7912,6 +7918,7 @@ pHandle
 pImage != nullptr
 pInput != nullptr
 pInstance
+pJ>5
 pLast->m_pointLastUsed <= pTimeline->m_pointLastUsed
 pNewResource
 pNewResource->Load( absFilePath )
@@ -7943,6 +7950,7 @@ parse_error
 path
 pauseCompositorOnStandby
 pbrMetallicRoughness
+pd"5
 perfcheck
 performanceProfile
 perspective
@@ -7970,7 +7978,9 @@ position_y
 position_z
 positional
 power
-powersaving
+powersaveFovScale
+powersaveFramesToThrottle
+powersaveResolution
 powf
 ppCmdBuf
 precision

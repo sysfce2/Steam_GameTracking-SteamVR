@@ -7567,7 +7567,7 @@ var CLSTAMP = "steamdb";
           }),
           _.createElement(_._, {
             label: (0, _._)("#Settings_VersionInfo_WebpackBuildTime"),
-            value: new Date(1784184493e3).toLocaleString() + "",
+            value: new Date(1784325556e3).toLocaleString() + "",
           }),
           _.createElement(_._, {
             label: (0, _._)("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),
@@ -7599,7 +7599,7 @@ var CLSTAMP = "steamdb";
           return _.createElement(
             _.Fragment,
             null,
-            _._.isPowerSavingProfile &&
+            _._.isPlaytimeProfile &&
               _.createElement(
                 "div",
                 {
@@ -7610,7 +7610,7 @@ var CLSTAMP = "steamdb";
                   {
                     className: "SettingsItemValueInfo Left",
                   },
-                  (0, _._)("#Settings_Unavailable_PowerSaving"),
+                  (0, _._)("#Settings_Unavailable_Playtime"),
                 ),
               ),
             _.createElement(_._, {
@@ -15003,6 +15003,7 @@ var CLSTAMP = "steamdb";
         return _.createElement(_.Fragment, null, _, _);
       }
       const _ = (0, _._)((_) => {
+          var _;
           const [_, _] = _.useState(
             null === VRHTML || void 0 === VRHTML
               ? void 0
@@ -15044,8 +15045,9 @@ var CLSTAMP = "steamdb";
               ),
             );
           if (
+            _._.refreshRatesAvailable &&
             _._.refreshRatesAvailable.length > 1 &&
-            !_._.isPowerSavingProfile
+            !_._.isPlaytimeProfile
           ) {
             const _ = _(_);
             return (
@@ -15064,20 +15066,23 @@ var CLSTAMP = "steamdb";
           }
           {
             const _ =
+                _._.systemInfo &&
                 _._.systemInfo.refresh_rates.supports_multiple_rates &&
-                !_._.isPowerSavingProfile,
-              _ = _._.systemInfo.extended_mode,
-              _ = Math.round(
-                _._.systemInfo.refresh_rates.supports_multiple_rates
-                  ? _._.refreshRateValue
-                  : _._.actualRefreshRate,
-              );
+                !_._.isPlaytimeProfile,
+              _ =
+                null === (_ = _._.systemInfo) || void 0 === _
+                  ? void 0
+                  : _.extended_mode,
+              _ = _._.systemInfo.refresh_rates.supports_multiple_rates
+                ? _._.refreshRateValue
+                : _._.actualRefreshRate,
+              _ = _ ? Math.round(_) : "Unknown ";
             return _.createElement(
               _._,
               {
                 className: "SettingsItem",
                 title: _
-                  ? null
+                  ? void 0
                   : (0, _._)("#Settings_Video_RefreshRate_OneSupported"),
               },
               _.createElement(
@@ -15248,136 +15253,96 @@ var CLSTAMP = "steamdb";
                 _,
                 _,
               )),
-            _._.isPowerSavingProfile
-              ? _.createElement(
-                  _.Fragment,
-                  null,
-                  (0, _._)("#Settings_Advanced_Supersampling_Header"),
+            _.createElement(_._, {
+              value: _._.supersampleManualOverride,
+              onChange: (_) => _._.setSupersampleManualOverride(_),
+              label: (0, _._)("#Settings_Advanced_Supersampling_Header"),
+              onLabel: (0, _._)("#Settings_Advanced_Supersampling_Auto"),
+              offLabel: (0, _._)("#Settings_Advanced_Supersampling_Custom"),
+              title: _ ? "" : (0, _._)("#Explanation_Supersampling_Header"),
+              swapOnOff: !0,
+              onSubsection: _.createElement(
+                _.Fragment,
+                null,
+                _.createElement(
+                  _._,
+                  {
+                    className: "SettingsItem",
+                  },
                   _.createElement(
                     "div",
                     {
-                      className: "Subsection WithStem",
+                      className: "Label",
+                    },
+                    (0, _._)(
+                      "#Settings_Advanced_Supersampline_ResolutionPerEye",
+                    ),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label Right Resolution",
                     },
                     _.createElement(
-                      _._,
+                      "div",
                       {
-                        className: "SettingsItem",
+                        className: "Dimensions",
                       },
-                      _.createElement(
-                        "div",
-                        {
-                          className: "Label",
-                        },
-                        (0, _._)(
-                          "#Settings_Advanced_Supersampline_ResolutionPerEye",
-                        ),
-                      ),
-                      _.createElement(
-                        "div",
-                        {
-                          className: "Label Right Resolution",
-                        },
-                        _.createElement(
-                          "div",
-                          {
-                            className: "Dimensions",
-                          },
-                          _,
-                        ),
-                      ),
+                      _,
                     ),
                   ),
-                )
-              : _.createElement(_._, {
-                  value: _._.supersampleManualOverride,
-                  onChange: (_) => _._.setSupersampleManualOverride(_),
-                  label: (0, _._)("#Settings_Advanced_Supersampling_Header"),
-                  onLabel: (0, _._)("#Settings_Advanced_Supersampling_Auto"),
-                  offLabel: (0, _._)("#Settings_Advanced_Supersampling_Custom"),
-                  title: _ ? "" : (0, _._)("#Explanation_Supersampling_Header"),
-                  swapOnOff: !0,
-                  onSubsection: _.createElement(
-                    _.Fragment,
-                    null,
+                ),
+              ),
+              offSubsection: _.createElement(
+                _.Fragment,
+                null,
+                _.createElement(
+                  _._,
+                  {
+                    className: "SettingsItem",
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label",
+                    },
+                    (0, _._)(
+                      "#Settings_Advanced_Supersampline_ResolutionPerEye",
+                    ),
+                  ),
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label Right Resolution",
+                    },
                     _.createElement(
-                      _._,
+                      "div",
                       {
-                        className: "SettingsItem",
+                        className: "Dimensions",
                       },
-                      _.createElement(
-                        "div",
-                        {
-                          className: "Label",
-                        },
-                        (0, _._)(
-                          "#Settings_Advanced_Supersampline_ResolutionPerEye",
-                        ),
-                      ),
-                      _.createElement(
-                        "div",
-                        {
-                          className: "Label Right Resolution",
-                        },
-                        _.createElement(
-                          "div",
-                          {
-                            className: "Dimensions",
-                          },
-                          _,
-                        ),
-                      ),
+                      _,
                     ),
-                  ),
-                  offSubsection: _.createElement(
-                    _.Fragment,
-                    null,
-                    _.createElement(
-                      _._,
-                      {
-                        className: "SettingsItem",
-                      },
+                    _._.settings.get(_._) &&
                       _.createElement(
                         "div",
                         {
-                          className: "Label",
+                          className: "Percentage",
                         },
-                        (0, _._)(
-                          "#Settings_Advanced_Supersampline_ResolutionPerEye",
-                        ),
+                        Math.round(100 * _).toString() + "%",
                       ),
-                      _.createElement(
-                        "div",
-                        {
-                          className: "Label Right Resolution",
-                        },
-                        _.createElement(
-                          "div",
-                          {
-                            className: "Dimensions",
-                          },
-                          _,
-                        ),
-                        _._.settings.get(_._) &&
-                          _.createElement(
-                            "div",
-                            {
-                              className: "Percentage",
-                            },
-                            Math.round(100 * _).toString() + "%",
-                          ),
-                      ),
-                      _.createElement(_._, {
-                        min: _._.minSupersampleScaleValue,
-                        max: _._.maxSupersampleScaleValue,
-                        step: _._.supersampleScaleStep,
-                        detents: _,
-                        value: _,
-                        onChange: (_) => _._.setSupersampleScaleValue(_),
-                      }),
-                      _.createElement(_, null),
-                    ),
                   ),
-                })
+                  _.createElement(_._, {
+                    min: _._.minSupersampleScaleValue,
+                    max: _._.maxSupersampleScaleValue,
+                    step: _._.supersampleScaleStep,
+                    detents: _,
+                    value: _,
+                    onChange: (_) => _._.setSupersampleScaleValue(_),
+                  }),
+                  _.createElement(_, null),
+                ),
+              ),
+            })
           );
         });
       let _ = class extends _.Component {
@@ -15669,39 +15634,12 @@ var CLSTAMP = "steamdb";
               : "#Settings_Advanced_MotionSmoothing_Disabled",
           );
         return _
-          ? _._.isPowerSavingProfile
-            ? _.createElement(
-                _._,
-                {
-                  className: "SettingsItem",
-                },
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label",
-                  },
-                  (0, _._)("#Settings_Advanced_MotionSmoothing_Header"),
-                ),
-                _.createElement(
-                  "div",
-                  {
-                    className: "Label",
-                  },
-                  (0, _._)(
-                    _._.motionSmoothing
-                      ? "#Settings_ToggleButton_On"
-                      : "#Settings_ToggleButton_Off",
-                  ),
-                ),
-              )
-            : _.createElement(_._, {
-                value: _._.motionSmoothing,
-                onChange: (_) => _._.setMotionSmoothing(_),
-                label: (0, _._)("#Settings_Advanced_MotionSmoothing_Header"),
-                title: (0, _._)(
-                  "#Settings_Advanced_MotionSmoothing_Description",
-                ),
-              })
+          ? _.createElement(_._, {
+              value: _._.motionSmoothing,
+              onChange: (_) => _._.setMotionSmoothing(_),
+              label: (0, _._)("#Settings_Advanced_MotionSmoothing_Header"),
+              title: (0, _._)("#Settings_Advanced_MotionSmoothing_Description"),
+            })
           : _.createElement(
               _._,
               {
@@ -16259,7 +16197,7 @@ var CLSTAMP = "steamdb";
                             ),
                           ),
                         ),
-                    _._.isPowerSavingProfile &&
+                    _._.isPlaytimeProfile &&
                       _.createElement(
                         "div",
                         {
@@ -16270,7 +16208,7 @@ var CLSTAMP = "steamdb";
                           {
                             className: "SettingsItemValueInfo Left",
                           },
-                          (0, _._)("#Settings_Unavailable_PowerSaving"),
+                          (0, _._)("#Settings_Unavailable_Playtime"),
                         ),
                       ),
                   ),
@@ -16284,9 +16222,8 @@ var CLSTAMP = "steamdb";
                   _.createElement(
                     _.Fragment,
                     null,
-                    !_._.isPowerSavingProfile && _,
-                    !_._.isPowerSavingProfile &&
-                      this.enableMotionSmoothingOverrideSettings &&
+                    !_._.isPlaytimeProfile && _,
+                    this.enableMotionSmoothingOverrideSettings &&
                       null !== this.state.eSmoothingMode &&
                       !this.state.disableAsyncReprojection &&
                       _.createElement(_._, {
@@ -16352,7 +16289,7 @@ var CLSTAMP = "steamdb";
                         value: this.state.eSharpening,
                         onChange: this.onSharpeningChange,
                       }),
-                    !_._.isPowerSavingProfile &&
+                    !_._.isPlaytimeProfile &&
                       _.createElement(
                         _._,
                         {
@@ -16419,8 +16356,7 @@ var CLSTAMP = "steamdb";
                           ),
                         ),
                       ),
-                    !_._.isPowerSavingProfile &&
-                      null !== this.state.nFovScaleMultiplier &&
+                    null !== this.state.nFovScaleMultiplier &&
                       (_._.showAdvancedSettings ||
                         (this.m_initialAppState &&
                           1 != this.m_initialAppState.nFovScaleMultiplier)) &&
@@ -16651,11 +16587,12 @@ var CLSTAMP = "steamdb";
                           ),
                         ),
                       ),
-                    !_._.isPowerSavingProfile &&
+                    !_._.isPlaytimeProfile &&
                       this.allowPerAppRefreshRate &&
                       (null === (_ = this.m_appSettings) || void 0 === _
                         ? void 0
                         : _.response) &&
+                      _._.refreshRatesAvailable &&
                       _._.refreshRatesAvailable.length > 1 &&
                       (_._.showAdvancedSettings ||
                         this.m_appSettings.refreshRateOverridden) &&
@@ -16688,8 +16625,7 @@ var CLSTAMP = "steamdb";
                           }),
                         }),
                       ),
-                    !_._.isPowerSavingProfile &&
-                      this.enableLegacyReprojectionSettings &&
+                    this.enableLegacyReprojectionSettings &&
                       null !== this.state.disableAsyncReprojection &&
                       (_._.showAdvancedSettings ||
                         (this.m_initialAppState &&
@@ -16710,7 +16646,7 @@ var CLSTAMP = "steamdb";
                           onChange: this.onDisableAsyncReprojection,
                         }),
                       ),
-                    !_._.isPowerSavingProfile &&
+                    !_._.isPlaytimeProfile &&
                       this.enableThrottleOverrideSettings &&
                       (null === (_ = this.m_appSettings) || void 0 === _
                         ? void 0
@@ -16866,7 +16802,7 @@ var CLSTAMP = "steamdb";
           return _.createElement(
             _.Fragment,
             null,
-            _._.isPowerSavingProfile &&
+            _._.isPlaytimeProfile &&
               _.createElement(
                 "div",
                 {
@@ -16877,7 +16813,7 @@ var CLSTAMP = "steamdb";
                   {
                     className: "SettingsItemValueInfo Left",
                   },
-                  (0, _._)("#Settings_Unavailable_PowerSaving"),
+                  (0, _._)("#Settings_Unavailable_Playtime"),
                 ),
               ),
             _.createElement(_, {
@@ -21662,7 +21598,6 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
-        _: () => _,
       });
       const _ = "openvr.tool.steamvr_environments",
         _ = "system.generated.steam.exe",
@@ -21749,7 +21684,6 @@ var CLSTAMP = "steamdb";
         _ = "/settings/steamvr/preferredRefreshRate",
         _ = "/settings/steamvr/motionSmoothing",
         _ = "/settings/steamvr/framesToThrottle",
-        _ = "/settings/steamvr/fovScale",
         _ = "/settings/steamvr/performanceProfile",
         _ = "/settings/perfcheck/perfGraphInHMD",
         _ = "/settings/perfcheck/recordStats",
@@ -29645,6 +29579,7 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       class _ {
         constructor() {
@@ -29701,9 +29636,6 @@ var CLSTAMP = "steamdb";
         }
         resetHmdPerfSettings() {
           _._.SetSettingsValue(_._, null),
-            _._.SetSettingsValue(_._, null),
-            _._.SetSettingsValue(_._, null),
-            _._.SetSettingsValue(_._, null),
             _._.SetSettingsValue(_._, null),
             _._.SetSettingsValue(_._, null),
             _._.SetSettingsValue(_._, null),
@@ -29768,40 +29700,39 @@ var CLSTAMP = "steamdb";
           _._.SetSettingsValue(_._, _);
         }
         get refreshRateValue() {
-          return _._.settings.get(_._);
+          return this.isPlaytimeProfile
+            ? _._.settings.get("/settings/steamvr/powersaveRefreshRate")
+            : _._.settings.get(_._);
         }
         get actualRefreshRate() {
-          return _._.systemInfo.refresh_rates.actual_display_frequency;
+          var _;
+          return null === (_ = _._.systemInfo) || void 0 === _
+            ? void 0
+            : _.refresh_rates.actual_display_frequency;
         }
         get refreshRatesAvailable() {
-          return _._.systemInfo.refresh_rates.supported_rates;
+          var _;
+          return null === (_ = _._.systemInfo) || void 0 === _
+            ? void 0
+            : _.refresh_rates.supported_rates;
         }
         PadResolution(_) {
           const _ = this.supersampleScalePixelsStep || 4;
           return Math.trunc(_ / _) * _;
         }
         ComputeResolution(_, _) {
-          var _;
-          if (
-            !(
-              _._.systemInfo &&
-              null != _._.systemInfo.render_target_size.width &&
-              0 != _._.systemInfo.render_target_size.height
-            )
-          )
-            return [0, 0];
-          let _ = Math.max(
-              512,
-              Math.floor(
-                _._.systemInfo.render_target_size.width * Math.sqrt(_) + 0.5,
-              ),
-            ),
-            _ = Math.max(
-              512,
-              Math.floor(
-                _._.systemInfo.render_target_size.height * Math.sqrt(_) + 0.5,
-              ),
-            );
+          var _, _, _;
+          const _ =
+              null === (_ = _._.systemInfo) || void 0 === _
+                ? void 0
+                : _.render_target_size.width,
+            _ =
+              null === (_ = _._.systemInfo) || void 0 === _
+                ? void 0
+                : _.render_target_size.height;
+          if (!_ || !_) return [0, 0];
+          let _ = Math.max(512, Math.floor(_ * Math.sqrt(_) + 0.5)),
+            _ = Math.max(512, Math.floor(_ * Math.sqrt(_) + 0.5));
           const _ =
             null !== (_ = _._.settings.get(_._)) && void 0 !== _ ? _ : 8192;
           return (
@@ -29828,6 +29759,12 @@ var CLSTAMP = "steamdb";
         }
         get supersampleGpuScaleValue() {
           var _;
+          if (_._.systemInfo && _.isPlaytimeProfile) {
+            const _ =
+              _._.settings.get("/settings/steamvr/powersaveResolution") /
+              _._.systemInfo.render_target_size.width;
+            return _ * _;
+          }
           return null !== (_ = _._.settings.get(_._)) && void 0 !== _ ? _ : 1;
         }
         get minSupersampleScaleValue() {
@@ -29840,8 +29777,10 @@ var CLSTAMP = "steamdb";
           return _._.settings.get(_._);
         }
         get supersampleScalePixelsStep() {
-          return _._.systemInfo.render_target_size
-            .recommended_resolution_pixels_steps;
+          var _;
+          return null === (_ = _._.systemInfo) || void 0 === _
+            ? void 0
+            : _.render_target_size.recommended_resolution_pixels_steps;
         }
         setFramesToThrottleValue(_) {
           _._.SetSettingsValue(_._, _);
@@ -29861,8 +29800,8 @@ var CLSTAMP = "steamdb";
         get currentPerfProfile() {
           return _._.settings.get(_._);
         }
-        get isPowerSavingProfile() {
-          return "powersaving" == this.currentPerfProfile;
+        get isPlaytimeProfile() {
+          return "Powersave" == this.currentPerfProfile;
         }
         setPerfGraphInHMD(_) {
           _._.SetSettingsValue(_._, _);
@@ -29893,7 +29832,8 @@ var CLSTAMP = "steamdb";
             _.set_display_brightness_min(this.minBrightnessUserValue),
             _.set_display_brightness_max(this.maxBrightnessUserValue),
             _.set_display_refresh_rate_value(this.refreshRateValue),
-            _.set_display_refresh_rates_available(this.refreshRatesAvailable),
+            this.refreshRatesAvailable &&
+              _.set_display_refresh_rates_available(this.refreshRatesAvailable),
             _._.systemInfo &&
               !_._.systemInfo.resolution_per_app &&
               (_.set_supersample_manual_override(
@@ -29930,7 +29870,8 @@ var CLSTAMP = "steamdb";
                 max: 1,
                 default: 0,
               }),
-            ),
+            );
+          _._.Instance.SceneApplicationState == _._.Running ||
             _.set_env_theater_active(_._.isTheaterMode),
             _._.SetProtoPathProperty(_);
         }
@@ -29963,7 +29904,7 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.computed], _.prototype, "motionSmoothing", null),
         (0, _._)([_.action], _.prototype, "setPerformanceProfile", null),
         (0, _._)([_.computed], _.prototype, "currentPerfProfile", null),
-        (0, _._)([_.computed], _.prototype, "isPowerSavingProfile", null),
+        (0, _._)([_.computed], _.prototype, "isPlaytimeProfile", null),
         (0, _._)([_.action], _.prototype, "setPerfGraphInHMD", null),
         (0, _._)([_.computed], _.prototype, "perfGraphInHMD", null),
         (0, _._)([_.action], _.prototype, "setPerfRecordVRStats", null),

@@ -107,11 +107,9 @@
         "recommendedResolutionMultiplierSteps": 0.02,
         "showRecommendedResolutionPercentage": true,
         "environmentMode": 0,
-        "framesToThrottle": 0,
         "envBrightnessNominal": 1.0,
         "envBrightnessTheater": 0.0,
-        "fovScale": 1,
-        "performanceProfile": "custom"
+        "performanceProfile": "Performance"
     },
     "openxr": {
         "metaUnityPluginCompatibility": 0

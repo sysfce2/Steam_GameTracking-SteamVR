@@ -1448,7 +1448,6 @@ Extensions of MessageSets must be optional messages.
 Extensions to non-lite types can only be declared in non-lite files.  Note that you cannot extend a non-lite type to contain a lite type, but the reverse is allowed.
 Extra non-whitespace after JSON value.
 Eye Displays must be adjacent: left (%d, %d), right (%d, %d)\nUse Screen Resolution control panel to fix
-E~iA
 FATAL
 FORMAT=32-bit_rle_rgbe
 FPGA susp: 
@@ -2154,7 +2153,7 @@ RENDERDOC Enabled
 RENDERDOC_GetAPI
 RENDERDOC_GetAPI failed with code %d
 RPCRT4.dll
-RSDS
+RSDS^
 Radio
 RaiseException
 Reached an unintended state: CPPTYPE_MESSAGE

@@ -1,4 +1,4 @@
-var CLSTAMP = "10827945";
+var CLSTAMP = "10833373";
 (() => {
   var e,
     t = {
@@ -21211,15 +21211,12 @@ var CLSTAMP = "10827945";
             });
           }
           resetHmdPerfSettings() {
-            qg.SetSettingsValue(Jr, null),
-              qg.SetSettingsValue($r, null),
+            qg.SetSettingsValue($r, null),
               qg.SetSettingsValue(Pr, null),
               qg.SetSettingsValue(Lr, null),
-              qg.SetSettingsValue(Xr, null),
               qg.SetSettingsValue(Qr, null),
               qg.SetSettingsValue(Yr, null),
-              qg.SetSettingsValue(ei, null),
-              qg.SetSettingsValue("/settings/steamvr/fovScale", null);
+              qg.SetSettingsValue(ei, null);
           }
           BrightnessUserToDriver(e) {
             return e < 100 ? Math.pow(e / 100, 2.2) : e / 100;
@@ -21281,50 +21278,49 @@ var CLSTAMP = "10827945";
             qg.SetSettingsValue($r, e);
           }
           get refreshRateValue() {
-            return qg.settings.get($r);
+            return this.isPlaytimeProfile
+              ? qg.settings.get("/settings/steamvr/powersaveRefreshRate")
+              : qg.settings.get($r);
           }
           get actualRefreshRate() {
-            return qg.systemInfo.refresh_rates.actual_display_frequency;
+            var e;
+            return null === (e = qg.systemInfo) || void 0 === e
+              ? void 0
+              : e.refresh_rates.actual_display_frequency;
           }
           get refreshRatesAvailable() {
-            return qg.systemInfo.refresh_rates.supported_rates;
+            var e;
+            return null === (e = qg.systemInfo) || void 0 === e
+              ? void 0
+              : e.refresh_rates.supported_rates;
           }
           PadResolution(e) {
             const t = this.supersampleScalePixelsStep || 4;
             return Math.trunc(e / t) * t;
           }
           ComputeResolution(e, t) {
-            var n;
-            if (
-              !(
-                qg.systemInfo &&
-                null != qg.systemInfo.render_target_size.width &&
-                0 != qg.systemInfo.render_target_size.height
-              )
-            )
-              return [0, 0];
-            let r = Math.max(
-                512,
-                Math.floor(
-                  qg.systemInfo.render_target_size.width * Math.sqrt(e) + 0.5,
-                ),
-              ),
-              i = Math.max(
-                512,
-                Math.floor(
-                  qg.systemInfo.render_target_size.height * Math.sqrt(t) + 0.5,
-                ),
-              );
+            var n, r, i;
             const a =
-              null !== (n = qg.settings.get(Ur)) && void 0 !== n ? n : 8192;
+                null === (n = qg.systemInfo) || void 0 === n
+                  ? void 0
+                  : n.render_target_size.width,
+              s =
+                null === (r = qg.systemInfo) || void 0 === r
+                  ? void 0
+                  : r.render_target_size.height;
+            if (!a || !s) return [0, 0];
+            let o = Math.max(512, Math.floor(a * Math.sqrt(e) + 0.5)),
+              l = Math.max(512, Math.floor(s * Math.sqrt(t) + 0.5));
+            const c =
+              null !== (i = qg.settings.get(Ur)) && void 0 !== i ? i : 8192;
             return (
-              Math.max(r, i) > a &&
-                (r > i
-                  ? ((i = (a * i) / r), (r = a))
-                  : ((r = (a * r) / i), (i = a))),
-              (r = this.PadResolution(r)),
-              (i = this.PadResolution(i)),
-              [r, i]
+              Math.max(o, l) > c &&
+                (o > l
+                  ? ((l = (c * l) / o), (o = c))
+                  : ((o = (c * o) / l), (l = c))),
+              (o = this.PadResolution(o)),
+              (l = this.PadResolution(l)),
+              [o, l]
             );
           }
           setSupersampleManualOverride(e) {
@@ -21341,6 +21337,12 @@ var CLSTAMP = "10827945";
           }
           get supersampleGpuScaleValue() {
             var e;
+            if (qg.systemInfo && Ql.isPlaytimeProfile) {
+              const e =
+                qg.settings.get("/settings/steamvr/powersaveResolution") /
+                qg.systemInfo.render_target_size.width;
+              return e * e;
+            }
             return null !==
               (e = qg.settings.get(
                 "/settings/GpuSpeed/gpuSpeedRenderTargetScale",
@@ -21364,8 +21366,10 @@ var CLSTAMP = "10827945";
             );
           }
           get supersampleScalePixelsStep() {
-            return qg.systemInfo.render_target_size
-              .recommended_resolution_pixels_steps;
+            var e;
+            return null === (e = qg.systemInfo) || void 0 === e
+              ? void 0
+              : e.render_target_size.recommended_resolution_pixels_steps;
           }
           setFramesToThrottleValue(e) {
             qg.SetSettingsValue(Xr, e);
@@ -21385,8 +21389,8 @@ var CLSTAMP = "10827945";
           get currentPerfProfile() {
             return qg.settings.get(Jr);
           }
-          get isPowerSavingProfile() {
-            return "powersaving" == this.currentPerfProfile;
+          get isPlaytimeProfile() {
+            return "Powersave" == this.currentPerfProfile;
           }
           setPerfGraphInHMD(e) {
             qg.SetSettingsValue(Yr, e);
@@ -21417,7 +21421,10 @@ var CLSTAMP = "10827945";
               e.set_display_brightness_min(this.minBrightnessUserValue),
               e.set_display_brightness_max(this.maxBrightnessUserValue),
               e.set_display_refresh_rate_value(this.refreshRateValue),
-              e.set_display_refresh_rates_available(this.refreshRatesAvailable),
+              this.refreshRatesAvailable &&
+                e.set_display_refresh_rates_available(
+                  this.refreshRatesAvailable,
+                ),
               qg.systemInfo &&
                 !qg.systemInfo.resolution_per_app &&
                 (e.set_supersample_manual_override(
@@ -21454,7 +21461,8 @@ var CLSTAMP = "10827945";
                   max: 1,
                   default: 0,
                 }),
-              ),
+              );
+            so.Instance.SceneApplicationState == Xe.Running ||
               e.set_env_theater_active(qp.isTheaterMode),
               Qa.SetProtoPathProperty(e);
           }
@@ -21527,7 +21535,7 @@ var CLSTAMP = "10827945";
           (0, r.Cg)([h.computed], $l.prototype, "motionSmoothing", null),
           (0, r.Cg)([h.action], $l.prototype, "setPerformanceProfile", null),
           (0, r.Cg)([h.computed], $l.prototype, "currentPerfProfile", null),
-          (0, r.Cg)([h.computed], $l.prototype, "isPowerSavingProfile", null),
+          (0, r.Cg)([h.computed], $l.prototype, "isPlaytimeProfile", null),
           (0, r.Cg)([h.action], $l.prototype, "setPerfGraphInHMD", null),
           (0, r.Cg)([h.computed], $l.prototype, "perfGraphInHMD", null),
           (0, r.Cg)([h.action], $l.prototype, "setPerfRecordVRStats", null),
@@ -21803,7 +21811,8 @@ var CLSTAMP = "10827945";
           return i.createElement(i.Fragment, null, h, g);
         }
         const ic = (0, s.PA)((e) => {
-            const [t, n] = i.useState(
+            var t;
+            const [n, r] = i.useState(
               null === VRHTML || void 0 === VRHTML
                 ? void 0
                 : VRHTML.VRApplications.GetSceneApplicationKey(),
@@ -21811,13 +21820,13 @@ var CLSTAMP = "10827945";
             i.useEffect(() => {
               const e = "settings_video";
               return (
-                ys.register(e, n),
+                ys.register(e, r),
                 () => {
                   ys.unregister(e);
                 }
               );
             }, []);
-            const r = Yl.For(t);
+            const a = Yl.For(n);
             if (!qg.systemInfo || 0 == Ql.actualRefreshRate) return null;
             if (vh.activeVRLinkClient && vh.unifiedDashboardEnabled)
               return i.createElement(
@@ -21840,10 +21849,11 @@ var CLSTAMP = "10827945";
                 ),
               );
             if (
+              Ql.refreshRatesAvailable &&
               Ql.refreshRatesAvailable.length > 1 &&
-              !Ql.isPowerSavingProfile
+              !Ql.isPlaytimeProfile
             ) {
-              const e = rc(r);
+              const e = rc(a);
               return (
                 e ||
                 i.createElement(us, {
@@ -21860,20 +21870,23 @@ var CLSTAMP = "10827945";
             }
             {
               const e =
+                  qg.systemInfo &&
                   qg.systemInfo.refresh_rates.supports_multiple_rates &&
-                  !Ql.isPowerSavingProfile,
-                t = qg.systemInfo.extended_mode,
-                n = Math.round(
-                  qg.systemInfo.refresh_rates.supports_multiple_rates
-                    ? Ql.refreshRateValue
-                    : Ql.actualRefreshRate,
-                );
+                  !Ql.isPlaytimeProfile,
+                n =
+                  null === (t = qg.systemInfo) || void 0 === t
+                    ? void 0
+                    : t.extended_mode,
+                r = qg.systemInfo.refresh_rates.supports_multiple_rates
+                  ? Ql.refreshRateValue
+                  : Ql.actualRefreshRate,
+                a = r ? Math.round(r) : "Unknown ";
               return i.createElement(
                 ns,
                 {
                   className: "SettingsItem",
                   title: e
-                    ? null
+                    ? void 0
                     : d("#Settings_Video_RefreshRate_OneSupported"),
                 },
                 i.createElement(
@@ -21884,21 +21897,21 @@ var CLSTAMP = "10827945";
                 i.createElement(
                   "div",
                   { className: yi("Label", ["SubsectionStem", e]) },
-                  n + d("#Settings_Video_RefreshRate_HzSuffix"),
+                  a + d("#Settings_Video_RefreshRate_HzSuffix"),
                 ),
                 e &&
                   i.createElement(
                     "div",
                     { className: "Subsection WithStem" },
-                    t && d("#Settings_Video_RefreshRate_NotAvailableExtended"),
-                    t &&
+                    n && d("#Settings_Video_RefreshRate_NotAvailableExtended"),
+                    n &&
                       Ue() != xe.Overlay &&
                       i.createElement(
                         Mi,
                         { className: "ButtonControl", onClick: nc },
                         d("#Settings_Video_RefreshRate_EnableDirectModeAction"),
                       ),
-                    !t && d("#Settings_Video_RefreshRate_NotFound"),
+                    !n && d("#Settings_Video_RefreshRate_NotFound"),
                   ),
               );
             }
@@ -22013,110 +22026,68 @@ var CLSTAMP = "10827945";
               a > 0 &&
                 s > 0 &&
                 (o = d("#Settings_Advanced_Supersampling_WidthByHeight", a, s)),
-              Ql.isPowerSavingProfile
-                ? i.createElement(
-                    i.Fragment,
-                    null,
-                    d("#Settings_Advanced_Supersampling_Header"),
+              i.createElement(cs, {
+                value: Ql.supersampleManualOverride,
+                onChange: (e) => Ql.setSupersampleManualOverride(e),
+                label: d("#Settings_Advanced_Supersampling_Header"),
+                onLabel: d("#Settings_Advanced_Supersampling_Auto"),
+                offLabel: d("#Settings_Advanced_Supersampling_Custom"),
+                title: n ? "" : d("#Explanation_Supersampling_Header"),
+                swapOnOff: !0,
+                onSubsection: i.createElement(
+                  i.Fragment,
+                  null,
+                  i.createElement(
+                    ns,
+                    { className: "SettingsItem" },
                     i.createElement(
                       "div",
-                      { className: "Subsection WithStem" },
-                      i.createElement(
-                        ns,
-                        { className: "SettingsItem" },
-                        i.createElement(
-                          "div",
-                          { className: "Label" },
-                          d(
-                            "#Settings_Advanced_Supersampline_ResolutionPerEye",
-                          ),
-                        ),
-                        i.createElement(
-                          "div",
-                          { className: "Label Right Resolution" },
-                          i.createElement(
-                            "div",
-                            { className: "Dimensions" },
-                            o,
-                          ),
-                        ),
-                      ),
+                      { className: "Label" },
+                      d("#Settings_Advanced_Supersampline_ResolutionPerEye"),
                     ),
-                  )
-                : i.createElement(cs, {
-                    value: Ql.supersampleManualOverride,
-                    onChange: (e) => Ql.setSupersampleManualOverride(e),
-                    label: d("#Settings_Advanced_Supersampling_Header"),
-                    onLabel: d("#Settings_Advanced_Supersampling_Auto"),
-                    offLabel: d("#Settings_Advanced_Supersampling_Custom"),
-                    title: n ? "" : d("#Explanation_Supersampling_Header"),
-                    swapOnOff: !0,
-                    onSubsection: i.createElement(
-                      i.Fragment,
-                      null,
-                      i.createElement(
-                        ns,
-                        { className: "SettingsItem" },
-                        i.createElement(
-                          "div",
-                          { className: "Label" },
-                          d(
-                            "#Settings_Advanced_Supersampline_ResolutionPerEye",
-                          ),
-                        ),
-                        i.createElement(
-                          "div",
-                          { className: "Label Right Resolution" },
-                          i.createElement(
-                            "div",
-                            { className: "Dimensions" },
-                            o,
-                          ),
-                        ),
-                      ),
+                    i.createElement(
+                      "div",
+                      { className: "Label Right Resolution" },
+                      i.createElement("div", { className: "Dimensions" }, o),
                     ),
-                    offSubsection: i.createElement(
-                      i.Fragment,
-                      null,
-                      i.createElement(
-                        ns,
-                        { className: "SettingsItem" },
-                        i.createElement(
-                          "div",
-                          { className: "Label" },
-                          d(
-                            "#Settings_Advanced_Supersampline_ResolutionPerEye",
-                          ),
-                        ),
-                        i.createElement(
-                          "div",
-                          { className: "Label Right Resolution" },
-                          i.createElement(
-                            "div",
-                            { className: "Dimensions" },
-                            o,
-                          ),
-                          qg.settings.get(
-                            "/settings/steamvr/showRecommendedResolutionPercentage",
-                          ) &&
-                            i.createElement(
-                              "div",
-                              { className: "Percentage" },
-                              Math.round(100 * r).toString() + "%",
-                            ),
-                        ),
-                        i.createElement(ms, {
-                          min: Ql.minSupersampleScaleValue,
-                          max: Ql.maxSupersampleScaleValue,
-                          step: Ql.supersampleScaleStep,
-                          detents: e,
-                          value: r,
-                          onChange: (e) => Ql.setSupersampleScaleValue(e),
-                        }),
-                        i.createElement(oc, null),
-                      ),
+                  ),
+                ),
+                offSubsection: i.createElement(
+                  i.Fragment,
+                  null,
+                  i.createElement(
+                    ns,
+                    { className: "SettingsItem" },
+                    i.createElement(
+                      "div",
+                      { className: "Label" },
+                      d("#Settings_Advanced_Supersampline_ResolutionPerEye"),
                     ),
-                  })
+                    i.createElement(
+                      "div",
+                      { className: "Label Right Resolution" },
+                      i.createElement("div", { className: "Dimensions" }, o),
+                      qg.settings.get(
+                        "/settings/steamvr/showRecommendedResolutionPercentage",
+                      ) &&
+                        i.createElement(
+                          "div",
+                          { className: "Percentage" },
+                          Math.round(100 * r).toString() + "%",
+                        ),
+                    ),
+                    i.createElement(ms, {
+                      min: Ql.minSupersampleScaleValue,
+                      max: Ql.maxSupersampleScaleValue,
+                      step: Ql.supersampleScaleStep,
+                      detents: e,
+                      value: r,
+                      onChange: (e) => Ql.setSupersampleScaleValue(e),
+                    }),
+                    i.createElement(oc, null),
+                  ),
+                ),
+              })
             );
           });
         let cc = class extends i.Component {
@@ -22366,31 +22337,12 @@ var CLSTAMP = "10827945";
               : "#Settings_Advanced_MotionSmoothing_Disabled",
           );
           return e
-            ? Ql.isPowerSavingProfile
-              ? i.createElement(
-                  ns,
-                  { className: "SettingsItem" },
-                  i.createElement(
-                    "div",
-                    { className: "Label" },
-                    d("#Settings_Advanced_MotionSmoothing_Header"),
-                  ),
-                  i.createElement(
-                    "div",
-                    { className: "Label" },
-                    d(
-                      Ql.motionSmoothing
-                        ? "#Settings_ToggleButton_On"
-                        : "#Settings_ToggleButton_Off",
-                    ),
-                  ),
-                )
-              : i.createElement(cs, {
-                  value: Ql.motionSmoothing,
-                  onChange: (e) => Ql.setMotionSmoothing(e),
-                  label: d("#Settings_Advanced_MotionSmoothing_Header"),
-                  title: d("#Settings_Advanced_MotionSmoothing_Description"),
-                })
+            ? i.createElement(cs, {
+                value: Ql.motionSmoothing,
+                onChange: (e) => Ql.setMotionSmoothing(e),
+                label: d("#Settings_Advanced_MotionSmoothing_Header"),
+                title: d("#Settings_Advanced_MotionSmoothing_Description"),
+              })
             : i.createElement(
                 ns,
                 { className: "SettingsItem", title: n },
@@ -22903,14 +22855,14 @@ var CLSTAMP = "10827945";
                               ),
                             ),
                           ),
-                      Ql.isPowerSavingProfile &&
+                      Ql.isPlaytimeProfile &&
                         i.createElement(
                           "div",
                           { className: "SettingsItem" },
                           i.createElement(
                             "div",
                             { className: "SettingsItemValueInfo Left" },
-                            d("#Settings_Unavailable_PowerSaving"),
+                            d("#Settings_Unavailable_Playtime"),
                           ),
                         ),
                     ),
@@ -22924,9 +22876,8 @@ var CLSTAMP = "10827945";
                     i.createElement(
                       i.Fragment,
                       null,
-                      !Ql.isPowerSavingProfile && o,
-                      !Ql.isPowerSavingProfile &&
-                        this.enableMotionSmoothingOverrideSettings &&
+                      !Ql.isPlaytimeProfile && o,
+                      this.enableMotionSmoothingOverrideSettings &&
                         null !== this.state.eSmoothingMode &&
                         !this.state.disableAsyncReprojection &&
                         i.createElement(ds, {
@@ -22990,7 +22941,7 @@ var CLSTAMP = "10827945";
                           value: this.state.eSharpening,
                           onChange: this.onSharpeningChange,
                         }),
-                      !Ql.isPowerSavingProfile &&
+                      !Ql.isPlaytimeProfile &&
                         i.createElement(
                           ns,
                           {
@@ -23045,8 +22996,7 @@ var CLSTAMP = "10827945";
                             ),
                           ),
                         ),
-                      !Ql.isPowerSavingProfile &&
-                        null !== this.state.nFovScaleMultiplier &&
+                      null !== this.state.nFovScaleMultiplier &&
                         (qg.showAdvancedSettings ||
                           (this.m_initialAppState &&
                             1 != this.m_initialAppState.nFovScaleMultiplier)) &&
@@ -23239,11 +23189,12 @@ var CLSTAMP = "10827945";
                             ),
                           ),
                         ),
-                      !Ql.isPowerSavingProfile &&
+                      !Ql.isPlaytimeProfile &&
                         this.allowPerAppRefreshRate &&
                         (null === (a = this.m_appSettings) || void 0 === a
                           ? void 0
                           : a.response) &&
+                        Ql.refreshRatesAvailable &&
                         Ql.refreshRatesAvailable.length > 1 &&
                         (qg.showAdvancedSettings ||
                           this.m_appSettings.refreshRateOverridden) &&
@@ -23276,8 +23227,7 @@ var CLSTAMP = "10827945";
                             }),
                           }),
                         ),
-                      !Ql.isPowerSavingProfile &&
-                        this.enableLegacyReprojectionSettings &&
+                      this.enableLegacyReprojectionSettings &&
                         null !== this.state.disableAsyncReprojection &&
                         (qg.showAdvancedSettings ||
                           (this.m_initialAppState &&
@@ -23298,7 +23248,7 @@ var CLSTAMP = "10827945";
                             onChange: this.onDisableAsyncReprojection,
                           }),
                         ),
-                      !Ql.isPowerSavingProfile &&
+                      !Ql.isPlaytimeProfile &&
                         this.enableThrottleOverrideSettings &&
                         (null === (s = this.m_appSettings) || void 0 === s
                           ? void 0
@@ -23442,14 +23392,14 @@ var CLSTAMP = "10827945";
             return i.createElement(
               i.Fragment,
               null,
-              Ql.isPowerSavingProfile &&
+              Ql.isPlaytimeProfile &&
                 i.createElement(
                   "div",
                   { className: "SettingsItem" },
                   i.createElement(
                     "div",
                     { className: "SettingsItemValueInfo Left" },
-                    d("#Settings_Unavailable_PowerSaving"),
+                    d("#Settings_Unavailable_Playtime"),
                   ),
                 ),
               i.createElement(ic, { settingsPageName: tc.Name }),
@@ -42415,7 +42365,7 @@ var CLSTAMP = "10827945";
                 ? void 0
                 : e.call(VRHTML)) + "",
             ),
-              n.set_webpack_build_timestamp(1784184493);
+              n.set_webpack_build_timestamp(1784325556);
             const r =
               null ===
                 (t =
@@ -46598,7 +46548,7 @@ var CLSTAMP = "10827945";
             }),
             i.createElement(os, {
               label: d("#Settings_VersionInfo_WebpackBuildTime"),
-              value: new Date(1784184493e3).toLocaleString() + "",
+              value: new Date(1784325556e3).toLocaleString() + "",
             }),
             i.createElement(os, {
               label: d("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),
@@ -46629,14 +46579,14 @@ var CLSTAMP = "10827945";
             return i.createElement(
               i.Fragment,
               null,
-              Ql.isPowerSavingProfile &&
+              Ql.isPlaytimeProfile &&
                 i.createElement(
                   "div",
                   { className: "SettingsItem" },
                   i.createElement(
                     "div",
                     { className: "SettingsItemValueInfo Left" },
-                    d("#Settings_Unavailable_PowerSaving"),
+                    d("#Settings_Unavailable_Playtime"),
                   ),
                 ),
               i.createElement(ic, { settingsPageName: Wh.Name }),
