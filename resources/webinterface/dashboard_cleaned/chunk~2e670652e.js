@@ -1096,9 +1096,7 @@ var CLSTAMP = "steamdb";
             (this.m_rgControlsItems_TabHoverControls = []),
             (this.m_vrAppEntry = void 0),
             (this.m_mapSpatializeEnabledForPage = new Map()),
-            (this.m_actionToFocusMainPanel = void 0),
-            (this.m_actionToFocusLeftFrameMenu = void 0),
-            (this.m_refFrameMenu = _.createRef()),
+            (this.m_frameMenuPanel = void 0),
             (this.Log = new _._("Frame", () => this.logPrefix)),
             (this.m_unNextPageID = 1),
             (this.m_setComponents = new Set()),
@@ -1107,6 +1105,7 @@ var CLSTAMP = "steamdb";
             (this.docking = new _._(this)),
             (this.closing = new _._(this)),
             (this.size = new _._(this)),
+            (this.inputFocus = new _._(this)),
             (this.m_OnDestroyed = new _._()),
             (this.m_bPendingLoadAppInfo = !1),
             (this.m_bPendingInitialSyncWithSteam = !1),
@@ -1174,7 +1173,7 @@ var CLSTAMP = "steamdb";
           switch (this.docking.dockLocation) {
             case _._.Dashboard:
               return (
-                !!_._.m_bDashboardVisible &&
+                !(!_._.isFullyVisible && !_._.isDashboardDiminished) &&
                 !!this.isActiveDashboardFrame &&
                 (null == _._.framePreviewingDashboardDockSnap ||
                   _._.framePreviewingDashboardDockSnap == this)
@@ -1204,6 +1203,9 @@ var CLSTAMP = "steamdb";
         get isActiveDashboardFrame() {
           return (0, _._)(_._.activeFrame, this);
         }
+        get isActiveDashboardFrameInDiminishedMode() {
+          return this.isActiveDashboardFrame && _._.isDashboardDiminished;
+        }
         get pageIDs() {
           return Array.from(this.m_mapPages.keys());
         }
@@ -1221,21 +1223,23 @@ var CLSTAMP = "steamdb";
             return _._.GetRequestForID(this.m_unFrameMenuPopupID);
         }
         get shouldRenderFrameControls() {
-          var _, _;
+          var _;
           return (
             !_._.isOOBE &&
             !_._.isLocked &&
-            (null ==
-              (null === (_ = this.activePage) || void 0 === _
-                ? void 0
-                : _.summonOverlayKey) ||
-              !_._.GetOverlayFlag(
-                null === (_ = this.activePage) || void 0 === _
-                  ? void 0
-                  : _.summonOverlayKey,
-                67108864,
-              ))
+            !(null === (_ = this.activePage) || void 0 === _
+              ? void 0
+              : _.shouldShowMinimalDecorations)
           );
+        }
+        get frameControlsVisibilityRequiresLaser() {
+          return this.isActiveDashboardFrameInDiminishedMode, !0;
+        }
+        get frameMenuVisibilityRequiresLaser() {
+          var _;
+          return !(null === (_ = this.activePage) || void 0 === _
+            ? void 0
+            : _.isSystemPanel);
         }
         get isRemoteFrame() {
           return !1;
@@ -1342,7 +1346,7 @@ var CLSTAMP = "steamdb";
               : this.associatedSummonOverlayKeys.some((_) =>
                   _.startsWith("gamescope."),
                 ) &&
-                _._.m_bDashboardVisible &&
+                _._.isFullyVisible &&
                 (null === (_ = _._.Instance) ||
                   void 0 === _ ||
                   _.switchToFrameInternal(this, void 0, "OnPendingComplete"));
@@ -1382,31 +1386,7 @@ var CLSTAMP = "steamdb";
                 }),
               );
             for (const _ of this.m_setComponents) _.Init();
-            (this.m_actionToFocusMainPanel = this.CreateAction(
-              {
-                invocation: 1,
-              },
-              () => {
-                var _;
-                return null === (_ = this.activePage) || void 0 === _
-                  ? void 0
-                  : _.focus.PushInputFocus();
-              },
-            )),
-              (this.m_actionToFocusLeftFrameMenu = this.CreateAction(
-                {
-                  invocation: 1,
-                },
-                () => {
-                  var _;
-                  const _ =
-                    null === (_ = this.m_refFrameMenu.current) || void 0 === _
-                      ? void 0
-                      : _.getSGID();
-                  _ && _._.PushInputFocus(_);
-                },
-              )),
-              this.Log.Info("Frame initialized.");
+            this.Log.Info("Frame initialized.");
           }
         }
         OnPagesDestroyed(_) {
@@ -1457,7 +1437,7 @@ var CLSTAMP = "steamdb";
             (this.m_rgControlsItems_TabHoverControls = _);
         }
         get protoForSteam() {
-          var _, _, _, _, _, _, _, _;
+          var _, _, _, _, _, _;
           if (this.state == _.Uninitialized || this.state == _.Destroyed)
             return;
           const _ =
@@ -1489,15 +1469,9 @@ var CLSTAMP = "steamdb";
                     : [],
               },
               frame_actions: {
-                focus_main_panel_action:
-                  null === (_ = this.m_actionToFocusMainPanel) || void 0 === _
-                    ? void 0
-                    : _.actionID,
+                focus_main_panel_action: this.inputFocus.focusMainPanelActionID,
                 focus_left_frame_menu_action:
-                  null === (_ = this.m_actionToFocusLeftFrameMenu) ||
-                  void 0 === _
-                    ? void 0
-                    : _.actionID,
+                  this.inputFocus.focusLeftFrameMenuActionID,
               },
               is_vrlink_remote: _,
               is_streaming_client: this.isStreamingClient,
@@ -1647,6 +1621,7 @@ var CLSTAMP = "steamdb";
           "m_mapSpatializeEnabledForPage",
           void 0,
         ),
+        (0, _._)([_.observable.ref], _.prototype, "m_frameMenuPanel", void 0),
         (0, _._)([_.computed], _.prototype, "logPrefix", null),
         (0, _._)([_.computed], _.prototype, "state", null),
         (0, _._)([_.observable], _.prototype, "m_bPendingLoadAppInfo", void 0),
@@ -1671,6 +1646,12 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.computed], _.prototype, "activePageID", null),
         (0, _._)([_.computed], _.prototype, "activePage", null),
         (0, _._)([_.computed], _.prototype, "isActiveDashboardFrame", null),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "isActiveDashboardFrameInDiminishedMode",
+          null,
+        ),
         (0, _._)([_.computed], _.prototype, "pageIDs", null),
         (0, _._)([_.computed], _.prototype, "pages", null),
         (0, _._)(
@@ -1681,6 +1662,18 @@ var CLSTAMP = "steamdb";
         ),
         (0, _._)([_.computed], _.prototype, "frameMenuPopupRequest", null),
         (0, _._)([_.computed], _.prototype, "shouldRenderFrameControls", null),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "frameControlsVisibilityRequiresLaser",
+          null,
+        ),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "frameMenuVisibilityRequiresLaser",
+          null,
+        ),
         (0, _._)([_.computed], _.prototype, "frameControlsTransformID", null),
         (0, _._)([_.computed], _.prototype, "overlayKeyForSpatialize", null),
         (0, _._)([_.computed], _.prototype, "canSpatialize", null),
@@ -1705,7 +1698,7 @@ var CLSTAMP = "steamdb";
         );
       const _ = (0, _._)(
         _.forwardRef(function (_, _) {
-          var _, _, _, _, _;
+          var _, _, _, _, _, _;
           const { children: _ } = _,
             _ = _.useMemo(() => _._.CreateCFrame(_), []);
           _.useLayoutEffect(() =>
@@ -1750,10 +1743,14 @@ var CLSTAMP = "steamdb";
                       (_ =
                         null === (_ = _.activePage) || void 0 === _
                           ? void 0
-                          : _.focus) || void 0 === _
+                          : _.inputFocus) || void 0 === _
                       ? void 0
                       : _.inputFocusParams,
                   main_panel_origin: _.docking.mainPanelOrigin,
+                  main_panel_focus_outline:
+                    null === (_ = _.activePage) || void 0 === _
+                      ? void 0
+                      : _.inputFocus.focusOutline,
                 },
                 _,
                 _.isCurrentlyVisible &&
@@ -1813,9 +1810,14 @@ var CLSTAMP = "steamdb";
                         },
                         _.createElement(_._, {
                           popupRequest: _.frameMenuPopupRequest,
-                          refPanel: _.m_refFrameMenu,
+                          refPanel: (_) => {
+                            _.m_frameMenuPanel = _;
+                          },
+                          only_visible_with_laser:
+                            _.frameMenuVisibilityRequiresLaser,
                         }),
                       ),
+                    _.createElement(_._, null),
                     _.createElement(_._, null),
                     _.createElement(_._, null),
                     _.size.showResizeHandle && _.createElement(_._, null),
@@ -3660,6 +3662,7 @@ var CLSTAMP = "steamdb";
                       sort_order: _,
                       no_depth_test: _,
                       no_depth_write: _,
+                      outline: _._.None,
                       frame_resize_scale_factor: 1,
                     },
                     _,
@@ -3678,20 +3681,39 @@ var CLSTAMP = "steamdb";
               _.createElement(
                 _._,
                 {
-                  key: _.dashboard_popup_id,
+                  key: null == _ ? void 0 : _.dashboard_popup_id,
                   location: _,
                 },
                 _,
               ),
             )
           : (null == _ ? void 0 : _.parent_device_path)
-            ? _.createElement(
-                _._,
-                {
-                  parent_path: null == _ ? void 0 : _.parent_device_path,
-                },
-                _,
-              )
+            ? 2 == (null == _ ? void 0 : _.parent_enum)
+              ? _.createElement(
+                  _._,
+                  {
+                    parent_path: null == _ ? void 0 : _.parent_device_path,
+                  },
+                  _.createElement(
+                    _._,
+                    {
+                      rotation_start_angle_threshold: 10,
+                      rotation_stop_angle_threshold: 5,
+                      rotation_ease_out_angle_threshold: 20,
+                      rotation_min_angular_velocity: 75,
+                      rotation_ease_in_power: 1.5,
+                      lock_to_horizon: !1,
+                    },
+                    _,
+                  ),
+                )
+              : _.createElement(
+                  _._,
+                  {
+                    parent_path: null == _ ? void 0 : _.parent_device_path,
+                  },
+                  _,
+                )
             : _;
       }
       function _(_) {
@@ -3842,11 +3864,12 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
       });
       var _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
-      let _ = 0;
-      var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__._(_),
         _ = __webpack_require__("chunkid");
       function _(_) {
@@ -4277,6 +4300,24 @@ var CLSTAMP = "steamdb";
           Object.assign(
             {
               xmlns: "http://www.w3.org/2000/svg",
+              className: "SVGIcon_Button SVGIcon_Close",
+              viewBox: "0 0 36 36",
+              fill: "none",
+            },
+            _,
+          ),
+          _.createElement("path", {
+            _: "M32.12 7.41L28.59 3.88L18 14.46L7.41 3.88L3.88 7.41L14.46 18L3.88 28.59L7.41 32.12L18 21.54L28.59 32.12L32.12 28.59L21.54 18L32.12 7.41Z",
+            fill: "currentColor",
+          }),
+        );
+      }
+      function _(_) {
+        return _.createElement(
+          "svg",
+          Object.assign(
+            {
+              xmlns: "http://www.w3.org/2000/svg",
               viewBox: "0 0 36 36",
               fill: "none",
             },
@@ -4574,13 +4615,7 @@ var CLSTAMP = "steamdb";
       function _(_) {
         const { type: _, partial: _ } = _,
           _ = (0, _._)(_, ["type", "partial"]),
-          [_, _] = (function () {
-            const _ = _.useRef(void 0);
-            return (
-              void 0 === _.current && (_.current = "svgid_" + _++),
-              [_.current, `url(#${_.current})`]
-            );
-          })();
+          [_, _] = (0, _._)();
         return "triton" == _
           ? _.createElement(
               "svg",

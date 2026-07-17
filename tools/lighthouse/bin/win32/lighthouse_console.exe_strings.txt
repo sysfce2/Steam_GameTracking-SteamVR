@@ -1254,6 +1254,7 @@ Sync on beam channel conflict %d\n
 Syntax error: value, object or array expected.
 Sys Temp: 
 Sys clk: 
+T4LR
 TDM only works with matched single / double rotor pairs.\n
 TDM sensorType changed to: %d\n
 TDM supports max of 2 basestations.\n

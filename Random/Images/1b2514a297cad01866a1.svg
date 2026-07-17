@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<svg>
+  <g clip-path="">
+    <circle fill="white" cx="14.5" cy="14.5" r="14.5"/>
+    <path fill="#0E141B" d="M19.4381 19.3333H17.1326L16.4366 17.3613H12.4636L11.7966 19.3333H9.57812L13.3771 9.18335H15.5231L19.4381 19.3333ZM14.4356 11.6048L13.0436 15.6648H15.8566L14.4356 11.6048Z"/>
+  </g>
+  <defs>
+    <clipPath id="">
+      <rect fill="white" width="29" height="29"/>
+    </clipPath>
+  </defs>
+</svg>

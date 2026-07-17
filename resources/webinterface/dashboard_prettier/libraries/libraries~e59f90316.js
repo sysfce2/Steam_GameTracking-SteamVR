@@ -1,6 +1,6 @@
-var CLSTAMP = "10770080";
+var CLSTAMP = "10827945";
 (self.webpackChunkvrwebui = self.webpackChunkvrwebui || []).push([
-  [908, 260, 154, 982, 47, 264],
+  [908, 260, 154, 982, 47, 264, 602],
   {
     5471: (e, t, n) => {
       "use strict";

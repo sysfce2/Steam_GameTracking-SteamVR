@@ -416,7 +416,7 @@ var CLSTAMP = "steamdb";
                 const _ = 1 + 3 * _;
                 let _ = [0, 0, 0, 0, 0, 0, 0, 0, 0],
                   _ = !1;
-                if (_.isExternal() || _ >= _ || _ >= _)
+                if (_.isExternal || _ >= _ || _ >= _)
                   for (let _ = 0; _ < 3; _++) this.setPixel(_ + 1, 0, 0, 0, 0);
                 else
                   (_ = !0),

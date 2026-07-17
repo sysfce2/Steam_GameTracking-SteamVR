@@ -99,6 +99,10 @@ var CLSTAMP = "steamdb";
         _: () => _._,
         _: () => _._,
         _: () => _._,
+        _: () => _._,
+        _: () => _._,
+        _: () => _._,
+        _: () => _._,
       });
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -283,8 +287,9 @@ var CLSTAMP = "steamdb";
             (_[(_.DriverRequestsReducedRendering = 64)] =
               "DriverRequestsReducedRendering"),
             (_[(_.DashboardTutorial = 128)] = "DashboardTutorial"),
-            (_[(_.GamepadMode = 512)] = "GamepadMode"),
-            (_[(_.SystemKeyboardPrivacy = 1024)] = "SystemKeyboardPrivacy");
+            (_[(_.GamepadMode_Left = 512)] = "GamepadMode_Left"),
+            (_[(_.SystemKeyboardPrivacy = 1024)] = "SystemKeyboardPrivacy"),
+            (_[(_.GamepadMode_Right = 2048)] = "GamepadMode_Right");
         })(_ || (_ = {})),
         (function (_) {
           (_[(_.None = 0)] = "None"),
@@ -368,6 +373,20 @@ var CLSTAMP = "steamdb";
     chunkid: (module, module_exports, __webpack_require__) => {
       __webpack_require__._(module_exports, {
         _: () => _,
+      });
+      var _ = __webpack_require__("chunkid");
+      let _ = 0;
+      function _() {
+        const _ = _.useRef(void 0);
+        return (
+          void 0 === _.current && (_.current = "svgid_" + _++),
+          [_.current, `url(#${_.current})`]
+        );
+      }
+    },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      __webpack_require__._(module_exports, {
+        _: () => _,
         _: () => _,
         _: () => _,
         _: () => _,
@@ -375,6 +394,7 @@ var CLSTAMP = "steamdb";
         _: () => _,
       });
       var _,
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -446,7 +466,7 @@ var CLSTAMP = "steamdb";
             (this.keyboard = new _._(this)),
             (this.sharing = void 0),
             (this.size = new _._(this)),
-            (this.focus = new _._(this)),
+            (this.inputFocus = new _._(this)),
             (this.m_Frame = _),
             (this.m_unPageID = _),
             (this.props = _),
@@ -523,6 +543,19 @@ var CLSTAMP = "steamdb";
             }
           }
         }
+        get isSystemPanel() {
+          return (
+            this.inputFocus.componentProps.steamInputAppID == _._ ||
+            (0, _._)(this.inputFocus.componentProps.steamInputAppID) ||
+            (this.m_mainPanel && !this.m_mainPanel.isExternal)
+          );
+        }
+        get shouldShowMinimalDecorations() {
+          return (
+            null != this.summonOverlayKey &&
+            _._.GetOverlayFlag(this.summonOverlayKey, 67108864)
+          );
+        }
       }
       (0, _._)([_.observable], _.prototype, "props", void 0),
         (0, _._)([_.observable], _.prototype, "m_eState", void 0),
@@ -552,7 +585,14 @@ var CLSTAMP = "steamdb";
         ),
         (0, _._)([_.action], _.prototype, "SetMainPanel", null),
         (0, _._)([_.computed], _.prototype, "mainPanelID", null),
-        (0, _._)([_.computed], _.prototype, "mainPanelSGID", null);
+        (0, _._)([_.computed], _.prototype, "mainPanelSGID", null),
+        (0, _._)([_.computed], _.prototype, "isSystemPanel", null),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "shouldShowMinimalDecorations",
+          null,
+        );
       const _ = _.forwardRef(function (_, _) {
           const { children: _, summonOverlayKey: _ } = _,
             { frame: _ } = (0, _._)(),
@@ -626,12 +666,12 @@ var CLSTAMP = "steamdb";
                       },
                       null == _ ? void 0 : _.keyboard,
                     ),
-                    focus: Object.assign(
+                    inputFocus: Object.assign(
                       {
                         vrClientPID: _ ? _.unClientPID : void 0,
                         steamInputAppID: _ ? _.unSteamInputAppID : void 0,
                       },
-                      null == _ ? void 0 : _.focus,
+                      null == _ ? void 0 : _.inputFocus,
                     ),
                   }),
                 }),

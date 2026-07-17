@@ -184,6 +184,10 @@ var CLSTAMP = "steamdb";
           _: () => _._,
           _: () => _._,
           _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
+          _: () => _._,
         });
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
@@ -1706,9 +1710,7 @@ var CLSTAMP = "steamdb";
               (this.m_rgControlsItems_TabHoverControls = []),
               (this.m_vrAppEntry = void 0),
               (this.m_mapSpatializeEnabledForPage = new Map()),
-              (this.m_actionToFocusMainPanel = void 0),
-              (this.m_actionToFocusLeftFrameMenu = void 0),
-              (this.m_refFrameMenu = _.createRef()),
+              (this.m_frameMenuPanel = void 0),
               (this.Log = new _._("Frame", () => this.logPrefix)),
               (this.m_unNextPageID = 1),
               (this.m_setComponents = new Set()),
@@ -1717,6 +1719,7 @@ var CLSTAMP = "steamdb";
               (this.docking = new _._(this)),
               (this.closing = new _._(this)),
               (this.size = new _._(this)),
+              (this.inputFocus = new _._(this)),
               (this.m_OnDestroyed = new _._()),
               (this.m_bPendingLoadAppInfo = !1),
               (this.m_bPendingInitialSyncWithSteam = !1),
@@ -1784,7 +1787,7 @@ var CLSTAMP = "steamdb";
             switch (this.docking.dockLocation) {
               case _._.Dashboard:
                 return (
-                  !!_._.m_bDashboardVisible &&
+                  !(!_._.isFullyVisible && !_._.isDashboardDiminished) &&
                   !!this.isActiveDashboardFrame &&
                   (null == _._.framePreviewingDashboardDockSnap ||
                     _._.framePreviewingDashboardDockSnap == this)
@@ -1814,6 +1817,9 @@ var CLSTAMP = "steamdb";
           get isActiveDashboardFrame() {
             return (0, _._)(_._.activeFrame, this);
           }
+          get isActiveDashboardFrameInDiminishedMode() {
+            return this.isActiveDashboardFrame && _._.isDashboardDiminished;
+          }
           get pageIDs() {
             return Array.from(this.m_mapPages.keys());
           }
@@ -1831,21 +1837,23 @@ var CLSTAMP = "steamdb";
               return _._.GetRequestForID(this.m_unFrameMenuPopupID);
           }
           get shouldRenderFrameControls() {
-            var _, _;
+            var _;
             return (
               !_._.isOOBE &&
               !_._.isLocked &&
-              (null ==
-                (null === (_ = this.activePage) || void 0 === _
-                  ? void 0
-                  : _.summonOverlayKey) ||
-                !_._.GetOverlayFlag(
-                  null === (_ = this.activePage) || void 0 === _
-                    ? void 0
-                    : _.summonOverlayKey,
-                  67108864,
-                ))
+              !(null === (_ = this.activePage) || void 0 === _
+                ? void 0
+                : _.shouldShowMinimalDecorations)
             );
+          }
+          get frameControlsVisibilityRequiresLaser() {
+            return this.isActiveDashboardFrameInDiminishedMode, !0;
+          }
+          get frameMenuVisibilityRequiresLaser() {
+            var _;
+            return !(null === (_ = this.activePage) || void 0 === _
+              ? void 0
+              : _.isSystemPanel);
           }
           get isRemoteFrame() {
             return !1;
@@ -1952,7 +1960,7 @@ var CLSTAMP = "steamdb";
                 : this.associatedSummonOverlayKeys.some((_) =>
                     _.startsWith("gamescope."),
                   ) &&
-                  _._.m_bDashboardVisible &&
+                  _._.isFullyVisible &&
                   (null === (_ = _._.Instance) ||
                     void 0 === _ ||
                     _.switchToFrameInternal(this, void 0, "OnPendingComplete"));
@@ -1992,31 +2000,7 @@ var CLSTAMP = "steamdb";
                   }),
                 );
               for (const _ of this.m_setComponents) _.Init();
-              (this.m_actionToFocusMainPanel = this.CreateAction(
-                {
-                  invocation: 1,
-                },
-                () => {
-                  var _;
-                  return null === (_ = this.activePage) || void 0 === _
-                    ? void 0
-                    : _.focus.PushInputFocus();
-                },
-              )),
-                (this.m_actionToFocusLeftFrameMenu = this.CreateAction(
-                  {
-                    invocation: 1,
-                  },
-                  () => {
-                    var _;
-                    const _ =
-                      null === (_ = this.m_refFrameMenu.current) || void 0 === _
-                        ? void 0
-                        : _.getSGID();
-                    _ && _._.PushInputFocus(_);
-                  },
-                )),
-                this.Log.Info("Frame initialized.");
+              this.Log.Info("Frame initialized.");
             }
           }
           OnPagesDestroyed(_) {
@@ -2067,7 +2051,7 @@ var CLSTAMP = "steamdb";
               (this.m_rgControlsItems_TabHoverControls = _);
           }
           get protoForSteam() {
-            var _, _, _, _, _, _, _, _;
+            var _, _, _, _, _, _;
             if (this.state == _.Uninitialized || this.state == _.Destroyed)
               return;
             const _ =
@@ -2101,14 +2085,9 @@ var CLSTAMP = "steamdb";
                 },
                 frame_actions: {
                   focus_main_panel_action:
-                    null === (_ = this.m_actionToFocusMainPanel) || void 0 === _
-                      ? void 0
-                      : _.actionID,
+                    this.inputFocus.focusMainPanelActionID,
                   focus_left_frame_menu_action:
-                    null === (_ = this.m_actionToFocusLeftFrameMenu) ||
-                    void 0 === _
-                      ? void 0
-                      : _.actionID,
+                    this.inputFocus.focusLeftFrameMenuActionID,
                 },
                 is_vrlink_remote: _,
                 is_streaming_client: this.isStreamingClient,
@@ -2260,6 +2239,7 @@ var CLSTAMP = "steamdb";
             "m_mapSpatializeEnabledForPage",
             void 0,
           ),
+          (0, _._)([_.observable.ref], _.prototype, "m_frameMenuPanel", void 0),
           (0, _._)([_.computed], _.prototype, "logPrefix", null),
           (0, _._)([_.computed], _.prototype, "state", null),
           (0, _._)(
@@ -2289,6 +2269,12 @@ var CLSTAMP = "steamdb";
           (0, _._)([_.computed], _.prototype, "activePageID", null),
           (0, _._)([_.computed], _.prototype, "activePage", null),
           (0, _._)([_.computed], _.prototype, "isActiveDashboardFrame", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "isActiveDashboardFrameInDiminishedMode",
+            null,
+          ),
           (0, _._)([_.computed], _.prototype, "pageIDs", null),
           (0, _._)([_.computed], _.prototype, "pages", null),
           (0, _._)(
@@ -2302,6 +2288,18 @@ var CLSTAMP = "steamdb";
             [_.computed],
             _.prototype,
             "shouldRenderFrameControls",
+            null,
+          ),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "frameControlsVisibilityRequiresLaser",
+            null,
+          ),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "frameMenuVisibilityRequiresLaser",
             null,
           ),
           (0, _._)([_.computed], _.prototype, "frameControlsTransformID", null),
@@ -2328,7 +2326,7 @@ var CLSTAMP = "steamdb";
           );
         const _ = (0, _._)(
           _.forwardRef(function (_, _) {
-            var _, _, _, _, _;
+            var _, _, _, _, _, _;
             const { children: _ } = _,
               _ = _.useMemo(() => _._.CreateCFrame(_), []);
             _.useLayoutEffect(() =>
@@ -2373,10 +2371,14 @@ var CLSTAMP = "steamdb";
                         (_ =
                           null === (_ = _.activePage) || void 0 === _
                             ? void 0
-                            : _.focus) || void 0 === _
+                            : _.inputFocus) || void 0 === _
                         ? void 0
                         : _.inputFocusParams,
                     main_panel_origin: _.docking.mainPanelOrigin,
+                    main_panel_focus_outline:
+                      null === (_ = _.activePage) || void 0 === _
+                        ? void 0
+                        : _.inputFocus.focusOutline,
                   },
                   _,
                   _.isCurrentlyVisible &&
@@ -2436,9 +2438,14 @@ var CLSTAMP = "steamdb";
                           },
                           _.createElement(_._, {
                             popupRequest: _.frameMenuPopupRequest,
-                            refPanel: _.m_refFrameMenu,
+                            refPanel: (_) => {
+                              _.m_frameMenuPanel = _;
+                            },
+                            only_visible_with_laser:
+                              _.frameMenuVisibilityRequiresLaser,
                           }),
                         ),
+                      _.createElement(_._, null),
                       _.createElement(_._, null),
                       _.createElement(_._, null),
                       _.size.showResizeHandle && _.createElement(_._, null),
@@ -4340,6 +4347,7 @@ var CLSTAMP = "steamdb";
                         sort_order: _,
                         no_depth_test: _,
                         no_depth_write: _,
+                        outline: _._.None,
                         frame_resize_scale_factor: 1,
                       },
                       _,
@@ -4358,20 +4366,39 @@ var CLSTAMP = "steamdb";
                 _.createElement(
                   _._,
                   {
-                    key: _.dashboard_popup_id,
+                    key: null == _ ? void 0 : _.dashboard_popup_id,
                     location: _,
                   },
                   _,
                 ),
               )
             : (null == _ ? void 0 : _.parent_device_path)
-              ? _.createElement(
-                  _._,
-                  {
-                    parent_path: null == _ ? void 0 : _.parent_device_path,
-                  },
-                  _,
-                )
+              ? 2 == (null == _ ? void 0 : _.parent_enum)
+                ? _.createElement(
+                    _._,
+                    {
+                      parent_path: null == _ ? void 0 : _.parent_device_path,
+                    },
+                    _.createElement(
+                      _._,
+                      {
+                        rotation_start_angle_threshold: 10,
+                        rotation_stop_angle_threshold: 5,
+                        rotation_ease_out_angle_threshold: 20,
+                        rotation_min_angular_velocity: 75,
+                        rotation_ease_in_power: 1.5,
+                        lock_to_horizon: !1,
+                      },
+                      _,
+                    ),
+                  )
+                : _.createElement(
+                    _._,
+                    {
+                      parent_path: null == _ ? void 0 : _.parent_device_path,
+                    },
+                    _,
+                  )
               : _;
         }
         function _(_) {
@@ -6065,7 +6092,7 @@ var CLSTAMP = "steamdb";
           }
           render() {
             if (!this.state.visible) return null;
-            if (_._.m_bDashboardVisible) return null;
+            if (_._.isFullyVisible || _._.isDashboardDiminished) return null;
             let _ = "",
               _ = "";
             if (
@@ -6941,7 +6968,7 @@ var CLSTAMP = "steamdb";
                   _ =
                     (_.useMemo(() => new Map(), []),
                     _.useMemo(() => {
-                      var _, _, _, _, _;
+                      var _, _, _, _, _, _, _;
                       function _(_) {
                         var _;
                         if (!_ || "string" != typeof _) return _;
@@ -7003,6 +7030,10 @@ var CLSTAMP = "steamdb";
                             })
                           : _;
                       }
+                      function _(_) {
+                        if ("number" == typeof _)
+                          return _.toString() + " (" + _._[_] + ")";
+                      }
                       return Object.assign(Object.assign({}, _), {
                         inputs: Object.assign(
                           Object.assign({}, null == _ ? void 0 : _.inputs),
@@ -7014,6 +7045,12 @@ var CLSTAMP = "steamdb";
                                 ? void 0
                                 : _.m_focusStack) || []),
                             ].map((_) => _(_)),
+                            m_eSystemPanelInteractionMode: _(
+                              null === (_ = null == _ ? void 0 : _.computed) ||
+                                void 0 === _
+                                ? void 0
+                                : _.m_eSystemPanelInteractionMode,
+                            ),
                           },
                         ),
                         computed: Object.assign(
@@ -7037,6 +7074,12 @@ var CLSTAMP = "steamdb";
                                 ? void 0
                                 : _.m_ulStackTopEntryOverlayHandle,
                             ),
+                            m_eSystemPanelInteractionMode: _(
+                              null === (_ = null == _ ? void 0 : _.computed) ||
+                                void 0 === _
+                                ? void 0
+                                : _.m_eSystemPanelInteractionMode,
+                            ),
                           },
                         ),
                         event: Object.assign(
@@ -7055,19 +7098,167 @@ var CLSTAMP = "steamdb";
                 return _;
               })(_),
               _ = _.useRef(void 0);
-            return (
-              _ || (_.current = _),
-              !_ || _
-                ? null
-                : _.createElement(
-                    _.Fragment,
-                    null,
+            _ || (_.current = _);
+            const _ =
+              _._.activeVRLinkServer &&
+              _._.unifiedDashboardEnabled &&
+              _._.unifiedDashboardState_Remote.debug_input_focus;
+            return !_ || _
+              ? null
+              : _.createElement(
+                  _.Fragment,
+                  null,
+                  _.createElement(
+                    _._,
+                    {
+                      parent_path: "/user/head",
+                      translation: {
+                        _: 0.65,
+                        _: -0.5,
+                        _: -0.9,
+                      },
+                    },
+                    _.createElement(
+                      _._,
+                      {
+                        debug_name: "input_focus_dev_ui",
+                        meters_per_pixel: 75e-5,
+                        origin: _._.BottomRight,
+                        interactive: _._.isFullyVisible,
+                        inputFocusParams: {
+                          bCanTakeKeyboardFocus: !1,
+                        },
+                        scrollable: !0,
+                        visibility: _ ? _._.SkipInSceneGraph : _._.Visible,
+                        sort_depth_bias: -1e4,
+                      },
+                      _.createElement(
+                        "div",
+                        {
+                          className: (0, _._)(_().DevUI, _ && _().Tall),
+                          style: {
+                            opacity: _._.isFullyVisible ? 1 : 0.4,
+                          },
+                          onPointerDown: () => _(!0),
+                          onPointerUp: () => _(!1),
+                          onPointerCancel: () => _(!1),
+                        },
+                        _.createElement(
+                          "div",
+                          {
+                            className: _().Header,
+                          },
+                          _.createElement(
+                            "div",
+                            {
+                              className: _().Title,
+                            },
+                            "Input Focus Dev UI",
+                            _.createElement(
+                              "div",
+                              {
+                                className: _().ButtonRow,
+                              },
+                              _.createElement(
+                                _,
+                                {
+                                  onClick: () => _(!_),
+                                },
+                                _ ? "shrink" : "expand",
+                              ),
+                              _.createElement(
+                                _,
+                                {
+                                  onClick: () =>
+                                    _._.SetSettingsValue(
+                                      "/settings/dashboard/debugInputFocus",
+                                      !1,
+                                    ),
+                                },
+                                "disable",
+                              ),
+                              _.createElement(
+                                _,
+                                {
+                                  onClick: () => _(!0),
+                                },
+                                "hide",
+                              ),
+                            ),
+                          ),
+                          _.createElement(
+                            "div",
+                            {
+                              className: _().ButtonRow,
+                            },
+                            _.createElement(
+                              _,
+                              {
+                                onClick: () => _._.DbgForceRecompute(),
+                              },
+                              "recompute",
+                            ),
+                            _.createElement(
+                              _,
+                              {
+                                onClick: () => _._.DbgClearInputFocusStack(),
+                              },
+                              "clear stack",
+                            ),
+                            _.createElement(
+                              _,
+                              {
+                                onClick: _,
+                              },
+                              "force focus...",
+                            ),
+                          ),
+                        ),
+                        _.createElement(
+                          "div",
+                          {
+                            className: _().ComputedSection,
+                          },
+                          _.createElement(
+                            "pre",
+                            null,
+                            "computed: ",
+                            JSON.stringify(
+                              null === (_ = _.current) || void 0 === _
+                                ? void 0
+                                : _.computed,
+                              null,
+                              2,
+                            ),
+                          ),
+                        ),
+                        _.createElement(
+                          "div",
+                          {
+                            className: _().RestOfDataSection,
+                          },
+                          _.createElement(
+                            "pre",
+                            null,
+                            JSON.stringify(
+                              Object.assign(Object.assign({}, _.current), {
+                                computed: void 0,
+                              }),
+                              null,
+                              1,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  _ &&
                     _.createElement(
                       _._,
                       {
                         parent_path: "/user/head",
                         translation: {
-                          _: 0.65,
+                          _: -0.65,
                           _: -0.5,
                           _: -0.9,
                         },
@@ -7075,10 +7266,10 @@ var CLSTAMP = "steamdb";
                       _.createElement(
                         _._,
                         {
-                          debug_name: "input_focus_dev_ui",
+                          debug_name: "input_focus_dev_ui_force_focus",
                           meters_per_pixel: 75e-5,
-                          origin: _._.BottomRight,
-                          interactive: _._.m_bDashboardVisible,
+                          origin: _._.BottomLeft,
+                          interactive: _._.isFullyVisible,
                           inputFocusParams: {
                             bCanTakeKeyboardFocus: !1,
                           },
@@ -7088,163 +7279,18 @@ var CLSTAMP = "steamdb";
                         _.createElement(
                           "div",
                           {
-                            className: (0, _._)(_().DevUI, _ && _().Tall),
+                            className: _().DevUI,
                             style: {
-                              opacity: _._.m_bDashboardVisible ? 1 : 0.4,
+                              opacity: _._.isFullyVisible ? 1 : 0.4,
                             },
-                            onPointerDown: () => _(!0),
-                            onPointerUp: () => _(!1),
-                            onPointerCancel: () => _(!1),
                           },
-                          _.createElement(
-                            "div",
-                            {
-                              className: _().Header,
-                            },
-                            _.createElement(
-                              "div",
-                              {
-                                className: _().Title,
-                              },
-                              "Input Focus Dev UI",
-                              _.createElement(
-                                "div",
-                                {
-                                  className: _().ButtonRow,
-                                },
-                                _.createElement(
-                                  _,
-                                  {
-                                    onClick: () => _(!_),
-                                  },
-                                  _ ? "shrink" : "expand",
-                                ),
-                                _.createElement(
-                                  _,
-                                  {
-                                    onClick: () =>
-                                      _._.SetSettingsValue(
-                                        "/settings/dashboard/debugInputFocus",
-                                        !1,
-                                      ),
-                                  },
-                                  "disable",
-                                ),
-                                _.createElement(
-                                  _,
-                                  {
-                                    onClick: () => _(!0),
-                                  },
-                                  "hide",
-                                ),
-                              ),
-                            ),
-                            _.createElement(
-                              "div",
-                              {
-                                className: _().ButtonRow,
-                              },
-                              _.createElement(
-                                _,
-                                {
-                                  onClick: () => _._.DbgForceRecompute(),
-                                },
-                                "recompute",
-                              ),
-                              _.createElement(
-                                _,
-                                {
-                                  onClick: () => _._.DbgClearInputFocusStack(),
-                                },
-                                "clear stack",
-                              ),
-                              _.createElement(
-                                _,
-                                {
-                                  onClick: _,
-                                },
-                                "force focus...",
-                              ),
-                            ),
-                          ),
-                          _.createElement(
-                            "div",
-                            {
-                              className: _().ComputedSection,
-                            },
-                            _.createElement(
-                              "pre",
-                              null,
-                              "computed: ",
-                              JSON.stringify(
-                                null === (_ = _.current) || void 0 === _
-                                  ? void 0
-                                  : _.computed,
-                                null,
-                                2,
-                              ),
-                            ),
-                          ),
-                          _.createElement(
-                            "div",
-                            {
-                              className: _().RestOfDataSection,
-                            },
-                            _.createElement(
-                              "pre",
-                              null,
-                              JSON.stringify(
-                                Object.assign(Object.assign({}, _.current), {
-                                  computed: void 0,
-                                }),
-                                null,
-                                1,
-                              ),
-                            ),
-                          ),
+                          _.createElement(_, {
+                            onClose: _,
+                          }),
                         ),
                       ),
                     ),
-                    _ &&
-                      _.createElement(
-                        _._,
-                        {
-                          parent_path: "/user/head",
-                          translation: {
-                            _: -0.65,
-                            _: -0.5,
-                            _: -0.9,
-                          },
-                        },
-                        _.createElement(
-                          _._,
-                          {
-                            debug_name: "input_focus_dev_ui_force_focus",
-                            meters_per_pixel: 75e-5,
-                            origin: _._.BottomLeft,
-                            interactive: _._.m_bDashboardVisible,
-                            inputFocusParams: {
-                              bCanTakeKeyboardFocus: !1,
-                            },
-                            scrollable: !0,
-                            sort_depth_bias: -1e4,
-                          },
-                          _.createElement(
-                            "div",
-                            {
-                              className: _().DevUI,
-                              style: {
-                                opacity: _._.m_bDashboardVisible ? 1 : 0.4,
-                              },
-                            },
-                            _.createElement(_, {
-                              onClose: _,
-                            }),
-                          ),
-                        ),
-                      ),
-                  )
-            );
+                );
           }),
           _ = (0, _._)(function (_) {
             var _, _;
@@ -7258,7 +7304,7 @@ var CLSTAMP = "steamdb";
             for (const _ of _._.frames_local)
               (null === (_ = _.activePage) || void 0 === _
                 ? void 0
-                : _.focus.canTakeFocus) &&
+                : _.inputFocus.supportsGamepadFocus) &&
                 _.set(
                   _.activePage.mainPanelSGID,
                   null !== (_ = _.activePage.summonOverlayKey) && void 0 !== _
@@ -7591,7 +7637,7 @@ var CLSTAMP = "steamdb";
                     _._[(0, _._)()],
                 );
               console.log("Bootstrapping " + _, _);
-              const _ = 1e3 * (null !== (_ = 1782326810) ? _ : 0);
+              const _ = 1e3 * (null !== (_ = 1784184493) ? _ : 0);
               console.log(
                 "SteamVR Version Info: " +
                   JSON.stringify({
@@ -8068,16 +8114,9 @@ var CLSTAMP = "steamdb";
           _: () => _,
         });
         var _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        let _ = 0;
-        function _() {
-          const _ = _.useRef(void 0);
-          return (
-            void 0 === _.current && (_.current = "svgid_" + _++),
-            [_.current, `url(#${_.current})`]
-          );
-        }
-        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__._(_),
           _ = __webpack_require__("chunkid");
         function _(_) {
@@ -8521,8 +8560,8 @@ var CLSTAMP = "steamdb";
           );
         }
         function _(_) {
-          const [_, _] = _(),
-            [_, _] = _();
+          const [_, _] = (0, _._)(),
+            [_, _] = (0, _._)();
           return _.createElement(
             "svg",
             Object.assign(
@@ -8908,7 +8947,7 @@ var CLSTAMP = "steamdb";
         function _(_) {
           const { type: _, partial: _ } = _,
             _ = (0, _._)(_, ["type", "partial"]),
-            [_, _] = _();
+            [_, _] = (0, _._)();
           return "triton" == _
             ? _.createElement(
                 "svg",

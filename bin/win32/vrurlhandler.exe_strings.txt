@@ -509,6 +509,7 @@ driver_null
 enable
 enableCameraSurfaces
 enableHomeApp
+enableHomeApp2
 environmentMode
 exception thrown in JSON library
 exit

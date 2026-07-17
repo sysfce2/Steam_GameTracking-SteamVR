@@ -132,8 +132,8 @@
 /user/waist
 /user/wrist/left
 /user/wrist/right
-11:46:20
 1e+9999
+23:47:36
 : exception thrown in JSON library
 <unknown>
 ================================================================================================\n
@@ -199,6 +199,7 @@ A wireless HMD driver is present, but the wireless HMD has not connected and Ste
 A wireless HMD driver is present, but the wireless HMD has not connected yet (215)
 ADVAPI32.dll
 ASSERT: "%s" at %s:%d.\n
+AWfuF
 Aborting due to fatal assertion failure.
 Another app was already launching (117)
 App info manager init failed (114)
@@ -364,7 +365,7 @@ Invalid Arguments
 Invalid Interface (106)
 IsDebuggerPresent
 IsProcessorFeaturePresent
-Jun 24 2026
+Jul 15 2026
 K32EnumProcesses
 K32GetProcessImageFileNameA
 KERNEL32.dll
@@ -715,6 +716,7 @@ VRInitError_VendorSpecific_OculusLinkNotEnabled
 VRInitError_VendorSpecific_OculusRuntimeBadInstall
 VRInitError_VendorSpecific_UnableToConnectToOculusRuntime
 VRInitError_VendorSpecific_VRLink_NoAdapterFound
+VRInitError_VendorSpecific_VRLink_NoEncoderSupport
 VRInitError_VendorSpecific_VRLink_NoVideoSupport
 VRInitError_VendorSpecific_VRLink_OutdatedDriverMESA
 VRInitError_VendorSpecific_VRLink_OutdatedDriverNVIDIA
@@ -853,6 +855,7 @@ dutch
 el_gr
 en_us
 enableHomeApp
+enableHomeApp2
 enableYAMLCompatibility
 english
 es_es

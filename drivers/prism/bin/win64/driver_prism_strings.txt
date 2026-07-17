@@ -415,6 +415,7 @@ CVkTimeline::ExportTimeline
 CVkTimeline::ImportTimeline
 CVkTimeline::Initialize
 CVkTimeline::WaitMultiple
+C\tpbF
 Client (%s) app container state: %d
 Client Allocator
 Client Device
@@ -595,7 +596,7 @@ Projection
 QueryPerformanceCounter
 QueryPerformanceFrequency
 RPCRT4.dll
-RSDS
+RSDSU
 RaiseException
 ReadFile
 ReadFile failed on %s after event was signaled because %s\n

@@ -1067,7 +1067,7 @@ QueryPerformanceFrequency
 QueueUserAPC
 RESERVED_5
 RESET_PERFORMED
-RSDS
+RSDS~
 RaiseException
 Read Characteristic String
 Read Characteristic Value (handle: %d, offset: %d)\n
@@ -1397,6 +1397,7 @@ mutex
 need dictionary
 none
 nrfserlib.dll
+ohRD
 ole32.dll
 open
 oversubscribed distance tree
