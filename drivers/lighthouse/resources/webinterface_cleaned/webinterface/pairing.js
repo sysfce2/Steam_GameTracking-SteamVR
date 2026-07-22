@@ -15096,18 +15096,15 @@ var CLSTAMP = "steamdb";
             this.setCurrentApp(_);
           }
           setCurrentApp(_) {
+            var _;
             const _ = _.apps && _.apps.find((_) => _.key == _);
-            this.setState((_, _) => {
-              var _;
-              return (null === (_ = _.currentApp) || void 0 === _
-                ? void 0
-                : _.key) === (null == _ ? void 0 : _.key)
-                ? null
-                : (this.props.onChange && this.props.onChange(_),
-                  {
-                    currentApp: _,
-                  });
-            });
+            (null === (_ = this.state.currentApp) || void 0 === _
+              ? void 0
+              : _.key) !== (null == _ ? void 0 : _.key) &&
+              (this.setState({
+                currentApp: _,
+              }),
+              this.props.onChange && this.props.onChange(_));
           }
           makeAppChoiceList() {
             let _ = [],
@@ -23716,10 +23713,10 @@ var CLSTAMP = "steamdb";
                 (_.additionalPrediction = 0);
               let _ = {};
               (_.preferred_refresh_rate = _),
-                (_.throttling = _.framesToThrottle),
-                (_.prediction = _.throttling),
                 _.throttling > 0
-                  ? (_.fixedThrottling = !0)
+                  ? ((_.fixedThrottling = !0),
+                    (_.throttling = _.framesToThrottle),
+                    (_.prediction = _.throttling))
                   : ((_.fixedThrottling = !1), (_.override_throttling = !1)),
                 _.SetAppSettings(_, _);
             },
@@ -24497,36 +24494,49 @@ var CLSTAMP = "steamdb";
               (this.m_refAppSelectDropdown = _.createRef()),
               (this.m_initialAppState = null),
               (this.m_appSettings = null),
-              (this.state = {
-                currentApp: null,
-                nResolutionMultiplier: null,
-                nResolutionOverride: null,
-                nFovScaleMultiplier: null,
-                nFovScaleMultiplierInner: null,
-                nFovScaleMultiplierUpper: null,
-                nFovScaleMultiplierLower: null,
-                eFovScaleFormat: _.Default,
-                eSmoothingMode: null,
-                eSharpening: null,
-                disableAsyncReprojection: null,
-                eWorldScaleRange: _.Off,
-                flWorldScaleMultiplier: null,
-              });
+              (this.m_sAppKey = void 0),
+              (this.currentApp = null),
+              (this.m_nResolutionMultiplier = null),
+              (this.m_nResolutionOverride = null),
+              (this.m_nFovScaleMultiplier = null),
+              (this.m_nFovScaleMultiplierInner = null),
+              (this.m_nFovScaleMultiplierUpper = null),
+              (this.m_nFovScaleMultiplierLower = null),
+              (this.m_eFovScaleFormat = _.Default),
+              (this.m_eSmoothingMode = null),
+              (this.m_eSharpening = null),
+              (this.m_disableAsyncReprojection = null),
+              (this.m_eWorldScaleRange = _.Off),
+              (this.m_flWorldScaleMultiplier = null),
+              (0, _.makeObservable)(this),
+              (this.m_sAppKey = _.appKey);
           }
           componentDidMount() {
             if (this.showDropdown)
-              this.m_routeObservingAutorunDisposer = (0, _.autorun)(() => {
-                var _;
-                this.shouldShowModal &&
-                  this.initialAppKey &&
-                  (null === (_ = this.m_refAppSelectDropdown.current) ||
-                    void 0 === _ ||
-                    _.setCurrentApp(this.initialAppKey));
-              });
+              this.m_routeObservingAutorunDisposer = (0, _.reaction)(
+                () => ({
+                  shouldShowModal: this.shouldShowModal,
+                  initialAppKey: this.initialAppKey,
+                }),
+                ({ shouldShowModal: _, initialAppKey: _ }) => {
+                  var _;
+                  _ &&
+                    _ &&
+                    (null === (_ = this.m_refAppSelectDropdown.current) ||
+                      void 0 === _ ||
+                      __webpack_require__.setCurrentApp(_));
+                },
+                {
+                  fireImmediately: !0,
+                },
+              );
             else {
               const _ = _.apps.find((_) => _.key == this.initialAppKey);
               this.onApplicationChange(_);
             }
+          }
+          componentDidUpdate(_) {
+            this.m_sAppKey = this.props.appKey;
           }
           componentWillUnmount() {
             this.m_routeObservingAutorunDisposer &&
@@ -24540,7 +24550,7 @@ var CLSTAMP = "steamdb";
                 VRHTML.ShowSettingsUI(_() == _.Desktop);
           }
           get showDropdown() {
-            return null == this.props.appKey;
+            return null == this.m_sAppKey;
           }
           get shouldShowModal() {
             return _.routePageSection == _.PAGE_SECTION;
@@ -24550,9 +24560,7 @@ var CLSTAMP = "steamdb";
             return _.length >= 1 ? _[0] : null;
           }
           get initialAppKey() {
-            return this.showDropdown
-              ? this.currentRouteAppKey
-              : this.props.appKey;
+            return this.showDropdown ? this.currentRouteAppKey : this.m_sAppKey;
           }
           get enableThrottleOverrideSettings() {
             return (
@@ -24565,7 +24573,7 @@ var CLSTAMP = "steamdb";
                 !VRHTML.VRProperties.GetBoolProperty(
                   "/user/head",
                   _.HasDriverDirectModeComponent_Bool,
-                ) && this.state.disableAsyncReprojection
+                ) && this.m_disableAsyncReprojection
               )
             );
           }
@@ -24599,26 +24607,24 @@ var CLSTAMP = "steamdb";
             );
           }
           get worldScaleRangeMin() {
-            return _[this.state.eWorldScaleRange].min;
+            return _[this.m_eWorldScaleRange].min;
           }
           get worldScaleRangeMax() {
-            return _[this.state.eWorldScaleRange].max;
+            return _[this.m_eWorldScaleRange].max;
           }
           get worldScaleRangeStep() {
-            return _[this.state.eWorldScaleRange].step;
+            return _[this.m_eWorldScaleRange].step;
           }
           onApplicationChange(_) {
             var _;
-            this.state.currentApp !== _ &&
-              (this.setState({
-                currentApp: _,
-                nResolutionMultiplier: void 0,
-                nResolutionOverride: void 0,
-                nFovScaleMultiplier: void 0,
-                eSmoothingMode: void 0,
-                eSharpening: void 0,
-                disableAsyncReprojection: void 0,
-              }),
+            this.currentApp !== _ &&
+              ((this.currentApp = _),
+              (this.m_nResolutionMultiplier = void 0),
+              (this.m_nResolutionOverride = void 0),
+              (this.m_nFovScaleMultiplier = void 0),
+              (this.m_eSmoothingMode = void 0),
+              (this.m_eSharpening = void 0),
+              (this.m_disableAsyncReprojection = void 0),
               _ && this.fetchAppState(_.key),
               _.setRoutePageSectionParams([
                 null !== (_ = null == _ ? void 0 : _.key) && void 0 !== _
@@ -24638,30 +24644,35 @@ var CLSTAMP = "steamdb";
                         _.worldscale > _[_.Normal].max
                       ? _.Extreme
                       : _.Normal),
+                (this.m_nResolutionMultiplier = _.resolution / 100),
+                (this.m_nResolutionOverride = _.resolution_override),
+                (this.m_nFovScaleMultiplier = _.fovscale / 100),
+                (this.m_nFovScaleMultiplierInner = _.fovscale_inner
+                  ? _.fovscale_inner / 100
+                  : 1),
+                (this.m_nFovScaleMultiplierUpper = _.fovscale_upper
+                  ? _.fovscale_upper / 100
+                  : 1),
+                (this.m_nFovScaleMultiplierLower = _.fovscale_lower
+                  ? _.fovscale_lower / 100
+                  : 1),
+                (this.m_eFovScaleFormat =
+                  null !== (_ = _.fovscale_format) && void 0 !== _
+                    ? _
+                    : _.Default),
+                (this.m_eSmoothingMode = _.smoothing),
+                (this.m_eSharpening = _.sharpening),
+                (this.m_disableAsyncReprojection =
+                  _.disable_async_reprojection),
+                (this.m_eWorldScaleRange = _),
+                (this.m_flWorldScaleMultiplier = _.worldscale
+                  ? _.worldscale
+                  : 1),
                 (this.m_initialAppState = {
-                  nResolutionMultiplier: _.resolution / 100,
-                  nResolutionOverride: _.resolution_override,
-                  nFovScaleMultiplier: _.fovscale / 100,
-                  nFovScaleMultiplierInner: _.fovscale_inner
-                    ? _.fovscale_inner / 100
-                    : 1,
-                  nFovScaleMultiplierUpper: _.fovscale_upper
-                    ? _.fovscale_upper / 100
-                    : 1,
-                  nFovScaleMultiplierLower: _.fovscale_lower
-                    ? _.fovscale_lower / 100
-                    : 1,
-                  eFovScaleFormat:
-                    null !== (_ = _.fovscale_format) && void 0 !== _
-                      ? _
-                      : _.Default,
-                  eSmoothingMode: _.smoothing,
-                  eSharpening: _.sharpening,
-                  disableAsyncReprojection: _.disable_async_reprojection,
-                  eWorldScaleRange: _,
-                  flWorldScaleMultiplier: _.worldscale ? _.worldscale : 1,
-                }),
-                this.setState(this.m_initialAppState);
+                  nFovScaleMultiplier: this.m_nFovScaleMultiplier,
+                  disableAsyncReprojection: this.m_disableAsyncReprojection,
+                  eWorldScaleRange: this.m_eWorldScaleRange,
+                });
             }
           }
           fetchAppState(_) {
@@ -24672,16 +24683,21 @@ var CLSTAMP = "steamdb";
                 _.loadIfNeeded().then((_) => {
                   var _;
                   _ &&
-                    (null === (_ = this.state.currentApp) || void 0 === _
+                    (null === (_ = this.currentApp) || void 0 === _
                       ? void 0
                       : _.key) === _ &&
                     this.updateAppState(_);
                 });
           }
           setAppState(_, _) {
-            if (null != this.state.currentApp) {
+            var _;
+            if (null != this.currentApp) {
               let _ = {};
-              (_[_] = _), _.SetAppSettings(this.state.currentApp.key, _);
+              (_[_] = _),
+                _.SetAppSettings(this.currentApp.key, _),
+                (null === (_ = this.m_appSettings) || void 0 === _
+                  ? void 0
+                  : _.response) && (this.m_appSettings.response[_] = _);
             }
           }
           get computedResolution() {
@@ -24689,9 +24705,9 @@ var CLSTAMP = "steamdb";
             let _ = 1,
               _ = 1;
             _.systemInfo && _.systemInfo.resolution_per_app
-              ? (_ = this.state.nResolutionOverride
+              ? (_ = this.m_nResolutionOverride
                   ? Math.pow(
-                      this.state.nResolutionOverride /
+                      this.m_nResolutionOverride /
                         _.systemInfo.render_target_size.width,
                       2,
                     )
@@ -24700,8 +24716,7 @@ var CLSTAMP = "steamdb";
                   ? _.supersampleScaleValue
                   : _.supersampleGpuScaleValue),
                 (_ =
-                  null !== (_ = this.state.nResolutionMultiplier) &&
-                  void 0 !== _
+                  null !== (_ = this.m_nResolutionMultiplier) && void 0 !== _
                     ? _
                     : 1));
             let _ = _(
@@ -24710,17 +24725,17 @@ var CLSTAMP = "steamdb";
                 _.maxSupersampleScaleValue,
               ),
               _ = _;
-            switch (this.state.eFovScaleFormat) {
+            switch (this.m_eFovScaleFormat) {
               case _.Letterbox:
-                _ *= this.state.nFovScaleMultiplier;
+                _ *= this.m_nFovScaleMultiplier;
                 break;
               case _.Advanced:
                 const _ =
-                    this.state.nFovScaleMultiplier +
-                    this.state.nFovScaleMultiplierInner,
+                    this.m_nFovScaleMultiplier +
+                    this.m_nFovScaleMultiplierInner,
                   _ =
-                    this.state.nFovScaleMultiplierUpper +
-                    this.state.nFovScaleMultiplierLower;
+                    this.m_nFovScaleMultiplierUpper +
+                    this.m_nFovScaleMultiplierLower;
                 _ < _ ? (_ *= _ / _) : (_ *= _ / _);
             }
             const [_, _] = _.ComputeResolution(_ * _, _ * _);
@@ -24730,56 +24745,36 @@ var CLSTAMP = "steamdb";
           }
           onResolutionSliderChange(_) {
             _.systemInfo && !_.systemInfo.resolution_per_app
-              ? (this.setState({
-                  nResolutionMultiplier: _,
-                }),
+              ? ((this.m_nResolutionMultiplier = _),
                 this.setAppState("resolution", 100 * _))
-              : (this.setState({
-                  nResolutionOverride: _,
-                }),
+              : ((this.m_nResolutionOverride = _),
                 this.setAppState("resolution_override", _));
           }
           onFovScaleSliderChange(_) {
-            this.setState({
-              nFovScaleMultiplier: _,
-            }),
+            (this.m_nFovScaleMultiplier = _),
               this.setAppState("fovscale", 100 * _);
           }
           onFovScaleSliderChangeInner(_) {
-            this.setState({
-              nFovScaleMultiplierInner: _,
-            }),
+            (this.m_nFovScaleMultiplierInner = _),
               this.setAppState("fovscale_inner", 100 * _);
           }
           onFovScaleSliderChangeUpper(_) {
-            this.setState({
-              nFovScaleMultiplierUpper: _,
-            }),
+            (this.m_nFovScaleMultiplierUpper = _),
               this.setAppState("fovscale_upper", 100 * _);
           }
           onFovScaleSliderChangeLower(_) {
-            this.setState({
-              nFovScaleMultiplierLower: _,
-            }),
+            (this.m_nFovScaleMultiplierLower = _),
               this.setAppState("fovscale_lower", 100 * _);
           }
           onFovScaleFormatChange(_) {
-            this.setState({
-              eFovScaleFormat: _,
-            }),
+            (this.m_eFovScaleFormat = _),
               this.setAppState("fovscale_format", _);
           }
           onMotionSmoothChange(_) {
-            this.setState({
-              eSmoothingMode: _,
-            }),
-              this.setAppState("smoothing", _);
+            (this.m_eSmoothingMode = _), this.setAppState("smoothing", _);
           }
           onSharpeningChange(_) {
-            this.setState({
-              eSharpening: _,
-            }),
-              this.setAppState("sharpening", _);
+            (this.m_eSharpening = _), this.setAppState("sharpening", _);
           }
           onRefreshRateOverrideChange(_) {
             this.allowPerAppRefreshRate &&
@@ -24804,9 +24799,7 @@ var CLSTAMP = "steamdb";
               );
           }
           onDisableAsyncReprojection(_) {
-            this.setState({
-              disableAsyncReprojection: _,
-            }),
+            (this.m_disableAsyncReprojection = _),
               this.setAppState("disable_async_reprojection", _);
           }
           onShowThrottleOptions(_) {
@@ -24839,31 +24832,23 @@ var CLSTAMP = "steamdb";
               );
           }
           onWorldScaleRangeChange(_) {
-            this.setState({
-              eWorldScaleRange: _,
-              flWorldScaleMultiplier: Math.max(
+            const _ = this.m_flWorldScaleMultiplier;
+            (this.m_eWorldScaleRange = _),
+              (this.m_flWorldScaleMultiplier = Math.max(
                 _[_].min,
-                Math.min(_[_].max, this.state.flWorldScaleMultiplier),
-              ),
-            }),
-              this.setAppState(
-                "worldscale",
-                _ == _.Off ? 1 : this.state.flWorldScaleMultiplier,
-              );
+                Math.min(_[_].max, _),
+              )),
+              this.setAppState("worldscale", _ == _.Off ? 1 : _);
           }
           onWorldScaleMultiplierSliderChange(_) {
-            this.setState({
-              flWorldScaleMultiplier: _,
-            }),
+            (this.m_flWorldScaleMultiplier = _),
               this.setAppState("worldscale", _);
           }
           hasCurrentApp() {
-            return null != this.state.currentApp;
+            return null != this.currentApp;
           }
           resetAppToDefaults() {
-            _.ResetAppSettings(this.state.currentApp.key).then(
-              this.updateAppState,
-            );
+            _.ResetAppSettings(this.currentApp.key).then(this.updateAppState);
           }
           show() {
             _.setRoutePageSection(_.PAGE_SECTION);
@@ -24875,10 +24860,10 @@ var CLSTAMP = "steamdb";
             return !!_.settings.get("/settings/steamvr/enablePerAppFPS");
           }
           render() {
-            var _, _, _, _, _, _;
+            var _, _, _, _, _, _, _;
             const _ = _(this.m_appSettings);
             let _ = null;
-            this.state.eSmoothingMode == _.ForceAlwaysOn &&
+            this.m_eSmoothingMode == _.ForceAlwaysOn &&
               (_ = _.createElement(
                 _.Fragment,
                 null,
@@ -24898,11 +24883,11 @@ var CLSTAMP = "steamdb";
             const _ =
                 null !==
                   (_ = _
-                    ? this.state.nResolutionOverride
-                    : this.state.nResolutionMultiplier) && void 0 !== _
+                    ? this.m_nResolutionOverride
+                    : this.m_nResolutionMultiplier) && void 0 !== _
                   ? _
                   : _[0],
-              _ = this.state.eFovScaleFormat == _.Advanced,
+              _ = this.m_eFovScaleFormat == _.Advanced,
               _ =
                 (null === VRHTML || void 0 === VRHTML
                   ? void 0
@@ -25007,8 +24992,8 @@ var CLSTAMP = "steamdb";
                       null,
                       !_.isPlaytimeProfile && _,
                       this.enableMotionSmoothingOverrideSettings &&
-                        null !== this.state.eSmoothingMode &&
-                        !this.state.disableAsyncReprojection &&
+                        null !== this.m_eSmoothingMode &&
+                        !this.m_disableAsyncReprojection &&
                         _.createElement(_, {
                           label: _("#Settings_Advanced_MotionSmoothing_Header"),
                           items: [
@@ -25037,12 +25022,12 @@ var CLSTAMP = "steamdb";
                               ),
                             },
                           ],
-                          value: this.state.eSmoothingMode,
+                          value: this.m_eSmoothingMode,
                           onChange: this.onMotionSmoothChange,
                           subsection: _,
                         }),
                       _ &&
-                        null !== this.state.eSharpening &&
+                        null !== this.m_eSharpening &&
                         _.createElement(_, {
                           label: _(
                             "#Settings_Advanced_FoveatedSharpening_Header",
@@ -25067,7 +25052,7 @@ var CLSTAMP = "steamdb";
                               ),
                             },
                           ],
-                          value: this.state.eSharpening,
+                          value: this.m_eSharpening,
                           onChange: this.onSharpeningChange,
                         }),
                       !_.isPlaytimeProfile &&
@@ -25104,14 +25089,14 @@ var CLSTAMP = "steamdb";
                               this.computedResolution,
                             ),
                             !_ &&
-                              this.state.nResolutionMultiplier &&
+                              this.m_nResolutionMultiplier &&
                               _.createElement(
                                 "div",
                                 {
                                   className: "Percentage",
                                 },
                                 Math.round(
-                                  100 * this.state.nResolutionMultiplier,
+                                  100 * this.m_nResolutionMultiplier,
                                 ).toString() + "%",
                               ),
                           ),
@@ -25137,10 +25122,14 @@ var CLSTAMP = "steamdb";
                             ),
                           ),
                         ),
-                      null !== this.state.nFovScaleMultiplier &&
+                      null !== this.m_nFovScaleMultiplier &&
                         (_.showAdvancedSettings ||
                           (this.m_initialAppState &&
-                            1 != this.m_initialAppState.nFovScaleMultiplier)) &&
+                            1 !=
+                              (null === (_ = this.m_initialAppState) ||
+                              void 0 === _
+                                ? void 0
+                                : _.nFovScaleMultiplier))) &&
                         _.createElement(
                           _,
                           {
@@ -25175,7 +25164,7 @@ var CLSTAMP = "steamdb";
                                   className: "Percentage",
                                 },
                                 Math.round(
-                                  100 * this.state.nFovScaleMultiplier,
+                                  100 * this.m_nFovScaleMultiplier,
                                 ).toString() + "%",
                               ),
                           ),
@@ -25188,7 +25177,7 @@ var CLSTAMP = "steamdb";
                               min: 0.5,
                               max: 1,
                               step: 0.01,
-                              value: this.state.nFovScaleMultiplier,
+                              value: this.m_nFovScaleMultiplier,
                               valueStyleVariant: _ ? _.OnHandle : void 0,
                               renderValue: _
                                 ? (_) => Math.round(100 * _).toString() + "%"
@@ -25204,7 +25193,7 @@ var CLSTAMP = "steamdb";
                                   min: 0.5,
                                   max: 1,
                                   step: 0.01,
-                                  value: this.state.nFovScaleMultiplierInner,
+                                  value: this.m_nFovScaleMultiplierInner,
                                   valueStyleVariant: _.OnHandle,
                                   renderValue: (_) =>
                                     Math.round(100 * _).toString() + "%",
@@ -25215,7 +25204,7 @@ var CLSTAMP = "steamdb";
                                   min: 0.5,
                                   max: 1,
                                   step: 0.01,
-                                  value: this.state.nFovScaleMultiplierUpper,
+                                  value: this.m_nFovScaleMultiplierUpper,
                                   valueStyleVariant: _.OnHandle,
                                   renderValue: (_) =>
                                     Math.round(100 * _).toString() + "%",
@@ -25226,7 +25215,7 @@ var CLSTAMP = "steamdb";
                                   min: 0.5,
                                   max: 1,
                                   step: 0.01,
-                                  value: this.state.nFovScaleMultiplierLower,
+                                  value: this.m_nFovScaleMultiplierLower,
                                   valueStyleVariant: _.OnHandle,
                                   renderValue: (_) =>
                                     Math.round(100 * _).toString() + "%",
@@ -25234,7 +25223,7 @@ var CLSTAMP = "steamdb";
                                   label: "Lower",
                                 }),
                               ),
-                            (1 != this.state.nFovScaleMultiplier || _) &&
+                            (1 != this.m_nFovScaleMultiplier || _) &&
                               _.createElement(_, {
                                 items: [
                                   {
@@ -25250,12 +25239,12 @@ var CLSTAMP = "steamdb";
                                     sLabel: "Advanced",
                                   },
                                 ],
-                                value: this.state.eFovScaleFormat,
+                                value: this.m_eFovScaleFormat,
                                 onChange: this.onFovScaleFormatChange,
                               }),
                           ),
                         ),
-                      null !== this.state.flWorldScaleMultiplier &&
+                      null !== this.m_flWorldScaleMultiplier &&
                         (_.showAdvancedSettings ||
                           (this.m_initialAppState &&
                             this.m_initialAppState.eWorldScaleRange !==
@@ -25302,11 +25291,11 @@ var CLSTAMP = "steamdb";
                                 ),
                               },
                             ],
-                            value: this.state.eWorldScaleRange,
+                            value: this.m_eWorldScaleRange,
                             onChange: this.onWorldScaleRangeChange,
                           }),
                         ),
-                      this.state.eWorldScaleRange !== _.Off &&
+                      this.m_eWorldScaleRange !== _.Off &&
                         _.createElement(
                           _,
                           {
@@ -25338,7 +25327,7 @@ var CLSTAMP = "steamdb";
                               },
                               (
                                 Math.round(
-                                  1e3 * this.state.flWorldScaleMultiplier,
+                                  1e3 * this.m_flWorldScaleMultiplier,
                                 ) / 10
                               ).toString() + "%",
                             ),
@@ -25352,7 +25341,7 @@ var CLSTAMP = "steamdb";
                               min: this.worldScaleRangeMin,
                               max: this.worldScaleRangeMax,
                               step: this.worldScaleRangeStep,
-                              value: this.state.flWorldScaleMultiplier,
+                              value: this.m_flWorldScaleMultiplier,
                               detents: [1],
                               onChange: this.onWorldScaleMultiplierSliderChange,
                             }),
@@ -25404,7 +25393,7 @@ var CLSTAMP = "steamdb";
                           }),
                         ),
                       this.enableLegacyReprojectionSettings &&
-                        null !== this.state.disableAsyncReprojection &&
+                        null !== this.m_disableAsyncReprojection &&
                         (_.showAdvancedSettings ||
                           (this.m_initialAppState &&
                             this.m_initialAppState.disableAsyncReprojection)) &&
@@ -25420,7 +25409,7 @@ var CLSTAMP = "steamdb";
                             label: _(
                               "#Settings_PerApplication_Reprojection_Checkbox",
                             ),
-                            value: this.state.disableAsyncReprojection,
+                            value: this.m_disableAsyncReprojection,
                             onChange: this.onDisableAsyncReprojection,
                           }),
                         ),
@@ -25506,31 +25495,68 @@ var CLSTAMP = "steamdb";
           }
         });
         (_.PAGE_SECTION = "appvideosettings"),
-          (0, _._)([_.computed], _.prototype, "shouldShowModal", null),
-          (0, _._)([_.computed], _.prototype, "currentRouteAppKey", null),
           (0, _._)(
-            [_.computed],
+            [_.observable.ref],
             _.prototype,
-            "enableThrottleOverrideSettings",
-            null,
+            "m_initialAppState",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_sAppKey", void 0),
+          (0, _._)([_.observable.ref], _.prototype, "currentApp", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_nResolutionMultiplier",
+            void 0,
           ),
           (0, _._)(
-            [_.computed],
+            [_.observable],
             _.prototype,
-            "enableMotionSmoothingOverrideSettings",
-            null,
+            "m_nResolutionOverride",
+            void 0,
           ),
           (0, _._)(
-            [_.computed],
+            [_.observable],
             _.prototype,
-            "enableLegacyReprojectionSettings",
-            null,
+            "m_nFovScaleMultiplier",
+            void 0,
           ),
-          (0, _._)([_.computed], _.prototype, "worldScaleRangeMin", null),
-          (0, _._)([_.computed], _.prototype, "worldScaleRangeMax", null),
-          (0, _._)([_.computed], _.prototype, "worldScaleRangeStep", null),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_nFovScaleMultiplierInner",
+            void 0,
+          ),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_nFovScaleMultiplierUpper",
+            void 0,
+          ),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_nFovScaleMultiplierLower",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_eFovScaleFormat", void 0),
+          (0, _._)([_.observable], _.prototype, "m_eSmoothingMode", void 0),
+          (0, _._)([_.observable], _.prototype, "m_eSharpening", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_disableAsyncReprojection",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_eWorldScaleRange", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_flWorldScaleMultiplier",
+            void 0,
+          ),
           (0, _._)([_], _.prototype, "onApplicationChange", null),
-          (0, _._)([_], _.prototype, "updateAppState", null),
+          (0, _._)([_.action.bound], _.prototype, "updateAppState", null),
           (0, _._)([_.computed], _.prototype, "computedResolution", null),
           (0, _._)([_], _.prototype, "onResolutionSliderChange", null),
           (0, _._)([_], _.prototype, "onFovScaleSliderChange", null),
@@ -34557,9 +34583,13 @@ var CLSTAMP = "steamdb";
                   _
                 );
               };
-            if (_.Instance.SceneAppID && _.HasCapability(23, _.MutualLocal)) {
+            if (
+              _.Instance.SceneApplicationState != _.None &&
+              _.HasCapability(23, _.MutualLocal)
+            ) {
               const _ = _(_.Instance.SceneAppID);
-              (_.bVRSceneApp = !0), (_.strName = _.Instance.SceneAppName);
+              (_.bVRSceneApp = !0),
+                (_.strName = _.Instance.SceneAppName || _("#Now_Playing"));
             }
             if (this.m_unStartingSceneAppID) {
               _(this.m_unStartingSceneAppID).bVRSceneApp = !0;
@@ -50266,7 +50296,7 @@ var CLSTAMP = "steamdb";
             }),
             _.createElement(_, {
               label: _("#Settings_VersionInfo_WebpackBuildTime"),
-              value: new Date(1784325556e3).toLocaleString() + "",
+              value: new Date(1784610189e3).toLocaleString() + "",
             }),
             _.createElement(_, {
               label: _("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),

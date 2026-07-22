@@ -1,4 +1,4 @@
-var CLSTAMP = "10833373";
+var CLSTAMP = "10838627";
 (() => {
   var e,
     t = {
@@ -13665,16 +13665,13 @@ var CLSTAMP = "10833373";
             this.setCurrentApp(i);
           }
           setCurrentApp(e) {
-            const t = qg.apps && qg.apps.find((t) => t.key == e);
-            this.setState((e, n) => {
-              var r;
-              return (null === (r = e.currentApp) || void 0 === r
-                ? void 0
-                : r.key) === (null == t ? void 0 : t.key)
-                ? null
-                : (this.props.onChange && this.props.onChange(t),
-                  { currentApp: t });
-            });
+            var t;
+            const n = qg.apps && qg.apps.find((t) => t.key == e);
+            (null === (t = this.state.currentApp) || void 0 === t
+              ? void 0
+              : t.key) !== (null == n ? void 0 : n.key) &&
+              (this.setState({ currentApp: n }),
+              this.props.onChange && this.props.onChange(n));
           }
           makeAppChoiceList() {
             let e = [],
@@ -21718,10 +21715,10 @@ var CLSTAMP = "10833373";
                 (e.additionalPrediction = 0);
               let r = {};
               (r.preferred_refresh_rate = t),
-                (r.throttling = e.framesToThrottle),
-                (r.prediction = r.throttling),
                 r.throttling > 0
-                  ? (e.fixedThrottling = !0)
+                  ? ((e.fixedThrottling = !0),
+                    (r.throttling = e.framesToThrottle),
+                    (r.prediction = r.throttling))
                   : ((e.fixedThrottling = !1), (r.override_throttling = !1)),
                 qg.SetAppSettings(n, r);
             },
@@ -22394,36 +22391,47 @@ var CLSTAMP = "10833373";
               (this.m_refAppSelectDropdown = i.createRef()),
               (this.m_initialAppState = null),
               (this.m_appSettings = null),
-              (this.state = {
-                currentApp: null,
-                nResolutionMultiplier: null,
-                nResolutionOverride: null,
-                nFovScaleMultiplier: null,
-                nFovScaleMultiplierInner: null,
-                nFovScaleMultiplierUpper: null,
-                nFovScaleMultiplierLower: null,
-                eFovScaleFormat: _c.Default,
-                eSmoothingMode: null,
-                eSharpening: null,
-                disableAsyncReprojection: null,
-                eWorldScaleRange: vc.Off,
-                flWorldScaleMultiplier: null,
-              });
+              (this.m_sAppKey = void 0),
+              (this.currentApp = null),
+              (this.m_nResolutionMultiplier = null),
+              (this.m_nResolutionOverride = null),
+              (this.m_nFovScaleMultiplier = null),
+              (this.m_nFovScaleMultiplierInner = null),
+              (this.m_nFovScaleMultiplierUpper = null),
+              (this.m_nFovScaleMultiplierLower = null),
+              (this.m_eFovScaleFormat = _c.Default),
+              (this.m_eSmoothingMode = null),
+              (this.m_eSharpening = null),
+              (this.m_disableAsyncReprojection = null),
+              (this.m_eWorldScaleRange = vc.Off),
+              (this.m_flWorldScaleMultiplier = null),
+              (0, h.makeObservable)(this),
+              (this.m_sAppKey = e.appKey);
           }
           componentDidMount() {
             if (this.showDropdown)
-              this.m_routeObservingAutorunDisposer = (0, h.autorun)(() => {
-                var e;
-                this.shouldShowModal &&
-                  this.initialAppKey &&
-                  (null === (e = this.m_refAppSelectDropdown.current) ||
-                    void 0 === e ||
-                    e.setCurrentApp(this.initialAppKey));
-              });
+              this.m_routeObservingAutorunDisposer = (0, h.reaction)(
+                () => ({
+                  shouldShowModal: this.shouldShowModal,
+                  initialAppKey: this.initialAppKey,
+                }),
+                ({ shouldShowModal: e, initialAppKey: t }) => {
+                  var n;
+                  e &&
+                    t &&
+                    (null === (n = this.m_refAppSelectDropdown.current) ||
+                      void 0 === n ||
+                      n.setCurrentApp(t));
+                },
+                { fireImmediately: !0 },
+              );
             else {
               const e = qg.apps.find((e) => e.key == this.initialAppKey);
               this.onApplicationChange(e);
             }
+          }
+          componentDidUpdate(e) {
+            this.m_sAppKey = this.props.appKey;
           }
           componentWillUnmount() {
             this.m_routeObservingAutorunDisposer &&
@@ -22437,7 +22445,7 @@ var CLSTAMP = "10833373";
                 VRHTML.ShowSettingsUI(Ue() == xe.Desktop);
           }
           get showDropdown() {
-            return null == this.props.appKey;
+            return null == this.m_sAppKey;
           }
           get shouldShowModal() {
             return qg.routePageSection == ec.PAGE_SECTION;
@@ -22447,9 +22455,7 @@ var CLSTAMP = "10833373";
             return e.length >= 1 ? e[0] : null;
           }
           get initialAppKey() {
-            return this.showDropdown
-              ? this.currentRouteAppKey
-              : this.props.appKey;
+            return this.showDropdown ? this.currentRouteAppKey : this.m_sAppKey;
           }
           get enableThrottleOverrideSettings() {
             return (
@@ -22462,7 +22468,7 @@ var CLSTAMP = "10833373";
                 !VRHTML.VRProperties.GetBoolProperty(
                   "/user/head",
                   j.HasDriverDirectModeComponent_Bool,
-                ) && this.state.disableAsyncReprojection
+                ) && this.m_disableAsyncReprojection
               )
             );
           }
@@ -22496,26 +22502,24 @@ var CLSTAMP = "10833373";
             );
           }
           get worldScaleRangeMin() {
-            return Sc[this.state.eWorldScaleRange].min;
+            return Sc[this.m_eWorldScaleRange].min;
           }
           get worldScaleRangeMax() {
-            return Sc[this.state.eWorldScaleRange].max;
+            return Sc[this.m_eWorldScaleRange].max;
           }
           get worldScaleRangeStep() {
-            return Sc[this.state.eWorldScaleRange].step;
+            return Sc[this.m_eWorldScaleRange].step;
           }
           onApplicationChange(e) {
             var t;
-            this.state.currentApp !== e &&
-              (this.setState({
-                currentApp: e,
-                nResolutionMultiplier: void 0,
-                nResolutionOverride: void 0,
-                nFovScaleMultiplier: void 0,
-                eSmoothingMode: void 0,
-                eSharpening: void 0,
-                disableAsyncReprojection: void 0,
-              }),
+            this.currentApp !== e &&
+              ((this.currentApp = e),
+              (this.m_nResolutionMultiplier = void 0),
+              (this.m_nResolutionOverride = void 0),
+              (this.m_nFovScaleMultiplier = void 0),
+              (this.m_eSmoothingMode = void 0),
+              (this.m_eSharpening = void 0),
+              (this.m_disableAsyncReprojection = void 0),
               e && this.fetchAppState(e.key),
               qg.setRoutePageSectionParams([
                 null !== (t = null == e ? void 0 : e.key) && void 0 !== t
@@ -22535,30 +22539,35 @@ var CLSTAMP = "10833373";
                         e.worldscale > Sc[vc.Normal].max
                       ? vc.Extreme
                       : vc.Normal),
+                (this.m_nResolutionMultiplier = e.resolution / 100),
+                (this.m_nResolutionOverride = e.resolution_override),
+                (this.m_nFovScaleMultiplier = e.fovscale / 100),
+                (this.m_nFovScaleMultiplierInner = e.fovscale_inner
+                  ? e.fovscale_inner / 100
+                  : 1),
+                (this.m_nFovScaleMultiplierUpper = e.fovscale_upper
+                  ? e.fovscale_upper / 100
+                  : 1),
+                (this.m_nFovScaleMultiplierLower = e.fovscale_lower
+                  ? e.fovscale_lower / 100
+                  : 1),
+                (this.m_eFovScaleFormat =
+                  null !== (t = e.fovscale_format) && void 0 !== t
+                    ? t
+                    : _c.Default),
+                (this.m_eSmoothingMode = e.smoothing),
+                (this.m_eSharpening = e.sharpening),
+                (this.m_disableAsyncReprojection =
+                  e.disable_async_reprojection),
+                (this.m_eWorldScaleRange = n),
+                (this.m_flWorldScaleMultiplier = e.worldscale
+                  ? e.worldscale
+                  : 1),
                 (this.m_initialAppState = {
-                  nResolutionMultiplier: e.resolution / 100,
-                  nResolutionOverride: e.resolution_override,
-                  nFovScaleMultiplier: e.fovscale / 100,
-                  nFovScaleMultiplierInner: e.fovscale_inner
-                    ? e.fovscale_inner / 100
-                    : 1,
-                  nFovScaleMultiplierUpper: e.fovscale_upper
-                    ? e.fovscale_upper / 100
-                    : 1,
-                  nFovScaleMultiplierLower: e.fovscale_lower
-                    ? e.fovscale_lower / 100
-                    : 1,
-                  eFovScaleFormat:
-                    null !== (t = e.fovscale_format) && void 0 !== t
-                      ? t
-                      : _c.Default,
-                  eSmoothingMode: e.smoothing,
-                  eSharpening: e.sharpening,
-                  disableAsyncReprojection: e.disable_async_reprojection,
-                  eWorldScaleRange: n,
-                  flWorldScaleMultiplier: e.worldscale ? e.worldscale : 1,
-                }),
-                this.setState(this.m_initialAppState);
+                  nFovScaleMultiplier: this.m_nFovScaleMultiplier,
+                  disableAsyncReprojection: this.m_disableAsyncReprojection,
+                  eWorldScaleRange: this.m_eWorldScaleRange,
+                });
             }
           }
           fetchAppState(e) {
@@ -22569,16 +22578,21 @@ var CLSTAMP = "10833373";
                 t.loadIfNeeded().then((t) => {
                   var n;
                   t &&
-                    (null === (n = this.state.currentApp) || void 0 === n
+                    (null === (n = this.currentApp) || void 0 === n
                       ? void 0
                       : n.key) === e &&
                     this.updateAppState(t);
                 });
           }
           setAppState(e, t) {
-            if (null != this.state.currentApp) {
-              let n = {};
-              (n[e] = t), qg.SetAppSettings(this.state.currentApp.key, n);
+            var n;
+            if (null != this.currentApp) {
+              let r = {};
+              (r[e] = t),
+                qg.SetAppSettings(this.currentApp.key, r),
+                (null === (n = this.m_appSettings) || void 0 === n
+                  ? void 0
+                  : n.response) && (this.m_appSettings.response[e] = t);
             }
           }
           get computedResolution() {
@@ -22586,9 +22600,9 @@ var CLSTAMP = "10833373";
             let t = 1,
               n = 1;
             qg.systemInfo && qg.systemInfo.resolution_per_app
-              ? (n = this.state.nResolutionOverride
+              ? (n = this.m_nResolutionOverride
                   ? Math.pow(
-                      this.state.nResolutionOverride /
+                      this.m_nResolutionOverride /
                         qg.systemInfo.render_target_size.width,
                       2,
                     )
@@ -22597,8 +22611,7 @@ var CLSTAMP = "10833373";
                   ? Ql.supersampleScaleValue
                   : Ql.supersampleGpuScaleValue),
                 (n =
-                  null !== (e = this.state.nResolutionMultiplier) &&
-                  void 0 !== e
+                  null !== (e = this.m_nResolutionMultiplier) && void 0 !== e
                     ? e
                     : 1));
             let r = Zn(
@@ -22607,17 +22620,17 @@ var CLSTAMP = "10833373";
                 Ql.maxSupersampleScaleValue,
               ),
               i = r;
-            switch (this.state.eFovScaleFormat) {
+            switch (this.m_eFovScaleFormat) {
               case _c.Letterbox:
-                i *= this.state.nFovScaleMultiplier;
+                i *= this.m_nFovScaleMultiplier;
                 break;
               case _c.Advanced:
                 const e =
-                    this.state.nFovScaleMultiplier +
-                    this.state.nFovScaleMultiplierInner,
+                    this.m_nFovScaleMultiplier +
+                    this.m_nFovScaleMultiplierInner,
                   t =
-                    this.state.nFovScaleMultiplierUpper +
-                    this.state.nFovScaleMultiplierLower;
+                    this.m_nFovScaleMultiplierUpper +
+                    this.m_nFovScaleMultiplierLower;
                 e < t ? (r *= e / t) : (i *= t / e);
             }
             const [a, s] = Ql.ComputeResolution(t * r, t * i);
@@ -22627,38 +22640,36 @@ var CLSTAMP = "10833373";
           }
           onResolutionSliderChange(e) {
             qg.systemInfo && !qg.systemInfo.resolution_per_app
-              ? (this.setState({ nResolutionMultiplier: e }),
+              ? ((this.m_nResolutionMultiplier = e),
                 this.setAppState("resolution", 100 * e))
-              : (this.setState({ nResolutionOverride: e }),
+              : ((this.m_nResolutionOverride = e),
                 this.setAppState("resolution_override", e));
           }
           onFovScaleSliderChange(e) {
-            this.setState({ nFovScaleMultiplier: e }),
+            (this.m_nFovScaleMultiplier = e),
               this.setAppState("fovscale", 100 * e);
           }
           onFovScaleSliderChangeInner(e) {
-            this.setState({ nFovScaleMultiplierInner: e }),
+            (this.m_nFovScaleMultiplierInner = e),
               this.setAppState("fovscale_inner", 100 * e);
           }
           onFovScaleSliderChangeUpper(e) {
-            this.setState({ nFovScaleMultiplierUpper: e }),
+            (this.m_nFovScaleMultiplierUpper = e),
               this.setAppState("fovscale_upper", 100 * e);
           }
           onFovScaleSliderChangeLower(e) {
-            this.setState({ nFovScaleMultiplierLower: e }),
+            (this.m_nFovScaleMultiplierLower = e),
               this.setAppState("fovscale_lower", 100 * e);
           }
           onFovScaleFormatChange(e) {
-            this.setState({ eFovScaleFormat: e }),
+            (this.m_eFovScaleFormat = e),
               this.setAppState("fovscale_format", e);
           }
           onMotionSmoothChange(e) {
-            this.setState({ eSmoothingMode: e }),
-              this.setAppState("smoothing", e);
+            (this.m_eSmoothingMode = e), this.setAppState("smoothing", e);
           }
           onSharpeningChange(e) {
-            this.setState({ eSharpening: e }),
-              this.setAppState("sharpening", e);
+            (this.m_eSharpening = e), this.setAppState("sharpening", e);
           }
           onRefreshRateOverrideChange(e) {
             this.allowPerAppRefreshRate &&
@@ -22683,7 +22694,7 @@ var CLSTAMP = "10833373";
               );
           }
           onDisableAsyncReprojection(e) {
-            this.setState({ disableAsyncReprojection: e }),
+            (this.m_disableAsyncReprojection = e),
               this.setAppState("disable_async_reprojection", e);
           }
           onShowThrottleOptions(e) {
@@ -22716,29 +22727,23 @@ var CLSTAMP = "10833373";
               );
           }
           onWorldScaleRangeChange(e) {
-            this.setState({
-              eWorldScaleRange: e,
-              flWorldScaleMultiplier: Math.max(
+            const t = this.m_flWorldScaleMultiplier;
+            (this.m_eWorldScaleRange = e),
+              (this.m_flWorldScaleMultiplier = Math.max(
                 Sc[e].min,
-                Math.min(Sc[e].max, this.state.flWorldScaleMultiplier),
-              ),
-            }),
-              this.setAppState(
-                "worldscale",
-                e == vc.Off ? 1 : this.state.flWorldScaleMultiplier,
-              );
+                Math.min(Sc[e].max, t),
+              )),
+              this.setAppState("worldscale", e == vc.Off ? 1 : t);
           }
           onWorldScaleMultiplierSliderChange(e) {
-            this.setState({ flWorldScaleMultiplier: e }),
+            (this.m_flWorldScaleMultiplier = e),
               this.setAppState("worldscale", e);
           }
           hasCurrentApp() {
-            return null != this.state.currentApp;
+            return null != this.currentApp;
           }
           resetAppToDefaults() {
-            qg.ResetAppSettings(this.state.currentApp.key).then(
-              this.updateAppState,
-            );
+            qg.ResetAppSettings(this.currentApp.key).then(this.updateAppState);
           }
           show() {
             qg.setRoutePageSection(ec.PAGE_SECTION);
@@ -22750,35 +22755,35 @@ var CLSTAMP = "10833373";
             return !!qg.settings.get("/settings/steamvr/enablePerAppFPS");
           }
           render() {
-            var e, t, n, r, a, s;
-            const o = rc(this.m_appSettings);
-            let l = null;
-            this.state.eSmoothingMode == hc.ForceAlwaysOn &&
-              (l = i.createElement(
+            var e, t, n, r, a, s, o;
+            const l = rc(this.m_appSettings);
+            let c = null;
+            this.m_eSmoothingMode == hc.ForceAlwaysOn &&
+              (c = i.createElement(
                 i.Fragment,
                 null,
                 d("#Settings_PerApplication_MotionSmoothing_AlwaysOn_Desc"),
               ));
-            const c = qg.systemInfo && qg.systemInfo.resolution_per_app,
-              u = c ? Ql.supersampleScalePixelsStep : Ql.supersampleScaleStep;
-            let m = Ql.minSupersampleScaleValue,
-              p = Ql.maxSupersampleScaleValue,
-              h = [1];
-            if (c) {
-              (m = Ql.ComputeResolution(m, m)[0]),
-                (p = Ql.ComputeResolution(p, p)[0]);
+            const u = qg.systemInfo && qg.systemInfo.resolution_per_app,
+              m = u ? Ql.supersampleScalePixelsStep : Ql.supersampleScaleStep;
+            let p = Ql.minSupersampleScaleValue,
+              h = Ql.maxSupersampleScaleValue,
+              g = [1];
+            if (u) {
+              (p = Ql.ComputeResolution(p, p)[0]),
+                (h = Ql.ComputeResolution(h, h)[0]);
               const e = Ql.supersampleGpuScaleValue;
-              h = [Ql.ComputeResolution(e, e)[0]];
+              g = [Ql.ComputeResolution(e, e)[0]];
             }
-            const g =
+            const _ =
                 null !==
-                  (e = c
-                    ? this.state.nResolutionOverride
-                    : this.state.nResolutionMultiplier) && void 0 !== e
+                  (e = u
+                    ? this.m_nResolutionOverride
+                    : this.m_nResolutionMultiplier) && void 0 !== e
                   ? e
-                  : h[0],
-              _ = this.state.eFovScaleFormat == _c.Advanced,
-              v =
+                  : g[0],
+              v = this.m_eFovScaleFormat == _c.Advanced,
+              S =
                 (null === VRHTML || void 0 === VRHTML
                   ? void 0
                   : VRHTML.VRProperties.GetBoolProperty(
@@ -22791,13 +22796,13 @@ var CLSTAMP = "10833373";
                       "/user/head",
                       j.HasDriverDirectModeComponent_Bool,
                     )),
-              S =
+              b =
                 (null === (t = this.m_appSettings) || void 0 === t
                   ? void 0
                   : t.displayRate) > 0
                   ? this.m_appSettings.displayRate
                   : Ql.actualRefreshRate,
-              b = new Intl.NumberFormat(void 0, {
+              y = new Intl.NumberFormat(void 0, {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 1,
               });
@@ -22876,10 +22881,10 @@ var CLSTAMP = "10833373";
                     i.createElement(
                       i.Fragment,
                       null,
-                      !Ql.isPlaytimeProfile && o,
+                      !Ql.isPlaytimeProfile && l,
                       this.enableMotionSmoothingOverrideSettings &&
-                        null !== this.state.eSmoothingMode &&
-                        !this.state.disableAsyncReprojection &&
+                        null !== this.m_eSmoothingMode &&
+                        !this.m_disableAsyncReprojection &&
                         i.createElement(ds, {
                           label: d("#Settings_Advanced_MotionSmoothing_Header"),
                           items: [
@@ -22908,12 +22913,12 @@ var CLSTAMP = "10833373";
                               ),
                             },
                           ],
-                          value: this.state.eSmoothingMode,
+                          value: this.m_eSmoothingMode,
                           onChange: this.onMotionSmoothChange,
-                          subsection: l,
+                          subsection: c,
                         }),
-                      v &&
-                        null !== this.state.eSharpening &&
+                      S &&
+                        null !== this.m_eSharpening &&
                         i.createElement(ds, {
                           label: d(
                             "#Settings_Advanced_FoveatedSharpening_Header",
@@ -22938,7 +22943,7 @@ var CLSTAMP = "10833373";
                               ),
                             },
                           ],
-                          value: this.state.eSharpening,
+                          value: this.m_eSharpening,
                           onChange: this.onSharpeningChange,
                         }),
                       !Ql.isPlaytimeProfile &&
@@ -22955,7 +22960,7 @@ var CLSTAMP = "10833373";
                             "div",
                             { className: "Label" },
                             d(
-                              c
+                              u
                                 ? "#Settings_Advanced_Supersampline_ResolutionPerEye"
                                 : "#Settings_PerApplication_AppResTitle",
                             ),
@@ -22968,13 +22973,13 @@ var CLSTAMP = "10833373";
                               { className: "Dimensions" },
                               this.computedResolution,
                             ),
-                            !c &&
-                              this.state.nResolutionMultiplier &&
+                            !u &&
+                              this.m_nResolutionMultiplier &&
                               i.createElement(
                                 "div",
                                 { className: "Percentage" },
                                 Math.round(
-                                  100 * this.state.nResolutionMultiplier,
+                                  100 * this.m_nResolutionMultiplier,
                                 ).toString() + "%",
                               ),
                           ),
@@ -22982,11 +22987,11 @@ var CLSTAMP = "10833373";
                             "div",
                             { className: "Subsection WithStem" },
                             i.createElement(ms, {
-                              min: m,
-                              max: p,
-                              step: u,
-                              detents: h,
-                              value: g,
+                              min: p,
+                              max: h,
+                              step: m,
+                              detents: g,
+                              value: _,
                               onChange: this.onResolutionSliderChange,
                             }),
                             i.createElement(
@@ -22996,10 +23001,14 @@ var CLSTAMP = "10833373";
                             ),
                           ),
                         ),
-                      null !== this.state.nFovScaleMultiplier &&
+                      null !== this.m_nFovScaleMultiplier &&
                         (qg.showAdvancedSettings ||
                           (this.m_initialAppState &&
-                            1 != this.m_initialAppState.nFovScaleMultiplier)) &&
+                            1 !=
+                              (null === (a = this.m_initialAppState) ||
+                              void 0 === a
+                                ? void 0
+                                : a.nFovScaleMultiplier))) &&
                         i.createElement(
                           ns,
                           {
@@ -23021,12 +23030,12 @@ var CLSTAMP = "10833373";
                               { className: "Dimensions" },
                               d("#Settings_PerApplication_FovScale_Multiplier"),
                             ),
-                            !_ &&
+                            !v &&
                               i.createElement(
                                 "div",
                                 { className: "Percentage" },
                                 Math.round(
-                                  100 * this.state.nFovScaleMultiplier,
+                                  100 * this.m_nFovScaleMultiplier,
                                 ).toString() + "%",
                               ),
                           ),
@@ -23037,15 +23046,15 @@ var CLSTAMP = "10833373";
                               min: 0.5,
                               max: 1,
                               step: 0.01,
-                              value: this.state.nFovScaleMultiplier,
-                              valueStyleVariant: _ ? Ji.OnHandle : void 0,
-                              renderValue: _
+                              value: this.m_nFovScaleMultiplier,
+                              valueStyleVariant: v ? Ji.OnHandle : void 0,
+                              renderValue: v
                                 ? (e) => Math.round(100 * e).toString() + "%"
                                 : void 0,
                               onChange: this.onFovScaleSliderChange,
-                              label: _ ? "Outer" : void 0,
+                              label: v ? "Outer" : void 0,
                             }),
-                            _ &&
+                            v &&
                               i.createElement(
                                 i.Fragment,
                                 null,
@@ -23053,7 +23062,7 @@ var CLSTAMP = "10833373";
                                   min: 0.5,
                                   max: 1,
                                   step: 0.01,
-                                  value: this.state.nFovScaleMultiplierInner,
+                                  value: this.m_nFovScaleMultiplierInner,
                                   valueStyleVariant: Ji.OnHandle,
                                   renderValue: (e) =>
                                     Math.round(100 * e).toString() + "%",
@@ -23064,7 +23073,7 @@ var CLSTAMP = "10833373";
                                   min: 0.5,
                                   max: 1,
                                   step: 0.01,
-                                  value: this.state.nFovScaleMultiplierUpper,
+                                  value: this.m_nFovScaleMultiplierUpper,
                                   valueStyleVariant: Ji.OnHandle,
                                   renderValue: (e) =>
                                     Math.round(100 * e).toString() + "%",
@@ -23075,7 +23084,7 @@ var CLSTAMP = "10833373";
                                   min: 0.5,
                                   max: 1,
                                   step: 0.01,
-                                  value: this.state.nFovScaleMultiplierLower,
+                                  value: this.m_nFovScaleMultiplierLower,
                                   valueStyleVariant: Ji.OnHandle,
                                   renderValue: (e) =>
                                     Math.round(100 * e).toString() + "%",
@@ -23083,19 +23092,19 @@ var CLSTAMP = "10833373";
                                   label: "Lower",
                                 }),
                               ),
-                            (1 != this.state.nFovScaleMultiplier || _) &&
+                            (1 != this.m_nFovScaleMultiplier || v) &&
                               i.createElement(ds, {
                                 items: [
                                   { value: _c.Default, sLabel: "Default" },
                                   { value: _c.Letterbox, sLabel: "Letterbox" },
                                   { value: _c.Advanced, sLabel: "Advanced" },
                                 ],
-                                value: this.state.eFovScaleFormat,
+                                value: this.m_eFovScaleFormat,
                                 onChange: this.onFovScaleFormatChange,
                               }),
                           ),
                         ),
-                      null !== this.state.flWorldScaleMultiplier &&
+                      null !== this.m_flWorldScaleMultiplier &&
                         (qg.showAdvancedSettings ||
                           (this.m_initialAppState &&
                             this.m_initialAppState.eWorldScaleRange !==
@@ -23140,11 +23149,11 @@ var CLSTAMP = "10833373";
                                 ),
                               },
                             ],
-                            value: this.state.eWorldScaleRange,
+                            value: this.m_eWorldScaleRange,
                             onChange: this.onWorldScaleRangeChange,
                           }),
                         ),
-                      this.state.eWorldScaleRange !== vc.Off &&
+                      this.m_eWorldScaleRange !== vc.Off &&
                         i.createElement(
                           ns,
                           { className: "SettingsItem Advanced" },
@@ -23166,7 +23175,7 @@ var CLSTAMP = "10833373";
                               { className: "Percentage" },
                               (
                                 Math.round(
-                                  1e3 * this.state.flWorldScaleMultiplier,
+                                  1e3 * this.m_flWorldScaleMultiplier,
                                 ) / 10
                               ).toString() + "%",
                             ),
@@ -23178,7 +23187,7 @@ var CLSTAMP = "10833373";
                               min: this.worldScaleRangeMin,
                               max: this.worldScaleRangeMax,
                               step: this.worldScaleRangeStep,
-                              value: this.state.flWorldScaleMultiplier,
+                              value: this.m_flWorldScaleMultiplier,
                               detents: [1],
                               onChange: this.onWorldScaleMultiplierSliderChange,
                             }),
@@ -23191,9 +23200,9 @@ var CLSTAMP = "10833373";
                         ),
                       !Ql.isPlaytimeProfile &&
                         this.allowPerAppRefreshRate &&
-                        (null === (a = this.m_appSettings) || void 0 === a
+                        (null === (s = this.m_appSettings) || void 0 === s
                           ? void 0
-                          : a.response) &&
+                          : s.response) &&
                         Ql.refreshRatesAvailable &&
                         Ql.refreshRatesAvailable.length > 1 &&
                         (qg.showAdvancedSettings ||
@@ -23217,7 +23226,7 @@ var CLSTAMP = "10833373";
                                 "#Settings_PerApplication_RefreshRateOverride_Label",
                               ),
                               onChange: this.onRefreshRateChange,
-                              value: S,
+                              value: b,
                               comparator: (e, t) =>
                                 Math.round(e) == Math.round(t),
                               items: Ql.refreshRatesAvailable.map((e) => ({
@@ -23228,7 +23237,7 @@ var CLSTAMP = "10833373";
                           }),
                         ),
                       this.enableLegacyReprojectionSettings &&
-                        null !== this.state.disableAsyncReprojection &&
+                        null !== this.m_disableAsyncReprojection &&
                         (qg.showAdvancedSettings ||
                           (this.m_initialAppState &&
                             this.m_initialAppState.disableAsyncReprojection)) &&
@@ -23244,15 +23253,15 @@ var CLSTAMP = "10833373";
                             label: d(
                               "#Settings_PerApplication_Reprojection_Checkbox",
                             ),
-                            value: this.state.disableAsyncReprojection,
+                            value: this.m_disableAsyncReprojection,
                             onChange: this.onDisableAsyncReprojection,
                           }),
                         ),
                       !Ql.isPlaytimeProfile &&
                         this.enableThrottleOverrideSettings &&
-                        (null === (s = this.m_appSettings) || void 0 === s
+                        (null === (o = this.m_appSettings) || void 0 === o
                           ? void 0
-                          : s.response) &&
+                          : o.response) &&
                         (qg.showAdvancedSettings ||
                           this.m_appSettings.fixedThrottling) &&
                         i.createElement(
@@ -23289,7 +23298,7 @@ var CLSTAMP = "10833373";
                                 value: this.m_appSettings.framesToThrottle,
                                 items: Array.from({ length: 6 }, (e, t) => ({
                                   value: 5 - t,
-                                  sLabel: b.format(S / (6 - t)),
+                                  sLabel: y.format(b / (6 - t)),
                                 })),
                               }),
                               i.createElement(us, {
@@ -23300,7 +23309,7 @@ var CLSTAMP = "10833373";
                                 value: this.m_appSettings.additionalPrediction,
                                 items: Array.from({ length: 4 }, (e, t) => ({
                                   value: t,
-                                  sLabel: b.format((1e3 * t) / S),
+                                  sLabel: y.format((1e3 * t) / b),
                                 })),
                               }),
                             ),
@@ -23318,31 +23327,68 @@ var CLSTAMP = "10833373";
           }
         });
         (bc.PAGE_SECTION = "appvideosettings"),
-          (0, r.Cg)([h.computed], bc.prototype, "shouldShowModal", null),
-          (0, r.Cg)([h.computed], bc.prototype, "currentRouteAppKey", null),
           (0, r.Cg)(
-            [h.computed],
+            [h.observable.ref],
             bc.prototype,
-            "enableThrottleOverrideSettings",
-            null,
+            "m_initialAppState",
+            void 0,
+          ),
+          (0, r.Cg)([h.observable], bc.prototype, "m_sAppKey", void 0),
+          (0, r.Cg)([h.observable.ref], bc.prototype, "currentApp", void 0),
+          (0, r.Cg)(
+            [h.observable],
+            bc.prototype,
+            "m_nResolutionMultiplier",
+            void 0,
           ),
           (0, r.Cg)(
-            [h.computed],
+            [h.observable],
             bc.prototype,
-            "enableMotionSmoothingOverrideSettings",
-            null,
+            "m_nResolutionOverride",
+            void 0,
           ),
           (0, r.Cg)(
-            [h.computed],
+            [h.observable],
             bc.prototype,
-            "enableLegacyReprojectionSettings",
-            null,
+            "m_nFovScaleMultiplier",
+            void 0,
           ),
-          (0, r.Cg)([h.computed], bc.prototype, "worldScaleRangeMin", null),
-          (0, r.Cg)([h.computed], bc.prototype, "worldScaleRangeMax", null),
-          (0, r.Cg)([h.computed], bc.prototype, "worldScaleRangeStep", null),
+          (0, r.Cg)(
+            [h.observable],
+            bc.prototype,
+            "m_nFovScaleMultiplierInner",
+            void 0,
+          ),
+          (0, r.Cg)(
+            [h.observable],
+            bc.prototype,
+            "m_nFovScaleMultiplierUpper",
+            void 0,
+          ),
+          (0, r.Cg)(
+            [h.observable],
+            bc.prototype,
+            "m_nFovScaleMultiplierLower",
+            void 0,
+          ),
+          (0, r.Cg)([h.observable], bc.prototype, "m_eFovScaleFormat", void 0),
+          (0, r.Cg)([h.observable], bc.prototype, "m_eSmoothingMode", void 0),
+          (0, r.Cg)([h.observable], bc.prototype, "m_eSharpening", void 0),
+          (0, r.Cg)(
+            [h.observable],
+            bc.prototype,
+            "m_disableAsyncReprojection",
+            void 0,
+          ),
+          (0, r.Cg)([h.observable], bc.prototype, "m_eWorldScaleRange", void 0),
+          (0, r.Cg)(
+            [h.observable],
+            bc.prototype,
+            "m_flWorldScaleMultiplier",
+            void 0,
+          ),
           (0, r.Cg)([g], bc.prototype, "onApplicationChange", null),
-          (0, r.Cg)([g], bc.prototype, "updateAppState", null),
+          (0, r.Cg)([h.action.bound], bc.prototype, "updateAppState", null),
           (0, r.Cg)([h.computed], bc.prototype, "computedResolution", null),
           (0, r.Cg)([g], bc.prototype, "onResolutionSliderChange", null),
           (0, r.Cg)([g], bc.prototype, "onFovScaleSliderChange", null),
@@ -31965,11 +32011,12 @@ var CLSTAMP = "10833373";
                 );
               };
             if (
-              so.Instance.SceneAppID &&
+              so.Instance.SceneApplicationState != Xe.None &&
               Ol.HasCapability(23, ne.MutualLocal)
             ) {
               const e = i(so.Instance.SceneAppID);
-              (e.bVRSceneApp = !0), (e.strName = so.Instance.SceneAppName);
+              (e.bVRSceneApp = !0),
+                (e.strName = so.Instance.SceneAppName || d("#Now_Playing"));
             }
             if (this.m_unStartingSceneAppID) {
               i(this.m_unStartingSceneAppID).bVRSceneApp = !0;
@@ -42365,7 +42412,7 @@ var CLSTAMP = "10833373";
                 ? void 0
                 : e.call(VRHTML)) + "",
             ),
-              n.set_webpack_build_timestamp(1784325556);
+              n.set_webpack_build_timestamp(1784610189);
             const r =
               null ===
                 (t =
@@ -46548,7 +46595,7 @@ var CLSTAMP = "10833373";
             }),
             i.createElement(os, {
               label: d("#Settings_VersionInfo_WebpackBuildTime"),
-              value: new Date(1784325556e3).toLocaleString() + "",
+              value: new Date(1784610189e3).toLocaleString() + "",
             }),
             i.createElement(os, {
               label: d("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),
