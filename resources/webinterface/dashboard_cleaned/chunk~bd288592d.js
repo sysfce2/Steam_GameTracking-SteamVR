@@ -768,12 +768,12 @@ var CLSTAMP = "steamdb";
         ComputeControllerTypeScore(_) {
           let _ = this.CountDevicesWithControllerType(_.controller_type),
             _ =
-              ((null === _._ || void 0 === _._ ? void 0 : _._.HasHMD())
-                ? null === _._ || void 0 === _._
+              ((null === _.Ay$ || void 0 === _.Ay$ ? void 0 : _.Ay$.HasHMD())
+                ? null === _.Ay$ || void 0 === _.Ay$
                   ? void 0
-                  : _._.VRProperties.GetStringProperty(
+                  : _.Ay$.VRProperties.GetStringProperty(
                       "/user/head",
-                      _._.Prop_ExpectedControllerType_String,
+                      _.fD8.Prop_ExpectedControllerType_String,
                     )
                 : void 0) == _.controller_type
                 ? 2
@@ -3330,8 +3330,8 @@ var CLSTAMP = "steamdb";
               "forward",
             ),
             history.back();
-          let _ = "bindingui/" + _._[(0, _._)()];
-          (this.m_mailbox = new _._()),
+          let _ = "bindingui/" + _.OH$[(0, _.R$f)()];
+          (this.m_mailbox = new _._nH()),
             this.m_mailbox.Init(_),
             this.m_mailbox.RegisterHandler(
               "show_app_select",
@@ -3352,9 +3352,9 @@ var CLSTAMP = "steamdb";
             (0, _.autorun)(this.UpdateWindowTitle);
         }
         ShowOverlayInDashboard() {
-          null === _._ ||
-            void 0 === _._ ||
-            _._.VRClient.ShowDashboardOverlay({
+          null === _.Ay$ ||
+            void 0 === _.Ay$ ||
+            _.Ay$.VRClient.ShowDashboardOverlay({
               overlayKey: "system.vrwebhelper.controllerbinding",
               sReason: "cinputui_showoverlayindashboard",
             });
@@ -3370,9 +3370,9 @@ var CLSTAMP = "steamdb";
             (this.Loading = !0),
             _._.UpdateApplications().then(() => {
               if (
-                ((0, _._)() == _._.Overlay
+                ((0, _.R$f)() == _.OH$.Overlay
                   ? this.ShowOverlayInDashboard()
-                  : (0, _._)() == _._.Desktop && _._.ShowBindingUI(!0),
+                  : (0, _.R$f)() == _.OH$.Desktop && _.Ay$.ShowBindingUI(!0),
                 !_._.GetApp(_.app_key))
               )
                 return (
@@ -3429,7 +3429,7 @@ var CLSTAMP = "steamdb";
                   _,
                 ),
               ),
-                null === _._ || void 0 === _._ || _._.ShowBindingUI(!1);
+                null === _.Ay$ || void 0 === _.Ay$ || _.Ay$.ShowBindingUI(!1);
             });
         }
         SetStandaloneSettingsPage(_) {
@@ -3542,9 +3542,9 @@ var CLSTAMP = "steamdb";
         }
         ReturnToSettingsUI() {
           this.ShowAppSelect(),
-            null === _._ ||
-              void 0 === _._ ||
-              _._.ShowSettingsUI((0, _._)() == _._.Desktop);
+            null === _.Ay$ ||
+              void 0 === _.Ay$ ||
+              _.Ay$.ShowSettingsUI((0, _.R$f)() == _.OH$.Desktop);
         }
         ShowAppSelect() {
           (this.m_bStandaloneSettingsPage = !1),
@@ -3587,7 +3587,7 @@ var CLSTAMP = "steamdb";
                     this.UpdatePathsTimeout,
                     500,
                   )),
-                  _._.ShowBindingUI((0, _._)() == _._.Desktop);
+                  _.Ay$.ShowBindingUI((0, _.R$f)() == _.OH$.Desktop);
               })
               .catch(() => {
                 this.Loading = !1;

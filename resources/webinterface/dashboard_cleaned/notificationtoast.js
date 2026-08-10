@@ -5,104 +5,109 @@ var CLSTAMP = "steamdb";
     _ = {
       chunkid: (module, module_exports, __webpack_require__) => {
         __webpack_require__._(_, {
-          _: () => _._,
-          _: () => _._,
-          _: () => _,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
+          $Zy: () => _._,
+          $ab: () => _._,
+          $lc: () => _._,
+          Ay$: () => _,
+          CUZ: () => _._,
+          Ci8: () => _._,
+          Doe: () => _._,
+          Ee9: () => _._,
+          EmM: () => _._,
+          FbK: () => _._,
+          FiV: () => _._,
+          Fzk: () => _._,
+          GMj: () => _._,
+          GQ2: () => _._,
+          GS9: () => _._,
+          Gze: () => _._,
+          HWH: () => _._,
+          HWh: () => _._,
+          I0c: () => _._,
+          IS7: () => _._,
+          JZN: () => _._,
+          JcD: () => _._,
+          Jv8: () => _._,
+          KIK: () => _._,
+          KlS: () => _._,
+          LdJ: () => _._,
+          LdK: () => _._,
+          M9N: () => _._,
+          MQJ: () => _._,
+          MVt: () => _._,
+          N1A: () => _._,
+          NHZ: () => _._,
+          O54: () => _._,
+          O6e: () => _._,
+          OH$: () => _._,
+          OiK: () => _._,
+          QB1: () => _._,
+          QRg: () => _._,
+          R$f: () => _._,
+          SeR: () => _._,
+          Ujb: () => _._,
+          VhJ: () => _._,
+          WiO: () => _._,
+          Wqq: () => _._,
+          XlW: () => _._,
+          Xun: () => _._,
+          Y4E: () => _._,
+          YVg: () => _._,
+          YsR: () => _._,
+          Yup: () => _._,
+          ZPA: () => _._,
+          Zkm: () => _._,
+          _: () => _._,
+          _81: () => _._,
+          _h3: () => _._,
+          _nH: () => _._,
+          aXN: () => _._,
+          aqc: () => _._,
+          b$J: () => _._,
+          _: () => _._,
+          ba0: () => _._,
+          dLy: () => _._,
+          ds4: () => _._,
+          e_0: () => _._,
+          enJ: () => _._,
+          eod: () => _._,
+          eyj: () => _._,
+          f9c: () => _._,
+          fD8: () => _._,
+          fkw: () => _._,
+          gNj: () => _._,
+          hqo: () => _._,
+          k2$: () => _._,
+          kGj: () => _._,
+          kSV: () => _._,
+          ke3: () => _._,
+          kuU: () => _._,
+          lqd: () => _._,
+          m$_: () => _._,
+          mHe: () => _._,
+          mXc: () => _._,
+          muq: () => _._,
+          _: () => _._,
+          nXw: () => _._,
+          neN: () => _._,
+          nqf: () => _._,
+          o3u: () => _._,
+          oN_: () => _._,
+          pMg: () => _._,
+          pgT: () => _._,
+          q5z: () => _._,
+          qFr: () => _._,
+          rxR: () => _._,
+          snv: () => _._,
+          t$O: () => _._,
+          txk: () => _._,
+          uC0: () => _._,
+          uS7: () => _._,
+          vxi: () => _._,
+          wBp: () => _._,
+          xOm: () => _._,
+          yWq: () => _._,
+          zwf: () => _._,
         });
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
@@ -172,6 +177,7 @@ var CLSTAMP = "steamdb";
           _: () => _,
           _: () => _,
           _: () => _,
+          _: () => _,
         }),
           (function (_) {
             (_[(_.Desktop = 1)] = "Desktop"),
@@ -207,7 +213,7 @@ var CLSTAMP = "steamdb";
         let _ = 0,
           _ = 0,
           _ = 4294967295;
-        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
         !(function (_) {
           (_[(_.None = 0)] = "None"),
             (_[(_.Shown = 1)] = "Shown"),
@@ -264,6 +270,9 @@ var CLSTAMP = "steamdb";
               (_[(_.CouldntFindOrCreateClientOverlay = 5)] =
                 "CouldntFindOrCreateClientOverlay"),
               (_[(_.ApplicationQuit = 6)] = "ApplicationQuit");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.Accept = 0)] = "Accept"), (_[(_.Back = 1)] = "Back");
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.Normal = 0)] = "Normal"),
@@ -409,6 +418,7 @@ var CLSTAMP = "steamdb";
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
         !(function (_) {
           (_[(_.Alive = 0)] = "Alive"), (_[(_.Destroyed = 1)] = "Destroyed");
@@ -461,6 +471,7 @@ var CLSTAMP = "steamdb";
               (this.m_sSummonOverlayKey = void 0),
               (this.m_bExternalDashboardOverlay = !1),
               (this.m_mainPanel = void 0),
+              (this.m_bSpatialize = void 0),
               (this.Log = new _._("Frame", () => this.logPrefix)),
               (this.m_setComponents = new Set()),
               (this.keyboard = new _._(this)),
@@ -504,11 +515,11 @@ var CLSTAMP = "steamdb";
             if (this.m_mainPanel) {
               const _ = this.m_mainPanel.getID();
               if (null == _) return;
-              return (0, _._)(_._, _);
+              return (0, _.nXw)(_._, _);
             }
             if (this.isExternalDashboardOverlay) {
               if (null == this.summonOverlayKey) return;
-              return (0, _._)(_._, this.summonOverlayKey) + "_Panel";
+              return (0, _.nXw)(_._, this.summonOverlayKey) + "_Panel";
             }
           }
           get mainPanelSGID() {
@@ -528,17 +539,17 @@ var CLSTAMP = "steamdb";
               return `frame:${this.frame.frameID}:page:${this.pageID}:anchor:${_}`;
             {
               if (null == this.summonOverlayKey) return;
-              const _ = (0, _._)(_._, this.summonOverlayKey);
+              const _ = (0, _.nXw)(_._, this.summonOverlayKey);
               switch (_) {
-                case _._.TopCenter:
+                case _.OiK.TopCenter:
                   return _ + "_TopCenter";
-                case _._.CenterLeft:
+                case _.OiK.CenterLeft:
                   return _ + "_CenterLeft";
-                case _._.CenterRight:
+                case _.OiK.CenterRight:
                   return _ + "_CenterRight";
-                case _._.BottomCenter:
+                case _.OiK.BottomCenter:
                   return _ + "_BottomCenter";
-                case _._.BottomRight:
+                case _.OiK.BottomRight:
                   return _ + "_BottomRight";
               }
             }
@@ -556,6 +567,34 @@ var CLSTAMP = "steamdb";
               _._.GetOverlayFlag(this.summonOverlayKey, 67108864)
             );
           }
+          get canSpatialize() {
+            var _;
+            return (
+              !!_._.settings.get("/settings/audio/enableSpatializeGlobal") &&
+              ((null === (_ = this.summonOverlayKey) || void 0 === _
+                ? void 0
+                : _.startsWith(_._ + ".")) ||
+                this.summonOverlayKey == _._)
+            );
+          }
+          get isSpatializeEnabled() {
+            return (
+              !!this.summonOverlayKey &&
+              !!this.canSpatialize &&
+              (null == this.m_bSpatialize &&
+                ((this.m_bSpatialize = !1),
+                _._.GetAppSettings(this.summonOverlayKey).then(
+                  (_) => (this.m_bSpatialize = _.spatialize),
+                )),
+              this.m_bSpatialize)
+            );
+          }
+          SetSpatializeEnabled(_) {
+            if (!this.summonOverlayKey) return;
+            this.m_bSpatialize = _;
+            let _ = {};
+            (_.spatialize = _), _._.SetAppSettings(this.summonOverlayKey, _);
+          }
         }
         (0, _._)([_.observable], _.prototype, "props", void 0),
           (0, _._)([_.observable], _.prototype, "m_eState", void 0),
@@ -567,6 +606,7 @@ var CLSTAMP = "steamdb";
             void 0,
           ),
           (0, _._)([_.observable], _.prototype, "m_mainPanel", void 0),
+          (0, _._)([_.observable], _.prototype, "m_bSpatialize", void 0),
           (0, _._)([_.computed], _.prototype, "state", null),
           (0, _._)([_.computed], _.prototype, "summonOverlayKey", null),
           (0, _._)(
@@ -597,7 +637,10 @@ var CLSTAMP = "steamdb";
             _.prototype,
             "shouldShowMinimalDecorations",
             null,
-          );
+          ),
+          (0, _._)([_.computed], _.prototype, "canSpatialize", null),
+          (0, _._)([_.computed], _.prototype, "isSpatializeEnabled", null),
+          (0, _._)([_.action.bound], _.prototype, "SetSpatializeEnabled", null);
         const _ = _.forwardRef(function (_, _) {
             const { children: _, summonOverlayKey: _ } = _,
               { frame: _ } = (0, _._)(),
@@ -620,7 +663,7 @@ var CLSTAMP = "steamdb";
                 },
               },
               _.createElement(
-                _._,
+                _.IS7,
                 {
                   _: _,
                 },
@@ -680,11 +723,11 @@ var CLSTAMP = "steamdb";
                       ),
                     }),
                   }),
-                  _.createElement(_._, {
-                    mountedId: (0, _._)(_._, _),
+                  _.createElement(_.HWh, {
+                    mountedId: (0, _.nXw)(_._, _),
                   }),
-                  _.createElement(_._, {
-                    _: (0, _._)(_._, _) + "_CurvatureOrigin",
+                  _.createElement(_.dLy, {
+                    _: (0, _.nXw)(_._, _) + "_CurvatureOrigin",
                     parent_id: _,
                   }),
                   _.children,
@@ -702,7 +745,7 @@ var CLSTAMP = "steamdb";
               _.Fragment,
               null,
               _._.map((_) =>
-                _.createElement(_._, {
+                _.createElement(_.Ci8, {
                   key: _,
                   _: __webpack_require__.GetPanelAnchorID(_),
                   location: _,
@@ -727,7 +770,7 @@ var CLSTAMP = "steamdb";
         class _ extends _.Component {
           constructor(_) {
             super(_),
-              (this.m_toastMailbox = new _._()),
+              (this.m_toastMailbox = new _._nH()),
               (this.state = {
                 visible: !1,
                 title: "",
@@ -746,9 +789,9 @@ var CLSTAMP = "steamdb";
             let _ =
               null ===
                 (_ =
-                  null === _._ || void 0 === _._
+                  null === _.Ay$ || void 0 === _.Ay$
                     ? void 0
-                    : _._.VROverlayInternal) || void 0 === _
+                    : _.Ay$.VROverlayInternal) || void 0 === _
                 ? void 0
                 : _.GetToastInfo(_.notification_id);
             _
@@ -822,7 +865,9 @@ var CLSTAMP = "steamdb";
         (0, _._)([_._], _.prototype, "OnRenderToast", null),
           (0, _._)(
             [],
-            null === _._ || void 0 === _._ ? void 0 : _._.GetSteamLanguage(),
+            null === _.Ay$ || void 0 === _.Ay$
+              ? void 0
+              : _.Ay$.GetSteamLanguage(),
           )
             .then(() => {
               (0, _._)().Init("SteamVR", CLSTAMP, (0, _._)()),
@@ -906,7 +951,6 @@ var CLSTAMP = "steamdb";
     (() => {
       var _ = {
         915: 0,
-        204: 0,
         527: 0,
         500: 0,
       };
@@ -930,7 +974,7 @@ var CLSTAMP = "steamdb";
     })();
   var _ = _._(
     void 0,
-    [967, 991, 154, 305, 527, 170, 452, 797, 500, 554, 906],
+    [967, 991, 154, 305, 527, 170, 452, 797, 906, 500, 554],
     () => _(4170),
   );
   _ = _._(_);

@@ -5,109 +5,114 @@ var CLSTAMP = "steamdb";
     _ = {
       chunkid: (module, module_exports, __webpack_require__) => {
         __webpack_require__._(_, {
-          _: () => _._,
-          _: () => _._,
-          _: () => _,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
+          $Zy: () => _._,
+          $ab: () => _._,
+          $lc: () => _._,
+          Ay$: () => _,
+          CUZ: () => _._,
+          Ci8: () => _._,
+          Doe: () => _._,
+          Ee9: () => _._,
+          EmM: () => _._,
+          FNN: () => _._,
+          FbK: () => _._,
+          FiV: () => _._,
+          Fzk: () => _._,
+          GMj: () => _._,
+          GQ2: () => _._,
+          GS9: () => _._,
+          Gze: () => _._,
+          HWH: () => _._,
+          HWh: () => _._,
+          I0c: () => _._,
+          IS7: () => _._,
+          JZN: () => _._,
+          JcD: () => _._,
+          Jv8: () => _._,
+          KIK: () => _._,
+          KlS: () => _._,
+          LdJ: () => _._,
+          LdK: () => _._,
+          M9N: () => _._,
+          MQJ: () => _._,
+          MVt: () => _._,
+          N1A: () => _._,
+          NHZ: () => _._,
+          Nuf: () => _._,
+          O54: () => _._,
+          O6e: () => _._,
+          OH$: () => _._,
+          OiK: () => _._,
+          QB1: () => _._,
+          QRg: () => _._,
+          R$f: () => _._,
+          RkM: () => _._,
+          SeR: () => _._,
+          Ujb: () => _._,
+          VhJ: () => _._,
+          WiO: () => _._,
+          Wqq: () => _._,
+          XlW: () => _._,
+          Xun: () => _._,
+          Y4E: () => _._,
+          YVg: () => _._,
+          YsR: () => _._,
+          Yup: () => _._,
+          ZPA: () => _._,
+          Zkm: () => _._,
+          _: () => _._,
+          _81: () => _._,
+          _h3: () => _._,
+          _nH: () => _._,
+          aXN: () => _._,
+          aqc: () => _._,
+          b$J: () => _._,
+          _: () => _._,
+          ba0: () => _._,
+          dLy: () => _._,
+          ds4: () => _._,
+          e_0: () => _._,
+          enJ: () => _._,
+          eod: () => _._,
+          eyj: () => _._,
+          f9c: () => _._,
+          fD8: () => _._,
+          fkw: () => _._,
+          gNj: () => _._,
+          hqo: () => _._,
+          k2$: () => _._,
+          kGj: () => _._,
+          kSV: () => _._,
+          ke3: () => _._,
+          kuU: () => _._,
+          lqd: () => _._,
+          m$_: () => _._,
+          mHe: () => _._,
+          mSM: () => _._,
+          mXc: () => _._,
+          mo7: () => _._,
+          muq: () => _._,
+          _: () => _._,
+          nXw: () => _._,
+          neN: () => _._,
+          nqf: () => _._,
+          o3u: () => _._,
+          oN_: () => _._,
+          pMg: () => _._,
+          pgT: () => _._,
+          q5z: () => _._,
+          qFr: () => _._,
+          rxR: () => _._,
+          snv: () => _._,
+          t$O: () => _._,
+          txk: () => _._,
+          uC0: () => _._,
+          uS7: () => _._,
+          vxi: () => _._,
+          wBp: () => _._,
+          xOm: () => _._,
+          yWq: () => _._,
+          zwf: () => _._,
         });
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
@@ -619,7 +624,7 @@ var CLSTAMP = "steamdb";
               {
                 className: "BindingCalloutContainer",
               },
-              _.createElement(_._, {
+              _.createElement(_.mSM, {
                 _: _,
                 sDevicePath: this.props.devicePath,
                 sInputPath: this.props.inputCallout.input_path,
@@ -639,10 +644,10 @@ var CLSTAMP = "steamdb";
                     className: "CalloutAnchorPoint",
                   },
                   _.createElement(
-                    _._,
+                    _.Ci8,
                     null,
                     this.props.inputActive &&
-                      _.createElement(_._, {
+                      _.createElement(_.N1A, {
                         target_id: _,
                         thickness: 0.002,
                         start_buffer: 0,
@@ -741,7 +746,7 @@ var CLSTAMP = "steamdb";
         class _ extends _.Component {
           constructor(_) {
             super(_),
-              (this.m_mailbox = new _._()),
+              (this.m_mailbox = new _._nH()),
               (this.m_sMailboxName = void 0),
               (this.m_sMailboxName =
                 "devicecallout/" +
@@ -756,7 +761,7 @@ var CLSTAMP = "steamdb";
                   device_path: this.props.device.device_path,
                   mailbox: this.m_sMailboxName,
                 };
-                this.m_mailbox.SendMessage(_._, _);
+                this.m_mailbox.SendMessage(_.mXc, _);
               });
             let _ = {};
             for (let _ of Object.keys(this.props.device.input_callouts))
@@ -778,7 +783,7 @@ var CLSTAMP = "steamdb";
               device_path: this.props.device.device_path,
               mailbox: this.m_sMailboxName,
             };
-            this.m_mailbox.SendMessage(_._, _);
+            this.m_mailbox.SendMessage(_.mXc, _);
           }
           render() {
             if (!VRHTML) return null;
@@ -839,34 +844,34 @@ var CLSTAMP = "steamdb";
               );
             }
             return _.createElement(
-              _._,
+              _.dLy,
               {
                 parent_path: this.props.device.device_path,
               },
               _.createElement(
-                _._,
+                _.Nuf,
                 {
                   vOffset: _,
                 },
                 _.createElement(
-                  _._,
+                  _.FNN,
                   null,
                   _.createElement(
-                    _._,
+                    _.dLy,
                     {
                       rotation: {
                         _: _ ? 7 : -7,
                       },
                     },
                     _.createElement(
-                      _._,
+                      _.dLy,
                       {
                         translation: {
                           _: _,
                         },
                       },
                       _.createElement(
-                        _._,
+                        _.Zkm,
                         {
                           width: 0.1,
                           debug_name: "bindingcallouts-2",
@@ -920,8 +925,8 @@ var CLSTAMP = "steamdb";
         let _ = class extends _.Component {
           constructor(_) {
             super(_),
-              (this.m_mailbox = new _._()),
-              this.m_mailbox.Init(_._).then(() => {
+              (this.m_mailbox = new _._nH()),
+              this.m_mailbox.Init(_.I0c).then(() => {
                 this.m_mailbox.RegisterHandler(
                   "request_binding_callouts",
                   this.OnRequestBindingCallouts,
@@ -944,13 +949,13 @@ var CLSTAMP = "steamdb";
           }
           GetDefaultControllerType() {
             let _ = VRHTML.VRSystem.GetTrackedDeviceClasses(),
-              _ = _.find((_) => _.eClass == _._.Controller);
+              _ = _.find((_) => _.eClass == _.mo7.Controller);
             return (
-              _ || (_ = _.find((_) => _.eClass == _._.HMD)),
+              _ || (_ = _.find((_) => _.eClass == _.mo7.HMD)),
               _
                 ? VRHTML.VRProperties.GetStringProperty(
                     _.unIndex,
-                    _._.ControllerType_String,
+                    _.fD8.ControllerType_String,
                   )
                 : null
             );
@@ -1316,18 +1321,18 @@ var CLSTAMP = "steamdb";
                     className: "CalloutActionSetDialogContainer",
                   },
                   _.createElement(
-                    _._,
+                    _.dLy,
                     {
                       parent_path: "/user/head",
                     },
                     _.createElement(
-                      _._,
+                      _.m$_,
                       {
                         rotation_start_angle_threshold: 40,
                         rotation_stop_angle_threshold: 5,
                       },
                       _.createElement(
-                        _._,
+                        _.dLy,
                         {
                           rotation: {
                             _: -10,
@@ -1336,7 +1341,7 @@ var CLSTAMP = "steamdb";
                           },
                         },
                         _.createElement(
-                          _._,
+                          _.dLy,
                           {
                             translation: {
                               _: -0,
@@ -1345,7 +1350,7 @@ var CLSTAMP = "steamdb";
                             },
                           },
                           _.createElement(
-                            _._,
+                            _.Zkm,
                             {
                               width: 0.65 * _._.dashboardScale,
                               interactive: !0,
@@ -1427,7 +1432,7 @@ var CLSTAMP = "steamdb";
             void 0 === VRHTML ||
             VRHTML.VROverlay.SetInputMethod(
               VRHTML.VROverlay.ThisOverlayHandle(),
-              _._.Mouse,
+              _.RkM.Mouse,
             ),
           (0, _._)(
             ["bindingui"],
@@ -1440,7 +1445,7 @@ var CLSTAMP = "steamdb";
             .then(() => {
               (0, _._)().Init("SteamVR", CLSTAMP, (0, _._)()),
                 _._(document.getElementById("root")).render(
-                  _.createElement(_._, null, _.createElement(_, null)),
+                  _.createElement(_.O54, null, _.createElement(_, null)),
                 );
             });
       },

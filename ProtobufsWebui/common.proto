@@ -26,6 +26,7 @@ message CVRGamepadUI_Frame {
 	repeated string steamui_page_overlay_keys = 7;
 	optional bool is_streaming_client = 8;
 	optional int32 dock_location = 9 [(.description) = "enum"];
+	optional uint32 game_app_id = 10;
 }
 
 // Used by: common.proto
@@ -376,10 +377,30 @@ message CVRGamepadUIShared_Icon {
 	optional uint32 hwnd = 4;
 }
 
+message CVRGamepadUIShared_PathProperty_ClientSettings {
+	optional bool enable_ui_sounds = 1;
+}
+
 message CVRGamepadUIShared_PathProperty_ClientUserInfo {
 	optional bool logged_in = 1;
 	optional bool valve_email = 2;
 	optional bool developer_mode_enabled = 3;
+}
+
+message CVRGamepadUIShared_PathProperty_Controllers {
+	repeated .CVRGamepadUIShared_PathProperty_Controllers_Controller controllers = 1;
+	optional uint32 current_controller_index = 2;
+}
+
+// Used by: common.proto
+message CVRGamepadUIShared_PathProperty_Controllers_Controller {
+	optional uint32 controller_index = 1;
+	optional string name = 2;
+	optional int32 controller_type = 3;
+	optional int32 xinput_index = 4;
+	optional string serial_number = 5;
+	optional uint32 vendor_id = 6;
+	optional uint32 product_id = 7;
 }
 
 message CVRGamepadUIShared_PathProperty_DashboardBarActions {
@@ -455,6 +476,7 @@ message CVRGamepadUIShared_PathProperty_HMDSettings {
 	repeated uint32 supersample_effective_resolution = 15;
 	optional uint32 frames_to_throttle_value = 20;
 	optional bool motion_smoothing_value = 21;
+	optional uint32 gamescope_framerate_limit = 22;
 	optional bool env_theater_active = 30;
 	optional .CVRGamepadUIShared_RichFloat env_brightness_construct_theater = 31;
 	optional .CVRGamepadUIShared_RichFloat env_brightness_construct_nominal = 32;
@@ -462,6 +484,8 @@ message CVRGamepadUIShared_PathProperty_HMDSettings {
 	optional bool perf_graph_in_hmd_value = 51;
 	optional bool record_vr_stats_value = 52;
 	optional bool record_tracking_value = 53;
+	optional string performance_profile_name = 54;
+	optional string playtime_profile_name = 55;
 }
 
 message CVRGamepadUIShared_PathProperty_PowerOptions {
@@ -496,6 +520,11 @@ message CVRGamepadUIShared_RichFloat {
 	optional float default = 2;
 	optional float min = 3;
 	optional float max = 4;
+}
+
+message VRLink_DashboardActionInvoked {
+	optional uint32 action_id = 1;
+	optional bool toggle_value = 2;
 }
 
 // Used by: common.proto
@@ -537,5 +566,6 @@ message VRLink_UnifiedDashboard_State {
 	optional bool dashboard_bar_or_child_popup_focused = 5;
 	optional bool debug_input_focus = 6;
 	optional int32 dashboard_visibility_state = 7 [(.description) = "enum"];
+	repeated .VRLink_DockEntry preview_dock_entries = 8;
 }
 

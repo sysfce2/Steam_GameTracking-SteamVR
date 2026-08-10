@@ -5,106 +5,111 @@ var CLSTAMP = "steamdb";
     _ = {
       chunkid: (module, module_exports, __webpack_require__) => {
         __webpack_require__._(_, {
-          _: () => _._,
-          _: () => _._,
-          _: () => _,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
-          _: () => _._,
+          $Zy: () => _._,
+          $ab: () => _._,
+          $lc: () => _._,
+          Ay$: () => _,
+          CUZ: () => _._,
+          Ci8: () => _._,
+          Doe: () => _._,
+          Ee9: () => _._,
+          EmM: () => _._,
+          FbK: () => _._,
+          FiV: () => _._,
+          Fzk: () => _._,
+          GMj: () => _._,
+          GQ2: () => _._,
+          GS9: () => _._,
+          Gze: () => _._,
+          HWH: () => _._,
+          HWh: () => _._,
+          I0c: () => _._,
+          IS7: () => _._,
+          JZN: () => _._,
+          JcD: () => _._,
+          Jv8: () => _._,
+          KIK: () => _._,
+          KlS: () => _._,
+          LdJ: () => _._,
+          LdK: () => _._,
+          M9N: () => _._,
+          MQJ: () => _._,
+          MVt: () => _._,
+          N1A: () => _._,
+          NHZ: () => _._,
+          O54: () => _._,
+          O6e: () => _._,
+          OH$: () => _._,
+          OiK: () => _._,
+          OxZ: () => _._,
+          QB1: () => _._,
+          QRg: () => _._,
+          R$f: () => _._,
+          RkM: () => _._,
+          SeR: () => _._,
+          Ujb: () => _._,
+          VhJ: () => _._,
+          WiO: () => _._,
+          Wqq: () => _._,
+          XlW: () => _._,
+          Xun: () => _._,
+          Y4E: () => _._,
+          YVg: () => _._,
+          YsR: () => _._,
+          Yup: () => _._,
+          ZPA: () => _._,
+          Zkm: () => _._,
+          _: () => _._,
+          _81: () => _._,
+          _h3: () => _._,
+          _nH: () => _._,
+          aXN: () => _._,
+          aqc: () => _._,
+          b$J: () => _._,
+          _: () => _._,
+          ba0: () => _._,
+          dLy: () => _._,
+          ds4: () => _._,
+          e_0: () => _._,
+          enJ: () => _._,
+          eod: () => _._,
+          eyj: () => _._,
+          f9c: () => _._,
+          fD8: () => _._,
+          fkw: () => _._,
+          gNj: () => _._,
+          hqo: () => _._,
+          k2$: () => _._,
+          kGj: () => _._,
+          kSV: () => _._,
+          ke3: () => _._,
+          kuU: () => _._,
+          lqd: () => _._,
+          m$_: () => _._,
+          mHe: () => _._,
+          mXc: () => _._,
+          muq: () => _._,
+          _: () => _._,
+          nXw: () => _._,
+          neN: () => _._,
+          nqf: () => _._,
+          o3u: () => _._,
+          oN_: () => _._,
+          pMg: () => _._,
+          pgT: () => _._,
+          q5z: () => _._,
+          qFr: () => _._,
+          rxR: () => _._,
+          snv: () => _._,
+          t$O: () => _._,
+          txk: () => _._,
+          uC0: () => _._,
+          uS7: () => _._,
+          vxi: () => _._,
+          wBp: () => _._,
+          xOm: () => _._,
+          yWq: () => _._,
+          zwf: () => _._,
         });
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
@@ -176,6 +181,7 @@ var CLSTAMP = "steamdb";
           _: () => _,
           _: () => _,
           _: () => _,
+          _: () => _,
         }),
           (function (_) {
             (_[(_.Desktop = 1)] = "Desktop"),
@@ -211,7 +217,7 @@ var CLSTAMP = "steamdb";
         let _ = 0,
           _ = 0,
           _ = 4294967295;
-        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+        var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
         !(function (_) {
           (_[(_.None = 0)] = "None"),
             (_[(_.Shown = 1)] = "Shown"),
@@ -268,6 +274,9 @@ var CLSTAMP = "steamdb";
               (_[(_.CouldntFindOrCreateClientOverlay = 5)] =
                 "CouldntFindOrCreateClientOverlay"),
               (_[(_.ApplicationQuit = 6)] = "ApplicationQuit");
+          })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.Accept = 0)] = "Accept"), (_[(_.Back = 1)] = "Back");
           })(_ || (_ = {})),
           (function (_) {
             (_[(_.Normal = 0)] = "Normal"),
@@ -540,355 +549,6 @@ var CLSTAMP = "steamdb";
         window.LocalizationManager = _;
       },
       chunkid: (module, module_exports, __webpack_require__) => {
-        function _(_, _, _) {
-          return null == _ || isNaN(_) ? _ : Math.max(_, Math.min(_, _));
-        }
-        __webpack_require__._(_, {
-          _: () => _,
-        });
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-        });
-        var _ = __webpack_require__("chunkid");
-        let _ = 0;
-        function _() {
-          const _ = _.useRef(void 0);
-          return (
-            void 0 === _.current && (_.current = "svgid_" + _++),
-            [_.current, `url(#${_.current})`]
-          );
-        }
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
-        __webpack_require__._(_, {
-          _: () => _,
-          _: () => _,
-          _: () => _,
-          _: () => _,
-          _: () => _,
-          _: () => _,
-        });
-        var _,
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid"),
-          _ = __webpack_require__("chunkid");
-        !(function (_) {
-          (_[(_.Alive = 0)] = "Alive"), (_[(_.Destroyed = 1)] = "Destroyed");
-        })(_ || (_ = {}));
-        class _ {
-          get OnDestroyed() {
-            return this.m_OnDestroyed;
-          }
-          get frame() {
-            return this.m_Frame;
-          }
-          get pageID() {
-            return this.m_unPageID;
-          }
-          get state() {
-            return this.m_eState;
-          }
-          get summonOverlayKey() {
-            return this.m_sSummonOverlayKey;
-          }
-          get isExternalDashboardOverlay() {
-            return !!this.m_bExternalDashboardOverlay;
-          }
-          get isActivePage() {
-            return this.m_Frame.activePageID === this.m_unPageID;
-          }
-          get isActiveAndVisiblePage() {
-            return this.isActivePage && this.frame.isCurrentlyVisible;
-          }
-          get mountableID() {
-            return `frame:${this.frame.frameID}:page:${this.pageID}:mountable`;
-          }
-          get latestContentSize() {
-            return this.size.latestContentSize;
-          }
-          get logPrefix() {
-            let _ = this.frame.title;
-            return (
-              _.length > _._ && (_ = _.substring(0, _._ - 3) + "..."),
-              `${this.frame.frameID}[${this.pageID}] "${_}"`
-            );
-          }
-          RegisterComponent(_) {
-            this.m_setComponents.add(_);
-          }
-          constructor(_, _, _) {
-            (this.props = void 0),
-              (this.m_eState = _.Alive),
-              (this.m_OnDestroyed = new _._()),
-              (this.m_sSummonOverlayKey = void 0),
-              (this.m_bExternalDashboardOverlay = !1),
-              (this.m_mainPanel = void 0),
-              (this.Log = new _._("Frame", () => this.logPrefix)),
-              (this.m_setComponents = new Set()),
-              (this.keyboard = new _._(this)),
-              (this.sharing = void 0),
-              (this.size = new _._(this)),
-              (this.inputFocus = new _._(this)),
-              (this.m_Frame = _),
-              (this.m_unPageID = _),
-              (this.props = _),
-              (0, _.makeObservable)(this);
-          }
-          Init() {
-            for (const _ of this.m_setComponents) _.Init();
-          }
-          DestroyPage() {
-            this.m_eState != _.Destroyed &&
-              ((this.m_eState = _.Destroyed),
-              this.m_OnDestroyed.Dispatch(),
-              this.m_OnDestroyed.ClearAllCallbacks());
-          }
-          SetSummonOverlayKey(_) {
-            this.m_sSummonOverlayKey = _;
-          }
-          SetIsExternalDashboardOverlay(_) {
-            this.m_bExternalDashboardOverlay = _;
-          }
-          SetMainPanel(_) {
-            if (!_)
-              return {
-                Unset: () => {},
-              };
-            this.m_mainPanel = _;
-            const _ = this.size.SetMainPanel(_).Unset;
-            return {
-              Unset: () => {
-                (this.m_mainPanel = void 0), _();
-              },
-            };
-          }
-          get mainPanelID() {
-            if (this.m_mainPanel) {
-              const _ = this.m_mainPanel.getID();
-              if (null == _) return;
-              return (0, _._)(_._, _);
-            }
-            if (this.isExternalDashboardOverlay) {
-              if (null == this.summonOverlayKey) return;
-              return (0, _._)(_._, this.summonOverlayKey) + "_Panel";
-            }
-          }
-          get mainPanelSGID() {
-            var _;
-            return this.m_mainPanel
-              ? this.m_mainPanel.getSGID()
-              : (this.isExternalDashboardOverlay &&
-                  null != this.summonOverlayKey &&
-                  (null === (_ = _._.GetOverlayInfo(this.summonOverlayKey)) ||
-                  void 0 === _
-                    ? void 0
-                    : _.unStandalonePanelSGID)) ||
-                  void 0;
-          }
-          GetPanelAnchorID(_) {
-            if (!this.isExternalDashboardOverlay)
-              return `frame:${this.frame.frameID}:page:${this.pageID}:anchor:${_}`;
-            {
-              if (null == this.summonOverlayKey) return;
-              const _ = (0, _._)(_._, this.summonOverlayKey);
-              switch (_) {
-                case _._.TopCenter:
-                  return _ + "_TopCenter";
-                case _._.CenterLeft:
-                  return _ + "_CenterLeft";
-                case _._.CenterRight:
-                  return _ + "_CenterRight";
-                case _._.BottomCenter:
-                  return _ + "_BottomCenter";
-                case _._.BottomRight:
-                  return _ + "_BottomRight";
-              }
-            }
-          }
-          get isSystemPanel() {
-            return (
-              this.inputFocus.componentProps.steamInputAppID == _._ ||
-              (0, _._)(this.inputFocus.componentProps.steamInputAppID) ||
-              (this.m_mainPanel && !this.m_mainPanel.isExternal)
-            );
-          }
-          get shouldShowMinimalDecorations() {
-            return (
-              null != this.summonOverlayKey &&
-              _._.GetOverlayFlag(this.summonOverlayKey, 67108864)
-            );
-          }
-        }
-        (0, _._)([_.observable], _.prototype, "props", void 0),
-          (0, _._)([_.observable], _.prototype, "m_eState", void 0),
-          (0, _._)([_.observable], _.prototype, "m_sSummonOverlayKey", void 0),
-          (0, _._)(
-            [_.observable],
-            _.prototype,
-            "m_bExternalDashboardOverlay",
-            void 0,
-          ),
-          (0, _._)([_.observable], _.prototype, "m_mainPanel", void 0),
-          (0, _._)([_.computed], _.prototype, "state", null),
-          (0, _._)([_.computed], _.prototype, "summonOverlayKey", null),
-          (0, _._)(
-            [_.computed],
-            _.prototype,
-            "isExternalDashboardOverlay",
-            null,
-          ),
-          (0, _._)([_.computed], _.prototype, "isActivePage", null),
-          (0, _._)([_.computed], _.prototype, "isActiveAndVisiblePage", null),
-          (0, _._)([_.computed], _.prototype, "mountableID", null),
-          (0, _._)([_.computed], _.prototype, "latestContentSize", null),
-          (0, _._)([_.computed], _.prototype, "logPrefix", null),
-          (0, _._)([_.action], _.prototype, "DestroyPage", null),
-          (0, _._)([_.action], _.prototype, "SetSummonOverlayKey", null),
-          (0, _._)(
-            [_.action],
-            _.prototype,
-            "SetIsExternalDashboardOverlay",
-            null,
-          ),
-          (0, _._)([_.action], _.prototype, "SetMainPanel", null),
-          (0, _._)([_.computed], _.prototype, "mainPanelID", null),
-          (0, _._)([_.computed], _.prototype, "mainPanelSGID", null),
-          (0, _._)([_.computed], _.prototype, "isSystemPanel", null),
-          (0, _._)(
-            [_.computed],
-            _.prototype,
-            "shouldShowMinimalDecorations",
-            null,
-          );
-        const _ = _.forwardRef(function (_, _) {
-            const { children: _, summonOverlayKey: _ } = _,
-              { frame: _ } = (0, _._)(),
-              _ = _.useMemo(() => _.CreatePage(_), [_]);
-            _.useLayoutEffect(() =>
-              (0, _.runInAction)(() => {
-                _.props = _;
-              }),
-            ),
-              _.useEffect(() => _.SetSummonOverlayKey(_), [_, _, _]),
-              (0, _._)(_, _),
-              _.useEffect(() => (_.Init(), () => _.DestroyPage()), [_]);
-            const _ = (0, _._)(() => _.mountableID);
-            return _.createElement(
-              _._.Provider,
-              {
-                value: {
-                  frame: _,
-                  page: _,
-                },
-              },
-              _.createElement(
-                _._,
-                {
-                  _: _,
-                },
-                _,
-              ),
-            );
-          }),
-          _ = _.forwardRef(function (_, _) {
-            var _, _;
-            const {
-                requireExternalOverlay: _ = !0,
-                overlayKey: _,
-                componentProps: _,
-              } = _,
-              _ = (0, _._)(_, [
-                "requireExternalOverlay",
-                "overlayKey",
-                "componentProps",
-              ]),
-              { frame: _ } = (0, _._)(),
-              _ = _.useCallback(
-                (_) => {
-                  null == _ || _.SetIsExternalDashboardOverlay(!0),
-                    (0, _._)(_, _);
-                },
-                [_],
-              ),
-              _ = (0, _._)(() => _.curvature.curvatureTransformOriginID),
-              _ = (0, _._)(() => _._.GetOverlayInfo(_)),
-              _ =
-                null !== (_ = null == _ ? void 0 : _.unFlags) && void 0 !== _
-                  ? _
-                  : 0,
-              _ = (16 & _) > 0,
-              _ = (1073741824 & _) > 0;
-            return _ && !_
-              ? null
-              : _.createElement(
-                  _,
-                  Object.assign({}, _, {
-                    summonOverlayKey:
-                      null !== (_ = _.summonOverlayKey) && void 0 !== _ ? _ : _,
-                    ref: _,
-                    componentProps: Object.assign(Object.assign({}, _), {
-                      keyboard: Object.assign(
-                        {
-                          overlayKeyForKeyboardInput: _,
-                        },
-                        null == _ ? void 0 : _.keyboard,
-                      ),
-                      inputFocus: Object.assign(
-                        {
-                          vrClientPID: _ ? _.unClientPID : void 0,
-                          steamInputAppID: _ ? _.unSteamInputAppID : void 0,
-                        },
-                        null == _ ? void 0 : _.inputFocus,
-                      ),
-                    }),
-                  }),
-                  _.createElement(_._, {
-                    mountedId: (0, _._)(_._, _),
-                  }),
-                  _.createElement(_._, {
-                    _: (0, _._)(_._, _) + "_CurvatureOrigin",
-                    parent_id: _,
-                  }),
-                  _.children,
-                );
-          });
-        function _(_) {
-          const { page: _ } = (0, _._)();
-          if ((0, _._)(() => (null == _ ? void 0 : _.isActiveAndVisiblePage)))
-            return _.createElement(_.Fragment, null, _.children);
-        }
-        function _(_) {
-          const { frame: _, page: _ } = (0, _._)();
-          if (_ && _ && !_.isExternalDashboardOverlay)
-            return _.createElement(
-              _.Fragment,
-              null,
-              _._.map((_) =>
-                _.createElement(_._, {
-                  key: _,
-                  _: __webpack_require__.GetPanelAnchorID(_),
-                  location: _,
-                }),
-              ),
-            );
-        }
-      },
-      chunkid: (module, module_exports, __webpack_require__) => {
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
@@ -916,7 +576,7 @@ var CLSTAMP = "steamdb";
           constructor(_) {
             super(_),
               (this.nMaxButtons = 4),
-              (this.m_mailbox = new _._()),
+              (this.m_mailbox = new _._nH()),
               (this.state = {
                 unCallingProcessID: 0,
                 sCaptionText: "Default Caption",
@@ -956,10 +616,10 @@ var CLSTAMP = "steamdb";
                   "Close requested from owning process " +
                     this.state.unCallingProcessID,
                 ),
-                null === _._ ||
-                  void 0 === _._ ||
-                  _._.VRDashboardManager.OnMessageOverlayResponse(
-                    _._.ApplicationQuit,
+                null === _.Ay$ ||
+                  void 0 === _.Ay$ ||
+                  _.Ay$.VRDashboardManager.OnMessageOverlayResponse(
+                    _.OxZ.ApplicationQuit,
                   ),
                 this.ResetState(),
                 !0)
@@ -981,15 +641,15 @@ var CLSTAMP = "steamdb";
                 sMessageText: _.sMessageText,
                 sButtonTexts: _.sButtonTexts,
               }),
-              null === _._ ||
-                void 0 === _._ ||
-                _._.VRClient.ShowDashboardOverlay({
+              null === _.Ay$ ||
+                void 0 === _.Ay$ ||
+                _.Ay$.VRClient.ShowDashboardOverlay({
                   overlayKey: _._,
                   sReason: "OnRenderMessageOverlay",
                 });
           }
           ButtonClicked(_) {
-            if (!_._)
+            if (!_.Ay$)
               return (
                 console.log(
                   "Error: VRHTML isn't present--exiting without sending response.",
@@ -999,9 +659,9 @@ var CLSTAMP = "steamdb";
             console.log(
               "Button " + _ + " clicked, sending OnMessageOverlayResponse.",
             ),
-              null === _._ ||
-                void 0 === _._ ||
-                _._.VRDashboardManager.OnMessageOverlayResponse(_),
+              null === _.Ay$ ||
+                void 0 === _.Ay$ ||
+                _.Ay$.VRDashboardManager.OnMessageOverlayResponse(_),
               this.ResetState();
           }
           render() {
@@ -1032,28 +692,28 @@ var CLSTAMP = "steamdb";
                     _.createElement(_, {
                       label: this.state.sButtonTexts[0],
                       onClick: () => {
-                        this.ButtonClicked(_._.ButtonPress_0);
+                        this.ButtonClicked(_.OxZ.ButtonPress_0);
                       },
                     }),
                   this.state.sButtonTexts[1] &&
                     _.createElement(_, {
                       label: this.state.sButtonTexts[1],
                       onClick: () => {
-                        this.ButtonClicked(_._.ButtonPress_1);
+                        this.ButtonClicked(_.OxZ.ButtonPress_1);
                       },
                     }),
                   this.state.sButtonTexts[2] &&
                     _.createElement(_, {
                       label: this.state.sButtonTexts[2],
                       onClick: () => {
-                        this.ButtonClicked(_._.ButtonPress_2);
+                        this.ButtonClicked(_.OxZ.ButtonPress_2);
                       },
                     }),
                   this.state.sButtonTexts[3] &&
                     _.createElement(_, {
                       label: this.state.sButtonTexts[3],
                       onClick: () => {
-                        this.ButtonClicked(_._.ButtonPress_3);
+                        this.ButtonClicked(_.OxZ.ButtonPress_3);
                       },
                     }),
                 ),
@@ -1066,24 +726,26 @@ var CLSTAMP = "steamdb";
           (0, _._)([_._], _.prototype, "OnRenderMessageOverlay", null),
           (0, _._)([_._], _.prototype, "ButtonClicked", null),
           (_ = (0, _._)([_._], _)),
-          null === _._ ||
-            void 0 === _._ ||
-            _._.VROverlay.SetWidthInMeters(
-              _._.VROverlay.ThisOverlayHandle(),
+          null === _.Ay$ ||
+            void 0 === _.Ay$ ||
+            _.Ay$.VROverlay.SetWidthInMeters(
+              _.Ay$.VROverlay.ThisOverlayHandle(),
               1.92,
             ),
-          null === _._ ||
-            void 0 === _._ ||
-            _._.VROverlay.SetFlag(_._.VROverlay.ThisOverlayHandle(), 8, !0),
-          null === _._ ||
-            void 0 === _._ ||
-            _._.VROverlay.SetInputMethod(
-              _._.VROverlay.ThisOverlayHandle(),
-              _._.Mouse,
+          null === _.Ay$ ||
+            void 0 === _.Ay$ ||
+            _.Ay$.VROverlay.SetFlag(_.Ay$.VROverlay.ThisOverlayHandle(), 8, !0),
+          null === _.Ay$ ||
+            void 0 === _.Ay$ ||
+            _.Ay$.VROverlay.SetInputMethod(
+              _.Ay$.VROverlay.ThisOverlayHandle(),
+              _.RkM.Mouse,
             ),
           (0, _._)(
             [],
-            null === _._ || void 0 === _._ ? void 0 : _._.GetSteamLanguage(),
+            null === _.Ay$ || void 0 === _.Ay$
+              ? void 0
+              : _.Ay$.GetSteamLanguage(),
           )
             .then(() => {
               _._(document.getElementById("root")).render(
@@ -1166,7 +828,6 @@ var CLSTAMP = "steamdb";
     (() => {
       var _ = {
         868: 0,
-        204: 0,
         527: 0,
         500: 0,
       };
@@ -1188,8 +849,10 @@ var CLSTAMP = "steamdb";
       __webpack_require__.forEach(_.bind(null, 0)),
         (_.push = _.bind(null, _.push.bind(_)));
     })();
-  var _ = _._(void 0, [967, 991, 982, 305, 527, 170, 452, 797, 500, 906], () =>
-    _(1583),
+  var _ = _._(
+    void 0,
+    [967, 991, 982, 305, 527, 170, 452, 797, 906, 500, 300],
+    () => _(1583),
   );
   _ = _._(_);
 })();

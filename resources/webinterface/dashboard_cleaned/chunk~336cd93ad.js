@@ -388,6 +388,7 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
       }),
         (function (_) {
           (_[(_.Desktop = 1)] = "Desktop"),
@@ -423,7 +424,7 @@ var CLSTAMP = "steamdb";
       let _ = 0,
         _ = 0,
         _ = 4294967295;
-      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
       !(function (_) {
         (_[(_.None = 0)] = "None"),
           (_[(_.Shown = 1)] = "Shown"),
@@ -479,6 +480,9 @@ var CLSTAMP = "steamdb";
             (_[(_.CouldntFindOrCreateClientOverlay = 5)] =
               "CouldntFindOrCreateClientOverlay"),
             (_[(_.ApplicationQuit = 6)] = "ApplicationQuit");
+        })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.Accept = 0)] = "Accept"), (_[(_.Back = 1)] = "Back");
         })(_ || (_ = {})),
         (function (_) {
           (_[(_.Normal = 0)] = "Normal"),
@@ -624,6 +628,7 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       !(function (_) {
         (_[(_.Alive = 0)] = "Alive"), (_[(_.Destroyed = 1)] = "Destroyed");
@@ -676,6 +681,7 @@ var CLSTAMP = "steamdb";
             (this.m_sSummonOverlayKey = void 0),
             (this.m_bExternalDashboardOverlay = !1),
             (this.m_mainPanel = void 0),
+            (this.m_bSpatialize = void 0),
             (this.Log = new _._("Frame", () => this.logPrefix)),
             (this.m_setComponents = new Set()),
             (this.keyboard = new _._(this)),
@@ -719,11 +725,11 @@ var CLSTAMP = "steamdb";
           if (this.m_mainPanel) {
             const _ = this.m_mainPanel.getID();
             if (null == _) return;
-            return (0, _._)(_._, _);
+            return (0, _.nXw)(_._, _);
           }
           if (this.isExternalDashboardOverlay) {
             if (null == this.summonOverlayKey) return;
-            return (0, _._)(_._, this.summonOverlayKey) + "_Panel";
+            return (0, _.nXw)(_._, this.summonOverlayKey) + "_Panel";
           }
         }
         get mainPanelSGID() {
@@ -743,17 +749,17 @@ var CLSTAMP = "steamdb";
             return `frame:${this.frame.frameID}:page:${this.pageID}:anchor:${_}`;
           {
             if (null == this.summonOverlayKey) return;
-            const _ = (0, _._)(_._, this.summonOverlayKey);
+            const _ = (0, _.nXw)(_._, this.summonOverlayKey);
             switch (_) {
-              case _._.TopCenter:
+              case _.OiK.TopCenter:
                 return _ + "_TopCenter";
-              case _._.CenterLeft:
+              case _.OiK.CenterLeft:
                 return _ + "_CenterLeft";
-              case _._.CenterRight:
+              case _.OiK.CenterRight:
                 return _ + "_CenterRight";
-              case _._.BottomCenter:
+              case _.OiK.BottomCenter:
                 return _ + "_BottomCenter";
-              case _._.BottomRight:
+              case _.OiK.BottomRight:
                 return _ + "_BottomRight";
             }
           }
@@ -771,6 +777,34 @@ var CLSTAMP = "steamdb";
             _._.GetOverlayFlag(this.summonOverlayKey, 67108864)
           );
         }
+        get canSpatialize() {
+          var _;
+          return (
+            !!_._.settings.get("/settings/audio/enableSpatializeGlobal") &&
+            ((null === (_ = this.summonOverlayKey) || void 0 === _
+              ? void 0
+              : _.startsWith(_._ + ".")) ||
+              this.summonOverlayKey == _._)
+          );
+        }
+        get isSpatializeEnabled() {
+          return (
+            !!this.summonOverlayKey &&
+            !!this.canSpatialize &&
+            (null == this.m_bSpatialize &&
+              ((this.m_bSpatialize = !1),
+              _._.GetAppSettings(this.summonOverlayKey).then(
+                (_) => (this.m_bSpatialize = _.spatialize),
+              )),
+            this.m_bSpatialize)
+          );
+        }
+        SetSpatializeEnabled(_) {
+          if (!this.summonOverlayKey) return;
+          this.m_bSpatialize = _;
+          let _ = {};
+          (_.spatialize = _), _._.SetAppSettings(this.summonOverlayKey, _);
+        }
       }
       (0, _._)([_.observable], _.prototype, "props", void 0),
         (0, _._)([_.observable], _.prototype, "m_eState", void 0),
@@ -782,6 +816,7 @@ var CLSTAMP = "steamdb";
           void 0,
         ),
         (0, _._)([_.observable], _.prototype, "m_mainPanel", void 0),
+        (0, _._)([_.observable], _.prototype, "m_bSpatialize", void 0),
         (0, _._)([_.computed], _.prototype, "state", null),
         (0, _._)([_.computed], _.prototype, "summonOverlayKey", null),
         (0, _._)([_.computed], _.prototype, "isExternalDashboardOverlay", null),
@@ -807,7 +842,10 @@ var CLSTAMP = "steamdb";
           _.prototype,
           "shouldShowMinimalDecorations",
           null,
-        );
+        ),
+        (0, _._)([_.computed], _.prototype, "canSpatialize", null),
+        (0, _._)([_.computed], _.prototype, "isSpatializeEnabled", null),
+        (0, _._)([_.action.bound], _.prototype, "SetSpatializeEnabled", null);
       const _ = _.forwardRef(function (_, _) {
           const { children: _, summonOverlayKey: _ } = _,
             { frame: _ } = (0, _._)(),
@@ -830,7 +868,7 @@ var CLSTAMP = "steamdb";
               },
             },
             _.createElement(
-              _._,
+              _.IS7,
               {
                 _: _,
               },
@@ -890,11 +928,11 @@ var CLSTAMP = "steamdb";
                     ),
                   }),
                 }),
-                _.createElement(_._, {
-                  mountedId: (0, _._)(_._, _),
+                _.createElement(_.HWh, {
+                  mountedId: (0, _.nXw)(_._, _),
                 }),
-                _.createElement(_._, {
-                  _: (0, _._)(_._, _) + "_CurvatureOrigin",
+                _.createElement(_.dLy, {
+                  _: (0, _.nXw)(_._, _) + "_CurvatureOrigin",
                   parent_id: _,
                 }),
                 _.children,
@@ -912,7 +950,7 @@ var CLSTAMP = "steamdb";
             _.Fragment,
             null,
             _._.map((_) =>
-              _.createElement(_._, {
+              _.createElement(_.Ci8, {
                 key: _,
                 _: __webpack_require__.GetPanelAnchorID(_),
                 location: _,

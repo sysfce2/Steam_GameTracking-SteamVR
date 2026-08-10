@@ -32,6 +32,12 @@ enum ECameraExposure
 	ECameraExposure_HighExposure = 2;
 }
 
+enum ECameraSettingsModel
+{
+	ECameraSettingsModel_Default = 0;
+	ECameraSettingsModel_SteamFrame = 1;
+}
+
 enum ESteam
 {
 	k_ESteamOSGeneric = 0;
@@ -122,93 +128,7 @@ enum UnnamedEnum09efa05418c35f02
 	Logs = 7;
 }
 
-enum UnnamedEnum0b1b58cc5523b391
-{
-	Unavailable = 0;
-	Active = 1;
-	Off = 2;
-}
-
-enum UnnamedEnum0f30754c8f02b791
-{
-	None = 0;
-	Pose = 1;
-	Haptics = 2;
-	Skeleton = 3;
-}
-
-enum UnnamedEnum100911cdad5b6b7a
-{
-	None = 0;
-	Backface = 1;
-}
-
-enum UnnamedEnum1037f75deceabbd5
-{
-	None = 0;
-	ThirdPartyClient = 1;
-	SteamVRClientUnified = 2;
-	SteamVRClientLegacyDual = 3;
-}
-
-enum UnnamedEnum105692099e09c7f5
-{
-	UseGlobal = 0;
-	ForceOn = 1;
-	ForceOff = 2;
-	ForceAlwaysOn = 3;
-}
-
-enum UnnamedEnum118261f6c7849b98
-{
-	TopLeft = 0;
-	TopCenter = 1;
-	TopRight = 2;
-	CenterLeft = 3;
-	Center = 4;
-	CenterRight = 5;
-	BottomLeft = 6;
-	BottomCenter = 7;
-	BottomRight = 8;
-}
-
-enum UnnamedEnum140aef605f64d2a9
-{
-	Disconnected = 0;
-	Pending = 1;
-	Connected = 2;
-}
-
-enum UnnamedEnum1b2e013c09afd423
-{
-	Success = 0;
-	HeaderSerializationFailure = 1;
-	PayloadSerializationFailure = 2;
-	SendFailure = 3;
-}
-
-enum UnnamedEnum2264455336444aa7
-{
-	Unknown = 0;
-	LaserMouse = 1;
-	Gamepad = 2;
-}
-
-enum UnnamedEnum23c89d5452af7b09
-{
-	Unknown = 0;
-	Steam_VRButton = 1;
-	Steam_StartSteamVRApp = 2;
-	Watchdog_Unknown = 10;
-	Watchdog_Controller = 11;
-	Watchdog_Hmd = 12;
-	AppLaunch_Unknown = 20;
-	AppLaunch_Steam = 21;
-	SteamVR_Restart = 30;
-	SteamVR_VRStartup = 31;
-}
-
-enum UnnamedEnum24946c93fc5c710a
+enum UnnamedEnum0ab594f23ff0af44
 {
 	Invalid = 0;
 	TrackingSystemName_String = 1000;
@@ -356,6 +276,7 @@ enum UnnamedEnum24946c93fc5c710a
 	DriverProvidedIPDVisibility_Bool = 2108;
 	Prop_SupportsVRGamepadMode_Bool = 2117;
 	Prop_AllowHomeApp2Setting_Int32 = 2119;
+	Hmd_CameraSettingsModel_Int32 = 2122;
 	DriverRequestedMuraCorrectionMode_Int32 = 2200;
 	DriverRequestedMuraFeather_InnerLeft_Int32 = 2201;
 	DriverRequestedMuraFeather_InnerRight_Int32 = 2202;
@@ -375,6 +296,7 @@ enum UnnamedEnum24946c93fc5c710a
 	Axis3Type_Int32 = 3005;
 	Axis4Type_Int32 = 3006;
 	ControllerRoleHint_Int32 = 3007;
+	Prop_ControllerHasLargeStatusArea_Bool = 3008;
 	FieldOfViewLeftDegrees_Float = 4000;
 	FieldOfViewRightDegrees_Float = 4001;
 	FieldOfViewTopDegrees_Float = 4002;
@@ -409,6 +331,92 @@ enum UnnamedEnum24946c93fc5c710a
 	SupportsInHMDRoomSetup_Bool = 11003;
 	VRLinkClientHMDSupportsRoomSetupRequests_Bool = 11004;
 	TrackedDeviceProperty_Max = 1000000;
+}
+
+enum UnnamedEnum0b1b58cc5523b391
+{
+	Unavailable = 0;
+	Active = 1;
+	Off = 2;
+}
+
+enum UnnamedEnum0f30754c8f02b791
+{
+	None = 0;
+	Pose = 1;
+	Haptics = 2;
+	Skeleton = 3;
+}
+
+enum UnnamedEnum100911cdad5b6b7a
+{
+	None = 0;
+	Backface = 1;
+}
+
+enum UnnamedEnum1037f75deceabbd5
+{
+	None = 0;
+	ThirdPartyClient = 1;
+	SteamVRClientUnified = 2;
+	SteamVRClientLegacyDual = 3;
+}
+
+enum UnnamedEnum105692099e09c7f5
+{
+	UseGlobal = 0;
+	ForceOn = 1;
+	ForceOff = 2;
+	ForceAlwaysOn = 3;
+}
+
+enum UnnamedEnum118261f6c7849b98
+{
+	TopLeft = 0;
+	TopCenter = 1;
+	TopRight = 2;
+	CenterLeft = 3;
+	Center = 4;
+	CenterRight = 5;
+	BottomLeft = 6;
+	BottomCenter = 7;
+	BottomRight = 8;
+}
+
+enum UnnamedEnum140aef605f64d2a9
+{
+	Disconnected = 0;
+	Pending = 1;
+	Connected = 2;
+}
+
+enum UnnamedEnum1b2e013c09afd423
+{
+	Success = 0;
+	HeaderSerializationFailure = 1;
+	PayloadSerializationFailure = 2;
+	SendFailure = 3;
+}
+
+enum UnnamedEnum2264455336444aa7
+{
+	Unknown = 0;
+	LaserMouse = 1;
+	Gamepad = 2;
+}
+
+enum UnnamedEnum23c89d5452af7b09
+{
+	Unknown = 0;
+	Steam_VRButton = 1;
+	Steam_StartSteamVRApp = 2;
+	Watchdog_Unknown = 10;
+	Watchdog_Controller = 11;
+	Watchdog_Hmd = 12;
+	AppLaunch_Unknown = 20;
+	AppLaunch_Steam = 21;
+	SteamVR_Restart = 30;
+	SteamVR_VRStartup = 31;
 }
 
 enum UnnamedEnum264c3ffa155e1190
@@ -460,13 +468,6 @@ enum UnnamedEnum3214b5410bf09881
 	App = 2;
 }
 
-enum UnnamedEnum347c25282ff52ed7
-{
-	RoomSetupFloor = 1;
-	Locomotion = 2;
-	QuickRecenter = 4;
-}
-
 enum UnnamedEnum35e460cd47e8a963
 {
 	UseGlobal = 0;
@@ -512,6 +513,20 @@ enum UnnamedEnum43219b999e54e627
 	Default = 0;
 	Disabled = 1;
 	Low = 2;
+}
+
+enum UnnamedEnum46bd72fc6163c6f8
+{
+	Invalid = 0;
+	ControllerPairing = 1;
+	WelcomeToSteamFrame = 2;
+	PlayspaceSetup = 3;
+	SystemButtonHideDashboard = 4;
+	SystemButtonDashboardHidden = 5;
+	SystemButtonShowDashboard = 6;
+	PairWifiDongle = 7;
+	TourSendOff = 8;
+	SteamGuidedTourFinished = 9;
 }
 
 enum UnnamedEnum4e27866ba7e3b669
@@ -714,6 +729,12 @@ enum UnnamedEnum8ca6e05196a6a6df
 	Raw = 2;
 }
 
+enum UnnamedEnum8d0f8dc67cc591cb
+{
+	Accept = 0;
+	Back = 1;
+}
+
 enum UnnamedEnum8d44830b419688bf
 {
 	Opaque = 0;
@@ -732,6 +753,13 @@ enum UnnamedEnum903d132a40b274ea
 	Default = 0;
 	Letterbox = 1;
 	Advanced = 2;
+}
+
+enum UnnamedEnum910d2f138ec943ac
+{
+	RoomSetup = 1;
+	Locomotion = 2;
+	QuickRecenter = 4;
 }
 
 enum UnnamedEnum9135bed59314e874
@@ -756,19 +784,6 @@ enum UnnamedEnum92e98869ec1045b4
 	Evaluating = 0;
 	Success = 1;
 	Failure = 2;
-}
-
-enum UnnamedEnum9454c04074c16008
-{
-	Invalid = 0;
-	ControllerPairing = 1;
-	WelcomeToSteamFrame = 2;
-	SystemButtonHideDashboard = 3;
-	SystemButtonDashboardHidden = 4;
-	SystemButtonShowDashboard = 5;
-	PairWifiDongle = 6;
-	TourSendOff = 7;
-	SteamGuidedTourFinished = 8;
 }
 
 enum UnnamedEnum97b9784b51946a4e
@@ -850,6 +865,14 @@ enum UnnamedEnumaa7aedb528305bef
 	None = 0;
 	Vertical = 1;
 	Horizontal = 2;
+}
+
+enum UnnamedEnumab254ebefac745e0
+{
+	Rect = 0;
+	Panorama = 1;
+	Projection = 2;
+	Spherical = 3;
 }
 
 enum UnnamedEnumacc9a67b80433cd5

@@ -567,7 +567,7 @@ var CLSTAMP = "steamdb";
                 ? void 0
                 : VRHTML.VRProperties.GetStringProperty(
                     "/user/head",
-                    _._.ActualTrackingSystemName_String,
+                    _.fD8.ActualTrackingSystemName_String,
                   );
             return _ && _.push(_), _;
           })())
