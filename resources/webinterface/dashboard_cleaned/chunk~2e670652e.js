@@ -658,7 +658,12 @@ var CLSTAMP = "steamdb";
                     _,
                     "reset-on-recenter",
                   )),
-                  (_.properties["event-panel-sgid"] = _(_, "event-panel-sgid"));
+                  (_.properties["reset-on-dashboard-relatch"] = _(
+                    _,
+                    "reset-on-dashboard-relatch",
+                  )),
+                  (_.properties["event-panel-sgid"] = _(_, "event-panel-sgid")),
+                  (_.properties["scroll-speed"] = _(_, "scroll-speed"));
             }
             return [_, _];
           })(_, _),
@@ -1128,6 +1133,7 @@ var CLSTAMP = "steamdb";
                     _: -1,
                   },
                   interactive: !0,
+                  make_overlays_interactive_if_visible: !0,
                 },
                 _.createElement(_, Object.assign({}, _)),
               ),
@@ -1460,6 +1466,7 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       const _ = new _._("Frame");
       var _;
@@ -1486,6 +1493,9 @@ var CLSTAMP = "steamdb";
             (this.m_rgMenuItems_TabHoverMenu = []),
             (this.m_rgControlsItems_BottomFrameControls = []),
             (this.m_rgControlsItems_TabHoverControls = []),
+            (this.m_rgControlsItems_AdditionalOptions = []),
+            (this.m_bControlAdditionalOptionsOpen = !1),
+            (this.m_unControlAdditionalOptionsActionID = void 0),
             (this.m_vrAppEntry = void 0),
             (this.Log = new _._("Frame", () => this.logPrefix)),
             (this.m_unNextPageID = 1),
@@ -1559,10 +1569,9 @@ var CLSTAMP = "steamdb";
           );
         }
         get isCurrentlyVisible() {
-          const _ = 0 != _._.roomSetupStep && 6 != _._.roomSetupStep;
           if (this.state != _.Alive) return !1;
           if (_._.isLocked && !this.props.visibleWhenSteamLocked) return !1;
-          if (_) return !1;
+          if (_._.inRoomSetup) return !1;
           switch (this.docking.dockLocation) {
             case _.yWq.Dashboard:
               return (
@@ -1749,6 +1758,31 @@ var CLSTAMP = "steamdb";
                       JSON.parse(JSON.stringify(this.protoForSteam)),
                     );
                 }),
+              ),
+              this.OnDestroyed.Register(
+                (0, _.reaction)(
+                  () => this.docking.dockLocation,
+                  () => this.SetControlAdditionalOptionsOpen(!1),
+                ),
+              ),
+              this.OnDestroyed.Register(
+                (0, _.reaction)(
+                  () =>
+                    this.isCurrentlyVisible && this.shouldRenderFrameControls,
+                  (_) => {
+                    _ || this.SetControlAdditionalOptionsOpen(!1);
+                  },
+                ),
+              ),
+              this.OnDestroyed.Register(
+                (0, _.reaction)(
+                  () =>
+                    this.inputFocus.frameControlsHaveFocus ||
+                    _._.BPanelHasFocus(this.panels.additionalOptionsPanelSGID),
+                  (_) => {
+                    _ || this.SetControlAdditionalOptionsOpen(!1);
+                  },
+                ),
               );
             for (const _ of this.m_setComponents) _.Init();
             this.Log.Info("Frame initialized.");
@@ -1797,9 +1831,28 @@ var CLSTAMP = "steamdb";
           (this.m_rgMenuItems_LeftFrameMenu = _),
             (this.m_rgMenuItems_TabHoverMenu = _);
         }
-        SetControlsItems(_, _) {
+        SetControlsItems(_, _, _) {
           (this.m_rgControlsItems_BottomFrameControls = _),
-            (this.m_rgControlsItems_TabHoverControls = _);
+            (this.m_rgControlsItems_TabHoverControls = _),
+            (this.m_rgControlsItems_AdditionalOptions = _);
+        }
+        get controlAdditionalOptionsItems() {
+          return this.m_rgControlsItems_AdditionalOptions;
+        }
+        get isControlAdditionalOptionsOpen() {
+          return (
+            this.m_bControlAdditionalOptionsOpen &&
+            this.m_rgControlsItems_AdditionalOptions.length > 0
+          );
+        }
+        SetControlAdditionalOptionsOpen(_) {
+          this.m_bControlAdditionalOptionsOpen = _;
+        }
+        get controlAdditionalOptionsActionID() {
+          return this.m_unControlAdditionalOptionsActionID;
+        }
+        SetControlAdditionalOptionsActionID(_) {
+          this.m_unControlAdditionalOptionsActionID = _;
         }
         get protoForSteam() {
           var _, _, _, _, _, _;
@@ -1979,6 +2032,24 @@ var CLSTAMP = "steamdb";
           "m_rgControlsItems_TabHoverControls",
           void 0,
         ),
+        (0, _._)(
+          [_.observable.struct],
+          _.prototype,
+          "m_rgControlsItems_AdditionalOptions",
+          void 0,
+        ),
+        (0, _._)(
+          [_.observable],
+          _.prototype,
+          "m_bControlAdditionalOptionsOpen",
+          void 0,
+        ),
+        (0, _._)(
+          [_.observable],
+          _.prototype,
+          "m_unControlAdditionalOptionsActionID",
+          void 0,
+        ),
         (0, _._)([_.observable], _.prototype, "m_vrAppEntry", void 0),
         (0, _._)([_.computed], _.prototype, "logPrefix", null),
         (0, _._)([_.computed], _.prototype, "state", null),
@@ -2046,6 +2117,36 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.action], _.prototype, "SwitchToPage", null),
         (0, _._)([_.action], _.prototype, "SetMenuItems", null),
         (0, _._)([_.action], _.prototype, "SetControlsItems", null),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "controlAdditionalOptionsItems",
+          null,
+        ),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "isControlAdditionalOptionsOpen",
+          null,
+        ),
+        (0, _._)(
+          [_.action],
+          _.prototype,
+          "SetControlAdditionalOptionsOpen",
+          null,
+        ),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "controlAdditionalOptionsActionID",
+          null,
+        ),
+        (0, _._)(
+          [_.action],
+          _.prototype,
+          "SetControlAdditionalOptionsActionID",
+          null,
+        ),
         (0, _._)([_.computed.struct], _.prototype, "protoForSteam", null),
         (0, _._)([_.computed.struct], _.prototype, "protoForVRLink", null),
         (0, _._)(
@@ -2234,8 +2335,8 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid");
-      __webpack_require__("chunkid");
+        _ = __webpack_require__("chunkid"),
+        _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid"));
       const _ = _.createContext({
         CreateControlsItemID: void 0,
         OnControlsItemRender: void 0,
@@ -2251,24 +2352,29 @@ var CLSTAMP = "steamdb";
         const _ = _.useRef(1),
           _ = _.useRef([]),
           _ = _.useRef([]),
+          _ = _.useRef([]),
           _ = _.useMemo(() => new Map(), []),
           _ = _.useRef(!1),
           _ = _.useRef(!0),
           _ = _.useCallback(() => {
             const _ = _.current.map((_) => _.get(_)),
+              _ = _.current.map((_) => _.get(_)),
               _ = _.current.map((_) => _.get(_));
-            _.SetControlsItems(_, _);
+            _.SetControlsItems(_, _, _);
           }, []);
-        _.useEffect(() => () => _.SetControlsItems([], []), []),
+        _.useEffect(() => () => _.SetControlsItems([], [], []), []),
           _.current &&
             ((_.current = !1),
             (_.current = !0),
+            (_.current = []),
             (_.current = []),
             (_.current = []));
         const _ = (0, _._)();
         _.useEffect(() => {
           !_.current ||
-            (0 == _.current.length && 0 == _.current.length) ||
+            (0 == _.current.length &&
+              0 == _.current.length &&
+              0 == _.current.length) ||
             (_(), (_.current = !1));
         });
         const _ = {
@@ -2279,6 +2385,7 @@ var CLSTAMP = "steamdb";
             _.current
               ? (_.bVisibleInBottomFrameControls && _.current.push(_),
                 _.bVisibleInTabMenu && _.current.push(_),
+                _.bVisibleInAdditionalOptions && _.current.push(_),
                 (_.current = !1))
               : (_.current = !0),
               _.useLayoutEffect(() => {
@@ -2290,6 +2397,7 @@ var CLSTAMP = "steamdb";
           },
           OnControlsItemUnmounted: (_) => {
             _.delete(_),
+              (_.current = _.current.filter((_) => _ != _)),
               (_.current = _.current.filter((_) => _ != _)),
               (_.current = _.current.filter((_) => _ != _)),
               _();
@@ -2306,6 +2414,7 @@ var CLSTAMP = "steamdb";
       const _ = _.createContext({
         bVisibleInBottomFrameControls: !0,
         bVisibleInTabMenu: !1,
+        bVisibleInAdditionalOptions: !1,
       });
       function _(_) {
         const { onlyVisibleIn: _, children: _ } = _,
@@ -2313,6 +2422,7 @@ var CLSTAMP = "steamdb";
             bVisibleInBottomFrameControls:
               "both" == _ || "bottom-frame-controls" == _,
             bVisibleInTabMenu: "both" == _ || "tab-hover-menu" == _,
+            bVisibleInAdditionalOptions: "additional-options" == _,
           };
         return _.createElement(
           _.Provider,
@@ -2376,12 +2486,6 @@ var CLSTAMP = "steamdb";
           null,
           _.createElement(_, null),
           _.createElement(_, null),
-          _.createElement(_, {
-            controller: "left",
-          }),
-          _.createElement(_, {
-            controller: "right",
-          }),
           _.createElement(_, null),
           _.createElement(_, null),
           _.createElement(_, null),
@@ -2389,10 +2493,57 @@ var CLSTAMP = "steamdb";
           _.createElement(_, null),
           _.createElement(_, null),
           _.createElement(_, null),
-          !1,
-          _.createElement(_, null),
-          _.createElement(_, null),
-          _.createElement(_, null),
+          _.createElement(
+            _,
+            {
+              onlyVisibleIn: "additional-options",
+            },
+            !1,
+            _.createElement(_, null),
+            _.createElement(_, null),
+            _.createElement(_, {
+              controller: "left",
+            }),
+            _.createElement(_, {
+              controller: "right",
+            }),
+          ),
+        );
+      }
+      function _(_) {
+        const { frame: _ } = (0, _._)(),
+          _ = (0, _._)(() => _.controlAdditionalOptionsItems.length > 0),
+          _ = (0, _._)(() => _.isControlAdditionalOptionsOpen),
+          _ = (0, _._)(
+            _,
+            {
+              display_name: (0, _._)("#AdditionalOptionsTooltip"),
+              active: _,
+              icon: {
+                enum: 38,
+              },
+              invocation: 2,
+            },
+            (_) => _.SetControlAdditionalOptionsOpen(_),
+          );
+        return (
+          _.useEffect(
+            () => (
+              _.SetControlAdditionalOptionsActionID(
+                null == _ ? void 0 : _.actionID,
+              ),
+              () => _.SetControlAdditionalOptionsActionID(void 0)
+            ),
+            [_, _],
+          ),
+          _
+            ? _.createElement(_, {
+                params: {
+                  type: 2,
+                  action_id: _.actionID,
+                },
+              })
+            : null
         );
       }
       function _(_) {
@@ -2571,6 +2722,27 @@ var CLSTAMP = "steamdb";
                       void 0 === _ ||
                       _.HideKeyboard());
               },
+            })
+          : null;
+      }
+      function _(_) {
+        const { frame: _ } = (0, _._)(),
+          _ = (0, _._)(() => _._.allowCurvature),
+          _ = (0, _._)(() => _.curvature.shouldCurve);
+        return _
+          ? _.createElement(_, {
+              actionParams: {
+                display_name: (0, _._)("#ToggleCurvatureTooltip"),
+                active: _,
+                icon: {
+                  enum: 40,
+                },
+                icon_active: {
+                  enum: 39,
+                },
+                invocation: 2,
+              },
+              onInvoked: () => _.curvature.ToggleCurvature(),
             })
           : null;
       }
@@ -3060,11 +3232,18 @@ var CLSTAMP = "steamdb";
         }
         OnLocalFramesDestroyed(_) {
           _.forEach((_) => {
-            this.m_mapLocalFrames.delete(_.frameID),
+            this.m_mapLocalFrames.delete(_.frameID);
+          }),
+            this.NotifyFramesDestroyed(_);
+        }
+        NotifyFramesDestroyed(_) {
+          _.forEach((_) => {
+            this.m_OnFrameDestroyed.Dispatch(_);
+          }),
+            _.forEach((_) => {
               this.m_mapDockLocations.delete(_.frameID),
-              this.m_mapPreviewDockLocations.delete(_.frameID),
-              this.m_OnFrameDestroyed.Dispatch(_);
-          });
+                this.m_mapPreviewDockLocations.delete(_.frameID);
+            });
         }
         CreateCFrame(_) {
           const _ = new _._(this.m_unNextFrameID++, this.m_unNextTabID++, _);
@@ -3116,13 +3295,18 @@ var CLSTAMP = "steamdb";
           return this.m_mapRemoteFrames.set(_.frameID, _), _;
         }
         _clear_remote_frames() {
-          this.m_mapRemoteFrames.clear();
+          const _ = [...this.m_mapRemoteFrames.values()];
+          0 != _.length &&
+            (this.m_mapRemoteFrames.clear(),
+            _.forEach((_) => _._markDestroyed()),
+            this.NotifyFramesDestroyed(_));
         }
         _delete_remote_frame(_) {
           const _ = this.m_mapRemoteFrames.get(_);
           null != _ &&
             (this.m_mapRemoteFrames.delete(_),
-            this.m_OnFrameDestroyed.Dispatch(_));
+            _._markDestroyed(),
+            this.NotifyFramesDestroyed([_]));
         }
         GetRemoteFrame(_) {
           if (null != _) return this.m_mapRemoteFrames.get(_);
@@ -3149,7 +3333,8 @@ var CLSTAMP = "steamdb";
             }
             null == _ || _ == _.yWq.Dashboard
               ? this.m_mapDockLocations.delete(_)
-              : this.m_mapDockLocations.set(_, _);
+              : this.m_mapDockLocations.set(_, _),
+              _ != _.yWq.Theater && _._.ClearTheaterHistoryForFrame(_);
           }
         }
         _getDockLocation(_) {
@@ -3382,6 +3567,7 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.action.bound], _.prototype, "CleanupSteamConnection", null),
         (0, _._)([_._], _.prototype, "SendUpdatesToSteam", null),
         (0, _._)([_.action.bound], _.prototype, "OnLocalFramesDestroyed", null),
+        (0, _._)([_.action], _.prototype, "NotifyFramesDestroyed", null),
         (0, _._)([_.action], _.prototype, "CreateCFrame", null),
         (0, _._)([_.computed], _.prototype, "frames", null),
         (0, _._)([_.computed], _.prototype, "frames_local", null),
@@ -3442,38 +3628,6 @@ var CLSTAMP = "steamdb";
         })(_ || (_ = {}));
       const _ = new _();
       window.FrameStore = _;
-    },
-    chunkid: (module, module_exports, __webpack_require__) => {
-      "use strict";
-      __webpack_require__._(module_exports, {
-        _: () => _,
-        _: () => _,
-        _: () => _,
-        _: () => _,
-      });
-      var _ = __webpack_require__("chunkid");
-      const _ = 20,
-        _ = [
-          "Steam",
-          "Desktop",
-          "Desktop 1",
-          "Desktop 2",
-          "Desktop 3",
-          "Now Playing",
-          "Old Library",
-          "Library",
-          "Settings",
-        ],
-        _ = [
-          _.OiK.TopCenter,
-          _.OiK.CenterLeft,
-          _.OiK.CenterRight,
-          _.OiK.BottomCenter,
-          _.OiK.BottomRight,
-        ];
-      function _(_, _) {
-        return !!_ && !!_ && _.frameID === _.frameID;
-      }
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       "use strict";
@@ -4652,6 +4806,9 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
       });
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -5271,6 +5428,79 @@ var CLSTAMP = "steamdb";
           ),
           _.createElement("path", {
             _: "M34 10H2V6H34V10ZM34 16H2V20H34V16ZM34 26H2V30H34V26Z",
+            fill: "currentColor",
+          }),
+        );
+      }
+      function _(_) {
+        return _.createElement(
+          "svg",
+          Object.assign(
+            {
+              xmlns: "http://www.w3.org/2000/svg",
+              viewBox: "0 0 1024 1024",
+              fill: "none",
+            },
+            _,
+          ),
+          _.createElement("path", {
+            fillRule: "evenodd",
+            clipRule: "evenodd",
+            _: "M85.333 166.319V732.042C202.206 825.73 350.554 881.775 512 881.775C673.445 881.775 821.794 825.73 938.666 732.042V166.319C821.794 260.008 673.445 316.053 512 316.053C350.554 316.053 202.206 260.008 85.333 166.319ZM143.222 536.569L282.569 675.917L300.236 609.986C367.152 630.833 438.291 642.069 512 642.069C583.764 642.069 653.097 631.431 718.458 611.625L735.68 675.917L875.028 536.569L684.68 485.556L703.722 556.639C643.111 575.194 578.736 585.181 512 585.181C443.305 585.181 377.125 574.597 314.972 554.986L333.569 485.556L143.222 536.569Z",
+            fill: "currentColor",
+          }),
+        );
+      }
+      function _(_) {
+        return _.createElement(
+          "svg",
+          Object.assign(
+            {
+              xmlns: "http://www.w3.org/2000/svg",
+              viewBox: "0 0 1024 1024",
+              fill: "none",
+            },
+            _,
+          ),
+          _.createElement("path", {
+            fillRule: "evenodd",
+            clipRule: "evenodd",
+            _: "M134.486 767.986L29.2778 873.194L89.6112 933.528L934.375 88.7778L874.028 28.4445L590.931 311.542C565.028 314.528 538.695 316.056 512 316.056C350.556 316.056 202.208 260.014 85.3334 166.319V732.042C101.153 744.722 117.556 756.722 134.486 767.986ZM254.556 647.917L340.111 562.361C331.667 560.069 323.278 557.611 314.972 554.986L333.57 485.556L143.222 536.569L254.556 647.917Z",
+            fill: "currentColor",
+          }),
+          _.createElement("path", {
+            _: "M512 881.778C436.764 881.778 364.375 869.597 296.695 847.125L501.833 642L506.945 642.056L512 642.069C583.764 642.069 653.097 631.431 718.458 611.625L735.681 675.917L875.028 536.569L684.681 485.556L703.722 556.639C657.903 570.667 609.917 579.792 560.403 583.417L938.667 205.167V732.042C821.792 825.736 673.445 881.778 512 881.778Z",
+            fill: "currentColor",
+          }),
+        );
+      }
+      function _(_) {
+        return _.createElement(
+          "svg",
+          Object.assign(
+            {
+              xmlns: "http://www.w3.org/2000/svg",
+              viewBox: "0 0 36 36",
+              fill: "none",
+            },
+            _,
+          ),
+          _.createElement("circle", {
+            _: "18",
+            _: "7.5",
+            _: "3.5",
+            fill: "currentColor",
+          }),
+          _.createElement("circle", {
+            _: "18",
+            _: "18",
+            _: "3.5",
+            fill: "currentColor",
+          }),
+          _.createElement("circle", {
+            _: "18",
+            _: "28.5",
+            _: "3.5",
             fill: "currentColor",
           }),
         );

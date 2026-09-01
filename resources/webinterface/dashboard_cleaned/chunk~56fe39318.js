@@ -183,6 +183,7 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       const _ =
         window.addEventListener ||
@@ -548,6 +549,7 @@ var CLSTAMP = "steamdb";
             _.set_version(this.m_strVersion),
             _.set_errors(_);
           for (const _ of (function () {
+            var _;
             const _ = [];
             if (
               ((null === VRHTML || void 0 === VRHTML
@@ -569,7 +571,20 @@ var CLSTAMP = "steamdb";
                     "/user/head",
                     _.fD8.ActualTrackingSystemName_String,
                   );
-            return _ && _.push(_), _;
+            _ && _.push(_);
+            const _ = String(
+              null !== (_ = _.Fzk[_._.m_eVRLinkDashboardMode]) && void 0 !== _
+                ? _
+                : "",
+            ).toLowerCase();
+            return (
+              _._.m_bIsVRLinkClient && _.push("vrlink_client:" + _),
+              _._.m_bIsVRLinkServer && _.push("vrlink_server:" + _),
+              (null === VRHTML || void 0 === VRHTML
+                ? void 0
+                : VRHTML.IsSteamFrame()) && _.push("frame"),
+              _
+            );
           })())
             _.add_tags(_);
           this.m_transport.SendNoResponse(

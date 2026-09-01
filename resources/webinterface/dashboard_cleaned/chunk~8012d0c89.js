@@ -4,6 +4,18 @@ var CLSTAMP = "steamdb";
   {
     chunkid: (module) => {
       module.exports = {
+        GamepadUIButton: "gamepaduibutton_GamepadUIButton_3cM9m",
+        Primary: "gamepaduibutton_Primary_lgv_H",
+        Highlighted: "gamepaduibutton_Highlighted_a5G_1",
+        FocusRing: "gamepaduibutton_FocusRing_3Fr_z",
+        Flash: "gamepaduibutton_Flash_38oyX",
+        GrowOutline: "gamepaduibutton_GrowOutline_3AwG-",
+        FadeOutline: "gamepaduibutton_FadeOutline_109PU",
+        Blinker: "gamepaduibutton_Blinker_2GJbD",
+      };
+    },
+    chunkid: (module) => {
+      module.exports = {
         Container: "framegamepadmodebutton_Container_2PgNr",
         ButtonHitArea: "framegamepadmodebutton_ButtonHitArea_2v1eJ",
         ButtonPill: "framegamepadmodebutton_ButtonPill_1ML_a",
@@ -81,7 +93,16 @@ var CLSTAMP = "steamdb";
           "legacydashboardframecontrols_FrameControlsContainer_27B1e",
         HasGamepadFocus: "legacydashboardframecontrols_HasGamepadFocus_2rN3T",
         Section: "legacydashboardframecontrols_Section_1KwWq",
+        WideGapBefore: "legacydashboardframecontrols_WideGapBefore_1lLW2",
         GamepadFocused: "legacydashboardframecontrols_GamepadFocused_OxA82",
+        HasPopoutAnchor: "legacydashboardframecontrols_HasPopoutAnchor_1anSI",
+        PopoutAnchor: "legacydashboardframecontrols_PopoutAnchor_QH9hH",
+        AdditionalOptions:
+          "legacydashboardframecontrols_AdditionalOptions_SVI8j",
+        AdditionalOptionsRow:
+          "legacydashboardframecontrols_AdditionalOptionsRow_27am2",
+        AdditionalOptionsLabel:
+          "legacydashboardframecontrols_AdditionalOptionsLabel_3PYs0",
       };
     },
     chunkid: (module, module_exports, __webpack_require__) => {
@@ -630,6 +651,11 @@ var CLSTAMP = "steamdb";
                     _: 4,
                     _: _._.readBool,
                     _: _._.writeBool,
+                  },
+                  cycle_dashboard_focus_label: {
+                    _: 5,
+                    _: _._.readString,
+                    _: _._.writeString,
                   },
                 },
               }),
@@ -5087,6 +5113,103 @@ var CLSTAMP = "steamdb";
         static ImplementsStaticInterface() {}
         constructor(_ = null) {
           super(),
+            _.prototype.target_frame_id || _._(_._()),
+            _.Message.initialize(this, _, 0, -1, void 0, null);
+        }
+        static M() {
+          return (
+            _.sm_m ||
+              (_.sm_m = {
+                proto: _,
+                fields: {
+                  target_frame_id: {
+                    _: 1,
+                    _: _._.readUint32,
+                    _: _._.writeUint32,
+                  },
+                },
+              }),
+            _.sm_m
+          );
+        }
+        static MBF() {
+          return _.sm_mbf || (_.sm_mbf = _._(_._())), _.sm_mbf;
+        }
+        toObject(_ = !1) {
+          return _.toObject(_, this);
+        }
+        static toObject(_, _) {
+          return _._(_._(), _, _);
+        }
+        static fromObject(_) {
+          return _._(_._(), _);
+        }
+        static deserializeBinary(_) {
+          let _ = new (_().BinaryReader)(_),
+            _ = new _();
+          return _.deserializeBinaryFromReader(_, _);
+        }
+        static deserializeBinaryFromReader(_, _) {
+          return _._(_.MBF(), _, _);
+        }
+        serializeBinary() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBuffer();
+        }
+        static serializeBinaryToWriter(_, _) {
+          _._(_._(), _, _);
+        }
+        serializeBase64String() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBase64String();
+        }
+        getClassName() {
+          return "CVRGamepadUI_Message_CycleDashboardFocus_Request";
+        }
+      }
+      class _ extends _.Message {
+        static ImplementsStaticInterface() {}
+        constructor(_ = null) {
+          super(), _.Message.initialize(this, _, 0, -1, void 0, null);
+        }
+        toObject(_ = !1) {
+          return _.toObject(_, this);
+        }
+        static toObject(_, _) {
+          return _
+            ? {
+                $jspbMessageInstance: _,
+              }
+            : {};
+        }
+        static fromObject(_) {
+          return new _();
+        }
+        static deserializeBinary(_) {
+          let _ = new (_().BinaryReader)(_),
+            _ = new _();
+          return _.deserializeBinaryFromReader(_, _);
+        }
+        static deserializeBinaryFromReader(_, _) {
+          return _;
+        }
+        serializeBinary() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBuffer();
+        }
+        static serializeBinaryToWriter(_, _) {}
+        serializeBase64String() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBase64String();
+        }
+        getClassName() {
+          return "CVRGamepadUI_Message_CycleDashboardFocus_Response";
+        }
+      }
+      class _ extends _.Message {
+        static ImplementsStaticInterface() {}
+        constructor(_ = null) {
+          super(),
             _.prototype.button || _._(_._()),
             _.Message.initialize(this, _, 0, -1, void 0, null);
         }
@@ -6058,6 +6181,11 @@ var CLSTAMP = "steamdb";
           msgClassResponse_t: _,
           strMethod: "FocusDashboardBar",
         },
+        "CycleDashboardFocus#1": {
+          msgClassRequest_t: _,
+          msgClassResponse_t: _,
+          strMethod: "CycleDashboardFocus",
+        },
         "GamepadButtonAction#1": {
           msgClassRequest_t: _,
           msgClassResponse_t: _,
@@ -6540,7 +6668,7 @@ var CLSTAMP = "steamdb";
         (0, _._)([_._], _.prototype, "startTest", null),
         (0, _._)([_._], _.prototype, "stopTest", null);
       const _ = (0, _._)(() =>
-        _._.m_bRoomViewEnabled && _._.m_bRoomViewMonochrome
+        _._.m_bRoomViewMonochrome
           ? _.createElement(_._, {
               name: "/settings/camera/monochromeTintHue",
               min: 0,
@@ -6565,27 +6693,39 @@ var CLSTAMP = "steamdb";
           (_[(_.On3D = 2)] = "On3D");
       })(_ || (_ = {}));
       const _ = (0, _._)(() => {
-        let _ = _._.settings.get(_._),
-          _ = [
-            {
-              value: _.Off,
-              sLabel: (0, _._)("#Settings_ToggleButton_Off"),
-            },
-          ];
+        let _ = _._.settings.get(_._);
+        const _ =
+          null === VRHTML || void 0 === VRHTML
+            ? void 0
+            : VRHTML.VRProperties.GetBoolProperty(
+                "/user/head",
+                _.fD8.SupportsInHMDRoomSetup_Bool,
+              );
+        let _ = [
+          {
+            value: _.Off,
+            sLabel: (0, _._)("#Settings_ToggleButton_Off"),
+          },
+        ];
         return (
-          _._.m_bSupportsRoomViewDepthProjection || _ == _.On3D
-            ? (_.push({
-                value: _.On2D,
-                sLabel: (0, _._)("#Settings_2D"),
-              }),
-              _.push({
+          _
+            ? __webpack_require__.push({
                 value: _.On3D,
-                sLabel: (0, _._)("#Settings_3D"),
-              }))
-            : _.push({
-                value: _.On2D,
                 sLabel: (0, _._)("#Settings_ToggleButton_On"),
-              }),
+              })
+            : _._.m_bSupportsRoomViewDepthProjection || _ == _.On3D
+              ? (__webpack_require__.push({
+                  value: _.On2D,
+                  sLabel: (0, _._)("#Settings_2D"),
+                }),
+                __webpack_require__.push({
+                  value: _.On3D,
+                  sLabel: (0, _._)("#Settings_3D"),
+                }))
+              : __webpack_require__.push({
+                  value: _.On2D,
+                  sLabel: (0, _._)("#Settings_ToggleButton_On"),
+                }),
           _.createElement(
             _.Fragment,
             null,
@@ -7657,17 +7797,6 @@ var CLSTAMP = "steamdb";
                   " ",
                 ),
               ),
-            _ &&
-              _.createElement(_._, {
-                label: (0, _._)("#Advanced_ShowDebugCameraViews"),
-                value: _._.m_bDebugCameraViewEnabled,
-                onChange: (_) => {
-                  (_._.m_bDebugCameraViewEnabled = _),
-                    null === VRHTML ||
-                      void 0 === VRHTML ||
-                      VRHTML.VRSystem.SetDebugCameraViewEnabled(_);
-                },
-              }),
             !1,
           );
         }),
@@ -8180,7 +8309,7 @@ var CLSTAMP = "steamdb";
           }),
           _.createElement(_._, {
             label: (0, _._)("#Settings_VersionInfo_WebpackBuildTime"),
-            value: new Date(1786146948e3).toLocaleString() + "",
+            value: new Date(1788038312e3).toLocaleString() + "",
           }),
           _.createElement(_._, {
             label: (0, _._)("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),
@@ -9259,28 +9388,37 @@ var CLSTAMP = "steamdb";
             this.m_mailbox.Init("internal_settings");
         }
         render() {
+          var _;
           if (!this.props.active) return null;
           6 == _._.roomSetupStep || _._.roomSetupStep;
           const _ =
-            (null === VRHTML || void 0 === VRHTML
-              ? void 0
-              : VRHTML.VRProperties.GetBoolProperty(
-                  "/user/head",
-                  _.fD8.HasEyeTracker_Bool,
-                )) &&
-            !(null === VRHTML || void 0 === VRHTML
-              ? void 0
-              : VRHTML.VRProperties.GetBoolProperty(
-                  "/user/head",
-                  _.fD8.HasDriverDirectModeComponent_Bool,
-                ));
+              (null === VRHTML || void 0 === VRHTML
+                ? void 0
+                : VRHTML.VRProperties.GetBoolProperty(
+                    "/user/head",
+                    _.fD8.HasEyeTracker_Bool,
+                  )) &&
+              !(null === VRHTML || void 0 === VRHTML
+                ? void 0
+                : VRHTML.VRProperties.GetBoolProperty(
+                    "/user/head",
+                    _.fD8.HasDriverDirectModeComponent_Bool,
+                  )),
+            _ =
+              null !==
+                (_ =
+                  null === VRHTML || void 0 === VRHTML
+                    ? void 0
+                    : VRHTML.VRProperties.GetBoolProperty(
+                        "/user/head",
+                        _.fD8.SupportsInHMDRoomSetup_Bool,
+                      )) &&
+              void 0 !== _ &&
+              _;
           return _.createElement(
             _.Fragment,
             null,
-            _.createElement(_._, {
-              name: "/settings/dashboard/modalGamepadAndLaser",
-              label: "Experiment: Modal Gamepad & Laser",
-            }),
+            !1,
             !1,
             !1,
             _.createElement(_._, {
@@ -9314,6 +9452,17 @@ var CLSTAMP = "steamdb";
               name: "/settings/dashboard/debugInputFocus",
               label: "Debug Input Focus",
             }),
+            _ &&
+              _.createElement(_._, {
+                label: (0, _._)("#Advanced_ShowDebugCameraViews"),
+                value: _._.m_bDebugCameraViewEnabled,
+                onChange: (_) => {
+                  (_._.m_bDebugCameraViewEnabled = _),
+                    null === VRHTML ||
+                      void 0 === VRHTML ||
+                      VRHTML.VRSystem.SetDebugCameraViewEnabled(_);
+                },
+              }),
             !1,
             !1,
             !1,
@@ -9942,10 +10091,10 @@ var CLSTAMP = "steamdb";
                   renderValue: (_) => (1 * _).toFixed(2),
                 }),
                 _.createElement(_._, {
-                  min: -0.125,
+                  min: 0,
                   max: 0.125,
                   name: "/settings/steamvr/auroraHueAnimSpeed",
-                  label: (0, _._)("#Settings_Playspace_Color_Anim_Speed"),
+                  label: (0, _._)("#Settings_Playspace_Rainbow_Speed"),
                   exponent: 1,
                   valueStyleVariant: _._.OnHandle,
                   detents: [0],
@@ -10123,11 +10272,27 @@ var CLSTAMP = "steamdb";
                   _.createElement(_, null),
                 ),
               }),
+              _ &&
+                _.createElement(_._, {
+                  name: "/settings/steamvr/contentAwareAuroraColor",
+                  label: (0, _._)(
+                    "#Settings_Playspace_ContentAwareAuroraColor",
+                  ),
+                }),
+              _ &&
+                _.createElement(_._, {
+                  name: "/settings/steamvr/contentAwareRoomviewMonochromeTint",
+                  label: (0, _._)("#Settings_Playspace_ContentAwareCameraTint"),
+                }),
+              _ && !1,
               _.createElement(_, null),
-              _.createElement(_._, {
-                label: (0, _._)("#Settings_Appearance_PlayArea_FloorColor"),
-                name: "/settings/steamvr/playAreaColor",
-              }),
+              !_._.settings.get(
+                "/settings/steamvr/renderSystemLayerInDistortPass",
+              ) &&
+                _.createElement(_._, {
+                  label: (0, _._)("#Settings_Appearance_PlayArea_FloorColor"),
+                  name: "/settings/steamvr/playAreaColor",
+                }),
               this.makeResetToDefaultButton(),
             )
           );
@@ -10927,6 +11092,7 @@ var CLSTAMP = "steamdb";
                           {
                             visible: !0,
                             debugName: "settings",
+                            _: "vrsettingspanel",
                             additionalClassNames: "Settings",
                           },
                           _.createElement(_.Ci8, {
@@ -15722,7 +15888,7 @@ var CLSTAMP = "steamdb";
         return _.createElement(_.Fragment, null, _, _);
       }
       const _ = (0, _._)((_) => {
-          var _;
+          var _, _, _, _;
           const [_, _] = _.useState(
             null === VRHTML || void 0 === VRHTML
               ? void 0
@@ -15786,13 +15952,23 @@ var CLSTAMP = "steamdb";
           {
             const _ =
                 _._.systemInfo &&
-                _._.systemInfo.refresh_rates.supports_multiple_rates &&
+                (null ===
+                  (_ =
+                    null === (_ = _._.systemInfo) || void 0 === _
+                      ? void 0
+                      : _.refresh_rates) || void 0 === _
+                  ? void 0
+                  : _.supports_multiple_rates) &&
                 !_._.isPlaytimeProfile,
               _ =
                 null === (_ = _._.systemInfo) || void 0 === _
                   ? void 0
                   : _.extended_mode,
-              _ = _._.systemInfo.refresh_rates.supports_multiple_rates
+              _ = (
+                null === (_ = _._.systemInfo.refresh_rates) || void 0 === _
+                  ? void 0
+                  : _.supports_multiple_rates
+              )
                 ? _._.refreshRateValue
                 : _._.actualRefreshRate,
               _ = _ ? Math.round(_) : "Unknown ";
@@ -17895,6 +18071,8 @@ var CLSTAMP = "steamdb";
                 this.props.acceleration_factor_scale_term,
               "stored-transform": this.props.stored_transform,
               "reset-on-recenter": this.props.reset_on_recenter,
+              "reset-on-dashboard-relatch":
+                this.props.reset_on_dashboard_relatch,
               "event-panel-sgid": this.props.event_panel_sgid,
               "scroll-speed": this.props.scroll_speed,
             },
@@ -18802,6 +18980,7 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
       });
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -18818,7 +18997,8 @@ var CLSTAMP = "steamdb";
         _ = "vrwebui_dashboard",
         _ = "binding_callouts/main",
         _ = "scene_graph",
-        _ = "svl/client";
+        _ = "svl/client",
+        _ = "lasermouse";
       class _ {
         constructor() {
           (this.m_wsWebSocketToServer = void 0),
@@ -21429,6 +21609,11 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
       });
       const _ = "openvr.tool.steamvr_environments",
         _ = "system.generated.steam.exe",
@@ -21541,7 +21726,12 @@ var CLSTAMP = "steamdb";
         _ = "/steam/guidedtour",
         _ = "/settings/perfcheck/showPerfCriteriaSettings",
         _ = "/settings/perfcheck/drawPerfCriteriaOverlay",
-        _ = "/settings/perfcheck/drawPerfCriteriaGameTextures";
+        _ = "/settings/perfcheck/drawPerfCriteriaGameTextures",
+        _ = "/user/head",
+        _ = "/user/hand/left",
+        _ = "/user/hand/left/pose/tip",
+        _ = "/user/hand/right",
+        _ = "/user/hand/right/pose/tip";
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       "use strict";
@@ -24952,7 +25142,9 @@ var CLSTAMP = "steamdb";
                 ),
               null === VRHTML ||
                 void 0 === VRHTML ||
-                VRHTML.RegisterForRoomSetupButtonEvents(this.onRoomSetupButton),
+                VRHTML.RegisterForRoomSetupButtonEvents(
+                  this.HandleRoomSetupButton,
+                ),
               this.m_bFloorDetectAtStart && this.restartSilentRoomSetup(),
               (0, _.reaction)(
                 _,
@@ -24987,6 +25179,9 @@ var CLSTAMP = "steamdb";
         }
         get roomSetupAllowsCancel() {
           return this.m_bRoomSetupAllowsCancel;
+        }
+        get inRoomSetup() {
+          return 0 != this.m_eRoomSetupStep && 6 != this.m_eRoomSetupStep;
         }
         restartSilentRoomSetup() {
           console.log("Enabling silent floor detection"),
@@ -25225,6 +25420,16 @@ var CLSTAMP = "steamdb";
             }
           } else this.setRoomSetupStep(0, !0);
         }
+        HandleRoomSetupButton(_) {
+          if (!this.inRoomSetup) return !1;
+          switch (_) {
+            case _.aqc.Accept:
+              return this.AcceptRoomSetupStep(), !0;
+            case _.aqc.Back:
+              return this.BackRoomSetupStep(), !0;
+          }
+          return !1;
+        }
         Load() {
           return (0, _._)(this, void 0, void 0, function* () {
             var _, _, _, _, _, _;
@@ -25269,15 +25474,6 @@ var CLSTAMP = "steamdb";
         }
         Save() {
           return (0, _._)(this, void 0, void 0, function* () {});
-        }
-        onRoomSetupButton(_) {
-          switch (_) {
-            case _.aqc.Accept:
-              this.AcceptRoomSetupStep();
-              break;
-            case _.aqc.Back:
-              this.BackRoomSetupStep();
-          }
         }
         onChaperoneStatusEvents(_) {
           const _ = !!(1 & _),
@@ -25325,6 +25521,7 @@ var CLSTAMP = "steamdb";
           void 0,
         ),
         (0, _._)([_.computed], _.prototype, "supportsInHmdRoomSetup", null),
+        (0, _._)([_.computed], _.prototype, "inRoomSetup", null),
         (0, _._)([_.action], _.prototype, "restartSilentRoomSetup", null),
         (0, _._)(
           [_.action],
@@ -25336,9 +25533,9 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.action.bound], _.prototype, "AcceptRoomSetupStep", null),
         (0, _._)([_.action.bound], _.prototype, "BackRoomSetupStep", null),
         (0, _._)([_.action.bound], _.prototype, "CancelRoomSetupStep", null),
+        (0, _._)([_.action.bound], _.prototype, "HandleRoomSetupButton", null),
         (0, _._)([_._], _.prototype, "Load", null),
         (0, _._)([_._], _.prototype, "Save", null),
-        (0, _._)([_.action.bound], _.prototype, "onRoomSetupButton", null),
         (0, _._)(
           [_.action.bound],
           _.prototype,
@@ -25599,6 +25796,7 @@ var CLSTAMP = "steamdb";
               (_[11] = _.CreateAction(
                 () => {
                   if (
+                    _._.m_bSteamVRMain &&
                     _._.supportsInHmdRoomSetup &&
                     !_._.isOOBE &&
                     !_._.isLocked &&
@@ -25789,6 +25987,7 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       !(function (_) {
         (_[(_.PlayArea = 0)] = "PlayArea"),
@@ -25800,6 +25999,16 @@ var CLSTAMP = "steamdb";
             (_[(_.Theater = 2)] = "Theater");
         })(_ || (_ = {}));
       class _ {
+        get onForceDashboardRelatch() {
+          return this.m_ForceDashboardRelatchCallbacks;
+        }
+        ForceRelatchDashboard(_) {
+          this.m_ForceDashboardRelatchCallbacks.Dispatch(),
+            this.m_mailbox.SendMessage(_.Jv8, {
+              type: "relatch_dashboard",
+              deadzone: _,
+            });
+        }
         get isFullyVisible() {
           return 1 == this.visibilityState;
         }
@@ -25807,6 +26016,11 @@ var CLSTAMP = "steamdb";
           return 2 == this.visibilityState;
         }
         get visibilityState() {
+          return this.shouldShowKeyboardForUndockedFrame_Hack
+            ? 10
+            : this.visibilityState_IgnoringKeyboardHack;
+        }
+        get visibilityState_IgnoringKeyboardHack() {
           if (_._.m_bIsVRLinkServer && _._.unifiedDashboardEnabled) {
             const _ =
               _._.unifiedDashboardState_Remote.dashboard_visibility_state;
@@ -25847,7 +26061,11 @@ var CLSTAMP = "steamdb";
                   ? void 0
                   : _.isSystemPanel)
               ) &&
-                !(!this.isFullyVisible && !this.isDashboardDiminished) &&
+                !!(
+                  this.isFullyVisible ||
+                  this.isDashboardDiminished ||
+                  this.shouldShowKeyboardForUndockedFrame_Hack
+                ) &&
             (!this.isDashboardDiminished ||
               (null === (_ = this.activeFrame) || void 0 === _
                 ? void 0
@@ -25870,8 +26088,8 @@ var CLSTAMP = "steamdb";
             ? _._.unifiedDashboardState_Remote.active_dashboard_frame_id
             : this.m_unActiveFrameID;
         }
-        get hasActiveFrameID() {
-          return !!this.activeFrameID;
+        get hasActiveFrame() {
+          return null != _._.GetFrame(this.activeFrameID);
         }
         _setActiveFrame(_, _) {
           _._.useRemoteDashboardState
@@ -25903,10 +26121,16 @@ var CLSTAMP = "steamdb";
         SetMainSteamFrame(_) {
           this.m_unMainSteamFrameID = null == _ ? void 0 : _.frameID;
         }
+        ClearTheaterHistoryForFrame(_) {
+          this.m_rgTheaterFrameStack = this.m_rgTheaterFrameStack.filter(
+            (_) => _.frameID != _,
+          );
+        }
         constructor() {
           (this.m_mailbox = new _._nH()),
             (this.m_eVisibilityState = 0),
             (this.m_unDiminishedStateFrameID = void 0),
+            (this.m_ForceDashboardRelatchCallbacks = new _._()),
             (this.m_setSuppressingFade = new Set()),
             (this.m_bShowLegacyDashboardBar = !1),
             (this.m_bVS = !1),
@@ -25929,11 +26153,11 @@ var CLSTAMP = "steamdb";
             (this.m_nKeyboardFlags = null),
             (this.m_rgForcingBoundsVisible = []),
             (this.m_sLastShownAppKey = ""),
-            (this.m_bDashboardIsBeingDragged = !1),
             (this.m_nSystemBehaviorFlags = 0),
             (this.m_nStandingZeroPoseResetGeneration = 0),
             (this.m_nHMDFrameRate = void 0),
             (this.m_rgTheaterFrameStack = []),
+            (this.m_OnDashboardGrabStart = new _._()),
             (0, _.makeObservable)(this);
         }
         Init() {
@@ -26000,6 +26224,14 @@ var CLSTAMP = "steamdb";
                 },
               ),
               (0, _.reaction)(
+                () => this.isFullyVisible,
+                (_) => {
+                  null === VRHTML ||
+                    void 0 === VRHTML ||
+                    VRHTML.VRClient.PostDashboardActivatedEvent(_);
+                },
+              ),
+              (0, _.reaction)(
                 () => this.showLoadingThrobberOrBootOverlay,
                 (_, _) => {
                   _ && !_
@@ -26047,11 +26279,20 @@ var CLSTAMP = "steamdb";
                 "FocusDashboardBar",
                 this.FocusDashboardBar,
               ),
+              _._.SteamVR.SetImplementation(
+                "CycleDashboardFocus",
+                ({ target_frame_id: _ }) => this.CycleDashboardFocus(_),
+              ),
               _._.OnFrameDestroyed.Register((_) => {
                 var _, _, _;
-                if (_.docking.dockLocation == _.yWq.Theater) {
+                if (
+                  (this.ClearTheaterHistoryForFrame(_.frameID),
+                  _.docking.dockLocation == _.yWq.Theater)
+                ) {
                   const _ = this.m_rgTheaterFrameStack.filter(
-                    (_) => _ !== _ && _.state == _._.Alive,
+                    (_) =>
+                      _.state == _._.Alive &&
+                      _.docking.dockLocation == _.yWq.Dashboard,
                   );
                   _.length > 0
                     ? _[_.length - 1].docking.SetInTheater(!1)
@@ -26106,7 +26347,9 @@ var CLSTAMP = "steamdb";
                 },
               ),
               (0, _.reaction)(
-                () => this.isDashboardDiminished,
+                () =>
+                  this.isDashboardDiminished ||
+                  this.shouldShowKeyboardForUndockedFrame_Hack,
                 (_) => {
                   _ || (this.m_unDiminishedStateFrameID = void 0);
                 },
@@ -26119,12 +26362,32 @@ var CLSTAMP = "steamdb";
                   _.YVg.Panel,
               (_) => {
                 window.clearTimeout(_),
-                  _ && (_ = window.setTimeout(this.FocusDashboardBar, 500));
+                  _ &&
+                    (_ = window.setTimeout(() => {
+                      var _, _, _;
+                      (null === (_ = this.activeFrame) || void 0 === _
+                        ? void 0
+                        : _.docking.dockLocation) == _.yWq.Dashboard
+                        ? null ===
+                            (_ =
+                              null === (_ = this.activeFrame) || void 0 === _
+                                ? void 0
+                                : _.activePage) ||
+                          void 0 === _ ||
+                          _.inputFocus.PushInputFocus()
+                        : this.FocusDashboardBar();
+                    }, 500));
               },
               {
                 fireImmediately: !0,
               },
-            );
+            ),
+              (0, _.reaction)(
+                () => this.shouldShowKeyboardForUndockedFrame_Hack,
+                (_) => {
+                  _ && this.ForceRelatchDashboard();
+                },
+              );
           });
         }
         FocusDashboardBar() {
@@ -26136,6 +26399,62 @@ var CLSTAMP = "steamdb";
               ? void 0
               : _.panel;
           _ && _.isFullyVisible && _._.PushInputFocus(_.getSGID());
+        }
+        GetDashboardFocusCycleStops(_) {
+          var _, _;
+          const _ = [],
+            _ = _._.GetLocalFrame(null != _ ? _ : this.activeFrameID);
+          (null == _ ? void 0 : _.frameMenuPopupRequest) &&
+            _.panels.menuPanelSGID &&
+            _.push({
+              sLabel: (0, _._)("#Jump_To_Frame_Menu", _.title),
+              bIsFocused: _.inputFocus.frameMenuHasFocus,
+              Focus: _.inputFocus.FocusLeftFrameMenu,
+            });
+          const _ =
+            null === (_ = _._.dashboardBarPopup) || void 0 === _
+              ? void 0
+              : _.panel;
+          return (
+            this.isFullyVisible &&
+              _ &&
+              _.push({
+                sLabel: (0, _._)("#Jump_To_DashboardBar"),
+                bIsFocused: this.isDashboardBarOrChildPopupFocused,
+                Focus: this.FocusDashboardBar,
+              }),
+            (null == _ ? void 0 : _.shouldRenderFrameControls) &&
+              _.panels.controlsPanelSGID &&
+              _.push({
+                sLabel: (0, _._)("#Jump_To_Frame_Controls", _.title),
+                bIsFocused: _.inputFocus.frameControlsHaveFocus,
+                Focus: _.inputFocus.FocusFrameControls,
+              }),
+            (null === (_ = null == _ ? void 0 : _.activePage) || void 0 === _
+              ? void 0
+              : _.mainPanelSGID) &&
+              _.push({
+                sLabel: (0, _._)("#Jump_To_Frame", _.title),
+                bIsFocused: _.activePage.inputFocus.mainPanelHasFocus,
+                Focus: _.inputFocus.FocusMainPanel,
+              }),
+            _
+          );
+        }
+        get nextDashboardFocusCycleStop() {
+          const _ = this.GetDashboardFocusCycleStops(void 0);
+          if (_.length < 2) return;
+          const _ = _.findIndex((_) => _.bIsFocused);
+          return _[(_ + 1) % _.length];
+        }
+        get cycleDashboardFocusLabel() {
+          return (0, _._)("#Cycle_View_Focus");
+        }
+        CycleDashboardFocus(_) {
+          const _ = this.GetDashboardFocusCycleStops(_);
+          if (_.length < 2) return;
+          const _ = _.findIndex((_) => _.bIsFocused);
+          _[(_ + 1) % _.length].Focus();
         }
         SetVersionInfoPathProperties() {
           var _, _;
@@ -26173,6 +26492,7 @@ var CLSTAMP = "steamdb";
                   ? 1
                   : 0,
               vrlink_unified_dashboard: _._.unifiedDashboardEnabled,
+              cycle_dashboard_focus_label: this.cycleDashboardFocusLabel,
             }),
           );
         }
@@ -26434,34 +26754,19 @@ var CLSTAMP = "steamdb";
           _ != this.m_nSystemBehaviorFlags && (this.m_nSystemBehaviorFlags = _);
         }
         onKeyboardInfoChanged(_) {
-          var _, _;
-          if (
-            ((this.m_bKeyboardVisible = _.visible),
+          (this.m_bKeyboardVisible = _.visible),
             (this.m_bKeyboardDockedInDashboard = _.dockedInDashboard),
             (this.m_sKeyboardOverlayKey = _.overlayKey),
-            (this.m_nKeyboardFlags = _.keyboardFlags),
-            this.m_bKeyboardVisible &&
-              this.m_bKeyboardDockedInDashboard &&
-              !this.isFullyVisible)
-          ) {
-            const _ = _._.GetFramesWithAssociatedSummonKeys(
-              this.m_sKeyboardOverlayKey,
-            )[0];
-            _ &&
-              (null === (_ = _._.Instance) ||
-                void 0 === _ ||
-                _.showDashboardOverlay(
-                  {
-                    overlayKey:
-                      null === (_ = null == _ ? void 0 : _.activePage) ||
-                      void 0 === _
-                        ? void 0
-                        : _.summonOverlayKey,
-                    sReason: "onKeyboardInfoChanged",
-                  },
-                  !0,
-                ));
-          }
+            (this.m_nKeyboardFlags = _.keyboardFlags);
+        }
+        get shouldShowKeyboardForUndockedFrame_Hack() {
+          if (!this.m_bKeyboardVisible || !this.m_bKeyboardDockedInDashboard)
+            return !1;
+          if (0 != this.visibilityState_IgnoringKeyboardHack) return !1;
+          const _ = _._.GetFramesWithAssociatedSummonKeys(
+            this.m_sKeyboardOverlayKey,
+          )[0];
+          return null != _ && _.docking.dockLocation != _.yWq.Dashboard;
         }
         get dashboardDistance() {
           if (this.m_dashboardUserDistance) return this.m_dashboardUserDistance;
@@ -26491,11 +26796,12 @@ var CLSTAMP = "steamdb";
             [_.eod.Far]: -0.09,
             [_.eod.VRGamepadUI]: -0.09,
           }[_.currentDashboardPosition];
-          const _ = -this.dashboardDistance;
+          const _ = -this.dashboardDistance,
+            _ = _.shouldShowKeyboardForUndockedFrame_Hack ? 0 : 0.25;
           return {
             channel: _.KIK.TheaterFast,
             from: [0, _, _],
-            _: [0, _ - 0.25, _],
+            _: [0, _ - _, _],
             interp: _.$ab.SmootherStep,
           };
         }
@@ -26612,6 +26918,12 @@ var CLSTAMP = "steamdb";
         (0, _._)([_.computed], _.prototype, "isFullyVisible", null),
         (0, _._)([_.computed], _.prototype, "isDashboardDiminished", null),
         (0, _._)([_.computed], _.prototype, "visibilityState", null),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "visibilityState_IgnoringKeyboardHack",
+          null,
+        ),
         (0, _._)([_.action], _.prototype, "OnShown", null),
         (0, _._)([_.action], _.prototype, "OnHidden", null),
         (0, _._)(
@@ -26660,7 +26972,7 @@ var CLSTAMP = "steamdb";
         ),
         (0, _._)([_.computed], _.prototype, "activeFrame", null),
         (0, _._)([_.computed], _.prototype, "activeFrameID", null),
-        (0, _._)([_.computed], _.prototype, "hasActiveFrameID", null),
+        (0, _._)([_.computed], _.prototype, "hasActiveFrame", null),
         (0, _._)([_.action.bound], _.prototype, "_setActiveFrame", null),
         (0, _._)(
           [_.action.bound],
@@ -26695,12 +27007,6 @@ var CLSTAMP = "steamdb";
           void 0,
         ),
         (0, _._)([_.observable], _.prototype, "m_sLastShownAppKey", void 0),
-        (0, _._)(
-          [_.observable],
-          _.prototype,
-          "m_bDashboardIsBeingDragged",
-          void 0,
-        ),
         (0, _._)([_.observable], _.prototype, "m_nSystemBehaviorFlags", void 0),
         (0, _._)(
           [_.observable],
@@ -26709,7 +27015,16 @@ var CLSTAMP = "steamdb";
           void 0,
         ),
         (0, _._)([_.observable], _.prototype, "m_nHMDFrameRate", void 0),
+        (0, _._)([_.action], _.prototype, "ClearTheaterHistoryForFrame", null),
         (0, _._)([_._], _.prototype, "FocusDashboardBar", null),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "nextDashboardFocusCycleStop",
+          null,
+        ),
+        (0, _._)([_.computed], _.prototype, "cycleDashboardFocusLabel", null),
+        (0, _._)([_._], _.prototype, "CycleDashboardFocus", null),
         (0, _._)(
           [_.computed],
           _.prototype,
@@ -26779,6 +27094,12 @@ var CLSTAMP = "steamdb";
         ),
         (0, _._)([_.action.bound], _.prototype, "onSystemBehaviorFlags", null),
         (0, _._)([_.action.bound], _.prototype, "onKeyboardInfoChanged", null),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "shouldShowKeyboardForUndockedFrame_Hack",
+          null,
+        ),
         (0, _._)([_.computed], _.prototype, "dashboardDistance", null),
         (0, _._)([_.computed], _.prototype, "curvatureDistance", null),
         (0, _._)([_.computed], _.prototype, "dashboardTranslation", null),
@@ -27478,14 +27799,17 @@ var CLSTAMP = "steamdb";
             (this.defaultComponentProps = {}),
             (this.m_frameMenuPanel = void 0),
             (this.m_frameControlsPanel = void 0),
+            (this.m_additionalOptionsPanel = void 0),
             (this.m_unLastMenuPanelSGID = 0),
             (this.m_unLastControlsPanelSGID = 0),
+            (this.m_unLastAdditionalOptionsPanelSGID = 0),
             (0, _.makeObservable)(this);
         }
         get allPanelSGIDs() {
           return [
             this.menuPanelSGID,
             this.controlsPanelSGID,
+            this.additionalOptionsPanelSGID,
             ...this.frame.pages.map((_) => _.mainPanelSGID),
           ].filter(Boolean);
         }
@@ -27494,6 +27818,9 @@ var CLSTAMP = "steamdb";
         }
         get controlsPanel() {
           return this.m_frameControlsPanel;
+        }
+        get additionalOptionsPanel() {
+          return this.m_additionalOptionsPanel;
         }
         get menuPanelSGID() {
           var _, _;
@@ -27526,8 +27853,25 @@ var CLSTAMP = "steamdb";
         SetMenuPanel(_) {
           this.m_frameMenuPanel = _;
         }
+        get additionalOptionsPanelSGID() {
+          var _, _;
+          return (
+            (this.m_unLastAdditionalOptionsPanelSGID =
+              null !==
+                (_ =
+                  null === (_ = this.m_additionalOptionsPanel) || void 0 === _
+                    ? void 0
+                    : _.getSGID()) && void 0 !== _
+                ? _
+                : this.m_unLastAdditionalOptionsPanelSGID),
+            this.m_unLastAdditionalOptionsPanelSGID
+          );
+        }
         SetControlsPanel(_) {
           this.m_frameControlsPanel = _;
+        }
+        SetAdditionalOptionsPanel(_) {
+          this.m_additionalOptionsPanel = _;
         }
       }
       (0, _._)([_.observable.ref], _.prototype, "m_frameMenuPanel", void 0),
@@ -27537,13 +27881,27 @@ var CLSTAMP = "steamdb";
           "m_frameControlsPanel",
           void 0,
         ),
+        (0, _._)(
+          [_.observable.ref],
+          _.prototype,
+          "m_additionalOptionsPanel",
+          void 0,
+        ),
         (0, _._)([_.computed.struct], _.prototype, "allPanelSGIDs", null),
         (0, _._)([_.computed], _.prototype, "menuPanel", null),
         (0, _._)([_.computed], _.prototype, "controlsPanel", null),
+        (0, _._)([_.computed], _.prototype, "additionalOptionsPanel", null),
         (0, _._)([_.computed], _.prototype, "menuPanelSGID", null),
         (0, _._)([_.computed], _.prototype, "controlsPanelSGID", null),
         (0, _._)([_.action.bound], _.prototype, "SetMenuPanel", null),
-        (0, _._)([_.action.bound], _.prototype, "SetControlsPanel", null);
+        (0, _._)([_.computed], _.prototype, "additionalOptionsPanelSGID", null),
+        (0, _._)([_.action.bound], _.prototype, "SetControlsPanel", null),
+        (0, _._)(
+          [_.action.bound],
+          _.prototype,
+          "SetAdditionalOptionsPanel",
+          null,
+        );
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       "use strict";
@@ -27552,6 +27910,8 @@ var CLSTAMP = "steamdb";
         _: () => _,
       });
       var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -27685,7 +28045,10 @@ var CLSTAMP = "steamdb";
           )
             return !0;
           if (13 === _)
-            if (_._.isFullyVisible) return _._.FocusDashboardBar(), !0;
+            if (_._.HasCapability(38, _.fkw.MutualLocal)) {
+              if (_._.cycleDashboardFocusLabel)
+                return _._.CycleDashboardFocus(), !0;
+            } else if (_._.isFullyVisible) return _._.FocusDashboardBar(), !0;
           return !1;
         }
         OnSystemGamepadButtonUp(_) {
@@ -27831,8 +28194,15 @@ var CLSTAMP = "steamdb";
               ? void 0
               : _.isActiveAndVisiblePage) &&
             this.mainPanelHasFocus &&
+            (!_._.preferGamepadMode || _._.hasControllers) &&
             _._.computedInputFocus.m_eSystemPanelInteractionMode ==
               _.wBp.Gamepad
+          );
+        }
+        get canPressAToActivateLaserMouse() {
+          return (
+            this.showGamepadInputNotSupportedBanner &&
+            _._.canForceActivateLaserMouse
           );
         }
         get focusOutline() {
@@ -27840,7 +28210,9 @@ var CLSTAMP = "steamdb";
             _._.computedInputFocus.m_eSystemPanelInteractionMode !=
               _.wBp.Gamepad
             ? _._.None
-            : this.supportsGamepadFocus
+            : this.supportsGamepadFocus ||
+                _._.preferGamepadMode ||
+                !_._.hasControllers
               ? this.shouldShowEnterGamepadModeButton
                 ? _._.PendingGamepadFocus
                 : this.inputFocusParams.unSteamInputAppID == _._
@@ -27854,6 +28226,9 @@ var CLSTAMP = "steamdb";
             : this.canHideDashboard &&
               (this.PushInputFocus(),
               _._.Instance.hideDashboard("Gamepad Mode Button"));
+        }
+        HandleLaserMouseRequiredPromptClick() {
+          _._.ForceActivateLaserMouse();
         }
         PushInputFocus() {
           var _, _;
@@ -27896,6 +28271,11 @@ var CLSTAMP = "steamdb";
             return !0;
           switch (_) {
             case 1:
+              if (this.canPressAToActivateLaserMouse)
+                return this.HandleLaserMouseRequiredPromptClick(), !0;
+              if (this.shouldShowEnterGamepadModeButton)
+                return this.HandleEnterGamepadModeButtonClick(), !0;
+              break;
             case 2:
               if (this.shouldShowEnterGamepadModeButton)
                 return this.HandleEnterGamepadModeButtonClick(), !0;
@@ -27958,11 +28338,23 @@ var CLSTAMP = "steamdb";
           "showGamepadInputNotSupportedBanner",
           null,
         ),
+        (0, _._)(
+          [_.computed],
+          _.prototype,
+          "canPressAToActivateLaserMouse",
+          null,
+        ),
         (0, _._)([_.computed], _.prototype, "focusOutline", null),
         (0, _._)(
           [_.action.bound],
           _.prototype,
           "HandleEnterGamepadModeButtonClick",
+          null,
+        ),
+        (0, _._)(
+          [_.action.bound],
+          _.prototype,
+          "HandleLaserMouseRequiredPromptClick",
           null,
         ),
         (0, _._)([_.action.bound], _.prototype, "PushInputFocus", null),
@@ -28269,13 +28661,29 @@ var CLSTAMP = "steamdb";
           super(_),
             (this.componentName = "curvature"),
             (this.defaultComponentProps = {}),
+            (this.m_bCurveOverride = void 0),
             (0, _.makeObservable)(this);
+        }
+        Init() {
+          this.OnDestroyed.Register(
+            (0, _.reaction)(
+              () => this.frame.docking.dockLocation,
+              () => this.ClearCurveOverride(),
+            ),
+          );
         }
         get curvatureTransformOriginID() {
           return `frame:${this.frame.frameID}:curvature-origin`;
         }
+        ToggleCurvature() {
+          this.m_bCurveOverride = !this.shouldCurve;
+        }
+        ClearCurveOverride() {
+          this.m_bCurveOverride = void 0;
+        }
         get shouldCurve() {
           if (!_._.allowCurvature) return !1;
+          if (null != this.m_bCurveOverride) return this.m_bCurveOverride;
           switch (this.frame.docking.visualDockLocation) {
             case _.yWq.Dashboard:
               return !0;
@@ -28304,7 +28712,10 @@ var CLSTAMP = "steamdb";
         const { frame: _ } = (0, _._)();
         return (0, _.useObserver)(() => _.curvature.curvatureTransformOriginID);
       }
-      (0, _._)([_.computed], _.prototype, "curvatureTransformOriginID", null),
+      (0, _._)([_.observable], _.prototype, "m_bCurveOverride", void 0),
+        (0, _._)([_.computed], _.prototype, "curvatureTransformOriginID", null),
+        (0, _._)([_.action], _.prototype, "ToggleCurvature", null),
+        (0, _._)([_.action], _.prototype, "ClearCurveOverride", null),
         (0, _._)([_.computed], _.prototype, "shouldCurve", null),
         (0, _._)([_.computed], _.prototype, "curvatureOriginDistance", null);
     },
@@ -28604,6 +29015,9 @@ var CLSTAMP = "steamdb";
               (null == _ ? void 0 : _.inputFocus.mainPanelHasFocus) &&
               _._.computedInputFocus.m_eSystemPanelInteractionMode ==
                 _.wBp.Gamepad,
+          ),
+          _ = (0, _.useObserver)(() =>
+            null == _ ? void 0 : _.inputFocus.canPressAToActivateLaserMouse,
           );
         return _ || _
           ? _.createElement(
@@ -28679,6 +29093,14 @@ var CLSTAMP = "steamdb";
                           className: _().ButtonPill,
                         },
                         (0, _._)("#Use_Laser_Mouse_To_Interact"),
+                        _ &&
+                          _.createElement(
+                            "div",
+                            {
+                              className: _().GlyphContainer,
+                            },
+                            _.createElement(_, null),
+                          ),
                       ),
                     ),
                 ),
@@ -29059,6 +29481,7 @@ var CLSTAMP = "steamdb";
             (this.docking = new _(this)),
             (this.m_protoForSteam = void 0),
             (this.m_protoForVRLink = void 0),
+            (this.m_eState = _._.Alive),
             (this.Log = new _._("Frame", () => this.logPrefix)),
             (this.m_unFrameID = _),
             (0, _.makeObservable)(this);
@@ -29070,7 +29493,10 @@ var CLSTAMP = "steamdb";
           return this.m_unFrameID;
         }
         get state() {
-          return _._.Alive;
+          return this.m_eState;
+        }
+        _markDestroyed() {
+          this.m_eState = _._.Destroyed;
         }
         get title() {
           var _, _;
@@ -29174,7 +29600,9 @@ var CLSTAMP = "steamdb";
       }
       (0, _._)([_.observable], _.prototype, "m_protoForSteam", void 0),
         (0, _._)([_.observable], _.prototype, "m_protoForVRLink", void 0),
+        (0, _._)([_.observable], _.prototype, "m_eState", void 0),
         (0, _._)([_.computed], _.prototype, "logPrefix", null),
+        (0, _._)([_.action], _.prototype, "_markDestroyed", null),
         (0, _._)([_.computed], _.prototype, "title", null),
         (0, _._)([_.computed.struct], _.prototype, "icon", null),
         (0, _._)(
@@ -29215,6 +29643,7 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       var _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       const _ = new _._("InputFocus");
       class _ {
@@ -29245,6 +29674,7 @@ var CLSTAMP = "steamdb";
             (this.m_bAlreadySwallowedPressForGamepadModeEntry = !1),
             (this.gamepadUnsupportedMessageTrigger = 0),
             (this.m_nLatestGamepadUnsupportedMessageAttemptMS = void 0),
+            (this.m_bAnyVRHandControllerConnected = !1),
             (0, _.makeObservable)(this);
         }
         Init() {
@@ -29252,6 +29682,17 @@ var CLSTAMP = "steamdb";
             VRHTML.RegisterForInputFocusInfo((_) => {
               this.m_computedInputFocus = _;
             }),
+              null === VRHTML ||
+                void 0 === VRHTML ||
+                VRHTML.RegisterForDeviceEvents(
+                  this.UpdateAnyVRHandControllerConnected,
+                ),
+              null === VRHTML ||
+                void 0 === VRHTML ||
+                VRHTML.RegisterForDeviceRoleChangedEvents(
+                  this.UpdateAnyVRHandControllerConnected,
+                ),
+              this.UpdateAnyVRHandControllerConnected(),
               _._.SteamVR.SetImplementation(
                 "GamepadButtonAction",
                 this.OnGamepadButtonActionFromSteamUI,
@@ -29318,6 +29759,19 @@ var CLSTAMP = "steamdb";
             return void (
               _ && _._.Instance.toggleDashboard("Gamepad Guide Button")
             );
+          if (_._.inRoomSetup) {
+            const _ = (function (_) {
+              switch (_) {
+                case 1:
+                  return _.aqc.Accept;
+                case 2:
+                  return _.aqc.Back;
+                default:
+                  return;
+              }
+            })(_);
+            if (null != _) return void (_ && _._.HandleRoomSetupButton(_));
+          }
           const _ = this.m_mapCurrentlyDownButtonsForPanel[_];
           if (_) {
             if (
@@ -29402,6 +29856,23 @@ var CLSTAMP = "steamdb";
               sgid: _,
             });
         }
+        UpdateAnyVRHandControllerConnected() {
+          const _ = (_) =>
+            !!VRHTML &&
+            VRHTML.VRSystem.GetTrackedDeviceIndexForControllerRole(_) != _.neN;
+          this.m_bAnyVRHandControllerConnected =
+            _(_.kGj.TrackedControllerRole_LeftHand) ||
+            _(_.kGj.TrackedControllerRole_RightHand);
+        }
+        get canForceActivateLaserMouse() {
+          return this.m_bAnyVRHandControllerConnected;
+        }
+        ForceActivateLaserMouse() {
+          this.canForceActivateLaserMouse &&
+            _._.m_mailbox.SendMessage(_.lo4, {
+              type: "force_activate_laser_mouse",
+            });
+        }
         RemoveInputFocus(_) {
           _ &&
             _._.m_mailbox.SendMessage(_.Jv8, {
@@ -29462,6 +29933,12 @@ var CLSTAMP = "steamdb";
             !this.gamepadSuppressedForVRLink
           );
         }
+        get preferGamepadMode() {
+          return (
+            _._.settings.get("/settings/dashboard/preferGamepadMode") &&
+            !this.gamepadSuppressedForVRLink
+          );
+        }
         get gamepadSuppressedForVRLink() {
           return this.computedInputFocus.m_bSuppressingGamepadOverVRLink;
         }
@@ -29489,6 +29966,12 @@ var CLSTAMP = "steamdb";
           "gamepadUnsupportedMessageTrigger",
           void 0,
         ),
+        (0, _._)(
+          [_.observable],
+          _.prototype,
+          "m_bAnyVRHandControllerConnected",
+          void 0,
+        ),
         (0, _._)([_.computed], _.prototype, "computedInputFocus", null),
         (0, _._)([_._], _.prototype, "OnGamepadButtonActionFromSteamUI", null),
         (0, _._)(
@@ -29497,7 +29980,15 @@ var CLSTAMP = "steamdb";
           "unPanelSGIDForGamepadButtonHandling",
           null,
         ),
+        (0, _._)(
+          [_.action.bound],
+          _.prototype,
+          "UpdateAnyVRHandControllerConnected",
+          null,
+        ),
+        (0, _._)([_.computed], _.prototype, "canForceActivateLaserMouse", null),
         (0, _._)([_.computed], _.prototype, "gamepadFocusAllowed", null),
+        (0, _._)([_.computed], _.prototype, "preferGamepadMode", null),
         (0, _._)([_.computed], _.prototype, "gamepadSuppressedForVRLink", null),
         (0, _._)(
           [_.action],
@@ -29751,6 +30242,10 @@ var CLSTAMP = "steamdb";
           const _ = this.requests.find((_) => 1 == _.special_identifier);
           return this.RequestAndPanelForRequest(_);
         }
+        get floatingFooterPopup() {
+          const _ = this.requests.find((_) => 3 == _.special_identifier);
+          return this.RequestAndPanelForRequest(_);
+        }
       }
       (_.k_strSessionStorageKey = "PooledPopupStoreSessionStorage"),
         (0, _._)(
@@ -29781,7 +30276,8 @@ var CLSTAMP = "steamdb";
           "legacyFloatingMainMenuPopup",
           null,
         ),
-        (0, _._)([_.computed], _.prototype, "dashboardBarPopup", null);
+        (0, _._)([_.computed], _.prototype, "dashboardBarPopup", null),
+        (0, _._)([_.computed], _.prototype, "floatingFooterPopup", null);
       const _ = new _();
       function _(_, _) {
         if (!_ || !_) return !1;
@@ -30168,31 +30664,47 @@ var CLSTAMP = "steamdb";
             : _._.settings.get(_._);
         }
         get actualRefreshRate() {
-          var _;
-          return null === (_ = _._.systemInfo) || void 0 === _
+          var _, _;
+          return null ===
+            (_ =
+              null === (_ = _._.systemInfo) || void 0 === _
+                ? void 0
+                : _.refresh_rates) || void 0 === _
             ? void 0
-            : _.refresh_rates.actual_display_frequency;
+            : _.actual_display_frequency;
         }
         get refreshRatesAvailable() {
-          var _;
-          return null === (_ = _._.systemInfo) || void 0 === _
+          var _, _;
+          return null ===
+            (_ =
+              null === (_ = _._.systemInfo) || void 0 === _
+                ? void 0
+                : _.refresh_rates) || void 0 === _
             ? void 0
-            : _.refresh_rates.supported_rates;
+            : _.supported_rates;
         }
         PadResolution(_) {
           const _ = this.supersampleScalePixelsStep || 4;
           return Math.trunc(_ / _) * _;
         }
         ComputeResolution(_, _) {
-          var _, _, _;
+          var _, _, _, _, _;
           const _ =
-              null === (_ = _._.systemInfo) || void 0 === _
+              null ===
+                (_ =
+                  null === (_ = _._.systemInfo) || void 0 === _
+                    ? void 0
+                    : _.render_target_size) || void 0 === _
                 ? void 0
-                : _.render_target_size.width,
+                : _.width,
             _ =
-              null === (_ = _._.systemInfo) || void 0 === _
+              null ===
+                (_ =
+                  null === (_ = _._.systemInfo) || void 0 === _
+                    ? void 0
+                    : _.render_target_size) || void 0 === _
                 ? void 0
-                : _.render_target_size.height;
+                : _.height;
           if (!_ || !_) return [0, 0];
           let _ = Math.max(512, Math.floor(_ * Math.sqrt(_) + 0.5)),
             _ = Math.max(512, Math.floor(_ * Math.sqrt(_) + 0.5));
@@ -30680,12 +31192,48 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
-      const _ = (_) => {
-        if (null == _) return "";
-        let _ = _.image_path_capsule || _.image_path;
-        return _.startsWith("/app/image?") && (_ += "&aspect=portrait"), _;
-      };
+      const _ = (0, _._)(function (_) {
+          var { variant: _, gamepadFocused: _, focusRing: _, className: _ } = _,
+            _ = (0, _._)(_, [
+              "variant",
+              "gamepadFocused",
+              "focusRing",
+              "className",
+            ]);
+          const _ = "primary" == _;
+          return _.createElement(
+            _._,
+            Object.assign({}, _, {
+              className: (0, _._)(
+                "GamepadUIButton",
+                _.GamepadUIButton,
+                [_.Primary, _],
+                [
+                  _.Highlighted,
+                  _ &&
+                    (null === _._ || void 0 === _._
+                      ? void 0
+                      : _._.computedInputFocus.m_eSystemPanelInteractionMode) ==
+                      _.wBp.LaserMouse &&
+                    !_._.hasControllers,
+                ],
+                [_.FocusRing, !!_],
+                _,
+                ["gpfocus", !!_],
+              ),
+            }),
+          );
+        }),
+        _ = (_) => {
+          if (null == _) return "";
+          let _ = _.image_path_capsule || _.image_path;
+          return _.startsWith("/app/image?") && (_ += "&aspect=portrait"), _;
+        };
       function _(_) {
         const _ = (0, _.useObserver)(
             () => _._.Instance.SceneApplicationState != _.HWH.None,
@@ -30724,6 +31272,7 @@ var CLSTAMP = "steamdb";
         constructor(_) {
           super(_),
             (this.m_mailbox = new _._nH()),
+            (this.m_FramePage = void 0),
             (this.m_refManageBindingsModal = _.createRef()),
             (this.m_refAppVideoSettingsModal = _.createRef()),
             (this.state = {}),
@@ -30738,9 +31287,10 @@ var CLSTAMP = "steamdb";
             _.closing.RequestClose();
         }
         onReturnToGame() {
-          null === VRHTML ||
-            void 0 === VRHTML ||
-            VRHTML.VRDashboardManager.HideDashboard("return_to_game", !1);
+          _._.roomViewShowing && (0, _._)(!1),
+            null === VRHTML ||
+              void 0 === VRHTML ||
+              VRHTML.VRDashboardManager.HideDashboard("return_to_game", !1);
         }
         onOpenAppControllerBindingSettings() {
           const _ = _._.Instance.SceneAppKey;
@@ -30755,12 +31305,18 @@ var CLSTAMP = "steamdb";
             type: "reset_perf_criteria_status",
           });
         }
-        render() {
+        setFramePage(_) {
           var _, _;
-          const _ = _._.Instance.SceneAppKey,
-            _ = _._.Instance.SceneAppName,
-            _ = _._.Instance.SceneApplicationState,
-            _ = _._.Instance.SceneAppIsHome,
+          this.m_FramePage != _ &&
+            ((this.m_FramePage = _),
+            this.forceUpdate(),
+            null === (_ = (_ = this.props).refFramePage) ||
+              void 0 === _ ||
+              __webpack_require__.call(_, _));
+        }
+        get buttons() {
+          var _, _;
+          const _ = _._.Instance.SceneAppIsHome,
             _ = _._.settings.get("/settings/dashboard/allowAppQuitting"),
             _ = !(
               null !==
@@ -30768,7 +31324,151 @@ var CLSTAMP = "steamdb";
               void 0 !== _ &&
               _
             ),
-            _ = null !== (_ = _._.settings.get(_._)) && void 0 !== _ && _,
+            _ = null !== (_ = _._.settings.get(_._)) && void 0 !== _ && _;
+          return [
+            {
+              key: "return",
+              variant: "primary",
+              className: "ResumeButton",
+              label: _
+                ? (0, _._)("#Return_To_Home")
+                : (0, _._)("#Return_To_Game"),
+              OnInvoked: this.onReturnToGame,
+            },
+            ...(_
+              ? [
+                  {
+                    key: "bindings",
+                    label: _.createElement(
+                      "span",
+                      null,
+                      (0, _._)("#VR_Controller_Bindings"),
+                    ),
+                    OnInvoked: () => {
+                      var _;
+                      return null ===
+                        (_ = this.m_refManageBindingsModal.current) ||
+                        void 0 === _
+                        ? void 0
+                        : _.show();
+                    },
+                  },
+                  {
+                    key: "videosettings",
+                    label: _.createElement(
+                      "span",
+                      null,
+                      (0, _._)("#VR_App_Video_Settings"),
+                    ),
+                    OnInvoked: () => {
+                      var _;
+                      return null ===
+                        (_ = this.m_refAppVideoSettingsModal.current) ||
+                        void 0 === _
+                        ? void 0
+                        : _.show();
+                    },
+                  },
+                ]
+              : []),
+            ...(_
+              ? [
+                  {
+                    key: "clearperfcriteria",
+                    label: _.createElement(
+                      "span",
+                      null,
+                      (0, _._)("#Clear_PerfCriteria_Status"),
+                    ),
+                    OnInvoked: this.onClearPerfCriteriaStatus,
+                  },
+                ]
+              : []),
+            ...(_
+              ? [
+                  {
+                    key: "exit",
+                    label: _ ? (0, _._)("#Exit_Home") : (0, _._)("#Exit_Game"),
+                    OnInvoked: this.onExitApp,
+                  },
+                ]
+              : []),
+          ];
+        }
+        get isSettingsModalOpen() {
+          return null != _._.routePageSection;
+        }
+        get hasGamepadFocus() {
+          var _;
+          return !(
+            !(null === (_ = this.m_FramePage) || void 0 === _
+              ? void 0
+              : _.inputFocus.hasGamepadFocus) ||
+            this.isSettingsModalOpen ||
+            _._.computedInputFocus.m_eSystemPanelInteractionMode !=
+              _.wBp.Gamepad
+          );
+        }
+        get focusedButtonKey() {
+          var _;
+          if (!this.hasGamepadFocus) return;
+          const _ = this.buttons;
+          return _.some((_) => _.key == this.state.sFocusedButtonKey)
+            ? this.state.sFocusedButtonKey
+            : null === (_ = _[0]) || void 0 === _
+              ? void 0
+              : _.key;
+        }
+        handleGamepadButtonDown(_) {
+          switch (_) {
+            case 9:
+              return this.MoveGamepadFocus(-1);
+            case 10:
+              return this.MoveGamepadFocus(1);
+          }
+          return !1;
+        }
+        MoveGamepadFocus(_) {
+          const _ = this.focusedButtonKey;
+          if (null == _) return !1;
+          const _ = this.buttons,
+            _ = __webpack_require__.findIndex((_) => _.key == _) + _;
+          return (
+            !(_ < 0 || _ >= _.length) &&
+            (this.setState({
+              sFocusedButtonKey: _[_].key,
+            }),
+            !0)
+          );
+        }
+        handleGamepadButtonClick(_) {
+          if (this.isSettingsModalOpen)
+            return 2 == _ && (_._.setRoutePageSection(null), !0);
+          if (!this.hasGamepadFocus) return !1;
+          switch (_) {
+            case 1: {
+              const _ = this.buttons.find(
+                (_) => _.key == this.focusedButtonKey,
+              );
+              return !!_ && (_.OnInvoked(), !0);
+            }
+            case 2:
+              return this.onReturnToGame(), !0;
+          }
+          return !1;
+        }
+        render() {
+          var _;
+          const _ = _._.Instance.SceneAppKey,
+            _ = _._.Instance.SceneAppName,
+            _ = _._.Instance.SceneApplicationState,
+            _ = !(
+              null !==
+                (_ = _._.settings.get("/settings/dashboard/arcadeMode")) &&
+              void 0 !== _ &&
+              _
+            ),
+            _ = this.focusedButtonKey,
             _ = _._.apps && _._.apps.find((_) => _.key == _);
           let _ = !1;
           switch (_) {
@@ -30781,7 +31481,14 @@ var CLSTAMP = "steamdb";
             _._,
             {
               summonOverlayKey: _._,
-              ref: this.props.refFramePage,
+              ref: this.setFramePage,
+              componentProps: {
+                inputFocus: {
+                  steamInputAppID: this.isSettingsModalOpen ? void 0 : _._,
+                  onSystemGamepadButtonDown: this.handleGamepadButtonDown,
+                  onSystemGamepadButtonClick: this.handleGamepadButtonClick,
+                },
+              },
             },
             _.createElement(
               _._,
@@ -30791,6 +31498,7 @@ var CLSTAMP = "steamdb";
                 {
                   visible: !0,
                   debugName: "nowplaying",
+                  _: "nowplayingpanel",
                   containerClassNames: "SettingsMain",
                   additionalClassNames: "NowPlaying",
                   scrollable: !0,
@@ -30818,15 +31526,23 @@ var CLSTAMP = "steamdb";
                     },
                     _,
                   ),
-                  _.createElement(
-                    _._,
-                    {
-                      className: "ButtonControl Colorful",
-                      onClick: this.onReturnToGame,
-                    },
-                    _
-                      ? (0, _._)("#Return_To_Home")
-                      : (0, _._)("#Return_To_Game"),
+                  this.buttons.map((_) =>
+                    _.createElement(
+                      _,
+                      {
+                        key: _.key,
+                        variant: _.variant,
+                        className: _.className,
+                        gamepadFocused: _ == _.key,
+                        onClick: _.OnInvoked,
+                        onMouseDown: () =>
+                          this.setState({
+                            sFocusedButtonKey: _.key,
+                          }),
+                        focusRing: !0,
+                      },
+                      _.label,
+                    ),
                   ),
                   _ &&
                     _.createElement(
@@ -30836,69 +31552,10 @@ var CLSTAMP = "steamdb";
                         appKey: _,
                         ref: this.m_refManageBindingsModal,
                       }),
-                      _.createElement(
-                        _._,
-                        {
-                          className: "ButtonControl",
-                          onClick: () => {
-                            var _;
-                            return null ===
-                              (_ = this.m_refManageBindingsModal.current) ||
-                              void 0 === _
-                              ? void 0
-                              : _.show();
-                          },
-                        },
-                        (0, _._)(
-                          "#Settings_Controller_AdvancedControllerSettings",
-                        ),
-                      ),
-                    ),
-                  _ &&
-                    _.createElement(
-                      _.Fragment,
-                      null,
                       _.createElement(_._, {
                         appKey: _,
                         ref: this.m_refAppVideoSettingsModal,
                       }),
-                      _.createElement(
-                        _._,
-                        {
-                          className: "ButtonControl",
-                          onClick: () => {
-                            var _;
-                            return null ===
-                              (_ = this.m_refAppVideoSettingsModal.current) ||
-                              void 0 === _
-                              ? void 0
-                              : _.show();
-                          },
-                        },
-                        (0, _._)("#App_Video_Settings"),
-                      ),
-                    ),
-                  _ &&
-                    _.createElement(
-                      _.Fragment,
-                      null,
-                      _.createElement(
-                        _._,
-                        {
-                          className: "ButtonControl Advanced",
-                          onClick: this.onClearPerfCriteriaStatus,
-                        },
-                        (0, _._)("#Clear_PerfCriteria_Status"),
-                      ),
-                    ),
-                  _ &&
-                    _.createElement(
-                      _._,
-                      {
-                        className: "ButtonControl",
-                        onClick: this.onExitApp,
-                      },
-                      _ ? (0, _._)("#Exit_Home") : (0, _._)("#Exit_Game"),
                     ),
                 ),
               ),
@@ -30917,6 +31574,9 @@ var CLSTAMP = "steamdb";
         ),
         (0, _._)([_._], _.prototype, "onOpenAppVideoSettings", null),
         (0, _._)([_._], _.prototype, "onClearPerfCriteriaStatus", null),
+        (0, _._)([_._], _.prototype, "setFramePage", null),
+        (0, _._)([_._], _.prototype, "handleGamepadButtonDown", null),
+        (0, _._)([_._], _.prototype, "handleGamepadButtonClick", null),
         (_ = (0, _._)([_._], _));
       const _ = _.createContext(void 0);
       let _ = class extends _.Component {
@@ -30928,7 +31588,7 @@ var CLSTAMP = "steamdb";
             });
         }
         render() {
-          var _, _, _;
+          var _, _, _, _;
           const _ = this.props.allow_scroll
             ? null === (_ = this.state) || void 0 === _
               ? void 0
@@ -30962,6 +31622,10 @@ var CLSTAMP = "steamdb";
                 null === (_ = this.props) || void 0 === _
                   ? void 0
                   : _.reset_on_recenter,
+              reset_on_dashboard_relatch:
+                null === (_ = this.props) || void 0 === _
+                  ? void 0
+                  : _.reset_on_dashboard_relatch,
               event_panel_sgid: _,
               scroll_speed:
                 null === (_ = this.props) || void 0 === _
@@ -31002,42 +31666,32 @@ var CLSTAMP = "steamdb";
             });
         }
         onMouseLeave(_) {}
-        startMove() {
-          var _;
-          let _,
-            _ =
-              null !==
-                (_ =
-                  null === VRHTML || void 0 === VRHTML
-                    ? void 0
-                    : VRHTML.VROverlay.GetPrimaryDashboardDevice()) &&
-              void 0 !== _
-                ? _
-                : _.neN;
-          if (_ != _.neN) {
-            switch (
-              null === VRHTML || void 0 === VRHTML
-                ? void 0
-                : VRHTML.VRSystem.GetControllerRoleForTrackedDeviceIndex(_)
-            ) {
-              case _.kGj.TrackedControllerRole_LeftHand:
-                _ = "/user/hand/left/pose/tip";
-                break;
-              case _.kGj.TrackedControllerRole_RightHand:
-                _ = "/user/hand/right/pose/tip";
-                break;
-              default:
-                _ = "/user/head";
-            }
-            this.context.setState({
-              parent_path: _,
-            }),
-              this.setState({
-                bActive: !0,
-              }),
-              window.addEventListener("mouseup", this.endMove),
-              this.props.onStartMove && this.props.onStartMove();
+        startMove(_) {
+          let _;
+          switch ((0, _.Op7)(_)) {
+            case _.IlB.HandLeft:
+              _ = _._;
+              break;
+            case _.IlB.HandRight:
+              _ = _._;
+              break;
+            case _.IlB.Head:
+              _ = _._;
+              break;
+            default:
+              console.warn(
+                "GrabHandle.startMove: mouse event carried no input path, falling back to the head",
+              ),
+                (_ = _._);
           }
+          this.context.setState({
+            parent_path: _,
+          }),
+            this.setState({
+              bActive: !0,
+            }),
+            window.addEventListener("mouseup", this.endMove),
+            this.props.onStartMove && this.props.onStartMove();
         }
         endMove() {
           this.context.setState({
@@ -31269,9 +31923,62 @@ var CLSTAMP = "steamdb";
               ),
             )
           );
+        }),
+        _ = (0, _._)(function (_) {
+          const { dashboardBarPitch: _ } = _;
+          return _.createElement(
+            _.dLy,
+            {
+              rotation: {
+                _: _,
+              },
+            },
+            _.createElement(
+              _.dLy,
+              {
+                translation: _.k_nKeyboardGrabTransformOffset,
+              },
+              _.createElement(
+                _,
+                {
+                  min_distance: 0.2,
+                  max_distance: 1,
+                  should_head_align: !1,
+                  allow_scroll: !0,
+                  scroll_speed: 8,
+                  key: _._.shouldShowKeyboardForUndockedFrame_Hack
+                    ? "kb-for-undocked-overlay"
+                    : "standard",
+                },
+                _.createElement(
+                  _.dLy,
+                  {
+                    translation: {
+                      _: -1 * _.k_nKeyboardGrabTransformOffset._,
+                      _: -1 * _.k_nKeyboardGrabTransformOffset._,
+                      _: -1 * _.k_nKeyboardGrabTransformOffset._,
+                    },
+                  },
+                  _.createElement(
+                    _.dLy,
+                    {
+                      rotation: {
+                        _: -10,
+                      },
+                      curvature_pitch: _,
+                    },
+                    _._.m_bKeyboardVisible &&
+                      _._.m_bKeyboardDockedInDashboard &&
+                      _.createElement(_, {
+                        debugHostLocation: "Dashboard",
+                      }),
+                  ),
+                ),
+              ),
+            ),
+          );
         });
       var _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
@@ -33488,6 +34195,7 @@ var CLSTAMP = "steamdb";
               visible: !0,
               scrollable: !_,
               debugName: "quicklaunch",
+              _: "quicklaunchpanel",
               additionalClassNames: "QuickLaunch",
             },
             _,
@@ -33599,12 +34307,50 @@ var CLSTAMP = "steamdb";
               [_, _, _],
             );
           (0, _._)(_._.m_rgSwitchToOverlayKeyCallbacks, _);
+          const _ = 2 != _.eUICompositionState && 3 != _.eUICompositionState;
           let _ = _.eUICompositionState;
           switch (_) {
             case 2:
-            case 4:
               _ = 3;
+              break;
+            case 4:
+              _ = 1;
           }
+          !(function (_, _, _) {
+            const _ = (0, _._)(37, _.fkw.MutualLocal),
+              _ = null == _ ? void 0 : _.sHandle,
+              _ = null == _ ? void 0 : _.sHandle;
+            _.useEffect(() => {
+              var _;
+              if (_ && _) {
+                try {
+                  null ===
+                    (_ =
+                      null === VRHTML || void 0 === VRHTML
+                        ? void 0
+                        : VRHTML.VROverlay) ||
+                    void 0 === _ ||
+                    _.SetKeyboardForwarding(_, _ && null != _ ? _ : null);
+                } catch (_) {
+                  console.warn("useForwardKeyboardPresses:", _);
+                }
+                return () => {
+                  var _;
+                  try {
+                    null ===
+                      (_ =
+                        null === VRHTML || void 0 === VRHTML
+                          ? void 0
+                          : VRHTML.VROverlay) ||
+                      void 0 === _ ||
+                      _.SetKeyboardForwarding(_, null);
+                  } catch (_) {
+                    console.warn("useForwardKeyboardPresses:", _);
+                  }
+                };
+              }
+            }, [_, _, _, _]);
+          })(_, _, _);
           const _ = null != _ && !_.bStreamingClient,
             _ =
               null != _ &&
@@ -33853,9 +34599,9 @@ var CLSTAMP = "steamdb";
       function _(_) {
         switch (_) {
           case _.yWq.LeftHand:
-            return "/user/hand/left";
+            return _._;
           case _.yWq.RightHand:
-            return "/user/hand/right";
+            return _._;
           default:
             return "";
         }
@@ -33867,48 +34613,50 @@ var CLSTAMP = "steamdb";
             _.docking.panelTranslationForResizeOrigin._ *
             _.size.scaleForActivePage *
             _._.dashboardScale);
-        const _ = 0.6 - _,
-          _ = _._.defaultTheaterDistance;
+        const _ = _._.defaultTheaterDistance;
         switch (_._.currentTheaterScreenAlignment) {
           case _._.PlayArea: {
+            const _ = 0.75,
+              _ = -1.15;
             let _ = (0, _.vxi)();
-            return (_.translation._ = _), (_.translation._ = -3.3), _;
+            return (_.translation._ = _ - _), (_.translation._ = _ - _), _;
           }
           case _._.Dashboard: {
-            let _ = (function (_) {
+            let _ = (function (_, _) {
               const _ = VRHTML.GetStoredTransform(1, 2);
               if (!_) return;
               const _ = (0, _.vxi)();
               return (
                 (_.translation._ = -_),
-                (_.translation._ = -0.75),
+                (_.translation._ = -0.4 - _),
                 VRHTML.MultiplyTransforms(_, _)
               );
-            })(_);
-            return (
-              _ ||
-              ((_ = (function (_) {
-                const [_] = VRHTML.GetPose("/user/head", _.muq.Standing);
-                if (
-                  _ &&
-                  (null == _ ? void 0 : _.bPoseIsValid) &&
-                  (null == _ ? void 0 : _.xfDeviceToAbsoluteTracking)
-                ) {
-                  const _ = -0.75;
-                  let _ = VRHTML.CalcDashboardTransform(
-                    _.xfDeviceToAbsoluteTracking,
-                    !0,
-                  );
-                  const _ = (0, _.vxi)();
-                  return (
-                    (_.translation._ = -_),
-                    (_.translation._ = _),
-                    VRHTML.MultiplyTransforms(_, _)
-                  );
-                }
-              })(_)),
-              _ || void 0)
-            );
+            })(_, _);
+            return _
+              ? ((_.translation._ = Math.max(0.6, _.translation._)), _)
+              : ((_ = (function (_, _) {
+                  const [_] = VRHTML.GetPose("/user/head", _.muq.Standing);
+                  if (
+                    _ &&
+                    (null == _ ? void 0 : _.bPoseIsValid) &&
+                    (null == _ ? void 0 : _.xfDeviceToAbsoluteTracking)
+                  ) {
+                    const _ = -0.4;
+                    let _ = VRHTML.CalcDashboardTransform(
+                      _.xfDeviceToAbsoluteTracking,
+                      !0,
+                    );
+                    const _ = (0, _.vxi)();
+                    return (
+                      (_.translation._ = -_),
+                      (_.translation._ = _ - _),
+                      VRHTML.MultiplyTransforms(_, _)
+                    );
+                  }
+                })(_, _)),
+                _
+                  ? ((_.translation._ = Math.max(0.6, _.translation._)), _)
+                  : void 0);
           }
           default:
             return;
@@ -33917,6 +34665,7 @@ var CLSTAMP = "steamdb";
       let _ = (_ = class extends _.Component {
         constructor(_) {
           super(_),
+            (this.m_sMoveDevicePath = void 0),
             (this.m_NudgeReactionHandle = void 0),
             (this.m_DockLocationReactionHandle = void 0),
             (this.m_StandingResetHandle = void 0),
@@ -33939,9 +34688,7 @@ var CLSTAMP = "steamdb";
               dragCanSnapToDashboard: !1,
               bIsResizing: !1,
               nGrabScaleResetGeneration: 0,
-            }),
-            (this.m_nMoveDeviceIndex = _.neN),
-            (this.m_moveDeviceRole = _.kGj.TrackedControllerRole_Invalid);
+            });
         }
         componentDidMount() {
           const _ = this.props.frame;
@@ -34236,23 +34983,17 @@ var CLSTAMP = "steamdb";
             !(null === (_ = this.props.frame) || void 0 === _
               ? void 0
               : _.docking.beingDragged) ||
-            null === this.state.xfTransform
+            null === this.state.xfTransform ||
+            !this.m_sMoveDevicePath
           )
             return;
           this.refreshCompositorSnapState();
-          const [_] = VRHTML.GetPose(this.m_nMoveDeviceIndex, _.muq.Standing),
-            _ = null == _ ? void 0 : _.xfDeviceToAbsoluteTracking;
-          let _ = null;
-          VRHTML.VRSystem.GetTrackedDeviceIndexForControllerRole(
-            _.kGj.TrackedControllerRole_LeftHand,
-          ) != _.neN &&
-            ([_] = VRHTML.GetPose("/user/hand/left", _.muq.Standing));
-          let _ = null;
-          VRHTML.VRSystem.GetTrackedDeviceIndexForControllerRole(
-            _.kGj.TrackedControllerRole_RightHand,
-          ) != _.neN &&
-            ([_] = VRHTML.GetPose("/user/hand/right", _.muq.Standing));
-          const _ = [];
+          const [_] = VRHTML.GetPose(this.m_sMoveDevicePath, _.muq.Standing);
+          if (!_) return;
+          const _ = null == _ ? void 0 : _.xfDeviceToAbsoluteTracking,
+            [_] = VRHTML.GetPose(_._, _.muq.Standing),
+            [_] = VRHTML.GetPose(_._, _.muq.Standing),
+            _ = [];
           if (
             (this.m_xfDashboardSnapTransform &&
               _._.isFullyVisible &&
@@ -34261,13 +35002,13 @@ var CLSTAMP = "steamdb";
                 location: _.yWq.Dashboard,
               }),
             _ &&
-              "/user/hand/left" != this.state.sParentDevice &&
+              this.state.sParentDevice != _._ &&
               _.push({
                 _: _.xfDeviceToAbsoluteTracking,
                 location: _.yWq.LeftHand,
               }),
             _ &&
-              "/user/hand/right" != this.state.sParentDevice &&
+              this.state.sParentDevice != _._ &&
               _.push({
                 _: _.xfDeviceToAbsoluteTracking,
                 location: _.yWq.RightHand,
@@ -34324,24 +35065,34 @@ var CLSTAMP = "steamdb";
             this.props.frame.docking.SetPreviewDockLocation(_.location),
             this.scheduleNextDragSnapPulse();
         }
-        startFloatingWindowMove() {
+        startFloatingWindowMove(_) {
           return (0, _._)(this, void 0, void 0, function* () {
             const _ = this.props.frame;
             if (!_) return;
             if (_.docking.beingDragged || null === this.state.xfTransform)
               return;
+            const _ = (0, _.Op7)(_);
             if (
-              ((this.m_nMoveDeviceIndex =
-                VRHTML.VROverlay.GetPrimaryDashboardDevice()),
-              this.m_nMoveDeviceIndex == _.neN)
+              ((this.m_sMoveDevicePath = (function (_) {
+                switch (_) {
+                  case _.IlB.Head:
+                    return _._;
+                  case _.IlB.HandLeft:
+                    return _._;
+                  case _.IlB.HandRight:
+                    return _._;
+                  default:
+                    return;
+                }
+              })(_)),
+              !this.m_sMoveDevicePath)
             )
-              return;
-            this.m_moveDeviceRole =
-              VRHTML.VRSystem.GetControllerRoleForTrackedDeviceIndex(
-                this.m_nMoveDeviceIndex,
+              return void console.warn(
+                "UndockedOverlay.startFloatingWindowMove: mouse event carried no input path, falling back to the head",
+                _,
               );
-            const [_] = VRHTML.GetPose(this.m_nMoveDeviceIndex, _.muq.Standing);
-            let _, _;
+            const [_] = VRHTML.GetPose(this.m_sMoveDevicePath, _.muq.Standing);
+            let _;
             switch (
               ((this.m_xfDashboardSnapTransform = void 0),
               (this.m_bRefreshingCompositorSnapState = !1),
@@ -34349,22 +35100,10 @@ var CLSTAMP = "steamdb";
               _.docking.dockLocation)
             ) {
               case _.yWq.LeftHand:
-                if (
-                  VRHTML.VRSystem.GetTrackedDeviceIndexForControllerRole(
-                    _.kGj.TrackedControllerRole_LeftHand,
-                  ) == _.neN
-                )
-                  return;
-                [_] = VRHTML.GetPose("/user/hand/left", _.muq.Standing);
+                [_] = VRHTML.GetPose(_._, _.muq.Standing);
                 break;
               case _.yWq.RightHand:
-                if (
-                  VRHTML.VRSystem.GetTrackedDeviceIndexForControllerRole(
-                    _.kGj.TrackedControllerRole_RightHand,
-                  ) == _.neN
-                )
-                  return;
-                [_] = VRHTML.GetPose("/user/hand/right", _.muq.Standing);
+                [_] = VRHTML.GetPose(_._, _.muq.Standing);
                 break;
               default:
                 _ = {
@@ -34378,16 +35117,6 @@ var CLSTAMP = "steamdb";
                   bPoseIsValid: !0,
                 };
             }
-            switch (this.m_moveDeviceRole) {
-              case _.kGj.TrackedControllerRole_LeftHand:
-                _ = "/user/hand/left";
-                break;
-              case _.kGj.TrackedControllerRole_RightHand:
-                _ = "/user/hand/right";
-                break;
-              default:
-                _ = "/user/head";
-            }
             if (!_ || !_) return;
             _.docking.SetBeingDragged(!0);
             let _ = VRHTML.MultiplyTransforms(
@@ -34398,7 +35127,7 @@ var CLSTAMP = "steamdb";
             this.setState(
               {
                 xfTransform: _,
-                sParentDevice: _,
+                sParentDevice: this.m_sMoveDevicePath,
                 dragCanSnapToDashboard: !1,
               },
               this.computeDragSnapDestination,
@@ -34430,31 +35159,8 @@ var CLSTAMP = "steamdb";
           });
         }
         endFloatingWindowMoveInternal(_, _) {
-          let _, _;
-          if (
-            "/user/hand/left" == this.state.sParentDevice ||
-            _ == _.yWq.LeftHand
-          ) {
-            if (
-              VRHTML.VRSystem.GetTrackedDeviceIndexForControllerRole(
-                _.kGj.TrackedControllerRole_LeftHand,
-              ) == _.neN
-            )
-              return;
-            [_] = VRHTML.GetPose("/user/hand/left", _.muq.Standing);
-          }
-          if (
-            "/user/hand/right" == this.state.sParentDevice ||
-            _ == _.yWq.RightHand
-          ) {
-            if (
-              VRHTML.VRSystem.GetTrackedDeviceIndexForControllerRole(
-                _.kGj.TrackedControllerRole_RightHand,
-              ) == _.neN
-            )
-              return;
-            [_] = VRHTML.GetPose("/user/hand/right", _.muq.Standing);
-          }
+          const [_] = VRHTML.GetPose(_._, _.muq.Standing),
+            [_] = VRHTML.GetPose(_._, _.muq.Standing);
           let _,
             _ = {
               xfDeviceToAbsoluteTracking: (0, _.vxi)(),
@@ -34476,8 +35182,21 @@ var CLSTAMP = "steamdb";
             default:
               _ = _;
           }
-          const [_] = VRHTML.GetPose(this.m_nMoveDeviceIndex, _.muq.Standing),
-            _ = VRHTML.MultiplyTransforms(
+          const [_] = VRHTML.GetPose(this.m_sMoveDevicePath, _.muq.Standing);
+          if (!_ || !_)
+            return (
+              console.warn(
+                "UndockedOverlay.endFloatingWindowMoveInternal: missing pose, ending drag in place",
+                this.m_sMoveDevicePath,
+                _,
+              ),
+              _.docking.SetBeingDragged(!1),
+              void window.removeEventListener(
+                "mouseup",
+                this.endFloatingWindowMove,
+              )
+            );
+          const _ = VRHTML.MultiplyTransforms(
               VRHTML.MultiplyTransforms(
                 _.xfDeviceToAbsoluteTracking,
                 this.state.xfTransform,
@@ -34813,7 +35532,6 @@ var CLSTAMP = "steamdb";
         return {
           overlayKey: null == _ ? void 0 : _.overlay_key,
           sReason: null == _ ? void 0 : _.reason,
-          unTrackedDeviceIndex: null == _ ? void 0 : _.tracked_device_index,
           bSourceIsVRLinkRemote: null == _ ? void 0 : _.source_is_vrlink_remote,
           eDashboardRelatch: null == _ ? void 0 : _.dashboard_relatch,
         };
@@ -34873,7 +35591,6 @@ var CLSTAMP = "steamdb";
                     this.toggleDashboard(
                       null == _ ? void 0 : _.reason,
                       null == _ ? void 0 : _.source_is_vrlink_remote,
-                      null == _ ? void 0 : _.tracked_device_index,
                     ),
                 );
             }),
@@ -35338,10 +36055,9 @@ var CLSTAMP = "steamdb";
               );
         }
         onGrabStart() {
-          _._.m_bDashboardIsBeingDragged = !0;
+          _._.m_OnDashboardGrabStart.Dispatch();
         }
         onGrabEnd() {
-          _._.m_bDashboardIsBeingDragged = !1;
           for (const _ of _._.frames)
             _.docking && _.docking.SetJustFloatedFromDashboard(!1);
         }
@@ -35482,7 +36198,7 @@ var CLSTAMP = "steamdb";
           if (
             _._.m_bVRLinkStreamingActive &&
             _._.unifiedDashboardEnabled &&
-            _._.hasActiveFrameID
+            (_._.useRemoteDashboardState || _._.hasActiveFrame)
           )
             return;
           const _ = [],
@@ -35546,7 +36262,7 @@ var CLSTAMP = "steamdb";
             : _.summonOverlayKey) == _._ && this.switchToHomeOverlay();
         }
         showDashboardOverlay(_, _) {
-          var _, _, _, _, _, _;
+          var _, _, _, _;
           const _ = _._.m_bKeyboardVisible && _._.m_bKeyboardDockedInDashboard;
           if (
             (_.Info(
@@ -35613,13 +36329,7 @@ var CLSTAMP = "steamdb";
                         ? void 0
                         : VRHTML.VRLink) ||
                     void 0 === _ ||
-                    _.SendRemoteDashboardOpen(
-                      null !==
-                        (_ = null == _ ? void 0 : _.unTrackedDeviceIndex) &&
-                        void 0 !== _
-                        ? _
-                        : _.neN,
-                    )),
+                    _.SendRemoteDashboardOpen()),
                 !_)
               )
                 return void _.Info(
@@ -35628,44 +36338,27 @@ var CLSTAMP = "steamdb";
                 );
             }
             if (
-              !_ ||
-              !_._.isFullyVisible ||
+              !(_ && _._.isFullyVisible && _._.hasActiveFrame) ||
               (null == _ ? void 0 : _.overlayKey) ||
               (null == _ ? void 0 : _.frameId)
             ) {
               if (_ && !_._.isFullyVisible) {
-                {
-                  _.instance.StartDashboardSession(
-                    null !== (_ = null == _ ? void 0 : _.sReason) &&
-                      void 0 !== _
-                      ? _
-                      : "",
-                  );
-                  const _ = _._.Instance.SceneAppKey,
-                    _ = _._.Instance.SceneAppIsHome;
-                  _ &&
-                    _ != _._.m_sLastShownAppKey &&
-                    ((_._.m_sLastShownAppKey = _),
-                    _
-                      ? this.switchToHomeOverlay()
-                      : this.switchToOverlayInternal(_._, "show")),
-                    (this.m_activeOverlayThatVanished = void 0),
-                    _._.OnShown(),
-                    (0, _.EmM)(null == _ ? void 0 : _.eDashboardRelatch);
-                }
-                const _ =
-                  null !== (_ = null == _ ? void 0 : _.unTrackedDeviceIndex) &&
-                  void 0 !== _
+                _.instance.StartDashboardSession(
+                  null !== (_ = null == _ ? void 0 : _.sReason) && void 0 !== _
                     ? _
-                    : _.neN;
-                _.Info(
-                  "PostDashboardActivatedEvent",
-                  "unTrackedDeviceIndex",
-                  _,
-                ),
-                  null === VRHTML ||
-                    void 0 === VRHTML ||
-                    VRHTML.VRClient.PostDashboardActivatedEvent(!0, _);
+                    : "",
+                );
+                const _ = _._.Instance.SceneAppKey,
+                  _ = _._.Instance.SceneAppIsHome;
+                _ &&
+                  _ != _._.m_sLastShownAppKey &&
+                  ((_._.m_sLastShownAppKey = _),
+                  _
+                    ? this.switchToHomeOverlay()
+                    : this.switchToOverlayInternal(_._, "show")),
+                  (this.m_activeOverlayThatVanished = void 0),
+                  _._.OnShown(),
+                  (0, _.EmM)(null == _ ? void 0 : _.eDashboardRelatch);
               }
               (null == _ ? void 0 : _.docking.dockLocation) != _.yWq.Boot &&
                 ((null == _ ? void 0 : _.overlayKey)
@@ -35683,15 +36376,8 @@ var CLSTAMP = "steamdb";
             }
           }
         }
-        toggleDashboard(_, _, _) {
-          _.Info(
-            "[ToggleDashboard]",
-            _,
-            "bSourceIsVRLinkRemote",
-            _,
-            "unTrackedDeviceIndex",
-            _,
-          );
+        toggleDashboard(_, _) {
+          _.Info("[ToggleDashboard]", _, "bSourceIsVRLinkRemote", _);
           let _ = !1;
           if (
             (_._.m_eVRLinkDashboardMode == _.Fzk.SteamVRClientUnified &&
@@ -35709,29 +36395,30 @@ var CLSTAMP = "steamdb";
               void (
                 null === VRHTML ||
                 void 0 === VRHTML ||
-                VRHTML.VRLink.SendRemoteDashboardToggle(null != _ ? _ : _.neN)
+                VRHTML.VRLink.SendRemoteDashboardToggle()
               )
             );
-          _._.isFullyVisible
-            ? this.hideDashboard(_, _)
-            : this.showDashboardOverlay(
-                {
-                  sReason: _,
-                  bSourceIsVRLinkRemote: _,
-                  unTrackedDeviceIndex: _,
-                  eDashboardRelatch: _._.isDashboardDiminished
-                    ? _.hqo.LargeDeadZone
-                    : _.ke3,
-                },
-                !0,
-              );
+          VRHTML.VROverlay.HideKeyboard(),
+            _._.shouldShowKeyboardForUndockedFrame_Hack ||
+              (_._.isFullyVisible
+                ? this.hideDashboard(_, _)
+                : this.showDashboardOverlay(
+                    {
+                      sReason: _,
+                      bSourceIsVRLinkRemote: _,
+                      eDashboardRelatch: _._.isDashboardDiminished
+                        ? _.hqo.LargeDeadZone
+                        : _.ke3,
+                    },
+                    !0,
+                  ));
         }
         hideDashboard(_, _) {
           if (
             (_.Info("[HideDashboard]", _, "bSourceIsVRLinkRemote", _),
             _._.isOOBE || _._.isLocked || "recovery" == _._.bareSessionMode)
           )
-            return void _._.ResetDashboardTransform();
+            return void _._.ForceRelatchDashboard();
           if (_._.showLoadingThrobberOrBootOverlay) return;
           if (_._.blockDashboardToggle) return;
           if (
@@ -35784,10 +36471,7 @@ var CLSTAMP = "steamdb";
                   (this.m_activeOverlayThatVanished = void 0),
                   _._.OnHidden(),
                   _._.showPopoverMenu(0),
-                  _.instance.EndDashboardSession(null != _ ? _ : ""),
-                  null === VRHTML ||
-                    void 0 === VRHTML ||
-                    VRHTML.VRClient.PostDashboardActivatedEvent(!1, _.neN);
+                  _.instance.EndDashboardSession(null != _ ? _ : "");
                 for (const _ of _._.frames)
                   _.docking && _.docking.SetJustFloatedFromDashboard(!1);
               }
@@ -36019,7 +36703,7 @@ var CLSTAMP = "steamdb";
           return _;
         }
         render() {
-          const _ = 0 != _._.roomSetupStep && 6 != _._.roomSetupStep;
+          const _ = _._.inRoomSetup;
           return _.createElement(
             "div",
             {
@@ -36456,7 +37140,10 @@ var CLSTAMP = "steamdb";
           var _, _, _;
           const _ = _._.activeFrame,
             _ = _._.activeLocalFrame,
-            _ = _._.isVRGamepadUIReady && !_._.isDashboardDiminished,
+            _ =
+              _._.isVRGamepadUIReady &&
+              !_._.isDashboardDiminished &&
+              !_._.shouldShowKeyboardForUndockedFrame_Hack,
             _ = !_._.isVRGamepadUI || _._.m_bShowLegacyDashboardBar,
             _ =
               !_._.isVRGamepadUI &&
@@ -36592,56 +37279,9 @@ var CLSTAMP = "steamdb";
                     curvature_origin_id: _,
                   }),
                 ),
-              _.createElement(
-                _.dLy,
-                {
-                  rotation: {
-                    _: _,
-                  },
-                },
-                _.createElement(
-                  _.dLy,
-                  {
-                    translation: _.k_nKeyboardGrabTransformOffset,
-                  },
-                  _.createElement(
-                    _,
-                    {
-                      min_distance: 0.2,
-                      max_distance: 1,
-                      should_head_align: !1,
-                      allow_scroll: !0,
-                      scroll_speed: 20,
-                    },
-                    _.createElement(
-                      _.dLy,
-                      {
-                        translation: {
-                          _: -1 * _.k_nKeyboardGrabTransformOffset._,
-                          _: -1 * _.k_nKeyboardGrabTransformOffset._,
-                          _: -1 * _.k_nKeyboardGrabTransformOffset._,
-                        },
-                      },
-                      _.createElement(
-                        _.dLy,
-                        {
-                          rotation: {
-                            _: -10,
-                          },
-                          curvature_pitch: _,
-                        },
-                        !1,
-                        _._.m_bKeyboardVisible &&
-                          _._.m_bKeyboardDockedInDashboard &&
-                          _.createElement(_, {
-                            debugHostLocation: "Dashboard",
-                            onGrabEnd: this.onGrabEnd,
-                          }),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              _.createElement(_, {
+                dashboardBarPitch: _,
+              }),
               1 == _._.activeLegacyDashboardPopover &&
                 _.createElement(
                   _.dLy,
@@ -36773,7 +37413,7 @@ var CLSTAMP = "steamdb";
           _: 0.35,
         }),
         (_.s_Instance = void 0),
-        (0, _._)([_.action.bound], _.prototype, "onGrabStart", null),
+        (0, _._)([_._], _.prototype, "onGrabStart", null),
         (0, _._)([_.action.bound], _.prototype, "onGrabEnd", null),
         (0, _._)([_._], _.prototype, "onDashboardOverlayDestroyed", null),
         (0, _._)([_._], _.prototype, "onDashboardTabsUpdated", null),
@@ -36804,8 +37444,16 @@ var CLSTAMP = "steamdb";
       const _ = (0, _._)(function (_) {
           var _, _, _;
           const [_, _] = _.useState(0),
-            _ = _.useCallback(() => _((_) => _ + 1), []);
-          (0, _._)(_._.onDashboardRelatch, _);
+            _ = _._.isOOBE || _._.isLocked || "recovery" == _._.bareSessionMode,
+            [_, _] = _.useState(!1);
+          _.useEffect(() => {
+            if (!_) return void _(!1);
+            return _._.m_OnDashboardGrabStart.Register(() => _(!0)).Unregister;
+          }, [_]);
+          const _ = _.useCallback(() => {
+            _((_) => _ + 1), _(!1);
+          }, []);
+          (0, _._)(_._.onForceDashboardRelatch, _);
           const _ = _._.activeFrame,
             _ =
               (null == _ ? void 0 : _.docking.dockLocation) == _.yWq.Dashboard
@@ -36851,7 +37499,7 @@ var CLSTAMP = "steamdb";
                 null == _ ? void 0 : _.children,
               ),
             );
-          if (_._.isOOBE || _._.isLocked || "recovery" == _._.bareSessionMode)
+          if (_)
             return _.createElement(
               _._,
               null,
@@ -36877,8 +37525,7 @@ var CLSTAMP = "steamdb";
                     translation_velocity: 1,
                     lock_to_horizon: !0,
                     translation_parent: _._.World,
-                    enabled:
-                      _._.dashboardFollowsUser || _._.dashboardFollowsUser,
+                    enabled: !_,
                     key: _,
                     rotation_translation_change_together: !0,
                   },
@@ -36908,6 +37555,7 @@ var CLSTAMP = "steamdb";
                           stored_transform: 1,
                           stop_distance: 10,
                           allow_scroll: !0,
+                          reset_on_dashboard_relatch: !0,
                         },
                         _,
                       ),
@@ -36930,7 +37578,9 @@ var CLSTAMP = "steamdb";
               ),
             );
           }
-          return _._.isFullyVisible || _._.isDashboardDiminished
+          return _._.isFullyVisible ||
+            _._.isDashboardDiminished ||
+            _._.shouldShowKeyboardForUndockedFrame_Hack
             ? _.createElement(
                 _._,
                 null,
@@ -36967,6 +37617,8 @@ var CLSTAMP = "steamdb";
                               stored_transform: 1,
                               allow_scroll: !0,
                               scroll_speed: 8,
+                              reset_on_dashboard_relatch: !0,
+                              key: _,
                             },
                             _,
                           ),
@@ -36978,7 +37630,7 @@ var CLSTAMP = "steamdb";
             : null;
         }),
         _ = (0, _._)(function (_) {
-          var _;
+          var _, _;
           if (
             (_.useLayoutEffect(
               () => () => {
@@ -37046,8 +37698,26 @@ var CLSTAMP = "steamdb";
                           ? void 0
                           : VRHTML.VRLink) ||
                       void 0 === _ ||
-                      _.SendRemoteDashboardOpen(_.neN);
+                      _.SendRemoteDashboardOpen();
                   },
+                }),
+              ),
+            (null === (_ = _._.floatingFooterPopup) || void 0 === _
+              ? void 0
+              : _.request) &&
+              _.createElement(
+                _.dLy,
+                {
+                  translation: {
+                    _: 0.005,
+                    _: -0.03,
+                  },
+                },
+                _.createElement(_._, {
+                  popupRequest: _._.floatingFooterPopup.request,
+                  curvature_origin_id: _.curvature_origin_id,
+                  origin: _.OiK.BottomCenter,
+                  meters_per_pixel: _._.m_fVRGamepadUI_MetersPerPixel,
                 }),
               ),
             _._.dashboardBarUsesPooledPopup &&
@@ -37374,7 +38044,7 @@ var CLSTAMP = "steamdb";
         Init() {
           return (0, _._)(this, void 0, void 0, function* () {
             var _;
-            (this.m_eGuidedTourState =
+            this.m_eGuidedTourState =
               null !==
                 (_ =
                   null === VRHTML || void 0 === VRHTML
@@ -37382,7 +38052,8 @@ var CLSTAMP = "steamdb";
                     : VRHTML.VRPathProperties.GetInt32PathProperty(_._)) &&
               void 0 !== _
                 ? _
-                : _.ZPA.Invalid),
+                : _.ZPA.Invalid;
+            try {
               null === VRHTML ||
                 void 0 === VRHTML ||
                 VRHTML.VRPathProperties.RegisterForInt32PathPropertyChangedEvents(
@@ -37391,6 +38062,7 @@ var CLSTAMP = "steamdb";
                     this.m_eGuidedTourState = _;
                   },
                 );
+            } catch (_) {}
           });
         }
         get isInGuidedTourControllerPairing() {
@@ -37464,7 +38136,12 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
-      const _ = (0, _._)(function (_) {
+      const _ = {
+          _: 0,
+          _: 0.15,
+          _: 0.05,
+        },
+        _ = (0, _._)(function (_) {
           var _, _, _;
           const { frame: _, children: _ } = _,
             _ =
@@ -37478,25 +38155,26 @@ var CLSTAMP = "steamdb";
                     ? void 0
                     : _.items_for_bottom_frame_controls) && void 0 !== _
                 ? _
-                : [];
-          let _ = [[]];
-          for (const _ of _) 1 == _.type ? _.push([]) : _[_.length - 1].push(_);
-          _ = _.filter((_) => _.length > 0);
-          const _ = _.flat()
-              .map((_) => _.action_id)
-              .filter((_) => {
-                var _, _;
-                return (
-                  null != _ &&
-                  (null ===
-                    (_ =
-                      null === (_ = _._.GetAction(_)) || void 0 === _
-                        ? void 0
-                        : _.isEnabled) ||
-                    void 0 === _ ||
-                    _)
-                );
-              }),
+                : [],
+            _ = `legacy-frame-controls-additional-options-anchor-${_.frameID}`,
+            _ = _.controlAdditionalOptionsActionID,
+            _ = _.isControlAdditionalOptionsOpen,
+            _ = _.controlAdditionalOptionsItems.filter((_) => 2 == _.type),
+            _ = [];
+          let _ = 0;
+          for (const _ of _)
+            1 != _.type
+              ? ((0 == _.length || _ > 0) &&
+                  _.push({
+                    rgControls: [],
+                    bWideGapBefore: _.length > 0 && _ > 1,
+                  }),
+                (_ = 0),
+                _[_.length - 1].rgControls.push(_))
+              : _++;
+          const _ = _(_.flatMap((_) => _.rgControls)),
+            _ = _(_),
+            _ = _ ? [..._, ..._] : _,
             _ = _.join(","),
             _ = _.useMemo(() => _, [_]),
             [_, _] = _.useState(void 0),
@@ -37544,6 +38222,7 @@ var CLSTAMP = "steamdb";
             })(_.rgActionIDs, _, _.nActionID);
             _(_);
           }, [_, _, _]);
+          const _ = _ && null != _ ? _.indexOf(_) : -1;
           return 0 == _.length
             ? null
             : _.createElement(
@@ -37573,6 +38252,7 @@ var CLSTAMP = "steamdb";
                       switch (_) {
                         case 11:
                         case 12: {
+                          if (_ >= 0) return !0;
                           if (0 == _.length) return !1;
                           const _ = 12 == _,
                             _ = null != _ ? _.indexOf(_) : -1,
@@ -37584,11 +38264,23 @@ var CLSTAMP = "steamdb";
                                 : (_ + (_ ? 1 : -1) + _.length) % _.length;
                           return _(_[_]), !0;
                         }
-                        case 2:
                         case 9:
+                          return _ >= 0
+                            ? (_ > 0 && _(_[_ - 1]), !0)
+                            : null != _ && _ == _ && _.length > 0
+                              ? (_.SetControlAdditionalOptionsOpen(!0),
+                                _(_[_.length - 1]),
+                                !0)
+                              : (_.inputFocus.FocusMainPanel(), !0);
+                        case 2:
                           return _.inputFocus.FocusMainPanel(), !0;
                         case 10:
-                          return _._.FocusDashboardBar(), !0;
+                          return _ >= 0
+                            ? (_ + 1 < _.length
+                                ? _(_[_ + 1])
+                                : (_.SetControlAdditionalOptionsOpen(!1), _(_)),
+                              !0)
+                            : (_._.FocusDashboardBar(), !0);
                       }
                       return !1;
                     },
@@ -37616,20 +38308,24 @@ var CLSTAMP = "steamdb";
                       _.createElement(
                         "div",
                         {
-                          className: _().Section,
+                          className: (0, _._)(_().Section, [
+                            _().WideGapBefore,
+                            _.bWideGapBefore,
+                          ]),
                           key: _,
                         },
-                        _.map((_) =>
+                        _.rgControls.map((_) =>
                           _.createElement(_, {
                             control: _,
                             key: _.action_id,
                             focused: _ && _ == _.action_id,
                             onMouseDown: () => _(_.action_id),
-                            translation: {
-                              _: 0,
-                              _: 0.15,
-                              _: 0.05,
-                            },
+                            translation: _,
+                            popoutAnchorID:
+                              null != _.action_id && _.action_id == _
+                                ? _
+                                : void 0,
+                            popoutOpen: _,
                           }),
                         ),
                       ),
@@ -37637,11 +38333,71 @@ var CLSTAMP = "steamdb";
                     _,
                   ),
                 ),
+                _ &&
+                  _.length > 0 &&
+                  _.createElement(
+                    _.dLy,
+                    {
+                      parent_id: _,
+                      translation: {
+                        _: -34 * _._,
+                        _: _._,
+                        _: _._,
+                      },
+                    },
+                    _.createElement(
+                      _.Zkm,
+                      {
+                        debug_name: `legacy-frame-controls-additional-options-${_.frameID}`,
+                        _: `legacy-frame-controls-additional-options-${_.frameID}`,
+                        ref: _.panels.SetAdditionalOptionsPanel,
+                        curvature_origin_id:
+                          _.curvature.curvatureTransformOriginID,
+                        origin: _.OiK.BottomLeft,
+                        meters_per_pixel: _._,
+                        reflect: 0.1,
+                        sort_depth_bias: -1,
+                        interactive: !0,
+                        inputFocusParams: {
+                          bCanTakeKeyboardFocus: !1,
+                          unSteamInputAppID: _._,
+                        },
+                        outline: _._.None,
+                        lasermouse_filtering: _.o3u.Default,
+                        only_visible_with_laser:
+                          _.frameControlsVisibilityRequiresLaser,
+                      },
+                      _.createElement(
+                        "div",
+                        {
+                          className: _().AdditionalOptions,
+                        },
+                        _.map((_) =>
+                          _.createElement(_, {
+                            control: _,
+                            key: _.action_id,
+                            showLabel: !0,
+                            focused: _ && _ == _.action_id,
+                            onMouseDown: () => _(_.action_id),
+                          }),
+                        ),
+                      ),
+                    ),
+                  ),
               );
         }),
         _ = (0, _._)(function (_) {
-          var _, _, _, _, _, _, _, _;
-          const { control: _, focused: _, onMouseDown: _, translation: _ } = _,
+          var _, _, _, _, _, _, _, _, _;
+          const {
+              control: _,
+              focused: _,
+              onMouseDown: _,
+              translation: _,
+              showLabel: _,
+              popoutAnchorID: _,
+              popoutOpen: _,
+            } = _,
+            _ = _ || _,
             _ = null == _ ? void 0 : _.action_id,
             _ = null != _ ? _._.GetAction(_) : void 0,
             _ = (0, _._)(16, _.fkw.MutualLocal),
@@ -37684,10 +38440,10 @@ var CLSTAMP = "steamdb";
           return (
             _.useEffect(() => {
               var _, _;
-              _
+              _ && !_
                 ? null === (_ = _.current) || void 0 === _ || _.show()
                 : null === (_ = _.current) || void 0 === _ || _.hide();
-            }, [_]),
+            }, [_, _]),
             null == _
               ? null
               : _.createElement(
@@ -37698,6 +38454,8 @@ var CLSTAMP = "steamdb";
                       "WithIcon",
                       "LargeIcon",
                       [_().GamepadFocused, _],
+                      [_().AdditionalOptionsRow, _],
+                      [_().HasPopoutAnchor, null != _],
                     ),
                     onClick: () => {
                       _ && _.Invoke(_(_));
@@ -37705,9 +38463,7 @@ var CLSTAMP = "steamdb";
                     onMouseDown: _,
                     onMouseEnter: () => {
                       var _;
-                      return null === (_ = _.current) || void 0 === _
-                        ? void 0
-                        : _.show();
+                      _ || null === (_ = _.current) || void 0 === _ || _.show();
                     },
                     onMouseLeave: () => {
                       var _;
@@ -37717,22 +38473,63 @@ var CLSTAMP = "steamdb";
                     },
                     enabled: _,
                   },
-                  _.createElement(_._, {
-                    text:
-                      null === (_ = null == _ ? void 0 : _.protoForSteam) ||
-                      void 0 === _
-                        ? void 0
-                        : _.display_name,
-                    translation: _,
-                    ref: _,
-                  }),
+                  !_ &&
+                    _.createElement(_._, {
+                      text:
+                        null === (_ = null == _ ? void 0 : _.protoForSteam) ||
+                        void 0 === _
+                          ? void 0
+                          : _.display_name,
+                      translation: _,
+                      ref: _,
+                    }),
                   _.createElement(_._, {
                     icon: _,
                     variant: _ ? "steamui" : "legacy-vrwebui",
                   }),
+                  _ &&
+                    _.createElement(
+                      "span",
+                      {
+                        className: _().AdditionalOptionsLabel,
+                      },
+                      null === (_ = null == _ ? void 0 : _.protoForSteam) ||
+                        void 0 === _
+                        ? void 0
+                        : _.display_name,
+                    ),
+                  _ &&
+                    _.createElement(
+                      "div",
+                      {
+                        className: _().PopoutAnchor,
+                      },
+                      _.createElement(
+                        _.Ci8,
+                        null,
+                        _.createElement(_.dLy, {
+                          _: _,
+                        }),
+                      ),
+                    ),
                 )
           );
         });
+      function _(_) {
+        return _.map((_) => _.action_id).filter((_) => {
+          var _, _;
+          return (
+            null != _ &&
+            (null ===
+              (_ =
+                null === (_ = _._.GetAction(_)) || void 0 === _
+                  ? void 0
+                  : _.isEnabled) ||
+              void 0 === _ ||
+              _)
+          );
+        });
+      }
       function _(_) {
         var _;
         return 2 ==
@@ -37776,8 +38573,7 @@ var CLSTAMP = "steamdb";
             _ =
               null !== (_ = _.foregroundReflectMultiplier) && void 0 !== _
                 ? _
-                : _._,
-            _ = _.useId();
+                : _._;
           return _.createElement(
             "span",
             {
@@ -37794,7 +38590,7 @@ var CLSTAMP = "steamdb";
                 _.Zkm,
                 {
                   is_frame_page_main_panel: !0,
-                  _: _,
+                  _: _._,
                   debug_name: _.debugName,
                   curvature_origin_id: _,
                   origin: _.OiK.BottomCenter,
@@ -38229,6 +39025,12 @@ var CLSTAMP = "steamdb";
             );
           case 36:
             return _.createElement(_._, Object.assign({}, _));
+          case 38:
+            return _.createElement(_._, Object.assign({}, _));
+          case 39:
+            return _.createElement(_._, Object.assign({}, _));
+          case 40:
+            return _.createElement(_._, Object.assign({}, _));
           case 4:
           case 5:
           case 6:
@@ -38264,20 +39066,10 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       class _ {
-        get dashboardFollowsUser() {
-          return this.m_bDashboardFollowsUser;
-        }
-        get onDashboardRelatch() {
-          return this.m_DashboardRelatchCallbacks;
-        }
         constructor() {
           (this.m_ShowingLockScreenProperty = void 0),
-            (this.m_bDashboardFollowsUser = !0),
-            (this.m_DashboardRelatchCallbacks = new _._()),
             (0, _.makeObservable)(this);
         }
         Init() {
@@ -38285,11 +39077,6 @@ var CLSTAMP = "steamdb";
             (this.m_ShowingLockScreenProperty = _._.ListenToBooleanPathProperty(
               _._,
             )),
-              (0, _.reaction)(
-                () =>
-                  _.m_bDashboardFollowsUser && _._.m_bDashboardIsBeingDragged,
-                () => (_.m_bDashboardFollowsUser = !1),
-              ),
               console.log(
                 "lockscreenstore init. Showing lock screen? ",
                 this.isLocked,
@@ -38308,14 +39095,8 @@ var CLSTAMP = "steamdb";
             _
           );
         }
-        ResetDashboardTransform() {
-          this.m_DashboardRelatchCallbacks.Dispatch(),
-            (this.m_bDashboardFollowsUser = !0);
-        }
       }
-      (0, _._)([_.observable], _.prototype, "m_bDashboardFollowsUser", void 0),
-        (0, _._)([_.computed], _.prototype, "isLocked", null),
-        (0, _._)([_.action], _.prototype, "ResetDashboardTransform", null);
+      (0, _._)([_.computed], _.prototype, "isLocked", null);
       const _ = new _();
       function _() {
         return (0, _.useObserver)(() => _.isLocked);
@@ -38331,21 +39112,11 @@ var CLSTAMP = "steamdb";
       var _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
-        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       class _ {
-        get dashboardFollowsUser() {
-          return this.m_bDashboardFollowsUser;
-        }
-        get onDashboardRelatch() {
-          return this.m_DashboardRelatchCallbacks;
-        }
         constructor() {
           (this.m_bSteamIsInOOBE = !1),
             (this.m_BSystemUIIsInFakeOOBEMode = !1),
-            (this.m_bDashboardFollowsUser = !0),
-            (this.m_DashboardRelatchCallbacks = new _._()),
             (0, _.makeObservable)(this);
         }
         Init() {
@@ -38382,20 +39153,11 @@ var CLSTAMP = "steamdb";
                   (_) => {
                     this.m_BSystemUIIsInFakeOOBEMode = _;
                   },
-                ),
-              (0, _.reaction)(
-                () =>
-                  _.m_bDashboardFollowsUser && _._.m_bDashboardIsBeingDragged,
-                () => (_.m_bDashboardFollowsUser = !1),
-              );
+                );
           });
         }
         get isOOBE() {
           return this.m_bSteamIsInOOBE || this.m_BSystemUIIsInFakeOOBEMode;
-        }
-        ResetDashboardTransform() {
-          this.m_DashboardRelatchCallbacks.Dispatch(),
-            (this.m_bDashboardFollowsUser = !0);
         }
       }
       (0, _._)([_.observable], _.prototype, "m_bSteamIsInOOBE", void 0),
@@ -38405,14 +39167,7 @@ var CLSTAMP = "steamdb";
           "m_BSystemUIIsInFakeOOBEMode",
           void 0,
         ),
-        (0, _._)(
-          [_.observable],
-          _.prototype,
-          "m_bDashboardFollowsUser",
-          void 0,
-        ),
-        (0, _._)([_.computed], _.prototype, "isOOBE", null),
-        (0, _._)([_.action], _.prototype, "ResetDashboardTransform", null);
+        (0, _._)([_.computed], _.prototype, "isOOBE", null);
       const _ = new _();
       function _() {
         return (0, _.useObserver)(() => _.isOOBE);
@@ -38796,6 +39551,12 @@ var CLSTAMP = "steamdb";
                       VRHTML.VRPathProperties.SetStringPathProperty(_, _);
                 }),
                 (0, _.reaction)(
+                  () => this.m_bIsVRLinkClient,
+                  (_, _) => {
+                    _ && !_ && this.OnVRLinkClientSessionEnd();
+                  },
+                ),
+                (0, _.reaction)(
                   () => {
                     let _ = "";
                     return (
@@ -38827,24 +39588,28 @@ var CLSTAMP = "steamdb";
         }
         get unifiedDashboardState_Local() {
           var _, _;
-          return {
-            dashboard_visible_DEPRECATED: _._.isFullyVisible,
-            active_dashboard_frame_id:
-              null !==
-                (_ =
-                  null === (_ = _._.activeFrame) || void 0 === _
-                    ? void 0
-                    : _.frameID) && void 0 !== _
-                ? _
-                : 0,
-            dock_entries: _._.dockEntries,
-            preview_dock_entries: _._.previewDockEntries,
-            dashboard_scale: _._.dashboardScale,
-            dashboard_bar_or_child_popup_focused:
-              _._.isDashboardBarOrChildPopupFocused,
-            debug_input_focus: _._.debuggingEnabled,
-            dashboard_visibility_state: _._.visibilityState,
-          };
+          let _ = _._.visibilityState;
+          return (
+            10 == _ && (_ = 0),
+            {
+              dashboard_visible_DEPRECATED: _._.isFullyVisible,
+              active_dashboard_frame_id:
+                null !==
+                  (_ =
+                    null === (_ = _._.activeFrame) || void 0 === _
+                      ? void 0
+                      : _.frameID) && void 0 !== _
+                  ? _
+                  : 0,
+              dock_entries: _._.dockEntries,
+              preview_dock_entries: _._.previewDockEntries,
+              dashboard_scale: _._.dashboardScale,
+              dashboard_bar_or_child_popup_focused:
+                _._.isDashboardBarOrChildPopupFocused,
+              debug_input_focus: _._.debuggingEnabled,
+              dashboard_visibility_state: _,
+            }
+          );
         }
         get unifiedDashboardEnabled() {
           return this.m_eVRLinkDashboardMode == _.Fzk.SteamVRClientUnified;
@@ -38936,6 +39701,23 @@ var CLSTAMP = "steamdb";
           null === VRHTML ||
             void 0 === VRHTML ||
             VRHTML.VRLink.SendShowSteamVRSettingsRequest(_);
+        }
+        OnVRLinkClientSessionEnd() {
+          var _;
+          _.Info("OnVRLinkClientSessionEnd");
+          const _ = null != _._.GetRemoteFrame(_._.activeFrameID);
+          _._._clear_remote_frames(),
+            _ &&
+              (_.Info("Active Frame was remote"),
+              _._._setActiveFrame(void 0, void 0)),
+            null === (_ = _._.Instance) ||
+              void 0 === _ ||
+              _.showDashboardOverlay(
+                {
+                  sReason: "vrlink client session ended",
+                },
+                !0,
+              );
         }
         onRemoteDashboardFramesUpdate(_) {
           var _;
@@ -39075,6 +39857,12 @@ var CLSTAMP = "steamdb";
         (0, _._)([_._], _.prototype, "onRemoteDesktopWindowEvent", null),
         (0, _._)([_._], _.prototype, "onRemoteShowSteamVRSetting", null),
         (0, _._)([_.action], _.prototype, "ShowRemoteVRSettingsPage", null),
+        (0, _._)(
+          [_.action.bound],
+          _.prototype,
+          "OnVRLinkClientSessionEnd",
+          null,
+        ),
         (0, _._)(
           [_.action.bound],
           _.prototype,

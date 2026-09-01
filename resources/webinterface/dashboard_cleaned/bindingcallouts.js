@@ -26,6 +26,7 @@ var CLSTAMP = "steamdb";
           HWh: () => _._,
           I0c: () => _._,
           IS7: () => _._,
+          IlB: () => _._,
           JZN: () => _._,
           JcD: () => _._,
           Jv8: () => _._,
@@ -43,6 +44,7 @@ var CLSTAMP = "steamdb";
           O6e: () => _._,
           OH$: () => _._,
           OiK: () => _._,
+          Op7: () => _._,
           QB1: () => _._,
           QRg: () => _._,
           R$f: () => _._,
@@ -85,6 +87,7 @@ var CLSTAMP = "steamdb";
           kSV: () => _._,
           ke3: () => _._,
           kuU: () => _._,
+          lo4: () => _._,
           lqd: () => _._,
           m$_: () => _._,
           mHe: () => _._,
@@ -438,6 +441,37 @@ var CLSTAMP = "steamdb";
           }
         }
         (0, _._)([_._], _.prototype, "buildNode", null);
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        __webpack_require__._(_, {
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+        });
+        var _ = __webpack_require__("chunkid");
+        const _ = 20,
+          _ = [
+            "Steam",
+            "Desktop",
+            "Desktop 1",
+            "Desktop 2",
+            "Desktop 3",
+            "Now Playing",
+            "Old Library",
+            "Library",
+            "Settings",
+          ],
+          _ = [
+            _.OiK.TopCenter,
+            _.OiK.CenterLeft,
+            _.OiK.CenterRight,
+            _.OiK.BottomCenter,
+            _.OiK.BottomRight,
+          ];
+        function _(_, _) {
+          return !!_ && !!_ && _.frameID === _.frameID;
+        }
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         var _ = __webpack_require__("chunkid"),

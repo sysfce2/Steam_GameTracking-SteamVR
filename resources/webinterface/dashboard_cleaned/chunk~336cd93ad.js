@@ -389,6 +389,8 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
+        _: () => _,
+        _: () => _,
       }),
         (function (_) {
           (_[(_.Desktop = 1)] = "Desktop"),
@@ -424,26 +426,40 @@ var CLSTAMP = "steamdb";
       let _ = 0,
         _ = 0,
         _ = 4294967295;
-      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+      var _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _;
+      function _(_) {
+        let _ = _.None;
+        return (
+          _.getModifierState("CapsLock") && (_ |= 1),
+          _.getModifierState("NumLock") && (_ |= 2),
+          _
+        );
+      }
       !(function (_) {
         (_[(_.None = 0)] = "None"),
-          (_[(_.Shown = 1)] = "Shown"),
-          (_[(_.Hidden = 2)] = "Hidden"),
-          (_[(_.Exposed = 3)] = "Exposed"),
-          (_[(_.Moved = 4)] = "Moved"),
-          (_[(_.Resized = 5)] = "Resized"),
-          (_[(_.SizeChanged = 6)] = "SizeChanged"),
-          (_[(_.Minimized = 7)] = "Minimized"),
-          (_[(_.Maximized = 8)] = "Maximized"),
-          (_[(_.Restored = 9)] = "Restored"),
-          (_[(_.Enter = 10)] = "Enter"),
-          (_[(_.Leave = 11)] = "Leave"),
-          (_[(_.FocusGained = 12)] = "FocusGained"),
-          (_[(_.FocusLost = 13)] = "FocusLost"),
-          (_[(_.Close = 14)] = "Close"),
-          (_[(_.TakeFocus = 15)] = "TakeFocus"),
-          (_[(_.HitTest = 16)] = "HitTest");
+          (_[(_.Head = 1)] = "Head"),
+          (_[(_.HandLeft = 2)] = "HandLeft"),
+          (_[(_.HandRight = 3)] = "HandRight");
       })(_ || (_ = {})),
+        (function (_) {
+          (_[(_.None = 0)] = "None"),
+            (_[(_.Shown = 1)] = "Shown"),
+            (_[(_.Hidden = 2)] = "Hidden"),
+            (_[(_.Exposed = 3)] = "Exposed"),
+            (_[(_.Moved = 4)] = "Moved"),
+            (_[(_.Resized = 5)] = "Resized"),
+            (_[(_.SizeChanged = 6)] = "SizeChanged"),
+            (_[(_.Minimized = 7)] = "Minimized"),
+            (_[(_.Maximized = 8)] = "Maximized"),
+            (_[(_.Restored = 9)] = "Restored"),
+            (_[(_.Enter = 10)] = "Enter"),
+            (_[(_.Leave = 11)] = "Leave"),
+            (_[(_.FocusGained = 12)] = "FocusGained"),
+            (_[(_.FocusLost = 13)] = "FocusLost"),
+            (_[(_.Close = 14)] = "Close"),
+            (_[(_.TakeFocus = 15)] = "TakeFocus"),
+            (_[(_.HitTest = 16)] = "HitTest");
+        })(_ || (_ = {})),
         (function (_) {
           (_[(_.Activated = 0)] = "Activated"),
             (_[(_.Deactivated = 1)] = "Deactivated");

@@ -1256,15 +1256,16 @@ var CLSTAMP = "steamdb";
             (_[(_.ControllerPairing = 1)] = "ControllerPairing"),
             (_[(_.WelcomeToSteamFrame = 2)] = "WelcomeToSteamFrame"),
             (_[(_.PlayspaceSetup = 3)] = "PlayspaceSetup"),
-            (_[(_.SystemButtonHideDashboard = 4)] =
+            (_[(_.LaserMouse = 4)] = "LaserMouse"),
+            (_[(_.SystemButtonHideDashboard = 5)] =
               "SystemButtonHideDashboard"),
-            (_[(_.SystemButtonDashboardHidden = 5)] =
+            (_[(_.SystemButtonDashboardHidden = 6)] =
               "SystemButtonDashboardHidden"),
-            (_[(_.SystemButtonShowDashboard = 6)] =
+            (_[(_.SystemButtonShowDashboard = 7)] =
               "SystemButtonShowDashboard"),
-            (_[(_.PairWifiDongle = 7)] = "PairWifiDongle"),
-            (_[(_.TourSendOff = 8)] = "TourSendOff"),
-            (_[(_.SteamGuidedTourFinished = 9)] = "SteamGuidedTourFinished");
+            (_[(_.PairWifiDongle = 8)] = "PairWifiDongle"),
+            (_[(_.TourSendOff = 9)] = "TourSendOff"),
+            (_[(_.SteamGuidedTourFinished = 10)] = "SteamGuidedTourFinished");
         })(_ || (_ = {})),
         (function (_) {
           (_[(_.None = 0)] = "None"),
@@ -1288,7 +1289,8 @@ var CLSTAMP = "steamdb";
           (_[(_.None = 0)] = "None"),
             (_[(_.LargeDeadZone = 4)] = "LargeDeadZone"),
             (_[(_.SmallDeadZone = 8)] = "SmallDeadZone"),
-            (_[(_.NoDeadZone = 12)] = "NoDeadZone");
+            (_[(_.NoDeadZoneThenSmallElastic = 12)] =
+              "NoDeadZoneThenSmallElastic");
         })(_ || (_ = {}));
       const _ = _.SmallDeadZone;
       var _, _, _, _, _, _;

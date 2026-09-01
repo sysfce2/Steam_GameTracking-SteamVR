@@ -380,5 +380,36 @@ var CLSTAMP = "steamdb";
           );
       }
     },
+    chunkid: (module, module_exports, __webpack_require__) => {
+      __webpack_require__._(module_exports, {
+        _: () => _,
+        _: () => _,
+        _: () => _,
+        _: () => _,
+      });
+      var _ = __webpack_require__("chunkid");
+      const _ = 20,
+        _ = [
+          "Steam",
+          "Desktop",
+          "Desktop 1",
+          "Desktop 2",
+          "Desktop 3",
+          "Now Playing",
+          "Old Library",
+          "Library",
+          "Settings",
+        ],
+        _ = [
+          _.OiK.TopCenter,
+          _.OiK.CenterLeft,
+          _.OiK.CenterRight,
+          _.OiK.BottomCenter,
+          _.OiK.BottomRight,
+        ];
+      function _(_, _) {
+        return !!_ && !!_ && _.frameID === _.frameID;
+      }
+    },
   },
 ]);
