@@ -199,9 +199,11 @@ var CLSTAMP = "steamdb";
           );
         }
         get canSpatialize() {
-          var _;
+          var _, _;
           return (
-            !!_._.settings.get("/settings/audio/enableSpatializeGlobal") &&
+            !!(null === (_ = _._.audioDevices) || void 0 === _
+              ? void 0
+              : _.spatialize) &&
             ((null === (_ = this.summonOverlayKey) || void 0 === _
               ? void 0
               : _.startsWith(_._ + ".")) ||

@@ -239,6 +239,20 @@ message CVRGamepadUI_Message_SetHMDSettings_Request {
 message CVRGamepadUI_Message_SetHMDSettings_Response {
 }
 
+message CVRGamepadUI_Message_SetSpatializeEnabled_Request {
+	optional bool enabled = 1;
+}
+
+message CVRGamepadUI_Message_SetSpatializeEnabled_Response {
+}
+
+message CVRGamepadUI_Message_SetSpatializeSurroundEnabled_Request {
+	optional bool enabled = 1;
+}
+
+message CVRGamepadUI_Message_SetSpatializeSurroundEnabled_Response {
+}
+
 message CVRGamepadUI_Message_ShowDashboardPopup_Request {
 	optional uint32 dashboard_popup_id = 1;
 	optional string popup_overlay_key = 2;

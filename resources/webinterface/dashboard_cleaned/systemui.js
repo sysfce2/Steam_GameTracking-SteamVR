@@ -3793,28 +3793,6 @@ var CLSTAMP = "steamdb";
                     this.frames_local.filter((_) => _.state == _._.Destroyed),
                   this.OnLocalFramesDestroyed,
                 ),
-                (0, _.reaction)(
-                  () => _.isTheaterMode,
-                  (_) => {
-                    null === VRHTML ||
-                      void 0 === VRHTML ||
-                      VRHTML.VRCompositor.SetAnimatedValue(
-                        _.KIK.TheaterFast,
-                        _,
-                        0.25,
-                      ),
-                      null === VRHTML ||
-                        void 0 === VRHTML ||
-                        VRHTML.VRCompositor.SetAnimatedValue(
-                          _.KIK.TheaterSlow,
-                          _,
-                          _ ? 2 : 1,
-                        );
-                  },
-                  {
-                    fireImmediately: !0,
-                  },
-                ),
                 (0, _.autorun)(this.SendUpdatesToSteam, {
                   delay: 1e-4,
                 });
@@ -8732,7 +8710,7 @@ var CLSTAMP = "steamdb";
                     _.OH$[(0, _.R$f)()],
                 );
               console.log("Bootstrapping " + _, _);
-              const _ = 1e3 * (null !== (_ = 1788038312) ? _ : 0);
+              const _ = 1e3 * (null !== (_ = 1788979559) ? _ : 0);
               console.log(
                 "SteamVR Version Info: " +
                   JSON.stringify({

@@ -5317,6 +5317,200 @@ var CLSTAMP = "steamdb";
         static ImplementsStaticInterface() {}
         constructor(_ = null) {
           super(),
+            _.prototype.enabled || _._(_._()),
+            _.Message.initialize(this, _, 0, -1, void 0, null);
+        }
+        static M() {
+          return (
+            _.sm_m ||
+              (_.sm_m = {
+                proto: _,
+                fields: {
+                  enabled: {
+                    _: 1,
+                    _: _._.readBool,
+                    _: _._.writeBool,
+                  },
+                },
+              }),
+            _.sm_m
+          );
+        }
+        static MBF() {
+          return _.sm_mbf || (_.sm_mbf = _._(_._())), _.sm_mbf;
+        }
+        toObject(_ = !1) {
+          return _.toObject(_, this);
+        }
+        static toObject(_, _) {
+          return _._(_._(), _, _);
+        }
+        static fromObject(_) {
+          return _._(_._(), _);
+        }
+        static deserializeBinary(_) {
+          let _ = new (_().BinaryReader)(_),
+            _ = new _();
+          return _.deserializeBinaryFromReader(_, _);
+        }
+        static deserializeBinaryFromReader(_, _) {
+          return _._(_.MBF(), _, _);
+        }
+        serializeBinary() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBuffer();
+        }
+        static serializeBinaryToWriter(_, _) {
+          _._(_._(), _, _);
+        }
+        serializeBase64String() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBase64String();
+        }
+        getClassName() {
+          return "CVRGamepadUI_Message_SetSpatializeEnabled_Request";
+        }
+      }
+      class _ extends _.Message {
+        static ImplementsStaticInterface() {}
+        constructor(_ = null) {
+          super(), _.Message.initialize(this, _, 0, -1, void 0, null);
+        }
+        toObject(_ = !1) {
+          return _.toObject(_, this);
+        }
+        static toObject(_, _) {
+          return _
+            ? {
+                $jspbMessageInstance: _,
+              }
+            : {};
+        }
+        static fromObject(_) {
+          return new _();
+        }
+        static deserializeBinary(_) {
+          let _ = new (_().BinaryReader)(_),
+            _ = new _();
+          return _.deserializeBinaryFromReader(_, _);
+        }
+        static deserializeBinaryFromReader(_, _) {
+          return _;
+        }
+        serializeBinary() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBuffer();
+        }
+        static serializeBinaryToWriter(_, _) {}
+        serializeBase64String() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBase64String();
+        }
+        getClassName() {
+          return "CVRGamepadUI_Message_SetSpatializeEnabled_Response";
+        }
+      }
+      class _ extends _.Message {
+        static ImplementsStaticInterface() {}
+        constructor(_ = null) {
+          super(),
+            _.prototype.enabled || _._(_._()),
+            _.Message.initialize(this, _, 0, -1, void 0, null);
+        }
+        static M() {
+          return (
+            _.sm_m ||
+              (_.sm_m = {
+                proto: _,
+                fields: {
+                  enabled: {
+                    _: 1,
+                    _: _._.readBool,
+                    _: _._.writeBool,
+                  },
+                },
+              }),
+            _.sm_m
+          );
+        }
+        static MBF() {
+          return _.sm_mbf || (_.sm_mbf = _._(_._())), _.sm_mbf;
+        }
+        toObject(_ = !1) {
+          return _.toObject(_, this);
+        }
+        static toObject(_, _) {
+          return _._(_._(), _, _);
+        }
+        static fromObject(_) {
+          return _._(_._(), _);
+        }
+        static deserializeBinary(_) {
+          let _ = new (_().BinaryReader)(_),
+            _ = new _();
+          return _.deserializeBinaryFromReader(_, _);
+        }
+        static deserializeBinaryFromReader(_, _) {
+          return _._(_.MBF(), _, _);
+        }
+        serializeBinary() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBuffer();
+        }
+        static serializeBinaryToWriter(_, _) {
+          _._(_._(), _, _);
+        }
+        serializeBase64String() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBase64String();
+        }
+        getClassName() {
+          return "CVRGamepadUI_Message_SetSpatializeSurroundEnabled_Request";
+        }
+      }
+      class _ extends _.Message {
+        static ImplementsStaticInterface() {}
+        constructor(_ = null) {
+          super(), _.Message.initialize(this, _, 0, -1, void 0, null);
+        }
+        toObject(_ = !1) {
+          return _.toObject(_, this);
+        }
+        static toObject(_, _) {
+          return _
+            ? {
+                $jspbMessageInstance: _,
+              }
+            : {};
+        }
+        static fromObject(_) {
+          return new _();
+        }
+        static deserializeBinary(_) {
+          let _ = new (_().BinaryReader)(_),
+            _ = new _();
+          return _.deserializeBinaryFromReader(_, _);
+        }
+        static deserializeBinaryFromReader(_, _) {
+          return _;
+        }
+        serializeBinary() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBuffer();
+        }
+        static serializeBinaryToWriter(_, _) {}
+        serializeBase64String() {
+          var _ = new (_().BinaryWriter)();
+          return _.serializeBinaryToWriter(this, _), _.getResultBase64String();
+        }
+        getClassName() {
+          return "CVRGamepadUI_Message_SetSpatializeSurroundEnabled_Response";
+        }
+      }
+      class _ extends _.Message {
+        static ImplementsStaticInterface() {}
+        constructor(_ = null) {
+          super(),
             _.prototype.url || _._(_._()),
             _.Message.initialize(this, _, 0, -1, void 0, null);
         }
@@ -6190,6 +6384,16 @@ var CLSTAMP = "steamdb";
           msgClassRequest_t: _,
           msgClassResponse_t: _,
           strMethod: "GamepadButtonAction",
+        },
+        "SetSpatializeEnabled#1": {
+          msgClassRequest_t: _,
+          msgClassResponse_t: _,
+          strMethod: "SetSpatializeEnabled",
+        },
+        "SetSpatializeSurroundEnabled#1": {
+          msgClassRequest_t: _,
+          msgClassResponse_t: _,
+          strMethod: "SetSpatializeSurroundEnabled",
         },
       };
       class _ {
@@ -8309,7 +8513,7 @@ var CLSTAMP = "steamdb";
           }),
           _.createElement(_._, {
             label: (0, _._)("#Settings_VersionInfo_WebpackBuildTime"),
-            value: new Date(1788038312e3).toLocaleString() + "",
+            value: new Date(1788979559e3).toLocaleString() + "",
           }),
           _.createElement(_._, {
             label: (0, _._)("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),
@@ -21612,8 +21816,6 @@ var CLSTAMP = "steamdb";
         _: () => _,
         _: () => _,
         _: () => _,
-        _: () => _,
-        _: () => _,
       });
       const _ = "openvr.tool.steamvr_environments",
         _ = "system.generated.steam.exe",
@@ -21729,9 +21931,7 @@ var CLSTAMP = "steamdb";
         _ = "/settings/perfcheck/drawPerfCriteriaGameTextures",
         _ = "/user/head",
         _ = "/user/hand/left",
-        _ = "/user/hand/left/pose/tip",
-        _ = "/user/hand/right",
-        _ = "/user/hand/right/pose/tip";
+        _ = "/user/hand/right";
     },
     chunkid: (module, module_exports, __webpack_require__) => {
       "use strict";
@@ -24237,6 +24437,7 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       const _ = 16,
         _ = "change_route";
@@ -24390,6 +24591,21 @@ var CLSTAMP = "steamdb";
             this.m_mailbox.connected || _.push(this.ConnectMailbox()),
               _.push(this.OpenWebSocketToHost()),
               _.push(this.AwaitInitialSettingsSchema()),
+              _._.SteamVR.SetImplementation("SetSpatializeEnabled", (_) => {
+                this.audioDevices &&
+                  ((this.audioDevices.spatialize =
+                    (null == _ ? void 0 : _.enabled) || !1),
+                  console.log("SetSpatializeEnabled", _.enabled));
+              }),
+              _._.SteamVR.SetImplementation(
+                "SetSpatializeSurroundEnabled",
+                (_) => {
+                  this.audioDevices &&
+                    ((this.audioDevices.spatialize_surround =
+                      (null == _ ? void 0 : _.enabled) || !1),
+                    console.log("SetSpatializeSurroundEnabled", _.enabled));
+                },
+              ),
               yield Promise.all(_);
           });
         }
@@ -38035,55 +38251,76 @@ var CLSTAMP = "steamdb";
         _ = __webpack_require__("chunkid"),
         _ = (__webpack_require__("chunkid"), __webpack_require__("chunkid")),
         _ = __webpack_require__("chunkid"),
+        _ = __webpack_require__("chunkid"),
         _ = __webpack_require__("chunkid");
       class _ {
         constructor() {
-          (this.m_eGuidedTourState = _.ZPA.ControllerPairing),
-            (0, _.makeObservable)(this);
+          (this.m_eGuidedTourState = void 0), (0, _.makeObservable)(this);
         }
         Init() {
           return (0, _._)(this, void 0, void 0, function* () {
-            var _;
-            this.m_eGuidedTourState =
-              null !==
-                (_ =
-                  null === VRHTML || void 0 === VRHTML
-                    ? void 0
-                    : VRHTML.VRPathProperties.GetInt32PathProperty(_._)) &&
-              void 0 !== _
-                ? _
-                : _.ZPA.Invalid;
-            try {
-              null === VRHTML ||
-                void 0 === VRHTML ||
-                VRHTML.VRPathProperties.RegisterForInt32PathPropertyChangedEvents(
-                  _._,
-                  (_) => {
-                    this.m_eGuidedTourState = _;
-                  },
-                );
-            } catch (_) {}
+            this.m_eGuidedTourState = _._.ListenToInt32PathProperty(_._);
           });
         }
+        get isGuidedTourValueSet() {
+          var _;
+          return (
+            null !=
+            (null === (_ = this.m_eGuidedTourState) || void 0 === _
+              ? void 0
+              : _.value)
+          );
+        }
         get isInGuidedTourControllerPairing() {
-          return this.m_eGuidedTourState === _.ZPA.ControllerPairing;
+          var _;
+          return (
+            !!this.isGuidedTourValueSet &&
+            (null === (_ = this.m_eGuidedTourState) || void 0 === _
+              ? void 0
+              : _.value) === _.ZPA.ControllerPairing
+          );
         }
         get isPastControllerPairing() {
-          return this.m_eGuidedTourState > _.ZPA.ControllerPairing;
+          var _;
+          return (
+            !!this.isGuidedTourValueSet &&
+            (null === (_ = this.m_eGuidedTourState) || void 0 === _
+              ? void 0
+              : _.value) > _.ZPA.ControllerPairing
+          );
         }
         get blockDashboardToggle() {
+          var _, _;
           return (
-            this.m_eGuidedTourState < _.ZPA.SystemButtonHideDashboard &&
-            this.m_eGuidedTourState != _.ZPA.Invalid
+            !!this.isGuidedTourValueSet &&
+            (null === (_ = this.m_eGuidedTourState) || void 0 === _
+              ? void 0
+              : _.value) < _.ZPA.SystemButtonHideDashboard &&
+            (null === (_ = this.m_eGuidedTourState) || void 0 === _
+              ? void 0
+              : _.value) != _.ZPA.Invalid
           );
         }
         get guidedTourState() {
-          return this.m_eGuidedTourState;
+          var _, _;
+          return null !==
+            (_ =
+              null === (_ = this.m_eGuidedTourState) || void 0 === _
+                ? void 0
+                : _.value) && void 0 !== _
+            ? _
+            : _.ZPA.Invalid;
         }
         get isShowingVRGuidedTour() {
+          var _, _;
           return (
-            this.m_eGuidedTourState != _.ZPA.SteamGuidedTourFinished &&
-            this.m_eGuidedTourState != _.ZPA.Invalid
+            !!this.isGuidedTourValueSet &&
+            (null === (_ = this.m_eGuidedTourState) || void 0 === _
+              ? void 0
+              : _.value) != _.ZPA.SteamGuidedTourFinished &&
+            (null === (_ = this.m_eGuidedTourState) || void 0 === _
+              ? void 0
+              : _.value) != _.ZPA.Invalid
           );
         }
       }
