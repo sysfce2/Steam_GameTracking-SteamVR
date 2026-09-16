@@ -10115,6 +10115,7 @@ var CLSTAMP = "steamdb";
         }
         const _ = "openvr.tool.steamvr_environments",
           _ = "system.generated.steam.exe",
+          _ = "vrlink.client",
           _ = 250820,
           _ = 330050,
           _ = 769,
@@ -17335,7 +17336,8 @@ var CLSTAMP = "steamdb";
                           ? (_ = !!this.props.showInternal)
                           : _.is_dashboard_overlay &&
                             (_ = !!this.props.showOverlays),
-                  (_ || _.current_scene_process) &&
+                  (_.key != _ || this.props.showVRLinkClient) &&
+                    (_ || _.current_scene_process) &&
                     _.push({
                       value: _.key,
                       sLabel: _.name + (_.is_dashboard_overlay ? _ : ""),
@@ -17826,7 +17828,7 @@ var CLSTAMP = "steamdb";
             return this.m_sceneAppKey == _;
           }
           get SceneAppIsVRLink() {
-            return "vrlink.client" == this.m_sceneAppKey;
+            return this.m_sceneAppKey == _;
           }
           static get Instance() {
             return (
@@ -33029,14 +33031,16 @@ var CLSTAMP = "steamdb";
             });
           }
           onApplicationChange(_) {
-            var _;
             this.state.currentBindingApp !== _ &&
-              (_ && this.updateStateForApp(_),
-              _.setRoutePageSectionParams([
-                null !== (_ = null == _ ? void 0 : _.key) && void 0 !== _
-                  ? _
-                  : "",
-              ]));
+              ((null == _ ? void 0 : _.key) == _
+                ? (this.setState({
+                    currentBindingApp: void 0,
+                  }),
+                  _.setRoutePageSectionParams([""]))
+                : _
+                  ? (this.updateStateForApp(_),
+                    _.setRoutePageSectionParams([_.key]))
+                  : _.setRoutePageSectionParams([""]));
           }
           onToggleDefaultCustomBinding(_) {
             return (0, _._)(this, void 0, void 0, function* () {
@@ -33245,6 +33249,7 @@ var CLSTAMP = "steamdb";
                                   : VRHTML.VRApplications.GetSceneApplicationKey(),
                             stateKey: "settings_controller_binding",
                             showCompositor: !0,
+                            showVRLinkClient: !1,
                             defaultLabel: _(
                               "#Settings_PerApplication_ChooseApplication",
                             ),
@@ -33295,7 +33300,8 @@ var CLSTAMP = "steamdb";
                         ),
                       ),
                     ),
-                  _ &&
+                  this.state.currentBindingApp &&
+                    _ &&
                     _.createElement(
                       "span",
                       {
@@ -33307,7 +33313,8 @@ var CLSTAMP = "steamdb";
                       }),
                       _("#BindingUI_Compatibility_Remapped_Text"),
                     ),
-                  !_.IsSteamAvailable &&
+                  this.state.currentBindingApp &&
+                    !_.IsSteamAvailable &&
                     this.state.currentBinding &&
                     _.createElement(
                       _,
@@ -33329,7 +33336,8 @@ var CLSTAMP = "steamdb";
                         this.state.currentBinding.name,
                       ),
                     ),
-                  _.IsSteamAvailable &&
+                  this.state.currentBindingApp &&
+                    _.IsSteamAvailable &&
                     _.createElement(_, {
                       label: _("#Settings_ActiveControllerBinding"),
                       offLabel: _("#Settings_Controller_DefaultBinding"),
@@ -33378,11 +33386,13 @@ var CLSTAMP = "steamdb";
                   _.createElement("div", {
                     className: "Spacer",
                   }),
-                  this.state.currentBinding &&
+                  this.state.currentBindingApp &&
+                    this.state.currentBinding &&
                     _.createElement(_, {
                       appKey: this.state.currentBindingApp.key,
                     }),
-                  _ &&
+                  this.state.currentBindingApp &&
+                    _ &&
                     _.createElement(_, {
                       label: _("#Settings_DominantHand"),
                       offLabel: _("#Settings_DominantHand_Left"),
@@ -52918,9 +52928,69 @@ var CLSTAMP = "steamdb";
                       ],
                     }),
                   ),
+                  _.createElement("hr", null),
                 )
               : null
           );
+        }
+        function _() {
+          return (
+            null === VRHTML || void 0 === VRHTML
+              ? void 0
+              : VRHTML.IsSteamFrame()
+          )
+            ? _.createElement(
+                _.Fragment,
+                null,
+                _.createElement(
+                  "div",
+                  {
+                    className: "SettingsItem",
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label Title",
+                    },
+                    _("#AppProvidedReprojection_Title"),
+                  ),
+                ),
+                _.createElement(
+                  "div",
+                  {
+                    className: "SettingsItem",
+                  },
+                  _.createElement(_, {
+                    name: "/settings/steamvr/depthReprojectionMesh",
+                    label: _("#AppProvidedReprojection_Depth"),
+                  }),
+                ),
+                _.createElement(
+                  "div",
+                  {
+                    className: "SettingsItem",
+                  },
+                  _.createElement(_, {
+                    name: "/settings/steamvr/appMotionVectors",
+                    label: _("#AppProvidedReprojection_Motion"),
+                  }),
+                ),
+                _.createElement("hr", null),
+                _.createElement(
+                  "div",
+                  {
+                    className: "SettingsItem",
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Label Title",
+                    },
+                    _("#Advanced_Developer_Miscellaneous"),
+                  ),
+                ),
+              )
+            : null;
         }
         let _ = class extends _ {
           constructor(_) {
@@ -52932,7 +53002,7 @@ var CLSTAMP = "steamdb";
                   _.Fragment,
                   null,
                   _.createElement(_, null),
-                  _.createElement("hr", null),
+                  _.createElement(_, null),
                   this.schemaComponents,
                   _.createElement("hr", null),
                   _.createElement(_, null),
@@ -52994,7 +53064,7 @@ var CLSTAMP = "steamdb";
             }),
             _.createElement(_, {
               label: _("#Settings_VersionInfo_WebpackBuildTime"),
-              value: new Date(1788979559e3).toLocaleString() + "",
+              value: new Date(1789497427e3).toLocaleString() + "",
             }),
             _.createElement(_, {
               label: _("#Settings_VersionInfo_SteamVRHmdTrackingInfo"),
@@ -54448,16 +54518,6 @@ var CLSTAMP = "steamdb";
               !1,
               !1,
               !1,
-              _.createElement(_, {
-                name: "/settings/steamvr/depthReprojectionMesh",
-                label:
-                  "Use application provided depth for reprojection when available",
-              }),
-              _.createElement(_, {
-                name: "/settings/steamvr/appMotionVectors",
-                label:
-                  "Use application provided motion vectors for motion smoothing when available",
-              }),
               !1,
               !1,
               !1,
@@ -54651,7 +54711,92 @@ var CLSTAMP = "steamdb";
               _.createElement(_, null),
               _.createElement(_, null),
               _.createElement(_, null),
-              !1,
+              (null === VRHTML || void 0 === VRHTML
+                ? void 0
+                : VRHTML.IsSteamFrame()) &&
+                _.createElement(
+                  _.Fragment,
+                  null,
+                  _.createElement(
+                    "div",
+                    {
+                      className: "Subsection",
+                    },
+                    _.createElement(
+                      "div",
+                      {
+                        className: "SettingsItem",
+                      },
+                      _.createElement(
+                        "div",
+                        {
+                          className: "Label Title",
+                        },
+                        "Performance Assessment",
+                      ),
+                    ),
+                    _.refreshRatesAvailable &&
+                      _.createElement(_, {
+                        name: "/settings/steamvr/perfCriteriaDesiredFrameRate",
+                        comparator: (_, _) => Math.round(_) == Math.round(_),
+                        label: "Desired Frame Rate",
+                        items: _.refreshRatesAvailable.map((_) => ({
+                          value: _,
+                          sLabel: Math.round(_).toString(),
+                        })),
+                      }),
+                    _.createElement(_, {
+                      name: "/settings/steamvr/perfCriteriaCompositorGpuBudget",
+                      label: "Compositor GPU Budget",
+                      min: 0,
+                      max: 4,
+                      valueStyleVariant: _.OnHandle,
+                      detents: [2],
+                      renderValue: (_) => _.toFixed(1) + " ms",
+                      step: 0.1,
+                    }),
+                    _.createElement(_, {
+                      name: "/settings/steamvr/perfCriteriaFrametimeFilterLength",
+                      label: "Frametime Filter Length",
+                      min: 1,
+                      max: 1e3,
+                      valueStyleVariant: _.OnHandle,
+                      detents: [216],
+                      renderValue: (_) => _.toFixed(0),
+                      step: 1,
+                    }),
+                    _.createElement(_, {
+                      name: "/settings/steamvr/perfCriteriaFrametimePercentile",
+                      label: "Frametime Cutoff Percentile",
+                      min: 0,
+                      max: 100,
+                      valueStyleVariant: _.OnHandle,
+                      detents: [90],
+                      renderValue: (_) => _.toFixed(0) + " %",
+                      step: 1,
+                    }),
+                    _.createElement(_, {
+                      name: "/settings/steamvr/perfCriteriaReprojectionPercentile",
+                      label: "Reprojection Cutoff Percentile",
+                      min: 0,
+                      max: 100,
+                      valueStyleVariant: _.OnHandle,
+                      detents: [90],
+                      renderValue: (_) => _.toFixed(0) + " %",
+                      step: 1,
+                    }),
+                    _.createElement(_, {
+                      name: "/settings/steamvr/perfCriteriaPlayableAllowReprojectionWithAppDepthOnly",
+                      label:
+                        "Playable: Allow Half Framerate With App Depth Only",
+                    }),
+                    _.createElement(_, {
+                      name: "/settings/steamvr/perfCriteriaPlayableAllowReprojectionWithAppMotionVectors",
+                      label:
+                        "Playable: Allow Half Framerate With App Depth+Motion Vectors",
+                    }),
+                  ),
+                ),
               !1,
               !1,
               !1,
@@ -56225,7 +56370,7 @@ var CLSTAMP = "steamdb";
             if (_.internal_only && !_.showInternalSettings) return !1;
             if (
               _.controller == _.Name &&
-              _() == _.Overlay &&
+              (_() == _.Overlay || (null == _ ? void 0 : _.IsSteamFrame())) &&
               !_.settings.get(_.k_sForceShowOpenXRSettings)
             )
               return !1;

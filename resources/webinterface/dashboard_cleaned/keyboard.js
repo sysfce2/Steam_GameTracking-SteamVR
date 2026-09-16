@@ -470,6 +470,111 @@ var CLSTAMP = "steamdb";
       chunkid: (module, module_exports, __webpack_require__) => {
         __webpack_require__._(_, {
           _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+        });
+        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
+        function _(_) {
+          return "string" == typeof _ || (Array.isArray(_) && _[1]);
+        }
+        function _(..._) {
+          return _.filter(_)
+            .map((_) => ("string" == typeof _ ? _ : _[0]))
+            .join(" ");
+        }
+        function _(_, _) {
+          let _ = _;
+          for (
+            ;
+            _.parentElement && !_.some((_) => __webpack_require__.matches(_));
+          )
+            _ = _.parentElement;
+          return _;
+        }
+        class _ {
+          constructor() {
+            (this.onScroll = null),
+              (this.onScrollStop = null),
+              (this.m_elem = null),
+              (this.m_rScrollableParents = []),
+              (this.m_bScrolling = !1),
+              (this.m_scrollStopTimeoutHandle = void 0),
+              (0, _.makeObservable)(this);
+          }
+          ref(_) {
+            this.m_elem && this.cleanup(),
+              (this.m_elem = _),
+              this.updateScrollableParents();
+          }
+          get isScrolling() {
+            return this.m_bScrolling;
+          }
+          updateScrollableParents() {
+            for (let _ of this.m_rScrollableParents)
+              _.removeEventListener("scroll", this.onParentScroll);
+            this.m_elem
+              ? (this.m_rScrollableParents = (function (_) {
+                  let _ = [];
+                  if (!_) return _;
+                  let _ = _.parentElement;
+                  for (; _; ) {
+                    const _ = _.scrollWidth > _.clientWidth,
+                      _ = _.scrollHeight > _.clientHeight;
+                    (_ || _) && _.push(_), (_ = _.parentElement);
+                  }
+                  return _;
+                })(this.m_elem))
+              : (this.m_rScrollableParents = []);
+            for (let _ of this.m_rScrollableParents)
+              _.addEventListener("scroll", this.onParentScroll);
+          }
+          cleanup() {
+            for (let _ of this.m_rScrollableParents)
+              _.removeEventListener("scroll", this.onParentScroll);
+            (this.m_rScrollableParents = []),
+              (this.m_elem = null),
+              this.clearScrollStopTimeout();
+          }
+          onParentScroll() {
+            var _;
+            this.clearScrollStopTimeout(),
+              (this.m_bScrolling = !0),
+              (this.m_scrollStopTimeoutHandle = window.setTimeout(
+                this.onScrollStopTimeout,
+                50,
+              )),
+              null === (_ = this.onScroll) || void 0 === _ || _.call(this);
+          }
+          clearScrollStopTimeout() {
+            window.clearTimeout(this.m_scrollStopTimeoutHandle),
+              (this.m_scrollStopTimeoutHandle = void 0);
+          }
+          onScrollStopTimeout() {
+            var _;
+            this.m_bScrolling &&
+              (null === (_ = this.onScrollStop) ||
+                void 0 === _ ||
+                _.call(this)),
+              (this.m_bScrolling = !1);
+          }
+        }
+        function _() {
+          const [, _] = _.useState(0);
+          return _.useCallback(() => _((_) => _ + 1), []);
+        }
+        (0, _._)([_.observable], _.prototype, "m_bScrolling", void 0),
+          (0, _._)([_._], _.prototype, "ref", null),
+          (0, _._)([_.computed], _.prototype, "isScrolling", null),
+          (0, _._)([_._], _.prototype, "onParentScroll", null),
+          (0, _._)([_._], _.prototype, "onScrollStopTimeout", null);
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        __webpack_require__._(_, {
+          _: () => _,
         });
         var _ = __webpack_require__("chunkid");
         let _ = 0;
@@ -1671,6 +1776,7 @@ var CLSTAMP = "steamdb";
     (() => {
       var _ = {
         884: 0,
+        57: 0,
         527: 0,
         500: 0,
       };

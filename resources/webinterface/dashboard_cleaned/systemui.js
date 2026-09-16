@@ -1833,6 +1833,1325 @@ var CLSTAMP = "steamdb";
         var _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
+        function _(_) {
+          return "string" == typeof _ || (Array.isArray(_) && _[1]);
+        }
+        function _(..._) {
+          return _.filter(_)
+            .map((_) => ("string" == typeof _ ? _ : _[0]))
+            .join(" ");
+        }
+        function _(_, _) {
+          let _ = _;
+          for (
+            ;
+            _.parentElement && !_.some((_) => __webpack_require__.matches(_));
+          )
+            _ = _.parentElement;
+          return _;
+        }
+        class _ {
+          constructor() {
+            (this.onScroll = null),
+              (this.onScrollStop = null),
+              (this.m_elem = null),
+              (this.m_rScrollableParents = []),
+              (this.m_bScrolling = !1),
+              (this.m_scrollStopTimeoutHandle = void 0),
+              (0, _.makeObservable)(this);
+          }
+          ref(_) {
+            this.m_elem && this.cleanup(),
+              (this.m_elem = _),
+              this.updateScrollableParents();
+          }
+          get isScrolling() {
+            return this.m_bScrolling;
+          }
+          updateScrollableParents() {
+            for (let _ of this.m_rScrollableParents)
+              _.removeEventListener("scroll", this.onParentScroll);
+            this.m_elem
+              ? (this.m_rScrollableParents = (function (_) {
+                  let _ = [];
+                  if (!_) return _;
+                  let _ = _.parentElement;
+                  for (; _; ) {
+                    const _ = _.scrollWidth > _.clientWidth,
+                      _ = _.scrollHeight > _.clientHeight;
+                    (_ || _) && _.push(_), (_ = _.parentElement);
+                  }
+                  return _;
+                })(this.m_elem))
+              : (this.m_rScrollableParents = []);
+            for (let _ of this.m_rScrollableParents)
+              _.addEventListener("scroll", this.onParentScroll);
+          }
+          cleanup() {
+            for (let _ of this.m_rScrollableParents)
+              _.removeEventListener("scroll", this.onParentScroll);
+            (this.m_rScrollableParents = []),
+              (this.m_elem = null),
+              this.clearScrollStopTimeout();
+          }
+          onParentScroll() {
+            var _;
+            this.clearScrollStopTimeout(),
+              (this.m_bScrolling = !0),
+              (this.m_scrollStopTimeoutHandle = window.setTimeout(
+                this.onScrollStopTimeout,
+                50,
+              )),
+              null === (_ = this.onScroll) || void 0 === _ || _.call(this);
+          }
+          clearScrollStopTimeout() {
+            window.clearTimeout(this.m_scrollStopTimeoutHandle),
+              (this.m_scrollStopTimeoutHandle = void 0);
+          }
+          onScrollStopTimeout() {
+            var _;
+            this.m_bScrolling &&
+              (null === (_ = this.onScrollStop) ||
+                void 0 === _ ||
+                _.call(this)),
+              (this.m_bScrolling = !1);
+          }
+        }
+        function _() {
+          const [, _] = _.useState(0);
+          return _.useCallback(() => _((_) => _ + 1), []);
+        }
+        (0, _._)([_.observable], _.prototype, "m_bScrolling", void 0),
+          (0, _._)([_._], _.prototype, "ref", null),
+          (0, _._)([_.computed], _.prototype, "isScrolling", null),
+          (0, _._)([_._], _.prototype, "onParentScroll", null),
+          (0, _._)([_._], _.prototype, "onScrollStopTimeout", null);
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        "use strict";
+        __webpack_require__._(_, {
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+        });
+        var _,
+          _,
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid");
+        !(function (_) {
+          (_[(_.PlayArea = 0)] = "PlayArea"),
+            (_[(_.Dashboard = 1)] = "Dashboard");
+        })(_ || (_ = {})),
+          (function (_) {
+            (_[(_.None = 0)] = "None"),
+              (_[(_.View = 1)] = "View"),
+              (_[(_.Theater = 2)] = "Theater");
+          })(_ || (_ = {}));
+        class _ {
+          get onForceDashboardRelatch() {
+            return this.m_ForceDashboardRelatchCallbacks;
+          }
+          ForceRelatchDashboard(_) {
+            this.m_ForceDashboardRelatchCallbacks.Dispatch(),
+              this.m_mailbox.SendMessage(_.Jv8, {
+                type: "relatch_dashboard",
+                deadzone: _,
+              });
+          }
+          get isFullyVisible() {
+            return 1 == this.visibilityState;
+          }
+          get isDashboardDiminished() {
+            return 2 == this.visibilityState;
+          }
+          get visibilityState() {
+            return this.shouldShowKeyboardForUndockedFrame_Hack
+              ? 10
+              : this.visibilityState_IgnoringKeyboardHack;
+          }
+          get visibilityState_IgnoringKeyboardHack() {
+            if (_._.m_bIsVRLinkServer && _._.unifiedDashboardEnabled) {
+              const _ =
+                _._.unifiedDashboardState_Remote.dashboard_visibility_state;
+              return null != _
+                ? _
+                : _._.unifiedDashboardState_Remote.dashboard_visible_DEPRECATED
+                  ? 1
+                  : 0;
+            }
+            return this.m_eVisibilityState;
+          }
+          OnShown() {
+            this.m_eVisibilityState = 1;
+          }
+          OnHidden() {
+            this.m_eVisibilityState = 0;
+          }
+          get canBeInDiminishedModeForActiveFrame() {
+            var _, _, _, _, _, _;
+            return (
+              !(!this.isVRGamepadUI || !_._.gamepadFocusAllowed) &&
+              (null === (_ = this.activeFrame) || void 0 === _
+                ? void 0
+                : _.docking.dockLocation) === _.yWq.Dashboard &&
+                !(
+                  !(null ===
+                    (_ =
+                      null === (_ = this.activeFrame) || void 0 === _
+                        ? void 0
+                        : _.activePage) || void 0 === _
+                    ? void 0
+                    : _.inputFocus.supportsGamepadFocus) ||
+                  (null ===
+                    (_ =
+                      null === (_ = this.activeFrame) || void 0 === _
+                        ? void 0
+                        : _.activePage) || void 0 === _
+                    ? void 0
+                    : _.isSystemPanel)
+                ) &&
+                  !!(
+                    this.isFullyVisible ||
+                    this.isDashboardDiminished ||
+                    this.shouldShowKeyboardForUndockedFrame_Hack
+                  ) &&
+              (!this.isDashboardDiminished ||
+                (null === (_ = this.activeFrame) || void 0 === _
+                  ? void 0
+                  : _.frameID) == this.m_unDiminishedStateFrameID)
+            );
+          }
+          EnterDiminishedState() {
+            this.canBeInDiminishedModeForActiveFrame &&
+              ((this.m_eVisibilityState = 2),
+              (this.m_unDiminishedStateFrameID = this.activeFrame.frameID),
+              this.activeFrame.activePage.inputFocus.PushInputFocus());
+          }
+          get activeFrame() {
+            return _._.isLocked
+              ? _._.frames.find((_) => _.visibleWhenLocked)
+              : _._.GetFrame(this.activeFrameID);
+          }
+          get activeFrameID() {
+            return _._.useRemoteDashboardState
+              ? _._.unifiedDashboardState_Remote.active_dashboard_frame_id
+              : this.m_unActiveFrameID;
+          }
+          get hasActiveFrame() {
+            return null != _._.GetFrame(this.activeFrameID);
+          }
+          _setActiveFrame(_, _) {
+            _._.useRemoteDashboardState
+              ? console.log(
+                  "_setActiveFrame called when remote dashboard is active. This should be a request",
+                  _,
+                  _,
+                )
+              : ((this.m_unActiveFrameID = _),
+                (this.m_sLastActiveOverlaySummonKey = _));
+          }
+          _updateLastActiveOverlaySummonKey() {
+            var _, _;
+            this.m_sLastActiveOverlaySummonKey =
+              null ===
+                (_ =
+                  null === (_ = this.activeFrame) || void 0 === _
+                    ? void 0
+                    : _.activePage) || void 0 === _
+                ? void 0
+                : _.summonOverlayKey;
+          }
+          get activeLocalFrame() {
+            return _._.GetLocalFrame(this.activeFrameID);
+          }
+          get mainSteamFrame() {
+            return _._.GetFrame(this.m_unMainSteamFrameID);
+          }
+          SetMainSteamFrame(_) {
+            this.m_unMainSteamFrameID = null == _ ? void 0 : _.frameID;
+          }
+          ClearTheaterHistoryForFrame(_) {
+            this.m_rgTheaterFrameStack = this.m_rgTheaterFrameStack.filter(
+              (_) => _.frameID != _,
+            );
+          }
+          constructor() {
+            (this.m_mailbox = new _._nH()),
+              (this.m_eVisibilityState = 0),
+              (this.m_unDiminishedStateFrameID = void 0),
+              (this.m_ForceDashboardRelatchCallbacks = new _._()),
+              (this.m_setSuppressingFade = new Set()),
+              (this.m_bShowLegacyDashboardBar = !1),
+              (this.m_bVS = !1),
+              (this.m_eVSMode = _.None),
+              (this.m_sVSOverlayKey = void 0),
+              (this.m_eTheaterStereo = _.MQJ.Mono),
+              (this.m_eIncognitoMode = _.rxR.Unavailable),
+              (this.m_mapActivePooledPopupRequests = new Map()),
+              (this.m_fVRGamepadUI_MetersPerPixel = void 0),
+              (this.m_dashboardUserDistance = void 0),
+              (this.m_dashboardUserScale = void 0),
+              (this.m_unActiveFrameID = void 0),
+              (this.m_sLastActiveOverlaySummonKey = void 0),
+              (this.m_unMainSteamFrameID = void 0),
+              (this.m_bSuppressingFadeExternal = !1),
+              (this.m_bTrackingRecording = !1),
+              (this.m_bKeyboardVisible = !1),
+              (this.m_bKeyboardDockedInDashboard = !1),
+              (this.m_sKeyboardOverlayKey = null),
+              (this.m_nKeyboardFlags = null),
+              (this.m_rgForcingBoundsVisible = []),
+              (this.m_sLastShownAppKey = ""),
+              (this.m_nSystemBehaviorFlags = 0),
+              (this.m_nStandingZeroPoseResetGeneration = 0),
+              (this.m_nHMDFrameRate = void 0),
+              (this.m_rgTheaterFrameStack = []),
+              (this.m_OnDashboardGrabStart = new _._()),
+              (0, _.makeObservable)(this);
+          }
+          Init() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              var _, _, _, _;
+              yield this.LoadSessionDevData(),
+                (0, _.autorun)(() => this.SaveSessionDevData()),
+                (0, _.autorun)(this.updateBodyClasses),
+                (this.m_eVisibilityState = (
+                  null === VRHTML || void 0 === VRHTML
+                    ? void 0
+                    : VRHTML.VRCompositor.IsDashboardVisibleInternal()
+                )
+                  ? 1
+                  : 0),
+                null === VRHTML ||
+                  void 0 === VRHTML ||
+                  VRHTML.RegisterForTrackingRecordingChangedEvents(
+                    this.onTrackingRecordingChanged,
+                  ),
+                null ===
+                  (_ =
+                    null === VRHTML || void 0 === VRHTML
+                      ? void 0
+                      : VRHTML.RegisterForKeyboardInfoChangedEvents) ||
+                  void 0 === _ ||
+                  _.call(VRHTML, this.onKeyboardInfoChanged),
+                null ===
+                  (_ =
+                    null === VRHTML || void 0 === VRHTML
+                      ? void 0
+                      : VRHTML.RegisterForSystemBehaviorFlags) ||
+                  void 0 === _ ||
+                  _.call(VRHTML, this.onSystemBehaviorFlags),
+                null ===
+                  (_ =
+                    null === VRHTML || void 0 === VRHTML
+                      ? void 0
+                      : VRHTML.RegisterForStandingZeroPoseReset) ||
+                  void 0 === _ ||
+                  __webpack_require__.call(VRHTML, () => {
+                    this.m_nStandingZeroPoseResetGeneration += 1;
+                  }),
+                null ===
+                  (_ =
+                    null === VRHTML || void 0 === VRHTML
+                      ? void 0
+                      : VRHTML.RegisterForHmdFrameRateChanged) ||
+                  void 0 === _ ||
+                  _.call(VRHTML, (_) => {
+                    this.m_nHMDFrameRate = _;
+                  }),
+                (0, _.reaction)(
+                  () => this.visibilityState,
+                  (_, _) => {
+                    const _ = 0 != _,
+                      _ = 0 != _,
+                      _ = _._.m_bIsVRLinkServer && _._.unifiedDashboardEnabled;
+                    _ == _ ||
+                      _ ||
+                      _._.Instance.playSound(
+                        _ ? _._.DashboardOpen : _._.DashboardClose,
+                      );
+                  },
+                ),
+                (0, _.reaction)(
+                  () => this.isFullyVisible,
+                  (_) => {
+                    null === VRHTML ||
+                      void 0 === VRHTML ||
+                      VRHTML.VRClient.PostDashboardActivatedEvent(_);
+                  },
+                ),
+                (0, _.reaction)(
+                  () => this.showLoadingThrobberOrBootOverlay,
+                  (_, _) => {
+                    _ && !_
+                      ? ((0, _.EmM)(_.hqo.SmallDeadZone), (0, _.YsR)(!0))
+                      : !_ && _ && (0, _.YsR)(!1);
+                  },
+                ),
+                this.SetVersionInfoPathProperties(),
+                (0, _.autorun)(() => this.SetDashboardStatePathProperties()),
+                this.m_mailbox.Init(_.M9N).then(() => {
+                  this.m_mailbox.RegisterHandler(
+                    _._,
+                    this.onSetDashboardForceBoundsVisible,
+                  ),
+                    this.m_mailbox.RegisterHandler(
+                      "vrcmd_toggle_theater_stereo",
+                      this.onVrCmdToggleTheaterStereoRequested,
+                    ),
+                    this.m_mailbox.RegisterHandler(
+                      "disable_theater_mode",
+                      this.onDisableTheaterMode,
+                    ),
+                    this.m_mailbox.RegisterHandler(
+                      "required_room_setup",
+                      this.onRequiredRoomSetup,
+                    ),
+                    this.m_mailbox.RegisterHandler(
+                      "guided_tour_room_setup",
+                      this.onGuidedTourRoomSetup,
+                    ),
+                    this.m_mailbox.RegisterHandler(
+                      _._,
+                      this.onSetDashboardFadeSuppression,
+                    ),
+                    this.m_mailbox.RegisterHandler(
+                      "vrlink_room_setup",
+                      this.onVRLinkRoomSetup,
+                    ),
+                    this.m_mailbox.RegisterHandler(
+                      "vrlink_focus_dashboard_bar",
+                      this.FocusDashboardBar,
+                    );
+                }),
+                _._.SteamVR.SetImplementation(
+                  "FocusDashboardBar",
+                  this.FocusDashboardBar,
+                ),
+                _._.SteamVR.SetImplementation(
+                  "CycleDashboardFocus",
+                  ({ target_frame_id: _ }) => this.CycleDashboardFocus(_),
+                ),
+                _._.OnFrameDestroyed.Register((_) => {
+                  var _, _, _;
+                  if (
+                    (this.ClearTheaterHistoryForFrame(_.frameID),
+                    _.docking.dockLocation == _.yWq.Theater)
+                  ) {
+                    const _ = this.m_rgTheaterFrameStack.filter(
+                      (_) =>
+                        _.state == _._.Alive &&
+                        _.docking.dockLocation == _.yWq.Dashboard,
+                    );
+                    _.length > 0
+                      ? _[_.length - 1].docking.SetInTheater(!1)
+                      : null ===
+                          (_ =
+                            null === VRHTML || void 0 === VRHTML
+                              ? void 0
+                              : VRHTML.VRClient) ||
+                        void 0 === _ ||
+                        _.ShowDashboardOverlay({
+                          overlayKey:
+                            null ===
+                              (_ =
+                                null === (_ = this.mainSteamFrame) ||
+                                void 0 === _
+                                  ? void 0
+                                  : _.activePage) || void 0 === _
+                              ? void 0
+                              : _.summonOverlayKey,
+                          sReason: "theater frame destroyed",
+                        });
+                  }
+                }),
+                (0, _.reaction)(
+                  () => _._.theaterFrame,
+                  (_, _) => {
+                    _
+                      ? (this.m_rgTheaterFrameStack = [
+                          ...this.m_rgTheaterFrameStack.filter(
+                            (_) => _ !== _ && _.state == _._.Alive,
+                          ),
+                          _,
+                        ])
+                      : _ ||
+                        this.m_rgTheaterFrameStack[
+                          this.m_rgTheaterFrameStack.length - 1
+                        ] !== _ ||
+                        (this.m_rgTheaterFrameStack =
+                          this.m_rgTheaterFrameStack.filter(
+                            (_) => _ !== _ && _.state == _._.Alive,
+                          ));
+                  },
+                  {
+                    fireImmediately: !0,
+                  },
+                ),
+                (0, _.reaction)(
+                  () =>
+                    this.isDashboardDiminished &&
+                    !this.canBeInDiminishedModeForActiveFrame,
+                  (_) => {
+                    _ && this.OnShown();
+                  },
+                ),
+                (0, _.reaction)(
+                  () =>
+                    this.isDashboardDiminished ||
+                    this.shouldShowKeyboardForUndockedFrame_Hack,
+                  (_) => {
+                    _ || (this.m_unDiminishedStateFrameID = void 0);
+                  },
+                );
+              let _ = 0;
+              (0, _.reaction)(
+                () =>
+                  this.isFullyVisible &&
+                  _._.computedInputFocus.m_entryAtTopOfStack.m_eType !=
+                    _.YVg.Panel,
+                (_) => {
+                  window.clearTimeout(_),
+                    _ &&
+                      (_ = window.setTimeout(() => {
+                        var _, _, _;
+                        (null === (_ = this.activeFrame) || void 0 === _
+                          ? void 0
+                          : _.docking.dockLocation) == _.yWq.Dashboard
+                          ? null ===
+                              (_ =
+                                null === (_ = this.activeFrame) || void 0 === _
+                                  ? void 0
+                                  : _.activePage) ||
+                            void 0 === _ ||
+                            _.inputFocus.PushInputFocus()
+                          : this.FocusDashboardBar();
+                      }, 500));
+                },
+                {
+                  fireImmediately: !0,
+                },
+              ),
+                (0, _.reaction)(
+                  () => this.shouldShowKeyboardForUndockedFrame_Hack,
+                  (_) => {
+                    _ && this.ForceRelatchDashboard();
+                  },
+                );
+            });
+          }
+          FocusDashboardBar() {
+            var _;
+            if (_._.m_bIsVRLinkServer && _._.unifiedDashboardEnabled)
+              return void VRHTML.VRLink.SendFocusDashboardBarRequest();
+            const _ =
+              null === (_ = _._.dashboardBarPopup) || void 0 === _
+                ? void 0
+                : _.panel;
+            _ && _.isFullyVisible && _._.PushInputFocus(_.getSGID());
+          }
+          GetDashboardFocusCycleStops(_) {
+            var _, _;
+            const _ = [],
+              _ = _._.GetLocalFrame(null != _ ? _ : this.activeFrameID);
+            (null == _ ? void 0 : _.frameMenuPopupRequest) &&
+              _.panels.menuPanelSGID &&
+              _.push({
+                sLabel: (0, _._)("#Jump_To_Frame_Menu", _.title),
+                bIsFocused: _.inputFocus.frameMenuHasFocus,
+                Focus: _.inputFocus.FocusLeftFrameMenu,
+              });
+            const _ =
+              null === (_ = _._.dashboardBarPopup) || void 0 === _
+                ? void 0
+                : _.panel;
+            return (
+              this.isFullyVisible &&
+                _ &&
+                _.push({
+                  sLabel: (0, _._)("#Jump_To_DashboardBar"),
+                  bIsFocused: this.isDashboardBarOrChildPopupFocused,
+                  Focus: this.FocusDashboardBar,
+                }),
+              (null == _ ? void 0 : _.shouldRenderFrameControls) &&
+                _.panels.controlsPanelSGID &&
+                _.push({
+                  sLabel: (0, _._)("#Jump_To_Frame_Controls", _.title),
+                  bIsFocused: _.inputFocus.frameControlsHaveFocus,
+                  Focus: _.inputFocus.FocusFrameControls,
+                }),
+              (null === (_ = null == _ ? void 0 : _.activePage) || void 0 === _
+                ? void 0
+                : _.mainPanelSGID) &&
+                _.push({
+                  sLabel: (0, _._)("#Jump_To_Frame", _.title),
+                  bIsFocused: _.activePage.inputFocus.mainPanelHasFocus,
+                  Focus: _.inputFocus.FocusMainPanel,
+                }),
+              _
+            );
+          }
+          get nextDashboardFocusCycleStop() {
+            const _ = this.GetDashboardFocusCycleStops(void 0);
+            if (_.length < 2) return;
+            const _ = _.findIndex((_) => _.bIsFocused);
+            return _[(_ + 1) % _.length];
+          }
+          get cycleDashboardFocusLabel() {
+            return (0, _._)("#Cycle_View_Focus");
+          }
+          CycleDashboardFocus(_) {
+            const _ = this.GetDashboardFocusCycleStops(_);
+            if (_.length < 2) return;
+            const _ = _.findIndex((_) => _.bIsFocused);
+            _[(_ + 1) % _.length].Focus();
+          }
+          SetVersionInfoPathProperties() {
+            var _, _;
+            const _ = new _._();
+            __webpack_require__.set_version(
+              (null ===
+                (_ =
+                  null === VRHTML || void 0 === VRHTML
+                    ? void 0
+                    : VRHTML.SteamVRVersion) || void 0 === _
+                ? void 0
+                : _.call(VRHTML)) + "",
+            ),
+              __webpack_require__.set_webpack_build_timestamp("chunkid");
+            const _ =
+              null ===
+                (_ =
+                  null === VRHTML || void 0 === VRHTML
+                    ? void 0
+                    : VRHTML.VRProperties) || void 0 === _
+                ? void 0
+                : _.GetStringProperty("/user/head", _.fD8.DriverVersion_String);
+            _ && __webpack_require__.set_hmd_tracking_info(_),
+              _._.SetProtoPathProperty(_);
+          }
+          SetDashboardStatePathProperties() {
+            _._.SetProtoPathProperty(
+              _._.fromObject({
+                dashboard_bar_visible: this.isFullyVisible,
+                dashboard_bar_or_child_popup_focused:
+                  this.isDashboardBarOrChildPopupFocused,
+                vrlink_role: _._.m_bIsVRLinkServer
+                  ? 2
+                  : _._.m_bIsVRLinkClient
+                    ? 1
+                    : 0,
+                vrlink_unified_dashboard: _._.unifiedDashboardEnabled,
+                cycle_dashboard_focus_label: this.cycleDashboardFocusLabel,
+              }),
+            );
+          }
+          get isDashboardBarOrChildPopupFocused() {
+            var _, _, _, _;
+            if (_._.m_bIsVRLinkServer && _._.unifiedDashboardEnabled)
+              return (
+                null !==
+                  (_ =
+                    _._.unifiedDashboardState_Remote
+                      .dashboard_bar_or_child_popup_focused) &&
+                void 0 !== _ &&
+                _
+              );
+            if (
+              null ===
+                (_ =
+                  null === (_ = _._.dashboardBarPopup) || void 0 === _
+                    ? void 0
+                    : _.panel) || void 0 === _
+                ? void 0
+                : _.hasInputFocus
+            )
+              return !0;
+            const _ = _._.requestsAndPanels.find(({ panel: _ }) =>
+              null == _ ? void 0 : _.hasInputFocus,
+            );
+            return !!(0, _._)(
+              null == _ ? void 0 : _.request,
+              null === (_ = _._.dashboardBarPopup) || void 0 === _
+                ? void 0
+                : _.request,
+            );
+          }
+          LoadSessionDevData() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              var _, _, _, _;
+              const _ = JSON.parse(
+                null !==
+                  (_ = sessionStorage.getItem(_.k_strSessionStorageKey)) &&
+                  void 0 !== _
+                  ? _
+                  : "{}",
+              );
+              (this.m_bShowLegacyDashboardBar =
+                null !== (_ = _.m_bShowLegacyBar) && void 0 !== _ && _),
+                (this.m_fVRGamepadUI_MetersPerPixel =
+                  null !== (_ = _.m_fVRGamepadUI_MetersPerPixel) && void 0 !== _
+                    ? _
+                    : (0.167 / 120) * 1.1);
+              for (const _ of null !== (_ = _.m_rgPooledPopups) && void 0 !== _
+                ? _
+                : [])
+                null != _.dashboard_popup_id &&
+                  this.m_mapActivePooledPopupRequests.set(
+                    _.dashboard_popup_id,
+                    _,
+                  );
+            });
+          }
+          SaveSessionDevData() {
+            return (0, _._)(this, void 0, void 0, function* () {
+              const _ = {
+                m_bShowLegacyBar: this.m_bShowLegacyDashboardBar,
+                m_rgPooledPopups: Array.from(
+                  this.m_mapActivePooledPopupRequests.values(),
+                ),
+                m_fVRGamepadUI_MetersPerPixel:
+                  this.m_fVRGamepadUI_MetersPerPixel,
+              };
+              sessionStorage.setItem(
+                _.k_strSessionStorageKey,
+                JSON.stringify(_),
+              );
+            });
+          }
+          get showLoadingThrobberOrBootOverlay() {
+            var _;
+            return (
+              null !== (_ = _._.settings.get(_._)) &&
+              void 0 !== _ &&
+              _ &&
+              this.isVRGamepadUI &&
+              !this.isVRGamepadUIReady &&
+              !this.m_bShowLegacyDashboardBar &&
+              "none" == this.bareSessionMode
+            );
+          }
+          get eTheaterCurvature() {
+            return _._.settings.get(_._);
+          }
+          ToggleTheaterCurvature() {
+            const _ =
+              this.eTheaterCurvature == _.Doe.Curved
+                ? _.Doe.Flat
+                : _.Doe.Curved;
+            _._.SetSettingsValue(_._, _.toString());
+          }
+          onVrCmdToggleTheaterStereoRequested() {
+            const _ =
+              this.m_eTheaterStereo == _.MQJ.Mono ? _.MQJ.Parallel : _.MQJ.Mono;
+            (this.m_eTheaterStereo = _),
+              console.log("Theater stereoscopy set to", _.MQJ[_]);
+          }
+          onDisableTheaterMode(_) {
+            console.log("onDisableTheaterMode"), this.HideTheaterOverlay();
+          }
+          onRequiredRoomSetup(_) {
+            _._.startRequiredRoomSetupIfNeeded();
+          }
+          onGuidedTourRoomSetup(_) {
+            _._.setRoomSetupStep(7);
+          }
+          onSetDashboardFadeSuppression(_) {
+            _.suppress_dashboard_fade
+              ? this.m_setSuppressingFade.add(_.for_id)
+              : this.m_setSuppressingFade.delete(_.for_id);
+            const _ = this.m_setSuppressingFade.size > 0;
+            _ != _.m_bSuppressingFadeExternal &&
+              (_.m_bSuppressingFadeExternal = _);
+          }
+          onVRLinkRoomSetup(_) {
+            _.mode == _.$Zy.RecenterCountdown
+              ? _._.setRoomSetupStep(1)
+              : _.mode == _.$Zy.FloorAdjustExisting
+                ? _._.setRoomSetupStep(2)
+                : _.mode == _.$Zy.RoomSetupFloor ||
+                    _.mode == _.$Zy.RoomSetupFull
+                  ? _._.setRoomSetupStep(7)
+                  : _.mode == _.$Zy.ClearRoomSetup
+                    ? null === VRHTML ||
+                      void 0 === VRHTML ||
+                      VRHTML.VRChaperoneSetup.ClearRoomSetup()
+                    : console.error("Unknown onVRLinkRoomSetup mode ", _.mode);
+          }
+          HideTheaterOverlay(_ = _.yWq.Dashboard, _) {
+            var _, _, _;
+            if (
+              !(null === (_ = _._.theaterFrame) || void 0 === _
+                ? void 0
+                : _.asLocalFrame)
+            )
+              return;
+            const _ =
+              null === (_ = _._.theaterFrame) || void 0 === _
+                ? void 0
+                : _.asLocalFrame;
+            _.docking.SetDockLocation(_),
+              _ &&
+                (null === VRHTML ||
+                  void 0 === VRHTML ||
+                  VRHTML.VRClient.ShowDashboardOverlay({
+                    overlayKey:
+                      null === (_ = _.activePage) || void 0 === _
+                        ? void 0
+                        : _.summonOverlayKey,
+                    sReason: "DashboardStore_HideTheaterOverlay",
+                  }));
+          }
+          get allowCurvature() {
+            var _;
+            return (
+              null ===
+                (_ = _._.settings.get("/settings/dashboard/allowCurvature")) ||
+              void 0 === _ ||
+              _
+            );
+          }
+          get isDarkMode() {
+            return _._.isTheaterMode;
+          }
+          setIncognitoMode(_) {
+            this.m_eIncognitoMode = _;
+          }
+          get showIncognitoModeAction() {
+            return !1;
+          }
+          get DashboardBarTint() {
+            return this.isDarkMode
+              ? {
+                  _: 0.1,
+                  _: 0.1,
+                  _: 0.1,
+                }
+              : void 0;
+          }
+          get GrabHandleTint() {
+            return this.isDarkMode
+              ? {
+                  _: 0.3,
+                  _: 0.3,
+                  _: 0.3,
+                }
+              : void 0;
+          }
+          get WorldLightingGain() {
+            return this.isDarkMode
+              ? {
+                  _: 0.2,
+                  _: 0.2,
+                  _: 0.2,
+                }
+              : void 0;
+          }
+          get isGroupMode() {
+            return !1;
+          }
+          get allowScreenSharing() {
+            return !1;
+          }
+          get isVRGamepadUIReady() {
+            var _;
+            return (
+              null !== (_ = _._.GetOverlayFlag(_._, 32768)) && void 0 !== _ && _
+            );
+          }
+          get isVRGamepadUI() {
+            return (
+              !(!_._.settings.get(_._) || "none" != this.bareSessionMode) ||
+              this.isVRGamepadUIReady ||
+              this.hasVRGamepadUIDashboardBar
+            );
+          }
+          get dashboardBarUsesPooledPopup() {
+            return _._.HasCapability(18, _.fkw.MutualLocal);
+          }
+          get dashboardBarOverlayKey() {
+            if (this.dashboardBarUsesPooledPopup) {
+              const _ = _._.requests.find((_) => 1 == _.special_identifier);
+              return null == _ ? void 0 : _.popup_overlay_key;
+            }
+            return "valve.steam.gamepadui.bar";
+          }
+          get hasVRGamepadUIDashboardBar() {
+            var _;
+            return _._.BOverlayExists(
+              null !== (_ = this.dashboardBarOverlayKey) && void 0 !== _
+                ? _
+                : "",
+            );
+          }
+          get currentDashboardPosition() {
+            return this.isVRGamepadUI
+              ? _.eod.VRGamepadUI
+              : _._.settings.get(_._);
+          }
+          get currentTheaterScreenAlignment() {
+            return _._.settings.get(_._);
+          }
+          get defaultTheaterScale() {
+            var _;
+            const _ =
+              null !== (_ = _._.settings.get(_._)) && void 0 !== _ ? _ : 2.1;
+            return Math.max(0.5, Math.min(20, _));
+          }
+          get defaultTheaterDistance() {
+            var _;
+            const _ =
+              null !== (_ = _._.settings.get(_._)) && void 0 !== _ ? _ : 3;
+            return Math.max(0.5, Math.min(10, _));
+          }
+          updateBodyClasses() {
+            this.isVRGamepadUI
+              ? window.document.body.classList.add("VRGamepadUI")
+              : window.document.body.classList.remove("VRGamepadUI");
+          }
+          onTrackingRecordingChanged(_) {
+            this.m_bTrackingRecording = _;
+          }
+          onSystemBehaviorFlags(_) {
+            _ != this.m_nSystemBehaviorFlags &&
+              (this.m_nSystemBehaviorFlags = _);
+          }
+          onKeyboardInfoChanged(_) {
+            (this.m_bKeyboardVisible = _.visible),
+              (this.m_bKeyboardDockedInDashboard = _.dockedInDashboard),
+              (this.m_sKeyboardOverlayKey = _.overlayKey),
+              (this.m_nKeyboardFlags = _.keyboardFlags);
+          }
+          get shouldShowKeyboardForUndockedFrame_Hack() {
+            if (!this.m_bKeyboardVisible || !this.m_bKeyboardDockedInDashboard)
+              return !1;
+            if (0 != this.visibilityState_IgnoringKeyboardHack) return !1;
+            const _ = _._.GetFramesWithAssociatedSummonKeys(
+              this.m_sKeyboardOverlayKey,
+            )[0];
+            return null != _ && _.docking.dockLocation != _.yWq.Dashboard;
+          }
+          get dashboardDistance() {
+            if (this.m_dashboardUserDistance)
+              return this.m_dashboardUserDistance;
+            return {
+              [_.eod.Near]: 0.925,
+              [_.eod.Middle]: 1.05,
+              [_.eod.Far]: 1.2,
+              [_.eod.VRGamepadUI]: 1.15,
+            }[_.currentDashboardPosition];
+          }
+          get curvatureDistance() {
+            return this.dashboardDistance + 1.8;
+          }
+          get dashboardTranslation() {
+            var _;
+            let _ =
+              0.01 *
+              (null !==
+                (_ = _._.settings.get(
+                  "/settings/dashboard/verticalOffsetCm_2",
+                )) && void 0 !== _
+                ? _
+                : 0);
+            _ += {
+              [_.eod.Near]: -0.07,
+              [_.eod.Middle]: -0.08,
+              [_.eod.Far]: -0.09,
+              [_.eod.VRGamepadUI]: -0.09,
+            }[_.currentDashboardPosition];
+            const _ = -this.dashboardDistance,
+              _ = _.shouldShowKeyboardForUndockedFrame_Hack ? 0 : 0.25;
+            return {
+              channel: _.KIK.TheaterFast,
+              from: [0, _, _],
+              _: [0, _ - _, _],
+              interp: _.$ab.SmootherStep,
+            };
+          }
+          get dashboardScale() {
+            var _, _;
+            if (_._.m_bIsVRLinkServer && _._.unifiedDashboardEnabled)
+              return null !==
+                (_ = _._.unifiedDashboardState_Remote.dashboard_scale) &&
+                void 0 !== _
+                ? _
+                : 0.369;
+            if (this.m_dashboardUserScale) return this.m_dashboardUserScale;
+            let _ = 1;
+            const _ = _.currentDashboardPosition;
+            return (
+              (_ =
+                _ == _.eod.Near
+                  ? 0.36
+                  : _ == _.eod.Middle
+                    ? 0.41
+                    : _ == _.eod.Far
+                      ? 0.47
+                      : 0.41),
+              (_ *=
+                null !==
+                  (_ =
+                    null === VRHTML || void 0 === VRHTML
+                      ? void 0
+                      : VRHTML.VRProperties.GetFloatProperty(
+                          _.Gze,
+                          _.fD8.DashboardScale_Float,
+                        )) && void 0 !== _
+                  ? _
+                  : 1),
+              _
+            );
+          }
+          get sceneAppDimmingActive() {
+            var _, _;
+            if (
+              _._.m_bIsVRLinkClient &&
+              _._.m_bVRLinkStreamingActive &&
+              _._.Instance.SceneAppIsVRLink
+            )
+              return !1;
+            const _ = _._.Instance.SceneApplicationState !== _.HWH.None,
+              _ =
+                this.m_bSuppressingFadeExternal &&
+                (null ===
+                  (_ =
+                    null === (_ = this.activeFrame) || void 0 === _
+                      ? void 0
+                      : _.activePage) || void 0 === _
+                  ? void 0
+                  : _.summonOverlayKey) == _._,
+              _ = _._.settings.get(
+                "/settings/dashboard/omitDashboardFadeWithSteamVRHome",
+              ),
+              _ = !_._.Instance.SceneAppIsHome || !_;
+            return (
+              (this.isFullyVisible || this.isDashboardDiminished) &&
+              _ &&
+              !_ &&
+              _
+            );
+          }
+          onSetDashboardForceBoundsVisible(_) {
+            _.force_bounds_visible
+              ? this.m_rgForcingBoundsVisible.push({
+                  for_overlay_key: _.for_overlay_key,
+                  for_id: _.for_id,
+                })
+              : (this.m_rgForcingBoundsVisible =
+                  this.m_rgForcingBoundsVisible.filter(
+                    (_) =>
+                      _.for_overlay_key != _.for_overlay_key ||
+                      _.for_id != _.for_id,
+                  ));
+          }
+          get shouldForceBoundsVisible() {
+            var _, _;
+            const _ =
+              null ===
+                (_ =
+                  null === (_ = this.activeFrame) || void 0 === _
+                    ? void 0
+                    : _.activePage) || void 0 === _
+                ? void 0
+                : _.summonOverlayKey;
+            return (
+              (this.isFullyVisible || this.isDashboardDiminished) &&
+              this.m_rgForcingBoundsVisible.some((_) => _.for_overlay_key == _)
+            );
+          }
+          get bareSessionMode() {
+            return _._.HasFramesWithAssociatedSummonKeys(_._)
+              ? "desktop"
+              : _._.HasFramesWithAssociatedSummonKeys(_._)
+                ? "recovery"
+                : "none";
+          }
+        }
+        function _() {
+          return (0, _.useObserver)(() => _.isVRGamepadUI);
+        }
+        function _() {
+          return (0, _.useObserver)(() => _.bareSessionMode);
+        }
+        (_.k_strSessionStorageKey = "DashboardStoreSessionStorage"),
+          (0, _._)([_.observable], _.prototype, "m_eVisibilityState", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_unDiminishedStateFrameID",
+            void 0,
+          ),
+          (0, _._)([_.computed], _.prototype, "isFullyVisible", null),
+          (0, _._)([_.computed], _.prototype, "isDashboardDiminished", null),
+          (0, _._)([_.computed], _.prototype, "visibilityState", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "visibilityState_IgnoringKeyboardHack",
+            null,
+          ),
+          (0, _._)([_.action], _.prototype, "OnShown", null),
+          (0, _._)([_.action], _.prototype, "OnHidden", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "canBeInDiminishedModeForActiveFrame",
+            null,
+          ),
+          (0, _._)([_.action], _.prototype, "EnterDiminishedState", null),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_bShowLegacyDashboardBar",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_bVS", void 0),
+          (0, _._)([_.observable], _.prototype, "m_eVSMode", void 0),
+          (0, _._)([_.observable], _.prototype, "m_sVSOverlayKey", void 0),
+          (0, _._)([_.observable], _.prototype, "m_eTheaterStereo", void 0),
+          (0, _._)([_.observable], _.prototype, "m_eIncognitoMode", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_mapActivePooledPopupRequests",
+            void 0,
+          ),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_fVRGamepadUI_MetersPerPixel",
+            void 0,
+          ),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_dashboardUserDistance",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_dashboardUserScale", void 0),
+          (0, _._)([_.observable], _.prototype, "m_unActiveFrameID", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_sLastActiveOverlaySummonKey",
+            void 0,
+          ),
+          (0, _._)([_.computed], _.prototype, "activeFrame", null),
+          (0, _._)([_.computed], _.prototype, "activeFrameID", null),
+          (0, _._)([_.computed], _.prototype, "hasActiveFrame", null),
+          (0, _._)([_.action.bound], _.prototype, "_setActiveFrame", null),
+          (0, _._)(
+            [_.action.bound],
+            _.prototype,
+            "_updateLastActiveOverlaySummonKey",
+            null,
+          ),
+          (0, _._)([_.computed], _.prototype, "activeLocalFrame", null),
+          (0, _._)([_.observable], _.prototype, "m_unMainSteamFrameID", void 0),
+          (0, _._)([_.computed], _.prototype, "mainSteamFrame", null),
+          (0, _._)([_.action], _.prototype, "SetMainSteamFrame", null),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_bSuppressingFadeExternal",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_bTrackingRecording", void 0),
+          (0, _._)([_.observable], _.prototype, "m_bKeyboardVisible", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_bKeyboardDockedInDashboard",
+            void 0,
+          ),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_sKeyboardOverlayKey",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_nKeyboardFlags", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_rgForcingBoundsVisible",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_sLastShownAppKey", void 0),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_nSystemBehaviorFlags",
+            void 0,
+          ),
+          (0, _._)(
+            [_.observable],
+            _.prototype,
+            "m_nStandingZeroPoseResetGeneration",
+            void 0,
+          ),
+          (0, _._)([_.observable], _.prototype, "m_nHMDFrameRate", void 0),
+          (0, _._)(
+            [_.action],
+            _.prototype,
+            "ClearTheaterHistoryForFrame",
+            null,
+          ),
+          (0, _._)([_._], _.prototype, "FocusDashboardBar", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "nextDashboardFocusCycleStop",
+            null,
+          ),
+          (0, _._)([_.computed], _.prototype, "cycleDashboardFocusLabel", null),
+          (0, _._)([_._], _.prototype, "CycleDashboardFocus", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "isDashboardBarOrChildPopupFocused",
+            null,
+          ),
+          (0, _._)([_._], _.prototype, "LoadSessionDevData", null),
+          (0, _._)([_._], _.prototype, "SaveSessionDevData", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "showLoadingThrobberOrBootOverlay",
+            null,
+          ),
+          (0, _._)([_.computed], _.prototype, "eTheaterCurvature", null),
+          (0, _._)(
+            [_.action.bound],
+            _.prototype,
+            "onVrCmdToggleTheaterStereoRequested",
+            null,
+          ),
+          (0, _._)([_.action.bound], _.prototype, "onDisableTheaterMode", null),
+          (0, _._)([_.action.bound], _.prototype, "onRequiredRoomSetup", null),
+          (0, _._)(
+            [_.action.bound],
+            _.prototype,
+            "onGuidedTourRoomSetup",
+            null,
+          ),
+          (0, _._)(
+            [_.action.bound],
+            _.prototype,
+            "onSetDashboardFadeSuppression",
+            null,
+          ),
+          (0, _._)([_.action.bound], _.prototype, "onVRLinkRoomSetup", null),
+          (0, _._)([_.action], _.prototype, "HideTheaterOverlay", null),
+          (0, _._)([_.computed], _.prototype, "allowCurvature", null),
+          (0, _._)([_.computed], _.prototype, "isDarkMode", null),
+          (0, _._)([_.action], _.prototype, "setIncognitoMode", null),
+          (0, _._)([_.computed], _.prototype, "showIncognitoModeAction", null),
+          (0, _._)([_.computed], _.prototype, "DashboardBarTint", null),
+          (0, _._)([_.computed], _.prototype, "GrabHandleTint", null),
+          (0, _._)([_.computed], _.prototype, "WorldLightingGain", null),
+          (0, _._)([_.computed], _.prototype, "isGroupMode", null),
+          (0, _._)([_.computed], _.prototype, "allowScreenSharing", null),
+          (0, _._)([_.computed], _.prototype, "isVRGamepadUIReady", null),
+          (0, _._)([_.computed], _.prototype, "isVRGamepadUI", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "dashboardBarUsesPooledPopup",
+            null,
+          ),
+          (0, _._)([_.computed], _.prototype, "dashboardBarOverlayKey", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "hasVRGamepadUIDashboardBar",
+            null,
+          ),
+          (0, _._)([_.computed], _.prototype, "currentDashboardPosition", null),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "currentTheaterScreenAlignment",
+            null,
+          ),
+          (0, _._)([_.computed], _.prototype, "defaultTheaterScale", null),
+          (0, _._)([_.computed], _.prototype, "defaultTheaterDistance", null),
+          (0, _._)([_._], _.prototype, "updateBodyClasses", null),
+          (0, _._)(
+            [_.action.bound],
+            _.prototype,
+            "onTrackingRecordingChanged",
+            null,
+          ),
+          (0, _._)(
+            [_.action.bound],
+            _.prototype,
+            "onSystemBehaviorFlags",
+            null,
+          ),
+          (0, _._)(
+            [_.action.bound],
+            _.prototype,
+            "onKeyboardInfoChanged",
+            null,
+          ),
+          (0, _._)(
+            [_.computed],
+            _.prototype,
+            "shouldShowKeyboardForUndockedFrame_Hack",
+            null,
+          ),
+          (0, _._)([_.computed], _.prototype, "dashboardDistance", null),
+          (0, _._)([_.computed], _.prototype, "curvatureDistance", null),
+          (0, _._)([_.computed], _.prototype, "dashboardTranslation", null),
+          (0, _._)([_.computed], _.prototype, "dashboardScale", null),
+          (0, _._)([_.computed], _.prototype, "sceneAppDimmingActive", null),
+          (0, _._)(
+            [_.action.bound],
+            _.prototype,
+            "onSetDashboardForceBoundsVisible",
+            null,
+          ),
+          (0, _._)([_.computed], _.prototype, "shouldForceBoundsVisible", null),
+          (0, _._)([_.computed], _.prototype, "bareSessionMode", null);
+        const _ = new _();
+        window.DashboardStore = _;
+      },
+      chunkid: (module, module_exports, __webpack_require__) => {
+        "use strict";
+        __webpack_require__._(_, {
+          _: () => _,
+          _: () => _,
+          _: () => _,
+          _: () => _,
+        });
+        var _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
@@ -4690,22 +6009,66 @@ var CLSTAMP = "steamdb";
         "use strict";
         __webpack_require__._(_, {
           _: () => _,
+          _: () => _,
         });
         var _,
           _,
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid"),
-          _ =
-            (__webpack_require__("chunkid"),
-            __webpack_require__("chunkid"),
-            __webpack_require__("chunkid")),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
+          _ = __webpack_require__("chunkid"),
           _ = __webpack_require__("chunkid");
-        __webpack_require__("chunkid"),
-          __webpack_require__("chunkid"),
-          __webpack_require__("chunkid"),
-          __webpack_require__("chunkid"),
-          __webpack_require__("chunkid");
+        function _(_) {
+          return _.createElement(
+            "div",
+            {
+              ref: _.divRef,
+              className: _.CenteredContent,
+            },
+            _.children,
+          );
+        }
+        function _(_) {
+          return _.createElement(
+            _._,
+            {
+              onClick: () => _.onClick(),
+              className: (0, _._)(_.GuidedTourButton, _.LearnMoreButton),
+              lang: "LearnMore",
+              role: "menuitem",
+            },
+            _.children,
+          );
+        }
+        function _(_) {
+          return _.createElement(
+            "div",
+            {
+              title: "Currently Resets these Tooltips",
+            },
+            _.createElement(
+              _._,
+              {
+                onClick: () => _.onClick(),
+                className: (0, _._)(
+                  _.GuidedTourButton,
+                  _.DismissAllButton,
+                  _.BlueButton,
+                ),
+                lang: "LearnMore",
+                role: "menuitem",
+              },
+              _.children,
+            ),
+          );
+        }
         !(function (_) {
           (_[(_.None = 0)] = "None"),
             (_[(_.ControllerPairing = 1)] = "ControllerPairing"),
@@ -4946,10 +6309,243 @@ var CLSTAMP = "steamdb";
           (0, _._)([_.computed], _.prototype, "hasAnyReadTopics", null),
           (0, _._)([_.computed], _.prototype, "hasAnyUnreadTopics", null);
         const _ = new _();
+        function _(_) {
+          const { mode: _ } = _,
+            _ = (0, _.useObserver)(() =>
+              "auto-show" == _ ? _.unreadShowableTopics : _.showableTopics,
+            ),
+            _ = _.useMemo(
+              () =>
+                "auto-show" == _
+                  ? __webpack_require__.filter((_) => 1 == _.GetLocation())
+                  : [],
+              [_, _],
+            ),
+            [_, _] =
+              (_.useMemo(
+                () =>
+                  "auto-show" == _
+                    ? __webpack_require__.filter((_) => 2 == _.GetLocation())
+                    : _,
+                [_, _],
+              ),
+              _.useState(_[0] ? _[0].key : void 0)),
+            _ = _.findIndex((_) => _.key == _),
+            _ = _[_],
+            _ = () => _.allTopics[0].key,
+            _ = () =>
+              _(
+                (() => {
+                  if ("additional-topics" == _) return;
+                  const _ = _.findIndex((_) => _.key == _);
+                  return _ == _.length - 1 ? "additional-topics" : _[_ + 1].key;
+                })(),
+              ),
+            _ = !_._.isShowingVRGuidedTour,
+            _ = (0, _.useObserver)(() => _.hasAnyUnreadTopics);
+          return !_ && _
+            ? (_(_), null)
+            : _ && _ && _
+              ? _.createElement(_, {
+                  element: _.bodyComponent(),
+                  learningTopicDefinitions: _,
+                  fnMarkTopicRead: (_) => {
+                    _.MarkTopicsAsRead(_), _();
+                  },
+                  fnClearTopicRead: () => {
+                    _.ClearTopicsRead();
+                  },
+                })
+              : null;
+        }
+        function _(_) {
+          var _, _, _, _;
+          const _ = _.createRef(),
+            _ = {
+              _: _.learningTopicDefinitions.parentOrigin._,
+              _: _.learningTopicDefinitions.parentOrigin._,
+            },
+            _ = {
+              _: _.learningTopicDefinitions.offsetPixels._,
+              _: _.learningTopicDefinitions.offsetPixels._,
+              _: _.learningTopicDefinitions.offsetPixels._,
+            },
+            _ = {
+              _:
+                null !==
+                  (_ = _.learningTopicDefinitions.rotation.pitch_degrees) &&
+                void 0 !== _
+                  ? _
+                  : 0,
+              _:
+                null !==
+                  (_ = _.learningTopicDefinitions.rotation.yaw_degrees) &&
+                void 0 !== _
+                  ? _
+                  : 0,
+            };
+          return _.createElement(
+            _.b$J,
+            {
+              parent_overlay_key: _.learningTopicDefinitions.parentOverlayKey,
+            },
+            _.createElement(
+              _.Ci8,
+              {
+                key: 1,
+                location: _,
+              },
+              _.createElement(
+                _._,
+                {
+                  offsetPixels: _,
+                },
+                _.createElement(
+                  _._,
+                  {
+                    rotation: _,
+                  },
+                  _.createElement(
+                    "div",
+                    {
+                      className: (0, _._)(
+                        _.TourTooltipContainer,
+                        0 == _.learningTopicDefinitions.tooltipFlow &&
+                          _.RightFlow,
+                      ),
+                    },
+                    _.createElement(
+                      _.Zkm,
+                      {
+                        debug_name:
+                          "GuidedTutorialTopSection key: " +
+                          _.learningTopicDefinitions.key,
+                        ref: _,
+                        _: void 0,
+                        interactive: !0,
+                        only_visible_with_laser: !1,
+                        curvature: void 0,
+                        meters_per_pixel:
+                          null !==
+                            (_ =
+                              null === _._ || void 0 === _._
+                                ? void 0
+                                : _._.m_fVRGamepadUI_MetersPerPixel) &&
+                          void 0 !== _
+                            ? _
+                            : 1,
+                        reflect: 0,
+                        sort_depth_bias: -0.1,
+                        origin:
+                          1 == _.learningTopicDefinitions.tooltipFlow
+                            ? {
+                                _: 0,
+                                _: -1,
+                              }
+                            : {
+                                _: -0.4,
+                                _: -1,
+                              },
+                        inputFocusParams: {
+                          unSteamInputAppID: _._,
+                        },
+                      },
+                      _.createElement(
+                        "div",
+                        {
+                          className: _.TopPanelContainer,
+                        },
+                        _.createElement(
+                          _,
+                          null,
+                          _.element,
+                          _.createElement(
+                            "div",
+                            {
+                              className: _.ButtonContainer,
+                            },
+                            _.createElement(
+                              _,
+                              {
+                                onClick: () =>
+                                  _.fnMarkTopicRead(
+                                    _.learningTopicDefinitions.key,
+                                  ),
+                              },
+                              "Learn More",
+                            ),
+                            _.createElement(
+                              _,
+                              {
+                                onClick: () => _.fnClearTopicRead(),
+                              },
+                              "Got it",
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    _.createElement(
+                      "div",
+                      {
+                        className: _.BottomPanelContainer,
+                      },
+                      _.createElement(
+                        _.Zkm,
+                        {
+                          debug_name: "testing-stuff",
+                          origin:
+                            1 == _.learningTopicDefinitions.tooltipFlow
+                              ? {
+                                  _: 0,
+                                  _: 1,
+                                }
+                              : {
+                                  _: -3,
+                                  _: -1,
+                                },
+                          only_visible_with_laser: !1,
+                          meters_per_pixel:
+                            null !==
+                              (_ =
+                                null === _._ || void 0 === _._
+                                  ? void 0
+                                  : _._.m_fVRGamepadUI_MetersPerPixel) &&
+                            void 0 !== _
+                              ? _
+                              : 1,
+                          reflect: 0,
+                          interactive: !1,
+                        },
+                        _.createElement(
+                          "div",
+                          {
+                            className: _.GuideLineContainer,
+                          },
+                          _.createElement(
+                            "div",
+                            {
+                              className: _.GuideLine,
+                            },
+                            _.createElement("div", {
+                              className: _.GuideDot,
+                            }),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
       },
       chunkid: (module, module_exports, __webpack_require__) => {
         "use strict";
         __webpack_require__._(_, {
+          _: () => _,
+          _: () => _,
           _: () => _,
           _: () => _,
         });
@@ -8372,7 +9968,7 @@ var CLSTAMP = "steamdb";
             ),
           );
         }
-        (0, _._)(function () {
+        const _ = (0, _._)(function () {
           const _ = _._.guidedTourState;
           return _ != _.ZPA.SystemButtonHideDashboard &&
             _ != _.ZPA.SystemButtonDashboardHidden
@@ -8710,7 +10306,7 @@ var CLSTAMP = "steamdb";
                     _.OH$[(0, _.R$f)()],
                 );
               console.log("Bootstrapping " + _, _);
-              const _ = 1e3 * (null !== (_ = 1788979559) ? _ : 0);
+              const _ = 1e3 * (null !== (_ = 1789497427) ? _ : 0);
               console.log(
                 "SteamVR Version Info: " +
                   JSON.stringify({
@@ -8842,6 +10438,29 @@ var CLSTAMP = "steamdb";
                 _.createElement(_, null),
               ),
             ),
+              (null === VRHTML || void 0 === VRHTML
+                ? void 0
+                : VRHTML.IsSteamFrame()) &&
+                (_.push(
+                  _.createElement(
+                    _._,
+                    {
+                      key: "guidedtour",
+                    },
+                    _.createElement(_, null),
+                  ),
+                ),
+                _.push(
+                  _.createElement(
+                    _._,
+                    {
+                      key: "learningpanel",
+                    },
+                    _.createElement(_._, {
+                      mode: "auto-show",
+                    }),
+                  ),
+                )),
               _.push(
                 _.createElement(
                   _._,
